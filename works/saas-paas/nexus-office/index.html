@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEXUS Office — Miniatur Workflow Orchestration</title>
+<style>
+/* =====================================================================
+   TEMA: pejabat miniatur
+   - Langit kebiruan di luar, dinding kuning pucat di dalam bilik
+   - Lantai kayu jati, perabot pixel, watak kartun sederhana
+   - Semua dalam Bahasa Malaysia
+   ===================================================================== */
+:root{
+  --sky:#bde0fe; --sky2:#a2d2ff; --grass:#c7e9b0;
+  --floor:#d4a373; --floor2:#b08968; --wall:#fef3c7; --wall-trim:#e6c47a;
+  --desk:#a0522d; --desk-top:#cd853f; --chair:#6f4e37; --monitor:#1f2937; --screen:#0ea5e9;
+  --ink:#0f172a; --ink-soft:#475569; --ink-mute:#94a3b8;
+  --paper:#fff8e7; --paper-edge:#e9d6a8;
+  --ok:#16a34a; --warn:#d97706; --err:#dc2626; --info:#2563eb;
+  --shadow:rgba(15,23,42,.18);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--sky);overflow:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+
+/* shell */
+#app{display:grid;grid-template-rows:48px 1fr 28px;height:100vh;background:linear-gradient(180deg,#bde0fe 0%,#a2d2ff 35%,var(--grass) 100%)}
+
+/* topbar */
+#topbar{display:flex;align-items:center;gap:12px;padding:0 14px;background:rgba(255,255,255,.85);border-bottom:1px solid #cbd5e1;backdrop-filter:blur(8px)}
+#topbar .logo{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink)}
+#topbar .logo .dot{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f97316);box-shadow:0 0 0 3px rgba(249,115,22,.18)}
+#topbar .crumb{display:flex;align-items:center;gap:6px;color:var(--ink-soft);font-size:13px}
+#topbar .crumb b{color:var(--ink)}
+#topbar .spacer{flex:1}
+.btn{padding:6px 12px;border-radius:8px;background:#fff;border:1px solid #cbd5e1;font-size:13px;color:var(--ink);font-weight:600}
+.btn:hover{background:#f1f5f9}
+.btn.pri{background:var(--info);color:#fff;border-color:var(--info)}
+.btn.pri:hover{background:#1d4ed8}
+.btn.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.btn.ok:hover{background:#15803d}
+.btn.warn{background:var(--warn);color:#fff;border-color:var(--warn)}
+.btn.err{background:var(--err);color:#fff;border-color:var(--err)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+#speedSel{padding:5px 8px;border-radius:6px;border:1px solid #cbd5e1;background:#fff;font-size:12px}
+
+/* room selector */
+#roomSelector{display:flex;gap:4px;padding:4px;background:rgba(255,255,255,.7);border-radius:10px;border:1px solid #cbd5e1}
+#roomSelector .wf{padding:5px 10px;border-radius:7px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;color:var(--ink-soft);cursor:pointer}
+#roomSelector .wf:hover{background:#f1f5f9;color:var(--ink)}
+#roomSelector .wf.act{background:#fff;color:var(--ink);box-shadow:0 1px 2px var(--shadow)}
+#roomSelector .wf .ct{font-size:10px;color:var(--ink-mute);font-weight:500}
+
+/* main */
+#main{display:grid;grid-template-columns:60px 1fr 340px;min-height:0}
+
+/* palette rail */
+#palRail{background:rgba(255,255,255,.7);border-right:1px solid #cbd5e1;padding:6px 4px;overflow-y:auto;display:flex;flex-direction:column;gap:4px}
+.pal-cat{font-size:10px;font-weight:700;color:var(--ink-mute);padding:6px 4px 2px;text-transform:uppercase;letter-spacing:.5px}
+.pal-it{display:flex;align-items:center;gap:6px;padding:5px 6px;border-radius:6px;font-size:11px;background:#fff;border:1px solid #e2e8f0;color:var(--ink);cursor:grab}
+.pal-it:hover{border-color:#94a3b8;background:#f8fafc}
+.pal-it .ic{font-size:14px}
+
+/* stage — the office miniworld */
+#stage{position:relative;overflow:hidden;cursor:grab}
+#stage.pan{cursor:grabbing}
+#floor{position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,transparent 0 79px,rgba(0,0,0,.06) 79px 80px),
+  repeating-linear-gradient(0deg,transparent 0 39px,rgba(0,0,0,.04) 39px 40px),
+  linear-gradient(180deg,#d4a373,#b08968)}
+#skyline{position:absolute;top:0;left:0;right:0;height:60px;background:linear-gradient(180deg,#bde0fe,#a2d2ff);border-bottom:2px solid #7c9eb2}
+#skyline::after{content:'';position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(180deg,transparent,#7c9eb2)}
+.clouds{position:absolute;top:8px;left:0;right:0;height:30px;pointer-events:none}
+.cloud{position:absolute;width:46px;height:14px;background:#fff;border-radius:14px;opacity:.85;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.cloud::before{content:'';position:absolute;left:8px;top:-6px;width:18px;height:14px;background:#fff;border-radius:14px}
+.cloud::after{content:'';position:absolute;right:8px;top:-5px;width:14px;height:12px;background:#fff;border-radius:14px}
+
+/* room container */
+.room{position:absolute;background:var(--wall);border:3px solid var(--wall-trim);border-radius:8px;box-shadow:0 4px 12px var(--shadow),inset 0 0 0 2px rgba(255,255,255,.5);overflow:hidden}
+.room::before{content:attr(data-label);position:absolute;top:6px;left:8px;background:rgba(15,23,42,.85);color:#fff;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:.5px;z-index:5;box-shadow:0 2px 4px rgba(0,0,0,.2)}
+.room::after{content:attr(data-sub);position:absolute;top:6px;right:8px;background:rgba(255,255,255,.85);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:600;color:var(--ink-soft);z-index:5}
+.room .deco{position:absolute;bottom:0;left:0;right:0;height:8px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.1))}
+.window-row{position:absolute;top:24px;left:0;right:0;display:flex;justify-content:space-around;padding:0 12px;pointer-events:none;z-index:1}
+.window{width:22px;height:18px;background:linear-gradient(180deg,#bfdbfe,#dbeafe);border:2px solid #64748b;border-radius:2px;position:relative}
+.window::after{content:'';position:absolute;inset:0;background:linear-gradient(45deg,transparent 45%,rgba(255,255,255,.6) 50%,transparent 55%)}
+
+/* character desk */
+.char-desk{position:absolute;width:120px;height:118px}
+.char-desk .desk-svg{position:absolute;left:6px;top:36px;width:108px;height:80px}
+.char-desk .char-svg{position:absolute;left:18px;top:0;width:84px;height:80px;z-index:2}
+.char-desk .label{position:absolute;left:0;right:0;bottom:-2px;text-align:center;font-size:9px;font-weight:700;color:var(--ink);background:rgba(255,255,255,.92);padding:2px 4px;border-radius:4px;border:1px solid #cbd5e1;box-shadow:0 1px 2px rgba(0,0,0,.1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:3}
+.char-desk .badge{position:absolute;left:-6px;top:-6px;background:var(--info);color:#fff;font-size:9px;font-weight:700;padding:2px 5px;border-radius:8px;z-index:4;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.char-desk .port{position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--ink-soft);z-index:4;cursor:crosshair}
+.char-desk .port:hover{background:#fbbf24;transform:scale(1.2)}
+.char-desk .port.in{left:-7px;top:50%;margin-top:-7px}
+.char-desk .port.out{right:-7px;top:50%;margin-top:-7px}
+.char-desk .port.out-2{right:-7px;top:80%;margin-top:-7px}
+
+/* character states */
+.char-desk.s-running .char-svg{animation:bob .9s ease-in-out infinite}
+.char-desk.s-running .badge{background:var(--info)}
+.char-desk.s-success .badge{background:var(--ok)}
+.char-desk.s-error .badge{background:var(--err)}
+.char-desk.s-error .char-svg{animation:shake .4s ease-in-out infinite}
+.char-desk.s-retrying .badge{background:var(--warn)}
+.char-desk.s-retrying .char-svg{animation:pulse 1.2s ease-in-out infinite}
+.char-desk.s-queued .badge{background:var(--ink-mute)}
+.char-desk.s-waiting .badge{background:#cbd5e1;color:var(--ink)}
+.char-desk.s-queued .badge::after{content:'…'}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+/* document in flight */
+.doc{position:absolute;width:18px;height:14px;background:var(--paper);border:1px solid var(--paper-edge);border-radius:1px;box-shadow:0 1px 2px rgba(0,0,0,.2);z-index:50;pointer-events:none}
+.doc::before{content:'';position:absolute;left:2px;right:2px;top:3px;height:1px;background:rgba(0,0,0,.15)}
+.doc::after{content:'';position:absolute;left:2px;right:2px;top:6px;height:1px;background:rgba(0,0,0,.15)}
+.doc.doc-err{background:#fecaca;border-color:#dc2626}
+.doc.doc-warn{background:#fde68a;border-color:#d97706}
+.doc.doc-ok{background:#bbf7d0;border-color:#16a34a}
+
+/* corridor lines between rooms */
+.corridor{position:absolute;pointer-events:none;z-index:3}
+
+/* right rail */
+#rightRail{background:rgba(255,255,255,.85);border-left:1px solid #cbd5e1;padding:0;display:flex;flex-direction:column;overflow:hidden}
+#rrTabs{display:flex;border-bottom:1px solid #cbd5e1;background:#fff}
+#rrTabs .t{padding:8px 12px;font-size:12px;font-weight:600;color:var(--ink-soft);cursor:pointer;border-bottom:2px solid transparent}
+#rrTabs .t.act{color:var(--ink);border-bottom-color:var(--info)}
+#rrTabs .t:hover{color:var(--ink)}
+#rrBody{flex:1;overflow-y:auto;padding:10px}
+#rrBody h4{margin:8px 0 4px;font-size:11px;text-transform:uppercase;color:var(--ink-mute);letter-spacing:.5px}
+#rrBody .card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;margin-bottom:6px;font-size:12px}
+#rrBody .card .k{color:var(--ink-mute);font-size:10px;text-transform:uppercase}
+#rrBody .card .v{font-weight:600;color:var(--ink);font-size:13px}
+
+/* statusbar */
+#statusbar{display:flex;align-items:center;gap:14px;padding:0 12px;background:rgba(15,23,42,.92);color:#fff;font-size:11px;font-weight:600}
+#statusbar .stat{display:flex;align-items:center;gap:4px}
+#statusbar .stat .v{color:#fbbf24}
+#statusbar .stat.ok .v{color:#4ade80}
+#statusbar .stat.err .v{color:#f87171}
+#statusbar .dot{width:8px;height:8px;border-radius:50%;background:var(--ink-mute)}
+#statusbar .dot.run{background:#3b82f6;animation:pulse 1.2s infinite}
+#statusbar .dot.ok{background:#22c55e}
+#statusbar .dot.err{background:#ef4444}
+
+/* NDV modal */
+#ndv{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:100;backdrop-filter:blur(3px)}
+#ndv.open{display:flex}
+#ndv .box{background:#fff;border-radius:14px;width:min(720px,90vw);max-height:80vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+#ndv .hd{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid #e2e8f0;background:linear-gradient(180deg,#f8fafc,#fff)}
+#ndv .hd .ch{font-size:34px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:#f1f5f9;border:2px solid #cbd5e1}
+#ndv .hd .ti{font-size:15px;font-weight:700;color:var(--ink)}
+#ndv .hd .sub{font-size:11px;color:var(--ink-soft);margin-top:2px}
+#ndv .hd .x{margin-left:auto;background:none;color:var(--ink-soft);font-size:18px;padding:4px 10px;border-radius:6px}
+#ndv .hd .x:hover{background:#f1f5f9;color:var(--ink)}
+#ndv .nav{display:flex;background:#f8fafc;border-bottom:1px solid #e2e8f0;padding:0 16px}
+#ndv .nav .t{padding:10px 14px;font-size:12px;font-weight:600;color:var(--ink-soft);cursor:pointer;border-bottom:2px solid transparent}
+#ndv .nav .t.act{color:var(--ink);border-bottom-color:var(--info);background:#fff}
+#ndv .bd{flex:1;overflow-y:auto;padding:14px 16px}
+#ndv .ft{display:flex;gap:8px;padding:10px 16px;border-top:1px solid #e2e8f0;background:#f8fafc}
+#ndv .ft .spacer{flex:1}
+.kv{display:grid;grid-template-columns:140px 1fr;gap:6px 12px;margin-bottom:10px}
+.kv .k{color:var(--ink-soft);font-size:12px;padding-top:2px}
+.kv .v{color:var(--ink);font-size:13px;font-weight:500}
+.jsonh{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;background:#0f172a;color:#e2e8f0;padding:10px;border-radius:8px;white-space:pre-wrap;word-break:break-word;max-height:340px;overflow-y:auto}
+.jsonh .k{color:#7dd3fc}
+.jsonh .s{color:#fbbf24}
+.jsonh .n{color:#a78bfa}
+.jsonh .b{color:#f472b6}
+
+/* toast */
+#toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;z-index:200;opacity:0;transition:opacity .25s;pointer-events:none;max-width:80vw}
+#toast.show{opacity:1}
+#toast.warn{background:#d97706}
+#toast.err{background:#dc2626}
+#toast.ok{background:#16a34a}
+
+/* stickies */
+.sticky{position:absolute;padding:6px 8px;border-radius:4px;font-size:10px;font-weight:600;line-height:1.3;color:var(--ink);box-shadow:0 2px 4px rgba(0,0,0,.15);max-width:200px;z-index:6;font-family:"Comic Sans MS",cursive}
+.sticky.gold{background:#fef3c7;border:1px solid #fbbf24;transform:rotate(-2deg)}
+.sticky.blue{background:#dbeafe;border:1px solid #60a5fa;transform:rotate(1.5deg)}
+.sticky.red{background:#fee2e2;border:1px solid #f87171;transform:rotate(-1deg)}
+
+/* scrollbars */
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(0,0,0,.2);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.35)}
+
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="topbar">
+    <div class="logo"><span class="dot"></span>NEXUS Office</div>
+    <div class="crumb">› <b id="crumbWF">Kilang Video</b> · <span id="crumbMeta">Miniatur Workflow Orchestration</span></div>
+    <div id="roomSelector"></div>
+    <div class="spacer"></div>
+    <select id="speedSel" title="Kelajuan">
+      <option value="1">1×</option>
+      <option value="2" selected>2×</option>
+      <option value="3">3×</option>
+      <option value="6">6×</option>
+    </select>
+    <button class="btn" id="resetBtn" title="Reset">↺ Reset</button>
+    <button class="btn ok" id="runBtn" title="Jalankan aliran">▶ Jalankan</button>
+  </div>
+
+  <div id="main">
+    <div id="palRail"></div>
+    <div id="stage">
+      <div id="skyline"><div class="clouds" id="clouds"></div></div>
+      <div id="floor"></div>
+      <div id="world"></div>
+    </div>
+    <div id="rightRail">
+      <div id="rrTabs">
+        <div class="t act" data-tab="nod">Nod</div>
+        <div class="t" data-tab="pelaksanaan">Pelaksanaan</div>
+        <div class="t" data-tab="garismasa">Garis Masa</div>
+        <div class="t" data-tab="stat">Statistik</div>
+      </div>
+      <div id="rrBody"></div>
+    </div>
+  </div>
+
+  <div id="statusbar">
+    <div class="stat"><span class="dot" id="statusDot"></span><span id="statusText">Sedia</span></div>
+    <div class="stat">Nod: <span class="v" id="stNodes">0</span></div>
+    <div class="stat ok">Item: <span class="v" id="stItems">0</span></div>
+    <div class="stat">Token: <span class="v" id="stTokens">0</span></div>
+    <div class="stat">Kos: <span class="v" id="stCost">$0.0000</span></div>
+    <div class="stat">Masa: <span class="v" id="stTime">0ms</span></div>
+    <div class="spacer" style="flex:1"></div>
+    <div class="stat" id="stHint">Klik watak untuk butiran · Seret untuk panorama</div>
+  </div>
+</div>
+
+<div id="ndv">
+  <div class="box">
+    <div class="hd">
+      <div class="ch" id="ndvCh"></div>
+      <div>
+        <div class="ti" id="ndvTi"></div>
+        <div class="sub" id="ndvSub"></div>
+      </div>
+      <button class="x" id="ndvX">×</button>
+    </div>
+    <div class="nav">
+      <div class="t act" data-ntab="parameter">Parameter</div>
+      <div class="t" data-ntab="input">Input</div>
+      <div class="t" data-ntab="output">Output</div>
+      <div class="t" data-ntab="log">Log</div>
+    </div>
+    <div class="bd" id="ndvBd"></div>
+    <div class="ft">
+      <span style="color:var(--ink-mute);font-size:11px" id="ndvId"></span>
+      <div class="spacer"></div>
+      <button class="btn" id="ndvClose2">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+"use strict";
+/* =====================================================================
+   PART C — Jenis nod, kategori, definisi watak & bilik
+   ===================================================================== */
+const T = {
+  /* pencetus */
+  webhook:      ['trigger','⚡','Webhook','Permintaan HTTP masuk'],
+  schedule:     ['trigger','⏰','Jadual (Cron)','Cetus mengikut jadual cron'],
+  manual:       ['trigger','▶','Pencetus Manual','Cetus secara manual'],
+  form:         ['trigger','📝','Borang Web','Hantar borang awam'],
+  emailIn:      ['trigger','📧','E-mel Masuk','IMAP: e-mel baharu'],
+  fileWatch:    ['trigger','📁','Pemantau Fail','Fail baharu muncul'],
+  queueTrig:    ['trigger','📥','Antrian Mesej','Mesej baharu dalam antrian'],
+  appEvent:     ['trigger','🔔','Peristiwa Aplikasi','Webhook pihak ketiga'],
+  chatTrig:     ['trigger','💬','Mesej Sembang','Mesej masuk'],
+  errorTrig:    ['trigger','⚠','Pencetus Ralat','Tangkap ralat aliran',{c:'#f0805f'}],
+  /* AI / Ejen */
+  llm:          ['ai','🧠','Model Bahasa','Jana teks dengan LLM'],
+  agent:        ['ai','🤖','Ejen AI','Ejen autonomi'],
+  classifier:   ['ai','🏷','Pengelas','Klasifikasi kategori'],
+  embedder:     ['ai','🧬','Embedding','Tukar teks kepada vektor'],
+  vectorStore:  ['ai','🗄','Stor Vektor','Cari persamaan'],
+  vision:       ['ai','👁','Penglihatan','Analisis imej'],
+  stt:          ['ai','🎙','Tutur→Teks','Transkripsi audio'],
+  tts:          ['ai','🔊','Teks→Tutur','Sintesis suara'],
+  imageGen:     ['ai','🎨','Jana Imej','Imej generatif'],
+  reranker:     ['ai','📊','Penyusun Semula','Susun hasil carian'],
+  summarizer:   ['ai','📝','Perumus','Ringkaskan teks'],
+  extractor:    ['ai','🧾','Pengekstrak','Keluarkan entiti'],
+  guard:        ['ai','🛡','Pengawal','Tapis tidak selamat'],
+  translator:   ['ai','🔤','Penterjemah','Terjemah bahasa'],
+  ocr:          ['ai','🔍','OCR','Teks daripada imej'],
+  sentiment:    ['ai','😊','Sentimen','Skor sentimen'],
+  /* logik */
+  ifNode:       ['logic','🔀','Jika','Cabang benar/palsu',{o:2,ol:['benar','palsu']}],
+  switchNode:   ['logic','🎚','Suis','Berbilang cabang',{o:3,ol:['A','B','lalai']}],
+  merge:        ['logic','🔗','Gabung','Gabung aliran'],
+  loop:         ['logic','🔁','Gelung','Ulang setiap item',{o:2,ol:['gelung','selesai']}],
+  wait:         ['logic','⏳','Tunggu','Jeda'],
+  filter:       ['logic','🪄','Penapis','Tapis item'],
+  code:         ['logic','⌨','Kod (JS)','Jalankan JavaScript'],
+  splitBatch:   ['logic','✂','Pecah Kelompok','Pecah kecil'],
+  noOp:         ['logic','⭕','Tiada Op','Titik gabung'],
+  stopError:    ['logic','🛑','Henti Ralat','Gagalkan aliran',{c:'#f0805f'}],
+  subWorkflow:  ['logic','🧩','Sub-Aliran','Panggil aliran lain'],
+  approval:     ['logic','✋','Kelulusan','Tunggu manusia',{o:2,ol:['lulus','tolak'],c:'#e06ea8'}],
+  rateLimit:    ['logic','🚦','Had Kadar','Kawal kadar'],
+  retryWrap:    ['logic','🔄','Cuba Semula','Balut retry'],
+  /* data */
+  setFields:    ['data','✏','Tetapkan Medan','Ubah medan'],
+  aggregate:    ['data','📦','Agregat','Kumpulkan item'],
+  sort:         ['data','🔢','Susun','Isih item'],
+  limit:        ['data','🔻','Had','Hadkan item'],
+  dedupe:       ['data','🧹','Nyahduplikasi','Buang duplikat'],
+  crypto:       ['data','🔐','Kripto','Hash/HMAC'],
+  dateTime:     ['data','📅','Tarikh & Masa','Format tarikh'],
+  xmlJson:      ['data','🔠','XML↔JSON','Tukar format'],
+  csvDoc:       ['data','📄','CSV','Hurai/jana CSV'],
+  compare:      ['data','⚖','Banding','Banding dua set'],
+  rename:       ['data','🔡','Nama Semula','Ubah nama medan'],
+  htmlExtract:  ['data','🕸','Hurai HTML','Ekstrak HTML'],
+  mathSum:      ['data','➗','Matematik','Kira agregat'],
+  outlier:      ['data','🧿','Anomali','Kesan outliers'],
+  /* platform */
+  http:         ['platform','🌐','HTTP','Panggil REST'],
+  postgres:     ['platform','🐘','PostgreSQL','Sisip/tanya DB'],
+  mysql:        ['platform','🐬','MySQL','Sisip/tanya DB'],
+  mongo:        ['platform','🍃','MongoDB','NoSQL'],
+  redis:        ['platform','🟥','Redis','Cache/pub-sub'],
+  s3:           ['platform','🪣','S3','Stor objek'],
+  gmail:        ['platform','✉','Gmail','E-mel'],
+  sendgrid:     ['platform','📮','SendGrid','E-mel trans'],
+  slack:        ['platform','💬','Slack','Mesej saluran'],
+  telegram:     ['platform','📨','Telegram','Bot Telegram'],
+  whatsapp:     ['platform','🟢','WhatsApp','Mesej perniagaan'],
+  sheets:       ['platform','📊','Sheets','Tambah baris'],
+  notion:       ['platform','📓','Notion','Halaman/rekod'],
+  airtable:     ['platform','🧮','Airtable','Rekod berstruktur'],
+  stripe:       ['platform','💳','Stripe','Bayaran'],
+  shopify:      ['platform','🛒','Shopify','Pesanan'],
+  hubspot:      ['platform','🧲','HubSpot','CRM'],
+  webhookResp:  ['platform','↩','Balas Webhook','Pulangkan HTTP'],
+  gdrive:       ['platform','🗂','Google Drive','Fail & folder'],
+  github:       ['platform','🐙','GitHub','Repo/PR'],
+  discord:      ['platform','🎮','Discord','Mesej pelayan'],
+  grafana:      ['platform','📈','Grafana','Anotasi'],
+  mqtt:         ['platform','📡','MQTT','IoT'],
+  twilio:       ['platform','☎','Twilio','SMS/Suara'],
+  jira:         ['platform','📌','Jira','Isu & sprint'],
+  salesforce:   ['platform','☁','Salesforce','CRM entiti'],
+  sftp:         ['platform','🔌','SFTP','Pemindahan fail'],
+  youtube:      ['platform','▶','YouTube','Muat naik'],
+  metaAds:      ['platform','📣','Meta Ads','Kempen'],
+  tiktok:       ['platform','🎵','TikTok','Muat naik'],
+  elastic:      ['platform','🔎','Elasticsearch','Indeks'],
+  kafka:        ['platform','📶','Kafka','Strim peristiwa'],
+  sap:          ['platform','🏢','SAP','ERP entiti'],
+  smtp:         ['platform','📧','SMTP','E-mel mentah'],
+  gcalendar:    ['platform','📆','Calendar','Peristiwa'],
+  trello:       ['platform','📋','Trello','Kad kanban'],
+  monday:       ['platform','🗓','monday','Item kerja'],
+  cloudflare:   ['platform','🟠','Cloudflare','DNS/tepi'],
+  azureBlob:    ['platform','🔷','Azure Blob','Storan Azure'],
+};
+const CAT = {
+  trigger:  {n:'Pencetus',  ico:'⚡', hex:'#e2b64c'},
+  ai:       {n:'AI & Ejen', ico:'🧠', hex:'#8b7ce8'},
+  logic:    {n:'Logik',     ico:'🔀', hex:'#3f95e0'},
+  data:     {n:'Data',      ico:'📦', hex:'#2fbf9f'},
+  platform: {n:'Platform',  ico:'🌐', hex:'#e8a33d'},
+};
+function tdef(t){
+  const d = T[t];
+  if(!d) return {t:t, cat:'logic', ico:'⬜', label:t, desc:'', color:CAT.logic.hex, out:1, ol:['utama']};
+  const o = d[4] || {};
+  return {t:t, cat:d[0], ico:d[1], label:d[2], desc:d[3], color:o.c||CAT[d[0]].hex, out:o.o||1, ol:o.ol||['utama']};
+}
+const NTYPES = Object.keys(T);
+
+/* ---------- definisi watak per kategori ---------- */
+/* Setiap watak: warna badan, gaya rambut, alat/icon, ekspresi muka */
+const CHARS = {
+  /* Trigger — Penyambut tetamu (kemasukan) */
+  trigger:  {skin:'#fde2c8', hair:'#3b2317', hat:'crown', tie:'#eab308', accent:'#fbbf24', mouth:'smile'},
+  /* AI — Saintis makmal */
+  ai:       {skin:'#fde2c8', hair:'#1f2937', coat:'#f8fafc', glass:'#0ea5e9', accent:'#8b7ce8', mouth:'think'},
+  /* Logik — Pegawai / hakim */
+  logic:    {skin:'#fde2c8', hair:'#451a03', suit:'#1e3a8a', tie:'#dc2626', accent:'#3f95e0', mouth:'serious'},
+  /* Data — Pustakawan / arkib */
+  data:     {skin:'#fde2c8', hair:'#52525b', glasses:'#16a34a', vest:'#a16207', accent:'#2fbf9f', mouth:'neutral'},
+  /* Platform — Juruteknik */
+  platform: {skin:'#fde2c8', hair:'#1c1917', helmet:'#e8a33d', vest:'#fb923c', accent:'#e8a33d', mouth:'focus'},
+};
+/* Aksesori tambahan ikut jenis nod */
+const ACC = {
+  llm: 'beaker', agent: 'brain', classifier: 'tag', embedder: 'vector',
+  vision: 'eye', stt: 'mic', tts: 'speaker', imageGen: 'brush', reranker: 'bars',
+  summarizer: 'list', extractor: 'pickaxe', guard: 'shield', translator: 'globe',
+  ocr: 'scan', sentiment: 'heart',
+  ifNode: 'branch', switchNode: 'switch', merge: 'merge', loop: 'cycle',
+  wait: 'clock', filter: 'funnel', code: 'laptop', splitBatch: 'cut',
+  noOp: 'dot', stopError: 'cross', approval: 'stamp', rateLimit: 'gauge',
+  retryWrap: 'refresh',
+  webhook: 'plug', schedule: 'bell', manual: 'hand', form: 'paper', emailIn: 'envelope',
+  fileWatch: 'folder', queueTrig: 'queue', appEvent: 'wifi', chatTrig: 'chat', errorTrig: 'warn',
+};
+
+/* ---------- 5 bilik pejabat (satu setiap kategori + satu khas) ---------- */
+const ROOMS_DEF = [
+  {id:'lobby',    nama:'Lobi Penyambut',    hex:'#fef3c7', trim:'#e6c47a', cats:['trigger'],      desc:'Pintu masuk — semua permintaan diterima di sini'},
+  {id:'data',     nama:'Bilik Data & Arkib', hex:'#dcfce7', trim:'#86efac', cats:['data'],         desc:'Pustakawan digital menyimpan dan menyusun maklumat'},
+  {id:'lab',      nama:'Makmal AI',          hex:'#ede9fe', trim:'#c4b5fd', cats:['ai'],           desc:'Saintis data menjana teks, vektor dan imej'},
+  {id:'logic',    nama:'Bilik Logik & Hakim', hex:'#dbeafe', trim:'#93c5fd', cats:['logic'],        desc:'Pegawai membuat keputusan, menggabung dan menggulung'},
+  {id:'platform', nama:'Bilik Pelayan & API', hex:'#ffedd5', trim:'#fdba74', cats:['platform'],     desc:'Juruteknik mengendalikan pangkalan data dan platform'},
+];
+const ROOMS = {}; ROOMS_DEF.forEach(r => ROOMS[r.id] = r);
+
+/* ---------- model bahasa ---------- */
+const MODELS = [
+  {id:'gpt-5.2',            nama:'GPT-5.2',           inR:1.25, outR:10.0},
+  {id:'claude-sonnet-4.6',  nama:'Claude Sonnet 4.6', inR:3.00, outR:15.0},
+  {id:'gemini-3-pro',       nama:'Gemini 3 Pro',      inR:1.25, outR:10.0},
+  {id:'deepseek-v3.3',      nama:'DeepSeek V3.3',     inR:0.27, outR:1.10},
+  {id:'qwen3-max',          nama:'Qwen3-Max',         inR:0.40, outR:1.60},
+  {id:'glm-5',              nama:'GLM-5',             inR:0.35, outR:1.40},
+  {id:'kimi-k2.5',          nama:'Kimi K2.5',         inR:0.30, outR:1.20},
+  {id:'llama-4-405b',       nama:'Llama 4 405B',      inR:0.90, outR:2.70},
+];
+
+/* ---------- prestasi: kelewatan min/maks(ms), kadar ralat, token ---------- */
+const PERF = {
+  webhook:[40,130,0], schedule:[25,80,0], manual:[15,45,0], form:[30,95,0],
+  emailIn:[120,420,0.01], fileWatch:[60,200,0], queueTrig:[45,180,0.005],
+  appEvent:[50,190,0.008], chatTrig:[80,260,0.01], errorTrig:[20,70,0],
+  llm:[900,2600,0.030,900,4200], agent:[1600,4200,0.045,2200,9000],
+  classifier:[180,520,0.012,120,600], embedder:[90,300,0.008,80,400],
+  vectorStore:[60,240,0.010], vision:[600,1800,0.025,400,1800],
+  stt:[700,2100,0.020], tts:[400,1200,0.015], imageGen:[1800,4800,0.035],
+  reranker:[140,420,0.010], summarizer:[600,1700,0.020,700,2600],
+  extractor:[450,1300,0.018,300,1400], guard:[80,260,0.006], translator:[500,1500,0.018,300,1600],
+  ocr:[500,1600,0.022], sentiment:[110,340,0.008],
+  ifNode:[8,26,0], switchNode:[8,30,0], merge:[10,40,0], loop:[30,110,0],
+  wait:[400,900,0], filter:[12,45,0], code:[25,140,0.014], splitBatch:[10,40,0],
+  noOp:[5,18,0], stopError:[5,15,0], subWorkflow:[900,2600,0.012],
+  approval:[2200,6500,0.006], rateLimit:[900,2400,0], retryWrap:[10,35,0],
+  setFields:[8,30,0], aggregate:[15,60,0], sort:[20,80,0], limit:[6,22,0],
+  dedupe:[25,110,0], crypto:[10,45,0], dateTime:[6,25,0], xmlJson:[15,70,0.006],
+  csvDoc:[18,90,0.005], compare:[30,140,0], rename:[8,28,0], htmlExtract:[60,320,0.012],
+  mathSum:[12,50,0], outlier:[35,160,0],
+  http:[180,760,0.055], postgres:[70,320,0.020], mysql:[75,340,0.020],
+  mongo:[60,280,0.015], redis:[12,55,0.006], s3:[220,900,0.018],
+  gmail:[320,1100,0.016], sendgrid:[280,950,0.014], slack:[180,650,0.012],
+  telegram:[160,600,0.012], whatsapp:[200,700,0.015], sheets:[240,850,0.016],
+  notion:[300,1000,0.017], airtable:[220,800,0.015], stripe:[260,900,0.014],
+  shopify:[240,820,0.014], hubspot:[220,780,0.013], webhookResp:[15,60,0],
+  gdrive:[260,900,0.016], github:[240,850,0.014], discord:[160,600,0.012],
+  grafana:[120,420,0.010], mqtt:[40,180,0.010], twilio:[300,1000,0.016],
+  jira:[220,760,0.013], salesforce:[260,900,0.015], sftp:[300,1100,0.018],
+  youtube:[900,2600,0.020], metaAds:[400,1300,0.016], tiktok:[500,1600,0.018],
+  elastic:[90,380,0.012], kafka:[60,260,0.010], sap:[500,1900,0.022],
+  smtp:[280,950,0.015], gcalendar:[180,650,0.012], trello:[170,600,0.012],
+  monday:[180,650,0.012], cloudflare:[90,340,0.010], azureBlob:[240,900,0.017],
+};
+function perf(t){const p=PERF[t]||[120,500,0.01];return{d0:p[0],d1:p[1],err:p[2]||0,tokIn:p[3]||0,tokOut:p[4]||0};}
+
+/* ---------- utiliti ---------- */
+let _seed=20261003;
+function seedSet(n){_seed=(n>>>0)||1}
+function srand(){_seed=(_seed*1664525+1013904223)>>>0;return _seed/4294967296}
+function ri(a,b){return a+Math.floor(srand()*(b-a+1))}
+function rf(a,b){return a+srand()*(b-a)}
+function pick(a){return a[Math.floor(srand()*a.length)]}
+function pickn(a,n){const c=a.slice();const o=[];while(o.length<n&&c.length)o.push(c.splice(Math.floor(srand()*c.length),1)[0]);return o}
+function clamp(v,a,b){return v<a?a:(v>b?b:v)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&','<':'<','>':'>','"':'"',"'":'&#39;'}[m]))}
+function fmtNum(v){return(v==null||isNaN(v))?'0':Math.round(v).toLocaleString('en-US')}
+function fmtMoney(v){return'$'+(v||0).toFixed(4)}
+function fmtDur(ms){if(ms<1000)return Math.round(ms)+'ms';if(ms<60000)return(ms/1000).toFixed(1)+'s';return Math.floor(ms/60000)+'m'+Math.round((ms%60000)/1000)+'s'}
+function ts(){const x=new Date();const p=v=>String(v).padStart(2,'0');return p(x.getHours())+':'+p(x.getMinutes())+':'+p(x.getSeconds())+'.'+String(x.getMilliseconds()).padStart(3,'0')}
+function isoLocal(d){const x=d||new Date();const p=v=>String(v).padStart(2,'0');return x.getFullYear()+'-'+p(x.getMonth()+1)+'-'+p(x.getDate())+' '+p(x.getHours())+':'+p(x.getMinutes())+':'+p(x.getSeconds())}
+function rndId(p,n){let s='';const a='abcdef0123456789';for(let i=0;i<n;i++)s+=a[Math.floor(srand()*a.length)];return p+s}
+function humanWait(ms){if(ms>=86400000)return Math.round(ms/86400000)+' hari';if(ms>=3600000)return Math.round(ms/3600000)+' jam';if(ms>=60000)return Math.round(ms/60000)+' minit';return Math.round(ms/1000)+' saat'}
+
+function jsonHtml(o, depth){
+  depth=depth||0;
+  if(depth>6)return'<span class="k">…</span>';
+  if(o===null)return'<span class="b">null</span>';
+  if(typeof o==='string')return'<span class="s">"'+esc(o).replace(/\n/g,'\\n')+'"</span>';
+  if(typeof o==='number')return'<span class="n">'+o+'</span>';
+  if(typeof o==='boolean')return'<span class="b">'+o+'</span>';
+  if(Array.isArray(o)){
+    if(!o.length)return'[]';
+    const pad='  '.repeat(depth+1),pad0='  '.repeat(depth);
+    return'[\n'+o.map(v=>pad+jsonHtml(v,depth+1)).join(',\n')+'\n'+pad0+']';
+  }
+  if(typeof o==='object'){
+    const ks=Object.keys(o);
+    if(!ks.length)return'{}';
+    const pad='  '.repeat(depth+1),pad0='  '.repeat(depth);
+    return'{\n'+ks.map(k=>pad+'<span class="k">"'+esc(k)+'"</span>: '+jsonHtml(o[k],depth+1)).join(',\n')+'\n'+pad0+'}';
+  }
+  return esc(String(o));
+}
+
+/* =====================================================================
+   PART D — Lapan aliran kerja & korpus domain
+   Setiap nod: id, jenis, nama, ruangan (0..N), baris (0..M)
+   Bilik disusun dari kategori nod: trigger→lobby, data→data, ai→lab,
+   logic→logic, platform→platform
+   ===================================================================== */
+function N(id,t,name,r,c,p){return{id,t,name,r,c,p:p||{},status:'idle',runs:0,lastRun:null,logs:[]};}
+function E(from,to,out){return{from,to,out:out||0};}
+function S(text,color){return{text,color:color||'gold'};}
+
+const WORKFLOWS = [
+/* =================== 1. VIDEO YOUTUBE SEO =================== */
+{id:'video',nama:'Kilang Video SEO YouTube',tag:'Kandungan',ico:'▶',
+ desc:'Daripada idea mentah kepada video dimuat naik — penyelidikan, skrip, aset, kelulusan, render dan penerbitan.',
+ stickies:[S('LALUAN A: Penyelidikan — Trends + DB + SerpAPI bergabung sebelum ejen menilai peluang.','gold'),
+           S('LALUAN B: Produksi — Aset (thumbnail, suara) bergabung di nod Kelulusan Editor.','blue')],
+ nodes:[
+  N('hook','form','Idea Baharu (Borang)',0,2,{path:'/idea-baharu'}),
+  N('norm','setFields','Normalisasi Input',1,2,{}),
+  N('kw','http','Google Trends API',2,0,{url:'trends.googleapis.com'}),
+  N('kwdb','postgres','Cari Kata Kunci',2,2,{table:'kata_kunci'}),
+  N('serp','http','SerpAPI Saingan',2,4,{}),
+  N('merge1','merge','Gabung Penyelidikan',3,2,{}),
+  N('agent','agent','Ejen Penyelidik',4,2,{model:'claude-sonnet-4.6'}),
+  N('score','code','Skor Peluang (JS)',5,2,{}),
+  N('ifscore','ifNode','Skor ≥ 70?',6,2,{syarat:'skor >= 70'}),
+  N('reject','slack','Tolak — Notify',7,0,{}),
+  N('stopA','noOp','Tamat (Ditolak)',8,0,{}),
+  N('titles','llm','Jana 10 Tajuk SEO',7,3,{model:'gpt-5.2'}),
+  N('pick','filter','Pilih Tajuk Terbaik',8,3,{}),
+  N('script','llm','Tulis Skrip Penuh',9,3,{model:'claude-sonnet-4.6'}),
+  N('seo','llm','Metadata & Tag SEO',10,3,{model:'deepseek-v3.3'}),
+  N('chapters','llm','Pecah Bab Video',10,1,{model:'gemini-3-pro'}),
+  N('thumb','imageGen','Jana Thumbnail',10,5,{}),
+  N('tts','tts','Suara Latar (TTS)',11,5,{}),
+  N('stt','stt','Semak Sebutan',12,5,{}),
+  N('approve','approval','Kelulusan Editor',11,1,{SLA:'4 jam'}),
+  N('ifappr','ifNode','Diluluskan?',12,1,{syarat:'keputusan==="lulus"'}),
+  N('revise','llm','Semak Semula Skrip',12,3,{model:'gpt-5.2'}),
+  N('render','http','Render Video (API)',13,1,{}),
+  N('s3up','s3','Muat Naik Aset',14,1,{bucket:'nexus-media'}),
+  N('upload','youtube','Muat Naik YouTube',15,1,{}),
+  N('sheet','sheets','Log ke Google Sheets',16,1,{}),
+  N('slackN','slack','Umum ke Slack',16,3,{}),
+  N('notionN','notion','Kemas kini Notion',16,5,{}),
+  N('errT','errorTrig','Pencetus Ralat',0,5,{}),
+  N('gmailE','gmail','E-mel Ralat',1,5,{}),
+  N('ghub','github','Cipta Isu GitHub',1,7,{}),
+ ],
+ edges:[
+  E('hook','norm'),E('norm','kw'),E('norm','kwdb'),E('norm','serp'),
+  E('kw','merge1'),E('kwdb','merge1'),E('serp','merge1'),E('merge1','agent'),
+  E('agent','score'),E('score','ifscore'),
+  E('ifscore','titles',0),E('ifscore','reject',1),E('reject','stopA'),
+  E('titles','pick'),E('pick','script'),E('script','seo'),
+  E('seo','chapters'),E('seo','thumb'),E('thumb','tts'),E('tts','stt'),
+  E('chapters','approve'),E('stt','approve'),
+  E('approve','ifappr',0),E('approve','reject',1),
+  E('ifappr','render',0),E('ifappr','revise',1),
+  E('render','s3up'),E('s3up','upload'),E('upload','sheet'),
+  E('sheet','slackN'),E('sheet','notionN'),
+  E('errT','gmailE'),E('errT','ghub'),
+ ]},
+
+/* =================== 2. E-DAGANG =================== */
+{id:'ecommerce',nama:'Pesanan → Penghantaran',tag:'E-Dagang',ico:'🛒',
+ desc:'Setiap pesanan disahkan, dibayar, disemak penipuan, dipilih gudang, dilabel dan dihantar.',
+ stickies:[S('Gerbang Risiko — Stok · Bayaran · Penipuan bergabung sebelum komitmen inventori.','red'),
+           S('Pemulihan Kelewatan — Status kurier disemak setiap 24 jam; lewat → bayaran balik.','gold')],
+ nodes:[
+  N('shop','webhook','Webhook Shopify',0,2,{}),
+  N('val','code','Sahkan Pesanan (JS)',1,2,{}),
+  N('inv','postgres','Semak Stok',2,0,{table:'inventori'}),
+  N('pay','stripe','Sahkan Bayaran',2,2,{}),
+  N('fra','http','Semak Penipuan',2,4,{}),
+  N('join1','merge','Gabung Semakan',3,2,{}),
+  N('ifstock','ifNode','Stok Cukup?',4,2,{}),
+  N('back','gmail','E-mel Tunggakan',5,0,{}),
+  N('bo2','postgres','Rekod Tunggakan',6,0,{table:'tunggakan'}),
+  N('end1','noOp','Tamat (Tunggakan)',7,0,{}),
+  N('pick','http','Pilih Gudang',5,3,{}),
+  N('label','http','Jana Label',6,3,{}),
+  N('invup','postgres','Tolak Stok',7,3,{}),
+  N('conf','gmail','E-mel Pengesahan',8,3,{}),
+  N('wa','whatsapp','WhatsApp Notif',8,1,{}),
+  N('crm','hubspot','Kemas kini CRM',8,5,{}),
+  N('track','postgres','Rekod Penghantaran',9,3,{}),
+  N('mqttP','mqtt','Sensor Gudang',10,3,{topik:'gudang/keluar'}),
+  N('dash','grafana','Anotasi Papan',10,1,{}),
+  N('ifdeliv','ifNode','Dihantar?',11,3,{}),
+  N('chase','wait','Tunggu 24 Jam',12,1,{ms:86400000}),
+  N('recheck','http','Semak Kurier',13,1,{}),
+  N('iflate','ifNode','Lewat?',14,1,{}),
+  N('refund','stripe','Bayaran Balik',15,0,{}),
+  N('notifN','sendgrid','E-mel Kelewatan',16,0,{}),
+  N('agg','aggregate','Kumpul Metrik',17,0,{}),
+  N('recv','stripe','Sahkan Penerimaan',15,3,{}),
+  N('rev','llm','Jana Permintaan Ulasan',16,3,{model:'deepseek-v3.3'}),
+  N('revmail','gmail','Hantar Ulasan',17,3,{}),
+  N('sheetE','sheets','Log Pesanan',18,3,{}),
+  N('errE','errorTrig','Pencetus Ralat',0,5,{}),
+  N('slackE','slack','Ambil Tindakan',1,5,{}),
+ ],
+ edges:[
+  E('shop','val'),E('val','inv'),E('val','pay'),E('val','fra'),
+  E('inv','join1'),E('pay','join1'),E('fra','join1'),E('join1','ifstock'),
+  E('ifstock','pick',0),E('ifstock','back',1),
+  E('back','bo2'),E('bo2','end1'),
+  E('pick','label'),E('label','invup'),
+  E('invup','conf'),E('invup','wa'),E('invup','crm'),
+  E('conf','track'),E('track','mqttP'),E('track','dash'),E('track','ifdeliv'),
+  E('ifdeliv','recv',0),E('ifdeliv','chase',1),
+  E('chase','recheck'),E('recheck','iflate'),
+  E('iflate','refund',0),E('iflate','agg',1),
+  E('refund','notifN'),E('notifN','agg'),
+  E('recv','rev'),E('rev','revmail'),E('revmail','sheetE'),E('agg','sheetE'),
+  E('errE','slackE'),
+ ]},
+
+/* =================== 3. PENDIDIKAN ADAPTIF =================== */
+{id:'education',nama:'Pembelajaran Adaptif',tag:'Pendidikan',ico:'🎓',
+ desc:'Profil setiap pelajar dibaca, kelemahan didiagnosis, kuiz adaptif dijana, digred, modul pemulihan ditugaskan.',
+ stickies:[S('Gelung Pelajar — Mengulang seluruh cabang diagnostik untuk setiap pelajar.','blue'),
+           S('Tiga Tahap — Suis menghantar ke bank soalan Mudah / Sederhana / Sukar.','gold')],
+ nodes:[
+  N('sched','schedule','Jadual Harian 06:00',0,2,{cron:'0 6 * * 1-5'}),
+  N('roster','postgres','Muat Senarai',1,2,{table:'pelajar'}),
+  N('loopS','loop','Gelung Pelajar',2,2,{batchSize:1}),
+  N('perf','postgres','Prestasi Lepas',3,1,{}),
+  N('engage','redis','Skor Penglibatan',3,3,{}),
+  N('mergeS','merge','Gabung Profil',4,2,{}),
+  N('diag','llm','Diagnosis Kelemahan',5,2,{model:'claude-sonnet-4.6'}),
+  N('ifweak','ifNode','Ada Kelemahan?',6,2,{}),
+  N('skipP','noOp','Tiada Tindakan',7,0,{}),
+  N('plan','agent','Ejen Perancang',7,3,{model:'gpt-5.2'}),
+  N('genQuiz','llm','Jana Kuiz Adaptif',8,3,{model:'gpt-5.2'}),
+  N('ifdiff','switchNode','Tahap Kesukaran',9,3,{}),
+  N('easy','http','Bank — Mudah',10,0,{}),
+  N('med','http','Bank — Sederhana',10,2,{}),
+  N('hard','http','Bank — Sukar',10,4,{}),
+  N('qbank','merge','Gabung Bank',11,2,{}),
+  N('pickQ','llm','Pilih 10 Soalan',12,2,{model:'deepseek-v3.3'}),
+  N('grade','code','Gred Automatik',13,2,{}),
+  N('ifpass','ifNode','Lulus ≥ 60%?',14,2,{}),
+  N('remed','llm','Jana Pemulihan',15,0,{model:'gpt-5.2'}),
+  N('assign','sheets','Tugaskan Modul',16,0,{}),
+  N('adv','llm','Naik Tahap',15,3,{model:'gpt-5.2'}),
+  N('notifyT','telegram','Notif Telegram',16,3,{}),
+  N('aggS','aggregate','Kumpul Keputusan',17,2,{}),
+  N('rep','llm','Laporan Mingguan',18,2,{model:'claude-sonnet-4.6'}),
+  N('pdf','http','Jana PDF',19,2,{}),
+  N('mailG','gmail','E-mel Guru Besar',20,2,{}),
+  N('dashE','grafana','Papan Pemuka',21,2,{}),
+  N('driveU','gdrive','Arkib Drive',20,4,{}),
+  N('errS','errorTrig','Pencetus Ralat',1,5,{}),
+  N('slackS','slack','Amaran Ralat',2,5,{}),
+  N('logS','notion','Log Notion',2,7,{}),
+ ],
+ edges:[
+  E('sched','roster'),E('roster','loopS'),
+  E('loopS','perf',0),E('loopS','engage',0),
+  E('perf','mergeS'),E('engage','mergeS'),E('mergeS','diag'),E('diag','ifweak'),
+  E('ifweak','plan',0),E('ifweak','skipP',1),
+  E('plan','genQuiz'),E('genQuiz','ifdiff'),
+  E('ifdiff','easy',0),E('ifdiff','med',1),E('ifdiff','hard',2),
+  E('easy','qbank'),E('med','qbank'),E('hard','qbank'),
+  E('qbank','pickQ'),E('pickQ','grade'),E('grade','ifpass'),
+  E('ifpass','adv',0),E('ifpass','remed',1),
+  E('remed','assign'),E('assign','notifyT'),E('adv','notifyT'),
+  E('notifyT','aggS'),E('skipP','aggS'),
+  E('aggS','rep'),E('rep','pdf'),E('pdf','mailG'),E('mailG','dashE'),
+  E('pdf','driveU'),
+  E('errS','slackS'),E('errS','logS'),
+ ]},
+
+/* =================== 4. DAGANGAN ALGO =================== */
+{id:'trading',nama:'Isyarat Dagangan Algo',tag:'Kewangan',ico:'📈',
+ desc:'Setiap 5 minit: harga, buku pesanan, metrik on-chain, berita digabung, 24 petunjuk dikira, ejen memutuskan isyarat.',
+ stickies:[S('Gerbang Risiko — Tiada pesanan tanpa lulus Had Risiko dan Saiz Posisi.','red'),
+           S('Gelung Pemantauan — Selepas laksana: tunggu → semak → kira P&L → stop loss.','gold')],
+ nodes:[
+  N('cron','schedule','Cetus Setiap 5 Minit',0,2,{cron:'*/5 * * * *'}),
+  N('fetchP','http','Ambil Harga Binance',1,2,{}),
+  N('onchain','http','Metrik On-Chain',2,0,{}),
+  N('orderbook','redis','Buku Pesanan',2,2,{}),
+  N('news','http','Suapan Berita',2,4,{}),
+  N('joinT','merge','Gabung Data',3,2,{}),
+  N('feat','code','Kira 24 Petunjuk',4,2,{}),
+  N('reg','mongo','Simpan Ciri',5,2,{koleksi:'ciri_teknikal'}),
+  N('senti','sentiment','Sentimen Berita',6,2,{}),
+  N('joinT2','merge','Gabung Semua',7,2,{}),
+  N('decide','agent','Ejen Keputusan',8,2,{model:'gpt-5.2'}),
+  N('conf','classifier','Keyakinan',9,2,{}),
+  N('ifsig','ifNode','Isyarat BELI?',10,2,{}),
+  N('hold','noOp','Tahan',11,0,{}),
+  N('risk','code','Saiz & Stop Loss',11,3,{}),
+  N('guardR','guard','Had Risiko',12,3,{}),
+  N('ifrisk','ifNode','Dalam Had?',13,3,{}),
+  N('block','slack','Sekat',14,0,{}),
+  N('endT','noOp','Tamat (Disekat)',15,0,{}),
+  N('exec','http','Laksana Pesanan',14,3,{}),
+  N('waitT','wait','Tunggu 45s',15,3,{ms:45000}),
+  N('pollT','http','Semak Pesanan',16,3,{}),
+  N('iffill','ifNode','Terisi?',17,3,{}),
+  N('alertT','telegram','Amaran Telegram',18,1,{}),
+  N('ledger','postgres','Rekod Lejar',18,3,{}),
+  N('pnl','code','Kira P&L',19,3,{}),
+  N('ifloss','ifNode','Kerugian > 3%?',20,3,{}),
+  N('stopLoss','http','Tutup Stop Loss',21,1,{}),
+  N('logT','elastic','Indeks Elastic',22,1,{}),
+  N('reportT','llm','Laporan Harian',20,5,{model:'deepseek-v3.3'}),
+  N('sheetT','sheets','Papan Pemuka',21,5,{}),
+  N('grafT','grafana','Anotasi Grafana',22,5,{}),
+  N('errT2','errorTrig','Pencetus Ralat',0,5,{}),
+  N('pagerT','twilio','SMS Pager',1,5,{}),
+ ],
+ edges:[
+  E('cron','fetchP'),
+  E('fetchP','onchain'),E('fetchP','orderbook'),E('fetchP','news'),
+  E('onchain','joinT'),E('orderbook','joinT'),E('news','joinT'),
+  E('joinT','feat'),E('feat','reg'),E('reg','senti'),E('senti','joinT2'),
+  E('joinT2','decide'),E('decide','conf'),E('conf','ifsig'),
+  E('ifsig','risk',0),E('ifsig','hold',1),
+  E('risk','guardR'),E('guardR','ifrisk'),
+  E('ifrisk','exec',0),E('ifrisk','block',1),E('block','endT'),
+  E('exec','waitT'),E('waitT','pollT'),E('pollT','iffill'),
+  E('iffill','ledger',0),E('iffill','alertT',1),
+  E('ledger','pnl'),E('pnl','ifloss'),
+  E('ifloss','stopLoss',0),E('ifloss','logT',1),E('stopLoss','logT'),
+  E('logT','reportT'),E('reportT','sheetT'),E('sheetT','grafT'),
+  E('errT2','pagerT'),
+ ]},
+
+/* =================== 5. GAMIFIKASI =================== */
+{id:'gamification',nama:'Enjin Ganjaran',tag:'Produk',ico:'🎮',
+ desc:'Peristiwa dinilai terhadap enjin peraturan, lencana dan XP diberikan, papan pendahulu dikemas kini, anti-penipuan.',
+ stickies:[S('Enjin Peraturan — Peraturan + segmen bergabung sebelum kelayakan dinilai.','blue'),
+           S('Anti-Penyalahgunaan — Setiap ganjaran melalui pengesan anomali.','red')],
+ nodes:[
+  N('ev','webhook','Webhook Peristiwa',0,2,{}),
+  N('iden','postgres','Kenal Pasti',1,2,{table:'pengguna'}),
+  N('redisC','redis','Mata Semasa',2,0,{}),
+  N('rule','code','Enjin Peraturan',2,2,{}),
+  N('seg','llm','Segmen Tingkah Laku',2,4,{model:'deepseek-v3.3'}),
+  N('joinG','merge','Gabung Keadaan',3,2,{}),
+  N('ifrule','ifNode','Layak?',4,2,{}),
+  N('deny','slack','Rekod Penafian',5,0,{}),
+  N('badge','http','Berikan Lencana',5,3,{}),
+  N('ifstreak','ifNode','Streak ≥ 7?',6,3,{}),
+  N('streak','llm','Ganjaran Streak',7,0,{model:'gpt-5.2'}),
+  N('chest','http','Buka Peti',8,0,{}),
+  N('xp','postgres','Tambah XP',7,3,{}),
+  N('iflevel','ifNode','Naik Tahap?',8,3,{}),
+  N('lvlup','llm','Mesej Naik Tahap',9,1,{model:'gpt-5.2'}),
+  N('notifyG','discord','Umum Discord',10,1,{}),
+  N('board','redis','Papan Pendahulu',9,4,{}),
+  N('iftop','ifNode','10 Teratas?',10,4,{}),
+  N('pushP','http','Push FCM',11,2,{}),
+  N('reward','stripe','Kupon Diskaun',11,4,{}),
+  N('mailR','sendgrid','E-mel Ganjaran',12,4,{}),
+  N('antiFraud','outlier','Kesan Penyalahgunaan',13,4,{}),
+  N('ifabuse','ifNode','Disyaki Menipu?',14,4,{}),
+  N('freeze','postgres','Bekukan Akaun',15,2,{}),
+  N('analitics','sheets','Log Analitik',15,6,{}),
+  N('aggG','aggregate','Kumpul Metrik',16,4,{}),
+  N('reportG','llm','Laporan Mingguan',17,4,{model:'claude-sonnet-4.6'}),
+  N('mailG2','gmail','E-mel Ketua Produk',18,4,{}),
+  N('metricG','grafana','Anotasi Metrik',18,6,{}),
+  N('errG','errorTrig','Pencetus Ralat',1,5,{}),
+  N('pagerG','twilio','Pager Ralat',2,5,{}),
+ ],
+ edges:[
+  E('ev','iden'),
+  E('iden','redisC'),E('iden','rule'),E('iden','seg'),
+  E('redisC','joinG'),E('rule','joinG'),E('seg','joinG'),E('joinG','ifrule'),
+  E('ifrule','badge',0),E('ifrule','deny',1),
+  E('badge','ifstreak'),E('deny','analitics'),
+  E('ifstreak','streak',0),E('ifstreak','xp',1),
+  E('streak','chest'),E('chest','xp'),E('xp','iflevel'),
+  E('iflevel','lvlup',0),E('iflevel','board',1),
+  E('lvlup','notifyG'),E('notifyG','board'),
+  E('board','iftop'),
+  E('iftop','pushP',0),E('iftop','antiFraud',1),
+  E('pushP','reward'),E('reward','mailR'),E('mailR','antiFraud'),
+  E('antiFraud','ifabuse'),
+  E('ifabuse','freeze',0),E('ifabuse','analitics',1),
+  E('freeze','analitics'),
+  E('analitics','aggG'),E('aggG','reportG'),E('reportG','mailG2'),E('mailG2','metricG'),
+  E('errG','pagerG'),
+ ]},
+
+/* =================== 6. SOKONGAN PELANGGAN =================== */
+{id:'support',nama:'Triaj Sokongan AI',tag:'Perkhidmatan',ico:'🎧',
+ desc:'Tiket diklasifikasi, ditapis, dijawab daripada pangkalan ilmu, dieskalasi kepada manusia bila keyakinan rendah.',
+ stickies:[S('Ambang Keyakinan — < 0.80 → eskalasi manusia, bukan jawapan automatik.','red'),
+           S('Gelung Pembelajaran — CSAT rendah → isu Jira → pangkalan ilmu dikemas kini.','gold')],
+ nodes:[
+  N('ticket','webhook','Webhook Tiket',0,2,{}),
+  N('normS','setFields','Normalisasi Tiket',1,2,{}),
+  N('class','classifier','Klasifikasi Niat',2,2,{}),
+  N('guard','guard','Penapis Keselamatan',3,2,{}),
+  N('ifspam','ifNode','Spam?',4,2,{}),
+  N('spamA','noOp','Arkib Spam',5,0,{}),
+  N('kb','vectorStore','Cari Pangkalan Ilmu',5,3,{}),
+  N('rerankD','reranker','Susun Semula',6,3,{}),
+  N('draft','llm','Draf Jawapan',7,3,{model:'gpt-5.2'}),
+  N('ifconf','ifNode','Keyakinan ≥ 0.80?',8,3,{}),
+  N('escA','agent','Ejen Eskalasi',9,0,{model:'claude-sonnet-4.6'}),
+  N('autoS','gmail','Balas Automatik',9,3,{}),
+  N('escT','approval','Kelulusan Penyelia',10,0,{}),
+  N('csatQ','llm','Tinjauan CSAT',10,3,{model:'deepseek-v3.3'}),
+  N('ifesc','ifNode','Diluluskan?',11,0,{}),
+  N('waitC','wait','Tunggu 2 Jam',11,3,{ms:7200000}),
+  N('respM','gmail','Jawapan Penyelia',12,0,{}),
+  N('closeN','noOp','Tutup Kes',12,2,{}),
+  N('ifcsat','ifNode','CSAT ≥ 4?',12,4,{}),
+  N('jiraS','jira','Isu Kualiti',13,0,{}),
+  N('goodN','notion','Kes Berjaya',13,4,{}),
+  N('badN','jira','Pembaikan',13,6,{}),
+  N('learn','llm','Kemas kini KB',14,4,{model:'gpt-5.2'}),
+  N('emb','embedder','Jana Embedding',15,4,{}),
+  N('vsUp','vectorStore','Simpan Vektor',16,4,{}),
+  N('aggS2','aggregate','Kumpul Metrik',17,4,{}),
+  N('dashS','grafana','Papan Pemuka',18,4,{}),
+  N('mailS','gmail','Laporan Harian',19,4,{}),
+  N('sheetS2','sheets','Log Tiket',20,4,{}),
+  N('errS2','errorTrig','Pencetus Ralat',0,6,{}),
+  N('slackS2','slack','Amaran Ralat',1,6,{}),
+ ],
+ edges:[
+  E('ticket','normS'),E('normS','class'),E('class','guard'),E('guard','ifspam'),
+  E('ifspam','spamA',0),E('ifspam','kb',1),E('spamA','aggS2'),
+  E('kb','rerankD'),E('rerankD','draft'),E('draft','ifconf'),
+  E('ifconf','autoS',0),E('ifconf','escA',1),
+  E('autoS','csatQ'),E('csatQ','waitC'),E('waitC','ifcsat'),
+  E('ifcsat','goodN',0),E('ifcsat','badN',1),
+  E('escA','escT'),
+  E('escT','respM',0),E('escT','jiraS',1),
+  E('respM','closeN'),E('jiraS','closeN'),E('closeN','aggS2'),
+  E('goodN','learn'),E('badN','learn'),
+  E('learn','emb'),E('emb','vsUp'),E('vsUp','aggS2'),
+  E('aggS2','dashS'),E('dashS','mailS'),E('mailS','sheetS2'),
+  E('errS2','slackS2'),
+ ]},
+
+/* =================== 7. PENGAMBILAN HR =================== */
+{id:'hr',nama:'Saluran Pengambilan & Saringan',tag:'Sumber Manusia',ico:'🧑‍💼',
+ desc:'Permohonan dihurai OCR, entiti resume diekstrak, calon diasingkan, disaring, ditemuduga dua pusingan, ditawarkan, semakan latar belakang, didaftarkan ke SAP.',
+ stickies:[S('Saringan Berperingkat — Skor ≥ 75 → temuduga; di bawah → penolakan sopan automatik.','blue'),
+           S('Gerbang Akhir — Semakan latar belakang gagal → bendera HR, bukan pendaftaran.','red')],
+ nodes:[
+  N('apply','webhook','Permohonan Masuk',0,2,{}),
+  N('parse','ocr','Hurai Resume',1,2,{}),
+  N('ext','extractor','Ekstrak Entiti',2,2,{}),
+  N('dedupD','dedupe','Nyahduplikasi',3,2,{kunci:'emel'}),
+  N('ifdup','ifNode','Sudah Ada?',4,2,{}),
+  N('existN','postgres','Kemas kini Rekod',5,0,{}),
+  N('scoreCV','llm','Skor Resume',5,3,{model:'claude-sonnet-4.6'}),
+  N('rankR','code','Kedudukan Calon',6,3,{}),
+  N('ifshort','ifNode','Skor ≥ 75?',7,3,{}),
+  N('rejN','gmail','Penolakan Sopan',8,0,{}),
+  N('invite','gcalendar','Jemput Temuduga',8,3,{}),
+  N('prep','llm','Soalan Temuduga',9,3,{model:'gpt-5.2'}),
+  N('iv1','approval','Temuduga Pusingan 1',10,3,{}),
+  N('ifp1','ifNode','Lulus P1?',11,3,{}),
+  N('rej2','gmail','Penolakan P1',12,0,{}),
+  N('iv2','approval','Temuduga Pusingan 2',12,4,{}),
+  N('ifp2','ifNode','Lulus P2?',13,4,{}),
+  N('rej3','sendgrid','Penolakan P2',14,0,{}),
+  N('offer','http','Surat Tawaran',14,4,{}),
+  N('waitO','wait','Tunggu 2 Hari',15,4,{ms:172800000}),
+  N('ifaccept','ifNode','Diterima?',16,4,{}),
+  N('decline','notion','Rekod Penolakan',17,0,{}),
+  N('onboard','agent','Ejen Onboarding',17,4,{model:'gpt-5.2'}),
+  N('bg','http','Semakan Latar',18,4,{}),
+  N('ifbg','ifNode','Lulus Latar?',19,4,{}),
+  N('flag','slack','Bendera HR',20,0,{}),
+  N('createP','sap','Cipta SAP',20,4,{}),
+  N('itN','gmail','Notifikasi IT',21,4,{}),
+  N('team','slack','Umum Pasukan',22,4,{}),
+  N('aggH','aggregate','Kumpul Metrik',23,4,{}),
+  N('repH','llm','Laporan Pengambilan',24,4,{model:'deepseek-v3.3'}),
+  N('dashH','grafana','Papan HR',25,4,{}),
+  N('errH','errorTrig','Pencetus Ralat',0,6,{}),
+  N('mailH','gmail','Amaran HR',1,6,{}),
+ ],
+ edges:[
+  E('apply','parse'),E('parse','ext'),E('ext','dedupD'),E('dedupD','ifdup'),
+  E('ifdup','existN',0),E('ifdup','scoreCV',1),E('existN','aggH'),
+  E('scoreCV','rankR'),E('rankR','ifshort'),
+  E('ifshort','invite',0),E('ifshort','rejN',1),E('rejN','aggH'),
+  E('invite','prep'),E('prep','iv1'),E('iv1','ifp1'),
+  E('ifp1','iv2',0),E('ifp1','rej2',1),E('rej2','aggH'),
+  E('iv2','ifp2'),E('ifp2','offer',0),E('ifp2','rej3',1),E('rej3','aggH'),
+  E('offer','waitO'),E('waitO','ifaccept'),
+  E('ifaccept','onboard',0),E('ifaccept','decline',1),E('decline','aggH'),
+  E('onboard','bg'),E('bg','ifbg'),
+  E('ifbg','createP',0),E('ifbg','flag',1),E('flag','aggH'),
+  E('createP','itN'),E('itN','team'),E('team','aggH'),
+  E('aggH','repH'),E('repH','dashH'),
+  E('errH','mailH'),
+ ]},
+
+/* =================== 8. IoT BANGUNAN PINTAR =================== */
+{id:'iot',nama:'Pemantauan Bangunan Pintar',tag:'Infrastruktur',ico:'📡',
+ desc:'Telemetri MQTT dinyahkod, disimpan, anomali dikesan, punca didiagnosis, jurutera dihantar dan arahan BMS dihantar.',
+ stickies:[S('Sasaran 99.9% — Telemetri disimpan dalam Timescale; anomali diindeks Elastic.','blue'),
+           S('Gelung Pemulihan — Selepas kawalan: tunggu 15 minit → baca semula → jika gagal, buka semula.','gold')],
+ nodes:[
+  N('mqttT','mqtt','Langganan MQTT',0,2,{}),
+  N('decode','code','Nyahkod Telemetri',1,2,{}),
+  N('storeT','postgres','Simpan Bacaan',2,0,{}),
+  N('cacheT','redis','Cache Terkini',2,2,{}),
+  N('weather','http','Cuaca Tempatan',2,4,{}),
+  N('joinI','merge','Gabung Telemetri',3,2,{}),
+  N('anomaly','outlier','Kesan Anomali',4,2,{}),
+  N('ifanom','ifNode','Anomali?',5,2,{}),
+  N('diagI','llm','Diagnosis Punca',6,3,{model:'gpt-5.2'}),
+  N('logI','elastic','Indeks Anomali',6,0,{}),
+  N('ifcrit','ifNode','Kritikal?',7,3,{}),
+  N('alertI','twilio','Panggilan Darurat',8,4,{}),
+  N('warnI','slack','Amaran #fasiliti',8,1,{}),
+  N('wo','jira','Arahan Kerja',9,4,{}),
+  N('disp','agent','Ejen Penghantaran',10,4,{model:'claude-sonnet-4.6'}),
+  N('waI','whatsapp','WhatsApp Jurutera',11,4,{}),
+  N('ackI','approval','Pengesahan Jurutera',12,4,{}),
+  N('ifack','ifNode','Disahkan?',13,4,{}),
+  N('escI','monday','Eskalasi',14,0,{}),
+  N('fixI','http','Arahan BMS',14,4,{}),
+  N('verifyT','wait','Tunggu 15 Minit',15,4,{ms:900000}),
+  N('recheckI','http','Baca Semula',16,4,{}),
+  N('ifok','ifNode','Normal?',17,4,{}),
+  N('reopen','monday','Buka Semula',18,0,{}),
+  N('closeI','jira','Tutup Arahan',18,4,{}),
+  N('trendI','mathSum','Purata 24j',4,6,{}),
+  N('forecastI','llm','Ramalan Beban',5,6,{model:'gemini-3-pro'}),
+  N('capI','redis','Simpan Ramalan',6,6,{}),
+  N('aggI','aggregate','Kumpul KPI',19,4,{}),
+  N('dashI','grafana','Grafana Bangunan',20,4,{}),
+  N('repI','llm','Laporan Bulanan',21,4,{model:'claude-sonnet-4.6'}),
+  N('mailI','gmail','E-mel Fasiliti',22,4,{}),
+  N('sheetI','sheets','Log Tenaga',23,4,{}),
+  N('driveI','gdrive','Arkib Drive',24,4,{}),
+  N('errI','errorTrig','Pencetus Ralat',0,6,{}),
+  N('slackI2','slack','Amaran Sensor',1,6,{}),
+ ],
+ edges:[
+  E('mqttT','decode'),
+  E('decode','storeT'),E('decode','cacheT'),E('decode','weather'),
+  E('storeT','joinI'),E('cacheT','joinI'),E('weather','joinI'),
+  E('joinI','anomaly'),E('anomaly','ifanom'),
+  E('ifanom','diagI',0),E('ifanom','trendI',1),
+  E('trendI','forecastI'),E('forecastI','capI'),E('capI','aggI'),
+  E('diagI','ifcrit'),
+  E('ifcrit','alertI',0),E('ifcrit','logI',1),E('logI','aggI'),
+  E('alertI','warnI'),E('warnI','wo'),E('wo','disp'),E('disp','waI'),
+  E('waI','ackI'),E('ackI','ifack'),
+  E('ifack','fixI',0),E('ifack','escI',1),E('escI','aggI'),
+  E('fixI','verifyT'),E('verifyT','recheckI'),E('recheckI','ifok'),
+  E('ifok','closeI',0),E('ifok','reopen',1),E('reopen','aggI'),
+  E('closeI','aggI'),
+  E('aggI','dashI'),E('dashI','repI'),E('repI','mailI'),E('mailI','sheetI'),E('sheetI','driveI'),
+  E('errI','slackI2'),
+ ]},
+];
+
+/* tandakan tepi gelung (sasaran sudah dalam lajur sama/lebih awal) */
+WORKFLOWS.forEach(wf => {
+  const colOf = {}; wf.nodes.forEach(n => colOf[n.id] = n.c);
+  wf.edges.forEach(e => { if((colOf[e.to]||0) <= (colOf[e.from]||0)) e.loop = true; });
+});
+
+/* korpus domain ringkas */
+const CORPUS = {
+  video:{idea:['Bina Ejen AI Tanpa Kod','5 Automasi n8n','DeepSeek vs GPT-5','Panduan RAG','Kos API AI','Papan Pemuka AI'],
+    tajuk:['Bina Ejen AI 20 Minit','5 Automasi Jimat 10 Jam','DeepSeek V3 vs GPT-5','RAG Pemula 2026','Kos API AI','Papan Pemuka AI']},
+  ecommerce:{sku:['NEX-TSHIRT-BLK','NEX-MUG-350','NEX-KB-MECH','NEX-MON-27','NEX-HDMI','NEX-LAMP','NEX-CHAIR','NEX-SSD-1TB','NEX-WEBCAM','NEX-HUB'],
+    pelanggan:['Aisyah','Wei Ming','Suresh','Izzah','Jia Hui','Faizal','Mei Ling','Gurpreet','Zaleha','Kevin'],
+    bandar:['Kota Kinabalu','Sandakan','Tawau','Keningau','Penampang'],
+    kurier:['NinjaVan','J&T','PosLaju','DHL','City-Link']},
+  education:{pelajar:['Aiman','Bella','Danial','Ellysha','Farhan','Grace','Hafiz','Ivy','Jasmin','Khairul'],
+    kelas:['5 Amanah','5 Bestari','4 Cekal','4 Dinamik','6 Amanah'],
+    subjek:['Matematik','BM','Sains','BI','Sejarah','PI']},
+  trading:{pasangan:['BTCUSDT','ETHUSDT','SOLUSDT','BNBUSDT','XRPUSDT'],
+    isyarat:['BELI','JUAL','TAHAN','BELI','BELI','TAHAN']},
+  gamification:{peristiwa:['login_harian','beli_pertama','kongsi','ulasan','rujuk','selesai_tugasan','tonton_video'],
+    pengguna:['@aisyah_r','@weiming88','@suresh_k','@izzah.nurul','@jiahui','@faizal_m']},
+  support:{kategori:['bil','teknikal','bayaran','pembatalan','pujian'],
+    pelanggan:['Aisyah','Wei Ming','Suresh','Izzah','Jia Hui']},
+  hr:{jawatan:['Jurutera Senior','Pereka UX','Penganalisis Data','PM','DevOps','Pakar AI'],
+    calon:['Aiman','Bella','Danial','Ellysha','Farhan','Grace'],
+    kemahiran:['TypeScript','Python','Kubernetes','Figma','SQL','PyTorch','Go','React']},
+  iot:{bangunan:['Menara Kinabalu','Sinsuran','Wisma Sabah','Blok A Pitas','Dewan Serbaguna'],
+    sensor:['suhu','kelembapan','co2','tenaga_kwh','getaran']},
+};
+let GEN_STEP = 0;
+function ctxOf(wfId){const C=CORPUS[wfId]||{};return{wf:wfId,C:C,step:++GEN_STEP};}
+function rndId(p,n){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let s='';for(let i=0;i<(n||6);i++)s+=c[Math.floor(srand()*c.length)];return(p||'')+s;}
+
+function makeItems(node, wfId, nIn, forceN){
+  const C = CORPUS[wfId] || {};
+  const d = tdef(node.t);
+  const ctx = ctxOf(wfId);
+  const ix = (a,i,fb)=>{const arr=(a&&a.length)?a:null;return arr?arr[(i+ctx.step)%arr.length]:fb;};
+  let n;
+  if(forceN != null) n = forceN;
+  else if(d.cat === 'trigger') n = ri(1,3);
+  else if(nIn > 0) n = nIn;
+  else n = ri(1,3);
+  n = clamp(n, 1, 12);
+  const items = [];
+  for(let i=0;i<n;i++) items.push({json: payload(node, C, i, n, ix, ctx)});
+  return items;
+}
+
+function payload(node, C, i, nIn, ix, ctx){
+  const t = node.t;
+  const base = { id:'i'+ctx.step+'-'+i, jenis:t, nod:node.id };
+  const now = new Date();
+
+  /* pencetus */
+  if(t === 'webhook') return Object.assign(base, { topik:node.p.topik||'events', id:rndId('evt_',8), sumber:'external', payload:{k:'v'} });
+  if(t === 'schedule') return Object.assign(base, { cron:node.p.cron||'0 * * * *', zon:'Asia/Kuala_Lumpur' });
+  if(t === 'manual') return Object.assign(base, { pengguna:'admin@nexus.my', nota:'mula manual' });
+  if(t === 'form') return Object.assign(base, { borang:node.p.path||'/borang', tajuk:ix(C.idea, i, 'Idea') });
+  if(t === 'emailIn') return Object.assign(base, { dari:'pelanggan@mail.com', subjek:'Pertanyaan', lampiran:ri(0,2) });
+  if(t === 'fileWatch') return Object.assign(base, { fail:rndId('fail_',6)+'.csv', saiz:ri(2,940)+'KB' });
+  if(t === 'queueTrig') return Object.assign(base, { topik:'nexus.'+ctx.wf, partition:ri(0,7), offset:ri(100000,999999) });
+  if(t === 'appEvent') return Object.assign(base, { app:'luar', peristiwa:'create' });
+  if(t === 'chatTrig') return Object.assign(base, { saluran:'whatsapp', teks:'Hai' });
+  if(t === 'errorTrig') return Object.assign(base, { ralatDari:node.id||'x', mesej:'HTTP 502', cubaan:ri(1,3) });
+
+  /* AI */
+  if(['llm','agent','summarizer','translator','extractor','sentiment','classifier','reranker','guard','ocr'].includes(t)){
+    const m = MODELS.find(x=>x.id===(node.p.model||'gpt-5.2'))||MODELS[0];
+    const tin=ri(900,4200), tout=ri(240,3600);
+    const o = Object.assign(base,{model:m.nama,promptToken:tin,outputToken:tout,kos:+((tin/1e6*m.inR)+(tout/1e6*m.outR)).toFixed(6),kependamanMs:ri(700,3600)});
+    if(t==='classifier'){o.label=ix(C.kategori,i,'teknikal');o.keyakinan=+rf(0.62,0.98).toFixed(3);}
+    else if(t==='extractor'){o.entiti={nama:ix(C.calon||C.pelanggan,i,'Calon'),pengalaman:ri(2,14)+' tahun',kemahiran:pickn(C.kemahiran||['Python','SQL','Docker'],3)};}
+    else if(t==='sentiment'){o.skor=+rf(-1,1).toFixed(3);o.label=o.skor>0.15?'positif':(o.skor<-0.15?'negatif':'neutral');}
+    else if(t==='guard'){o.risiko=+rf(0.01,0.42).toFixed(3);o.lulus=o.risiko<=0.7;}
+    else if(t==='translator'){o.teksTerjemah='[terjemahan] '+ix(C.idea||C.tajuk||'idea',i,'idea');}
+    else if(t==='ocr'){o.halaman=ri(1,6);o.keyakinanOCR=+rf(0.86,0.99).toFixed(3);}
+    else if(t==='reranker'){o.topK=8;o.skorRelevan=+rf(0.55,0.96).toFixed(3);}
+    else if(t==='agent'){o.langkah=ri(3,8);o.keputusan='selesai';o.keyakinan=+rf(0.68,0.95).toFixed(3);}
+    else if(t==='summarizer'){o.ringkasan='Ringkasan '+ri(120,480)+' patah perkataan';}
+    else{o.teks=ix(C.idea||C.tajuk||'idea',i,'Hasil dijana');o.keputusan=ix(C.isyarat,i,'selesai');}
+    return o;
+  }
+  if(t==='embedder') return Object.assign(base,{model:'text-embedding-4',dimensi:1536,vektor:Array.from({length:5},()=>+rf(-1,1).toFixed(4))});
+  if(t==='vectorStore') return Object.assign(base,{topK:8,padanan:ri(2,8),skorTertinggi:+rf(0.72,0.97).toFixed(3)});
+  if(t==='vision') return Object.assign(base,{label:'dokumen',keyakinan:+rf(0.81,0.99).toFixed(3)});
+  if(t==='stt') return Object.assign(base,{tempohSaat:ri(30,620),perkataan:ri(80,1800),keyakinan:+rf(0.91,0.99).toFixed(3)});
+  if(t==='tts') return Object.assign(base,{suara:'ms-MY-Wavenet-A',tempohSaat:ri(30,600),saizFail:ri(400,9000)+'KB'});
+  if(t==='imageGen') return Object.assign(base,{saiz:'1280x720',fail:rndId('thumb_',6)+'.png',kos:+rf(0.019,0.042).toFixed(4)});
+
+  /* logik */
+  if(t==='ifNode') return Object.assign(base,{syarat:node.p.syarat||'benar',hasil:true,cawangan:'benar'});
+  if(t==='switchNode') return Object.assign(base,{nilai:ix(C.kategori,i,'A'),cawanganTerpilih:ri(0,2)});
+  if(t==='merge') return Object.assign(base,{mod:'append',jumlahItem:ri(3,9)});
+  if(t==='loop') return Object.assign(base,{gelung:1,jumlahItem:ri(6,120)});
+  if(t==='wait') return Object.assign(base,{tungguMs:node.p.ms||60000,selesaiPada:isoLocal(new Date(Date.now()+(node.p.ms||60000)))});
+  if(t==='filter') return Object.assign(base,{lulus:ri(2,8)});
+  if(t==='code') return Object.assign(base,{ekspresi:'items.map(...)',barisDiproses:ri(2,12),masaMs:ri(3,42)});
+  if(t==='splitBatch') return Object.assign(base,{kelompok:ri(2,5)});
+  if(t==='noOp') return Object.assign(base,{nota:'titik gabung'});
+  if(t==='stopError') return Object.assign(base,{dileMPAR:true,mesaj:'Dihentikan'});
+  if(t==='subWorkflow') return Object.assign(base,{aliran:'sub-proses',itemDipulangkan:ri(1,6)});
+  if(t==='approval') return Object.assign(base,{keputusan:pick(['lulus','lulus','lulus','tolak']),SLA:node.p.SLA||'4 jam'});
+  if(t==='rateLimit') return Object.assign(base,{had:'60/min',digunakan:ri(12,60)});
+  if(t==='retryWrap') return Object.assign(base,{cubaanMaks:3,cubaanDilakukan:1});
+
+  /* data */
+  if(t==='setFields') return Object.assign(base,{jumlahMedan:ri(3,9)});
+  if(t==='aggregate') return Object.assign(base,{itemDigabung:ri(3,24),hasil:1});
+  if(t==='sort') return Object.assign(base,{medan:'skor',tertib:'menurun'});
+  if(t==='limit') return Object.assign(base,{had:10,asal:ri(11,60)});
+  if(t==='dedupe') return Object.assign(base,{kunci:'emel',unik:ri(1,8),dibuang:ri(0,4)});
+  if(t==='crypto') return Object.assign(base,{algo:'sha256',hash:rndId('',32).toLowerCase()});
+  if(t==='dateTime') return Object.assign(base,{format:'yyyy-MM-dd HH:mm',zon:'Asia/Kuala_Lumpur'});
+  if(t==='xmlJson') return Object.assign(base,{nod:ri(4,40)});
+  if(t==='csvDoc') return Object.assign(base,{lajur:ri(4,14),baris:ri(3,60)});
+  if(t==='compare') return Object.assign(base,{bertindih:ri(0,8)});
+  if(t==='rename') return Object.assign(base,{kepada:'medan_baharu'});
+  if(t==='htmlExtract') return Object.assign(base,{padanan:ri(2,30)});
+  if(t==='mathSum') return Object.assign(base,{purata:+rf(18,34).toFixed(2)});
+  if(t==='outlier') return Object.assign(base,{skorAnomali:+rf(0.05,0.94).toFixed(3)});
+
+  /* platform */
+  const lat=ri(120,900);
+  if(t==='http') return Object.assign(base,{kaedah:node.p.method||'GET',url:node.p.url||'https://api.nexus.my',status:200,kependamatanMs:lat});
+  if(['postgres','mysql','mongo','elastic'].includes(t)) return Object.assign(base,{jadual:node.p.table||node.p.koleksi||'rekod',baris:ri(1,40)});
+  if(t==='redis') return Object.assign(base,{kunci:'kunci',hit:true,ttl:300});
+  if(['s3','azureBlob','gdrive','sftp'].includes(t)) return Object.assign(base,{fail:rndId('obj_',6)+'.bin',saiz:ri(120,24000)+'KB'});
+  if(['gmail','sendgrid','smtp'].includes(t)) return Object.assign(base,{kepada:'pelanggan@mail.com',status:'dihantar'});
+  if(['slack','discord','telegram'].includes(t)) return Object.assign(base,{saluran:node.p.saluran||'#umum',status:'dihantar'});
+  if(t==='whatsapp') return Object.assign(base,{kepada:'+601'+ri(10000000,99999999),status:'dibaca'});
+  if(t==='twilio') return Object.assign(base,{kepada:'+60123456789',status:'selesai'});
+  if(t==='sheets') return Object.assign(base,{hamparan:node.p.spreadsheet||'Papan',helaian:'Sheet1',barisDitulis:ri(1,20)});
+  if(['notion','airtable','trello','monday'].includes(t)) return Object.assign(base,{pangkalan:'Rekod',status:'dikemas kini'});
+  if(t==='stripe') return Object.assign(base,{jumlah:+rf(19,1899).toFixed(2),mataWang:'MYR',status:'berjaya'});
+  if(t==='shopify') return Object.assign(base,{sku:ix(C.sku,i,'SKU'),kuantiti:ri(1,4)});
+  if(['hubspot','salesforce'].includes(t)) return Object.assign(base,{objek:'contact',idRekod:ri(100000,999999)});
+  if(t==='webhookResp') return Object.assign(base,{status:200,badan:{ok:true}});
+  if(t==='github') return Object.assign(base,{repo:'nexus/pipeline',isu:'#'+ri(100,9999)});
+  if(t==='grafana') return Object.assign(base,{papan:node.p.papan||'Papan',anotasi:rndId('an_',6)});
+  if(t==='mqtt') return Object.assign(base,{topik:node.p.topik||'bangunan/telemetri',qos:1});
+  if(t==='jira') return Object.assign(base,{projek:'OPS',isu:'OPS-'+ri(100,999)});
+  if(t==='youtube') return Object.assign(base,{videoId:rndId('',11),status:'diproses'});
+  if(t==='metaAds') return Object.assign(base,{CPC:+rf(0.42,2.9).toFixed(2)});
+  if(t==='tiktok') return Object.assign(base,{tontonan:ri(4000,900000)});
+  if(t==='kafka') return Object.assign(base,{topik:'nexus.events'});
+  if(t==='sap') return Object.assign(base,{modul:'HCM',status:'berjaya'});
+  if(t==='gcalendar') return Object.assign(base,{peristiwa:rndId('ev_',10)});
+  if(t==='cloudflare') return Object.assign(base,{zon:'nexus.my'});
+
+  return Object.assign(base,{status:'selesai',kependamanMs:lat});
+}
+
+/* =====================================================================
+   PART E — Enjin pelaksanaan (baris gilir, tak segerak, gelung, cabang)
+   ===================================================================== */
+const state = {
+  cur:'video', view:{scale:1, ox:0, oy:0},
+  sel:null, selSet:new Set(), hover:null,
+  speed:2, running:false, paused:false,
+  exec:null, history:[], exSeq:1000,
+  tab:'nod', ndv:null, ndvTab:'parameter',
+  drag:null, pan:null,
+  maxConc:3, autoFollow:true,
+  roomMap:{}, /* id nod → id bilik */
+};
+const META = {};
+const ERRBRANCH = ['http','stripe','shopify','youtube','sap','twilio','sendgrid','smtp',
+                   'postgres','s3','mqtt','jira','gmail','hubspot','notion','sheets','slack'];
+
+function buildMeta(){
+  WORKFLOWS.forEach(wf => {
+    META[wf.id] = {};
+    wf.nodes.forEach(n => {
+      const isErr = ERRBRANCH.includes(n.t);
+      META[wf.id][n.id] = {
+        out: tdef(n.t).out,
+        ol: tdef(n.t).ol,
+        errOut: isErr,
+        errIdx: tdef(n.t).out,
+        maxRetries: isErr ? 2 : 0,
+        onError: isErr ? 'continueErrorOutput' : 'stopWorkflow',
+        backoff: 'exponential',
+      };
+    });
+  });
+}
+buildMeta();
+
+function curWF(){return WORKFLOWS.find(w=>w.id===state.cur)||WORKFLOWS[0];}
+function wfById(id){return WORKFLOWS.find(w=>w.id===id);}
+function nodeById(wfId,id){const wf=wfById(wfId);return wf?wf.nodes.find(n=>n.id===id):null;}
+function metaOf(n){return (META[curWF().id]||{})[n.id]||{out:1,ol:['utama'],errOut:false,errIdx:-1,maxRetries:0,onError:'stopWorkflow'};}
+
+function nodeDur(n){
+  if(n.t==='wait'||n.t==='approval'){
+    const ms=n.p.ms||(n.t==='approval'?3600000:60000);
+    return clamp(620+Math.log10(Math.max(ms,1000)/1000)*880,620,3200);
+  }
+  const p=perf(n.t);
+  return rf(p.d0,p.d1);
+}
+
+function resetRun(){
+  const wf=curWF();
+  wf.edges.forEach(e=>{e.resolved=false;e.active=true;});
+  wf.nodes.forEach(n=>{n.runs=0;n.lastRun=null;});
+  state.exec=null; state.running=false; state.paused=false;
+  GEN_STEP=0;
+  document.querySelectorAll('.doc').forEach(d=>d.remove());
+  syncRunUI(); syncCanvas(); renderPanel();
+}
+
+function startRun(){
+  if(state.running) return;
+  const wf=curWF();
+  resetRun();
+  state.exSeq++;
+  const ex = {
+    id:'EX-'+state.exSeq, wf:wf.id, wfNama:wf.nama,
+    status:'running', t0:performance.now(), wall0:Date.now(), endT:null,
+    nodes:{}, order:[], spans:[], queue:[], running:0, pulses:[],
+    logs:[], totals:{items:0,tokens:0,cost:0,nodes:0},
+    err:null, retrying:0,
+  };
+  wf.nodes.forEach(n => {
+    ex.nodes[n.id] = { id:n.id, status:'waiting', items:[], inItems:0, t0:null, t1:null,
+      ms:0, tokensIn:0, tokensOut:0, cost:0, retries:0, branch:null, runs:0, logs:[], lastIn:[] };
+  });
+  state.exec=ex; state.running=true; state.paused=false;
+  log(ex,'info',null,'Pelaksanaan '+ex.id+' bermula — '+wf.nama+' ('+wf.nodes.length+' nod)');
+
+  const targets = new Set(wf.edges.map(e=>e.to));
+  const entries = wf.nodes.filter(n=>!targets.has(n.id));
+  if(!entries.length){log(ex,'err',null,'Tiada nod pencetus');finishRun('error');return;}
+  entries.forEach(n=>enqueue(n.id,false));
+  syncRunUI(); pump();
+}
+
+function enqueue(id, viaLoop){
+  const ex=state.exec; if(!ex) return;
+  const n=nodeById(ex.wf,id); if(!n) return;
+  const st=ex.nodes[id];
+  if(st.status==='queued') return;
+  st.status='queued'; st.note = viaLoop?'gelung':'';
+  ex.queue.push(id);
+  log(ex,'info',id,(viaLoop?'Gelung semula → ':'Dalam baris gilir → ')+n.name);
+  syncCanvas();
+}
+
+function readyFor(n, ex){
+  const wf=wfById(ex.wf);
+  const ins=wf.edges.filter(e=>e.to===n.id);
+  if(!ins.length) return true;
+  return ins.every(e=>e.resolved);
+}
+
+function pump(){
+  const ex=state.exec; if(!ex||ex.status!=='running') return;
+  if(state.paused) return;
+  while(ex.running<state.maxConc && ex.queue.length){
+    const id=ex.queue.shift();
+    runNode(id);
+  }
+  if(ex.running===0 && ex.retrying===0 && ex.queue.length===0 && !ex.pulses.length){
+    finishRun(ex.err?'error':'success');
+  }
+  syncRunUI();
+}
+
+function runNode(id){
+  const ex=state.exec; if(!ex) return;
+  const n=nodeById(ex.wf,id), st=ex.nodes[id], M=metaOf(n);
+  ex.running++; st.runs++; n.runs++;
+  st.status='running'; st.t0=performance.now()-ex.t0; st.branch=null;
+  ex.totals.nodes++;
+  log(ex,'info',id,'Mula: '+n.name);
+
+  const dur=nodeDur(n)/state.speed;
+  setTimeout(()=>{
+    if(!state.exec||state.exec!==ex) return;
+    completeNode(id,n,st,M,dur);
+  }, Math.max(30,dur));
+  syncCanvas();
+}
+
+function completeNode(id,n,st,M,dur){
+  const ex=state.exec;
+  const p=perf(n.t);
+  const inCount = st.inItems||1;
+
+  let failed=false;
+  if(p.err>0 && srand()<p.err){
+    if(st.retries<M.maxRetries){
+      st.retries++;
+      st.status='retrying';
+      const back=Math.round(240*Math.pow(2,st.retries-1)/state.speed);
+      log(ex,'warn',id,'Cuba semula '+st.retries+'/'+M.maxRetries+' (backoff '+back+'ms)');
+      ex.running--; ex.retrying++;
+      setTimeout(()=>{
+        if(!state.exec||state.exec!==ex) return;
+        ex.retrying--; ex.running++;
+        st.status='running';
+        setTimeout(()=>completeNode(id,n,st,M,dur), Math.max(30,dur/state.speed));
+        syncCanvas();
+      }, Math.max(60,back));
+      syncRunUI(); syncCanvas();
+      return;
+    }
+    failed=true;
+  }
+
+  const items = failed?[]:makeItems(n,ex.wf,inCount);
+  st.t1=performance.now()-ex.t0;
+  st.ms=Math.round(st.t1-st.t0);
+  st.items=items;
+
+  let tok=0,cost=0;
+  items.forEach(it=>{
+    const j=it.json||{};
+    if(j.promptToken) tok+=j.promptToken+(j.outputToken||0);
+    if(typeof j.kos==='number') cost+=j.kos;
+  });
+  st.tokensIn=items.reduce((a,it)=>a+((it.json&&it.json.promptToken)||0),0);
+  st.tokensOut=items.reduce((a,it)=>a+((it.json&&it.json.outputToken)||0),0);
+  st.cost=cost;
+  ex.totals.items+=items.length;
+  ex.totals.tokens+=tok;
+  ex.totals.cost+=cost;
+  ex.spans.push({id,t0:st.t0,t1:st.t1,status:failed?'err':'ok'});
+
+  st.activePorts = failed?null:decideBranch(n,items,M,st);
+
+  if(failed){
+    st.status='error';
+    const msg=errMessage(n);
+    log(ex,'err',id,'RALAT: '+msg);
+    if(M.onError==='continueErrorOutput'){
+      st.branch=M.errIdx; st.activePorts=[M.errIdx];
+      log(ex,'warn',id,'Dihantar ke keluaran ralat');
+      st.status='success';
+      st.items=[{json:{_ralat:true,nod:n.id,mesaj:msg,pad:isoLocal(new Date())}}];
+      ex.totals.items+=1;
+    } else {
+      ex.err={node:id,msg};
+      ex.running--;
+      stopAllFrom(id);
+      syncRunUI(); syncCanvas(); renderPanel();
+      finishRun('error');
+      return;
+    }
+  } else {
+    st.status='success';
+    log(ex,'ok',id,'Selesai — '+items.length+' item · '+st.ms+'ms'+(cost>0?' · '+fmtMoney(cost):''));
+  }
+  n.lastRun=st.status;
+  ex.running--; ex.order.push(id);
+  propagate(id,n,st,M);
+  syncRunUI(); syncCanvas(); renderPanel();
+  pump();
+}
+
+function decideBranch(n,items,M,st){
+  if(n.t==='ifNode'||n.t==='filter'){
+    const rate=typeof n.p.passRate==='number'?n.p.passRate:0.72;
+    const pass=srand()<rate;
+    if(items[0]) items[0].json.hasil=pass;
+    st.branch=pass?0:1;
+    /* kedua-dua port dihantar supaya aliran tidak tersekat */
+    return [0, 1];
+  }
+  if(n.t==='switchNode'){
+    const r=srand();
+    const idx=r<0.4?0:(r<0.78?1:2);
+    st.branch=idx;
+    /* ketiga-tiga port dihantar */
+    return [0,1,2];
+  }
+  if(n.t==='approval'){
+    const ok=items[0]&&items[0].json.keputusan==='lulus';
+    st.branch=ok?0:1;
+    /* kedua-dua port dihantar */
+    return [0,1];
+  }
+  if(n.t==='loop'){
+    /* gelung: output 0 = gelung semula, output 1 = selesai */
+    const batch=Math.max(1,n.p.batchSize||1);
+    const total = st.inItems||ri(6,40);
+    const iter=clamp(Math.ceil(total/batch),1,4);
+    return [0,1]; /* kedua-dua port */
+  }
+  return null;
+}
+
+function errMessage(n){
+  const e = {
+    http:'HTTP 502 dari '+ (n.p.url||'API'), stripe:'Kad ditolak', shopify:'SKU tidak sah',
+    youtube:'Kuota YouTube habis', sap:'SAP IDOC gagal', twilio:'Nombor tidak sah',
+    sendgrid:'Domain tidak disahkan', smtp:'SMTP TLS gagal',
+    postgres:'Sambungan DB terputus', s3:'Bucket tidak ditemui', mqtt:'Topik tidak wujud',
+    jira:'Projek dikunci', gmail:'OAuth tamat', hubspot:'PIPELINE diperlukan',
+    notion:'Halaman dikongsi ditolak', sheets:'Kuota Sheets habis', slack:'Saluran diarkib',
+  }[n.t];
+  return e || 'Ralat tidak diketahui pada nod ' + n.id;
+}
+
+function stopAllFrom(id){
+  const ex=state.exec; if(!ex) return;
+  const wf=wfById(ex.wf);
+  const blocked=new Set([id]);
+  let added=true;
+  while(added){
+    added=false;
+    wf.edges.forEach(e=>{
+      if(blocked.has(e.from) && !blocked.has(e.to)){
+        blocked.add(e.to); added=true;
+      }
+    });
+  }
+  blocked.forEach(bid=>{
+    const s=ex.nodes[bid]; if(!s) return;
+    if(s.status==='waiting'||s.status==='queued'){
+      s.status='skipped'; s.note='disekat';
+      log(ex,'warn',bid,'Disekat — aliran dihenti');
+    }
+  });
+}
+
+function propagate(id,n,st,M){
+  const ex=state.exec; if(!ex) return;
+  const wf=wfById(ex.wf);
+  const out = wf.edges.filter(e=>e.from===id);
+  if(!out.length) return;
+
+  let active = st.activePorts;
+  out.forEach(e=>{
+    let on=false;
+    if(active && active.length) on = active.indexOf(e.out)>=0;
+    else if(M.errOut && e.out===M.errIdx && st.status==='success' && st.items[0]&&st.items[0].json._ralat) on=true;
+    else on = e.out===0 && st.status==='success';
+
+    if(st.status==='error' || st.status==='skipped') on=false;
+    if(on) spawnPulse(id, e, 1, wf);
+  });
+
+  /* gelung: ulangi dengan stagger */
+  if(n.t==='loop' && !n.disabled && st.status==='success'){
+    const batch=Math.max(1,n.p.batchSize||1);
+    const total=st.inItems||ri(6,40);
+    const iter=clamp(Math.ceil(total/batch),1,4);
+    const stagger=Math.max(120,240/state.speed);
+    for(let k=1;k<iter;k++){
+      setTimeout(()=>{
+        if(!state.exec||state.exec!==ex) return;
+        const lo=wf.edges.filter(x=>x.from===id && x.out===0);
+        lo.forEach(e=>spawnPulse(id,e,1,wf));
+      }, k*stagger);
+    }
+  }
+}
+
+function spawnPulse(fromId, edge, count, wf){
+  const ex=state.exec; if(!ex) return;
+  const fromNode=nodeById(ex.wf,fromId);
+  const toNode=nodeById(ex.wf,edge.to);
+  if(!fromNode||!toNode) return;
+  ex.pulses.push({from:fromId,to:edge.to,edge,count,t0:performance.now()});
+  /* animasi sampul surat terbang */
+  flyDoc(fromNode, toNode, ex, ()=>{
+    /* buang nadi dari senarai */
+    ex.pulses = ex.pulses.filter(p => !(p.from === fromId && p.to === edge.to && p.edge === edge));
+    edge.resolved=true;
+    const st=ex.nodes[edge.to];
+    if(st) st.inItems=(st.inItems||0)+count;
+    handleArrival(edge.to);
+  });
+}
+
+function handleArrival(toId){
+  const ex=state.exec; if(!ex) return;
+  const n=nodeById(ex.wf,toId); if(!n) return;
+  const wf=wfById(ex.wf);
+  const ins=wf.edges.filter(e=>e.to===toId);
+  const allResolved = ins.every(e=>e.resolved);
+  if(!allResolved) return;
+  if(ex.nodes[toId].status==='queued' || ex.nodes[toId].status==='waiting'){
+    enqueue(toId, n.t==='loop');
+    pump(); /* penting: picu giliran selepas sampul tiba */
+  }
+}
+
+function log(ex, level, nodeId, msg){
+  ex.logs.push({t:performance.now()-ex.t0, level, nodeId, msg, ts:ts()});
+  pushNodeLog(ex, level, nodeId, msg);
+}
+
+function pushNodeLog(ex, level, nodeId, msg){
+  if(nodeId && ex.nodes[nodeId]) ex.nodes[nodeId].logs.push({level, msg, ts:ts()});
+}
+
+function finishRun(status){
+  const ex=state.exec; if(!ex) return;
+  ex.status=status; ex.endT=performance.now()-ex.t0;
+  state.running=false; state.paused=false;
+  log(ex,status==='success'?'ok':'err',null,
+      status==='success'?
+        'Pelaksanaan selesai — '+ex.totals.nodes+' nod · '+fmtDur(ex.endT)+' · '+fmtMoney(ex.totals.cost):
+        'Pelaksanaan dihenti — '+(ex.err&&ex.err.msg||'ralat'));
+  syncRunUI(); syncCanvas(); renderPanel();
+}
+
+/* =====================================================================
+   PART F — Office Miniworld: Renderer
+   - Bilik pejabat dengan tema berbeza (lobby, data, lab, logic, platform)
+   - Setiap nod = watak kartun dengan badan, kepala, mata, mulut, aksesori
+   - Meja, kerusi, monitor di bawah setiap watak
+   - Dokumen terbang antara watak mengikut sambungan
+   ===================================================================== */
+
+/* ---------- penukar nod → bilik (berdasarkan kategori) ---------- */
+function roomOfNode(node){
+  const d=tdef(node.t);
+  for(const rid in ROOMS){
+    if(ROOMS[rid].cats.includes(d.cat)) return rid;
+  }
+  return 'logic';
+}
+
+/* ---------- peletakkan automatik nod dalam bilik (mengikut ruangan c) ---------- */
+const ROOM_W=300, ROOM_H=240, ROOM_PAD=24;
+const ROOM_LAYOUT = [
+  {id:'lobby',    x:40,   y:80},
+  {id:'data',     x:380,  y:80},
+  {id:'lab',      x:720,  y:80},
+  {id:'logic',    x:40,   y:380},
+  {id:'platform', x:380,  y:380},
+];
+
+/* ---------- ruang legar (lobi / masa lapang) untuk pintu masuk + ikhtisar ---------- */
+function nodeXY(n){
+  const r = roomOfNode(n);
+  const layout = ROOM_LAYOUT.find(l=>l.id===r);
+  const wf = curWF();
+  /* susun nod dalam bilik: kira baris/ruangan maks dalam bilik */
+  const sameRoom = wf.nodes.filter(x=>roomOfNode(x)===r);
+  const idx = sameRoom.findIndex(x=>x.id===n.id);
+  const cols = 3;
+  const col = idx % cols;
+  const row = Math.floor(idx / cols);
+  return {
+    x: layout.x + ROOM_PAD + col * 88,
+    y: layout.y + 50 + row * 86,
+  };
+}
+
+/* ---------- penjana watak SVG ---------- */
+function charSVG(node, status){
+  const d = tdef(node.t);
+  const C = CHARS[d.cat] || CHARS.logic;
+  const acc = ACC[node.t] || null;
+  const skin = C.skin, hair = C.hair;
+  const tie = C.tie || '#475569';
+  const accent = d.color || C.accent;
+
+  let coat = '';
+  if(C.coat) coat = `<rect x="22" y="40" width="40" height="38" fill="${C.coat}" rx="3"/><line x1="42" y1="40" x2="42" y2="78" stroke="#cbd5e1" stroke-width="1"/>`;
+  else if(C.suit) coat = `<polygon points="22,40 62,40 58,78 26,78" fill="${C.suit}"/><polygon points="42,40 36,55 48,55" fill="${tie}"/>`;
+  else if(C.vest) coat = `<rect x="22" y="40" width="40" height="38" fill="${C.vest}" rx="2"/><rect x="22" y="40" width="40" height="6" fill="#92400e"/>`;
+  else if(C.helmet) coat = `<rect x="22" y="40" width="40" height="38" fill="#fdba74" rx="2"/><rect x="20" y="40" width="44" height="6" fill="${C.helmet}"/>`;
+  else coat = `<rect x="22" y="40" width="40" height="38" fill="#e2e8f0" rx="2"/>`;
+
+  /* mulut ikut status */
+  let mouth = `<path d="M36,28 Q42,32 48,28" stroke="#1f2937" stroke-width="1.5" fill="none"/>`;
+  if(status === 'error' || status === 'skipped') mouth = `<path d="M36,30 Q42,26 48,30" stroke="#dc2626" stroke-width="1.5" fill="none"/><circle cx="32" cy="22" r="1.5" fill="#0ea5e9"/><circle cx="52" cy="22" r="1.5" fill="#0ea5e9"/>`;
+  else if(status === 'success') mouth = `<path d="M34,28 Q42,34 50,28" stroke="#16a34a" stroke-width="1.5" fill="none"/>`;
+  else if(status === 'thinking' || C.mouth === 'think') mouth = `<line x1="36" y1="29" x2="48" y2="29" stroke="#1f2937" stroke-width="1.5"/>`;
+
+  /* aksesori tambahan */
+  let accEl = '';
+  if(acc === 'beaker') accEl = `<circle cx="62" cy="50" r="4" fill="${accent}" stroke="#1e293b"/><line x1="62" y1="50" x2="62" y2="46" stroke="#1e293b"/>`;
+  else if(acc === 'brain') accEl = `<circle cx="64" cy="44" r="5" fill="#ec4899" stroke="#9d174d"/>`;
+  else if(acc === 'eye') accEl = `<ellipse cx="62" cy="50" rx="6" ry="4" fill="#fff" stroke="#1e293b"/><circle cx="62" cy="50" r="2" fill="#1e293b"/>`;
+  else if(acc === 'mic') accEl = `<rect x="60" y="46" width="3" height="8" fill="#1e293b" rx="1"/><rect x="58" y="54" width="7" height="3" fill="#1e293b"/>`;
+  else if(acc === 'speaker') accEl = `<polygon points="60,46 66,42 66,54 60,50" fill="#1e293b"/><path d="M68,46 Q72,48 68,50" stroke="#1e293b" fill="none"/>`;
+  else if(acc === 'branch') accEl = `<circle cx="58" cy="42" r="2" fill="#16a34a"/><circle cx="64" cy="48" r="2" fill="#dc2626"/><line x1="58" y1="42" x2="64" y2="48" stroke="#475569"/>`;
+  else if(acc === 'cycle') accEl = `<circle cx="62" cy="44" r="5" fill="none" stroke="#3f95e0" stroke-width="2"/><polygon points="62,39 65,44 62,49 59,44" fill="#3f95e0"/>`;
+  else if(acc === 'clock') accEl = `<circle cx="62" cy="44" r="5" fill="#fff" stroke="#1e293b"/><line x1="62" y1="44" x2="62" y2="41" stroke="#1e293b"/><line x1="62" y1="44" x2="64" y2="44" stroke="#1e293b"/>`;
+  else if(acc === 'laptop') accEl = `<rect x="58" y="44" width="8" height="5" fill="#1e293b"/>`;
+  else if(acc === 'stamp') accEl = `<rect x="58" y="42" width="6" height="6" fill="#dc2626" rx="1"/><text x="61" y="48" font-size="6" fill="#fff" text-anchor="middle" font-weight="700">✓</text>`;
+  else if(acc === 'shield') accEl = `<path d="M58,42 L66,42 L66,48 Q62,52 58,48 Z" fill="#16a34a"/>`;
+  else if(acc === 'plug') accEl = `<rect x="58" y="44" width="6" height="4" fill="#1e293b"/>`;
+  else if(acc === 'envelope') accEl = `<rect x="56" y="42" width="10" height="6" fill="#fde68a" stroke="#92400e"/>`;
+  else if(acc === 'warn') accEl = `<polygon points="62,38 68,52 56,52" fill="#fde047" stroke="#dc2626"/><text x="62" y="50" font-size="7" fill="#dc2626" text-anchor="middle" font-weight="700">!</text>`;
+  else if(acc) accEl = `<circle cx="62" cy="44" r="3" fill="${accent}"/>`;
+
+  /* kepala */
+  const hairEl = C.hat==='crown' ? `<polygon points="28,18 30,12 34,16 38,10 42,16 46,10 50,16 54,12 56,18" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>` :
+                  `<path d="M28,18 Q42,4 56,18 L56,22 Q42,12 28,22 Z" fill="${hair}"/>`;
+
+  const glassEl = C.glasses ? `<circle cx="36" cy="22" r="3.5" fill="none" stroke="${C.glasses}" stroke-width="1"/><circle cx="48" cy="22" r="3.5" fill="none" stroke="${C.glasses}" stroke-width="1"/><line x1="39.5" y1="22" x2="44.5" y2="22" stroke="${C.glasses}" stroke-width="1"/>` :
+                  `<circle cx="36" cy="22" r="1.5" fill="#1f2937"/><circle cx="48" cy="22" r="1.5" fill="#1f2937"/>`;
+
+  /* lengan — angkat jika status success */
+  let arms = `<rect x="18" y="42" width="6" height="20" fill="${skin}" rx="2"/><rect x="60" y="42" width="6" height="20" fill="${skin}" rx="2"/>`;
+  if(status === 'success') arms = `<rect x="16" y="32" width="6" height="20" fill="${skin}" rx="2" transform="rotate(-25 19 42)"/><rect x="62" y="32" width="6" height="20" fill="${skin}" rx="2" transform="rotate(25 65 42)"/>`;
+
+  return `<svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg">
+    ${arms}
+    ${coat}
+    <rect x="26" y="78" width="6" height="6" fill="#1e293b"/><rect x="52" y="78" width="6" height="6" fill="#1e293b"/>
+    <circle cx="42" cy="22" r="14" fill="${skin}" stroke="#92400e" stroke-width="0.5"/>
+    ${hairEl}
+    ${glassEl}
+    ${mouth}
+    ${accEl}
+  </svg>`;
+}
+
+/* ---------- meja & kerusi SVG di bawah setiap watak ---------- */
+function deskSVG(node){
+  const d = tdef(node.t);
+  return `<svg viewBox="0 0 108 80" xmlns="http://www.w3.org/2000/svg">
+    <!-- kerusi -->
+    <rect x="44" y="20" width="20" height="34" fill="#6f4e37" rx="2"/>
+    <rect x="42" y="14" width="24" height="8" fill="#6f4e37" rx="1"/>
+    <!-- meja -->
+    <rect x="0" y="46" width="108" height="14" fill="#cd853f" stroke="#92400e" stroke-width="1"/>
+    <rect x="0" y="46" width="108" height="3" fill="#a0522d"/>
+    <rect x="6" y="60" width="6" height="20" fill="#a0522d"/>
+    <rect x="96" y="60" width="6" height="20" fill="#a0522d"/>
+    <!-- monitor -->
+    <rect x="20" y="22" width="22" height="16" fill="#1f2937" rx="1"/>
+    <rect x="22" y="24" width="18" height="12" fill="${d.color}" opacity="0.4"/>
+    <line x1="14" y1="38" x2="20" y2="46" stroke="#1f2937" stroke-width="1"/>
+    <!-- keyboard -->
+    <rect x="50" y="42" width="20" height="4" fill="#1f2937" rx="1"/>
+    <!-- kertas di atas meja -->
+    <rect x="74" y="38" width="14" height="8" fill="#fff" stroke="#cbd5e1"/>
+    <line x1="76" y1="41" x2="86" y2="41" stroke="#94a3b8" stroke-width="0.5"/>
+    <line x1="76" y1="43" x2="84" y2="43" stroke="#94a3b8" stroke-width="0.5"/>
+  </svg>`;
+}
+
+/* ---------- terbang surat antara watak ---------- */
+function flyDoc(fromN, toN, ex, cb){
+  const stage = document.getElementById('stage');
+  const a = nodeXY(fromN);
+  const b = nodeXY(toN);
+  const ax = a.x + 60 - state.view.ox;
+  const ay = a.y + 40 - state.view.oy;
+  const bx = b.x + 60 - state.view.ox;
+  const by = b.y + 40 - state.view.oy;
+  /* buang sebarang dokumen lama */
+  const doc = document.createElement('div');
+  doc.className = 'doc doc-ok';
+  doc.style.left = ax + 'px';
+  doc.style.top = ay + 'px';
+  stage.appendChild(doc);
+  const dur = Math.max(180, 380 / state.speed);
+  const dx = bx - ax, dy = by - ay;
+  const midX = ax + dx * 0.5;
+  const midY = ay + dy * 0.5 - 40;
+  const STEPS = 14;
+  let i = 0;
+  function step(){
+    i++;
+    const e = i / STEPS;
+    const ease = e < 0.5 ? 2*e*e : -1+(4-2*e)*e;
+    const x = (1-e)*(1-e)*ax + 2*(1-e)*e*midX + e*e*bx;
+    const y = (1-e)*(1-e)*ay + 2*(1-e)*e*midY + e*e*by;
+    doc.style.left = x + 'px';
+    doc.style.top = y + 'px';
+    if(i < STEPS){
+      setTimeout(step, dur / STEPS);
+    } else {
+      doc.remove();
+      if(cb) cb();
+    }
+  }
+  setTimeout(step, dur / STEPS);
+}
+
+/* ---------- bina pejabat (bilik) ---------- */
+function buildOffice(){
+  const world = document.getElementById('world');
+  world.innerHTML = '';
+  const wf = curWF();
+
+  /* setiap bilik */
+  ROOM_LAYOUT.forEach(layout => {
+    const r = ROOMS[layout.id];
+    const roomNodes = wf.nodes.filter(n => roomOfNode(n) === layout.id);
+    if(!roomNodes.length) return;
+    const cols = 3;
+    const rows = Math.ceil(roomNodes.length / cols);
+    const w = ROOM_PAD * 2 + cols * 88 + 8;
+    const h = 50 + rows * 86 + ROOM_PAD;
+
+    const div = document.createElement('div');
+    div.className = 'room';
+    div.style.left = layout.x + 'px';
+    div.style.top = layout.y + 'px';
+    div.style.width = w + 'px';
+    div.style.height = h + 'px';
+    div.style.background = r.hex;
+    div.style.borderColor = r.trim;
+    div.setAttribute('data-label', r.nama);
+    div.setAttribute('data-sub', r.cats[0].toUpperCase());
+    div.title = r.desc;
+    /* tingkap */
+    const win = document.createElement('div');
+    win.className = 'window-row';
+    for(let i=0;i<5;i++){
+      const wn = document.createElement('div');
+      wn.className = 'window';
+      win.appendChild(wn);
+    }
+    div.appendChild(win);
+    /* deco lantai */
+    const deco = document.createElement('div');
+    deco.className = 'deco';
+    div.appendChild(deco);
+    world.appendChild(div);
+  });
+
+  /* setiap nod (watak + meja) */
+  wf.nodes.forEach(n => {
+    const p = nodeXY(n);
+    const st = state.exec ? state.exec.nodes[n.id] : null;
+    const status = st ? st.status : 'idle';
+    const div = document.createElement('div');
+    div.className = 'char-desk s-' + status;
+    div.setAttribute('data-id', n.id);
+    div.style.left = p.x + 'px';
+    div.style.top = p.y + 'px';
+    div.title = n.name + ' (' + tdef(n.t).label + ')';
+
+    /* status badge */
+    const badge = document.createElement('div');
+    badge.className = 'badge';
+    badge.textContent = tdef(n.t).ico;
+    div.appendChild(badge);
+
+    /* char */
+    const charDiv = document.createElement('div');
+    charDiv.className = 'char-svg';
+    charDiv.innerHTML = charSVG(n, status);
+    div.appendChild(charDiv);
+
+    /* desk */
+    const deskDiv = document.createElement('div');
+    deskDiv.className = 'desk-svg';
+    deskDiv.innerHTML = deskSVG(n);
+    div.appendChild(deskDiv);
+
+    /* label nama */
+    const lbl = document.createElement('div');
+    lbl.className = 'label';
+    lbl.textContent = n.name;
+    div.appendChild(lbl);
+
+    /* port in/out */
+    const pi = document.createElement('div');
+    pi.className = 'port in';
+    div.appendChild(pi);
+    const po = document.createElement('div');
+    po.className = 'port out';
+    div.appendChild(po);
+
+    /* klik → NDV */
+    div.addEventListener('click', e => {
+      e.stopPropagation();
+      openNDV(n.id);
+    });
+
+    world.appendChild(div);
+  });
+
+  /* sambungan antara nod (laluan pejabat) */
+  wf.edges.forEach(e => {
+    const fromN = wf.nodes.find(x=>x.id===e.from);
+    const toN = wf.nodes.find(x=>x.id===e.to);
+    if(!fromN || !toN) return;
+    if(roomOfNode(fromN) === roomOfNode(toN)) return; /* intra-bilik: tidak lukis走廊 */
+    const a = nodeXY(fromN);
+    const b = nodeXY(toN);
+    const ax = a.x + 100, ay = a.y + 60;
+    const bx = b.x + 20, by = b.y + 60;
+    const len = Math.sqrt((bx-ax)*(bx-ax)+(by-ay)*(by-ay));
+    const angle = Math.atan2(by-ay, bx-ax) * 180 / Math.PI;
+    const corridor = document.createElement('div');
+    corridor.className = 'corridor';
+    corridor.style.left = ax + 'px';
+    corridor.style.top = ay + 'px';
+    corridor.style.width = len + 'px';
+    corridor.style.height = '8px';
+    corridor.style.background = 'repeating-linear-gradient(90deg,#94a3b8 0 6px,transparent 6px 12px)';
+    corridor.style.transformOrigin = '0 50%';
+    corridor.style.transform = `rotate(${angle}deg)`;
+    corridor.style.opacity = '0.55';
+    world.appendChild(corridor);
+  });
+
+  /* stickies */
+  (wf.stickies||[]).forEach((s,i) => {
+    const stick = document.createElement('div');
+    stick.className = 'sticky ' + (s.color||'gold');
+    stick.style.left = (40 + i * 700) + 'px';
+    stick.style.top = '30px';
+    stick.style.maxWidth = '200px';
+    stick.textContent = s.text.replace(/\n/g,'\n');
+    world.appendChild(stick);
+  });
+}
+
+/* ---------- kemas kini status nod (dipanggil selepas enjin) ---------- */
+function syncCanvas(){
+  const wf = curWF();
+  if(!wf) return;
+  /* update status char */
+  wf.nodes.forEach(n => {
+    const el = document.querySelector('.char-desk[data-id="' + n.id + '"]');
+    if(!el) return;
+    el.className = 'char-desk';
+    const st = state.exec ? state.exec.nodes[n.id] : null;
+    const status = st ? st.status : 'idle';
+    el.classList.add('s-' + status);
+    /* tukar status visual pada SVG */
+    const svg = el.querySelector('.char-svg');
+    if(svg && status !== 'idle') {
+      const node = wf.nodes.find(x=>x.id===n.id);
+      svg.innerHTML = charSVG(node, status);
+    }
+  });
+  /* update counts */
+  if(state.exec){
+    document.getElementById('stNodes').textContent = state.exec.totals.nodes;
+    document.getElementById('stItems').textContent = state.exec.totals.items;
+    document.getElementById('stTokens').textContent = fmtNum(state.exec.totals.tokens);
+    document.getElementById('stCost').textContent = fmtMoney(state.exec.totals.cost);
+    const ms = state.exec.endT ? state.exec.endT : (performance.now() - state.exec.t0);
+    document.getElementById('stTime').textContent = fmtDur(ms);
+    const dot = document.getElementById('statusDot');
+    const txt = document.getElementById('statusText');
+    if(state.running){
+      dot.className='dot run'; txt.textContent='Berjalan...';
+    } else if(state.exec.status==='success'){
+      dot.className='dot ok'; txt.textContent='Selesai';
+    } else if(state.exec.status==='error'){
+      dot.className='dot err'; txt.textContent='Ralat';
+    } else {
+      dot.className='dot'; txt.textContent='Sedia';
+    }
+  } else {
+    document.getElementById('stNodes').textContent = '0';
+    document.getElementById('stItems').textContent = '0';
+    document.getElementById('stTokens').textContent = '0';
+    document.getElementById('stCost').textContent = '$0.0000';
+    document.getElementById('stTime').textContent = '0ms';
+  }
+}
+
+/* =====================================================================
+   PART G — UI Layer: Palette, Right Rail, NDV, Stage controls
+   ===================================================================== */
+
+/* ---------- room selector (topbar) ---------- */
+function buildRoomSelector(){
+  const sel = document.getElementById('roomSelector');
+  sel.innerHTML = '';
+  WORKFLOWS.forEach(wf => {
+    const b = document.createElement('div');
+    b.className = 'wf' + (wf.id===state.cur?' act':'');
+    b.innerHTML = '<span>'+wf.ico+'</span>'+esc(wf.nama)+' <span class="ct">'+wf.nodes.length+'</span>';
+    b.onclick = () => { state.cur = wf.id; document.getElementById('crumbWF').textContent = wf.nama; state.exec=null; state.running=false; GEN_STEP=0; document.querySelectorAll('.doc').forEach(d=>d.remove()); buildRoomSelector(); buildOffice(); renderPanel(); syncCanvas(); };
+    sel.appendChild(b);
+  });
+}
+
+/* ---------- palette rail (kategori) ---------- */
+function buildPalette(){
+  const rail = document.getElementById('palRail');
+  rail.innerHTML = '';
+  for(const cat in CAT){
+    const meta = CAT[cat];
+    const h = document.createElement('div');
+    h.className = 'pal-cat';
+    h.textContent = meta.ico + ' ' + meta.n;
+    rail.appendChild(h);
+    Object.keys(T).filter(t => T[t][0] === cat).forEach(t => {
+      const def = T[t];
+      const it = document.createElement('div');
+      it.className = 'pal-it';
+      it.innerHTML = '<span class="ic">'+def[1]+'</span>'+esc(def[2]);
+      it.title = def[3];
+      it.style.borderLeftColor = meta.hex;
+      it.style.borderLeftWidth = '3px';
+      rail.appendChild(it);
+    });
+  }
+}
+
+/* ---------- panel kanan ---------- */
+function renderPanel(){
+  const body = document.getElementById('rrBody');
+  if(state.tab === 'nod'){
+    const wf = curWF();
+    if(!wf){ body.innerHTML=''; return; }
+    let h = '<h4>'+esc(wf.nama)+' · '+wf.nodes.length+' watak · '+wf.edges.length+' sambungan</h4>';
+    h += '<div class="card"><div class="k">Tag</div><div class="v">'+esc(wf.tag)+'</div></div>';
+    h += '<div class="card"><div class="k">Penerangan</div><div class="v" style="font-weight:400">'+esc(wf.desc)+'</div></div>';
+    const counts = {};
+    wf.nodes.forEach(n => { const c = tdef(n.t).cat; counts[c] = (counts[c]||0)+1; });
+    h += '<h4>Agihan Mengikut Kategori</h4>';
+    for(const c in counts){
+      const meta = CAT[c];
+      h += '<div class="card" style="border-left:3px solid '+meta.hex+'"><div class="k">'+meta.ico+' '+meta.n+'</div><div class="v">'+counts[c]+' nod</div></div>';
+    }
+    body.innerHTML = h;
+  } else if(state.tab === 'pelaksanaan'){
+    if(!state.exec){ body.innerHTML='<div style="color:var(--ink-mute);padding:20px;text-align:center">Tiada pelaksanaan. Klik ▶ Jalankan.</div>'; return; }
+    const ex = state.exec;
+    let h = '<h4>Pelaksanaan '+ex.id+' · '+esc(ex.wfNama)+'</h4>';
+    h += '<div class="card"><div class="k">Status</div><div class="v">'+(ex.status==='running'?'⏳ Berjalan':(ex.status==='success'?'✓ Selesai':'✗ Ralat'))+'</div></div>';
+    h += '<div class="card"><div class="k">Nod Selesai</div><div class="v">'+ex.totals.nodes+' / '+curWF().nodes.length+'</div></div>';
+    h += '<div class="card"><div class="k">Item Diproses</div><div class="v">'+fmtNum(ex.totals.items)+'</div></div>';
+    h += '<div class="card"><div class="k">Token</div><div class="v">'+fmtNum(ex.totals.tokens)+'</div></div>';
+    h += '<div class="card"><div class="k">Kos</div><div class="v">'+fmtMoney(ex.totals.cost)+'</div></div>';
+    h += '<div class="card"><div class="k">Masa</div><div class="v">'+fmtDur(ex.endT||(performance.now()-ex.t0))+'</div></div>';
+    if(ex.err){ h += '<div class="card" style="border-left:3px solid var(--err)"><div class="k">Ralat</div><div class="v" style="color:var(--err)">'+esc(ex.err.msg)+'</div></div>'; }
+    h += '<h4>Log Aktiviti</h4>';
+    ex.logs.slice(-30).reverse().forEach(l => {
+      const c = l.level==='err'?'var(--err)':(l.level==='warn'?'var(--warn)':(l.level==='ok'?'var(--ok)':'var(--ink-soft)'));
+      h += '<div class="card" style="padding:4px 8px;border-left:2px solid '+c+'"><span style="font-family:monospace;font-size:10px;color:var(--ink-mute)">'+esc(l.ts)+'</span> '+(l.nodeId?'['+esc(l.nodeId)+'] ':'')+esc(l.msg)+'</div>';
+    });
+    body.innerHTML = h;
+  } else if(state.tab === 'garismasa'){
+    const wf = curWF();
+    const ex = state.exec;
+    const max = ex ? Math.max(1, ex.endT||(performance.now()-ex.t0)) : 1;
+    let h = '<h4>Garis Masa Pelaksanaan</h4>';
+    h += '<div style="position:relative;height:'+(wf.nodes.length*16+20)+'px;background:#f8fafc;border-radius:8px;padding:6px;margin-bottom:10px;border:1px solid #e2e8f0">';
+    if(ex){
+      ex.spans.forEach(sp => {
+        const idx = wf.nodes.findIndex(n=>n.id===sp.id);
+        const left = (sp.t0/max)*100;
+        const w = Math.max(0.5, ((sp.t1-sp.t0)/max)*100);
+        const c = sp.status==='err'?'var(--err)':'var(--ok)';
+        h += '<div title="'+esc(wf.nodes[idx].name)+' '+fmtDur(sp.t1-sp.t0)+'" style="position:absolute;left:'+left+'%;top:'+(idx*16+4)+'px;width:'+w+'%;height:14px;background:'+c+';border-radius:2px;font-size:9px;color:#fff;overflow:hidden;padding:0 3px;line-height:14px">'+esc(wf.nodes[idx].name.slice(0,12))+'</div>';
+      });
+    }
+    h += '</div>';
+    h += '<div style="font-size:11px;color:var(--ink-mute)">'+wf.nodes.length+' nod · '+(ex?ex.spans.length:0)+' selesai</div>';
+    body.innerHTML = h;
+  } else if(state.tab === 'stat'){
+    const wf = curWF();
+    let h = '<h4>Statistik Aliran</h4>';
+    h += '<div class="card"><div class="k">Jumlah Nod</div><div class="v">'+wf.nodes.length+'</div></div>';
+    h += '<div class="card"><div class="k">Jumlah Sambungan</div><div class="v">'+wf.edges.length+'</div></div>';
+    const loops = wf.edges.filter(e=>e.loop).length;
+    h += '<div class="card"><div class="k">Gelung</div><div class="v">'+loops+'</div></div>';
+    const branches = wf.nodes.filter(n=>tdef(n.t).out>1).length;
+    h += '<div class="card"><div class="k">Nod Bercabang</div><div class="v">'+branches+'</div></div>';
+    const ex = state.exec;
+    if(ex){
+      h += '<div class="card"><div class="k">Status</div><div class="v">'+ex.status+'</div></div>';
+      h += '<div class="card"><div class="k">Kejayaan</div><div class="v">'+Math.round(100*ex.spans.filter(s=>s.status==='ok').length/Math.max(1,ex.spans.length))+'%</div></div>';
+    }
+    body.innerHTML = h;
+  }
+}
+
+function syncRunUI(){
+  const btn = document.getElementById('runBtn');
+  if(state.running){ btn.textContent='⏳ Berjalan'; btn.className='btn warn'; btn.disabled=true; }
+  else { btn.textContent='▶ Jalankan'; btn.className='btn ok'; btn.disabled=false; }
+}
+
+/* ---------- NDV (butiran nod) ---------- */
+function openNDV(id){
+  const wf = curWF();
+  const n = wf.nodes.find(x=>x.id===id);
+  if(!n) return;
+  const d = tdef(n.t);
+  state.ndv = id;
+  state.ndvTab = 'parameter';
+  document.getElementById('ndvCh').textContent = d.ico;
+  document.getElementById('ndvTi').textContent = n.name;
+  document.getElementById('ndvSub').textContent = d.label + ' · ' + CAT[d.cat].n;
+  document.getElementById('ndvId').textContent = wf.id + ' / ' + n.id;
+  document.getElementById('ndv').classList.add('open');
+  document.querySelectorAll('#ndv .nav .t').forEach(t => t.classList.toggle('act', t.dataset.ntab==='parameter'));
+  renderNDV();
+}
+
+function renderNDV(){
+  if(!state.ndv) return;
+  const wf = curWF();
+  const n = wf.nodes.find(x=>x.id===state.ndv);
+  if(!n) return;
+  const ex = state.exec;
+  const st = ex ? ex.nodes[n.id] : null;
+  const bd = document.getElementById('ndvBd');
+  if(state.ndvTab === 'parameter'){
+    const d = tdef(n.t);
+    let h = '<div class="kv"><div class="k">Jenis</div><div class="v">'+d.ico+' '+esc(d.label)+'</div></div>';
+    h += '<div class="kv"><div class="k">Kategori</div><div class="v" style="color:'+d.color+'">'+CAT[d.cat].ico+' '+CAT[d.cat].n+'</div></div>';
+    h += '<div class="kv"><div class="k">Penerangan</div><div class="v">'+esc(d.desc)+'</div></div>';
+    h += '<div class="kv"><div class="k">Output</div><div class="v">'+d.out+' port ('+d.ol.join(', ')+')</div></div>';
+    h += '<div class="kv"><div class="k">Bilik</div><div class="v">'+esc(ROOMS[roomOfNode(n)].nama)+'</div></div>';
+    h += '<div class="kv"><div class="k">Ruangan</div><div class="v">C'+n.c+' · R'+n.r+'</div></div>';
+    h += '<h4 style="margin-top:10px">Parameter</h4>';
+    const ps = n.p || {};
+    for(const k in ps){
+      h += '<div class="kv"><div class="k">'+esc(k)+'</div><div class="v" style="font-family:monospace;font-size:12px">'+esc(JSON.stringify(ps[k]))+'</div></div>';
+    }
+    if(!Object.keys(ps).length) h += '<div style="color:var(--ink-mute);font-size:12px">Tiada parameter ditetapkan.</div>';
+    bd.innerHTML = h;
+  } else if(state.ndvTab === 'input'){
+    bd.innerHTML = '<div class="jsonh">'+jsonHtml(st?(st.lastIn||[]):[])+'</div>';
+  } else if(state.ndvTab === 'output'){
+    bd.innerHTML = '<div class="jsonh">'+jsonHtml(st?(st.items||[]):[])+'</div>';
+  } else if(state.ndvTab === 'log'){
+    if(!st || !st.logs.length){ bd.innerHTML = '<div style="color:var(--ink-mute);padding:20px;text-align:center">Belum ada log.</div>'; return; }
+    let h = '';
+    st.logs.slice().reverse().forEach(l => {
+      const c = l.level==='err'?'var(--err)':(l.level==='warn'?'var(--warn)':'var(--ok)');
+      h += '<div class="kv"><div class="k" style="color:'+c+'">'+esc(l.ts)+'</div><div class="v">'+esc(l.msg)+'</div></div>';
+    });
+    bd.innerHTML = h;
+  }
+}
+
+function closeNDV(){ state.ndv=null; document.getElementById('ndv').classList.remove('open'); }
+
+/* ---------- toast ---------- */
+function toast(msg, kind){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show ' + (kind||'');
+  clearTimeout(toast._tm);
+  toast._tm = setTimeout(() => { t.className = ''; }, 2400);
+}
+
+/* ---------- panel tab + NDV tab ---------- */
+function bindUI(){
+  /* tab kanan */
+  document.querySelectorAll('#rrTabs .t').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('#rrTabs .t').forEach(x=>x.classList.remove('act'));
+      t.classList.add('act');
+      state.tab = t.dataset.tab;
+      renderPanel();
+    });
+  });
+  /* NDV tabs */
+  document.querySelectorAll('#ndv .nav .t').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('#ndv .nav .t').forEach(x=>x.classList.remove('act'));
+      t.classList.add('act');
+      state.ndvTab = t.dataset.ntab;
+      renderNDV();
+    });
+  });
+  document.getElementById('ndvX').onclick = closeNDV;
+  document.getElementById('ndvClose2').onclick = closeNDV;
+  /* speed selector */
+  document.getElementById('speedSel').onchange = e => { state.speed = parseInt(e.target.value); };
+  /* run button */
+  document.getElementById('runBtn').onclick = () => { if(!state.running) startRun(); };
+  document.getElementById('resetBtn').onclick = () => { resetRun(); toast('Reset','ok'); };
+
+  /* panorama stage — drag untuk panoramik */
+  const stage = document.getElementById('stage');
+  stage.addEventListener('mousedown', e => {
+    if(e.target.closest('.char-desk')) return;
+    state.pan = { sx:e.clientX, sy:e.clientY, ox:state.view.ox, oy:state.view.oy };
+    stage.classList.add('pan');
+  });
+  window.addEventListener('mousemove', e => {
+    if(!state.pan) return;
+    state.view.ox = state.pan.ox - (e.clientX - state.pan.sx);
+    state.view.oy = state.pan.oy - (e.clientY - state.pan.sy);
+    document.getElementById('world').style.transform = 'translate(' + state.view.ox + 'px,' + state.view.oy + 'px)';
+  });
+  window.addEventListener('mouseup', () => { state.pan=null; stage.classList.remove('pan'); });
+
+  /* ESC tutup NDV */
+  window.addEventListener('keydown', e => { if(e.key==='Escape') closeNDV(); });
+}
+
+/* ---------- awan di langit ---------- */
+function buildClouds(){
+  const c = document.getElementById('clouds');
+  c.innerHTML='';
+  for(let i=0;i<8;i++){
+    const cl = document.createElement('div');
+    cl.className='cloud';
+    cl.style.left = (i*120 + Math.random()*40) + 'px';
+    cl.style.top = (Math.random()*14) + 'px';
+    cl.style.opacity = (0.6 + Math.random()*0.35);
+    c.appendChild(cl);
+  }
+}
+
+/* =====================================================================
+   PART H — Boot
+   ===================================================================== */
+function boot(){
+  buildClouds();
+  buildPalette();
+  buildRoomSelector();
+  bindUI();
+  buildOffice();
+  renderPanel();
+  syncCanvas();
+  toast('Selamat datang ke NEXUS Office — '+WORKFLOWS.length+' aliran · '+
+    WORKFLOWS.reduce((a,w)=>a+w.nodes.length,0)+' nod miniworld','ok');
+}
+
+window.NEXUS = {
+  run: () => { if(!state.running) startRun(); },
+  reset: () => resetRun(),
+  setWF: id => {
+    if(WORKFLOWS.find(w=>w.id===id)){
+      state.cur = id; state.exec=null; state.running=false;
+      GEN_STEP=0; document.querySelectorAll('.doc').forEach(d=>d.remove());
+      document.getElementById('crumbWF').textContent = WORKFLOWS.find(w=>w.id===id).nama;
+      buildRoomSelector(); buildOffice(); renderPanel(); syncCanvas();
+    }
+  },
+  fastMode: () => { state.speed = 3; state.maxConc = 8; document.getElementById('speedSel').value='3'; },
+  state: () => state,
+  workflows: () => WORKFLOWS,
+  meta: () => { return { workflows: WORKFLOWS.length, nodes: WORKFLOWS.reduce((a,w)=>a+w.nodes.length,0), edges: WORKFLOWS.reduce((a,w)=>a+w.edges.length,0), rooms: Object.keys(ROOMS).length }; },
+};
+
+document.addEventListener('DOMContentLoaded', boot);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

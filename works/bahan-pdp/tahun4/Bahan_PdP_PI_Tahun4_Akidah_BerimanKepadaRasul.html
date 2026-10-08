@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akidah (Beriman kepada Rasul) &mdash; Pendidikan Islam Tahun 4</title>
+<style>
+  :root{
+    --sky1:#e4f2ec; --sky2:#f4f9f6; --sky3:#e9f4ee;
+    --nila1:#4aa47c; --nila2:#1f7a56; --nila3:#0f4a34;
+    --paper:#f8fbf9; --ink:#15261f; --muted:#5f7a6e;
+    --gold:#8a6a2a; --goldsoft:#e0b04a; --aqua:#d8ece2;
+    --line:#d9e8e0; --teal:#14664a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);
+    font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:rtl}
+  .jf{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:ltr;unicode-bidi:isolate}
+
+  .skybg{position:fixed;inset:0;z-index:-1;
+    background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#f4f9f6 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:#dcefe4;top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:#f0e6c8;top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:#e3f1e9;bottom:-140px;left:18%}
+
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(15,74,52,.18)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;
+    background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.92), rgba(255,255,255,.58) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#1f7a56;font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:#0f4a34;letter-spacing:.4px;
+    text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:#5f7a6e;font-weight:600}
+
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;
+    box-shadow:0 3px 10px rgba(15,74,52,.08)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(15,74,52,.08)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--nila2);font-weight:800;
+    display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#eef7f2;border:1.4px solid var(--line);
+    border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(140deg,var(--nila1),var(--nila2));box-shadow:0 2px 0 var(--nila3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--nila3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#fdf8ec;border:1.4px dashed var(--gold);border-radius:13px;
+    padding:10px 13px;font-size:12.5px;color:#2e2208;line-height:1.55}
+  .toc .note b{color:#2e2208}
+
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(15,74,52,.08);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--nila3);text-transform:uppercase;margin:0 0 4px;
+    display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--nila2);color:#fff;width:27px;height:27px;border-radius:9px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;
+    box-shadow:0 2px 0 var(--nila3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+  h2 .mascot{flex:none;margin-left:auto;display:block}
+  .deko{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:14px 0 0}
+  .deko svg{display:block}
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes floatBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    @keyframes softGlow{0%,100%{filter:drop-shadow(0 0 3px rgba(224,176,74,.45))}50%{filter:drop-shadow(0 0 9px rgba(224,176,74,.85))}}
+    @keyframes gentleSway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.2deg)}}
+    @keyframes drift{from{transform:translateX(0)}to{transform:translateX(28px)}}
+    @keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
+    @keyframes cardEntrance{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes shimmer{0%{background-position:-260% 0}100%{background-position:260% 0}}
+    @keyframes u11bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+    @keyframes u11drift{0%{transform:translateX(-9px)}100%{transform:translateX(9px)}}
+    @keyframes u11twinkle{0%,100%{opacity:.35}50%{opacity:1}}
+    h2 .mascot,.deko svg{animation:u11bob 2.6s ease-in-out infinite}
+    .deko svg:nth-child(2){animation-delay:.45s}
+    .deko svg:nth-child(3){animation-delay:.9s}
+    .anim-drift{animation:u11drift 8s ease-in-out infinite alternate}
+    .anim-twinkle{animation:u11twinkle 2.2s ease-in-out infinite}
+    .anim-bob{animation:floatBob 3.2s ease-in-out infinite}
+    .anim-glow{animation:softGlow 2.8s ease-in-out infinite}
+    .anim-sway{animation:gentleSway 4s ease-in-out infinite;transform-origin:center bottom}
+    .anim-drift26{animation:drift 9s ease-in-out infinite alternate}
+    .anim-twinkle2{animation:twinkle 2.4s ease-in-out infinite}
+    .anim-card{animation:cardEntrance .55s cubic-bezier(.22,.8,.3,1) both}
+    .anim-card:nth-child(2){animation-delay:.1s}
+    .anim-card:nth-child(3){animation-delay:.2s}
+    .anim-card:nth-child(4){animation-delay:.3s}
+    .anim-shimmer{animation:shimmer 6s linear infinite}
+  }
+  @media print{
+    h2 .mascot,.deko svg,.anim-drift,.anim-twinkle,.anim-bob,.anim-glow,.anim-sway,
+    .anim-drift26,.anim-twinkle2,.anim-card,.anim-shimmer{animation:none !important}
+  }
+
+  .nota{border-left:5px solid var(--gold);background:#fdf8ec;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol, .nota ul{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#2e2208}
+  .nota li:last-child{margin-bottom:0}
+
+  .ayatbox{background:#eef7f2;border:1.4px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:14px}
+  .ayatbox .row{display:flex;gap:10px;align-items:baseline;padding:7px 0;border-bottom:1px dashed var(--line)}
+  .ayatbox .row:last-child{border-bottom:none}
+  .ayatbox .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--nila2);color:#fff;
+    font-size:12px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+  .ayatbox .ay{flex:1;font-size:24px;line-height:1.9}
+  .ayatbox .ms{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .ayatbox .ref{font-size:11.5px;font-weight:800;color:var(--gold);letter-spacing:.4px}
+
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:linear-gradient(135deg,#eef7f2,#fdf8ec);border:1.5px solid var(--line);
+    border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--nila3)}
+  .bar{flex:1;min-width:180px;height:12px;background:var(--aqua);border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;
+    background:linear-gradient(90deg,var(--nila1),var(--nila2));transition:width .45s ease}
+  .scorebar .hint2{font-size:12px;color:var(--muted);font-weight:600}
+
+  .qcard{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:13px;
+    background:#f8fbf9;transition:box-shadow .25s}
+  .qcard.done{box-shadow:0 3px 12px rgba(15,74,52,.18)}
+  .qhead{display:flex;gap:9px;align-items:flex-start;margin-bottom:11px}
+  .qn{background:var(--teal);color:#fff;min-width:26px;height:26px;border-radius:8px;display:inline-flex;
+    align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+  .qtext{font-weight:700;font-size:14.5px}
+  .opts{display:grid;grid-template-columns:1fr;gap:7px}
+  @media(min-width:640px){.opts{grid-template-columns:1fr 1fr 1fr}}
+  .opt{font-family:inherit;text-align:left;font-size:13.5px;font-weight:600;cursor:pointer;
+    background:#e5f1ea;border:2px solid #d9e8e0;border-radius:11px;padding:9px 12px;color:var(--ink);
+    transition:transform .12s,background .2s,border-color .2s;display:flex;gap:7px;align-items:flex-start}
+  .opt:hover:not(:disabled){transform:translateY(-2px);background:#fff;border-color:var(--teal)}
+  .opt:disabled{cursor:default}
+  .opt .k{font-weight:800;color:var(--teal);flex:none}
+  .opt.ok{background:#d8ece2;border-color:var(--nila2);color:#0f4a34}
+  .opt.ok .k{color:var(--nila3)}
+  .opt.bad{background:#e1eee7;border-color:#4aa47c;color:#1f7a56}
+  .opt.bad .k{color:#0f4a34}
+  .opt.dim{opacity:.45}
+
+  .fb{display:none;margin-top:11px;border-radius:12px;padding:10px 13px;font-size:13.5px;
+    background:#eef7f2;border:1.5px dashed var(--nila2);align-items:flex-start;gap:11px}
+  .fb.show{display:flex}
+  .fb.wrong{background:#e1eee7;border-color:#4aa47c}
+  .fb .face{flex:none;width:52px;height:52px}
+  .fb .txt b{color:var(--nila3)}
+  .fb.wrong .txt b{color:#0f4a34}
+
+  .result{display:none;text-align:center;padding:20px;border-radius:18px;margin-top:6px;
+    background:linear-gradient(135deg,#eef7f2,#fdf8ec);border:2px solid var(--nila1)}
+  .result.show{display:block}
+  .result .big{font-size:30px;font-weight:800;color:var(--nila3);margin:6px 0}
+  .result .msg{font-size:14.5px;font-weight:600;margin-bottom:12px}
+  .stars{font-size:22px;letter-spacing:3px;margin-bottom:6px}
+  button.act{font-family:inherit;font-size:13.5px;font-weight:700;border-radius:11px;padding:10px 18px;
+    border:2px solid var(--nila2);background:#fff;color:var(--nila3);cursor:pointer;transition:background .2s}
+  button.act:hover{background:var(--nila1);color:#fff}
+  button.act.solid{background:var(--nila2);color:#fff}
+  button.act.solid:hover{background:var(--nila3)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#eef7f2;color:var(--nila3);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  td.c{text-align:center;white-space:nowrap;font-weight:700;color:var(--nila2)}
+  tr:nth-child(even) td{background:#eef7f2}
+  tr.on td{background:#fdf8ec;font-weight:700}
+  td.ar{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,serif;direction:rtl;font-size:17px;text-align:right}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-top:4px}
+
+  @media print{
+    .hint{display:none}
+    .qcard .opts{pointer-events:none}
+    .qcard .ans{display:block !important}
+    body{background:#fff}
+    .skybg,.blob{display:none}
+    .wrap{max-width:100%;padding:0}
+    .scorebar{display:none}
+    section{box-shadow:none;page-break-inside:avoid;padding:14px 16px}
+    .toc{box-shadow:none;page-break-inside:avoid;break-inside:avoid}
+    h2,.hint{page-break-after:avoid;break-after:avoid}
+    table{font-size:11.6px}
+    th,td{padding:3.5px 8px}
+    .qcard{page-break-inside:avoid;padding:10px 13px;margin-bottom:8px}
+    .qhead .qtext{font-size:13px}
+    .opt{padding:6px 9px;font-size:11.5px;transform:none !important}
+    .fb{margin-top:7px;padding:7px 10px;font-size:11.5px}
+    .fb .face{width:40px;height:40px}
+    .ayatbox .ay{font-size:19px}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4 portrait;margin:12mm}
+
+</style>
+</head>
+<body>
+
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<!-- ===== Watak kartun (statik) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <g id="adam">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="116" width="13" height="34" rx="6" fill="#1f7a56"/>
+    <rect x="57" y="116" width="13" height="34" rx="6" fill="#1f7a56"/>
+    <ellipse cx="46" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l7 44 h-56 z" fill="#8fd3b4" stroke="#14664a" stroke-width="2"/>
+    <path d="M36 82 q-13 13 -9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 82 q13 13 9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M39 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="46.5" r="1.9" fill="#fff"/><circle cx="68" cy="46.5" r="1.9" fill="#fff"/>
+    <path d="M55 56 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M49 63 q6 6.5 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="nur">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="43" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <rect x="58" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <ellipse cx="48" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="63" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <path d="M33 78 q22-11 44 0 l12 46 h-68 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <path d="M36 84 q-13 12 -10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 84 q13 12 10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#8fd3b4" stroke="#4aa47c" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="51.5" r="1.9" fill="#fff"/><circle cx="67" cy="51.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="ustazah">
+    <ellipse cx="58" cy="156" rx="34" ry="6" fill="#000" opacity=".08"/>
+    <rect x="46" y="142" width="11" height="13" rx="5" fill="#f7d5b5"/>
+    <rect x="59" y="142" width="11" height="13" rx="5" fill="#f7d5b5"/>
+    <ellipse cx="51" cy="156" rx="10" ry="5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="156" rx="10" ry="5" fill="#6b4f3a"/>
+    <path d="M31 94 q27-9 54 0 l14 50 h-82 z" fill="#2e8f68" stroke="#14664a" stroke-width="2"/>
+    <path d="M31 100 q-13 13 -11 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="19" cy="134" rx="6.5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <path d="M85 100 q15-9 21-24" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="107" cy="74" rx="6.5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <path d="M112 70 l17-8" stroke="#f7d5b5" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+    <rect x="52" y="86" width="12" height="12" fill="#eec6a6"/>
+    <path d="M58 30 q-31 0 -31 33 q0 23 7 36 q10-25 24-25 q14 0 24 25 q7-13 7-36 q0-33 -31-33 z"
+          fill="#14664a" stroke="#0f4a34" stroke-width="1.8"/>
+    <ellipse cx="58" cy="62" rx="21" ry="23" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.8"/>
+    <path d="M43 54 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M63 54 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="49" cy="64" rx="4.6" ry="6" fill="#3a2b22"/>
+    <ellipse cx="67" cy="64" rx="4.6" ry="6" fill="#3a2b22"/>
+    <circle cx="50.8" cy="61.6" r="1.7" fill="#fff"/><circle cx="68.8" cy="61.6" r="1.7" fill="#fff"/>
+    <path d="M58 71 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M52 78 q6 6.5 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="40" cy="72" rx="5.5" ry="3.6" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="76" cy="72" rx="5.5" ry="3.6" fill="#f2a2a2" opacity=".55"/>
+    <circle cx="79" cy="94" r="3.4" fill="#e0b04a" stroke="#a87a1c" stroke-width="1.2"/>
+  </g>
+
+  <g id="faceYay">
+    <circle cx="30" cy="30" r="26" fill="#d8ece2" stroke="#14664a" stroke-width="2.5"/>
+    <ellipse cx="22" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="25.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="25.4" r="1.3" fill="#fff"/>
+    <path d="M20 38 q10 9 20 0" stroke="#0f4a34" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="14" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <ellipse cx="46" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <path d="M30 2 l3 5 5 1 -4 4 1 5 -5-3 -5 3 1-5 -4-4 5-1 z" fill="#e0b04a"/>
+  </g>
+
+  <g id="faceOops">
+    <circle cx="30" cy="30" r="26" fill="#e5f1ea" stroke="#4aa47c" stroke-width="2.5"/>
+    <ellipse cx="22" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="26.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="26.4" r="1.3" fill="#fff"/>
+    <path d="M15 21 q7-5 13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M45 21 q-7-5 -13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M21 41 q9-7 18 0" stroke="#0f4a34" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+    <ellipse cx="47" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+  </g>
+
+  <g id="burung">
+    <path d="M6 16 q-8-7 -5-13 q6 4 8 9 z" fill="#8fd3b4" stroke="#4a9a7c" stroke-width="1.2" stroke-linejoin="round"/>
+    <ellipse cx="20" cy="19" rx="13" ry="10" fill="#a8dfc4" stroke="#4a9a7c" stroke-width="1.4"/>
+    <circle cx="31" cy="12" r="8" fill="#c2ebd9" stroke="#4a9a7c" stroke-width="1.4"/>
+    <path d="M38 11 l7 3 -7 3 z" fill="#e8a94a"/>
+    <circle cx="32" cy="10.5" r="1.8" fill="#2f3b45"/>
+    <path d="M15 26 q5 3 10 0" stroke="#4a9a7c" stroke-width="1.2" fill="none" opacity=".6"/>
+  </g>
+
+  <g id="awan">
+    <g fill="#ffffff">
+      <circle cx="20" cy="27" r="13"/><circle cx="39" cy="19" r="17"/>
+      <circle cx="59" cy="26" r="14"/><rect x="20" y="25" width="39" height="14" rx="7"/>
+    </g>
+    <path d="M8 33 q11 8 31 8 q20 0 31-8" stroke="#e2efe8" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <g id="pokokBesar">
+    <ellipse cx="60" cy="148" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M54 148 v-54 h12 v54 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <path d="M60 106 q-16-6 -22-20" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M60 114 q16-8 22-22" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.4">
+      <ellipse cx="60" cy="50" rx="40" ry="30"/>
+      <ellipse cx="30" cy="70" rx="26" ry="21"/>
+      <ellipse cx="90" cy="70" rx="26" ry="21"/>
+      <ellipse cx="60" cy="86" rx="34" ry="20"/>
+    </g>
+    <g fill="#a9d383" opacity=".7">
+      <ellipse cx="46" cy="42" rx="18" ry="12"/><ellipse cx="82" cy="58" rx="13" ry="9"/>
+    </g>
+  </g>
+
+  <g id="pokokIlmu">
+    <ellipse cx="65" cy="152" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M58 152 v-56 h14 v56 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <path d="M65 110 q-18-8 -24-24" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M65 118 q18-10 24-26" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.4">
+      <ellipse cx="65" cy="52" rx="42" ry="32"/>
+      <ellipse cx="32" cy="72" rx="26" ry="21"/>
+      <ellipse cx="98" cy="72" rx="26" ry="21"/>
+      <ellipse cx="65" cy="88" rx="36" ry="21"/>
+    </g>
+    <g fill="#a9d383" opacity=".7">
+      <ellipse cx="50" cy="44" rx="19" ry="13"/><ellipse cx="88" cy="60" rx="14" ry="9"/>
+    </g>
+    <g fill="#e0b04a" stroke="#a87a1c" stroke-width="1.2">
+      <path d="M40 30 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+      <path d="M86 40 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+      <path d="M64 68 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+    </g>
+  </g>
+
+  <g id="almariBuku">
+    <rect x="0" y="0" width="104" height="150" rx="7" fill="#b98a5a" stroke="#8a6544" stroke-width="2"/>
+    <rect x="7" y="7" width="90" height="60" rx="3" fill="#f4f0e6" stroke="#8a6544" stroke-width="1.4"/>
+    <rect x="7" y="75" width="90" height="60" rx="3" fill="#f4f0e6" stroke="#8a6544" stroke-width="1.4"/>
+    <rect x="13" y="22" width="10" height="45" rx="2" fill="#4aa47c"/>
+    <rect x="25" y="28" width="9" height="39" rx="2" fill="#1f7a56"/>
+    <rect x="36" y="18" width="11" height="49" rx="2" fill="#8a6a2a"/>
+    <rect x="49" y="30" width="9" height="37" rx="2" fill="#8fd3b4"/>
+    <rect x="60" y="24" width="10" height="43" rx="2" fill="#e0b04a"/>
+    <rect x="72" y="32" width="8" height="35" rx="2" fill="#b5722c"/>
+    <rect x="82" y="20" width="11" height="47" rx="2" fill="#7a5fa8"/>
+    <rect x="13" y="90" width="11" height="45" rx="2" fill="#8fd3b4"/>
+    <rect x="26" y="96" width="9" height="39" rx="2" fill="#8a6a2a"/>
+    <rect x="37" y="86" width="10" height="49" rx="2" fill="#1f7a56"/>
+    <rect x="49" y="98" width="9" height="37" rx="2" fill="#d98da0"/>
+    <rect x="60" y="92" width="11" height="43" rx="2" fill="#b5722c"/>
+    <rect x="73" y="100" width="8" height="35" rx="2" fill="#4aa47c"/>
+    <rect x="83" y="88" width="10" height="47" rx="2" fill="#7a5fa8"/>
+  </g>
+
+  <g id="rehal">
+    <ellipse cx="40" cy="56" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M10 54 L34 24" stroke="#a87f5c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M70 54 L46 24" stroke="#a87f5c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M15 44 L65 44" stroke="#8a6544" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M6 24 L40 12 L74 24 L74 29 L40 17 L6 29 Z" fill="#fdf8ec" stroke="#cbb99a" stroke-width="1.5"/>
+    <path d="M40 12 v5" stroke="#cbb99a" stroke-width="1.5"/>
+    <g stroke="#cbb99a" stroke-width="1" opacity=".8">
+      <path d="M13 24 h19"/><path d="M13 28 h19"/><path d="M48 24 h19"/><path d="M48 28 h19"/>
+    </g>
+    <path d="M6 24 q-4 6 2 8" stroke="#8a6a2a" stroke-width="2" fill="none"/>
+  </g>
+
+  <g id="mushaf">
+    <ellipse cx="42" cy="68" rx="34" ry="5" fill="#000" opacity=".08"/>
+    <rect x="12" y="18" width="70" height="48" rx="4" fill="#f8f5ea" stroke="#cbb99a" stroke-width="1.4"/>
+    <g stroke="#ddd0b6" stroke-width="1.1">
+      <path d="M14 28 h66"/><path d="M14 38 h66"/><path d="M14 48 h66"/><path d="M14 58 h66"/>
+    </g>
+    <rect x="4" y="10" width="72" height="48" rx="4" fill="#1f7a56" stroke="#0f4a34" stroke-width="2"/>
+    <rect x="9" y="15" width="62" height="38" rx="3" fill="#2e8f68" stroke="#0f4a34" stroke-width="1"/>
+    <path d="M5 15 q-3.5 19 0 38" fill="none" stroke="#0f4a34" stroke-width="3.4" stroke-linecap="round"/>
+    <rect x="15" y="20" width="50" height="28" rx="2.5" fill="none" stroke="#e0b04a" stroke-width="1.2"/>
+    <g fill="#e0b04a">
+      <path d="M40 25 l3.2 6.4 -3.2 6.4 -3.2-6.4 z"/>
+      <circle cx="40" cy="23.4" r="1.9"/>
+      <g stroke="#e0b04a" stroke-width="1.2" stroke-linecap="round">
+        <path d="M22 30 h7 M51 30 h7 M22 38 h7 M51 38 h7"/>
+      </g>
+    </g>
+  </g>
+
+  <g id="bintangBulan">
+    <path d="M24 4 a17 17 0 1 0 15 21 a13.2 13.2 0 1 1 -15-21 z" fill="#e0b04a"/>
+    <path d="M37 5 L39.8 13.6 L48 16.4 L39.8 19.2 L37 28 L34.2 19.2 L26 16.4 L34.2 13.6 Z" fill="#e0b04a"/>
+  </g>
+
+  <g id="bintang">
+    <path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="#e0b04a"/>
+  </g>
+
+  <g id="kepalaAdam">
+    <ellipse cx="35" cy="37" rx="26" ry="28" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M9 37 a26 28 0 0 1 52 0 q-8-18 -26-18 q-18 0 -26 18 z" fill="#5a3b28"/>
+    <path d="M21 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M39 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="26" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <ellipse cx="44" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <circle cx="27.8" cy="37.6" r="1.7" fill="#fff"/><circle cx="45.8" cy="37.6" r="1.7" fill="#fff"/>
+    <path d="M35 47 q-3 4 1 5" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M29 54 q6 6 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="17" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="53" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="adamBaca">
+    <ellipse cx="55" cy="154" rx="35" ry="6" fill="#000" opacity=".08"/>
+    <path d="M20 152 q0-32 35-32 q35 0 35 32 z" fill="#1f7a56" stroke="#14664a" stroke-width="2"/>
+    <ellipse cx="42" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="68" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <path d="M32 80 q23-11 46 0 l10 44 h-66 z" fill="#1f7a56" stroke="#14664a" stroke-width="2"/>
+    <path d="M34 118 q21 9 42 0 l4 12 h-50 z" fill="#8fd3b4" stroke="#14664a" stroke-width="1.4"/>
+    <path d="M38 90 q-6 24 4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M72 90 q6 24 -4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="32" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="61" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <path d="M24 124 L55 114 L86 124 L86 132 L55 122 L24 132 Z" fill="#fdf8ec" stroke="#cbb99a" stroke-width="1.5"/>
+    <path d="M55 114 v8" stroke="#cbb99a" stroke-width="1.5"/>
+    <g stroke="#cbb99a" stroke-width="1" opacity=".85">
+      <path d="M31 124 h18"/><path d="M31 128 h18"/><path d="M61 124 h18"/><path d="M61 128 h18"/>
+    </g>
+    <ellipse cx="55" cy="54" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M31 54 a24 26 0 0 1 48 0 q-7-17 -24-17 q-17 0 -24 17 z" fill="#5a3b28"/>
+    <path d="M40 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="53.5" r="1.9" fill="#fff"/><circle cx="67" cy="53.5" r="1.9" fill="#fff"/>
+    <path d="M55 62 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 69 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="nurBaca">
+    <ellipse cx="55" cy="152" rx="32" ry="6" fill="#000" opacity=".08"/>
+    <path d="M22 96 q33-14 66 0 q6 30 0 56 h-66 q-6-26 0-56 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <path d="M34 104 q-13 12 -11 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M76 104 q13 12 11 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#8fd3b4" stroke="#4aa47c" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.8"/>
+    <path d="M31 44 q24-9 48 0 q-4-24 -24-24 q-20 0 -24 24 z" fill="#8fd3b4"/>
+    <path d="M43 46 q6-4 11 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M56 46 q6-4 11 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M47 60 q8 6 16 0" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="56" rx="5" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="56" rx="5" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+    <path d="M28 118 q27-9 54 0 v18 q-27-8 -54 0 z" fill="#fffdf7" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M55 121 v15" stroke="#cbb99a" stroke-width="1.3"/>
+    <g stroke="#cfc7b0" stroke-width="1.1"><path d="M34 124 h16"/><path d="M34 130 h16"/><path d="M60 124 h16"/><path d="M60 130 h16"/></g>
+    <path d="M28 128 q-11 2 -13 12 q9 3 13-6 z" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <path d="M82 128 q11 2 13 12 q-9 3 -13-6 z" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+  </g>
+
+  <g id="kucingTidur">
+    <ellipse cx="33" cy="36" rx="30" ry="4" fill="#000" opacity=".07"/>
+    <path d="M6 34 q-2-22 27-22 q29 0 27 22 z" fill="#f4d8a8" stroke="#c9a86b" stroke-width="1.6"/>
+    <path d="M52 32 q14-4 12-16" stroke="#c9a86b" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M12 14 l-3-11 11 6 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M32 14 l3-11 -11 6 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M13 24 q6-5 12 0" stroke="#4a3b2f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M31 24 q6-5 12 0" stroke="#4a3b2f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M22 31 q5 4 10 0" stroke="#a8794f" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="30" rx="4" ry="2.4" fill="#e88ba0" opacity=".4"/>
+    <ellipse cx="43" cy="30" rx="4" ry="2.4" fill="#e88ba0" opacity=".4"/>
+  </g>
+
+  <g id="semak">
+    <ellipse cx="34" cy="44" rx="30" ry="4" fill="#000" opacity=".06"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.3">
+      <circle cx="18" cy="32" r="15"/><circle cx="38" cy="24" r="18"/><circle cx="56" cy="33" r="14"/>
+    </g>
+    <g fill="#a9d383" opacity=".65">
+      <circle cx="30" cy="20" r="7"/><circle cx="52" cy="28" r="5"/>
+    </g>
+  </g>
+
+  <g id="daun">
+    <path d="M0 0 q14-12 28 0 q-14 12 -28 0 z" fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.2"/>
+    <path d="M2 0 q12-4 24 0" stroke="#6d9c4a" stroke-width="0.9" fill="none"/>
+  </g>
+
+  <g id="bintangPrestasi">
+    <path d="M30 4 l6 15 16 1 -12 11 4 16 -14-8 -14 8 4-16 -12-11 16-1 z"
+          fill="#e0b04a" stroke="#a87a1c" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M30 12 l3.6 9 9.6 .6 -7.2 6.6 2.4 9.6 -8.4-4.8 -8.4 4.8 2.4-9.6 -7.2-6.6 9.6-.6 z"
+          fill="#f6dfa0" opacity=".75"/>
+    <path d="M22 48 l-7 20 15-9 15 9 -7-20 z" fill="#8a6a2a" stroke="#4a3610" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M30 4 v-4" stroke="#a87a1c" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+</defs>
+</svg>
+
+<div class="wrap">
+
+<!-- ===== HERO — ustazah dan dua murid di papan senarai 25 rasul, malam berbintang ===== -->
+  <div class="hero">
+    <svg viewBox="0 0 940 300" role="img" aria-label="Ilustrasi: seorang guru bersama dua orang murid di hadapan papan senarai 25 nama rasul, dengan langit malam berbintang dan bulan purnama di luar tingkap">
+      <defs>
+        <linearGradient id="u11sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#e4f2ec"/>
+          <stop offset="45%" stop-color="#eef7f2"/>
+          <stop offset="100%" stop-color="#f4f9f6"/>
+        </linearGradient>
+        <linearGradient id="u11gnd" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#2e8f68"/>
+          <stop offset="100%" stop-color="#0f4a34"/>
+        </linearGradient>
+        <linearGradient id="u11board" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1f7a56"/>
+          <stop offset="100%" stop-color="#0f4a34"/>
+        </linearGradient>
+        <radialGradient id="u11lamp">
+          <stop offset="0%" stop-color="#ffe9a8" stop-opacity="0.75"/>
+          <stop offset="100%" stop-color="#ffe9a8" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="u11glow">
+          <stop offset="0%" stop-color="#e0b04a" stop-opacity="0.34"/>
+          <stop offset="100%" stop-color="#e0b04a" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="u11night" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1b2f5e"/>
+          <stop offset="100%" stop-color="#4a6ea8"/>
+        </linearGradient>
+      </defs>
+
+      <rect width="940" height="300" fill="url(#u11sky)"/>
+
+      <!-- tingkap langit malam -->
+      <rect x="620" y="28" width="300" height="140" rx="10" fill="#0f4a34" stroke="#14664a" stroke-width="2.5"/>
+      <rect x="625" y="33" width="290" height="130" rx="6" fill="url(#u11night)"/>
+      <rect x="768" y="33" width="5" height="130" fill="#0f4a34" opacity="0.5"/>
+      <rect x="625" y="96" width="290" height="5" fill="#0f4a34" opacity="0.5"/>
+      <path d="M625 120 Q700 92 770 112 Q840 88 915 116 L915 163 L625 163 Z" fill="#12213f" opacity="0.55"/>
+      <g class="anim-glow" transform="translate(700,46) scale(0.85)"><use href="#bintangBulan"/></g>
+      <g class="anim-twinkle2" opacity="0.85"><use href="#bintang" transform="translate(660,60) scale(0.3)"/></g>
+      <g class="anim-twinkle2" opacity="0.7"><use href="#bintang" transform="translate(880,58) scale(0.25)"/></g>
+      <g class="anim-twinkle2" opacity="0.6"><use href="#bintang" transform="translate(902,120) scale(0.22)"/></g>
+      <g class="anim-twinkle2" opacity="0.75"><use href="#bintang" transform="translate(646,124) scale(0.24)"/></g>
+      <g class="anim-drift26" transform="translate(790,120) scale(0.42)" opacity="0.55"><use href="#awan"/></g>
+
+      <!-- papan senarai rasul -->
+      <g transform="translate(46,34)">
+        <rect x="0" y="0" width="392" height="132" rx="10" fill="url(#u11board)" stroke="#0f4a34" stroke-width="2.5"/>
+        <rect x="8" y="8" width="376" height="116" rx="7" fill="none" stroke="#e0b04a" stroke-width="1.4" opacity="0.7"/>
+        <text x="196" y="30" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#e0b04a" text-anchor="middle" letter-spacing="1.2">25 NAMA RASUL &mdash; WAJIB DIKETAHUI</text>
+        <g class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="18" fill="#f6ecd2" direction="rtl" unicode-bidi="isolate">
+          <text x="372" y="56">آدَم &#1600; إِدْرِيس &#1600; نُوح &#1600; هُود &#1600; صَالِح</text>
+          <text x="372" y="80">إِبْرَاهِيم &#1600; لُوط &#1600; إِسْمَاعِيل &#1600; إِسْحَاق &#1600; يَعْقُوب</text>
+          <text x="372" y="104">يُوسُف &#1600; أَيُّوب &#1600; شُعَيْب &#1600; هَارُون &#1600; مُوسَى</text>
+          <text x="372" y="126" font-size="15" fill="#e0b04a">الْيَسَع &#1600; ذُو الْكِفْل &#1600; دَاوُد &#1600; سُلَيْمَان &#1600; إِلْيَاس &#1600; يُونُس &#1600; زَكَرِيَّا &#1600; يَحْيَى &#1600; عِيسَى &#1600; مُحَمَّد ﷺ</text>
+        </g>
+      </g>
+
+      <!-- lantai -->
+      <path d="M0,238 Q240,228 480,234 T940,230 L940,300 L0,300 Z" fill="url(#u11gnd)"/>
+      <ellipse cx="470" cy="250" rx="300" ry="18" fill="#0f4a34" opacity="0.22"/>
+
+      <!-- almari buku -->
+      <g transform="translate(24,96) scale(0.72)"><use href="#almariBuku"/></g>
+
+      <!-- cahaya -->
+      <ellipse cx="470" cy="168" rx="150" ry="76" fill="url(#u11lamp)"/>
+      <circle cx="760" cy="70" r="46" fill="url(#u11glow)"/>
+
+      <!-- ustazah + dua murid -->
+      <g transform="translate(300,84)" class="anim-sway"><use href="#ustazah"/></g>
+      <g transform="translate(520,116) scale(0.86)" class="anim-bob"><use href="#adamBaca"/></g>
+      <g transform="translate(650,116) scale(0.86)" class="anim-bob"><use href="#nurBaca"/></g>
+      <g transform="translate(798,120) scale(0.5)" class="anim-glow"><use href="#mushaf"/></g>
+      <g transform="translate(150,152) scale(0.6)"><use href="#semak"/></g>
+
+      <!-- kaligrafi hiasan -->
+      <g opacity="0.16" fill="#0f4a34">
+        <text x="470" y="214" class="arab" font-family="Scheherazade New, serif" font-size="30" text-anchor="middle" direction="rtl" unicode-bidi="isolate">أُوتُوسَن يَغ موليا</text>
+      </g>
+
+      <g class="anim-twinkle2" opacity="0.8"><use href="#bintang" transform="translate(230,190) scale(0.32)"/></g>
+      <g class="anim-twinkle2" opacity="0.6"><use href="#bintang" transform="translate(870,196) scale(0.26)"/></g>
+    </svg>
+    <div class="hero-txt">
+      <div class="kick">Pendidikan Islam &bull; Tahun 4 &bull; Bidang Akidah</div>
+      <h1>Beriman kepada Rasul</h1>
+      <div class="sub">Unit 2: Utusan yang Mulia &bull; SK 3.2 &bull; 7 Standard Pembelajaran</div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="chip"><div class="lbl">Bidang</div><div class="val">Akidah</div></div>
+    <div class="chip"><div class="lbl">Standard Kandungan (SK) 3.2</div><div class="val">Meyakini konsep beriman kepada rasul dan mengaplikasikannya dalam kehidupan secara <b>beradab dan istiqamah</b></div></div>
+    <div class="chip"><div class="lbl">Standard Pembelajaran (SP)</div><div class="val">3.2.1 &bull; 3.2.2 &bull; 3.2.3 &bull; 3.2.4 &bull; 3.2.5 &bull; 3.2.6 &bull; 3.2.7</div></div>
+    <div class="chip"><div class="lbl">Sumber</div><div class="val">DSKP PI T4 (SK 3.2) &bull; Buku Teks PI T4 SK, Unit 2 (ms. 91&ndash;98)</div></div>
+  </div>
+
+  <div class="toc">
+    <div class="ttl">Kandungan &amp; Panduan Penggunaan</div>
+    <div class="grid">
+      <div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">Dalil an-Nisa&rsquo; 4:136, 4 kad fakta, perbezaan nabi &amp; rasul, cip nilai murni</div></div></div>
+      <div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">5 cabang: Maksud, Dalil, Contoh/Amalan, Nilai Murni, Iktibar</div></div></div>
+      <div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">10 poin ringkasan untuk rujukan pantas</div></div></div>
+      <div class="it"><div class="n">4</div><div><div class="t">Diagram Pokok</div><div class="d">Pokok 25 nama rasul + jadual senarai &amp; perbandingan nabi vs rasul</div></div></div>
+      <div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan dengan maklum balas segera dan skor</div></div></div>
+      <div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Senarai 26 Standard Kandungan PI Tahun 4</div></div></div>
+    </div>
+    <div class="note"><b>Cara guna:</b> Buka fail ini dalam pelayar web. Pada kuiz, klik pilihan jawapan untuk maklum balas segera dan skor automatik. Tekan butang <b>Cetak / Simpan PDF</b> untuk versi kertas &mdash; semua jawapan dizahirkan secara automatik supaya boleh dijadikan lembaran kerja.</div>
+  </div>
+
+<!-- ===== 1. INFOGRAFIK ===== -->
+<section id="infografik">
+  <h2><span class="num">1</span> Infografik<svg class="mascot" width="44" height="26" viewBox="0 0 70 38" aria-hidden="true"><use href="#kucingTidur"/></svg></h2>
+  <p class="hint">Rujuk Buku Teks PI T4 ms. 91&ndash;98 dan DSKP KSSR Semakan 2017 (SK 3.2). Teks Uthmani disahkan daripada Mushaf Uthmani (al-Quran Cloud, an-Nisa&rsquo; 4:136).</p>
+  <svg class="art" viewBox="0 0 820 820" xmlns="http://www.w3.org/2000/svg" aria-label="Infografik Beriman kepada Rasul">
+    <defs>
+      <linearGradient id="gHijau" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1f7a56"/><stop offset="100%" stop-color="#0f4a34"/>
+      </linearGradient>
+      <linearGradient id="gKad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#eef7f2"/><stop offset="100%" stop-color="#f8fbf9"/>
+      </linearGradient>
+      <linearGradient id="gEmas" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fdf8ec"/><stop offset="100%" stop-color="#f6ecd2"/>
+      </linearGradient>
+    </defs>
+    <rect width="820" height="820" fill="#f8fbf9"/>
+
+    <!-- title bar -->
+    <rect x="0" y="0" width="820" height="58" fill="url(#gHijau)"/>
+    <text x="410" y="30" font-family="Trebuchet MS,Segoe UI,Arial" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">BERIMAN KEPADA RASUL &mdash; RUKUN IMAN KE-4</text>
+    <text x="410" y="49" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#cde9dc" text-anchor="middle">Bidang Akidah &bull; SK 3.2 &bull; Hukum: WAJIB &bull; 25 rasul wajib diketahui</text>
+
+    <!-- panel dalil -->
+    <rect x="20" y="72" width="780" height="140" rx="12" fill="url(#gEmas)" stroke="#8a6a2a" stroke-width="1.4"/>
+    <text x="410" y="95" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" letter-spacing="1.4" font-weight="800" fill="#8a6a2a" text-anchor="middle">DALIL NAQLI &mdash; SURAH AN-NISA&rsquo; 4:136</text>
+    <g class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="19.5" fill="#0f4a34" direction="rtl" unicode-bidi="isolate">
+      <text x="782" y="120">يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ ءَامِنُوا۟ بِٱللَّهِ وَرَسُولِهِۦ</text>
+      <text x="782" y="144">وَٱلْكِتَٰبِ ٱلَّذِى نَزَّلَ عَلَىٰ رَسُولِهِۦ وَٱلْكِتَٰبِ</text>
+      <text x="782" y="168">ٱلَّذِىٓ أَنزَلَ مِن قَبْلُ ۚ وَمَن يَكْفُرْ بِٱللَّهِ وَمَلَٰٓئِكَتِهِۦ</text>
+      <text x="782" y="192">وَكُتُبِهِۦ وَرُسُلِهِۦ وَٱلْيَوْمِ ٱلْءَاخِرِ فَقَدْ ضَلَّ ضَلَٰلًۢا بَعِيدًا</text>
+    </g>
+    <text x="410" y="206" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#4a3b2f" text-anchor="middle">Maksudnya: <tspan font-weight="700">Wahai orang yang beriman, tetapkanlah iman kamu kepada Allah dan rasul-Nya</tspan>, kitab yang diturunkan kepada rasul-Nya serta kitab yang diturunkan sebelumnya.</text>
+    <g transform="translate(52,150) scale(0.22)" class="anim-bob"><use href="#mushaf"/></g>
+    <g transform="translate(726,150) scale(0.22)" class="anim-bob"><use href="#rehal"/></g>
+
+    <!-- 4 kad fakta -->
+    <g class="anim-card">
+      <rect x="20" y="222" width="385" height="106" rx="14" fill="url(#gKad)" stroke="#1f7a56" stroke-width="1.6"/>
+      <rect x="20" y="222" width="10" height="106" rx="5" fill="#1f7a56"/>
+      <text x="46" y="250" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" letter-spacing="1.4" font-weight="800" fill="#1f7a56">PENGERTIAN NABI</text>
+      <text x="46" y="280" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="26" fill="#0f4a34" direction="rtl" unicode-bidi="isolate">نَبِىّ</text>
+      <text x="140" y="272" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#5f7a6e">Lelaki yang dikurniakan wahyu</text>
+      <text x="140" y="290" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#5f7a6e">untuk <tspan font-weight="700">diamalkan sendiri</tspan>, dan</text>
+      <text x="140" y="308" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#0f4a34">tidak diperintah menyampaikan</text>
+      <text x="140" y="322" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#5f7a6e">kepada orang lain.</text>
+    </g>
+    <g class="anim-card">
+      <rect x="415" y="222" width="385" height="106" rx="14" fill="url(#gKad)" stroke="#1f7a56" stroke-width="1.6"/>
+      <rect x="415" y="222" width="10" height="106" rx="5" fill="#4aa47c"/>
+      <text x="441" y="250" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" letter-spacing="1.4" font-weight="800" fill="#1f7a56">PENGERTIAN RASUL</text>
+      <text x="441" y="280" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="26" fill="#0f4a34" direction="rtl" unicode-bidi="isolate">رَسُول</text>
+      <text x="535" y="272" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#5f7a6e">Lelaki yang dikurniakan wahyu</text>
+      <text x="535" y="290" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#5f7a6e">untuk diamalkan <tspan font-weight="700">dan diperintah</tspan></text>
+      <text x="535" y="308" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#0f4a34">menyampaikannya kepada</text>
+      <text x="535" y="322" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#5f7a6e">orang lain.</text>
+    </g>
+    <g class="anim-card">
+      <rect x="20" y="338" width="385" height="106" rx="14" fill="url(#gKad)" stroke="#8a6a2a" stroke-width="1.6"/>
+      <rect x="20" y="338" width="10" height="106" rx="5" fill="#8a6a2a"/>
+      <text x="46" y="366" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" letter-spacing="1.4" font-weight="800" fill="#8a6a2a">HUKUM BERIMAN</text>
+      <text x="46" y="404" font-family="Trebuchet MS,Segoe UI,Arial" font-size="32" font-weight="800" fill="#0f4a34">WAJIB</text>
+      <text x="180" y="388" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#5f7a6e">Beriman kepada rasul ialah</text>
+      <text x="180" y="406" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#0f4a34">Rukun Iman yang ke-4</text>
+      <text x="180" y="424" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#5f7a6e">Sesiapa mengingkarinya telah sesat.</text>
+      <text x="180" y="440" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#8a6a2a">Dalil: an-Nisa&rsquo; 4:136</text>
+    </g>
+    <g class="anim-card">
+      <rect x="415" y="338" width="385" height="106" rx="14" fill="url(#gKad)" stroke="#8a6a2a" stroke-width="1.6"/>
+      <rect x="415" y="338" width="10" height="106" rx="5" fill="#e0b04a"/>
+      <text x="441" y="366" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" letter-spacing="1.4" font-weight="800" fill="#8a6a2a">BILANGAN RASUL</text>
+      <text x="441" y="404" font-family="Trebuchet MS,Segoe UI,Arial" font-size="32" font-weight="800" fill="#0f4a34">25 rasul</text>
+      <text x="576" y="388" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#5f7a6e">Wajib diketahui namanya</text>
+      <text x="576" y="406" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#0f4a34">5 orang rasul Ulul Azmi</text>
+      <text x="576" y="424" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#5f7a6e">Rasul terakhir: Nabi Muhammad SAW.</text>
+      <text x="576" y="440" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#8a6a2a">SP 3.2.3 &mdash; hafaz senarai ini</text>
+    </g>
+
+    <!-- perbezaan nabi vs rasul -->
+    <rect x="20" y="456" width="780" height="34" rx="10" fill="url(#gHijau)"/>
+    <text x="410" y="479" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="700" fill="#ffffff" text-anchor="middle">PERBEZAAN NABI DAN RASUL</text>
+
+    <rect x="20" y="498" width="385" height="130" rx="14" fill="url(#gKad)" stroke="#1f7a56" stroke-width="1.6"/>
+    <text x="212" y="522" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#1f7a56" text-anchor="middle">NABI <tspan class="arab" font-family="Scheherazade New,serif" font-size="17" direction="rtl" unicode-bidi="isolate">نَبِىّ</tspan></text>
+    <g font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#15261f">
+      <text x="40" y="546">&#8226; Dikurniakan wahyu oleh Allah SWT.</text>
+      <text x="40" y="566">&#8226; Wahyu itu untuk diamalkan oleh dirinya</text>
+      <text x="46" y="584">dan kaumnya sahaja.</text>
+      <text x="40" y="604">&#8226; <tspan font-weight="700" fill="#0f4a34">Tidak diwajibkan</tspan> menyampaikan</text>
+      <text x="46" y="622">kepada seluruh umat.</text>
+    </g>
+
+    <rect x="415" y="498" width="385" height="130" rx="14" fill="url(#gKad)" stroke="#8a6a2a" stroke-width="1.6"/>
+    <text x="607" y="522" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#8a6a2a" text-anchor="middle">RASUL <tspan class="arab" font-family="Scheherazade New,serif" font-size="17" direction="rtl" unicode-bidi="isolate">رَسُول</tspan></text>
+    <g font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#15261f">
+      <text x="435" y="546">&#8226; Dikurniakan wahyu beserta risalah.</text>
+      <text x="435" y="566">&#8226; Wahyu itu untuk diamalkan oleh dirinya</text>
+      <text x="441" y="584">dan kaumnya.</text>
+      <text x="435" y="604">&#8226; <tspan font-weight="700" fill="#8a6a2a">Diwajibkan</tspan> menyampaikan kepada</text>
+      <text x="441" y="622">kaumnya / umat.</text>
+    </g>
+
+    <rect x="20" y="640" width="780" height="34" rx="17" fill="#f6ecd2" stroke="#8a6a2a" stroke-width="1.3"/>
+    <text x="410" y="663" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#2e2208" text-anchor="middle">Setiap rasul ialah nabi &mdash; tetapi tidak setiap nabi itu rasul. Bilangan nabi ramai; 25 daripadanya ialah rasul yang wajib diketahui.</text>
+
+    <!-- cip nilai murni -->
+    <rect x="20" y="686" width="780" height="106" rx="12" fill="#eef7f2" stroke="#4aa47c" stroke-width="1.4"/>
+    <text x="410" y="710" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" letter-spacing="1.6" font-weight="800" fill="#1f7a56" text-anchor="middle">NILAI MURNI YANG DIAMALKAN</text>
+    <g font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#0f4a34">
+      <rect x="40" y="720" width="230" height="30" rx="15" fill="#ffffff" stroke="#4aa47c" stroke-width="1.3"/>
+      <text x="155" y="740" text-anchor="middle">Beradab &amp; sopan santun</text>
+      <rect x="290" y="720" width="230" height="30" rx="15" fill="#ffffff" stroke="#4aa47c" stroke-width="1.3"/>
+      <text x="405" y="740" text-anchor="middle">Istiqamah beramal</text>
+      <rect x="540" y="720" width="230" height="30" rx="15" fill="#ffffff" stroke="#4aa47c" stroke-width="1.3"/>
+      <text x="655" y="740" text-anchor="middle">Mencintai Rasulullah</text>
+      <rect x="40" y="756" width="230" height="30" rx="15" fill="#ffffff" stroke="#8a6a2a" stroke-width="1.3"/>
+      <text x="155" y="776" text-anchor="middle">Berakhlak mulia</text>
+      <rect x="290" y="756" width="230" height="30" rx="15" fill="#ffffff" stroke="#8a6a2a" stroke-width="1.3"/>
+      <text x="405" y="776" text-anchor="middle">Menjaga masa</text>
+      <rect x="540" y="756" width="230" height="30" rx="15" fill="#ffffff" stroke="#8a6a2a" stroke-width="1.3"/>
+      <text x="655" y="776" text-anchor="middle">Tekun menuntut ilmu</text>
+    </g>
+    <g transform="translate(28,714) scale(0.2)" class="anim-twinkle"><use href="#bintang"/></g>
+    <g transform="translate(782,714) scale(0.2)" class="anim-twinkle"><use href="#bintang"/></g>
+
+    <text x="410" y="812" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#5f7a6e" text-anchor="middle">Sumber: DSKP Pendidikan Islam Tahun 4 (SK 3.2) &bull; Buku Teks PI T4 SK, Unit 2 (ms. 91&ndash;98) &bull; Teks Uthmani: al-Quran Cloud API (an-Nisa&rsquo; 4:136)</text>
+  </svg>
+
+  <div class="ayatbox">
+    <div class="row"><span class="no">1</span><div><div class="ref">Surah an-Nisa&rsquo; 4:136 &mdash; dalil utama SK 3.2</div><div class="ay arab">يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ ءَامِنُوا۟ بِٱللَّهِ وَرَسُولِهِۦ وَٱلْكِتَٰبِ ٱلَّذِى نَزَّلَ عَلَىٰ رَسُولِهِۦ وَٱلْكِتَٰبِ ٱلَّذِىٓ أَنزَلَ مِن قَبْلُ ۚ وَمَن يَكْفُرْ بِٱللَّهِ وَمَلَٰٓئِكَتِهِۦ وَكُتُبِهِۦ وَرُسُلِهِۦ وَٱلْيَوْمِ ٱلْءَاخِرِ فَقَدْ ضَلَّ ضَلَٰلًۢا بَعِيدًا</div><div class="ms">Wahai orang yang beriman, tetapkanlah iman kamu kepada Allah dan rasul-Nya, dan kepada kitab yang diturunkan kepada rasul-Nya serta kitab yang diturunkan sebelumnya. Sesiapa yang kufur kepada Allah, malaikat-malaikat-Nya, kitab-kitab-Nya, rasul-rasul-Nya dan hari akhirat, maka sesungguhnya dia telah sesat dengan kesesatan yang amat jauh.</div></div></div>
+    <div class="row"><span class="no">2</span><div><div class="ref">Surah al-Baqarah 2:285 &mdash; dalil sokongan</div><div class="ay arab">ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيْهِ مِن رَّبِّهِۦ وَٱلْمُؤْمِنُونَ ۚ كُلٌّ ءَامَنَ بِٱللَّهِ وَمَلَٰٓئِكَتِهِۦ وَكُتُبِهِۦ وَرُسُلِهِۦ لَا نُفَرِّقُ بَيْنَ أَحَدٍۢ مِّن رُّسُلِهِۦ ۚ وَقَالُوا۟ سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ ٱلْمَصِيرُ</div><div class="ms">Rasul telah beriman kepada apa yang diturunkan kepadanya daripada Tuhannya, dan orang-orang yang beriman pun beriman. Semuanya beriman kepada Allah, malaikat-malaikat-Nya, kitab-kitab-Nya dan rasul-rasul-Nya. Kami tidak membezakan antara seorang pun daripada rasul-rasul-Nya. Mereka berkata: Kami dengar dan kami taat. Ampunan-Mu, wahai Tuhan kami, dan kepada-Mu tempat kembali.</div></div></div>
+  </div>
+
+  <div class="deko">
+    <svg width="70" height="150" viewBox="0 0 110 160" aria-hidden="true"><use href="#adam"/></svg>
+    <svg width="80" height="150" viewBox="0 0 130 160" aria-hidden="true"><use href="#ustazah"/></svg>
+    <svg width="70" height="150" viewBox="0 0 110 160" aria-hidden="true"><use href="#nur"/></svg>
+  </div>
+</section>
+
+<!-- ===== 2. PETA MINDA ===== -->
+<section id="peta-minda">
+  <h2><span class="num">2</span> Peta Minda<svg class="mascot" width="46" height="26" viewBox="0 0 70 38" aria-hidden="true"><use href="#kucingTidur"/></svg></h2>
+  <p class="hint">Beriman kepada rasul difahami melalui 5 cabang utama: maksud, dalil, contoh/amalan, nilai murni dan iktibar.</p>
+  <svg class="art" viewBox="0 0 820 760" xmlns="http://www.w3.org/2000/svg" aria-label="Peta Minda Beriman kepada Rasul">
+    <defs>
+      <linearGradient id="gPMtengah" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1f7a56"/><stop offset="100%" stop-color="#0f4a34"/>
+      </linearGradient>
+      <linearGradient id="gPMcab" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#eef7f2"/><stop offset="100%" stop-color="#f8fbf9"/>
+      </linearGradient>
+    </defs>
+    <rect width="820" height="760" fill="#f8fbf9"/>
+
+    <rect x="0" y="0" width="820" height="50" fill="url(#gPMtengah)"/>
+    <text x="410" y="32" font-family="Trebuchet MS,Segoe UI,Arial" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">PETA MINDA: BERIMAN KEPADA RASUL</text>
+
+    <!-- node tengah -->
+    <ellipse cx="410" cy="128" rx="155" ry="52" fill="url(#gPMtengah)" stroke="#0f4a34" stroke-width="2"/>
+    <text x="410" y="120" font-family="Trebuchet MS,Segoe UI,Arial" font-size="19" font-weight="800" fill="#fdf8ec" text-anchor="middle">BERIMAN KEPADA RASUL</text>
+    <text x="410" y="143" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#cde9dc" text-anchor="middle">Rukun Iman ke-4 &bull; Hukum: WAJIB</text>
+    <text x="410" y="161" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#cde9dc" text-anchor="middle">25 rasul &bull; rasul terakhir: Muhammad SAW</text>
+
+    <!-- 5 cabang organik -->
+    <path d="M292 168 Q196 236 128 316" stroke="#1f7a56" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M348 174 Q286 244 258 316" stroke="#4aa47c" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M410 180 L410 316" stroke="#8a6a2a" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M472 174 Q534 244 562 316" stroke="#e0b04a" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M528 168 Q624 236 692 316" stroke="#2e8f68" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+
+    <!-- Cabang 1: MAKSUD -->
+    <rect x="20" y="316" width="176" height="150" rx="14" fill="url(#gPMcab)" stroke="#1f7a56" stroke-width="1.7"/>
+    <text x="108" y="342" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#1f7a56" text-anchor="middle">1. MAKSUD</text>
+    <text x="108" y="362" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">Nabi: lelaki diberi wahyu</text>
+    <text x="108" y="378" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">untuk diamal sendiri,</text>
+    <text x="108" y="394" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">tidak wajib sampaikan.</text>
+    <text x="108" y="414" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#5f7a6e" text-anchor="middle">Rasul: lelaki diberi wahyu</text>
+    <text x="108" y="430" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#5f7a6e" text-anchor="middle">dan <tspan font-weight="700">diperintah</tspan> untuk</text>
+    <text x="108" y="446" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#5f7a6e" text-anchor="middle">menyampaikannya.</text>
+
+    <!-- Cabang 2: DALIL -->
+    <rect x="214" y="316" width="176" height="150" rx="14" fill="url(#gPMcab)" stroke="#4aa47c" stroke-width="1.7"/>
+    <text x="302" y="342" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#1f7a56" text-anchor="middle">2. DALIL</text>
+    <text x="302" y="364" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="19" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">ءَامِنُوا۟ بِٱللَّهِ وَرَسُولِهِۦ</text>
+    <text x="302" y="384" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">(an-Nisa&rsquo; 4:136) Tetapkanlah</text>
+    <text x="302" y="400" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">iman kamu kepada Allah</text>
+    <text x="302" y="416" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">dan rasul-Nya.</text>
+    <text x="302" y="436" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="17" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">لَا نُفَرِّقُ بَيْنَ أَحَدٍۢ مِّن رُّسُلِهِۦ</text>
+    <text x="302" y="454" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#5f7a6e" text-anchor="middle">(al-Baqarah 2:285) Tidak</text>
+    <text x="302" y="468" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#5f7a6e" text-anchor="middle">membezakan rasul-rasul-Nya.</text>
+
+    <!-- Cabang 3: CONTOH / AMALAN -->
+    <rect x="408" y="316" width="176" height="150" rx="14" fill="url(#gPMcab)" stroke="#8a6a2a" stroke-width="1.7"/>
+    <text x="496" y="342" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#8a6a2a" text-anchor="middle">3. CONTOH / AMALAN</text>
+    <text x="496" y="364" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">&bull; Amalkan ajaran &amp; sunnah</text>
+    <text x="496" y="380" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">Rasulullah SAW.</text>
+    <text x="496" y="398" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">&bull; Perbanyakkan selawat.</text>
+    <text x="496" y="416" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">&bull; Teladani peribadi baginda:</text>
+    <text x="496" y="432" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">tekun, cekal &amp; sabar.</text>
+    <text x="496" y="450" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#5f7a6e" text-anchor="middle">&bull; Jaga masa &amp; jauhi maksiat.</text>
+
+    <!-- Cabang 4: NILAI MURNI -->
+    <rect x="602" y="316" width="176" height="150" rx="14" fill="url(#gPMcab)" stroke="#e0b04a" stroke-width="1.7"/>
+    <text x="690" y="342" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#8a6a2a" text-anchor="middle">4. NILAI MURNI</text>
+    <text x="690" y="364" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">&bull; Beradab &amp; sopan santun</text>
+    <text x="690" y="382" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">&bull; Istiqamah beramal</text>
+    <text x="690" y="400" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">&bull; Mencintai Rasulullah</text>
+    <text x="690" y="418" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f" text-anchor="middle">&bull; Berakhlak mulia</text>
+    <text x="690" y="436" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#5f7a6e" text-anchor="middle">&bull; Menjaga masa</text>
+    <text x="690" y="452" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#5f7a6e" text-anchor="middle">&bull; Tekun menuntut ilmu</text>
+
+    <!-- Cabang 5: IKTIBAR -->
+    <rect x="20" y="492" width="758" height="150" rx="14" fill="url(#gPMcab)" stroke="#2e8f68" stroke-width="1.7"/>
+    <path d="M692 316 Q700 420 690 492" stroke="#2e8f68" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <text x="399" y="520" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#1f7a56" text-anchor="middle">5. IKTIBAR</text>
+    <text x="399" y="546" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#15261f" text-anchor="middle">Rasul ialah <tspan font-weight="800">utusan Allah</tspan> yang menyampaikan wahyu dan petunjuk &mdash; umpama bulan purnama yang menerangi seluruh alam.</text>
+    <text x="399" y="568" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#15261f" text-anchor="middle">Kita <tspan font-weight="800">pasti berjaya di dunia dan akhirat</tspan> sekiranya mengikuti ajaran yang dibawa oleh baginda.</text>
+    <text x="399" y="592" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#4a3b2f" text-anchor="middle">Sebaliknya, sesiapa yang mengingkari rasul-rasul Allah telah <tspan font-weight="700">tersesat dengan kesesatan yang jauh</tspan>.</text>
+    <text x="399" y="616" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#8a6a2a" text-anchor="middle">Jadikan Rasulullah SAW ikutan dalam kehidupan secara beradab dan istiqamah.</text>
+    <g transform="translate(48,596) scale(0.24)" class="anim-bob"><use href="#adamBaca"/></g>
+    <g transform="translate(704,596) scale(0.24)" class="anim-bob"><use href="#nurBaca"/></g>
+
+    <!-- ringkasan -->
+    <rect x="20" y="664" width="758" height="62" rx="10" fill="url(#gPMtengah)"/>
+    <text x="399" y="692" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="19" fill="#fdf8ec" text-anchor="middle" direction="rtl" unicode-bidi="isolate">ءَامِنُوا۟ بِٱللَّهِ وَرَسُولِهِۦ &mdash; لَا نُفَرِّقُ بَيْنَ أَحَدٍۢ مِّن رُّسُلِهِۦ</text>
+    <text x="399" y="716" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#cde9dc" text-anchor="middle">KESIMPULAN: Wajib beriman kepada semua rasul tanpa membezakan seorang pun antara mereka.</text>
+
+    <text x="410" y="748" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#5f7a6e" text-anchor="middle">Sumber: DSKP PI T4 (SK 3.2) &bull; Buku Teks PI T4 SK (ms. 91&ndash;98) &bull; KSSR Semakan 2017</text>
+  </svg>
+</section>
+
+<!-- ===== 3. NOTA RINGKAS ===== -->
+<section id="nota-ringkas">
+  <h2><span class="num">3</span> Nota Ringkas</h2>
+  <div class="nota">
+    <ol>
+      <li><b>Kedudukan:</b> Beriman kepada rasul ialah <b>Rukun Iman yang ke-4</b> &mdash; selepas beriman kepada Allah, malaikat dan kitab-kitab Allah SWT.</li>
+      <li><b>Pengertian nabi:</b> <span class="jf">نبي</span> (nabi) ialah <b>lelaki</b> yang dikurniakan <b>wahyu</b> oleh Allah SWT untuk <b>diamalkan oleh dirinya</b> dan <b>tidak diperintah</b> menyampaikannya kepada orang lain (SP 3.2.1).</li>
+      <li><b>Pengertian rasul:</b> <span class="jf">رسول</span> (rasul) ialah <b>lelaki</b> yang dikurniakan wahyu untuk diamalkan <b>dan diperintah menyampaikannya</b> kepada orang lain. <b>Setiap rasul ialah nabi, tetapi tidak setiap nabi itu rasul.</b></li>
+      <li><b>Hukum beriman kepada rasul:</b> <b>WAJIB</b>. Dalil naqlinya ialah firman Allah SWT dalam <b>Surah an-Nisa&rsquo; 4:136</b> &mdash; <span class="arab">يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ ءَامِنُوا۟ بِٱللَّهِ وَرَسُولِهِۦ</span> &mdash; &lsquo;Wahai orang yang beriman, tetapkanlah iman kamu kepada Allah dan rasul-Nya.&rsquo; (SP 3.2.2)</li>
+      <li><b>Dalil sokongan:</b> <b>Surah al-Baqarah 2:285</b> menegaskan bahawa orang beriman <b>tidak membezakan</b> antara seorang pun daripada rasul-rasul Allah: <span class="arab">لَا نُفَرِّقُ بَيْنَ أَحَدٍۢ مِّن رُّسُلِهِۦ</span>.</li>
+      <li><b>25 nama rasul yang wajib diketahui (SP 3.2.3):</b> Adam, Idris, Nuh, Hud, Soleh, Ibrahim, Lut, Ismail, Ishak, Ya&lsquo;qub, Yusuf, Ayub, Syu&lsquo;aib, Harun, Musa, Ilyasa&rsquo;, Zulkifli, Daud, Sulaiman, Ilyas, Yunus, Zakaria, Yahya, Isa dan <b>Muhammad SAW</b> &mdash; rasul yang terakhir.</li>
+      <li><b>Peranan rasul (SP 3.2.4):</b> menyampaikan wahyu Allah, mendidik manusia berakhlak mulia, mengajar cara beribadah yang sempurna, menjadi contoh teladan, membimbing manusia dan jin supaya beriman kepada Allah, serta menjelaskan cara hidup yang diredhai Allah SWT.</li>
+      <li><b>Kepentingan beriman kepada rasul (SP 3.2.5):</b> meyakini dan menyayangi nabi dan rasul sebagai utusan Allah; melaksanakan ajaran yang dibawa oleh mereka; sentiasa berakhlak mulia; meneruskan dakwah; yakin dan bersungguh-sungguh beribadah; serta berdakwah kepada orang lain.</li>
+      <li><b>Tindakan sebagai bukti keimanan (SP 3.2.6):</b> sentiasa mengamalkan ajaran Rasulullah, menelusuri sirah kehidupan baginda, meneladani peribadi baginda, <b>mencintai Rasulullah</b> serta <b>memperbanyakkan selawat</b>, menjaga masa daripada perkara sia-sia, dan mengajak rakan bersama-sama beramal.</li>
+      <li><b>Menjadikan rasul sebagai ikutan (SP 3.2.7):</b> jadikan Rasulullah SAW sebagai <b>suri teladan</b> dalam setiap perkara &mdash; beradab dalam pertuturan, istiqamah dalam amalan, dan sentiasa berselawat ke atas baginda secara berterusan.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== 4. DIAGRAM POKOK ===== -->
+<section id="diagram">
+  <h2><span class="num">4</span> Diagram Pokok &mdash; 25 Nama Rasul<svg class="mascot" width="44" height="26" viewBox="0 0 70 38" aria-hidden="true"><use href="#kucingTidur"/></svg></h2>
+  <p class="hint">Senarai 25 rasul disusun mengikut Buku Teks PI T4 SK ms. 93 (SP 3.2.3). Hafaz nama Arab dan sebutan Ruminya.</p>
+  <svg class="art" viewBox="0 0 820 980" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram pokok 25 nama rasul">
+    <defs>
+      <linearGradient id="gAkar" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1f7a56"/><stop offset="100%" stop-color="#0f4a34"/>
+      </linearGradient>
+      <linearGradient id="gDaun" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#eef7f2"/><stop offset="100%" stop-color="#f8fbf9"/>
+      </linearGradient>
+      <linearGradient id="gBtg" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#a87f5c"/><stop offset="55%" stop-color="#c49a63"/><stop offset="100%" stop-color="#8a6544"/>
+      </linearGradient>
+    </defs>
+    <rect width="820" height="980" fill="#f8fbf9"/>
+
+    <rect x="0" y="0" width="820" height="50" fill="url(#gAkar)"/>
+    <text x="410" y="32" font-family="Trebuchet MS,Segoe UI,Arial" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">POKOK 25 RASUL &mdash; WAJIB DIKETAHUI NAMANYA</text>
+
+    <!-- BARIS 1 -->
+    <g class="anim-card">
+      <rect x="23" y="62" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#1f7a56" stroke-width="1.5"/>
+      <circle cx="43" cy="80" r="11" fill="#1f7a56"/>
+      <text x="43" y="85" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">1</text>
+      <text x="98" y="110" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">آدَم</text>
+      <text x="98" y="136" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Adam</text>
+    </g>
+    <g class="anim-card">
+      <rect x="179" y="62" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#1f7a56" stroke-width="1.5"/>
+      <circle cx="199" cy="80" r="11" fill="#1f7a56"/>
+      <text x="199" y="85" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">2</text>
+      <text x="254" y="110" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">إِدْرِيس</text>
+      <text x="254" y="136" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Idris</text>
+    </g>
+    <g class="anim-card">
+      <rect x="335" y="62" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#1f7a56" stroke-width="1.5"/>
+      <circle cx="355" cy="80" r="11" fill="#1f7a56"/>
+      <text x="355" y="85" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">3</text>
+      <text x="410" y="110" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">نُوح</text>
+      <text x="410" y="136" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Nuh</text>
+    </g>
+    <g class="anim-card">
+      <rect x="491" y="62" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#1f7a56" stroke-width="1.5"/>
+      <circle cx="511" cy="80" r="11" fill="#1f7a56"/>
+      <text x="511" y="85" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">4</text>
+      <text x="566" y="110" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">هُود</text>
+      <text x="566" y="136" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Hud</text>
+    </g>
+    <g class="anim-card">
+      <rect x="647" y="62" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#1f7a56" stroke-width="1.5"/>
+      <circle cx="667" cy="80" r="11" fill="#1f7a56"/>
+      <text x="667" y="85" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">5</text>
+      <text x="722" y="110" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">صَالِح</text>
+      <text x="722" y="136" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Soleh</text>
+    </g>
+
+    <!-- BARIS 2 -->
+    <g class="anim-card">
+      <rect x="23" y="162" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#2e8f68" stroke-width="1.5"/>
+      <circle cx="43" cy="180" r="11" fill="#2e8f68"/>
+      <text x="43" y="185" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">6</text>
+      <text x="98" y="210" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="23" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">إِبْرَاهِيم</text>
+      <text x="98" y="236" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Ibrahim</text>
+    </g>
+    <g class="anim-card">
+      <rect x="179" y="162" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#2e8f68" stroke-width="1.5"/>
+      <circle cx="199" cy="180" r="11" fill="#2e8f68"/>
+      <text x="199" y="185" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">7</text>
+      <text x="254" y="210" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">لُوط</text>
+      <text x="254" y="236" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Lut</text>
+    </g>
+    <g class="anim-card">
+      <rect x="335" y="162" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#2e8f68" stroke-width="1.5"/>
+      <circle cx="355" cy="180" r="11" fill="#2e8f68"/>
+      <text x="355" y="185" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">8</text>
+      <text x="410" y="210" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="23" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">إِسْمَاعِيل</text>
+      <text x="410" y="236" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Ismail</text>
+    </g>
+    <g class="anim-card">
+      <rect x="491" y="162" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#2e8f68" stroke-width="1.5"/>
+      <circle cx="511" cy="180" r="11" fill="#2e8f68"/>
+      <text x="511" y="185" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">9</text>
+      <text x="566" y="210" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="24" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">إِسْحَاق</text>
+      <text x="566" y="236" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Ishak</text>
+    </g>
+    <g class="anim-card">
+      <rect x="647" y="162" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#2e8f68" stroke-width="1.5"/>
+      <circle cx="667" cy="180" r="11" fill="#2e8f68"/>
+      <text x="667" y="185" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">10</text>
+      <text x="722" y="210" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="24" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">يَعْقُوب</text>
+      <text x="722" y="236" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Ya&lsquo;qub</text>
+    </g>
+
+    <!-- BARIS 3 -->
+    <g class="anim-card">
+      <rect x="23" y="262" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#8a6a2a" stroke-width="1.5"/>
+      <circle cx="43" cy="280" r="11" fill="#8a6a2a"/>
+      <text x="43" y="285" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">11</text>
+      <text x="98" y="310" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">يُوسُف</text>
+      <text x="98" y="336" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Yusuf</text>
+    </g>
+    <g class="anim-card">
+      <rect x="179" y="262" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#8a6a2a" stroke-width="1.5"/>
+      <circle cx="199" cy="280" r="11" fill="#8a6a2a"/>
+      <text x="199" y="285" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">12</text>
+      <text x="254" y="310" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">أَيُّوب</text>
+      <text x="254" y="336" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Ayub</text>
+    </g>
+    <g class="anim-card">
+      <rect x="335" y="262" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#8a6a2a" stroke-width="1.5"/>
+      <circle cx="355" cy="280" r="11" fill="#8a6a2a"/>
+      <text x="355" y="285" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">13</text>
+      <text x="410" y="310" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">شُعَيْب</text>
+      <text x="410" y="336" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Syu&lsquo;aib</text>
+    </g>
+    <g class="anim-card">
+      <rect x="491" y="262" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#8a6a2a" stroke-width="1.5"/>
+      <circle cx="511" cy="280" r="11" fill="#8a6a2a"/>
+      <text x="511" y="285" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">14</text>
+      <text x="566" y="310" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">هَارُون</text>
+      <text x="566" y="336" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Harun</text>
+    </g>
+    <g class="anim-card">
+      <rect x="647" y="262" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#8a6a2a" stroke-width="1.5"/>
+      <circle cx="667" cy="280" r="11" fill="#8a6a2a"/>
+      <text x="667" y="285" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">15</text>
+      <text x="722" y="310" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">مُوسَى</text>
+      <text x="722" y="336" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Musa</text>
+    </g>
+
+    <!-- BARIS 4 -->
+    <g class="anim-card">
+      <rect x="23" y="362" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#e0b04a" stroke-width="1.5"/>
+      <circle cx="43" cy="380" r="11" fill="#a87a1c"/>
+      <text x="43" y="385" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">16</text>
+      <text x="98" y="410" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">الْيَسَع</text>
+      <text x="98" y="436" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Ilyasa&rsquo;</text>
+    </g>
+    <g class="anim-card">
+      <rect x="179" y="362" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#e0b04a" stroke-width="1.5"/>
+      <circle cx="199" cy="380" r="11" fill="#a87a1c"/>
+      <text x="199" y="385" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">17</text>
+      <text x="254" y="410" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="23" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">ذُو الْكِفْل</text>
+      <text x="254" y="436" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Zulkifli</text>
+    </g>
+    <g class="anim-card">
+      <rect x="335" y="362" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#e0b04a" stroke-width="1.5"/>
+      <circle cx="355" cy="380" r="11" fill="#a87a1c"/>
+      <text x="355" y="385" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">18</text>
+      <text x="410" y="410" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">دَاوُد</text>
+      <text x="410" y="436" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Daud</text>
+    </g>
+    <g class="anim-card">
+      <rect x="491" y="362" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#e0b04a" stroke-width="1.5"/>
+      <circle cx="511" cy="380" r="11" fill="#a87a1c"/>
+      <text x="511" y="385" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">19</text>
+      <text x="566" y="410" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="23" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">سُلَيْمَان</text>
+      <text x="566" y="436" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Sulaiman</text>
+    </g>
+    <g class="anim-card">
+      <rect x="647" y="362" width="150" height="92" rx="12" fill="url(#gDaun)" stroke="#e0b04a" stroke-width="1.5"/>
+      <circle cx="667" cy="380" r="11" fill="#a87a1c"/>
+      <text x="667" y="385" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">20</text>
+      <text x="722" y="410" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="24" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">إِلْيَاس</text>
+      <text x="722" y="436" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Ilyas</text>
+    </g>
+
+    <!-- BARIS 5 -->
+    <g class="anim-card">
+      <rect x="23" y="462" width="150" height="92" rx="12" fill="#fdf8ec" stroke="#1f7a56" stroke-width="1.5"/>
+      <circle cx="43" cy="480" r="11" fill="#1f7a56"/>
+      <text x="43" y="485" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">21</text>
+      <text x="98" y="510" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">يُونُس</text>
+      <text x="98" y="536" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Yunus</text>
+    </g>
+    <g class="anim-card">
+      <rect x="179" y="462" width="150" height="92" rx="12" fill="#fdf8ec" stroke="#1f7a56" stroke-width="1.5"/>
+      <circle cx="199" cy="480" r="11" fill="#1f7a56"/>
+      <text x="199" y="485" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">22</text>
+      <text x="254" y="510" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="24" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">زَكَرِيَّا</text>
+      <text x="254" y="536" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Zakaria</text>
+    </g>
+    <g class="anim-card">
+      <rect x="335" y="462" width="150" height="92" rx="12" fill="#fdf8ec" stroke="#1f7a56" stroke-width="1.5"/>
+      <circle cx="355" cy="480" r="11" fill="#1f7a56"/>
+      <text x="355" y="485" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">23</text>
+      <text x="410" y="510" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">يَحْيَى</text>
+      <text x="410" y="536" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Yahya</text>
+    </g>
+    <g class="anim-card">
+      <rect x="491" y="462" width="150" height="92" rx="12" fill="#fdf8ec" stroke="#1f7a56" stroke-width="1.5"/>
+      <circle cx="511" cy="480" r="11" fill="#1f7a56"/>
+      <text x="511" y="485" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">24</text>
+      <text x="566" y="510" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="25" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">عِيسَى</text>
+      <text x="566" y="536" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5f7a6e" text-anchor="middle">Isa</text>
+    </g>
+    <g class="anim-card">
+      <rect x="647" y="462" width="150" height="92" rx="12" fill="#f6ecd2" stroke="#8a6a2a" stroke-width="2"/>
+      <circle cx="667" cy="480" r="11" fill="#8a6a2a"/>
+      <text x="667" y="485" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">25</text>
+      <text x="722" y="508" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="24" fill="#8a6a2a" text-anchor="middle" direction="rtl" unicode-bidi="isolate">مُحَمَّد ﷺ</text>
+      <text x="722" y="536" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#8a6a2a" text-anchor="middle">Muhammad SAW</text>
+    </g>
+    <g transform="translate(700,466) scale(0.2)" class="anim-glow"><use href="#bintang"/></g>
+
+    <!-- batang -->
+    <g class="anim-sway">
+      <rect x="396" y="566" width="28" height="150" rx="12" fill="url(#gBtg)" stroke="#8a6544" stroke-width="1.6"/>
+      <path d="M410 566 q-8-34 -34-40" stroke="#8a6544" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M410 566 q8-34 34-40" stroke="#8a6544" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M410 600 q-30-14 -46-42" stroke="#8a6544" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+      <path d="M410 600 q30-14 46-42" stroke="#8a6544" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(300,540) scale(0.7)" class="anim-twinkle"><use href="#daun"/></g>
+    <g transform="translate(490,536) scale(0.7)" class="anim-twinkle"><use href="#daun"/></g>
+    <g transform="translate(180,552) scale(0.6)" class="anim-twinkle"><use href="#daun"/></g>
+    <g transform="translate(618,552) scale(0.6)" class="anim-twinkle"><use href="#daun"/></g>
+
+    <!-- akar -->
+    <rect x="110" y="716" width="600" height="130" rx="14" fill="url(#gAkar)" stroke="#0f4a34" stroke-width="2"/>
+    <text x="410" y="746" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#fdf8ec" text-anchor="middle">AKAR TEGUH: WAJIB BERIMAN KEPADA RASUL</text>
+    <text x="410" y="770" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#cde9dc" text-anchor="middle">Rukun Iman ke-4 &bull; Dalil: <tspan class="arab" font-family="Scheherazade New,serif" font-size="15" direction="rtl" unicode-bidi="isolate">ءَامِنُوا۟ بِٱللَّهِ وَرَسُولِهِۦ</tspan> (an-Nisa&rsquo; 4:136)</text>
+    <text x="410" y="792" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#cde9dc" text-anchor="middle">Buktikan dengan: mengamalkan ajaran &amp; sunnah &#8226; memperbanyak selawat &#8226; meneladani peribadi baginda</text>
+    <text x="410" y="814" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#cde9dc" text-anchor="middle">menelusuri sirah &#8226; menjaga masa &#8226; berdakwah kepada rakan &#8226; istiqamah &amp; beradab</text>
+    <g transform="translate(126,742) scale(0.22)" class="anim-bob"><use href="#mushaf"/></g>
+    <g transform="translate(656,742) scale(0.22)" class="anim-bob"><use href="#rehal"/></g>
+
+    <!-- rasul ulul azmi -->
+    <rect x="110" y="862" width="600" height="84" rx="12" fill="#fdf8ec" stroke="#8a6a2a" stroke-width="1.5"/>
+    <text x="410" y="886" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" letter-spacing="1.4" font-weight="800" fill="#8a6a2a" text-anchor="middle">5 RASUL ULUL AZMI &mdash; RASUL YANG MEMILIKI KETAHANAN LUAR BIASA</text>
+    <g class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0f4a34" text-anchor="middle" direction="rtl" unicode-bidi="isolate">
+      <text x="700" y="916">نُوح &#1600; إِبْرَاهِيم &#1600; مُوسَى &#1600; عِيسَى &#1600; مُحَمَّد ﷺ</text>
+    </g>
+    <text x="410" y="938" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#5f7a6e" text-anchor="middle">Nuh &bull; Ibrahim &bull; Musa &bull; Isa &bull; Muhammad SAW &mdash; contoh ketabahan menghadapi ujian ketika menyampaikan risalah.</text>
+
+    <text x="410" y="968" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#5f7a6e" text-anchor="middle">Sumber: Buku Teks Pendidikan Islam Tahun 4 SK, Unit 2 (ms. 93) &bull; DSKP KSSR Semakan 2017 (SK 3.2, SP 3.2.3)</text>
+  </svg>
+
+  <h3 style="font-size:13px;letter-spacing:1.2px;color:var(--nila3);text-transform:uppercase;margin:20px 0 8px">Senarai 25 Nama Rasul (Arab &bull; Rumi)</h3>
+  <table>
+    <thead><tr><th class="c">Bil</th><th>Nama (Arab)</th><th>Nama (Rumi)</th><th>Catatan ringkas</th></tr></thead>
+    <tbody>
+      <tr><td class="c">1</td><td class="ar">آدَم</td><td><b>Adam</b></td><td>Manusia dan nabi pertama; bapa segala manusia.</td></tr>
+      <tr><td class="c">2</td><td class="ar">إِدْرِيس</td><td><b>Idris</b></td><td>Diangkat ke langit; terkenal dengan kebijaksanaan.</td></tr>
+      <tr><td class="c">3</td><td class="ar">نُوح</td><td><b>Nuh</b></td><td>Rasul Ulul Azmi; berdakwah selama 950 tahun.</td></tr>
+      <tr><td class="c">4</td><td class="ar">هُود</td><td><b>Hud</b></td><td>Diutus kepada kaum &lsquo;Aad di al-Ahqaf.</td></tr>
+      <tr><td class="c">5</td><td class="ar">صَالِح</td><td><b>Soleh</b></td><td>Diutus kepada kaum Thamud; mukjizat unta betina.</td></tr>
+      <tr><td class="c">6</td><td class="ar">إِبْرَاهِيم</td><td><b>Ibrahim</b></td><td>Rasul Ulul Azmi; bapa para nabi, khalilullah.</td></tr>
+      <tr><td class="c">7</td><td class="ar">لُوط</td><td><b>Lut</b></td><td>Diutus kepada kaum Sodom agar meninggalkan maksiat.</td></tr>
+      <tr><td class="c">8</td><td class="ar">إِسْمَاعِيل</td><td><b>Ismail</b></td><td>Putera Nabi Ibrahim; bersama membina Kaabah.</td></tr>
+      <tr><td class="c">9</td><td class="ar">إِسْحَاق</td><td><b>Ishak</b></td><td>Putera Nabi Ibrahim; bapa Nabi Ya&lsquo;qub.</td></tr>
+      <tr><td class="c">10</td><td class="ar">يَعْقُوب</td><td><b>Ya&lsquo;qub</b></td><td>Bapa Nabi Yusuf; terkenal dengan kesabaran.</td></tr>
+      <tr><td class="c">11</td><td class="ar">يُوسُف</td><td><b>Yusuf</b></td><td>Terkenal dengan akhlak mulia dan tafsir mimpi.</td></tr>
+      <tr><td class="c">12</td><td class="ar">أَيُّوب</td><td><b>Ayub</b></td><td>Contoh kesabaran menghadapi ujian penyakit.</td></tr>
+      <tr><td class="c">13</td><td class="ar">شُعَيْب</td><td><b>Syu&lsquo;aib</b></td><td>Diutus kepada kaum Madyan agar menyempurnakan timbangan.</td></tr>
+      <tr><td class="c">14</td><td class="ar">هَارُون</td><td><b>Harun</b></td><td>Saudara Nabi Musa; pembantu dalam berdakwah.</td></tr>
+      <tr><td class="c">15</td><td class="ar">مُوسَى</td><td><b>Musa</b></td><td>Rasul Ulul Azmi; penerima Kitab Taurat.</td></tr>
+      <tr><td class="c">16</td><td class="ar">الْيَسَع</td><td><b>Ilyasa&rsquo;</b></td><td>Penerus dakwah selepas Nabi Ilyas.</td></tr>
+      <tr><td class="c">17</td><td class="ar">ذُو الْكِفْل</td><td><b>Zulkifli</b></td><td>Terkenal dengan sifat amanah menunaikan janji.</td></tr>
+      <tr><td class="c">18</td><td class="ar">دَاوُد</td><td><b>Daud</b></td><td>Penerima Kitab Zabur; bijak memerintah.</td></tr>
+      <tr><td class="c">19</td><td class="ar">سُلَيْمَان</td><td><b>Sulaiman</b></td><td>Putera Nabi Daud; memerintah dengan adil dan bijaksana.</td></tr>
+      <tr><td class="c">20</td><td class="ar">إِلْيَاس</td><td><b>Ilyas</b></td><td>Berdakwah kepada kaum yang menyembah berhala Ba&lsquo;l.</td></tr>
+      <tr><td class="c">21</td><td class="ar">يُونُس</td><td><b>Yunus</b></td><td>Ditelan ikan besar; bertaubat dengan zikir dalam kegelapan.</td></tr>
+      <tr><td class="c">22</td><td class="ar">زَكَرِيَّا</td><td><b>Zakaria</b></td><td>Bapa Nabi Yahya; sentiasa berdoa dan bertawakal.</td></tr>
+      <tr><td class="c">23</td><td class="ar">يَحْيَى</td><td><b>Yahya</b></td><td>Dikurniakan hikmah sejak kecil; menjaga solat dan zakat.</td></tr>
+      <tr><td class="c">24</td><td class="ar">عِيسَى</td><td><b>Isa</b></td><td>Rasul Ulul Azmi; penerima Kitab Injil, dilahirkan tanpa bapa.</td></tr>
+      <tr class="on"><td class="c">25</td><td class="ar">مُحَمَّد ﷺ</td><td><b>Muhammad SAW</b></td><td>Rasul terakhir &mdash; penutup segala nabi dan rasul; ikutan kita.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:13px;letter-spacing:1.2px;color:var(--nila3);text-transform:uppercase;margin:22px 0 8px">Perbandingan: Nabi vs Rasul</h3>
+  <table>
+    <thead><tr><th>Aspek</th><th>Nabi <span class="jf">نبي</span></th><th>Rasul <span class="jf">رسول</span></th></tr></thead>
+    <tbody>
+      <tr><td><b>Jantina</b></td><td>Lelaki</td><td>Lelaki</td></tr>
+      <tr><td><b>Kurniaan</b></td><td>Diberi wahyu oleh Allah SWT</td><td>Diberi wahyu beserta risalah / kitab</td></tr>
+      <tr><td><b>Tugas</b></td><td>Mengamalkan wahyu untuk dirinya dan kaumnya</td><td>Mengamalkan wahyu dan <b>diperintah menyampaikannya</b></td></tr>
+      <tr><td><b>Kewajipan menyampaikan</b></td><td>Tidak diwajibkan kepada seluruh umat</td><td><b>Diwajibkan</b> menyampaikan kepada kaumnya / umat</td></tr>
+      <tr><td><b>Hubungan</b></td><td colspan="2">Setiap rasul ialah nabi &mdash; tetapi tidak setiap nabi itu rasul. Bilangan nabi amat ramai; <b>25 orang rasul wajib diketahui</b>.</td></tr>
+      <tr><td><b>Contoh doa</b></td><td colspan="2">Semua nabi dan rasul: <span class="arab">عَلَيْهِ السَّلَامُ</span> &nbsp;&bull;&nbsp; Nabi Muhammad SAW: <span class="arab">صَلَّى ٱللَّٰهُ عَلَيْهِ وَسَلَّمَ</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== 5. KUIZ INTERAKTIF ===== -->
+  <section id="quiz">
+    <h2><span class="num">5</span> Kuiz Interaktif &mdash; 10 Soalan<svg class="mascot" width="40" height="25" viewBox="0 0 66 40" aria-hidden="true"><use href="#kucingTidur"/></svg></h2>
+    <p class="hint">Klik pilihan jawapan. Maklum balas dan skor diberikan serta-merta.</p>
+
+    <div class="scorebar">
+      <span class="sc">Skor: <span id="sc">0</span> / 10</span>
+      <span class="bar"><i id="bar"></i></span>
+      <span class="hint2">Dijawab: <span id="done">0</span>/10</span>
+    </div>
+
+    <div class="qlist">
+
+      <div class="qcard" data-ans="0" data-exp="Nabi ialah <b>lelaki</b> yang dikurniakan wahyu oleh Allah SWT untuk <b>diamalkan oleh dirinya</b> dan <b>tidak diperintah</b> menyampaikannya kepada orang lain.">
+        <div class="qhead"><span class="qn">1</span><span class="qtext">Siapakah yang dimaksudkan dengan <span class="jf">نبي</span> (nabi)?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Lelaki yang diberi wahyu untuk diamalkan sendiri dan tidak diperintah menyampaikannya</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Lelaki yang diberi wahyu dan diperintah menyampaikannya kepada orang lain</span></button>
+          <button class="opt"><span class="k">C</span><span>Sesiapa sahaja yang berdakwah walaupun tidak menerima wahyu</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Rasul ialah <b>lelaki</b> yang dikurniakan wahyu untuk diamalkan <b>dan diperintah menyampaikannya</b> kepada orang lain.">
+        <div class="qhead"><span class="qn">2</span><span class="qtext">Siapakah yang dimaksudkan dengan <span class="jf">رسول</span> (rasul)?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Lelaki yang menerima wahyu untuk diamalkan oleh dirinya sahaja</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Lelaki yang diberi wahyu untuk diamalkan dan diperintah menyampaikannya</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Malaikat yang menyampaikan wahyu kepada manusia</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="<b>Setiap rasul itu nabi</b>, tetapi tidak setiap nabi itu rasul. Rasul ialah nabi yang diwajibkan menyampaikan risalah kepada kaumnya.">
+        <div class="qhead"><span class="qn">3</span><span class="qtext">Pernyataan yang manakah <b>BENAR</b> tentang hubungan nabi dan rasul?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Setiap nabi itu ialah rasul</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Setiap rasul itu ialah nabi</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Nabi dan rasul ialah dua perkara yang sama sahaja</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Beriman kepada rasul hukumnya <b>WAJIB</b> kerana ia sebahagian daripada Rukun Iman. Sesiapa yang mengingkarinya telah sesat dengan kesesatan yang jauh.">
+        <div class="qhead"><span class="qn">4</span><span class="qtext">Apakah hukum beriman kepada rasul?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Sunat muakkad</span></button>
+          <button class="opt"><span class="k">B</span><span>Harus (boleh pilih)</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Wajib</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Beriman kepada rasul ialah <b>Rukun Iman yang ke-4</b>: (1) Allah, (2) malaikat, (3) kitab, <b>(4) rasul</b>, (5) hari akhirat, (6) qada dan qadar.">
+        <div class="qhead"><span class="qn">5</span><span class="qtext">Beriman kepada rasul ialah Rukun Iman yang ke berapa?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Ke-2</span></button>
+          <button class="opt"><span class="k">B</span><span>Ke-3</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Ke-4</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Dalil naqli dalam Buku Teks ms. 92 ialah <b>Surah an-Nisa&rsquo; 4:136</b>: <span class='arab'>ءَامِنُوا۟ بِٱللَّهِ وَرَسُولِهِۦ</span> &mdash; tetapkanlah iman kamu kepada Allah dan rasul-Nya.">
+        <div class="qhead"><span class="qn">6</span><span class="qtext">Dalil naqli yang digunakan bagi kewajipan beriman kepada rasul dalam Unit 2 ialah&hellip;</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Surah an-Nisa&rsquo; 4:136</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Surah al-Ikhlas 112:1</span></button>
+          <button class="opt"><span class="k">C</span><span>Surah an-Nas 114:1</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Terdapat <b>25 orang rasul</b> yang wajib diketahui namanya (SP 3.2.3), bermula dengan Nabi Adam dan berakhir dengan Nabi Muhammad SAW.">
+        <div class="qhead"><span class="qn">7</span><span class="qtext">Berapakah bilangan rasul yang wajib diketahui oleh setiap murid?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>20 orang</span></button>
+          <button class="opt"><span class="k">B</span><span><b>25 orang</b></span></button>
+          <button class="opt"><span class="k">C</span><span>99 orang</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Rasul <b>Ulul Azmi</b> ialah rasul yang memiliki ketahanan luar biasa menghadapi ujian: <b>Nuh, Ibrahim, Musa, Isa dan Muhammad SAW</b>.">
+        <div class="qhead"><span class="qn">8</span><span class="qtext">Antara berikut, yang manakah senarai <b>5 rasul Ulul Azmi</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Nuh, Ibrahim, Musa, Isa dan Muhammad SAW</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Adam, Idris, Hud, Soleh dan Lut</span></button>
+          <button class="opt"><span class="k">C</span><span>Yusuf, Ayub, Daud, Sulaiman dan Yunus</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Antara tindakan bukti keimanan (SP 3.2.6): mengamalkan ajaran &amp; sunnah, memperbanyak selawat, meneladani peribadi baginda, menelusuri sirah, dan <b>menjaga masa</b> &mdash; bukannya membuang masa dengan perkara sia-sia.">
+        <div class="qhead"><span class="qn">9</span><span class="qtext">Antara berikut, yang manakah tindakan yang <b>TIDAK</b> membuktikan keimanan kepada rasul?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Mengamalkan sunnah Rasulullah SAW dalam kehidupan harian</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Membuang masa dengan perkara yang sia-sia</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Memperbanyakkan selawat ke atas Rasulullah SAW</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Kepentingan beriman kepada rasul (SP 3.2.5): meyakini &amp; menyayangi rasul sebagai utusan Allah, <b>melaksanakan ajaran yang dibawa</b>, <b>sentiasa berakhlak mulia</b>, meneruskan dakwah dan bersungguh-sungguh beribadah.">
+        <div class="qhead"><span class="qn">10</span><span class="qtext">Antara berikut, yang manakah kepentingan beriman kepada rasul?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Menjadikan kita cepat kaya dan berpangkat tinggi</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Melaksanakan ajaran yang dibawa oleh rasul serta sentiasa berakhlak mulia</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Membebaskan kita daripada kewajipan menunaikan ibadah</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+    </div>
+
+    <div class="result" id="result">
+      <svg viewBox="0 0 220 170" style="width:200px;height:auto;margin:0 auto 4px;display:block">
+        <g transform="translate(24,4) scale(.95)"><use href="#adamBaca"/></g>
+        <g transform="translate(116,4) scale(.95)"><use href="#nurBaca"/></g>
+      </svg>
+      <div class="stars" id="stars"></div>
+      <div class="big" id="rscore"></div>
+      <div class="msg" id="rmsg"></div>
+      <button class="act solid" onclick="resetQuiz()">Cuba Lagi</button>
+      <button class="act" onclick="window.print()">Cetak / Simpan PDF</button>
+    </div>
+  </section>
+
+<!-- ===== LAMPIRAN ===== -->
+<section id="lampiran">
+  <h2>Lampiran: Senarai 26 Standard Kandungan Pendidikan Islam Tahun 4</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>Bidang</th><th class="c">SK</th><th>Standard Kandungan</th><th class="c">Unit</th></tr></thead>
+      <tbody>
+        <tr><td>al-Quran</td><td class="c">1.1</td><td>Tilawah: Membaca dan mengamalkan <b>Surah at-Takathur</b> dengan betul dan bertajwid dalam kehidupan harian secara beradab dan istiqamah</td><td class="c">&#9675;</td></tr>
+        <tr><td>al-Quran</td><td class="c">1.2</td><td>Tilawah: Membaca dan mengamalkan Surah al-Qari&lsquo;ah dengan betul dan bertajwid dalam kehidupan harian secara beradab dan istiqamah</td><td class="c">&#9675;</td></tr>
+        <tr><td>al-Quran</td><td class="c">1.3</td><td>Hafazan: Membaca dan menghafaz serta mengamalkan Surah at-Takathur dalam solat dan kehidupan harian</td><td class="c">&#9675;</td></tr>
+        <tr><td>al-Quran</td><td class="c">1.4</td><td>Hafazan: Membaca dan menghafaz serta mengamalkan Surah al-Qari&lsquo;ah dalam solat dan kehidupan harian</td><td class="c">&#9675;</td></tr>
+        <tr><td>al-Quran</td><td class="c">1.5</td><td>Kefahaman: Menganalisis, mengamal dan menghayati Surah al-Ikhlas secara beradab dan istiqamah</td><td class="c">&#9675;</td></tr>
+        <tr><td>al-Quran</td><td class="c">1.6</td><td>Tajwid: Hukum mim sakinah dan tanwin</td><td class="c">&#9675;</td></tr>
+        <tr><td>al-Quran</td><td class="c">1.7</td><td>Tajwid: Hukum qalqalah</td><td class="c">&#9675;</td></tr>
+        <tr><td>al-Quran</td><td class="c">1.8</td><td>Tajwid: Tanda waqaf</td><td class="c">&#9675;</td></tr>
+        <tr><td>Hadis</td><td class="c">2.1</td><td>Merumus dan menghayati hadis memuliakan tetamu serta mengamalkannya secara beradab dan istiqamah</td><td class="c">&#9675;</td></tr>
+        <tr><td>Akidah</td><td class="c">3.1</td><td>Meyakini konsep nama Allah <i>al-&lsquo;Azim</i> dan <i>al-Hamid</i> serta mengaplikasikannya dalam kehidupan</td><td class="c">&#9675;</td></tr>
+        <tr class="on"><td>Akidah</td><td class="c">3.2</td><td>Meyakini konsep <b>beriman kepada rasul</b> dan mengaplikasikannya dalam kehidupan secara beradab dan istiqamah</td><td class="c">&#9679;</td></tr>
+        <tr><td>Akidah</td><td class="c">3.3</td><td>Mempertahankan akidah daripada unsur kufur</td><td class="c">&#9675;</td></tr>
+        <tr><td>Akidah</td><td class="c">3.4</td><td>Mempertahankan akidah daripada unsur nifak</td><td class="c">&#9675;</td></tr>
+        <tr><td>Ibadah</td><td class="c">4.1</td><td>Merumus dan mengamalkan konsep bersuci daripada najis</td><td class="c">&#9675;</td></tr>
+        <tr><td>Ibadah</td><td class="c">4.2</td><td>Azan dan iqamah</td><td class="c">&#9675;</td></tr>
+        <tr><td>Ibadah</td><td class="c">4.3</td><td>Puasa Ramadan</td><td class="c">&#9675;</td></tr>
+        <tr><td>Sirah</td><td class="c">5.1</td><td>Perjanjian Aqabah &mdash; penerimaan masyarakat terhadap dakwah Nabi Muhammad SAW</td><td class="c">&#9675;</td></tr>
+        <tr><td>Sirah</td><td class="c">5.2</td><td>Sifat fatanah Nabi Muhammad SAW</td><td class="c">&#9675;</td></tr>
+        <tr><td>Sirah</td><td class="c">5.3</td><td>Keperibadian Nabi Muhammad SAW dalam berdakwah</td><td class="c">&#9675;</td></tr>
+        <tr><td>Adab</td><td class="c">6.1</td><td>Adab berpakaian</td><td class="c">&#9675;</td></tr>
+        <tr><td>Adab</td><td class="c">6.2</td><td>Adab beriadah</td><td class="c">&#9675;</td></tr>
+        <tr><td>Adab</td><td class="c">6.3</td><td>Adab berjiran</td><td class="c">&#9675;</td></tr>
+        <tr><td>Adab</td><td class="c">6.4</td><td>Adab terhadap guru</td><td class="c">&#9675;</td></tr>
+        <tr><td>Jawi</td><td class="c">7.1</td><td>Jawi: perkataan yang mengandungi huruf hamzah</td><td class="c">&#9675;</td></tr>
+        <tr><td>Jawi</td><td class="c">7.2</td><td>Jawi: perkataan tradisi</td><td class="c">&#9675;</td></tr>
+        <tr><td>Jawi</td><td class="c">7.3</td><td>Jawi: perkataan pinjaman bahasa Inggeris</td><td class="c">&#9675;</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:12px;background:#fdf8ec;border:1.4px dashed var(--gold);border-radius:13px;padding:10px 13px;font-size:12.5px;color:#2e2208;line-height:1.55">Nota: SK <b>3.2</b> (Beriman kepada rasul) ditandakan <span style="color:#1f7a56">&#9679;</span> kerana diliputi dalam bahan PdP ini (Unit 2 Akidah, Buku Teks ms. 91&ndash;98). <b>&#9675;</b> = belum disediakan dalam siri ini. Senarai disusun mengikut Bidang dan nombor SK daripada DSKP KSSR Semakan 2017 &amp; RPT Tahun 4.</p>
+  </div>
+</section>
+
+<footer>
+    Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 4 (BPK, KPM) &amp; Buku Teks Pendidikan Islam Tahun 4 SK, Unit 2 &mdash; Utusan yang Mulia (ms. 91&ndash;98). Teks Uthmani disahkan melalui al-Quran Cloud API (an-Nisa&rsquo; 4:136 &amp; al-Baqarah 2:285).
+  </footer>
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+  var scEl = document.getElementById('sc');
+  var doneEl = document.getElementById('done');
+  var barEl = document.getElementById('bar');
+  var resultEl = document.getElementById('result');
+  var total = cards.length;
+
+  function refresh(){
+    var score = 0, answered = 0;
+    cards.forEach(function(c){
+      if(c.dataset.state === 'correct'){ score++; answered++; }
+      else if(c.dataset.state === 'wrong'){ answered++; }
+    });
+    scEl.textContent = score;
+    doneEl.textContent = answered;
+    barEl.style.width = (answered/total*100) + '%';
+    if(answered === total) showResult(score);
+  }
+
+  function showResult(score){
+    resultEl.classList.add('show');
+    document.getElementById('rscore').textContent = score + ' / ' + total;
+    document.getElementById('stars').textContent =
+      score >= 9 ? '\u2605\u2605\u2605\u2605\u2605' : score >= 7 ? '\u2605\u2605\u2605\u2605\u2606' : score >= 5 ? '\u2605\u2605\u2605\u2606\u2606' : '\u2605\u2605\u2606\u2606\u2606';
+    document.getElementById('rmsg').textContent =
+      score === 10 ? 'Syabas! Kamu benar-benar menguasai konsep beriman kepada rasul.'
+      : score >= 8 ? 'Bagus sekali! Teruskan mengamalkan sunnah Rasulullah SAW.'
+      : score >= 6 ? 'Bagus! Ulangi senarai 25 rasul dan nota ringkas sekali lagi.'
+      : score >= 4 ? 'Jangan putus asa \u2014 baca semula nota ringkas di atas.'
+      : 'Mari ulang bersama-sama. Baca nota ringkas, kemudian cuba lagi.';
+    resultEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  cards.forEach(function(card){
+    var opts = Array.prototype.slice.call(card.querySelectorAll('.opt'));
+    var fb = card.querySelector('.fb');
+    var face = fb.querySelector('use');
+    var txt = fb.querySelector('.txt');
+    var ans = parseInt(card.dataset.ans, 10);
+    var exp = card.dataset.exp;
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(card.dataset.state) return;
+        var ok = (i === ans);
+        card.dataset.state = ok ? 'correct' : 'wrong';
+        card.classList.add('done');
+
+        opts.forEach(function(b, j){
+          b.disabled = true;
+          if(j === ans){ b.classList.add('ok'); }
+          else if(j === i){ b.classList.add('bad'); }
+          else { b.classList.add('dim'); }
+        });
+
+        face.setAttribute('href', ok ? '#faceYay' : '#faceOops');
+        txt.innerHTML = (ok ? '<b>Betul!</b> ' : '<b>Belum tepat.</b> Jawapan yang betul ialah <b>' +
+                        String.fromCharCode(65+ans) + '</b>. ') + exp;
+        fb.classList.add('show');
+        if(!ok) fb.classList.add('wrong');
+
+        refresh();
+      });
+    });
+  });
+
+  window.resetQuiz = function(){
+    cards.forEach(function(c){
+      delete c.dataset.state;
+      c.classList.remove('done');
+      var fb = c.querySelector('.fb');
+      fb.classList.remove('show','wrong');
+      c.querySelectorAll('.opt').forEach(function(b){
+        b.disabled = false;
+        b.classList.remove('ok','bad','dim');
+      });
+    });
+    resultEl.classList.remove('show');
+    refresh();
+    window.scrollTo({top: document.getElementById('quiz').offsetTop - 20, behavior:'smooth'});
+  };
+
+  window.addEventListener('beforeprint', function(){
+    cards.forEach(function(c){
+      var ans = parseInt(c.dataset.ans,10);
+      c.querySelectorAll('.opt').forEach(function(b,j){
+        if(j === ans) b.classList.add('ok');
+      });
+      if(!c.querySelector('.fb').classList.contains('show')){
+        var fb = c.querySelector('.fb');
+        fb.querySelector('.txt').innerHTML = '<b>Jawapan: ' + String.fromCharCode(65+ans) + '</b>. ' + c.dataset.exp;
+        fb.classList.add('show');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

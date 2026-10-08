@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Platform Induk — SaaS/PaaS 6 Tokoh Korporat</title>
+<meta name="description" content="Enam tokoh korporat Sabah dalam satu kategori yang tersusun dan sistematik. Klik mana-mana tokoh untuk membuka dashboard atau portfolio mereka dalam tab baharu.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2306070d'/%3E%3Cpath d='M10 21l6-11 6 11' stroke='%23d8b45f' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  /* --- light VVIP "Ivory Sovereign" palette ------------------------------ */
+  --bg:#f7f5f0; --bg2:#fffefb;
+  --raised:#ffffff; --sunken:#f1ede5;
+  --fg:#1b1e25; --fg-dim:#414855; --muted:#5b626f;
+  --border:rgba(27,30,37,.11); --border-strong:rgba(138,102,32,.45);
+  --primary:#8a6620; --primary-soft:rgba(138,102,32,.09);
+  --gold:#8a6620; --gold-2:#6b4d13; --gold-soft:rgba(138,102,32,.09);
+  --gold-line:#dcc793; --gold-bright:#c9a24a;
+  --ink:#1b1e25;
+  --cyan:#1c6d78; --violet:#5b4a9c;
+  --success:#136b4c; --success-soft:rgba(19,107,76,.10);
+  --warning:#96610c; --warning-soft:rgba(150,97,12,.11);
+  --radius:16px; --radius-sm:10px;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",sans-serif;
+  --shadow:0 1px 2px rgba(27,30,37,.05),0 14px 34px -20px rgba(27,30,37,.22);
+  --shadow-lg:0 2px 4px rgba(27,30,37,.06),0 26px 54px -28px rgba(27,30,37,.30);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);
+  font-size:16px;line-height:1.72;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:
+  radial-gradient(1100px 520px at 4% -12%, rgba(201,162,74,.16), transparent 62%),
+  radial-gradient(900px 470px at 96% -10%, rgba(28,109,120,.10), transparent 64%),
+  radial-gradient(900px 520px at 50% 112%, rgba(138,102,32,.09), transparent 62%),var(--bg)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(27,30,37,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(27,30,37,.045) 1px,transparent 1px);
+  background-size:62px 62px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 62% at 50% 0%,#000 26%,transparent 76%);
+  mask-image:radial-gradient(ellipse 90% 62% at 50% 0%,#000 26%,transparent 76%)}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold-2)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+header.hero{border-bottom:1px solid var(--border);padding:66px 0 48px;position:relative}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:11px;margin-bottom:18px;font-weight:600}
+.eyebrow::before{content:"";width:30px;height:1.5px;background:linear-gradient(90deg,transparent,var(--gold-bright));flex:0 0 auto}
+.crumb{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.crumb a{color:var(--muted)}
+.crumb a:hover{color:var(--gold)}
+h1{font-family:var(--serif);font-size:clamp(31px,4.6vw,50px);line-height:1.12;letter-spacing:-.012em;margin:0;font-weight:600;color:var(--fg)}
+h1 .accent{color:var(--gold-2);background:linear-gradient(102deg,#a87c26,var(--gold) 46%,var(--cyan));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:var(--fg-dim);font-size:16.5px;max-width:82ch;margin:18px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:32px}
+.kpi{position:relative;border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;
+  background:var(--raised);box-shadow:var(--shadow);overflow:hidden}
+.kpi::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold-bright),var(--gold-line))}
+.kpi b{display:block;font-family:var(--serif);font-size:29px;letter-spacing:-.01em;line-height:1.14;
+  font-variant-numeric:tabular-nums;color:var(--fg)}
+.kpi span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+nav.toc{position:sticky;top:0;z-index:20;background:rgba(255,254,251,.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);box-shadow:0 6px 18px -14px rgba(27,30,37,.35)}
+nav.toc ul{display:flex;flex-wrap:wrap;gap:3px;list-style:none;margin:0;padding:10px 0}
+nav.toc a{display:block;padding:7px 12px;border-radius:8px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--fg-dim);font-weight:500}
+nav.toc a:hover{background:var(--gold-soft);color:var(--gold)}
+main{padding-bottom:34px}
+section{padding:52px 0;border-bottom:1px solid var(--border);scroll-margin-top:60px}
+section:last-of-type{border-bottom:none}
+.sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px}
+.sec-ico{width:46px;height:46px;border-radius:13px;background:linear-gradient(160deg,rgba(201,162,74,.22),rgba(138,102,32,.09));
+  border:1px solid var(--gold-line);color:var(--gold-2);display:grid;place-items:center;font-size:20px;flex:0 0 auto}
+.sec-kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);margin-bottom:6px;font-weight:600}
+h2{font-family:var(--serif);font-size:27px;letter-spacing:-.005em;margin:0;font-weight:600;color:var(--fg)}
+.sec-head p{margin:7px 0 0;color:var(--fg-dim);font-size:14.5px;max-width:92ch}
+h3.grp{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin:28px 0 12px;
+  color:var(--fg-dim);display:flex;align-items:center;gap:10px;font-weight:600}
+h3.grp .cnt{font-size:10.5px;color:var(--gold-2);background:var(--gold-soft);border:1px solid var(--gold-line);
+  border-radius:99px;padding:1.5px 10px;letter-spacing:.06em}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.card{position:relative;border:1px solid var(--border);border-radius:var(--radius);background:var(--raised);
+  padding:20px 22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;
+  transition:border-color .2s,transform .2s,box-shadow .2s}
+.card::before{content:"";position:absolute;left:16px;right:16px;top:-1px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold-bright),transparent)}
+.card:hover{border-color:var(--border-strong);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.card.feature{border-color:var(--gold-line);background:linear-gradient(180deg,rgba(201,162,74,.10),var(--raised) 58%)}
+.card-top{display:flex;align-items:flex-start;gap:12px}
+.card-ico{width:40px;height:40px;border-radius:11px;background:linear-gradient(160deg,rgba(201,162,74,.24),rgba(138,102,32,.09));
+  border:1px solid var(--gold-line);color:var(--gold-2);display:grid;place-items:center;font-size:18px;flex:0 0 auto}
+.card h4{margin:0;font-family:var(--serif);font-size:17.5px;font-weight:600;line-height:1.34;color:var(--fg)}
+.card .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.card p{margin:0;font-size:14px;color:var(--fg-dim);line-height:1.68}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{display:inline-block;padding:3px 10px;border-radius:7px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:700;white-space:nowrap}
+.p-cat{background:var(--gold-soft);color:var(--gold-2);border:1px solid var(--gold-line)}
+.p-sekolah{background:rgba(28,109,120,.10);color:var(--cyan);border:1px solid rgba(28,109,120,.30)}
+.p-baru{background:linear-gradient(102deg,var(--gold-bright),var(--gold));color:#241c0a;border:1px solid transparent}
+.p-live{background:var(--success-soft);color:var(--success);border:1px solid rgba(19,107,76,.30)}
+.p-doc{background:var(--warning-soft);color:var(--warning);border:1px solid rgba(150,97,12,.30)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-family:var(--mono);font-size:10.5px;color:var(--fg-dim);background:var(--sunken);
+  border:1px solid var(--border);border-radius:6px;padding:2.5px 8px}
+.stat{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+.btn{display:inline-flex;align-items:center;gap:7px;height:35px;padding:0 15px;border-radius:var(--radius-sm);
+  border:1px solid var(--border);background:var(--raised);font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--fg-dim);cursor:pointer;
+  transition:background .2s,border-color .2s,color .2s}
+.btn:hover{background:var(--sunken);color:var(--fg);border-color:var(--border-strong)}
+.btn-primary{background:linear-gradient(102deg,var(--gold-bright),var(--gold));border-color:transparent;color:#241c0a}
+.btn-primary:hover{background:linear-gradient(102deg,var(--gold),var(--gold-2));color:#241c0a}
+.btn-sm{height:30px;padding:0 12px;font-size:10px}
+.rowlist{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(268px,1fr))}
+.rowitem{display:flex;align-items:center;gap:11px;border:1px solid var(--border);border-radius:11px;
+  background:var(--raised);padding:10px 13px;font-size:13.8px;transition:border-color .2s,background .2s}
+.rowitem:hover{border-color:var(--border-strong);background:#fffdf8}
+.rowitem .n{width:24px;height:24px;border-radius:7px;background:var(--gold-soft);color:var(--gold-2);
+  display:grid;place-items:center;font-family:var(--mono);font-size:10.5px;font-weight:700;flex:0 0 auto}
+.rowitem a{color:var(--fg);font-weight:600}
+.rowitem a:hover{color:var(--gold)}
+.rowitem .pdf{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:2px 7px}
+.rowitem .pdf:hover{color:var(--gold);border-color:var(--border-strong)}
+.searchbar{display:flex;gap:10px;align-items:center;margin-top:24px;flex-wrap:wrap}
+.searchbar input{flex:1 1 280px;min-width:210px;height:44px;border:1px solid var(--border);border-radius:11px;
+  padding:0 15px;font-size:14.5px;background:var(--raised);color:var(--fg);font-family:var(--sans);
+  box-shadow:var(--shadow)}
+.searchbar input::placeholder{color:var(--muted)}
+.searchbar input:focus{outline:none;border-color:var(--border-strong);box-shadow:0 0 0 3px rgba(201,162,74,.22)}
+.count{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted)}
+.hidden{display:none!important}
+footer{padding:34px 0 52px;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.07em;
+  border-top:1px solid var(--border);text-transform:uppercase;background:var(--bg2)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+/* --- 6 tokoh korporat --- */
+.tokoh-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(372px,1fr))}
+.tokoh{position:relative;border:1px solid var(--border);border-radius:var(--radius);background:var(--raised);
+  padding:24px;display:flex;flex-direction:column;gap:15px;box-shadow:var(--shadow);
+  transition:border-color .2s,transform .2s,box-shadow .2s;overflow:hidden}
+.tokoh::after{content:"";position:absolute;right:-70px;top:-70px;width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,162,74,.20),transparent 68%);pointer-events:none}
+.tokoh:hover{border-color:var(--border-strong);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.tokoh-top{display:flex;align-items:center;gap:14px;position:relative}
+.tokoh-av{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-family:var(--mono);
+  font-weight:700;font-size:14px;letter-spacing:.04em;color:#241c0a;
+  background:linear-gradient(135deg,var(--gold-bright),var(--gold));flex:0 0 auto}
+.tokoh-code{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);font-weight:700}
+.tokoh-nama{font-family:var(--serif);font-size:20.5px;font-weight:600;line-height:1.24;margin:3px 0 0;color:var(--fg)}
+.tokoh-jawatan{font-size:13.8px;color:var(--fg-dim);line-height:1.58}
+.tokoh-org{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tokoh-skop{font-size:14px;color:var(--fg-dim);line-height:1.68;border-left:2px solid var(--gold-line);padding-left:13px}
+/* --- bookmark platform --- */
+.bm-wrap{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1 1 auto}
+.bm-wrap a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.bm-wrap .dom{font-family:var(--mono);font-size:10.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.bm-wrap .old{font-family:var(--mono);font-size:10.5px;color:var(--muted);opacity:.9}
+.bm-dead{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;color:var(--muted);
+  text-decoration:line-through;text-decoration-color:rgba(91,98,111,.55);cursor:default}
+.rowitem .pill{margin-left:auto;flex:0 0 auto}
+/* --- status & rujukan ------------------------------------------------- */
+.st-band{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 22px}
+.st-kat{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--gold-soft);border:1px solid var(--gold-line);color:var(--gold-2);
+  border-radius:999px;padding:5px 13px;font-weight:700}
+.st-kat .c{opacity:.72;margin-left:6px}
+.st-card{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--raised);
+  padding:15px 17px;box-shadow:var(--shadow)}
+.st-card h4{margin:0 0 3px;font-family:var(--serif);font-size:16.5px;letter-spacing:-.01em}
+.st-card .st-meta{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-bottom:9px}
+.st-card p{margin:0 0 9px;font-size:14px;color:var(--fg-dim);line-height:1.66}
+.st-card .st-asal{margin:0;font-size:12.5px;color:var(--muted);border-left:2px solid var(--gold-line);padding-left:11px}
+.tool-card{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--raised);padding:14px 16px}
+.tool-card h4{margin:0 0 3px;font-family:var(--mono);font-size:13px;letter-spacing:.02em}
+.tool-card .st-meta{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-bottom:8px}
+.tool-card p{margin:0 0 10px;font-size:13.5px;color:var(--fg-dim);line-height:1.62}
+.tool-card code{display:block;font-family:var(--mono);font-size:12px;background:var(--sunken);
+  border:1px solid var(--border);border-radius:8px;padding:7px 10px;color:var(--gold-2);overflow-x:auto;white-space:nowrap}
+.kerja-card{border:1px solid var(--gold-line);border-radius:var(--radius-sm);
+  background:linear-gradient(180deg,rgba(201,162,74,.10),var(--raised) 58%);padding:15px 17px}
+.kerja-card h4{margin:0 0 3px;font-family:var(--serif);font-size:16.5px}
+.kerja-card .st-meta{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-bottom:9px}
+.kerja-card p{margin:0 0 10px;font-size:14px;color:var(--fg-dim);line-height:1.66}
+.kerja-links{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.kerja-links a{font-family:var(--mono);font-size:11px;background:var(--sunken);border:1px solid var(--border);
+  border-radius:7px;padding:4px 9px;color:var(--gold-2)}
+.kerja-links a:hover{border-color:var(--border-strong)}
+.kerja-bukti{margin:0;font-family:var(--mono);font-size:11px;color:var(--success)}
+.bm-note{font-size:14px;color:var(--fg-dim);margin:0 0 14px}
+/* --- PaaS/SaaS app cards --- */
+.app-card{position:relative;border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--raised);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;
+  transition:border-color .2s,transform .2s,box-shadow .2s}
+.app-card:hover{border-color:var(--border-strong);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.app-band{height:5px;background:linear-gradient(90deg,var(--gold-bright),var(--gold) 52%,var(--cyan))}
+.app-body{padding:20px 22px;display:flex;flex-direction:column;gap:12px;flex:1}
+.app-head{display:flex;align-items:flex-start;gap:13px}
+.app-ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:21px;flex:0 0 auto;
+  background:linear-gradient(160deg,rgba(201,162,74,.24),rgba(138,102,32,.09));border:1px solid var(--gold-line)}
+.app-card h4{margin:0;font-family:var(--serif);font-size:18px;font-weight:600;line-height:1.3;color:var(--fg)}
+.app-card .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.app-card p{margin:0;font-size:14px;color:var(--fg-dim);line-height:1.68}
+.app-feat{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.app-feat li{font-size:13.5px;color:var(--fg-dim);display:flex;gap:9px;align-items:flex-start;line-height:1.6}
+.app-feat li::before{content:"▪";color:var(--gold-bright);font-size:13px;line-height:1.55;flex:0 0 auto}
+@media (max-width:640px){.wrap{padding:0 18px}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Platform Induk 02 · SaaS / PaaS</div>
+  <div class="crumb"><a href="index.html">Portal Kerja</a> / Platform Induk 2</div>
+  <h1>Platform Induk 2 — <span class="accent">SaaS/PaaS 6 Tokoh Korporat</span></h1>
+  <p class="sub">Enam tokoh korporat Sabah dalam satu kategori yang tersusun dan sistematik. Klik mana-mana tokoh untuk membuka dashboard atau portfolio mereka dalam tab baharu.</p>
+  <div class="kpis"><div class="kpi"><b>6</b><span>Tokoh</span></div><div class="kpi"><b>3</b><span>Portfolio</span></div><div class="kpi"><b>3</b><span>Swarm Command</span></div><div class="kpi"><b>1</b><span>Alat &amp; Harness</span></div><div class="kpi"><b>1</b><span>NEXUS Studio</span></div><div class="kpi"><b>1</b><span>NEXUS Office</span></div><div class="kpi"><b>4</b><span>Lapisan API</span></div></div>
+  <div class="searchbar"><input id="q" type="search" placeholder="Cari…" aria-label="Cari"><span class="count" id="count"></span></div>
+</div></header>
+<nav class="toc" aria-label="Kategori"><div class="wrap"><ul><li><a href="#platform">🧠 Platform</a></li><li><a href="#tokoh">👥 6 Tokoh</a></li><li><a href="#api">🔐 API</a></li></ul></div></nav>
+<main class="wrap">
+<section id="platform" data-sec><div class="sec-head"><div class="sec-ico">🧠</div><div><div class="sec-kicker">Kategori 01 · Teras Platform</div><h2>Platform Utama SaaS/PaaS</h2><p>Portal tunggal yang menempatkan kesemua 6 dashboard tokoh, seni bina integrasi API 4 lapis dan konsol kunci API berasingan.</p></div></div><div class="grid"><article class="card feature" data-search="Agentic OS Sabah — 6 Dashboard Tokoh 6 tokoh dashboard integrasi api saas paas">
+  <div class="card-top"><div class="card-ico">🧠</div><div><h4>Agentic OS Sabah — 6 Dashboard Tokoh</h4><div class="meta">6 dashboard · 51 penyambung API</div></div></div>
+  <div class="pills"><span class="pill p-live">Platform</span><span class="pill p-cat">SaaS/PaaS</span></div>
+  <p>Portal web statik dengan satu dashboard untuk setiap tokoh, bersama seni bina integrasi API 4 lapis dan konsol kunci API.</p>
+  <div class="tags"></div>
+  <div class="actions"><a class="btn btn-primary" href="works/saas-paas/sabah-agentic-os/index.html" target="_blank" rel="noopener">Buka dalam tab baharu ↗</a></div>
+</article></div><h3 class="grp">Pautan Teras Platform <span class="cnt">6</span></h3><p>Enam pautan teras seperti yang diminta. Tiga daripadanya pada asalnya menunjuk ke pelayan localhost (7100 / 7101 / 7102) yang sudah mati — URL asalnya dikekalkan sebagai rekod, dan butang <em>Buka</em> menghantar ke bahagian yang sepadan dalam prototaip yang telah dibina semula dalam hub.</p><div class="grid"><article class="card" data-search="SKN SWARM COMMAND · SDGP — Pusat Arahan Swarm 100 Ejen http://localhost:7100/#swarm teras platform DIBINA SEMULA"><div class="card-top"><div class="card-ico">🛰️</div><div><h4>SKN SWARM COMMAND · SDGP — Pusat Arahan Swarm 100 Ejen</h4><div class="meta">Rekod asal: http://localhost:7100/#swarm</div></div></div><div class="pills"><span class="pill p-baru">DIBINA SEMULA</span><span class="pill p-doc">PAUTAN MATI</span><span class="pill p-cat">Teras Platform</span></div><p>Fragmen #swarm sepadan dengan bahagian Pusat Arahan. Pelayan localhost:7100 sudah mati — prototaip kini fail kendiri dalam hub, jadi pautan ini menuju ke bahagian yang sama.</p><div class="actions"><a class="btn btn-primary" href="works/saas-paas/swarm-7100/index.html#arahan" target="_blank" rel="noopener">Buka ↗</a></div></article><article class="card" data-search="EDUSYNC TPNS · SWARM COMMAND — Prototaip Konsep http://localhost:7101/#roadmap teras platform DIBINA SEMULA"><div class="card-top"><div class="card-ico">🛰️</div><div><h4>EDUSYNC TPNS · SWARM COMMAND — Prototaip Konsep</h4><div class="meta">Rekod asal: http://localhost:7101/#roadmap</div></div></div><div class="pills"><span class="pill p-baru">DIBINA SEMULA</span><span class="pill p-doc">PAUTAN MATI</span><span class="pill p-cat">Teras Platform</span></div><p>Fragmen #roadmap sepadan dengan bahagian Peta Jalan (#pelan) — Fasa 0 hingga Fasa 3 dengan KPI P1–P6. Pelayan localhost:7101 sudah mati.</p><div class="actions"><a class="btn btn-primary" href="works/saas-paas/swarm-7101/index.html#pelan" target="_blank" rel="noopener">Buka ↗</a></div></article><article class="card" data-search="SIAP · SWARM COMMAND — Pusat Arahan Swarm 50 Ejen K02 http://localhost:7102/#swarm teras platform DIBINA SEMULA"><div class="card-top"><div class="card-ico">🛰️</div><div><h4>SIAP · SWARM COMMAND — Pusat Arahan Swarm 50 Ejen K02</h4><div class="meta">Rekod asal: http://localhost:7102/#swarm</div></div></div><div class="pills"><span class="pill p-baru">DIBINA SEMULA</span><span class="pill p-doc">PAUTAN MATI</span><span class="pill p-cat">Teras Platform</span></div><p>Fragmen #swarm sepadan dengan bahagian Pusat Arahan — pemilih lima situasi dan empat lapisan kawalan. Pelayan localhost:7102 sudah mati.</p><div class="actions"><a class="btn btn-primary" href="works/saas-paas/swarm-7102/index.html#arahan" target="_blank" rel="noopener">Buka ↗</a></div></article><article class="card" data-search="SIAP · SWARM COMMAND — bahagian masalah (NRW &amp; KPI) http://localhost:7102/#masalah teras platform DIBINA SEMULA"><div class="card-top"><div class="card-ico">🛰️</div><div><h4>SIAP · SWARM COMMAND — bahagian masalah (NRW &amp; KPI)</h4><div class="meta">Rekod asal: http://localhost:7102/#masalah</div></div></div><div class="pills"><span class="pill p-baru">DIBINA SEMULA</span><span class="pill p-doc">PAUTAN MATI</span><span class="pill p-cat">Teras Platform</span></div><p>Fragmen #masalah sepadan dengan bahagian Monitor NRW &amp; KPI — garis dasar masalah yang direkodkan (NRW Sabah ~60% berbanding global ~30% dan Singapura ~5%).</p><div class="actions"><a class="btn btn-primary" href="works/saas-paas/swarm-7102/index.html#monitor" target="_blank" rel="noopener">Buka ↗</a></div></article><article class="card" data-search="SUK Orchestration Command Center — Datuk Zainudin bin Aman https://fhmmi6jn.autoclawai.space/#sight teras platform HIDUP"><div class="card-top"><div class="card-ico">⚡</div><div><h4>SUK Orchestration Command Center — Datuk Zainudin bin Aman</h4><div class="meta">Lokasi: https://fhmmi6jn.autoclawai.space/#sight</div></div></div><div class="pills"><span class="pill p-live">HIDUP</span><span class="pill p-cat">Teras Platform</span></div><p>Pusat arahan orkestrasi SUK bagi Setiausaha Kerajaan Negeri Sabah (use case U6) — SMJ 2.0, profil dan gambaran menyeluruh. Laman terbitan, masih boleh dicapai.</p><div class="actions"><a class="btn btn-primary" href="https://fhmmi6jn.autoclawai.space/#sight" target="_blank" rel="noopener">Buka ↗</a></div></article><article class="card" data-search="Pangkalan Ilmu SKN — bahagian ringkasan works/landing/skn-rnd/index.html#ringkasan teras platform DALAM HUB"><div class="card-top"><div class="card-ico">📚</div><div><h4>Pangkalan Ilmu SKN — bahagian ringkasan</h4><div class="meta">Lokasi: works/landing/skn-rnd/index.html#ringkasan</div></div></div><div class="pills"><span class="pill p-live">DALAM HUB</span><span class="pill p-cat">Teras Platform</span></div><p>Sudah berada dalam hub sebagai laman statik. Pautan asalnya ialah URL file:// pada mesin ini sahaja — laluan relatif digunakan supaya ia kekal berfungsi walau hub dipindahkan.</p><div class="actions"><a class="btn btn-primary" href="works/landing/skn-rnd/index.html#ringkasan" target="_blank" rel="noopener">Buka ↗</a></div></article></div></section>
+<section id="tokoh" data-sec><div class="sec-head"><div class="sec-ico">👥</div><div><div class="sec-kicker">Kategori 02 · 6 Tokoh Korporat</div><h2>SaaS/PaaS 6 Tokoh Korporat</h2><p>Kesemua enam tokoh korporat berada dalam <strong>satu kategori yang sama</strong>. Setiap kad membuka dashboard atau portfolio tokoh berkenaan dalam tab baharu — halaman platform induk ini tidak akan berubah.</p></div></div><div class="tokoh-grid"><article class="tokoh" data-search="U1 Datuk Mohamad Alamin Timbalan Menteri Pembangunan Usahawan dan Koperasi (KUSKOP) KUSKOP · 7 agensi pembiayaan Penyepaduan data pembiayaan 7 agensi untuk memantau NPF masa nyata, mengesan pertindihan penerima dan memberi amaran awal risiko ingkar."><div class="tokoh-top"><div class="tokoh-av">MA</div><div><div class="tokoh-code">U1 · KUSKOP</div><div class="tokoh-nama">Datuk Mohamad Alamin</div></div></div><div class="tokoh-jawatan">Timbalan Menteri Pembangunan Usahawan dan Koperasi (KUSKOP)</div><div class="tokoh-org">KUSKOP · 7 agensi pembiayaan</div><div class="tokoh-skop">Penyepaduan data pembiayaan 7 agensi untuk memantau NPF masa nyata, mengesan pertindihan penerima dan memberi amaran awal risiko ingkar.</div><div class="actions"><a class="btn btn-primary" href="works/saas-paas/sabah-agentic-os/index.html#/t/alamin" target="_blank" rel="noopener">Dashboard ↗</a></div></article><article class="tokoh" data-search="U2 Datuk Ruddy Awah Pembantu Menteri Kerja Raya &amp; Utiliti Sabah KKR &amp; Utiliti · ADUN Pitas · GRS Pemantauan IoT masa nyata bagi rangkaian air: tekanan, aliran, kebocoran, sambungan haram dan NRW mengikut zon."><div class="tokoh-top"><div class="tokoh-av">RA</div><div><div class="tokoh-code">U2 · KKR &amp; Utiliti</div><div class="tokoh-nama">Datuk Ruddy Awah</div></div></div><div class="tokoh-jawatan">Pembantu Menteri Kerja Raya &amp; Utiliti Sabah</div><div class="tokoh-org">KKR &amp; Utiliti · ADUN Pitas · GRS</div><div class="tokoh-skop">Pemantauan IoT masa nyata bagi rangkaian air: tekanan, aliran, kebocoran, sambungan haram dan NRW mengikut zon.</div><div class="actions"><a class="btn btn-primary" href="works/saas-paas/sabah-agentic-os/index.html#/t/ruddy" target="_blank" rel="noopener">Dashboard ↗</a></div></article><article class="tokoh" data-search="U3 Datuk Dr. Maijol Mahap Pembantu Menteri Kerajaan Tempatan &amp; Perumahan Sabah KKT &amp; Perumahan · ADUN Bandau · GRS Automasi kelulusan perumahan rakyat, pemetaan risiko setinggan dan pemantauan infrastruktur luar bandar."><div class="tokoh-top"><div class="tokoh-av">MM</div><div><div class="tokoh-code">U3 · KKT &amp; Perumahan</div><div class="tokoh-nama">Datuk Dr. Maijol Mahap</div></div></div><div class="tokoh-jawatan">Pembantu Menteri Kerajaan Tempatan &amp; Perumahan Sabah</div><div class="tokoh-org">KKT &amp; Perumahan · ADUN Bandau · GRS</div><div class="tokoh-skop">Automasi kelulusan perumahan rakyat, pemetaan risiko setinggan dan pemantauan infrastruktur luar bandar.</div><div class="actions"><a class="btn btn-primary" href="works/saas-paas/sabah-agentic-os/index.html#/t/maijol" target="_blank" rel="noopener">Dashboard ↗</a></div></article><article class="tokoh" data-search="U4 Datuk Dr. Mohd Arifin Mohd Arif Menteri Kerajaan Tempatan &amp; Perumahan Sabah KKT &amp; Perumahan · ADUN Membakut · Naib Presiden GRS Orkestrasi AI negeri untuk PBT: e-permit bersepadu, penyeragaman ePBT dan dashboard KPI SMJ 2.0."><div class="tokoh-top"><div class="tokoh-av">AA</div><div><div class="tokoh-code">U4 · KKT &amp; Perumahan</div><div class="tokoh-nama">Datuk Dr. Mohd Arifin Mohd Arif</div></div></div><div class="tokoh-jawatan">Menteri Kerajaan Tempatan &amp; Perumahan Sabah</div><div class="tokoh-org">KKT &amp; Perumahan · ADUN Membakut · Naib Presiden GRS</div><div class="tokoh-skop">Orkestrasi AI negeri untuk PBT: e-permit bersepadu, penyeragaman ePBT dan dashboard KPI SMJ 2.0.</div><div class="actions"><a class="btn btn-primary" href="works/saas-paas/sabah-agentic-os/index.html#/t/arifin" target="_blank" rel="noopener">Dashboard ↗</a><a class="btn" href="works/saas-paas/portfolio-arifin/index.html" target="_blank" rel="noopener">PORTF·AA ↗</a></div></article><article class="tokoh" data-search="U5 Awangku Raimy Pangiran Abd Rahman Ketua Penolong Setiausaha Kanan, Pejabat Timbalan SKN Sabah TSKN Sabah · Tugas-tugas Khas Pengurusan kitaran hayat dana pendidikan: permohonan, kelayakan, penyaluran, pemulihan pinjaman dan kawalan pertindihan."><div class="tokoh-top"><div class="tokoh-av">RP</div><div><div class="tokoh-code">U5 · TSKN Sabah</div><div class="tokoh-nama">Awangku Raimy Pangiran Abd Rahman</div></div></div><div class="tokoh-jawatan">Ketua Penolong Setiausaha Kanan, Pejabat Timbalan SKN Sabah</div><div class="tokoh-org">TSKN Sabah · Tugas-tugas Khas</div><div class="tokoh-skop">Pengurusan kitaran hayat dana pendidikan: permohonan, kelayakan, penyaluran, pemulihan pinjaman dan kawalan pertindihan.</div><div class="actions"><a class="btn btn-primary" href="works/saas-paas/sabah-agentic-os/index.html#/t/raimy" target="_blank" rel="noopener">Dashboard ↗</a><a class="btn" href="works/saas-paas/portfolio-raimy/index.html" target="_blank" rel="noopener">PORTF·AR ↗</a></div></article><article class="tokoh" data-search="U6 Datuk Zainudin Aman Setiausaha Kerajaan Negeri Sabah (SKN) · Pengerusi JPBN SKN Sabah · Pengerusi JPBN Platform AI negeri: integrasi data 11 kementerian, dashboard KPI SMJ 2.0 masa nyata dan pengurusan krisis / bencana."><div class="tokoh-top"><div class="tokoh-av">ZA</div><div><div class="tokoh-code">U6 · SKN Sabah</div><div class="tokoh-nama">Datuk Zainudin Aman</div></div></div><div class="tokoh-jawatan">Setiausaha Kerajaan Negeri Sabah (SKN) · Pengerusi JPBN</div><div class="tokoh-org">SKN Sabah · Pengerusi JPBN</div><div class="tokoh-skop">Platform AI negeri: integrasi data 11 kementerian, dashboard KPI SMJ 2.0 masa nyata dan pengurusan krisis / bencana.</div><div class="actions"><a class="btn btn-primary" href="works/saas-paas/sabah-agentic-os/index.html#/t/zainudin" target="_blank" rel="noopener">Dashboard ↗</a><a class="btn" href="works/saas-paas/portfolio-zainudin/index.html" target="_blank" rel="noopener">PORTF·ZA ↗</a></div></article></div><h3 class="grp">Aplikasi Terbitan — Berjalan dalam Hub <span class="cnt">2</span></h3><div class="grid"><article class="card feature" data-search="AgenticOS KSSR — Platform Ejen Pendidikan KPM Edisi pendidikan. Enjin penghalaan model yang sama, dipasang dengan agen pendidikan: Agen RPH, DSKP, Pentaksiran Bilik Darjah (TP1–TP6), BBM, Panitia, Bahasa dan Pentadbiran. KSSR Semakan 2017, Tahun 1–6, 17 mata pelajaran, 8 elemen EMK. SPA tanpa build ModelRouter sebenar 17 agen KSSR Bahasa Melayu aplikasi terbitan agentic os kssr pendidikan"><div class="card-top"><div class="card-ico">🚀</div><div><h4>AgenticOS KSSR — Platform Ejen Pendidikan KPM</h4><div class="meta">14 halaman · 17 agen · 26 model</div></div></div><div class="pills"><span class="pill p-baru">TERBARU</span><span class="pill p-live">Berjalan dalam hub</span><span class="pill p-cat">PaaS/SaaS</span></div><p>Edisi pendidikan. Enjin penghalaan model yang sama, dipasang dengan agen pendidikan: Agen RPH, DSKP, Pentaksiran Bilik Darjah (TP1–TP6), BBM, Panitia, Bahasa dan Pentadbiran. KSSR Semakan 2017, Tahun 1–6, 17 mata pelajaran, 8 elemen EMK.</p><div class="tags"><span class="tag">SPA tanpa build</span><span class="tag">ModelRouter sebenar</span><span class="tag">17 agen KSSR</span><span class="tag">Bahasa Melayu</span></div><div class="actions"><a class="btn btn-primary" href="works/saas-paas/agenticos-kssr/index.html" target="_blank" rel="noopener">Buka aplikasi ↗</a></div></article><article class="card feature" data-search="AgenticOS Malaysia — All-in-One Agentic Platform Versi penuh platform ejen: Studio Vibe Coding, Studio Kreatif, 10 agen, 26 model dan Model Router yang boleh diperhatikan — setiap anak tangga fallback, setiap 429, setiap cache hit, setiap token dan kosnya. Pengebilan MaaS dalam MYR. SPA tanpa build Monaco · Zustand 10 agen MaaS MYR aplikasi terbitan agentic os kssr pendidikan"><div class="card-top"><div class="card-ico">🚀</div><div><h4>AgenticOS Malaysia — All-in-One Agentic Platform</h4><div class="meta">10 halaman · 10 agen · 26 model</div></div></div><div class="pills"><span class="pill p-live">Berjalan dalam hub</span><span class="pill p-cat">PaaS/SaaS</span></div><p>Versi penuh platform ejen: Studio Vibe Coding, Studio Kreatif, 10 agen, 26 model dan Model Router yang boleh diperhatikan — setiap anak tangga fallback, setiap 429, setiap cache hit, setiap token dan kosnya. Pengebilan MaaS dalam MYR.</p><div class="tags"><span class="tag">SPA tanpa build</span><span class="tag">Monaco · Zustand</span><span class="tag">10 agen</span><span class="tag">MaaS MYR</span></div><div class="actions"><a class="btn btn-primary" href="works/saas-paas/agenticos-malaysia/index.html" target="_blank" rel="noopener">Buka aplikasi ↗</a></div></article></div><h3 class="grp">Prototaip Swarm Command — Berjalan dalam Hub <span class="cnt">3</span></h3><div class="grid"><article class="card feature" data-search="SKN SWARM COMMAND · SDGP — Pusat Arahan Swarm 100 Ejen Pusat arahan swarm 100 ejen untuk SDGP (Sabah Digital Government Platform), Pemboleh Daya #5 SMJ 2.0. Enjin orkestrasi interaktif: pilih situasi, skuad digerakkan melalui Analisis → Delegasi → Semakan → Sintesis, jejak audit langsung, kemudian taklimat untuk kelulusan manusia. Termasuk Monitor SMJ 2.0, 11 kementerian, analisis 336 aplikasi dan pelan 90 hari. swarm command pusat arahan ejen orkestrasi swarm-7100"><div class="card-top"><div class="card-ico">🛰️</div><div><h4>SKN SWARM COMMAND · SDGP — Pusat Arahan Swarm 100 Ejen</h4><div class="meta">100 ejen · 4 lapisan kawalan</div></div></div><div class="pills"><span class="pill p-baru">DIBINA SEMULA</span><span class="pill p-live">Berjalan dalam hub</span><span class="pill p-cat">Swarm Command</span></div><p>Pusat arahan swarm 100 ejen untuk SDGP (Sabah Digital Government Platform), Pemboleh Daya #5 SMJ 2.0. Enjin orkestrasi interaktif: pilih situasi, skuad digerakkan melalui Analisis → Delegasi → Semakan → Sintesis, jejak audit langsung, kemudian taklimat untuk kelulusan manusia. Termasuk Monitor SMJ 2.0, 11 kementerian, analisis 336 aplikasi dan pelan 90 hari.</p><p class="stat">Sumber: SDGP · Sabah Digital Government Platform (Konsep).md · verify-swarm.mjs — 23/23 dari file://</p><div class="actions"><a class="btn btn-primary" href="works/saas-paas/swarm-7100/index.html" target="_blank" rel="noopener">Buka pusat arahan ↗</a></div></article><article class="card feature" data-search="EDUSYNC TPNS · SWARM COMMAND — Prototaip Konsep Pusat arahan swarm untuk orkestrasi dana pendidikan dan pemulihan pinjaman (use case U5, TSKN). Lima situasi sepadan dengan lima jurang yang direkodkan; dashboard TPNS (RM25.10j · 15,629 pelajar · 214 kes pertindihan · 68% pemulihan), senibina lima lapisan dan tujuh modul teras, serta peta jalan Fasa 0→3. swarm command pusat arahan ejen orkestrasi swarm-7101"><div class="card-top"><div class="card-ico">🛰️</div><div><h4>EDUSYNC TPNS · SWARM COMMAND — Prototaip Konsep</h4><div class="meta">10 peranan × 5 contoh</div></div></div><div class="pills"><span class="pill p-baru">DIBINA SEMULA</span><span class="pill p-live">Berjalan dalam hub</span><span class="pill p-cat">Swarm Command</span></div><p>Pusat arahan swarm untuk orkestrasi dana pendidikan dan pemulihan pinjaman (use case U5, TSKN). Lima situasi sepadan dengan lima jurang yang direkodkan; dashboard TPNS (RM25.10j · 15,629 pelajar · 214 kes pertindihan · 68% pemulihan), senibina lima lapisan dan tujuh modul teras, serta peta jalan Fasa 0→3.</p><p class="stat">Sumber: doc_extract.txt (U5) + portfolio-raimy · verify-swarm.mjs — 23/23 dari file://</p><div class="actions"><a class="btn btn-primary" href="works/saas-paas/swarm-7101/index.html" target="_blank" rel="noopener">Buka pusat arahan ↗</a></div></article><article class="card feature" data-search="SIAP · SWARM COMMAND — Pusat Arahan Swarm 50 Ejen K02 Pusat arahan swarm 50 ejen (skuad K02) untuk SIAP — Sistem Infrastruktur Aset Pintar Sabah. Lima situasi sepadan dengan lima pain point yang direkodkan dalam pembentangan DUN dan laporan audit; tiga lapisan SIAP Urus/Padu/Data, pangkalan garis NRW, empat opsyen pelaksanaan, empat fasa kos dan tujuh risiko. swarm command pusat arahan ejen orkestrasi swarm-7102"><div class="card-top"><div class="card-ico">🛰️</div><div><h4>SIAP · SWARM COMMAND — Pusat Arahan Swarm 50 Ejen K02</h4><div class="meta">50 ejen · 14 modul SIAP</div></div></div><div class="pills"><span class="pill p-baru">DIBINA SEMULA</span><span class="pill p-live">Berjalan dalam hub</span><span class="pill p-cat">Swarm Command</span></div><p>Pusat arahan swarm 50 ejen (skuad K02) untuk SIAP — Sistem Infrastruktur Aset Pintar Sabah. Lima situasi sepadan dengan lima pain point yang direkodkan dalam pembentangan DUN dan laporan audit; tiga lapisan SIAP Urus/Padu/Data, pangkalan garis NRW, empat opsyen pelaksanaan, empat fasa kos dan tujuh risiko.</p><p class="stat">Sumber: SIAP-Konsep-v3.0.html · verify-swarm.mjs — 23/23 dari file://</p><div class="actions"><a class="btn btn-primary" href="works/saas-paas/swarm-7102/index.html" target="_blank" rel="noopener">Buka pusat arahan ↗</a></div></article></div><h3 class="grp">Alat &amp; Harness — Pusat Kawalan <span class="cnt">1</span></h3><div class="grid"><article class="card feature" data-search="Pusat Kawalan Alat &amp; Harness — Router, Pasaran Model &amp; Dua Harness Konsol tunggal untuk kategori Alat &amp; Harness. Enjin Router Kepakaran sebenar (disalin verbatim daripada router_kepakaran.py) mengklasifikasikan tugasan dan memilih agen, model, kunci serta anggaran kos. Turut memuatkan Pasaran Model M6, empat mod DeepSeek Harness berserta jadual kos dan katalog plugin, fakta Hermes Agent (v0.21.0, tema navy-gold, 26 skil, 132 entri memori), dan panel kesihatan pelayan yang diukur pada 2026-10-03. alat harness router kepakaran pasaran model deepseek hermes hab-alat-harness"><div class="card-top"><div class="card-ico">🛠️</div><div><h4>Pusat Kawalan Alat &amp; Harness — Router, Pasaran Model &amp; Dua Harness</h4><div class="meta">11 rute · 12 rantaian failover · 4 mod DSH · 26 skil Hermes</div></div></div><div class="pills"><span class="pill p-baru">KONSOL</span><span class="pill p-live">Berjalan dalam hub</span><span class="pill p-cat">Alat &amp; Harness</span></div><p>Konsol tunggal untuk kategori Alat &amp; Harness. Enjin Router Kepakaran sebenar (disalin verbatim daripada router_kepakaran.py) mengklasifikasikan tugasan dan memilih agen, model, kunci serta anggaran kos. Turut memuatkan Pasaran Model M6, empat mod DeepSeek Harness berserta jadual kos dan katalog plugin, fakta Hermes Agent (v0.21.0, tema navy-gold, 26 skil, 132 entri memori), dan panel kesihatan pelayan yang diukur pada 2026-10-03.</p><p class="stat">Sumber: router_kepakaran.py + 17_DEEPSEEK_HARNESS_4_MODE_KOS_PLUGIN.md + memori 2026-09-30</p><div class="actions"><a class="btn btn-primary" href="works/saas-paas/hab-alat-harness/index.html" target="_blank" rel="noopener">Buka pusat kawalan ↗</a></div></article></div><h3 class="grp">NEXUS Studio — Agentic Workflow Builder <span class="cnt">1</span></h3><div class="grid"><article class="card feature" data-search="NEXUS Studio · Agentic Workflow Builder — Simulator n8n 8 Aliran Pembina aliran kerja agenik gaya n8n yang berjalan sepenuhnya dalam satu fail HTML. Kanvas nod interaktif dengan pustaka 93 jenis nod (Pencetus, AI, Logik, Data, Platform), enjin pelaksanaan sebenar (cuba semula automatik, cabang ralat, gelung, keselarasan), peta kecil, garis masa air terjun, pengesan kos token, dan sejarah pelaksanaan. Lapan aliran kerja realistik: Video SEO, E-Dagang, Pendidikan Adaptif, Dagangan Algo, Gamifikasi, Sokongan Pelanggan, Pengambilan HR, dan IoT Bangunan Pintar. alat harness router kepakaran pasaran model deepseek hermes nexus-studio"><div class="card-top"><div class="card-ico">🛠️</div><div><h4>NEXUS Studio · Agentic Workflow Builder — Simulator n8n 8 Aliran</h4><div class="meta">261 nod · 93 jenis · 8 aliran · 283 sambungan</div></div></div><div class="pills"><span class="pill p-baru">KONSOL</span><span class="pill p-live">Berjalan dalam hub</span><span class="pill p-cat">Alat &amp; Harness</span></div><p>Pembina aliran kerja agenik gaya n8n yang berjalan sepenuhnya dalam satu fail HTML. Kanvas nod interaktif dengan pustaka 93 jenis nod (Pencetus, AI, Logik, Data, Platform), enjin pelaksanaan sebenar (cuba semula automatik, cabang ralat, gelung, keselarasan), peta kecil, garis masa air terjun, pengesan kos token, dan sejarah pelaksanaan. Lapan aliran kerja realistik: Video SEO, E-Dagang, Pendidikan Adaptif, Dagangan Algo, Gamifikasi, Sokongan Pelanggan, Pengambilan HR, dan IoT Bangunan Pintar.</p><p class="stat">Sumber: Dibina daripada spesifikasi pengguna (n8n-style canvas, 200+ nodes, real execution)</p><div class="actions"><a class="btn btn-primary" href="works/saas-paas/nexus-studio/index.html" target="_blank" rel="noopener">Buka pusat kawalan ↗</a></div></article></div><h3 class="grp">NEXUS Office — Miniatur Workflow Orchestration <span class="cnt">1</span></h3><div class="grid"><article class="card feature" data-search="NEXUS Office — Miniatur Workflow Orchestration (Miniworld Pejabat) Visualisasi semula NEXUS Studio sebagai dunia mini pejabat. Setiap nod menjadi watak kartun miniatur (penyambut tetamu, saintis AI, hakim logik, pustakawan data, juruteknik platform) yang duduk di meja masing-masing. Lima bilik pejabat bertema (Lobi Penyambut, Bilik Data &amp; Arkib, Makmal AI, Bilik Logik &amp; Hakim, Bilik Pelayan &amp; API) disusun dalam grid 2D dengan lantai kayu, tingkap dan awan di langit. Sambungan antara nod menjadi lorong pejabat dengan sampul surat yang terbang secara animasi antara watak — dokumen terbang dari satu meja ke meja seterusnya mengikut arah sambungan. Enjin pelaksanaan sama (cuba semula, cabang, gelung, keselarasan) tetapi semua interaksi dipaparkan sebagai pergerakan fizikal watak dan dokumen dalam dunia mini. alat harness router kepakaran pasaran model deepseek hermes nexus-office"><div class="card-top"><div class="card-ico">🛠️</div><div><h4>NEXUS Office — Miniatur Workflow Orchestration (Miniworld Pejabat)</h4><div class="meta">261 watak · 5 bilik · 8 aliran · 283 sambungan · sampul terbang</div></div></div><div class="pills"><span class="pill p-baru">KONSOL</span><span class="pill p-live">Berjalan dalam hub</span><span class="pill p-cat">Alat &amp; Harness</span></div><p>Visualisasi semula NEXUS Studio sebagai dunia mini pejabat. Setiap nod menjadi watak kartun miniatur (penyambut tetamu, saintis AI, hakim logik, pustakawan data, juruteknik platform) yang duduk di meja masing-masing. Lima bilik pejabat bertema (Lobi Penyambut, Bilik Data &amp; Arkib, Makmal AI, Bilik Logik &amp; Hakim, Bilik Pelayan &amp; API) disusun dalam grid 2D dengan lantai kayu, tingkap dan awan di langit. Sambungan antara nod menjadi lorong pejabat dengan sampul surat yang terbang secara animasi antara watak — dokumen terbang dari satu meja ke meja seterusnya mengikut arah sambungan. Enjin pelaksanaan sama (cuba semula, cabang, gelung, keselarasan) tetapi semua interaksi dipaparkan sebagai pergerakan fizikal watak dan dokumen dalam dunia mini.</p><p class="stat">Sumber: Dibina daripada NEXUS Studio — logik enjin dan struktur aliran sama, renderer diganti dengan SVG karakter + animasi sampul</p><div class="actions"><a class="btn btn-primary" href="works/saas-paas/nexus-office/index.html" target="_blank" rel="noopener">Buka pusat kawalan ↗</a></div></article></div><h3 class="grp">Aplikasi Terbitan &amp; Prototaip <span class="cnt">1</span></h3><div class="grid"><article class="card" data-search="KESAN Digital — Prototaip Konsep SaaS/PaaS Ekosistem Usahawan &amp; Koperasi v10qn7hbkrx0-d.space-z.ai SaaS/PaaS Prototaip konsep SaaS/PaaS untuk ekosistem usahawan dan koperasi."><div class="card-top"><div class="card-ico">🧠</div><div><h4>KESAN Digital — Prototaip Konsep SaaS/PaaS Ekosistem Usahawan &amp; Koperasi</h4><div class="meta">v10qn7hbkrx0-d.space-z.ai</div></div></div><div class="pills"><span class="pill p-live">HIDUP</span><span class="pill p-cat">SaaS/PaaS</span></div><p>Prototaip konsep SaaS/PaaS untuk ekosistem usahawan dan koperasi.</p><div class="actions"><a class="btn btn-primary" href="https://v10qn7hbkrx0-d.space-z.ai/#cadangan" target="_blank" rel="noopener">Buka ↗</a></div></article></div></section>
+<section id="api" data-sec><div class="sec-head"><div class="sec-ico">🔐</div><div><div class="sec-kicker">Kategori 03 · Seni Bina</div><h2>Seni Bina Integrasi API</h2><p>Empat lapisan yang menyambungkan setiap dashboard tokoh kepada sistem sumber.</p></div></div><div class="grid"><article class="card" data-search="Lapisan 1 Lapisan Sumber Sistem asal setiap agensi dan kementerian — pangkalan data, API dalaman dan muat naik fail berkelompok. api seni bina"><div class="card-top"><div class="card-ico">🔐</div><div><h4>Lapisan Sumber</h4><div class="meta">Lapisan 1</div></div></div><p>Sistem asal setiap agensi dan kementerian — pangkalan data, API dalaman dan muat naik fail berkelompok.</p></article><article class="card" data-search="Lapisan 2 Lapisan Penyambung 51 penyambung API menormalkan format, mengesahkan skema, mengendalikan cuba-semula dan mencatat jejak audit. api seni bina"><div class="card-top"><div class="card-ico">🔐</div><div><h4>Lapisan Penyambung</h4><div class="meta">Lapisan 2</div></div></div><p>51 penyambung API menormalkan format, mengesahkan skema, mengendalikan cuba-semula dan mencatat jejak audit.</p></article><article class="card" data-search="Lapisan 3 Lapisan Orkestrasi Ejen AI menjadualkan tarikan data, mengesan anomali dan menjana ringkasan eksekutif bagi setiap tokoh. api seni bina"><div class="card-top"><div class="card-ico">🔐</div><div><h4>Lapisan Orkestrasi</h4><div class="meta">Lapisan 3</div></div></div><p>Ejen AI menjadualkan tarikan data, mengesan anomali dan menjana ringkasan eksekutif bagi setiap tokoh.</p></article><article class="card" data-search="Lapisan 4 Lapisan Persembahan Enam dashboard tokoh, konsol kunci API berasingan dan eksport laporan KPI SMJ 2.0. api seni bina"><div class="card-top"><div class="card-ico">🔐</div><div><h4>Lapisan Persembahan</h4><div class="meta">Lapisan 4</div></div></div><p>Enam dashboard tokoh, konsol kunci API berasingan dan eksport laporan KPI SMJ 2.0.</p></article></div></section>
+</main>
+<footer><div class="wrap">
+  <span>Portal Kerja · WorkBuddy AI · 2026-10-05</span>
+  <span>Semua pautan dibuka dalam tab baharu</span>
+</div></footer>
+<script>
+/* New-tab links: ALWAYS take over the click so the parent page never navigates
+   and never opens a duplicate tab. Falls back to same-tab navigation only when
+   the host blocks window.open (embedded preview panels often do). */
+(function(){
+  document.addEventListener('click',function(e){
+    var a=e.target.closest?e.target.closest('a[target="_blank"]'):null;
+    if(!a) return;
+    var href=a.getAttribute('href');
+    if(!href||href.charAt(0)==='#') return;
+    e.preventDefault();
+    var w=null;
+    try{ w=window.open(href,'_blank'); }catch(err){ w=null; }
+    if(!w){ window.location.href=href; }
+  },true);
+})();
+(function(){
+  var q=document.getElementById('q'), count=document.getElementById('count');
+  if(!q) return;
+  var items=Array.prototype.slice.call(document.querySelectorAll('[data-search]'));
+  var secs=Array.prototype.slice.call(document.querySelectorAll('section[data-sec]'));
+  var grps=Array.prototype.slice.call(document.querySelectorAll('h3.grp'));
+  function nampak(c){
+    if(c.classList.contains('hidden')) return false;
+    if(document.documentElement.getAttribute('data-kr-mod')==='audien'
+       && c.getAttribute('data-kr-state')==='buang') return false;
+    return true;
+  }
+  function kemasKumpulan(){
+    grps.forEach(function(g){
+      var sib=g.nextElementSibling;
+      if(!sib||!sib.querySelector) return;
+      var all=sib.querySelectorAll('[data-search]');
+      if(!all.length) return;
+      g.classList.toggle('hidden', !Array.prototype.some.call(all,nampak));
+    });
+    secs.forEach(function(s){
+      var all=s.querySelectorAll('[data-search]');
+      if(!all.length) return;
+      s.classList.toggle('hidden', !Array.prototype.some.call(all,nampak));
+    });
+  }
+  function apply(){
+    var t=(q.value||'').trim().toLowerCase(), shown=0;
+    items.forEach(function(c){
+      var ui=c.querySelector('[data-kr-ui]'), tx=c.textContent;
+      if(ui) tx=tx.replace(ui.textContent,'');
+      var hay=(c.getAttribute('data-search')+' '+tx).toLowerCase();
+      var ok=!t||hay.indexOf(t)!==-1;
+      c.classList.toggle('hidden',!ok); if(ok) shown++;
+    });
+    kemasKumpulan();
+    if(count) count.textContent = t ? (shown+' padanan') : '';
+  }
+  q.addEventListener('input',apply);
+  document.addEventListener('kurasi:ubah',kemasKumpulan);
+  kemasKumpulan();
+})();
+</script>
+<script src="_kurasi-terbit.js"></script>
+<script src="_kurasi.js"></script>
+</body>
+</html>

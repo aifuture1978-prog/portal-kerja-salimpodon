@@ -1,0 +1,11 @@
+{
+  "name": "agenticos-kssr",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AgenticOS KSSR — edisi pendidikan platform ejen. RPH, DSKP, Pentaksiran Bilik Darjah (TP1-TP6), BBM dan panitia untuk KSSR Semakan 2017. Menjalankan algoritma ModelRouter yang sebenar dalam pelayar; membuat panggilan OpenRouter langsung apabila kunci diberi.",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": { "start": "node server.mjs", "dev": "node server.mjs" },
+  "keywords": ["agentic", "kssr", "kpm", "pendidikan", "rph", "dskp", "pbd", "malaysia", "llm", "router"],
+  "license": "MIT"
+}

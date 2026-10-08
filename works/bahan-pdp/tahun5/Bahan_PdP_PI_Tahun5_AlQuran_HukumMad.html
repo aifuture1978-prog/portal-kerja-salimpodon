@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>al-Quran (Tajwid): Hukum Mad &mdash; Pendidikan Islam Tahun 5</title>
+<style>
+  :root{
+    --sky1:#e0ece8; --sky2:#f0f6f3; --sky3:#e8f0ed;
+    --grass1:#a0c8bc; --grass2:#1a4a3e; --grass3:#0e2a22;
+    --paper:#f5faf8; --ink:#1a2422; --muted:#6a7a72;
+    --gold:#8a6a2a; --teal:#6a4e1a; --aqua:#dce8e4;
+    --line:#d8e8e0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);
+    font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:rtl}
+  .jf{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:ltr;unicode-bidi:isolate}
+
+  .skybg{position:fixed;inset:0;z-index:-1;
+    background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#eaf2ee 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:#dce8e4;top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:#dcd4b8;top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:#e8f0ed;bottom:-140px;left:18%}
+
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(74,50,56,.16)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;
+    background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#1a4a3e;font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:#0e2a22;letter-spacing:.4px;
+    text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:#6a7a72;font-weight:600}
+
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;
+    box-shadow:0 3px 10px rgba(74,50,56,.07)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(74,50,56,.07)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--grass2);font-weight:800;
+    display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#f0f6f3;border:1.4px solid var(--line);
+    border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(140deg,var(--grass1),var(--grass2));box-shadow:0 2px 0 var(--grass3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--grass3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#fdf6ec;border:1.4px dashed var(--gold);border-radius:13px;
+    padding:10px 13px;font-size:12.5px;color:#2e2208;line-height:1.55}
+  .toc .note b{color:#2e2208}
+
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(74,50,56,.07);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;
+    display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;
+    box-shadow:0 2px 0 var(--grass3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+  h2 .mascot{flex:none;margin-left:auto;display:block}
+  .deko{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:14px 0 0}
+  .deko svg{display:block}
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes floatBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    @keyframes softGlow{0%,100%{filter:drop-shadow(0 0 3px rgba(255,230,176,.5))}50%{filter:drop-shadow(0 0 8px rgba(255,230,176,.8))}}
+    @keyframes gentleSway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+    @keyframes drift{from{transform:translateX(0)}to{transform:translateX(26px)}}
+    @keyframes twinkle{0%,100%{opacity:.35}50%{opacity:1}}
+    @keyframes g14bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+    @keyframes g14drift{0%{transform:translateX(-9px)}100%{transform:translateX(9px)}}
+    @keyframes g14twinkle{0%,100%{opacity:.4}50%{opacity:1}}
+    h2 .mascot,.deko svg{animation:g14bob 2.6s ease-in-out infinite}
+    .deko svg:nth-child(2){animation-delay:.45s}
+    .deko svg:nth-child(3){animation-delay:.9s}
+    .anim-drift{animation:g14drift 8s ease-in-out infinite alternate}
+    .anim-twinkle{animation:g14twinkle 2.2s ease-in-out infinite}
+    .anim-bob{animation:floatBob 3.2s ease-in-out infinite}
+    .anim-glow{animation:softGlow 2.8s ease-in-out infinite}
+    .anim-sway{animation:gentleSway 4s ease-in-out infinite;transform-origin:center bottom}
+    .anim-drift26{animation:drift 9s ease-in-out infinite alternate}
+    .anim-twinkle2{animation:twinkle 2.4s ease-in-out infinite}
+  }
+  @media print{
+    h2 .mascot,.deko svg,.anim-drift,.anim-twinkle,.anim-bob,.anim-glow,.anim-sway,.anim-drift26,.anim-twinkle2{animation:none !important}
+  }
+
+
+  .nota{border-left:5px solid var(--gold);background:#fdf6ec;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol, .nota ul{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#2e2208}
+  .nota li:last-child{margin-bottom:0}
+
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:linear-gradient(135deg,#f0f6f3,#fdf6ec);border:1.5px solid var(--line);
+    border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#dce8e4;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;
+    background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .scorebar .hint2{font-size:12px;color:var(--muted);font-weight:600}
+
+  .qcard{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:13px;
+    background:#f5faf8;transition:box-shadow .25s}
+  .qcard.done{box-shadow:0 3px 12px rgba(26,74,62,.18)}
+  .qhead{display:flex;gap:9px;align-items:flex-start;margin-bottom:11px}
+  .qn{background:var(--teal);color:#fff;min-width:26px;height:26px;border-radius:8px;display:inline-flex;
+    align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+  .qtext{font-weight:700;font-size:14.5px}
+  .opts{display:grid;grid-template-columns:1fr;gap:7px}
+  @media(min-width:640px){.opts{grid-template-columns:1fr 1fr 1fr}}
+  .opt{font-family:inherit;text-align:left;font-size:13.5px;font-weight:600;cursor:pointer;
+    background:#e8f0ed;border:2px solid #d8e8e0;border-radius:11px;padding:9px 12px;color:var(--ink);
+    transition:transform .12s,background .2s,border-color .2s;display:flex;gap:7px;align-items:flex-start}
+  .opt:hover:not(:disabled){transform:translateY(-2px);background:#fff;border-color:var(--teal)}
+  .opt:disabled{cursor:default}
+  .opt .k{font-weight:800;color:var(--teal);flex:none}
+  .opt.ok{background:#dce8e4;border-color:var(--grass2);color:#0e2a22}
+  .opt.ok .k{color:var(--grass3)}
+  .opt.bad{background:#e9efe8;border-color:#2e7a66;color:#1a4a3e}
+  .opt.bad .k{color:#061410}
+  .opt.dim{opacity:.45}
+
+  .fb{display:none;margin-top:11px;border-radius:12px;padding:10px 13px;font-size:13.5px;
+    background:#f0f6f3;border:1.5px dashed var(--grass2);align-items:flex-start;gap:11px}
+  .fb.show{display:flex}
+  .fb.wrong{background:#e8f0ed;border-color:#2e7a66}
+  .fb .face{flex:none;width:52px;height:52px}
+  .fb .txt b{color:var(--grass3)}
+  .fb.wrong .txt b{color:#061410}
+
+  .result{display:none;text-align:center;padding:20px;border-radius:18px;margin-top:6px;
+    background:linear-gradient(135deg,#f0f6f3,#fdf6ec);border:2px solid var(--grass1)}
+  .result.show{display:block}
+  .result .big{font-size:30px;font-weight:800;color:var(--grass3);margin:6px 0}
+  .result .msg{font-size:14.5px;font-weight:600;margin-bottom:12px}
+  .stars{font-size:22px;letter-spacing:3px;margin-bottom:6px}
+  button.act{font-family:inherit;font-size:13.5px;font-weight:700;border-radius:11px;padding:10px 18px;
+    border:2px solid var(--grass2);background:#fff;color:var(--grass3);cursor:pointer;transition:background .2s}
+  button.act:hover{background:var(--grass1);color:#fff}
+  button.act.solid{background:var(--grass2);color:#fff}
+  button.act.solid:hover{background:var(--grass3)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f0f6f3;color:var(--grass3);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  td.c{text-align:center;white-space:nowrap;font-weight:700;color:var(--grass2)}
+  tr:nth-child(even) td{background:#f0f6f3}
+  tr.on td{background:#fdf6ec;font-weight:700}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-top:4px}
+
+  @media print{
+    .hint{display:none}
+    .qcard .opts{pointer-events:none}
+    .qcard .ans{display:block !important}
+    body{background:#fff}
+    .skybg,.blob{display:none}
+    .wrap{max-width:100%;padding:0}
+    .scorebar{display:none}
+    section{box-shadow:none;page-break-inside:avoid;padding:14px 16px}
+    .toc{box-shadow:none;page-break-inside:avoid;break-inside:avoid}
+    h2,.hint{page-break-after:avoid;break-after:avoid}
+    table{font-size:11.6px}
+    th,td{padding:3.5px 8px}
+    .qcard{page-break-inside:avoid;padding:10px 13px;margin-bottom:8px}
+    .qhead .qtext{font-size:13px}
+    .opt{padding:6px 9px;font-size:11.5px;transform:none !important}
+    .fb{margin-top:7px;padding:7px 10px;font-size:11.5px}
+    .fb .face{width:40px;height:40px}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4 portrait;margin:12mm}
+
+</style>
+</head>
+<body>
+
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<!-- ===== Watak kartun (statik) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <g id="adam">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <rect x="57" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <ellipse cx="46" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l7 44 h-56 z" fill="#7fc4b8" stroke="#6a4e1a" stroke-width="2"/>
+    <path d="M36 82 q-13 13 -9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 82 q13 13 9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M39 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="46.5" r="1.9" fill="#fff"/><circle cx="68" cy="46.5" r="1.9" fill="#fff"/>
+    <path d="M55 56 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M49 63 q6 6.5 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="nur">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="43" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <rect x="58" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <ellipse cx="48" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="63" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <path d="M33 78 q22-11 44 0 l12 46 h-68 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <path d="M36 84 q-13 12 -10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 84 q13 12 10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="51.5" r="1.9" fill="#fff"/><circle cx="67" cy="51.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="faceYay">
+    <circle cx="30" cy="30" r="26" fill="#dce8e4" stroke="#1a4a3e" stroke-width="2.5"/>
+    <ellipse cx="22" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="25.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="25.4" r="1.3" fill="#fff"/>
+    <path d="M20 38 q10 9 20 0" stroke="#0e2a22" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="14" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <ellipse cx="46" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <path d="M30 2 l3 5 5 1 -4 4 1 5 -5-3 -5 3 1-5 -4-4 5-1 z" fill="#8a6a2a"/>
+  </g>
+
+  <g id="faceOops">
+    <circle cx="30" cy="30" r="26" fill="#e8f0ed" stroke="#2e7a66" stroke-width="2.5"/>
+    <ellipse cx="22" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="26.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="26.4" r="1.3" fill="#fff"/>
+    <path d="M15 21 q7-5 13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M45 21 q-7-5 -13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M21 41 q9-7 18 0" stroke="#061410" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+    <ellipse cx="47" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+  </g>
+
+  <!-- Burung kecil -->
+  <g id="burung">
+    <path d="M6 16 q-8-7 -5-13 q6 4 8 9 z" fill="#7ab6d8" stroke="#4a8cb0" stroke-width="1.2" stroke-linejoin="round"/>
+    <ellipse cx="20" cy="19" rx="13" ry="10" fill="#8ec6e6" stroke="#4a8cb0" stroke-width="1.4"/>
+    <circle cx="31" cy="12" r="8" fill="#9fd2ec" stroke="#4a8cb0" stroke-width="1.4"/>
+    <path d="M38 11 l7 3 -7 3 z" fill="#e8a94a"/>
+    <circle cx="32" cy="10.5" r="1.8" fill="#2f3b45"/>
+    <path d="M15 26 q5 3 10 0" stroke="#4a8cb0" stroke-width="1.2" fill="none" opacity=".6"/>
+  </g>
+
+  <!-- Awan -->
+  <g id="awan">
+    <g fill="#ffffff">
+      <circle cx="20" cy="27" r="13"/><circle cx="39" cy="19" r="17"/>
+      <circle cx="59" cy="26" r="14"/><rect x="20" y="25" width="39" height="14" rx="7"/>
+    </g>
+    <path d="M8 33 q11 8 31 8 q20 0 31-8" stroke="#dfe8f4" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Pokok besar -->
+  <g id="pokokBesar">
+    <ellipse cx="60" cy="148" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M54 148 v-54 h12 v54 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <path d="M60 106 q-16-6 -22-20" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M60 114 q16-8 22-22" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.4">
+      <ellipse cx="60" cy="50" rx="40" ry="30"/>
+      <ellipse cx="30" cy="70" rx="26" ry="21"/>
+      <ellipse cx="90" cy="70" rx="26" ry="21"/>
+      <ellipse cx="60" cy="86" rx="34" ry="20"/>
+    </g>
+    <g fill="#a9d383" opacity=".7">
+      <ellipse cx="46" cy="42" rx="18" ry="12"/><ellipse cx="82" cy="58" rx="13" ry="9"/>
+    </g>
+  </g>
+
+  <!-- Almari buku: 2 rak, buku berwarna-warni -->
+  <g id="almari">
+    <rect x="0" y="0" width="104" height="150" rx="7" fill="#b98a5a" stroke="#8a6544" stroke-width="2"/>
+    <rect x="7" y="7" width="90" height="60" rx="3" fill="#f2ece0" stroke="#8a6544" stroke-width="1.4"/>
+    <rect x="7" y="75" width="90" height="60" rx="3" fill="#f2ece0" stroke="#8a6544" stroke-width="1.4"/>
+    <rect x="13" y="22" width="10" height="45" rx="2" fill="#c9707f"/>
+    <rect x="25" y="28" width="9" height="39" rx="2" fill="#5b7fa8"/>
+    <rect x="36" y="18" width="11" height="49" rx="2" fill="#8a6a2a"/>
+    <rect x="49" y="30" width="9" height="37" rx="2" fill="#4e9a7e"/>
+    <rect x="60" y="24" width="10" height="43" rx="2" fill="#7fc4b8"/>
+    <rect x="72" y="32" width="8" height="35" rx="2" fill="#b5722c"/>
+    <rect x="82" y="20" width="11" height="47" rx="2" fill="#8a5fc0"/>
+    <rect x="13" y="90" width="11" height="45" rx="2" fill="#4e9a7e"/>
+    <rect x="26" y="96" width="9" height="39" rx="2" fill="#8a6a2a"/>
+    <rect x="37" y="86" width="10" height="49" rx="2" fill="#5b7fa8"/>
+    <rect x="49" y="98" width="9" height="37" rx="2" fill="#c9707f"/>
+    <rect x="60" y="92" width="11" height="43" rx="2" fill="#b5722c"/>
+    <rect x="73" y="100" width="8" height="35" rx="2" fill="#7fc4b8"/>
+    <rect x="83" y="88" width="10" height="47" rx="2" fill="#8a5fc0"/>
+  </g>
+
+  <!-- Rehal (penyandar kitab) dengan al-Quran terbuka -->
+  <g id="rehal">
+    <ellipse cx="40" cy="56" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M10 54 L34 24" stroke="#a87f5c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M70 54 L46 24" stroke="#a87f5c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M15 44 L65 44" stroke="#8a6544" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M6 24 L40 12 L74 24 L74 29 L40 17 L6 29 Z" fill="#fdf6ec" stroke="#cbb99a" stroke-width="1.5"/>
+    <path d="M40 12 v5" stroke="#cbb99a" stroke-width="1.5"/>
+    <g stroke="#cbb99a" stroke-width="1" opacity=".8">
+      <path d="M13 24 h19"/><path d="M13 28 h19"/><path d="M48 24 h19"/><path d="M48 28 h19"/>
+    </g>
+    <path d="M6 24 q-4 6 2 8" stroke="#8a6a2a" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Lampu meja (mentol) -->
+  <g id="lampuMeja">
+    <ellipse cx="26" cy="72" rx="20" ry="4" fill="#000" opacity=".08"/>
+    <rect x="18" y="60" width="16" height="12" rx="3" fill="#6b4f3a" stroke="#4a3610" stroke-width="1.4"/>
+    <rect x="20" y="30" width="12" height="32" rx="3" fill="#6b4f3a" stroke="#4a3610" stroke-width="1.4"/>
+    <path d="M10 30 q16-16 32 0 l-4 6 h-24 z" fill="#8a6a2a" stroke="#4a3610" stroke-width="1.6"/>
+    <ellipse cx="26" cy="34" rx="10" ry="8" fill="#ffe9a8"/>
+    <path d="M26 26 v-8" stroke="#8a6a2a" stroke-width="1.6"/>
+    <circle cx="26" cy="16" r="3" fill="#8a6a2a"/>
+  </g>
+
+  <!-- Mushaf tertutup dengan hiasan emas -->
+  <g id="mushaf">
+    <ellipse cx="42" cy="68" rx="34" ry="5" fill="#000" opacity=".08"/>
+    <rect x="12" y="18" width="70" height="48" rx="4" fill="#f6f1e4" stroke="#cbb99a" stroke-width="1.4"/>
+    <g stroke="#ddd0b6" stroke-width="1.1">
+      <path d="M14 28 h66"/><path d="M14 38 h66"/><path d="M14 48 h66"/><path d="M14 58 h66"/>
+    </g>
+    <rect x="4" y="10" width="72" height="48" rx="4" fill="#1a4a3e" stroke="#0e2a22" stroke-width="2"/>
+    <rect x="9" y="15" width="62" height="38" rx="3" fill="#2e7a66" stroke="#0e2a22" stroke-width="1"/>
+    <path d="M5 15 q-3.5 19 0 38" fill="none" stroke="#0e2a22" stroke-width="3.4" stroke-linecap="round"/>
+    <rect x="15" y="20" width="50" height="28" rx="2.5" fill="none" stroke="#e0b04a" stroke-width="1.2"/>
+    <g fill="#e0b04a">
+      <path d="M40 25 l3.2 6.4 -3.2 6.4 -3.2-6.4 z"/>
+      <circle cx="40" cy="23.4" r="1.9"/>
+      <g stroke="#e0b04a" stroke-width="1.2" stroke-linecap="round">
+        <path d="M22 30 h7 M51 30 h7 M22 38 h7 M51 38 h7"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bulan sabit & bintang -->
+  <g id="bintangBulan">
+    <path d="M24 4 a17 17 0 1 0 15 21 a13.2 13.2 0 1 1 -15-21 z" fill="#e8b44a"/>
+    <path d="M37 5 L39.8 13.6 L48 16.4 L39.8 19.2 L37 28 L34.2 19.2 L26 16.4 L34.2 13.6 Z" fill="#e8b44a"/>
+  </g>
+
+  <!-- Kilauan bintang -->
+  <g id="bintang">
+    <path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="#e8b44a"/>
+  </g>
+
+  <!-- Kepala Adam (mascot kecil) -->
+  <g id="kepalaAdam">
+    <ellipse cx="35" cy="37" rx="26" ry="28" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M9 37 a26 28 0 0 1 52 0 q-8-18 -26-18 q-18 0 -26 18 z" fill="#5a3b28"/>
+    <path d="M21 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M39 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="26" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <ellipse cx="44" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <circle cx="27.8" cy="37.6" r="1.7" fill="#fff"/><circle cx="45.8" cy="37.6" r="1.7" fill="#fff"/>
+    <path d="M35 47 q-3 4 1 5" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M29 54 q6 6 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="17" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="53" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Adam duduk membaca al-Quran -->
+  <g id="adamBaca">
+    <ellipse cx="55" cy="154" rx="35" ry="6" fill="#000" opacity=".08"/>
+    <path d="M20 152 q0-32 35-32 q35 0 35 32 z" fill="#5b7fa8" stroke="#3f5f85" stroke-width="2"/>
+    <ellipse cx="42" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="68" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <path d="M32 80 q23-11 46 0 l10 44 h-66 z" fill="#5b7fa8" stroke="#3f5f85" stroke-width="2"/>
+    <path d="M34 118 q21 9 42 0 l4 12 h-50 z" fill="#7fc4b8" stroke="#3f5f85" stroke-width="1.4"/>
+    <path d="M38 90 q-6 24 4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M72 90 q6 24 -4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="32" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="61" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <path d="M24 124 L55 114 L86 124 L86 132 L55 122 L24 132 Z" fill="#fdf6ec" stroke="#cbb99a" stroke-width="1.5"/>
+    <path d="M55 114 v8" stroke="#cbb99a" stroke-width="1.5"/>
+    <g stroke="#cbb99a" stroke-width="1" opacity=".85">
+      <path d="M31 124 h18"/><path d="M31 128 h18"/><path d="M61 124 h18"/><path d="M61 128 h18"/>
+    </g>
+    <ellipse cx="55" cy="54" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M31 54 a24 26 0 0 1 48 0 q-7-17 -24-17 q-17 0 -24 17 z" fill="#5a3b28"/>
+    <path d="M40 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="53.5" r="1.9" fill="#fff"/><circle cx="67" cy="53.5" r="1.9" fill="#fff"/>
+    <path d="M55 62 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 69 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Nur duduk membaca mushaf -->
+  <g id="nurBaca">
+    <ellipse cx="55" cy="152" rx="32" ry="6" fill="#000" opacity=".08"/>
+    <path d="M22 96 q33-14 66 0 q6 30 0 56 h-66 q-6-26 0-56 z" fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <path d="M34 104 q-13 12 -11 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M76 104 q13 12 11 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.8"/>
+    <path d="M31 44 q24-9 48 0 q-4-24 -24-24 q-20 0 -24 24 z" fill="#f2b8c6"/>
+    <path d="M43 46 q6-4 11 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M56 46 q6-4 11 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M47 60 q8 6 16 0" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="56" rx="5" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="56" rx="5" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+    <path d="M28 118 q27-9 54 0 v18 q-27-8 -54 0 z" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M55 121 v15" stroke="#cbb99a" stroke-width="1.3"/>
+    <g stroke="#cfc7b0" stroke-width="1.1"><path d="M34 124 h16"/><path d="M34 130 h16"/><path d="M60 124 h16"/><path d="M60 130 h16"/></g>
+    <path d="M28 128 q-11 2 -13 12 q9 3 13-6 z" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <path d="M82 128 q11 2 13 12 q-9 3 -13-6 z" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+  </g>
+
+  <!-- Kucing tidur -->
+  <g id="kucingTidur">
+    <ellipse cx="33" cy="36" rx="30" ry="4" fill="#000" opacity=".07"/>
+    <path d="M6 34 q-2-22 27-22 q29 0 27 22 z" fill="#f4d8a8" stroke="#c9a86b" stroke-width="1.6"/>
+    <path d="M52 32 q14-4 12-16" stroke="#c9a86b" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M12 14 l-3-11 11 6 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M32 14 l3-11 -11 6 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M13 24 q6-5 12 0" stroke="#4a3b2f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M31 24 q6-5 12 0" stroke="#4a3b2f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M22 31 q5 4 10 0" stroke="#a8794f" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="30" rx="4" ry="2.4" fill="#e88ba0" opacity=".4"/>
+    <ellipse cx="43" cy="30" rx="4" ry="2.4" fill="#e88ba0" opacity=".4"/>
+  </g>
+
+  <!-- Semak kecil -->
+  <g id="semak">
+    <ellipse cx="34" cy="44" rx="30" ry="4" fill="#000" opacity=".06"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.3">
+      <circle cx="18" cy="32" r="15"/><circle cx="38" cy="24" r="18"/><circle cx="56" cy="33" r="14"/>
+    </g>
+    <g fill="#a9d383" opacity=".65">
+      <circle cx="30" cy="20" r="7"/><circle cx="52" cy="28" r="5"/>
+    </g>
+  </g>
+
+  <!-- Bintang prestasi (pingat) -->
+  <g id="bintangPrestasi">
+    <path d="M30 4 l6 15 16 1 -12 11 4 16 -14-8 -14 8 4-16 -12-11 16-1 z"
+          fill="#e0b04a" stroke="#a87a1c" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M30 12 l3.6 9 9.6 .6 -7.2 6.6 2.4 9.6 -8.4-4.8 -8.4 4.8 2.4-9.6 -7.2-6.6 9.6-.6 z"
+          fill="#f6dfa0" opacity=".75"/>
+    <path d="M22 48 l-7 20 15-9 15 9 -7-20 z" fill="#6a4e1a" stroke="#4a3610" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M30 4 v-4" stroke="#a87a1c" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Pokok ilmu: dahan dengan buah bintang -->
+  <g id="pokokIlmu">
+    <ellipse cx="65" cy="152" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M58 152 v-56 h14 v56 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <path d="M65 110 q-18-8 -24-24" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M65 118 q18-10 24-26" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.4">
+      <ellipse cx="65" cy="52" rx="42" ry="32"/>
+      <ellipse cx="32" cy="72" rx="26" ry="21"/>
+      <ellipse cx="98" cy="72" rx="26" ry="21"/>
+      <ellipse cx="65" cy="88" rx="36" ry="21"/>
+    </g>
+    <g fill="#a9d383" opacity=".7">
+      <ellipse cx="50" cy="44" rx="19" ry="13"/><ellipse cx="88" cy="60" rx="14" ry="9"/>
+    </g>
+    <g fill="#e0b04a" stroke="#a87a1c" stroke-width="1.2">
+      <path d="M40 30 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+      <path d="M86 40 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+      <path d="M64 68 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+    </g>
+  </g>
+
+</defs>
+</svg>
+
+<div class="wrap">
+
+<!-- ===== HERO (Tahun 5 Unit 6) — kanak-kanak membaca al-Quran di sudut bacaan dengan lampu mentol, awan dan burung di luar tingkap ===== -->
+  <div class="hero">
+    <svg viewBox="0 0 940 300" role="img" aria-label="Ilustrasi: kanak-kanak membaca al-Quran di sudut bacaan dengan lampu mentol, rak buku, dan awan burung di luar tingkap">
+      <defs>
+        <linearGradient id="h6sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#e0ece8"/>
+          <stop offset="45%" stop-color="#e8f0ed"/>
+          <stop offset="100%" stop-color="#f0f6f3"/>
+        </linearGradient>
+        <linearGradient id="h6gnd" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#a0c8bc"/>
+          <stop offset="100%" stop-color="#1a4a3e"/>
+        </linearGradient>
+        <radialGradient id="h6lamp">
+          <stop offset="0%" stop-color="#ffe9a8" stop-opacity="0.75"/>
+          <stop offset="100%" stop-color="#ffe9a8" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="h6glow">
+          <stop offset="0%" stop-color="#8a6a2a" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#8a6a2a" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- wall background -->
+      <rect width="940" height="300" fill="url(#h6sky)"/>
+
+      <!-- window with sky + clouds + birds -->
+      <rect x="560" y="30" width="320" height="150" rx="10" fill="#c8e4dc" stroke="#1a4a3e" stroke-width="2.5"/>
+      <rect x="565" y="35" width="310" height="140" rx="6" fill="#dce8e4"/>
+      <!-- window cross bars -->
+      <rect x="715" y="35" width="6" height="140" fill="#1a4a3e" opacity="0.45"/>
+      <rect x="565" y="102" width="310" height="6" fill="#1a4a3e" opacity="0.45"/>
+      <!-- distant hills through window -->
+      <path d="M565 130 Q640 100 715 120 Q790 95 875 125 L875 175 L565 175 Z" fill="#a0c8bc" opacity="0.6"/>
+      <!-- clouds through window -->
+      <g class="anim-drift26" transform="translate(580,55) scale(0.5)"><use href="#awan"/></g>
+      <g class="anim-drift26" transform="translate(760,70) scale(0.4)"><use href="#awan" opacity="0.8"/></g>
+      <!-- birds through window -->
+      <g class="anim-bob" transform="translate(680,55) scale(0.45)"><use href="#burung"/></g>
+      <g class="anim-bob" transform="translate(780,45) scale(0.35)"><use href="#burung"/></g>
+
+      <!-- floor -->
+      <path d="M0,235 Q240,225 480,232 T940,228 L940,300 L0,300 Z" fill="url(#h6gnd)"/>
+      <!-- floor rug hint -->
+      <ellipse cx="380" cy="248" rx="260" ry="18" fill="#1a4a3e" opacity="0.18"/>
+
+      <!-- bookshelf right-back -->
+      <g transform="translate(120,60) scale(0.72)"><use href="#almari"/></g>
+
+      <!-- lamp glow -->
+      <ellipse cx="430" cy="160" rx="120" ry="70" fill="url(#h6lamp)"/>
+      <circle cx="880" cy="50" r="40" fill="url(#h6glow)"/>
+
+      <!-- desk + rehal + child reading -->
+      <g transform="translate(280,155)">
+        <!-- desk -->
+        <rect x="0" y="72" width="300" height="14" rx="4" fill="#c49a63" stroke="#8a6544" stroke-width="1.6"/>
+        <rect x="10" y="86" width="10" height="42" rx="3" fill="#a8825c" stroke="#8a6544" stroke-width="1.2"/>
+        <rect x="280" y="86" width="10" height="42" rx="3" fill="#a8825c" stroke="#8a6544" stroke-width="1.2"/>
+        <!-- rehal with Quran -->
+        <g transform="translate(105,-4) scale(1.1)"><use href="#rehal"/></g>
+        <!-- child (Adam) sitting reading -->
+        <g transform="translate(150,10) scale(0.95)"><use href="#adamBaca"/></g>
+        <!-- lamp -->
+        <g transform="translate(240,-10) scale(0.9)" class="anim-glow"><use href="#lampuMeja"/></g>
+      </g>
+
+      <!-- small plant pot left -->
+      <g transform="translate(80,150) scale(0.6)"><use href="#semak"/></g>
+
+      <!-- Arabic calligraphy floating (decorative) -->
+      <g opacity="0.14" fill="#1a4a3e">
+        <text x="350" y="50" class="jf" font-family="Scheherazade New, serif" font-size="34" font-style="italic" text-anchor="middle">&#1575;&#1604;&#1618;&#1581;&#1614;&#1605;&#1618;&#1583;&#1615; &#1604;&#1604;&#1617;&#1648;&#1607;&#1616;</text>
+        <text x="690" y="220" class="jf" font-family="Scheherazade New, serif" font-size="26" font-style="italic" text-anchor="middle" opacity="0.8">&#1575;&#1602;&#1618;&#1585;&#1614;&#1571;&#1618;</text>
+      </g>
+
+      <!-- sparkles -->
+      <g class="anim-twinkle2" opacity="0.8"><use href="#bintang" transform="translate(180,90) scale(0.35)"/></g>
+      <g class="anim-twinkle2" opacity="0.6"><use href="#bintang" transform="translate(520,70) scale(0.25)"/></g>
+      <g class="anim-twinkle2" opacity="0.7"><use href="#bintang" transform="translate(860,170) scale(0.3)"/></g>
+    </svg>
+    <div class="hero-txt">
+      <div class="kick">Pendidikan Islam &bull; Tahun 5 &bull; Bidang al-Quran</div>
+      <h1>Hukum Mad</h1>
+      <div class="sub">Tajwid &bull; 5 Standard Pembelajaran &bull; Membaca al-Quran dengan betul</div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="chip"><div class="lbl">Bidang</div><div class="val">al-Quran (Tajwid)</div></div>
+    <div class="chip"><div class="lbl">Standard Kandungan (SK)</div><div class="val">Membaca ayat al-Quran dengan betul mengikut <b>hukum tajwid mad</b></div></div>
+    <div class="chip"><div class="lbl">Standard Pembelajaran (SP)</div><div class="val">1.6.1 &ndash; 1.6.4</div></div>
+    <div class="chip"><div class="lbl">Sumber</div><div class="val">DSKP PI T5 (ms. 25) &bull; Buku Teks PI T5 SK (ms. 28&ndash;36)</div></div>
+  </div>
+
+  <div class="toc">
+    <div class="ttl">Kandungan &amp; Panduan Penggunaan</div>
+    <div class="grid">
+      <div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">Definisi mad, 3 huruf mad, 5 jenis mad dengan contoh ayat al-Quran</div></div></div>
+      <div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">Hukum Mad bercabang kepada 5 jenis: tabi&lsquo;i, silah qasirah, badal, &lsquo;iwad, tamkin</div></div></div>
+      <div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">10 poin ringkasan untuk rujukan pantas</div></div></div>
+      <div class="it"><div class="n">4</div><div><div class="t">Diagram Perbandingan</div><div class="d">Jadual 5 jenis mad: nama, hukum, contoh, harakat</div></div></div>
+      <div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan dengan maklum balas segera</div></div></div>
+      <div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Senarai 24 Standard Kandungan PI Tahun 5</div></div></div>
+    </div>
+    <div class="note"><b>Cara guna:</b> Buka fail ini dalam pelayar web. Pada kuiz, klik pilihan jawapan untuk maklum balas segera dan skor automatik. Tekan butang <b>Cetak / Simpan PDF</b> untuk versi kertas &mdash; semua jawapan akan dipaparkan secara automatik supaya boleh dijadikan lembaran kerja.</div>
+  </div>
+
+<!-- ===== 1. INFOGRAFIK ===== -->
+<section id="infografik">
+  <h2><span class="num">1</span> Infografik</h2>
+  <p class="hint">Rujuk Buku Teks PI T5 ms. 28&ndash;36 dan DSKP ms. 25. Setiap jenis mad dibaca 2 harakat melainkan mad tamkin.</p>
+  <svg class="art" viewBox="0 0 820 1150" xmlns="http://www.w3.org/2000/svg" aria-label="Infografik 5 jenis Hukum Mad">
+    <defs>
+      <linearGradient id="gh6u6" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a4a3e"/><stop offset="100%" stop-color="#0e2a22"/>
+      </linearGradient>
+      <linearGradient id="gd6u6" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#dce8e4"/><stop offset="100%" stop-color="#f5faf8"/>
+      </linearGradient>
+      <linearGradient id="gg6u6" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fdf6ec"/><stop offset="100%" stop-color="#f5e6c8"/>
+      </linearGradient>
+    </defs>
+    <rect width="820" height="1150" fill="#f5faf8"/>
+
+    <!-- title bar -->
+    <rect x="0" y="0" width="820" height="56" fill="url(#gh6u6)"/>
+    <text x="410" y="36" font-family="Trebuchet MS,Segoe UI,Arial" font-size="20" font-weight="700" fill="#f5faf8" text-anchor="middle">MAKLUMAT HUKUM MAD</text>
+    <text x="410" y="50" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#dce8e4" text-anchor="middle">Mad = memanjangkan suara huruf hijaiyyah &bull; 3 huruf mad: alif (ا) waw (و) ya (ي)</text>
+
+    <!-- definition strip -->
+    <rect x="20" y="70" width="780" height="56" rx="10" fill="url(#gg6u6)" stroke="#8a6a2a" stroke-width="1.4"/>
+    <text x="410" y="96" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="700" fill="#2e2208" text-anchor="middle">DEFINISI: Mad ertinya &lsquo;memanjangkan&rsquo; bunyi suara huruf hijaiyyah.</text>
+    <text x="410" y="116" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#4a3b2f" text-anchor="middle">Huruf mad ada 3: alif (ا) selepas fathah &bull; waw (و) selepas dhammah &bull; ya (ي) selepas kasrah</text>
+
+    <!-- PANEL 1: Mad Tabi'i -->
+    <rect x="20" y="142" width="780" height="186" rx="12" fill="url(#gd6u6)" stroke="#d8e8e0" stroke-width="1.4"/>
+    <rect x="20" y="142" width="12" height="186" rx="6" fill="#1a4a3e"/>
+    <text x="44" y="170" font-family="Trebuchet MS,Segoe UI,Arial" font-size="16" font-weight="800" fill="#0e2a22">1. MAD TABI&lsquo;I (Mad Asli)</text>
+    <text x="44" y="188" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#4a3b2f">Huruf mad datang selepas huruf berbaris di atas (fathah &rarr; ا), dhammah (&rarr; و), kasrah (&rarr; ي). Dibaca 2 harakat.</text>
+    <!-- example Arabic -->
+    <text x="320" y="222" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="30" fill="#1a4a3e" direction="ltr" unicode-bidi="isolate" text-anchor="middle">&#1615;&#1571;&#1614;&#1604;&#1618;&#1581;&#1614;&#1605;&#1618;&#1583;&#1615; &#1604;&#1616;&#1604;&#1617;&#1648;&#1607;&#1616; &#1585;&#1614;&#1576;&#1617;&#1616; &#1575;&#1604;&#1618;&#1593;&#1648;&#1647;&#1648;&#1604;&#1614;&#1605;&#1616;&#1610;&#1618;&#1606;&#1614;</text>
+    <text x="320" y="246" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#6a7a72" text-anchor="middle">alif selepas fathah &bull; waw selepas dhammah &bull; ya selepas kasrah</text>
+    <!-- 2 harakat indicator: sound waves -->
+    <g transform="translate(560,220)">
+      <text x="0" y="-8" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" font-weight="700" fill="#1a4a3e">2 HARAKAT</text>
+      <path d="M0 10 q8-8 16 0 q8-8 16 0 q8-8 16 0" stroke="#8a6a2a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M56 10 q8-8 16 0 q8-8 16 0" stroke="#8a6a2a" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <circle cx="0" cy="10" r="3" fill="#1a4a3e"/><circle cx="72" cy="10" r="3" fill="#1a4a3e"/>
+    </g>
+    <!-- child demo -->
+    <g transform="translate(580,250) scale(0.32)" class="anim-bob"><use href="#adamBaca"/></g>
+
+    <!-- PANEL 2: Mad Silah Qasirah -->
+    <rect x="20" y="344" width="780" height="186" rx="12" fill="url(#gd6u6)" stroke="#d8e8e0" stroke-width="1.4"/>
+    <rect x="20" y="344" width="12" height="186" rx="6" fill="#2e7a66"/>
+    <text x="44" y="372" font-family="Trebuchet MS,Segoe UI,Arial" font-size="16" font-weight="800" fill="#0e2a22">2. MAD SILAH QASIRAH</text>
+    <text x="44" y="390" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#4a3b2f">Ha (ه) kata ganti nama dhamir mufrad mudhakkar, didahului dhammah (&rarr; hu) atau kasrah (&rarr; hi), dibaca 2 harakat.</text>
+    <!-- example -->
+    <text x="290" y="424" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="30" fill="#1a4a3e" direction="ltr" unicode-bidi="isolate" text-anchor="middle">&#1573;&#1616;&#1606;&#1618; &#1575;&#1604;&#1617;&#1648;&#1607;&#1615;&#1653; &#1604;&#1614;&#1607;&#1615;&#1653; &#1601;&#1616;&#1610;&#1607;&#1616; &#1603;&#1616;&#1578;&#1648;&#1640;&#1576;&#1616;&#1607;&#1616;</text>
+    <text x="290" y="448" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#6a7a72" text-anchor="middle">hu (dhammah) &bull; hi (kasrah) &bull; tanda: waw kecil (ۥ) atau ya kecil pada mushaf Uthmani</text>
+    <!-- 2 harakat: fingers -->
+    <g transform="translate(560,420)">
+      <text x="0" y="-8" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" font-weight="700" fill="#1a4a3e">2 HARAKAT</text>
+      <g stroke="#8a6a2a" stroke-width="3" stroke-linecap="round" fill="none">
+        <path d="M4 6 v-12"/><path d="M16 6 v-12"/><path d="M28 6 v-12"/>
+      </g>
+      <rect x="0" y="6" width="32" height="8" rx="3" fill="#8a6a2a"/>
+      <text x="16" y="28" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10" fill="#4a3b2f" text-anchor="middle">2 jari</text>
+    </g>
+    <g transform="translate(580,450) scale(0.32)" class="anim-bob"><use href="#nurBaca"/></g>
+
+    <!-- PANEL 3: Mad Badal -->
+    <rect x="20" y="546" width="780" height="186" rx="12" fill="url(#gd6u6)" stroke="#d8e8e0" stroke-width="1.4"/>
+    <rect x="20" y="546" width="12" height="186" rx="6" fill="#8a6a2a"/>
+    <text x="44" y="574" font-family="Trebuchet MS,Segoe UI,Arial" font-size="16" font-weight="800" fill="#0e2a22">3. MAD BADAL (Mad Mutlaq / Maftuh)</text>
+    <text x="44" y="592" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#4a3b2f">Huruf hamzah (ء) bertemu huruf mad (ا و ي) dalam satu perkataan. Dibaca 2 harakat.</text>
+    <text x="290" y="626" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="30" fill="#1a4a3e" direction="ltr" unicode-bidi="isolate" text-anchor="middle">&#1649;&#1648;&#1573;&#1648;&#1583;&#1648;&#1605;&#1614; &#1649;&#1616;&#1610;&#1618;&#1605;&#1648;&#1640;&#1606;&#1615; &#1649;&#1615;&#1648;&#1651;&#1648;&#1578;&#1615;&#1648;&#1651;&#1648;</text>
+    <text x="290" y="650" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#6a7a72" text-anchor="middle">alif selepas hamzah fathah &bull; ya selepas hamzah kasrah &bull; waw selepas hamzah dhammah</text>
+    <g transform="translate(560,620)">
+      <text x="0" y="-8" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" font-weight="700" fill="#1a4a3e">2 HARAKAT</text>
+      <path d="M0 10 q8-8 16 0 q8-8 16 0 q8-8 16 0" stroke="#8a6a2a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M56 10 q8-8 16 0 q8-8 16 0" stroke="#8a6a2a" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <circle cx="0" cy="10" r="3" fill="#1a4a3e"/><circle cx="72" cy="10" r="3" fill="#1a4a3e"/>
+    </g>
+    <g transform="translate(580,650) scale(0.32)" class="anim-bob"><use href="#adamBaca"/></g>
+
+    <!-- PANEL 4: Mad 'Iwad -->
+    <rect x="20" y="748" width="780" height="186" rx="12" fill="url(#gd6u6)" stroke="#d8e8e0" stroke-width="1.4"/>
+    <rect x="20" y="748" width="12" height="186" rx="6" fill="#b5722c"/>
+    <text x="44" y="776" font-family="Trebuchet MS,Segoe UI,Arial" font-size="16" font-weight="800" fill="#0e2a22">4. MAD &lsquo;IWAD</text>
+    <text x="44" y="794" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#4a3b2f">Menggantikan tanwin fathah (ـً) dengan alif (ا) ketika waqaf (berhenti). Hanya pada fathatain, bukan dhammah/kasrah.</text>
+    <text x="290" y="828" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="30" fill="#1a4a3e" direction="ltr" unicode-bidi="isolate" text-anchor="middle">&#1593;&#1614;&#1604;&#1616;&#1610;&#1618;&#1605;&#1612; &#8594; &#1593;&#1614;&#1604;&#1616;&#1610;&#1618;&#1605;&#1648;&#1575;</text>
+    <text x="290" y="852" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#6a7a72" text-anchor="middle">tanwin fathah diganti alif ketika waqaf &bull; رَحِيمٌ (dhammah) tiada &lsquo;iwad</text>
+    <g transform="translate(560,820)">
+      <text x="0" y="-8" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" font-weight="700" fill="#1a4a3e">2 HARAKAT</text>
+      <g stroke="#8a6a2a" stroke-width="3" stroke-linecap="round" fill="none">
+        <path d="M4 6 v-12"/><path d="M16 6 v-12"/><path d="M28 6 v-12"/>
+      </g>
+      <rect x="0" y="6" width="32" height="8" rx="3" fill="#8a6a2a"/>
+      <text x="16" y="28" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10" fill="#4a3b2f" text-anchor="middle">2 jari</text>
+    </g>
+    <g transform="translate(580,850) scale(0.32)" class="anim-bob"><use href="#nurBaca"/></g>
+
+    <!-- PANEL 5: Mad Tamkin -->
+    <rect x="20" y="950" width="780" height="186" rx="12" fill="url(#gd6u6)" stroke="#d8e8e0" stroke-width="1.4"/>
+    <rect x="20" y="950" width="12" height="186" rx="6" fill="#4e9a7e"/>
+    <text x="44" y="978" font-family="Trebuchet MS,Segoe UI,Arial" font-size="16" font-weight="800" fill="#0e2a22">5. MAD TAMKIN</text>
+    <text x="44" y="996" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#4a3b2f">Huruf berbaris kasrah (ـِ) bertemu huruf ya bersabdu (يّ). Dibaca 2&ndash;6 harakat (bergantung). Nama lain: mad lin.</text>
+    <text x="290" y="1030" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="30" fill="#1a4a3e" direction="ltr" unicode-bidi="isolate" text-anchor="middle">&#1573;&#1616;&#1606;&#1618; &#1575;&#1604;&#1618;&#1605;&#1615;&#1580;&#1618;&#1585;&#1616;&#1605;&#1616;&#1610;&#1618;&#1606;&#1614;</text>
+    <text x="290" y="1054" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#6a7a72" text-anchor="middle">kasrah + ya sabdu (isymu&lsquo;izam) &bull; contoh lain: ٱلْحَمِينِ</text>
+    <g transform="translate(540,1020)">
+      <text x="0" y="-8" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" font-weight="700" fill="#1a4a3e">2&ndash;6 HARAKAT</text>
+      <path d="M0 10 q8-8 16 0 q8-8 16 0 q8-8 16 0 q8-8 16 0" stroke="#8a6a2a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M64 10 q8-8 16 0 q8-8 16 0" stroke="#8a6a2a" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <circle cx="0" cy="10" r="3" fill="#1a4a3e"/><circle cx="80" cy="10" r="3" fill="#1a4a3e"/>
+    </g>
+    <g transform="translate(580,1050) scale(0.32)" class="anim-bob"><use href="#adamBaca"/></g>
+
+    <!-- footer line -->
+    <text x="410" y="1138" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6a7a72" text-anchor="middle">Dalil pembuka bidang al-Quran T5: ٱقْرَأْ بِٱسْمِ رَبِّكَ ٱلَّذِى خَلَقَ (Surah al-&lsquo;Alaq 96:1)</text>
+  </svg>
+</section>
+
+<!-- ===== 2. PETA MINDA ===== -->
+<section id="peta-minda">
+  <h2><span class="num">2</span> Peta Minda</h2>
+  <p class="hint">Hukum Mad terbahagi kepada 5 jenis utama yang dipelajari di Tahun 5.</p>
+  <svg class="art" viewBox="0 0 820 730" xmlns="http://www.w3.org/2000/svg" aria-label="Peta Minda Hukum Mad">
+    <defs>
+      <linearGradient id="gh6u6pm" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a4a3e"/><stop offset="100%" stop-color="#0e2a22"/>
+      </linearGradient>
+      <linearGradient id="gc6u6pm" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#dce8e4"/><stop offset="100%" stop-color="#f5faf8"/>
+      </linearGradient>
+    </defs>
+    <rect width="820" height="730" fill="#f5faf8"/>
+
+    <!-- title -->
+    <rect x="0" y="0" width="820" height="50" fill="url(#gh6u6pm)"/>
+    <text x="410" y="32" font-family="Trebuchet MS,Segoe UI,Arial" font-size="18" font-weight="700" fill="#f5faf8" text-anchor="middle">PETA MINDA: HUKUM MAD</text>
+
+    <!-- center node -->
+    <ellipse cx="410" cy="120" rx="120" ry="46" fill="url(#gh6u6pm)" stroke="#0e2a22" stroke-width="2"/>
+    <text x="410" y="116" font-family="Trebuchet MS,Segoe UI,Arial" font-size="18" font-weight="800" fill="#fdf6ec" text-anchor="middle">HUKUM MAD</text>
+    <text x="410" y="138" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#dce8e4" text-anchor="middle">memanjangkan suara &bull; 3 huruf: ا و ي</text>
+
+    <!-- branches: curved organic lines to 5 nodes -->
+    <!-- to 1 (bottom-left) -->
+    <path d="M320 162 Q220 230 150 310" stroke="#1a4a3e" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <!-- to 2 (left) -->
+    <path d="M370 164 Q310 240 260 310" stroke="#2e7a66" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <!-- to 3 (center) -->
+    <path d="M410 166 L410 310" stroke="#8a6a2a" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <!-- to 4 (right) -->
+    <path d="M450 164 Q510 240 560 310" stroke="#b5722c" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <!-- to 5 (bottom-right) -->
+    <path d="M500 162 Q600 230 670 310" stroke="#4e9a7e" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+
+    <!-- node 1: Mad Tabi'i -->
+    <rect x="20" y="310" width="140" height="120" rx="12" fill="url(#gc6u6pm)" stroke="#1a4a3e" stroke-width="1.6"/>
+    <text x="90" y="340" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#1a4a3e" text-anchor="middle">MAD TABI&lsquo;I</text>
+    <text x="90" y="358" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f" text-anchor="middle">(mad asli)</text>
+    <text x="90" y="378" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">fathah + ا</text>
+    <text x="90" y="394" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">dhammah + و</text>
+    <text x="90" y="410" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">kasrah + ي</text>
+    <text x="90" y="424" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" font-weight="700" fill="#8a6a2a" text-anchor="middle">2 harakat</text>
+
+    <!-- node 2: Mad Silah Qasirah -->
+    <rect x="180" y="310" width="140" height="120" rx="12" fill="url(#gc6u6pm)" stroke="#2e7a66" stroke-width="1.6"/>
+    <text x="250" y="340" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#2e7a66" text-anchor="middle">MAD SILAH</text>
+    <text x="250" y="356" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#2e7a66" text-anchor="middle">QASIRAH</text>
+    <text x="250" y="376" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">ha (ه) dhamir</text>
+    <text x="250" y="392" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">dhammah &rarr; hu</text>
+    <text x="250" y="408" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">kasrah &rarr; hi</text>
+    <text x="250" y="424" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" font-weight="700" fill="#8a6a2a" text-anchor="middle">2 harakat</text>
+
+    <!-- node 3: Mad Badal -->
+    <rect x="340" y="310" width="140" height="120" rx="12" fill="url(#gc6u6pm)" stroke="#8a6a2a" stroke-width="1.6"/>
+    <text x="410" y="340" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#8a6a2a" text-anchor="middle">MAD BADAL</text>
+    <text x="410" y="358" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f" text-anchor="middle">(mutlaq / maftuh)</text>
+    <text x="410" y="378" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">hamzah + mad</text>
+    <text x="410" y="394" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">ء + ا / و / ي</text>
+    <text x="410" y="410" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">dalam 1 perkataan</text>
+    <text x="410" y="424" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" font-weight="700" fill="#8a6a2a" text-anchor="middle">2 harakat</text>
+
+    <!-- node 4: Mad 'Iwad -->
+    <rect x="500" y="310" width="140" height="120" rx="12" fill="url(#gc6u6pm)" stroke="#b5722c" stroke-width="1.6"/>
+    <text x="570" y="340" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#b5722c" text-anchor="middle">MAD &lsquo;IWAD</text>
+    <text x="570" y="358" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f" text-anchor="middle">(mengganti)</text>
+    <text x="570" y="378" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">tanwin fathah</text>
+    <text x="570" y="394" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">&rarr; alif (waqaf)</text>
+    <text x="570" y="410" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">hanya fathatain</text>
+    <text x="570" y="424" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" font-weight="700" fill="#8a6a2a" text-anchor="middle">2 harakat</text>
+
+    <!-- node 5: Mad Tamkin -->
+    <rect x="660" y="310" width="140" height="120" rx="12" fill="url(#gc6u6pm)" stroke="#4e9a7e" stroke-width="1.6"/>
+    <text x="730" y="340" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#4e9a7e" text-anchor="middle">MAD TAMKIN</text>
+    <text x="730" y="358" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f" text-anchor="middle">(mad lin)</text>
+    <text x="730" y="378" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">kasrah + ya sabdu</text>
+    <text x="730" y="394" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">ـِ + يّ</text>
+    <text x="730" y="410" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">isymu&lsquo;izam</text>
+    <text x="730" y="424" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" font-weight="700" fill="#8a6a2a" text-anchor="middle">2&ndash;6 harakat</text>
+
+    <!-- examples row -->
+    <text x="410" y="470" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#1a4a3e" text-anchor="middle">CONTOH AYAT AL-QURAN</text>
+    <g class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="18" fill="#1a4a3e" direction="ltr" unicode-bidi="isolate" text-anchor="middle">
+      <text x="90" y="500">قَالَ</text>
+      <text x="250" y="500">إِنَّهُۥ</text>
+      <text x="410" y="500">ءَادَمَ</text>
+      <text x="570" y="500">عَلِيمًا</text>
+      <text x="730" y="500">ٱلْمُجْرِمِينَ</text>
+    </g>
+
+    <!-- illustration row -->
+    <g transform="translate(40,520) scale(0.28)"><use href="#rehal"/></g>
+    <g transform="translate(200,520) scale(0.28)"><use href="#mushaf"/></g>
+    <g transform="translate(360,520) scale(0.28)"><use href="#rehal"/></g>
+    <g transform="translate(520,520) scale(0.28)"><use href="#mushaf"/></g>
+    <g transform="translate(680,520) scale(0.28)"><use href="#rehal"/></g>
+
+    <!-- summary banner -->
+    <rect x="20" y="640" width="780" height="60" rx="10" fill="#1a4a3e"/>
+    <text x="410" y="676" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="700" fill="#f5faf8" text-anchor="middle">KESIMPULAN: Semua jenis mad dibaca dengan memanjangkan suara huruf mad (ا و ي).</text>
+
+    <!-- footer -->
+    <text x="410" y="720" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6a7a72" text-anchor="middle">Sumber: DSKP PI T5 (ms. 25) &bull; Buku Teks PI T5 (ms. 28&ndash;36) &bull; KSSR Semakan 2017</text>
+  </svg>
+</section>
+
+<!-- ===== 3. NOTA RINGKAS ===== -->
+<section id="nota-ringkas">
+  <h2><span class="num">3</span> Nota Ringkas</h2>
+  <div class="nota">
+    <ol>
+      <li><b>Definisi Mad:</b> Mad bererti &lsquo;memanjangkan&rsquo; bunyi suara huruf hijaiyyah apabila bertemu huruf mad.</li>
+      <li><b>3 huruf mad:</b> alif (ا), waw (و), dan ya (ي).</li>
+      <li><b>Mad Tabi&lsquo;i (mad asli):</b> huruf mad selepas fathah/dhammah/kasrah. Contoh: قَالَ، يَقُولُ، قِيلَ. Dibaca 2 harakat.</li>
+      <li><b>Mad Silah Qasirah:</b> ha (ه) dhamir didahului dhammah (&rarr; hu) atau kasrah (&rarr; hi). Contoh: إِنَّهُۥ، فِيهِ. Dibaca 2 harakat.</li>
+      <li><b>Mad Badal:</b> hamzah (ء) bertemu huruf mad dalam satu perkataan. Contoh: ءَادَمَ، إِيمَانٌ. Dibaca 2 harakat.</li>
+      <li><b>Mad &lsquo;Iwad:</b> tanwin fathah (ـً) diganti alif (ا) ketika waqaf. Contoh: عَلِيمًا &rarr; عَلِيمَا. Hanya fathatain.</li>
+      <li><b>Mad Tamkin:</b> huruf berbaris kasrah (ـِ) bertemu ya bersabdu (يّ). Contoh: ٱلْمُجْرِمِينَ. Dibaca 2&ndash;6 harakat.</li>
+      <li><b>Dalil pembuka bidang:</b> Surah al-&lsquo;Alaq 96:1 &mdash; &ldquo;Bacalah dengan nama Tuhanmu&rdquo; &mdash; membaca al-Quran dengan tartil wajib mengikut hukum tajwid.</li>
+      <li><b>Pengaplikasian:</b> Hukum mad diamalkan dalam bacaan al-Quran harian supaya bacaan menjadi betul, lancar dan sesuai dengan tajwid.</li>
+      <li><b>Kepentingan:</b> Membaca al-Quran dengan hukum mad yang betul memelihara keaslian bacaan dan memperoleh pahala yang berkat.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== 4. DIAGRAM ===== -->
+<section id="diagram">
+  <h2><span class="num">4</span> Diagram Perbandingan 5 Jenis Mad</h2>
+  <p class="hint">Jadual perbandingan ringkas: nama, hukum, contoh, dan bilangan harakat.</p>
+  <svg class="art" viewBox="0 0 820 430" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram perbandingan 5 jenis Hukum Mad">
+    <defs>
+      <linearGradient id="gh6u6d" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a4a3e"/><stop offset="100%" stop-color="#0e2a22"/>
+      </linearGradient>
+      <linearGradient id="gd6u6d1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#dce8e4"/><stop offset="100%" stop-color="#f5faf8"/>
+      </linearGradient>
+    </defs>
+    <rect width="820" height="430" fill="#f5faf8"/>
+
+    <!-- title -->
+    <rect x="0" y="0" width="820" height="50" fill="url(#gh6u6d)"/>
+    <text x="410" y="32" font-family="Trebuchet MS,Segoe UI,Arial" font-size="18" font-weight="700" fill="#f5faf8" text-anchor="middle">JADUAL PERBANDINGAN HUKUM MAD</text>
+
+    <!-- header row -->
+    <rect x="20" y="60" width="780" height="36" fill="#1a4a3e" rx="4"/>
+    <text x="110" y="83" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#dce8e4" text-anchor="middle">JENIS MAD</text>
+    <text x="340" y="83" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#dce8e4" text-anchor="middle">HUKUM</text>
+    <text x="560" y="83" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#dce8e4" text-anchor="middle">CONTOH</text>
+    <text x="740" y="83" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#dce8e4" text-anchor="middle">HARAKAT</text>
+
+    <!-- row 1: Mad Tabi'i -->
+    <rect x="20" y="100" width="780" height="56" rx="6" fill="url(#gd6u6d1)" stroke="#d8e8e0" stroke-width="1"/>
+    <rect x="20" y="100" width="8" height="56" rx="4" fill="#1a4a3e"/>
+    <text x="110" y="125" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" font-weight="800" fill="#1a4a3e" text-anchor="middle">Mad Tabi&lsquo;i</text>
+    <text x="110" y="142" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10" fill="#6a7a72" text-anchor="middle">(mad asli)</text>
+    <text x="340" y="125" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#1a2422" text-anchor="middle">Mad selepas fathah/dhammah/kasrah</text>
+    <text x="340" y="142" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">fathah &rarr; ا &bull; dhammah &rarr; و &bull; kasrah &rarr; ي</text>
+    <text x="560" y="136" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="22" fill="#1a4a3e" direction="ltr" unicode-bidi="isolate" text-anchor="middle">&#1602;&#1614;&#1575;&#1604;&#1614;</text>
+    <text x="740" y="136" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#8a6a2a" text-anchor="middle">2 harakat</text>
+
+    <!-- row 2: Mad Silah Qasirah -->
+    <rect x="20" y="160" width="780" height="56" rx="6" fill="url(#gd6u6d1)" stroke="#d8e8e0" stroke-width="1"/>
+    <rect x="20" y="160" width="8" height="56" rx="4" fill="#2e7a66"/>
+    <text x="110" y="185" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" font-weight="800" fill="#2e7a66" text-anchor="middle">Mad Silah Qasirah</text>
+    <text x="110" y="202" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10" fill="#6a7a72" text-anchor="middle">(dhamir ha)</text>
+    <text x="340" y="185" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#1a2422" text-anchor="middle">Ha (ه) didahului dhammah atau kasrah</text>
+    <text x="340" y="202" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">dhammah &rarr; hu &bull; kasrah &rarr; hi</text>
+    <text x="560" y="196" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="22" fill="#2e7a66" direction="ltr" unicode-bidi="isolate" text-anchor="middle">&#1573;&#1616;&#1606;&#1618;&#1615;&#1575;&#1604;&#1617;&#1648;&#1607;&#1615;&#1653;</text>
+    <text x="740" y="196" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#8a6a2a" text-anchor="middle">2 harakat</text>
+
+    <!-- row 3: Mad Badal -->
+    <rect x="20" y="220" width="780" height="56" rx="6" fill="url(#gd6u6d1)" stroke="#d8e8e0" stroke-width="1"/>
+    <rect x="20" y="220" width="8" height="56" rx="4" fill="#8a6a2a"/>
+    <text x="110" y="245" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" font-weight="800" fill="#8a6a2a" text-anchor="middle">Mad Badal</text>
+    <text x="110" y="262" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10" fill="#6a7a72" text-anchor="middle">(mutlaq / maftuh)</text>
+    <text x="340" y="245" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#1a2422" text-anchor="middle">Hamzah (ء) bertemu huruf mad</text>
+    <text x="340" y="262" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">ء + ا / و / ي dalam satu perkataan</text>
+    <text x="560" y="256" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="22" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate" text-anchor="middle">&#1649;&#1648;&#1573;&#1648;&#1583;&#1648;&#1605;&#1648;</text>
+    <text x="740" y="256" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#8a6a2a" text-anchor="middle">2 harakat</text>
+
+    <!-- row 4: Mad 'Iwad -->
+    <rect x="20" y="280" width="780" height="56" rx="6" fill="url(#gd6u6d1)" stroke="#d8e8e0" stroke-width="1"/>
+    <rect x="20" y="280" width="8" height="56" rx="4" fill="#b5722c"/>
+    <text x="110" y="305" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" font-weight="800" fill="#b5722c" text-anchor="middle">Mad &lsquo;Iwad</text>
+    <text x="110" y="322" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10" fill="#6a7a72" text-anchor="middle">(mengganti)</text>
+    <text x="340" y="305" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#1a2422" text-anchor="middle">Tanwin fathah diganti alif ketika waqaf</text>
+    <text x="340" y="322" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">ـً &rarr; ا (hanya fathatain)</text>
+    <text x="560" y="316" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="20" fill="#b5722c" direction="ltr" unicode-bidi="isolate" text-anchor="middle">&#1593;&#1614;&#1604;&#1616;&#1610;&#1618;&#1605;&#1612; &rarr; &#1593;&#1614;&#1604;&#1616;&#1610;&#1618;&#1605;&#1648;&#1575;</text>
+    <text x="740" y="316" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#8a6a2a" text-anchor="middle">2 harakat</text>
+
+    <!-- row 5: Mad Tamkin -->
+    <rect x="20" y="340" width="780" height="56" rx="6" fill="url(#gd6u6d1)" stroke="#d8e8e0" stroke-width="1"/>
+    <rect x="20" y="340" width="8" height="56" rx="4" fill="#4e9a7e"/>
+    <text x="110" y="365" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" font-weight="800" fill="#4e9a7e" text-anchor="middle">Mad Tamkin</text>
+    <text x="110" y="382" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10" fill="#6a7a72" text-anchor="middle">(mad lin)</text>
+    <text x="340" y="365" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#1a2422" text-anchor="middle">Kasrah bertemu ya bersabdu</text>
+    <text x="340" y="382" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">ـِ + يّ (isymu&lsquo;izam)</text>
+    <text x="560" y="376" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="20" fill="#4e9a7e" direction="ltr" unicode-bidi="isolate" text-anchor="middle">&#1573;&#1616;&#1606;&#1618; &#1575;&#1604;&#1618;&#1605;&#1615;&#1580;&#1618;&#1585;&#1616;&#1605;&#1616;&#1610;&#1618;&#1606;&#1614;</text>
+    <text x="740" y="376" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#8a6a2a" text-anchor="middle">2&ndash;6 harakat</text>
+
+    <!-- footer note -->
+    <text x="410" y="418" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6a7a72" text-anchor="middle">Nota: Semua jenis mad melibatkan 3 huruf mad &mdash; alif (ا), waw (و), dan ya (ي). Sumber: DSKP PI T5 ms. 25, Buku Teks PI T5 ms. 28&ndash;36.</text>
+  </svg>
+</section>
+
+<!-- ===== 5. KUIZ INTERAKTIF ===== -->
+  <section id="quiz">
+    <h2><span class="num">5</span> Kuiz Interaktif &mdash; 10 Soalan<svg class="mascot" width="40" height="25" viewBox="0 0 66 40" aria-hidden="true"><use href="#kucingTidur"/></svg></h2>
+    <p class="hint">Klik pilihan jawapan. Maklum balas dan skor diberikan serta-merta.</p>
+
+    <div class="scorebar">
+      <span class="sc">Skor: <span id="sc">0</span> / 10</span>
+      <span class="bar"><i id="bar"></i></span>
+      <span class="hint2">Dijawab: <span id="done">0</span>/10</span>
+    </div>
+
+    <div class="qlist">
+
+      <div class="qcard" data-ans="1" data-exp="Mad bererti <b>memanjangkan</b> bunyi suara huruf hijaiyyah. Perkataan &lsquo;mad&rsquo; itu sendiri dari akar bahasa Arab yang bermaksud memanjangkan.">
+        <div class="qhead"><span class="qn">1</span><span class="qtext">Apakah <b>maksud</b> mad dalam tajwid?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Memendekkan bacaan</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Memanjangkan bunyi suara huruf hijaiyyah</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Membaca dengan suara keras</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Huruf mad ada <b>3</b>: <b>alif (ا)</b>, <b>waw (و)</b>, dan <b>ya (ي)</b>.">
+        <div class="qhead"><span class="qn">2</span><span class="qtext">Berapakah <b>huruf mad</b> yang dipelajari dalam hukum mad?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>3 huruf: alif (ا), waw (و), ya (ي)</b></span></button>
+          <button class="opt"><span class="k">B</span><span>2 huruf: alif dan waw sahaja</span></button>
+          <button class="opt"><span class="k">C</span><span>5 huruf: alif, waw, ya, nun dan mim</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Mad Tabi&lsquo;i (mad asli) berlaku apabila <b>huruf mad datang selepas huruf berbaris di atas (fathah &rarr; alif), dhammah (&rarr; waw), atau kasrah (&rarr; ya)</b>. Contoh: قَالَ (alif selepas fathah).">
+        <div class="qhead"><span class="qn">3</span><span class="qtext">Apakah <b>hukum mad tabi&lsquo;i</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Huruf mad selepas fathah/dhammah/kasrah, dibaca 2 harakat</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Hamzah bertemu huruf mad dalam satu perkataan</span></button>
+          <button class="opt"><span class="k">C</span><span>Tanwin fathah diganti alif ketika waqaf</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Mad Silah Qasirah berlaku apabila <b>ha (ه) dhamir mufrad mudhakkar</b> didahului dhammah (&rarr; hu) atau kasrah (&rarr; hi), dan dibaca selepasnya ada huruf selain hamzah.">
+        <div class="qhead"><span class="qn">4</span><span class="qtext">Apakah syarat <b>mad silah qasirah</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Kasrah bertemu ya bersabdu (يّ)</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Ha (ه) dhamir didahului dhammah atau kasrah</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Tanwin fathah diganti dengan alif</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Mad Badal berlaku apabila <b>hamzah (ء) bertemu huruf mad (alif/waw/ya) dalam satu perkataan</b>. Contoh: ءَادَمَ (alif selepas hamzah fathah). Nama lain: mad mutlaq, mad maftuh.">
+        <div class="qhead"><span class="qn">5</span><span class="qtext">Apakah <b>hukum mad badal</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Huruf mad selepas fathah, dhammah, atau kasrah</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Hamzah bertemu huruf mad dalam satu perkataan, 2 harakat</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Ha dhamir didahului dhammah atau kasrah</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Mad &lsquo;Iwad berlaku apabila <b>tanwin fathah (ـً) diganti dengan alif (ا) ketika waqaf (berhenti)</b>. Contoh: عَلِيمًا &rarr; عَلِيمَا. Hanya pada fathatain, bukan dhammah atau kasrah.">
+        <div class="qhead"><span class="qn">6</span><span class="qtext">Bilakah <b>mad &lsquo;iwad</b> berlaku?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Ketika membaca secara bersambung (wasl)</span></button>
+          <button class="opt"><span class="k">B</span><span>Apabila kasrah bertemu ya bersabdu</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Tanwin fathah diganti alif ketika waqaf</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Mad &lsquo;iwad <b>hanya berlaku pada tanwin fathah (fathatain)</b>, bukan tanwin dhammah atau tanwin kasrah. Contoh: عَلِيمًا &rarr; عَلِيمَا (ketika waqaf).">
+        <div class="qhead"><span class="qn">7</span><span class="qtext">Tanwin apakah yang diganti dengan alif dalam mad &lsquo;iwad?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Tanwin fathah (fathatain) sahaja</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Tanwin dhammah (dhammatain)</span></button>
+          <button class="opt"><span class="k">C</span><span>Tanwin kasrah (kasratain)</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Mad Tamkin berlaku apabila <b>huruf berbaris kasrah (ـِ) bertemu huruf ya bersabdu (يّ)</b>. Contoh: ٱلْمُجْرِمِينَ (kasrah + ya sabdu). Nama lain dalam sesetengah kitab: mad lin.">
+        <div class="qhead"><span class="qn">8</span><span class="qtext">Apakah <b>hukum mad tamkin</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Hamzah bertemu alif dalam satu perkataan</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Kasrah bertemu ya bersabdu (يّ), 2&ndash;6 harakat</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Ha dhamir didahului dhammah</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Contoh mad tabi&lsquo;i ialah <b>قَالَ</b> &mdash; alif (ا) datang selepas huruf berbaris fathah (قَـ). Ia dibaca 2 harakat. Contoh lain: يَقُولُ (waw selepas dhammah), قِيلَ (ya selepas kasrah).">
+        <div class="qhead"><span class="qn">9</span><span class="qtext">Manakah antara berikut ialah contoh <b>mad tabi&lsquo;i</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>ءَادَمَ (hamzah + alif)</span></button>
+          <button class="opt"><span class="k">B</span><span><b>قَالَ (alif selepas fathah)</b></span></button>
+          <button class="opt"><span class="k">C</span><span>عَلِيمًا (tanwin fathah)</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Mengaplikasikan hukum mad dalam bacaan al-Quran harian <b>memelihara keaslian bacaan dan memperoleh pahala yang berkat</b>, serta memastikan bacaan sesuai dengan tajwid yang betul.">
+        <div class="qhead"><span class="qn">10</span><span class="qtext">Apakah <b>kepentingan</b> mengaplikasikan hukum mad dalam bacaan al-Quran?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Mempercepatkan bacaan tanpa menghiraukan tajwid</span></button>
+          <button class="opt"><span class="k">B</span><span>Membuat bacaan lebih kuat dan nyaring</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Memelihara keaslian bacaan dan memperoleh pahala berkat</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+    </div>
+
+    <div class="result" id="result">
+      <svg viewBox="0 0 220 170" style="width:200px;height:auto;margin:0 auto 4px;display:block">
+        <g transform="translate(24,4) scale(.95)"><use href="#adamBaca"/></g>
+        <g transform="translate(116,4) scale(.95)"><use href="#nurBaca"/></g>
+      </svg>
+      <div class="stars" id="stars"></div>
+      <div class="big" id="rscore"></div>
+      <div class="msg" id="rmsg"></div>
+      <button class="act solid" onclick="resetQuiz()">Cuba Lagi</button>
+      <button class="act" onclick="window.print()">Cetak / Simpan PDF</button>
+    </div>
+  </section>
+
+<!-- ===== LAMPIRAN ===== -->
+<section id="lampiran">
+  <h2>Lampiran: Carta Standard Kandungan &amp; Pembelajaran</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>Bidang</th><th>SK</th><th>Standard Pembelajaran (SP)</th><th class="c">&#10003;</th></tr></thead>
+      <tbody>
+        <tr class="on"><td>Al-Quran</td><td>1.1</td><td>Membaca surah al-Fatihah dan surah-surah daripada Juzuk Amma dengan tartil</td><td class="c" style="color:#1a4a3e">&#9679;</td></tr>
+        <tr class="on"><td>Al-Quran</td><td>1.2</td><td>Memahami maksud surah-surah daripada Juzuk Amma</td><td class="c" style="color:#1a4a3e">&#9679;</td></tr>
+        <tr class="on"><td>Al-Quran</td><td>1.3</td><td>Menghafaz surah-surah daripada Juzuk Amma</td><td class="c" style="color:#1a4a3e">&#9679;</td></tr>
+        <tr class="on"><td>Al-Quran</td><td>1.4</td><td>Menerapkan nilai-nilai murni daripada surah-surah Juzuk Amma</td><td class="c" style="color:#1a4a3e">&#9679;</td></tr>
+        <tr class="on"><td>Al-Quran</td><td>1.5</td><td>Mengaplikasikan tajwid asas semasa membaca al-Quran</td><td class="c" style="color:#1a4a3e">&#9679;</td></tr>
+        <tr class="on"><td>Al-Quran</td><td>1.6</td><td>Membaca ayat al-Quran dengan betul mengikut <b>hukum tajwid mad</b> (unit 6 &check;)</td><td class="c" style="color:#1a4a3e">&#9679;</td></tr>
+        <tr><td>Hadis</td><td>2.1</td><td>Memahami dan menghayati hadis-hadis arbain al-Nawawi</td><td class="c">&#9679;</td></tr>
+        <tr><td>Akidah</td><td>3.1</td><td>Memahami sifat-sifat Allah dan menerapkannya dalam kehidupan</td><td class="c">&#9679;</td></tr>
+        <tr><td>Akidah</td><td>3.2</td><td>Memahami konsep beriman kepada hari akhirat</td><td class="c">&#9679;</td></tr>
+        <tr><td>Akidah</td><td>3.3</td><td>Mempertahankan akidah daripada syirik</td><td class="c">&#9679;</td></tr>
+        <tr><td>Akidah</td><td>3.4</td><td>Mempertahankan akidah daripada sihir</td><td class="c">&#9679;</td></tr>
+        <tr><td>Ibadah</td><td>4.1</td><td>Merumus dan mengamalkan konsep tayammum</td><td class="c">&#9679;</td></tr>
+        <tr><td>Ibadah</td><td>4.2</td><td>Merumus dan mengamalkan konsep solat berjemaah</td><td class="c">&#9679;</td></tr>
+        <tr><td>Ibadah</td><td>4.3</td><td>Merumus dan mengamalkan konsep solat Jumaat</td><td class="c">&#9679;</td></tr>
+        <tr><td>Ibadah</td><td>4.4</td><td>Merumus dan mengamalkan konsep solat Sunat Hari Raya</td><td class="c">&#9679;</td></tr>
+        <tr><td>Ibadah</td><td>4.5</td><td>Merumus dan mengamalkan konsep solat Sunat Tasbih</td><td class="c">&#9679;</td></tr>
+        <tr><td>Sirah</td><td>5.1</td><td>Menghayati pengorbanan para sahabat dalam perjuangan Islam</td><td class="c">&#9679;</td></tr>
+        <tr><td>Sirah</td><td>5.2</td><td>Menghayati perjuangan Nabi Muhammad SAW di Madinah</td><td class="c">&#9679;</td></tr>
+        <tr><td>Sirah</td><td>5.3</td><td>Menghayati peristiwa-peristiwa penting dalam sejarah Islam</td><td class="c">&#9679;</td></tr>
+        <tr><td>Adab</td><td>6.1</td><td>Mempraktikkan adab terhadap diri sendiri dan keluarga</td><td class="c">&#9679;</td></tr>
+        <tr><td>Adab</td><td>6.2</td><td>Mempraktikkan adab terhadap jiran dan masyarakat</td><td class="c">&#9679;</td></tr>
+        <tr><td>Adab</td><td>6.3</td><td>Mempraktikkan adab terhadap alam sekitar</td><td class="c">&#9679;</td></tr>
+        <tr><td>Jawi</td><td>7.1</td><td>Membaca dan menulis perkataan dan ayat dalam tulisan Jawi</td><td class="c">&#9679;</td></tr>
+        <tr><td>Jawi</td><td>7.2</td><td>Membaca dan memahami teks dalam tulisan Jawi</td><td class="c">&#9679;</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:12px;background:#fdf6ec;border:1.4px dashed var(--gold);border-radius:13px;padding:10px 13px;font-size:12.5px;color:#2e2208;line-height:1.55">Nota: SK 1.6 (Hukum Mad) ditandakan <span style="color:#1a4a3e">&#9679;</span> kerana telah diliputi dalam bahan PdP ini (Unit 6).</p>
+  </div>
+</section>
+
+<footer>
+    Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 5 (BPK, 2019) &amp; Buku Teks Pendidikan Islam Tahun 5 SK (KPM), ms. 28&ndash;36.
+  </footer>
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+  var scEl = document.getElementById('sc');
+  var doneEl = document.getElementById('done');
+  var barEl = document.getElementById('bar');
+  var resultEl = document.getElementById('result');
+  var total = cards.length;
+
+  function refresh(){
+    var score = 0, answered = 0;
+    cards.forEach(function(c){
+      if(c.dataset.state === 'correct'){ score++; answered++; }
+      else if(c.dataset.state === 'wrong'){ answered++; }
+    });
+    scEl.textContent = score;
+    doneEl.textContent = answered;
+    barEl.style.width = (answered/total*100) + '%';
+    if(answered === total) showResult(score);
+  }
+
+  function showResult(score){
+    resultEl.classList.add('show');
+    document.getElementById('rscore').textContent = score + ' / ' + total;
+    document.getElementById('stars').textContent =
+      score >= 9 ? '\u2605\u2605\u2605\u2605\u2605' : score >= 7 ? '\u2605\u2605\u2605\u2605\u2606' : score >= 5 ? '\u2605\u2605\u2605\u2606\u2606' : '\u2605\u2605\u2606\u2606\u2606';
+    document.getElementById('rmsg').textContent =
+      score === 10 ? 'Syabas! Kamu benar-benar menguasai hukum mad.'
+      : score >= 8 ? 'Bagus sekali! Teruskan usaha kamu.'
+      : score >= 6 ? 'Bagus! Ulangi nota sekali lagi untuk lebih mantap.'
+      : score >= 4 ? 'Jangan putus asa \u2014 baca semula nota ringkas di atas.'
+      : 'Mari ulang bersama-sama. Baca nota ringkas, kemudian cuba lagi.';
+    resultEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  cards.forEach(function(card){
+    var opts = Array.prototype.slice.call(card.querySelectorAll('.opt'));
+    var fb = card.querySelector('.fb');
+    var face = fb.querySelector('use');
+    var txt = fb.querySelector('.txt');
+    var ans = parseInt(card.dataset.ans, 10);
+    var exp = card.dataset.exp;
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(card.dataset.state) return;
+        var ok = (i === ans);
+        card.dataset.state = ok ? 'correct' : 'wrong';
+        card.classList.add('done');
+
+        opts.forEach(function(b, j){
+          b.disabled = true;
+          if(j === ans){ b.classList.add('ok'); }
+          else if(j === i){ b.classList.add('bad'); }
+          else { b.classList.add('dim'); }
+        });
+
+        face.setAttribute('href', ok ? '#faceYay' : '#faceOops');
+        txt.innerHTML = (ok ? '<b>Betul!</b> ' : '<b>Belum tepat.</b> Jawapan yang betul ialah <b>' +
+                        String.fromCharCode(65+ans) + '</b>. ') + exp;
+        fb.classList.add('show');
+        if(!ok) fb.classList.add('wrong');
+
+        refresh();
+      });
+    });
+  });
+
+  window.resetQuiz = function(){
+    cards.forEach(function(c){
+      delete c.dataset.state;
+      c.classList.remove('done');
+      var fb = c.querySelector('.fb');
+      fb.classList.remove('show','wrong');
+      c.querySelectorAll('.opt').forEach(function(b){
+        b.disabled = false;
+        b.classList.remove('ok','bad','dim');
+      });
+    });
+    resultEl.classList.remove('show');
+    refresh();
+    window.scrollTo({top: document.getElementById('quiz').offsetTop - 20, behavior:'smooth'});
+  };
+
+  window.addEventListener('beforeprint', function(){
+    cards.forEach(function(c){
+      var ans = parseInt(c.dataset.ans,10);
+      c.querySelectorAll('.opt').forEach(function(b,j){
+        if(j === ans) b.classList.add('ok');
+      });
+      if(!c.querySelector('.fb').classList.contains('show')){
+        var fb = c.querySelector('.fb');
+        fb.querySelector('.txt').innerHTML = '<b>Jawapan: ' + String.fromCharCode(65+ans) + '</b>. ' + c.dataset.exp;
+        fb.classList.add('show');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

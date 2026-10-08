@@ -1,0 +1,2257 @@
+{
+  "manifestVersion": "1.4",
+  "generatedAt": "2026-10-06T01:30:00",
+  "generatedBy": "WorkBuddy AI",
+  "portal": {
+    "id": "portfolio-hub",
+    "name": "Portal Kerja — 5 Platform Induk",
+    "description": "Lima platform induk menghimpunkan bahan PdP, permainan interaktif, SaaS/PaaS 6 tokoh, laman web, arkib bookmark, dan pusat data status & rujukan kerja.",
+    "language": [
+      "ms"
+    ]
+  },
+  "platforms": [
+    {
+      "id": "bahan-pdp",
+      "name": "Bahan PdP & Permainan Interaktif",
+      "page": "bahan-pdp.html",
+      "categories": [
+        "games",
+        "pi-t3",
+        "maths-t3",
+        "maths-t4",
+        "sains-t3",
+        "pi-t4",
+        "pi-t5",
+        "alat"
+      ]
+    },
+    {
+      "id": "saas-paas",
+      "name": "SaaS/PaaS 6 Tokoh",
+      "page": "saas-paas.html",
+      "categories": [
+        "platform",
+        "tokoh",
+        "portfolio",
+        "swarm-command"
+      ]
+    },
+    {
+      "id": "landing",
+      "name": "Website Landing Page",
+      "page": "landing.html",
+      "categories": [
+        "laman"
+      ]
+    },
+    {
+      "id": "bookmark",
+      "name": "Bookmark & Pautan",
+      "page": "bookmark.html",
+      "categories": [
+        "terbitan",
+        "tempatan",
+        "fail",
+        "pendidikan",
+        "kerajaan",
+        "ai",
+        "lain"
+      ]
+    },
+    {
+      "id": "status",
+      "name": "Status & Rujukan Kerja",
+      "page": "status.html",
+      "categories": [
+        "recentWork",
+        "pending",
+        "tools",
+        "attentionLinks"
+      ]
+    }
+  ],
+  "bookmarkSummary": {
+    "total": 112,
+    "live": 53,
+    "restored": 30,
+    "dead": 18,
+    "movedToPlatforms": 9,
+    "source": "Chrome (Default + Profile 1) dan Edge (Default)",
+    "note": "Pautan localhost/127.0.0.1 tidak pernah dikira hidup: status 200 bagi pelayan tempatan tidak bermakna selepas proses itu berhenti."
+  },
+  "recentWork": [
+    {
+      "id": "recent-vvip-2026-10-06",
+      "title": "Latar belakang potret pentadbir SK Salimpodon Darat ditukar kepada studio VVIP navy-emas",
+      "category": "Laman Web",
+      "date": "2026-10-06",
+      "note": "Keempat-empat potret pentadbir — Guru Besar En. Muhammad Isahak Awang, PK Pentadbiran En. Miswan Yahya, PK HEM En. Asmat Demsi dan PK Kokurikulum En. Maslan Matsuari — dipotong daripada latar asal yang berselerak dan diletakkan atas latar studio VVIP baharu: gradien jejari navy-emas, medali bulat bertepi emas dan cahaya tepi emas pada siluet. Pemotongan menggunakan segmentasi isnet-general-use, dibersihkan dengan pembuangan serpihan, pengisian lubang dan pengekalan komponen terbesar sahaja, kemudian diskalakan supaya lebar kepala tepat 44% kanvas agar keempat-empat potret konsisten. Output 620x620 persegi supaya sesuai dengan bingkai avatar bulat dalam Command Center. Fail asal disandarkan sebelum diganti.",
+      "affects": [
+        "works/landing/sk-salimpodon/command-center.html",
+        "works/landing/sk-salimpodon/assets/img/pentadbir/guru-besar.jpg",
+        "works/landing/sk-salimpodon/assets/img/pentadbir/pk-pentadbiran.jpg",
+        "works/landing/sk-salimpodon/assets/img/pentadbir/pk-hem.jpg",
+        "works/landing/sk-salimpodon/assets/img/pentadbir/pk-kokurum.jpg"
+      ],
+      "evidence": "4/4 potret disahkan 620x620 RGB dalam pelayar sebenar (naturalWidth === naturalHeight) · 0 ralat konsol · 0 imej rosak · carta organisasi 1 GB + 3 PK, 22 guru, 10 kelas, 523 waktu dipaparkan betul",
+      "live": "https://774ff881e8014c3191c74b74322352ab.sg2.agentos-app.run/works/landing/sk-salimpodon/command-center.html"
+    },
+    {
+      "id": "recent-1",
+      "title": "Command Center Pentadbiran SK Salimpodon Darat — 12 panel, 4 paparan berperanan, orkestrasi 10 ejen",
+      "category": "Laman Web",
+      "date": "2026-10-06",
+      "note": "Command Center Pentadbiran SK Salimpodon Darat 12 panel 4 paparan berperanan orkestrasi 10 ejen Laman Web Pusat kawalan sekolah untuk SK Salimpodon Darat, dibina daripada tiga dokumen rasmi sekolah (Agihan Subjek & Bilangan Waktu Mengajar, Jadual Waktu Kelas, Jadual Waktu Persendirian 2026 Janaan 3). Satu fail HTML kendiri 1.6 MB, tanpa CDN, boleh dibuka terus dari cakera. 12 panel: Papan Pemuka, Ringkasan Eksekutif, Hierarki & Aliran, Unit & Tanggungjawab, Direktori Guru, Analitik Beban Mengajar, Panitia & Kurikulum, Analisis Kelas, Jadual Waktu Induk, Agihan Subjek, Sumber Data dan Panduan Penggunaan. Empat paparan berperanan mengikut jawatan — Guru Besar (18 unit, 22 guru, 523 waktu), PK Pentadbiran, PK HEM dan PK Kokurikulum. Halaman Hierarki memaparkan carta organisasi gaya VVIP dengan Guru Besar di puncak dan tiga Penolong Kanan di bawah, menggunakan potret sebenar GB dan tiga PK dengan latar studio VVIP navy-emas yang telah dibersihkan. Halaman Swarm 10 Ejen memaparkan simulasi orkestrasi agentik secara langsung — 12 nod berlabel fungsi dan peranan, 21 laluan, 10 ejen mengumpul data node ke node. Setiap angka diterbitkan daripada data sebenar dokumen, tiada angka rekaan.",
+      "affects": [
+        "works/landing/sk-salimpodon/command-center.html"
+      ],
+      "evidence": "4 akaun diuji dari file:// (gb/pk1/pkhem/pkkokum) — 4/4 paparan berperanan betul, 0 ralat konsol, 0 imej rosak · potret pentadbir 620x620 berlatar studio VVIP navy-emas disahkan",
+      "live": "https://774ff881e8014c3191c74b74322352ab.sg2.agentos-app.run/works/landing/sk-salimpodon/command-center.html"
+    },
+    {
+      "id": "recent-2",
+      "title": "IQRA' QUEST — Gamifikasi Bacaan Iqra' Tahun 6 (5 modul, 19 lencana, Mod 5 buku Iqra' 1)",
+      "category": "Permainan Interaktif",
+      "date": "2026-10-04",
+      "note": "Permainan interaktif satu fail untuk Kajian Tindakan kelemahan bacaan Iqra' Tahun 6 di SK Salimpodon Darat. Lima modul: Makmal Huruf, Sambung Huruf secara hidup, Kuiz Bentuk & Warna (14 keluarga bentuk), Cabaran Aras (Rendah/Sederhana/Tinggi), dan Mod 5 — Iqra' 1 Halaman demi Halaman: 32 muka surat buku Iqra' 1 sebenar, 8 soalan setiap muka surat, cop Gangsa/Perak/Emas. Cop Emas hanya diberi selepas guru mengesahkan bacaan buku fizikal, supaya wujud kesinambungan daripada permainan kepada buku Iqra' 1 sebenar. Permainan kekal senyap — tiada audio huruf automatik, bunyi hanya keluar melalui butang Dengar. Semua tulisan Arab berarah kanan ke kiri, setiap huruf berbaris fathah, dan huruf bersambung hidup (init/med/fin).",
+      "affects": [
+        "works/games/iqra-quest/index.html",
+        "bahan-pdp.html",
+        "semua.html",
+        "index.html",
+        "status.html",
+        "works/bahan-pdp/kajian-tindakan/Panduan_Workflow_Kajian_Tindakan_Iqra_Tahun6_SK_Salimpodon_Darat.docx"
+      ],
+      "evidence": "check.js ALL CHECKS PASSED · dom.js ALL DOM CHECKS PASSED · leak.js 68,726 pilihan jawapan + 2,880 soalan Mod 5 — sifar kebocoran Rumi · shot.js 0 ralat halaman (18 tangkapan Chrome sebenar) · verify_docx.py 49/49 ALL OK"
+    },
+    {
+      "id": "recent-3",
+      "title": "Potret Guru Besar & tiga PK SK Salimpodon digilap semula dengan AI",
+      "category": "Laman Web",
+      "date": "2026-10-04",
+      "note": "Empat potret pentadbir diganti dengan versi yang dipulihkan dan digilap dengan AI. Fail sumber asal sangat kecil (175×221 hingga 390×510 piksel), jadi pemulihan generatif diperlukan: pikselasi dan kabur dibuang, detail rambut serta kain dikembalikan, muka dicerahkan dengan cahaya studio lembut dan complexion dibersihkan. Latar belakang kotor diganti dengan studio cerah platinum-ivory. Identiti, cermin mata, songkok dan pakaian dikekalkan — termasuk songkok merah-hitam dan sulaman emas salah seorang PK. Dua gaya latar dijana untuk perbandingan (gelap VVIP dan cerah bersih); gaya cerah dipilih dan dipasang. Semua imej dinormalkan kepada 900×1125 (nisbah 4:5) supaya padan dengan bingkai kad portal. Fail asal disandarkan sebelum diganti.",
+      "affects": [
+        "works/landing/sk-salimpodon/assets/img/pentadbir/guru-besar.jpg",
+        "works/landing/sk-salimpodon/assets/img/pentadbir/pk-pentadbiran.jpg",
+        "works/landing/sk-salimpodon/assets/img/pentadbir/pk-hem.jpg",
+        "works/landing/sk-salimpodon/assets/img/pentadbir/pk-kokurum.jpg"
+      ],
+      "evidence": "4/4 fail disahkan 900×1125 RGB; render disemak dalam pelayar sebenar — 0 imej rosak pada halaman Pentadbiran dan Carta Organisasi"
+    },
+    {
+      "id": "recent-4",
+      "title": "Enam pautan teras dimasukkan ke Kategori 01 · Teras Platform",
+      "category": "SaaS/PaaS",
+      "date": "2026-10-03",
+      "note": "Enam pautan yang diminta kini berada dalam Kategori 01 Platform Induk 2. Tiga daripadanya menunjuk ke pelayan localhost yang SUDAH MATI (7100, 7101, 7102) — pautan itu tidak dipaparkan sebagai pautan boleh klik, kerana mengkliknya hanya menghasilkan halaman ralat. Sebaliknya setiap fragmen dipetakan kepada bahagian yang sepadan dalam prototaip yang telah dibina semula: #swarm → Pusat Arahan, #roadmap → Peta Jalan, #masalah → Monitor NRW & KPI. URL asal dikekalkan sebagai rekod teks supaya jejaknya tidak hilang. Pautan SUK Orchestration yang sebelum ini berada dalam kumpulan “Aplikasi Terbitan & Prototaip” dipindahkan ke sini supaya pautan yang sama tidak muncul dua kali.",
+      "affects": [
+        "saas-paas.html"
+      ],
+      "evidence": "tab-test.mjs — 6 pautan, 0 menunjuk ke localhost, 4 rekod asal dikekalkan"
+    },
+    {
+      "id": "recent-5",
+      "title": "Registry Alat & Harness diperiksa semula — 3080 sebenarnya HIDUP",
+      "category": "Alat & Harness",
+      "date": "2026-10-03",
+      "note": "Registry mencatatkan 127.0.0.1:3080 (DeepSeek Harness) sebagai “pelayan mati”. Pemeriksaan semula dengan netstat dan curl --noproxy membuktikan sebaliknya: port itu MENDENGAR dan memulangkan HTTP 200 (14,523 bait, <title>DeepSeek Harness</title>, pakej @deepseek-ai/dsh 0.1.1-rc.2). Entri yang salah itu dibuang daripada registry menunggu pembaikan. Dua lagi servis diperiksa sekali: Hab WebUI All-in-One pada 8765 juga HIDUP tetapi tidak pernah didaftarkan, manakala Dashboard Hermes pada 9119 memang mati. Kerana 3080 dan 9119 ialah perisian PIHAK KETIGA, ia tidak boleh dibina semula sebagai HTML tanpa menjadi tiruan palsu — jadi yang dibina ialah konsol yang memuatkan logik kita sendiri (Router Kepakaran) serta arahan untuk mengesan semula kedua-dua servis.",
+      "affects": [
+        "works/saas-paas/hab-alat-harness/index.html"
+      ],
+      "evidence": "netstat + curl --noproxy '*': 3080 → HTTP 200 · 8765 → HTTP 200 · 9119 → HTTP 000"
+    },
+    {
+      "id": "recent-6",
+      "title": "Tiga prototaip Swarm Command dibina semula daripada dokumen sumber",
+      "category": "SaaS/PaaS",
+      "date": "2026-10-03",
+      "note": "Ketiga-tiga prototaip sebelum ini hanya wujud sebagai pelayan localhost (7100 / 7101 / 7102) yang sudah mati, tanpa sebarang salinan fail. Kesemuanya dibina semula sebagai fail kendiri yang berjalan terus dalam hub — enjin orkestrasi interaktif (pilih situasi → Analisis → Delegasi → Semakan → Sintesis → taklimat untuk kelulusan manusia), jejak audit langsung, dan kounter ejen aktif / terlibat / masa / simulasi. Setiap angka dijejak kepada fail sumber yang disenaraikan di bahagian Sumber dalam setiap prototaip.",
+      "affects": [
+        "works/saas-paas/swarm-7100/index.html",
+        "works/saas-paas/swarm-7101/index.html",
+        "works/saas-paas/swarm-7102/index.html"
+      ],
+      "evidence": "verify-swarm.mjs — 69/69 (23 setiap prototaip) dari file://"
+    },
+    {
+      "id": "recent-7",
+      "title": "Pembetulan file:// — 3 aplikasi kini boleh dibuka terus dari cakera",
+      "category": "SaaS/PaaS",
+      "date": "2026-10-03",
+      "note": "Sebelum ini index.html kelihatan kosong apabila dibuka dengan dwi-klik: dokumen file:// mempunyai asal legap, jadi <script type=\"module\"> disekat oleh CORS. Graf modul kini dileperkan menjadi satu skrip klasik yang diselitkan ke dalam index.html.",
+      "affects": [
+        "works/saas-paas/agenticos-kssr/index.html",
+        "works/saas-paas/agenticos-malaysia/index.html",
+        "works/games/ai-playground/index.html"
+      ],
+      "evidence": "verify-file.mjs — 23/23 dari file://"
+    },
+    {
+      "id": "recent-8",
+      "title": "Aplikasi ketiga dengan pepijat sama ditemui dan dibetulkan",
+      "category": "Permainan Interaktif",
+      "date": "2026-10-03",
+      "note": "Audit menyeluruh ke atas hub mendedahkan AI Playground mempunyai masalah file:// yang sama walaupun tidak dilaporkan. Ia juga dipautkan dari hub, jadi ia turut dibetulkan.",
+      "affects": [
+        "works/games/ai-playground/index.html"
+      ],
+      "evidence": "6 modul dileperkan; peta dunia 4 dunia / 12 jubin disahkan"
+    },
+    {
+      "id": "recent-9",
+      "title": "NEXUS Studio — Agentic Workflow Builder (8 aliran, 261 nod)",
+      "category": "Alat & Harness",
+      "date": "2026-10-04",
+      "note": "Pembina aliran kerja agenik gaya n8n: kanvas nod interaktif, pustaka 93 jenis nod, enjin pelaksanaan sebenar (cuba semula, cabang ralat, gelung, keselarasan), peta kecil, garis masa air terjun, pengesan kos token, dan sejarah pelaksanaan. Lapan aliran kerja realistik: Video SEO, E-Dagang, Pendidikan Adaptif, Dagangan Algo, Gamifikasi, Sokongan Pelanggan, Pengambilan HR, dan IoT Bangunan Pintar. Berjalan sepenuhnya dalam satu fail HTML.",
+      "affects": [
+        "works/saas-paas/nexus-studio/index.html"
+      ],
+      "evidence": "verify-nexus.mjs — 37/37 dari file://"
+    },
+    {
+      "id": "recent-10",
+      "title": "NEXUS Office — Miniatur Workflow Orchestration (miniworld pejabat)",
+      "category": "SaaS/PaaS",
+      "date": "2026-10-04",
+      "note": "Visualisasi semula NEXUS Studio sebagai dunia mini pejabat. Setiap nod menjadi watak kartun miniatur (penyambut tetamu, saintis AI, hakim logik, pustakawan data, juruteknik platform) yang duduk di meja masing-masing dalam bilik pejabat bertema (Lobi, Bilik Data, Makmal AI, Bilik Logik, Bilik Pelayan). Sambungan antara nod menjadi lorong dengan sampul surat yang terbang secara animasi antara watak — dokumen terbang dari satu meja ke meja seterusnya mengikut arah sambungan. Enjin pelaksanaan sama (cuba semula, cabang, gelung) dengan renderer diganti SVG karakter + animasi sampul.",
+      "affects": [
+        "works/saas-paas/nexus-office/index.html"
+      ],
+      "evidence": "verify-nexus-office.mjs — 39/39 dari file://"
+    },
+    {
+      "id": "recent-11",
+      "title": "SIAP Draf Konsep v3.0 dipindahkan masuk ke dalam hub",
+      "category": "Laman Web",
+      "date": "2026-10-03",
+      "note": "Fail ini sebelum ini hanya wujud di folder Downloads — pautan yang rapuh dan akan mati sebaik folder itu dibersihkan atau hub dikongsi ke mesin lain.",
+      "affects": [
+        "works/landing/siap-konsep/index.html"
+      ],
+      "evidence": "Fail lengkap kendiri; pautan Downloads diganti dengan laluan dalam hub"
+    },
+    {
+      "id": "recent-12",
+      "title": "audit-links.mjs — kontrak kebolehcapaian hub",
+      "category": "Alat & Harness",
+      "date": "2026-10-03",
+      "note": "Memeriksa setiap atribut href/src dalam setiap halaman hub: pautan relatif mesti wujud, dan tiada halaman boleh bergantung pada pelayan tempatan.",
+      "affects": [
+        "audit-links.mjs"
+      ],
+      "evidence": "544 atribut diperiksa merentas 7 halaman"
+    }
+  ],
+  "pending": [
+    {
+      "id": "ppd-dashboard",
+      "title": "Dashboard Pegawai PPD",
+      "category": "SaaS/PaaS",
+      "status": "Belum dibina",
+      "note": "Dashboard untuk Pegawai Pejabat Pendidikan Daerah — pemantauan sekolah, panitia dan pematuhan DSKP mengikut PPD.",
+      "origin": "Dijadualkan dalam permintaan pengguna; belum dimulakan."
+    },
+    {
+      "id": "unit-pi",
+      "title": "Unit Pendidikan Islam",
+      "category": "SaaS/PaaS",
+      "status": "Belum dibina",
+      "note": "Modul khusus Unit Pendidikan Islam — pengurusan panitia PI, jadual guru, bahan PdP dan pelaporan bidang (Al-Quran, Hadis, Akidah, Ibadah, Sirah, Adab, Jawi).",
+      "origin": "Dijadualkan dalam permintaan pengguna; belum dimulakan."
+    },
+    {
+      "id": "cc-bongkol",
+      "title": "Command Center SK Bongkol Pitas",
+      "category": "Laman Web",
+      "status": "Belum dibina",
+      "note": "Pusat arahan sekolah untuk SK Bongkol Pitas, berpasangan dengan portal sekolah yang sudah siap.",
+      "origin": "Dijadualkan dalam permintaan pengguna; belum dimulakan."
+    },
+    {
+      "id": "terbitan-ke-paas",
+      "title": "Penukaran “Aplikasi Terbitan — Pautan KEKAL” kepada PaaS/SaaS",
+      "category": "SaaS/PaaS",
+      "status": "Menunggu modifikasi",
+      "note": "Arkib bookmark masih menyimpan kategori “Aplikasi Terbitan — Pautan KEKAL”. Pautan luar itu tidak lagi selari dengan aplikasi yang benar-benar berjalan dalam hub.",
+      "origin": "Arahan pengguna; sebahagian dipindahkan, baki masih di Platform Induk 4."
+    },
+    {
+      "id": "hosting-kekal",
+      "title": "Pengehosan kekal (tidak luput)",
+      "category": "Infrastruktur",
+      "status": "Disekat",
+      "note": "Pautan pratonton yang diterbitkan mempunyai jangka hayat. Pengehosan kekal diperlukan supaya aplikasi terbitan tidak mati.",
+      "origin": "workbuddy_sites_deploy disekat dalam sandbox; GitHub Pages memerlukan repositori AWAM sedangkan akaun percuma pengguna mempunyai 0 repositori awam."
+    },
+    {
+      "id": "hermes-9119",
+      "title": "Hermes Agent — Dashboard",
+      "category": "Alat & Harness",
+      "status": "Perlu dilancarkan sendiri",
+      "note": "Dashboard web Hermes Agent. Hermes DIPASANG pada mesin ini (v0.21.0), tetapi dashboardnya tidak berjalan — port 9119 tidak mendengar (curl → HTTP 000).",
+      "origin": "Dijalankan pada 127.0.0.1:9119/plugins. Ia TIDAK boleh dihidupkan oleh sesi automasi: host membunuh seluruh pokok proses pada setiap sempadan panggilan alat, dan schtasks / WMI disekat. Pelancar sedia ada menunggu klik pengguna: C:\\Users\\User\\AppData\\Local\\hermes\\mula_dashboard.cmd. Arahan penuh dan semakan kesihatan ada dalam Pusat Kawalan Alat & Harness."
+    },
+    {
+      "id": "rph-8899",
+      "title": "RPH Pendidikan Islam — Kumpulan B — Minggu PdP 13 (20–24 April 2026)",
+      "category": "Pendidikan",
+      "status": "Fail hilang",
+      "note": "Bahan RPH Pendidikan Islam Kumpulan B untuk Minggu PdP 13.",
+      "origin": "Dijalankan pada localhost:8899 (arkib mencatat 404). Fail sumber tidak ditemui dalam workspace — perlu dijana semula daripada bahan PdP PI yang ada."
+    }
+  ],
+  "tools": [
+    {
+      "id": "tool-bundle-app.py",
+      "name": "bundle-app.py",
+      "kind": "Pembungkus",
+      "file": "bundle-app.py",
+      "note": "Meleperkan graf modul ES menjadi satu skrip klasik yang diselitkan ke index.html. Berasaskan tokenizer (bukan regex) kerana aplikasi menyimpan contoh kod Python/Go/TS di dalam template literal. Idempoten — jalankan semula bila-bila masa.",
+      "usage": "python bundle-app.py <folder-aplikasi> --write"
+    },
+    {
+      "id": "tool-verify-alat.mjs",
+      "name": "verify-alat.mjs",
+      "kind": "Harness",
+      "file": "verify-alat.mjs",
+      "note": "Menjalankan konsol Pusat Kawalan Alat & Harness dari file:// — enam seksyen, enjin router kepakaran hujung-ke-hujung (padanan kata kunci, jatuh ke lalai, pengiraan kos unit), penjana arahan headless, jadual sumber, dan larian kedua.",
+      "usage": "node verify-alat.mjs"
+    },
+    {
+      "id": "tool-verify-swarm.mjs",
+      "name": "verify-swarm.mjs",
+      "kind": "Harness",
+      "file": "verify-swarm.mjs",
+      "note": "Menjalankan ketiga-tiga prototaip Swarm Command dari file:// — struktur seksyen, pemilih situasi, empat lapisan kawalan, empat kounter, jejak audit idle, satu simulasi penuh hujung-ke-hujung, gerbang kelulusan manusia, dan larian kedua (enjin idempoten).",
+      "usage": "node verify-swarm.mjs [7100|7101|7102]"
+    },
+    {
+      "id": "tool-audit-links.mjs",
+      "name": "audit-links.mjs",
+      "kind": "Harness",
+      "file": "audit-links.mjs",
+      "note": "Mengesahkan setiap pautan relatif wujud dan tiada halaman bergantung pada pelayan tempatan.",
+      "usage": "node audit-links.mjs"
+    },
+    {
+      "id": "tool-verify-file.mjs",
+      "name": "verify-file.mjs",
+      "kind": "Harness",
+      "file": "verify-file.mjs",
+      "note": "Menjalankan ketiga-tiga aplikasi dari file:// — sapuan laluan, satu agen hujung-ke-hujung, dan perjalanan sebenar hub → Aplikasi Terbitan → aplikasi.",
+      "usage": "node verify-file.mjs"
+    },
+    {
+      "id": "tool-verify.mjs",
+      "name": "verify.mjs",
+      "kind": "Harness",
+      "file": "verify.mjs",
+      "note": "Pemeriksaan struktur halaman hub.",
+      "usage": "node verify.mjs"
+    },
+    {
+      "id": "tool-nav-test.mjs",
+      "name": "nav-test.mjs",
+      "kind": "Harness",
+      "file": "nav-test.mjs",
+      "note": "Setiap kad platform membuka tepat satu tab baharu; halaman induk tidak berubah.",
+      "usage": "node nav-test.mjs"
+    },
+    {
+      "id": "tool-tab-test.mjs",
+      "name": "tab-test.mjs",
+      "kind": "Harness",
+      "file": "tab-test.mjs",
+      "note": "Tab dalam Platform Induk 2 dan kad laman terbitan.",
+      "usage": "node tab-test.mjs"
+    },
+    {
+      "id": "tool-verify-bookmarks.mjs",
+      "name": "verify-bookmarks.mjs",
+      "kind": "Harness",
+      "file": "verify-bookmarks.mjs",
+      "note": "Setiap pautan tempatan dalam arkib bookmark diselesaikan; tiada pautan cacat.",
+      "usage": "node verify-bookmarks.mjs"
+    },
+    {
+      "id": "tool-verify-kssr.mjs",
+      "name": "verify-kssr.mjs",
+      "kind": "Harness",
+      "file": "verify-kssr.mjs",
+      "note": "Menggerakkan agen KSSR hujung-ke-hujung (RPH, DSKP, PBD, BBM).",
+      "usage": "node verify-kssr.mjs"
+    },
+    {
+      "id": "tool-contrast-audit.mjs",
+      "name": "contrast-audit.mjs",
+      "kind": "Harness",
+      "file": "contrast-audit.mjs",
+      "note": "Audit kontras WCAG AA merentas 8 halaman, termasuk kedua-dua aplikasi AgenticOS.",
+      "usage": "node contrast-audit.mjs"
+    },
+    {
+      "id": "tool-gen-hub.py",
+      "name": "gen-hub.py",
+      "kind": "Penjana",
+      "file": "gen-hub.py",
+      "note": "Penjana semua halaman Platform Induk, manifest.json dan llms.txt.",
+      "usage": "python gen-hub.py"
+    },
+    {
+      "id": "tool-verify-nexus.mjs",
+      "name": "verify-nexus.mjs",
+      "kind": "Harness",
+      "file": "verify-nexus.mjs",
+      "note": "Menjalankan NEXUS Studio dari file:// — 8 aliran, 261 nod, enjin pelaksanaan hujung-ke-hujung, pustaka nod, NDV, garis masa, statistik, dan CRUD nod.",
+      "usage": "node verify-nexus.mjs"
+    },
+    {
+      "id": "tool-verify-nexus-office.mjs",
+      "name": "verify-nexus-office.mjs",
+      "kind": "Harness",
+      "file": "verify-nexus-office.mjs",
+      "note": "Menjalankan NEXUS Office dari file:// — pejabat miniworld 5 bilik, 261 watak kartun, 8 aliran dengan sampul terbang antara watak, enjin, NDV, garis masa dan statistik.",
+      "usage": "node verify-nexus-office.mjs"
+    },
+    {
+      "id": "tool-verify-iqra.mjs",
+      "name": "verify-iqra.mjs",
+      "kind": "Harness",
+      "file": "verify-iqra.mjs",
+      "note": "Menjalankan IQRA' QUEST dari file:// — permainan kekal senyap tanpa tekanan butang, tulisan Arab kanan ke kiri (gaya terkira), baris fathah pada setiap huruf, peta 32 muka surat buku Iqra' 1, cop emas hanya selepas pengesahan guru, dan bahagian Gamifikasi hub.",
+      "usage": "node verify-iqra.mjs"
+    }
+  ],
+  "attentionLinks": [
+    {
+      "title": "RPH Pendidikan Islam — Kumpulan B — Minggu PdP 13 (20-24 April 2026)",
+      "url": "http://localhost:8899/EMERGENCY_RPH_PI_KumpulanB_Minggu13_20-24Apr_CETAK.html",
+      "archiveCategory": "Pratonton Tempatan — Sudah Mati"
+    },
+    {
+      "title": "Analisis Slide untuk Video YouTube SEO — DeepSeek Harness",
+      "url": "http://127.0.0.1:3080/",
+      "archiveCategory": "Pratonton Tempatan — Sudah Mati"
+    },
+    {
+      "title": "Hermes Agent - Dashboard",
+      "url": "http://127.0.0.1:9119/plugins",
+      "archiveCategory": "Pratonton Tempatan — Sudah Mati"
+    },
+    {
+      "title": "EmployerLogin - ASSIST",
+      "url": "https://assist.perkeso.gov.my/employer/login",
+      "archiveCategory": "Kerajaan &amp; Agensi"
+    },
+    {
+      "title": "KWSP",
+      "url": "https://secure.kwsp.gov.my/employer/employer/logout",
+      "archiveCategory": "Kerajaan &amp; Agensi"
+    },
+    {
+      "title": "KWSP",
+      "url": "https://secure.kwsp.gov.my/employer/employer/login?2",
+      "archiveCategory": "Kerajaan &amp; Agensi"
+    },
+    {
+      "title": "KWSP",
+      "url": "https://secure.kwsp.gov.my/employer/employer/login?0",
+      "archiveCategory": "Kerajaan &amp; Agensi"
+    },
+    {
+      "title": "Claude",
+      "url": "https://claude.ai/login",
+      "archiveCategory": "AI &amp; Alat Produktiviti"
+    },
+    {
+      "title": "Your first chat with Claude - Claude",
+      "url": "https://claude.ai/chat/f6037f86-2d62-449f-9d2b-6ff66f6a51d2?onboarding=1",
+      "archiveCategory": "AI &amp; Alat Produktiviti"
+    },
+    {
+      "title": "Orchestrating multi-agent PhD ecosystem for MyGuru app - Claude",
+      "url": "https://claude.ai/chat/38d0d7aa-245a-4844-b57d-90b300094060",
+      "archiveCategory": "AI &amp; Alat Produktiviti"
+    },
+    {
+      "title": "DeepSeek - Into the Unknown",
+      "url": "https://chat.deepseek.com/",
+      "archiveCategory": "AI &amp; Alat Produktiviti"
+    },
+    {
+      "title": "Claude Design",
+      "url": "https://claude.ai/design/p/d6a8aa59-5742-43ee-bfb4-10345382583f?file=MyGuru.dc.html",
+      "archiveCategory": "AI &amp; Alat Produktiviti"
+    },
+    {
+      "title": "Make",
+      "url": "https://eu1.make.com/2944832/agents/scenario-agents",
+      "archiveCategory": "AI &amp; Alat Produktiviti"
+    },
+    {
+      "title": "SDGP · Sabah Digital Government Platform (Konsep)",
+      "url": "https://claude.ai/artifact/U1B4dkvK2GZn4mFikMcoW3",
+      "archiveCategory": "AI &amp; Alat Produktiviti"
+    },
+    {
+      "title": "Menggunakan kredit 100 USD untuk cloud session - Claude",
+      "url": "https://claude.ai/chat/c57ed20a-9412-4135-ba50-ff8b88984980?artifact=daacf1f5-420b-4e47-b5f7-3c86e1550ee4",
+      "archiveCategory": "AI &amp; Alat Produktiviti"
+    },
+    {
+      "title": "Pinggan2 Kahwin | Pusat Sehenti Majlis VVIP Terengganu",
+      "url": "https://own-flat-finest-transport.trycloudflare.com/#kalkulator",
+      "archiveCategory": "Lain-lain"
+    },
+    {
+      "title": "Pinggan2 Katering | VVIP Tapi Mampu Milik — Kuala Terengganu",
+      "url": "https://infinite-dollars-simpsons-remarkable.trycloudflare.com/#menu",
+      "archiveCategory": "Lain-lain"
+    },
+    {
+      "title": "McAfee Security",
+      "url": "https://www.mcafee.com/consumer/v/browserfav/hp.html",
+      "archiveCategory": "Lain-lain"
+    }
+  ],
+  "works": [
+    {
+      "id": "app-agenticos-kssr",
+      "title": "AgenticOS KSSR — Platform Ejen Pendidikan KPM",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/agenticos-kssr/index.html",
+      "description": "Edisi pendidikan. Enjin penghalaan model yang sama, dipasang dengan agen pendidikan: Agen RPH, DSKP, Pentaksiran Bilik Darjah (TP1–TP6), BBM, Panitia, Bahasa dan Pentadbiran. KSSR Semakan 2017, Tahun 1–6, 17 mata pelajaran, 8 elemen EMK.",
+      "tech": [
+        "SPA tanpa build",
+        "ModelRouter sebenar",
+        "17 agen KSSR",
+        "Bahasa Melayu"
+      ],
+      "tags": [
+        "aplikasi-terbitan",
+        "paas",
+        "saas",
+        "agentic-os",
+        "kssr",
+        "kpm",
+        "pendidikan"
+      ]
+    },
+    {
+      "id": "app-agenticos-malaysia",
+      "title": "AgenticOS Malaysia — All-in-One Agentic Platform",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/agenticos-malaysia/index.html",
+      "description": "Versi penuh platform ejen: Studio Vibe Coding, Studio Kreatif, 10 agen, 26 model dan Model Router yang boleh diperhatikan — setiap anak tangga fallback, setiap 429, setiap cache hit, setiap token dan kosnya. Pengebilan MaaS dalam MYR.",
+      "tech": [
+        "SPA tanpa build",
+        "Monaco · Zustand",
+        "10 agen",
+        "MaaS MYR"
+      ],
+      "tags": [
+        "aplikasi-terbitan",
+        "paas",
+        "saas",
+        "agentic-os"
+      ]
+    },
+    {
+      "id": "game-iqra-quest",
+      "title": "IQRA' QUEST — Bacaan Iqra' Tahun 6",
+      "category": "games",
+      "entry": "works/games/iqra-quest/index.html",
+      "description": "Gamifikasi bacaan Iqra' untuk Kajian Tindakan kelemahan bacaan Iqra' Tahun 6 di SK Salimpodon Darat. Lima modul — Makmal Huruf, Sambung Huruf secara hidup, Kuiz Bentuk & Warna, Cabaran Aras, dan Mod 5 (Iqra' 1 Halaman demi Halaman): 32 muka surat buku Iqra' 1 sebenar, 8 soalan setiap muka surat, cop Gangsa/Perak/Emas. Tiada audio huruf automatik; semua tulisan Arab berarah kanan ke kiri, setiap huruf berbaris fathah, huruf bersambung hidup (init/med/fin).",
+      "tech": [
+        "HTML/CSS/JS",
+        "Web Speech API",
+        "LocalStorage"
+      ],
+      "tags": [
+        "game",
+        "interaktif",
+        "iqra",
+        "kanan-ke-kiri",
+        "kajian-tindakan",
+        "mod5-iqra1"
+      ]
+    },
+    {
+      "id": "game-islamic-quest",
+      "title": "Islamic Quest — Tahun 3",
+      "category": "games",
+      "entry": "works/games/islamic-quest/index.html",
+      "description": "Laman gamifikasi DSKP Pendidikan Islam Tahun 3. 7 pulau, 12 unit, 60 langkah interaktif, kedai ganjaran dan lencana.",
+      "tech": [
+        "HTML/CSS/JS",
+        "LocalStorage",
+        "Audio"
+      ],
+      "tags": [
+        "game",
+        "interaktif"
+      ]
+    },
+    {
+      "id": "game-islamic-legends",
+      "title": "Islamic Legends — Tahun 4",
+      "category": "games",
+      "entry": "works/games/islamic-legends/index.html",
+      "description": "Kembara ilmu DSKP Pendidikan Islam Tahun 4. 7 dunia, 26 unit, 55 aktiviti, 8 jenis aktiviti interaktif.",
+      "tech": [
+        "HTML/CSS/JS",
+        "Web Audio",
+        "SpeechSynthesis"
+      ],
+      "tags": [
+        "game",
+        "interaktif"
+      ]
+    },
+    {
+      "id": "game-ai-playground",
+      "title": "AI Playground Kanak-Kanak",
+      "category": "games",
+      "entry": "works/games/ai-playground/index.html",
+      "description": "Platform interaktif edukasi untuk kanak-kanak 5–8 tahun. 12 modul permainan, AI adaptif, dashboard ibu bapa, PWA offline.",
+      "tech": [
+        "HTML/CSS/ESM",
+        "PWA",
+        "Web Audio"
+      ],
+      "tags": [
+        "game",
+        "interaktif"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Adab_AdabMenuntutIlmu",
+      "title": "PI Tahun3 Adab Adab Menuntut Ilmu",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Adab_AdabMenuntutIlmu.html",
+      "description": "Bahan PdP PI Tahun 3 — Adab",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Adab"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Adab_AdabTidur",
+      "title": "PI Tahun3 Adab Adab Tidur",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Adab_AdabTidur.html",
+      "description": "Bahan PdP PI Tahun 3 — Adab",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Adab"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Adab_SunnahRasulullah",
+      "title": "PI Tahun3 Adab Sunnah Rasulullah",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Adab_SunnahRasulullah.html",
+      "description": "Bahan PdP PI Tahun 3 — Adab",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Adab"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Adab_Syukur",
+      "title": "PI Tahun3 Adab Syukur",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Adab_Syukur.html",
+      "description": "Bahan PdP PI Tahun 3 — Adab",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Adab"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Akidah_AlAlim_AlHakim",
+      "title": "PI Tahun3 Akidah Al Alim Al Hakim",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Akidah_AlAlim_AlHakim.html",
+      "description": "Bahan PdP PI Tahun 3 — Akidah",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Akidah"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Akidah_BerimanKepadaKitab",
+      "title": "PI Tahun3 Akidah Beriman Kepada Kitab",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Akidah_BerimanKepadaKitab.html",
+      "description": "Bahan PdP PI Tahun 3 — Akidah",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Akidah"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_AlQuran_HafazanSurahAlAsr",
+      "title": "PI Tahun3 Al Quran Hafazan Surah Al Asr",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_HafazanSurahAlAsr.html",
+      "description": "Bahan PdP PI Tahun 3 — Al-Quran",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "AlQuran"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_AlQuran_HafazanSurahAlKafirun",
+      "title": "PI Tahun3 Al Quran Hafazan Surah Al Kafirun",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_HafazanSurahAlKafirun.html",
+      "description": "Bahan PdP PI Tahun 3 — Al-Quran",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "AlQuran"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_AlQuran_KefahamanSurahAlFatihah",
+      "title": "PI Tahun3 Al Quran Kefahaman Surah Al Fatihah",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_KefahamanSurahAlFatihah.html",
+      "description": "Bahan PdP PI Tahun 3 — Al-Quran",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "AlQuran"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_AlQuran_SurahAlAsr",
+      "title": "PI Tahun3 Al Quran Surah Al Asr",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_SurahAlAsr.html",
+      "description": "Bahan PdP PI Tahun 3 — Al-Quran",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "AlQuran"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_AlQuran_SurahAlKafirun",
+      "title": "PI Tahun3 Al Quran Surah Al Kafirun",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_SurahAlKafirun.html",
+      "description": "Bahan PdP PI Tahun 3 — Al-Quran",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "AlQuran"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_AlQuran_TajwidNunSakinahTanwin",
+      "title": "PI Tahun3 Al Quran Tajwid Nun Sakinah Tanwin",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_TajwidNunSakinahTanwin.html",
+      "description": "Bahan PdP PI Tahun 3 — Al-Quran",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "AlQuran"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Hadis_YangMudaDikasihi",
+      "title": "PI Tahun3 Hadis Yang Muda Dikasihi",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Hadis_YangMudaDikasihi.html",
+      "description": "Bahan PdP PI Tahun 3 — Hadis",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Hadis"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Ibadah_BersuciHadasBesar",
+      "title": "PI Tahun3 Ibadah Bersuci Hadas Besar",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Ibadah_BersuciHadasBesar.html",
+      "description": "Bahan PdP PI Tahun 3 — Ibadah",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Ibadah"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Ibadah_SolatSempurna",
+      "title": "PI Tahun3 Ibadah Solat Sempurna",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Ibadah_SolatSempurna.html",
+      "description": "Bahan PdP PI Tahun 3 — Ibadah",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Ibadah"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Ibadah_SunatAbadhHaiat",
+      "title": "PI Tahun3 Ibadah Sunat Abadh Haiat",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Ibadah_SunatAbadhHaiat.html",
+      "description": "Bahan PdP PI Tahun 3 — Ibadah",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Ibadah"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Jawi_ImbuhanAwalan",
+      "title": "PI Tahun3 Jawi Imbuhan Awalan",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Jawi_ImbuhanAwalan.html",
+      "description": "Bahan PdP PI Tahun 3 — Jawi",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Jawi"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Sirah_KeperibadianNabi",
+      "title": "PI Tahun3 Sirah Keperibadian Nabi",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Sirah_KeperibadianNabi.html",
+      "description": "Bahan PdP PI Tahun 3 — Sirah",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Sirah"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Sirah_SifatTabligh",
+      "title": "PI Tahun3 Sirah Sifat Tabligh",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Sirah_SifatTabligh.html",
+      "description": "Bahan PdP PI Tahun 3 — Sirah",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Sirah"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun3_Sirah_WahyuTeragung",
+      "title": "PI Tahun3 Sirah Wahyu Teragung",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/Bahan_PdP_PI_Tahun3_Sirah_WahyuTeragung.html",
+      "description": "Bahan PdP PI Tahun 3 — Sirah",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "PI-T3",
+        "Sirah"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun3_SK1118_NomborBulatHingga10000",
+      "title": "Matematik Tahun3 SK 1118 Nombor Bulat Hingga10000",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK1118_NomborBulatHingga10000.html",
+      "description": "Bahan PdP maths-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun3_SK2122_TambahdanTolak",
+      "title": "Matematik Tahun3 SK 2122 Tambahdan Tolak",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK2122_TambahdanTolak.html",
+      "description": "Bahan PdP maths-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun3_SK2324_DarabdanBahagi",
+      "title": "Matematik Tahun3 SK 2324 Darabdan Bahagi",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK2324_DarabdanBahagi.html",
+      "description": "Bahan PdP maths-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun3_SK2526_OperasiBergabungdanAnu",
+      "title": "Matematik Tahun3 SK 2526 Operasi Bergabungdan Anu",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK2526_OperasiBergabungdanAnu.html",
+      "description": "Bahan PdP maths-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun3_SK31_Pecahan",
+      "title": "Matematik Tahun3 SK 31 Pecahan",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK31_Pecahan.html",
+      "description": "Bahan PdP maths-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun3_SK3233_PerpuluhandanPeratus",
+      "title": "Matematik Tahun3 SK 3233 Perpuluhandan Peratus",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK3233_PerpuluhandanPeratus.html",
+      "description": "Bahan PdP maths-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun3_SK41_Wang",
+      "title": "Matematik Tahun3 SK 41 Wang",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK41_Wang.html",
+      "description": "Bahan PdP maths-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun3_SK5155_MasadanWaktu",
+      "title": "Matematik Tahun3 SK 5155 Masadan Waktu",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK5155_MasadanWaktu.html",
+      "description": "Bahan PdP maths-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun3_SK6163_UkurandanSukatan",
+      "title": "Matematik Tahun3 SK 6163 Ukurandan Sukatan",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK6163_UkurandanSukatan.html",
+      "description": "Bahan PdP maths-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun3_SK7173_Ruang",
+      "title": "Matematik Tahun3 SK 7173 Ruang",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK7173_Ruang.html",
+      "description": "Bahan PdP maths-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun3_SK8192_Koordinat,Nisbah,DatadanKebolehjadian",
+      "title": "Matematik Tahun3 SK 8192 Koordinat,Nisbah,Datadan Kebolehjadian",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK8192_Koordinat,Nisbah,DatadanKebolehjadian.html",
+      "description": "Bahan PdP maths-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK1117_NomborBulatHingga100000",
+      "title": "Matematik Tahun4 SK 1117 Nombor Bulat Hingga100000",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK1117_NomborBulatHingga100000.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK2122_TambahHingga100000",
+      "title": "Matematik Tahun4 SK 2122 Tambah Hingga100000",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK2122_TambahHingga100000.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK2122_TolakHingga100000",
+      "title": "Matematik Tahun4 SK 2122 Tolak Hingga100000",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK2122_TolakHingga100000.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK2324_DarabdanBahagiHingga100000",
+      "title": "Matematik Tahun4 SK 2324 Darabdan Bahagi Hingga100000",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK2324_DarabdanBahagiHingga100000.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK25_OperasiBergabungHingga100000",
+      "title": "Matematik Tahun4 SK 25 Operasi Bergabung Hingga100000",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK25_OperasiBergabungHingga100000.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK31_Pecahan",
+      "title": "Matematik Tahun4 SK 31 Pecahan",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK31_Pecahan.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK3233_PerpuluhandanPeratus",
+      "title": "Matematik Tahun4 SK 3233 Perpuluhandan Peratus",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK3233_PerpuluhandanPeratus.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK41_WangHinggaRM100000",
+      "title": "Matematik Tahun4 SK 41 Wang Hingga RM100000",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK41_WangHinggaRM100000.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK5153_MasadanWaktu",
+      "title": "Matematik Tahun4 SK 5153 Masadan Waktu",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK5153_MasadanWaktu.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK61_Panjang",
+      "title": "Matematik Tahun4 SK 61 Panjang",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK61_Panjang.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK62_Jisim",
+      "title": "Matematik Tahun4 SK 62 Jisim",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK62_Jisim.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK63_IsiPaduCecair",
+      "title": "Matematik Tahun4 SK 63 Isi Padu Cecair",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK63_IsiPaduCecair.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK7172_Ruang-PerimeterdanLuas",
+      "title": "Matematik Tahun4 SK 7172 Ruang-Perimeterdan Luas",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK7172_Ruang-PerimeterdanLuas.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK73_Ruang-IsiPadu",
+      "title": "Matematik Tahun4 SK 73 Ruang-Isi Padu",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK73_Ruang-IsiPadu.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Matematik_Tahun4_SK8192_Koordinat,Nisbah,DatadanKebolehjadian",
+      "title": "Matematik Tahun4 SK 8192 Koordinat,Nisbah,Datadan Kebolehjadian",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK8192_Koordinat,Nisbah,DatadanKebolehjadian.html",
+      "description": "Bahan PdP maths-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "maths-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Sains_Tahun3_SK101_Takal",
+      "title": "Sains Tahun3 SK 101 Takal",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK101_Takal.html",
+      "description": "Bahan PdP sains-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "sains-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Sains_Tahun3_SK11_KemahiranProsesSains",
+      "title": "Sains Tahun3 SK 11 Kemahiran Proses Sains",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK11_KemahiranProsesSains.html",
+      "description": "Bahan PdP sains-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "sains-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Sains_Tahun3_SK12_KemahiranManipulatif",
+      "title": "Sains Tahun3 SK 12 Kemahiran Manipulatif",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK12_KemahiranManipulatif.html",
+      "description": "Bahan PdP sains-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "sains-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Sains_Tahun3_SK21_PeraturanBilikSains",
+      "title": "Sains Tahun3 SK 21 Peraturan Bilik Sains",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK21_PeraturanBilikSains.html",
+      "description": "Bahan PdP sains-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "sains-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Sains_Tahun3_SK31_Gigi",
+      "title": "Sains Tahun3 SK 31 Gigi",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK31_Gigi.html",
+      "description": "Bahan PdP sains-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "sains-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Sains_Tahun3_SK32_KelasMakanan",
+      "title": "Sains Tahun3 SK 32 Kelas Makanan",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK32_KelasMakanan.html",
+      "description": "Bahan PdP sains-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "sains-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Sains_Tahun3_SK33_Pencernaan",
+      "title": "Sains Tahun3 SK 33 Pencernaan",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK33_Pencernaan.html",
+      "description": "Bahan PdP sains-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "sains-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Sains_Tahun3_SK41_TabiatPemakananHaiwan",
+      "title": "Sains Tahun3 SK 41 Tabiat Pemakanan Haiwan",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK41_TabiatPemakananHaiwan.html",
+      "description": "Bahan PdP sains-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "sains-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Sains_Tahun3_SK51_PembiakanTumbuhan",
+      "title": "Sains Tahun3 SK 51 Pembiakan Tumbuhan",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK51_PembiakanTumbuhan.html",
+      "description": "Bahan PdP sains-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "sains-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Sains_Tahun3_SK61_PengukuranLuasdanIsiPadu",
+      "title": "Sains Tahun3 SK 61 Pengukuran Luasdan Isi Padu",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK61_PengukuranLuasdanIsiPadu.html",
+      "description": "Bahan PdP sains-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "sains-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Sains_Tahun3_SK71_Ketumpatan",
+      "title": "Sains Tahun3 SK 71 Ketumpatan",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK71_Ketumpatan.html",
+      "description": "Bahan PdP sains-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "sains-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Sains_Tahun3_SK81_AsiddanAlkali",
+      "title": "Sains Tahun3 SK 81 Asiddan Alkali",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK81_AsiddanAlkali.html",
+      "description": "Bahan PdP sains-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "sains-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_Sains_Tahun3_SK91_SistemSuria",
+      "title": "Sains Tahun3 SK 91 Sistem Suria",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK91_SistemSuria.html",
+      "description": "Bahan PdP sains-t3",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "sains-t3"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Adab_AdabBeriadah",
+      "title": "PI Tahun4 Adab Adab Beriadah",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Adab_AdabBeriadah.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Adab_AdabBerjiran",
+      "title": "PI Tahun4 Adab Adab Berjiran",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Adab_AdabBerjiran.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Adab_AdabBerpakaian",
+      "title": "PI Tahun4 Adab Adab Berpakaian",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Adab_AdabBerpakaian.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Adab_AdabTerhadapGuru",
+      "title": "PI Tahun4 Adab Adab Terhadap Guru",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Adab_AdabTerhadapGuru.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Akidah_BerimanKepadaRasul",
+      "title": "PI Tahun4 Akidah Beriman Kepada Rasul",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Akidah_BerimanKepadaRasul.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Akidah_MempertahankanAqidahKufur",
+      "title": "PI Tahun4 Akidah Mempertahankan Aqidah Kufur",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Akidah_MempertahankanAqidahKufur.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Akidah_MempertahankanAqidahNifak",
+      "title": "PI Tahun4 Akidah Mempertahankan Aqidah Nifak",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Akidah_MempertahankanAqidahNifak.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Akidah_NamaAllahAlAzimAlHamid",
+      "title": "PI Tahun4 Akidah Nama Allah Al Azim Al Hamid",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Akidah_NamaAllahAlAzimAlHamid.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_AlQuran_HafazanSurahAlQariah",
+      "title": "PI Tahun4 Al Quran Hafazan Surah Al Qariah",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_HafazanSurahAlQariah.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_AlQuran_HafazanSurahAtTakathur",
+      "title": "PI Tahun4 Al Quran Hafazan Surah At Takathur",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_HafazanSurahAtTakathur.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_AlQuran_KefahamanSurahAlIkhlas",
+      "title": "PI Tahun4 Al Quran Kefahaman Surah Al Ikhlas",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_KefahamanSurahAlIkhlas.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_AlQuran_TajwidMimSakinahTanwin",
+      "title": "PI Tahun4 Al Quran Tajwid Mim Sakinah Tanwin",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_TajwidMimSakinahTanwin.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_AlQuran_TajwidQalqalah",
+      "title": "PI Tahun4 Al Quran Tajwid Qalqalah",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_TajwidQalqalah.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_AlQuran_TajwidTandaWaqaf",
+      "title": "PI Tahun4 Al Quran Tajwid Tanda Waqaf",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_TajwidTandaWaqaf.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_AlQuran_TilawahSurahAlQariah",
+      "title": "PI Tahun4 Al Quran Tilawah Surah Al Qariah",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_TilawahSurahAlQariah.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_AlQuran_TilawahSurahAtTakathur",
+      "title": "PI Tahun4 Al Quran Tilawah Surah At Takathur",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_TilawahSurahAtTakathur.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Hadis_MemuliakanTetamu",
+      "title": "PI Tahun4 Hadis Memuliakan Tetamu",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Hadis_MemuliakanTetamu.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Ibadah_AzanDanIqamah",
+      "title": "PI Tahun4 Ibadah Azan Dan Iqamah",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Ibadah_AzanDanIqamah.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Ibadah_BersuciNajis",
+      "title": "PI Tahun4 Ibadah Bersuci Najis",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Ibadah_BersuciNajis.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Ibadah_PuasaRamadan",
+      "title": "PI Tahun4 Ibadah Puasa Ramadan",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Ibadah_PuasaRamadan.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Jawi_PerkataanBerhurufHamzah",
+      "title": "PI Tahun4 Jawi Perkataan Berhuruf Hamzah",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Jawi_PerkataanBerhurufHamzah.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Jawi_PerkataanPinjamanBahasaInggeris",
+      "title": "PI Tahun4 Jawi Perkataan Pinjaman Bahasa Inggeris",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Jawi_PerkataanPinjamanBahasaInggeris.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Jawi_PerkataanTradisi",
+      "title": "PI Tahun4 Jawi Perkataan Tradisi",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Jawi_PerkataanTradisi.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Sirah_KeperibadianNabiBerdakwah",
+      "title": "PI Tahun4 Sirah Keperibadian Nabi Berdakwah",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Sirah_KeperibadianNabiBerdakwah.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Sirah_PerjanjianAqabah",
+      "title": "PI Tahun4 Sirah Perjanjian Aqabah",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Sirah_PerjanjianAqabah.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun4_Sirah_SifatFatanahNabi",
+      "title": "PI Tahun4 Sirah Sifat Fatanah Nabi",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Sirah_SifatFatanahNabi.html",
+      "description": "Bahan PdP pi-t4",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t4"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Adab_AdabAlamSekitar",
+      "title": "PI Tahun5 Adab Adab Alam Sekitar",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Adab_AdabAlamSekitar.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Adab_AdabBerkomunikasi",
+      "title": "PI Tahun5 Adab Adab Berkomunikasi",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Adab_AdabBerkomunikasi.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Adab_AdabJualBeli",
+      "title": "PI Tahun5 Adab Adab Jual Beli",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Adab_AdabJualBeli.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Adab_AdabMenaikiKenderaan",
+      "title": "PI Tahun5 Adab Adab Menaiki Kenderaan",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Adab_AdabMenaikiKenderaan.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Akidah_BerimanHariAkhirat",
+      "title": "PI Tahun5 Akidah Beriman Hari Akhirat",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Akidah_BerimanHariAkhirat.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSihir",
+      "title": "PI Tahun5 Akidah Mempertahankan Aqidah Sihir",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSihir.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSyirik",
+      "title": "PI Tahun5 Akidah Mempertahankan Aqidah Syirik",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSyirik.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Akidah_NamaAllahAlMalikAlHasib",
+      "title": "PI Tahun5 Akidah Nama Allah Al Malik Al Hasib",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Akidah_NamaAllahAlMalikAlHasib.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAlQadr",
+      "title": "PI Tahun5 Al Quran Hafazan Surah Al Qadr",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAlQadr.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAtTin",
+      "title": "PI Tahun5 Al Quran Hafazan Surah At Tin",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAtTin.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_AlQuran_HukumMad",
+      "title": "PI Tahun5 Al Quran Hukum Mad",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_HukumMad.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_AlQuran_KefahamanSurahAlAsr",
+      "title": "PI Tahun5 Al Quran Kefahaman Surah Al Asr",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_KefahamanSurahAlAsr.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAlQadr",
+      "title": "PI Tahun5 Al Quran Tilawah Surah Al Qadr",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAlQadr.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAtTin",
+      "title": "PI Tahun5 Al Quran Tilawah Surah At Tin",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAtTin.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Hadis_MentaatiPemimpin",
+      "title": "PI Tahun5 Hadis Mentaati Pemimpin",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Hadis_MentaatiPemimpin.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Ibadah_SolatBerjemaah",
+      "title": "PI Tahun5 Ibadah Solat Berjemaah",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Ibadah_SolatBerjemaah.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Ibadah_SolatJumaat",
+      "title": "PI Tahun5 Ibadah Solat Jumaat",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Ibadah_SolatJumaat.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Ibadah_SolatSunatDuaHariRaya",
+      "title": "PI Tahun5 Ibadah Solat Sunat Dua Hari Raya",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Ibadah_SolatSunatDuaHariRaya.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Ibadah_Tayammum",
+      "title": "PI Tahun5 Ibadah Tayammum",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Ibadah_Tayammum.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Sirah_HijrahRasulullahMadinah",
+      "title": "PI Tahun5 Sirah Hijrah Rasulullah Madinah",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Sirah_HijrahRasulullahMadinah.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Sirah_KeperibadianNabiPemimpin",
+      "title": "PI Tahun5 Sirah Keperibadian Nabi Pemimpin",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Sirah_KeperibadianNabiPemimpin.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "bahan-Bahan_PdP_PI_Tahun5_Sirah_SifatItqanNabi",
+      "title": "PI Tahun5 Sirah Sifat Itqan Nabi",
+      "category": "bahan-pdp",
+      "entry": "works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Sirah_SifatItqanNabi.html",
+      "description": "Bahan PdP pi-t5",
+      "tech": [],
+      "tags": [
+        "bahan-pdp",
+        "pi-t5"
+      ]
+    },
+    {
+      "id": "saas-main",
+      "title": "Agentic OS Sabah — 6 Dashboard Tokoh",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/sabah-agentic-os/index.html",
+      "description": "Portal web statik dengan satu dashboard untuk setiap tokoh, bersama seni bina integrasi API 4 lapis dan konsol kunci API.",
+      "tech": [],
+      "tags": [
+        "saas",
+        "paas",
+        "tokoh"
+      ]
+    },
+    {
+      "id": "saas-portfolio-arifin",
+      "title": "PORTF·AA — Datuk Dr. Mohd Arifin (U4)",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/portfolio-arifin/index.html",
+      "description": "Portfolio agentic domain PBT & Perumahan, bersekutu dengan PaaS Negeri. Simulasi PBT/agensi + laporan KPI masa nyata untuk Ketua Menteri.",
+      "tech": [],
+      "tags": [
+        "portfolio",
+        "saas",
+        "paas"
+      ]
+    },
+    {
+      "id": "saas-portfolio-raimy",
+      "title": "PORTF·AR — Awangku Raimy (U5)",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/portfolio-raimy/index.html",
+      "description": "Portfolio agentic domain pendidikan & pinjaman (TPNS/BAGUS/SUKSES/BALKIS). Kokpit 4 tab, penanda aras 4 negara, matriks strategik.",
+      "tech": [],
+      "tags": [
+        "portfolio",
+        "saas",
+        "paas"
+      ]
+    },
+    {
+      "id": "saas-portfolio-zainudin",
+      "title": "PORTF·ZA — Datuk Zainudin Aman (U6)",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/portfolio-zainudin/index.html",
+      "description": "PaaS Negeri: simulasi integrasi 11 kementerian, laporan KPI SMJ 2.0 masa nyata untuk Ketua Menteri, hab data & gerbang API.",
+      "tech": [],
+      "tags": [
+        "portfolio",
+        "saas",
+        "paas"
+      ]
+    },
+    {
+      "id": "landing-sk-salimpodon",
+      "title": "Portal Rasmi SK Salimpodon Darat, Pitas",
+      "category": "landing",
+      "entry": "works/landing/sk-salimpodon/index.html",
+      "description": "Portal sekolah tema 'Charcoal Sovereign' (kelabu gelap VVIP) — carta organisasi bergaya kedaulatan, potret GB/PK digilap dengan AI (900×1125), halaman Pencapaian & Berita, 44 foto, 9 video dan akses berlapis Jemaah Nazir / PPD / Pentadbir Sekolah. Disertakan Command Center Pentadbiran berperanan (Guru Besar + 3 Penolong Kanan) yang dijana daripada Agihan Subjek dan Jadual Waktu 2026 Janaan 3.",
+      "tech": [
+        "SPA + hash router",
+        "Sovereignty org chart",
+        "AI portrait pipeline",
+        "3-tier officer access",
+        "Command Center 4 peranan"
+      ],
+      "tags": [
+        "landing",
+        "website"
+      ]
+    },
+    {
+      "id": "landing-sk-bongkol",
+      "title": "Portal Rasmi SK Bongkol Pitas",
+      "category": "landing",
+      "entry": "works/landing/sk-bongkol/index.html",
+      "description": "Portal sekolah 'high-end / VVIP' — SPA statik 9 halaman, Portal Pegawai, 7 dokumen PDF, galeri & video.",
+      "tech": [
+        "SPA + hash router",
+        "SVG charts",
+        "PDF"
+      ],
+      "tags": [
+        "landing",
+        "website"
+      ]
+    },
+    {
+      "id": "landing-jesb-vvip",
+      "title": "Jazbah Enterprise (JESB) — VVIP",
+      "category": "landing",
+      "entry": "works/landing/jesb-vvip/index.html",
+      "description": "Laman korporat 'Dark Luxury Executive' untuk offshore catering Kota Kinabalu. 23 seksyen, dashboard JEIOP, dwibahasa BM/EN.",
+      "tech": [
+        "HTML/CSS/JS",
+        "i18n BM/EN",
+        "SVG charts"
+      ],
+      "tags": [
+        "landing",
+        "website"
+      ]
+    },
+    {
+      "id": "landing-skn-rnd",
+      "title": "Pangkalan Ilmu SKN",
+      "category": "landing",
+      "entry": "works/landing/skn-rnd/index.html",
+      "description": "Laman R&D pangkalan ilmu — korporat, i-Know, sumber, repositori, siaran dan direktori, dibina daripada data grounding portal rasmi.",
+      "tech": [
+        "Static site",
+        "Scraped grounding"
+      ],
+      "tags": [
+        "landing",
+        "website"
+      ]
+    },
+    {
+      "id": "landing-siap-konsep",
+      "title": "SIAP — Sistem Infrastruktur Aset Pintar Sabah (Draf Konsep v3.0)",
+      "category": "landing",
+      "entry": "works/landing/siap-konsep/index.html",
+      "description": "Draf konsep v3.0 SIAP. Asalnya hanya wujud sebagai fail di folder Downloads (pautan rapuh di luar hub) — kini disalin masuk supaya kekal boleh diakses.",
+      "tech": [
+        "Laman statik",
+        "Draf konsep v3.0"
+      ],
+      "tags": [
+        "landing",
+        "website"
+      ]
+    },
+    {
+      "id": "swarm-7100",
+      "title": "SKN SWARM COMMAND · SDGP — Pusat Arahan Swarm 100 Ejen",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/swarm-7100/index.html",
+      "description": "Pusat arahan swarm 100 ejen untuk SDGP (Sabah Digital Government Platform), Pemboleh Daya #5 SMJ 2.0. Enjin orkestrasi interaktif: pilih situasi, skuad digerakkan melalui Analisis → Delegasi → Semakan → Sintesis, jejak audit langsung, kemudian taklimat untuk kelulusan manusia. Termasuk Monitor SMJ 2.0, 11 kementerian, analisis 336 aplikasi dan pelan 90 hari.",
+      "tech": [],
+      "tags": [
+        "swarm-command",
+        "prototaip",
+        "saas",
+        "paas",
+        "swarm-7100"
+      ]
+    },
+    {
+      "id": "swarm-7101",
+      "title": "EDUSYNC TPNS · SWARM COMMAND — Prototaip Konsep",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/swarm-7101/index.html",
+      "description": "Pusat arahan swarm untuk orkestrasi dana pendidikan dan pemulihan pinjaman (use case U5, TSKN). Lima situasi sepadan dengan lima jurang yang direkodkan; dashboard TPNS (RM25.10j · 15,629 pelajar · 214 kes pertindihan · 68% pemulihan), senibina lima lapisan dan tujuh modul teras, serta peta jalan Fasa 0→3.",
+      "tech": [],
+      "tags": [
+        "swarm-command",
+        "prototaip",
+        "saas",
+        "paas",
+        "swarm-7101"
+      ]
+    },
+    {
+      "id": "swarm-7102",
+      "title": "SIAP · SWARM COMMAND — Pusat Arahan Swarm 50 Ejen K02",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/swarm-7102/index.html",
+      "description": "Pusat arahan swarm 50 ejen (skuad K02) untuk SIAP — Sistem Infrastruktur Aset Pintar Sabah. Lima situasi sepadan dengan lima pain point yang direkodkan dalam pembentangan DUN dan laporan audit; tiga lapisan SIAP Urus/Padu/Data, pangkalan garis NRW, empat opsyen pelaksanaan, empat fasa kos dan tujuh risiko.",
+      "tech": [],
+      "tags": [
+        "swarm-command",
+        "prototaip",
+        "saas",
+        "paas",
+        "swarm-7102"
+      ]
+    },
+    {
+      "id": "hab-alat-harness",
+      "title": "Pusat Kawalan Alat & Harness — Router, Pasaran Model & Dua Harness",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/hab-alat-harness/index.html",
+      "description": "Konsol tunggal untuk kategori Alat & Harness. Enjin Router Kepakaran sebenar (disalin verbatim daripada router_kepakaran.py) mengklasifikasikan tugasan dan memilih agen, model, kunci serta anggaran kos. Turut memuatkan Pasaran Model M6, empat mod DeepSeek Harness berserta jadual kos dan katalog plugin, fakta Hermes Agent (v0.21.0, tema navy-gold, 26 skil, 132 entri memori), dan panel kesihatan pelayan yang diukur pada 2026-10-03.",
+      "tech": [],
+      "tags": [
+        "alat",
+        "harness",
+        "router",
+        "deepseek",
+        "hermes",
+        "hab-alat-harness"
+      ]
+    },
+    {
+      "id": "moved-saas-1",
+      "title": "KESAN Digital — Prototaip Konsep SaaS/PaaS Ekosistem Usahawan & Koperasi",
+      "category": "saas-paas",
+      "entry": "https://v10qn7hbkrx0-d.space-z.ai/#cadangan",
+      "description": "Prototaip konsep SaaS/PaaS untuk ekosistem usahawan dan koperasi.",
+      "tech": [],
+      "tags": [
+        "saas",
+        "paas",
+        "pindah",
+        "SaaS/PaaS"
+      ]
+    },
+    {
+      "id": "teras-1",
+      "title": "SKN SWARM COMMAND · SDGP — Pusat Arahan Swarm 100 Ejen",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/swarm-7100/index.html#arahan",
+      "description": "Fragmen #swarm sepadan dengan bahagian Pusat Arahan. Pelayan localhost:7100 sudah mati — prototaip kini fail kendiri dalam hub, jadi pautan ini menuju ke bahagian yang sama. (asal: http://localhost:7100/#swarm)",
+      "tech": [],
+      "tags": [
+        "teras-platform",
+        "dibina-semula"
+      ]
+    },
+    {
+      "id": "teras-2",
+      "title": "EDUSYNC TPNS · SWARM COMMAND — Prototaip Konsep",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/swarm-7101/index.html#pelan",
+      "description": "Fragmen #roadmap sepadan dengan bahagian Peta Jalan (#pelan) — Fasa 0 hingga Fasa 3 dengan KPI P1–P6. Pelayan localhost:7101 sudah mati. (asal: http://localhost:7101/#roadmap)",
+      "tech": [],
+      "tags": [
+        "teras-platform",
+        "dibina-semula"
+      ]
+    },
+    {
+      "id": "teras-3",
+      "title": "SIAP · SWARM COMMAND — Pusat Arahan Swarm 50 Ejen K02",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/swarm-7102/index.html#arahan",
+      "description": "Fragmen #swarm sepadan dengan bahagian Pusat Arahan — pemilih lima situasi dan empat lapisan kawalan. Pelayan localhost:7102 sudah mati. (asal: http://localhost:7102/#swarm)",
+      "tech": [],
+      "tags": [
+        "teras-platform",
+        "dibina-semula"
+      ]
+    },
+    {
+      "id": "teras-4",
+      "title": "SIAP · SWARM COMMAND — bahagian masalah (NRW & KPI)",
+      "category": "saas-paas",
+      "entry": "works/saas-paas/swarm-7102/index.html#monitor",
+      "description": "Fragmen #masalah sepadan dengan bahagian Monitor NRW & KPI — garis dasar masalah yang direkodkan (NRW Sabah ~60% berbanding global ~30% dan Singapura ~5%). (asal: http://localhost:7102/#masalah)",
+      "tech": [],
+      "tags": [
+        "teras-platform",
+        "dibina-semula"
+      ]
+    },
+    {
+      "id": "teras-5",
+      "title": "SUK Orchestration Command Center — Datuk Zainudin bin Aman",
+      "category": "saas-paas",
+      "entry": "https://fhmmi6jn.autoclawai.space/#sight",
+      "description": "Pusat arahan orkestrasi SUK bagi Setiausaha Kerajaan Negeri Sabah (use case U6) — SMJ 2.0, profil dan gambaran menyeluruh. Laman terbitan, masih boleh dicapai. (asal: https://fhmmi6jn.autoclawai.space/#sight)",
+      "tech": [],
+      "tags": [
+        "teras-platform",
+        "hidup"
+      ]
+    },
+    {
+      "id": "teras-6",
+      "title": "Pangkalan Ilmu SKN — bahagian ringkasan",
+      "category": "saas-paas",
+      "entry": "works/landing/skn-rnd/index.html#ringkasan",
+      "description": "Sudah berada dalam hub sebagai laman statik. Pautan asalnya ialah URL file:// pada mesin ini sahaja — laluan relatif digunakan supaya ia kekal berfungsi walau hub dipindahkan. (asal: works/landing/skn-rnd/index.html#ringkasan)",
+      "tech": [],
+      "tags": [
+        "teras-platform",
+        "dalam-hub"
+      ]
+    },
+    {
+      "id": "moved-landing-1",
+      "title": "Jazbah Enterprise (JESB) VVIP — All in One Wedding Vendor",
+      "category": "landing",
+      "entry": "https://nfwsia12.autoclawai.space/",
+      "description": "Versi TERBITAN laman JESB VVIP — pusat sehenti majlis VVIP (versi tempatan: works/landing/jesb-vvip).",
+      "tech": [],
+      "tags": [
+        "landing",
+        "pindah",
+        "Laman Terbitan"
+      ]
+    },
+    {
+      "id": "moved-landing-2",
+      "title": "Honeyan Penginapan — Kabin Tepi Laut, Kafe & Dewan Majlis",
+      "category": "landing",
+      "entry": "https://nfwsia12.autoclawai.space/honeyan.html#kafe",
+      "description": "Laman penginapan Honeyan — kabin tepi laut, kafe dan dewan majlis di Dataran Pitas.",
+      "tech": [],
+      "tags": [
+        "landing",
+        "pindah",
+        "Laman Terbitan"
+      ]
+    }
+  ],
+  "totals": {
+    "platforms": 5,
+    "works": 135,
+    "bahanPdP": 107,
+    "games": 4,
+    "tokoh": 6,
+    "portfolios": 3,
+    "swarmPrototypes": 3,
+    "habAlatHarness": 1,
+    "nexusStudio": 1,
+    "nexusOffice": 1,
+    "terasPlatformLinks": 6,
+    "websites": 7,
+    "movedToPlatforms": 9,
+    "recentWork": 12,
+    "pending": 7,
+    "tools": 15,
+    "attentionLinks": 18
+  }
+}

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Platform Induk — Bahan PdP &amp; Permainan Interaktif</title>
+<meta name="description" content="Himpunan bahan Pengajaran dan Pemudahcaraan (PdP) serta permainan interaktif pendidikan. Semua pautan dibuka dalam tab baharu.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2306070d'/%3E%3Cpath d='M10 21l6-11 6 11' stroke='%23d8b45f' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  /* --- light VVIP "Ivory Sovereign" palette ------------------------------ */
+  --bg:#f7f5f0; --bg2:#fffefb;
+  --raised:#ffffff; --sunken:#f1ede5;
+  --fg:#1b1e25; --fg-dim:#414855; --muted:#5b626f;
+  --border:rgba(27,30,37,.11); --border-strong:rgba(138,102,32,.45);
+  --primary:#8a6620; --primary-soft:rgba(138,102,32,.09);
+  --gold:#8a6620; --gold-2:#6b4d13; --gold-soft:rgba(138,102,32,.09);
+  --gold-line:#dcc793; --gold-bright:#c9a24a;
+  --ink:#1b1e25;
+  --cyan:#1c6d78; --violet:#5b4a9c;
+  --success:#136b4c; --success-soft:rgba(19,107,76,.10);
+  --warning:#96610c; --warning-soft:rgba(150,97,12,.11);
+  --radius:16px; --radius-sm:10px;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",sans-serif;
+  --shadow:0 1px 2px rgba(27,30,37,.05),0 14px 34px -20px rgba(27,30,37,.22);
+  --shadow-lg:0 2px 4px rgba(27,30,37,.06),0 26px 54px -28px rgba(27,30,37,.30);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);
+  font-size:16px;line-height:1.72;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:
+  radial-gradient(1100px 520px at 4% -12%, rgba(201,162,74,.16), transparent 62%),
+  radial-gradient(900px 470px at 96% -10%, rgba(28,109,120,.10), transparent 64%),
+  radial-gradient(900px 520px at 50% 112%, rgba(138,102,32,.09), transparent 62%),var(--bg)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(27,30,37,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(27,30,37,.045) 1px,transparent 1px);
+  background-size:62px 62px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 62% at 50% 0%,#000 26%,transparent 76%);
+  mask-image:radial-gradient(ellipse 90% 62% at 50% 0%,#000 26%,transparent 76%)}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold-2)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+header.hero{border-bottom:1px solid var(--border);padding:66px 0 48px;position:relative}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:11px;margin-bottom:18px;font-weight:600}
+.eyebrow::before{content:"";width:30px;height:1.5px;background:linear-gradient(90deg,transparent,var(--gold-bright));flex:0 0 auto}
+.crumb{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.crumb a{color:var(--muted)}
+.crumb a:hover{color:var(--gold)}
+h1{font-family:var(--serif);font-size:clamp(31px,4.6vw,50px);line-height:1.12;letter-spacing:-.012em;margin:0;font-weight:600;color:var(--fg)}
+h1 .accent{color:var(--gold-2);background:linear-gradient(102deg,#a87c26,var(--gold) 46%,var(--cyan));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:var(--fg-dim);font-size:16.5px;max-width:82ch;margin:18px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:32px}
+.kpi{position:relative;border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;
+  background:var(--raised);box-shadow:var(--shadow);overflow:hidden}
+.kpi::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold-bright),var(--gold-line))}
+.kpi b{display:block;font-family:var(--serif);font-size:29px;letter-spacing:-.01em;line-height:1.14;
+  font-variant-numeric:tabular-nums;color:var(--fg)}
+.kpi span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+nav.toc{position:sticky;top:0;z-index:20;background:rgba(255,254,251,.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);box-shadow:0 6px 18px -14px rgba(27,30,37,.35)}
+nav.toc ul{display:flex;flex-wrap:wrap;gap:3px;list-style:none;margin:0;padding:10px 0}
+nav.toc a{display:block;padding:7px 12px;border-radius:8px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--fg-dim);font-weight:500}
+nav.toc a:hover{background:var(--gold-soft);color:var(--gold)}
+main{padding-bottom:34px}
+section{padding:52px 0;border-bottom:1px solid var(--border);scroll-margin-top:60px}
+section:last-of-type{border-bottom:none}
+.sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px}
+.sec-ico{width:46px;height:46px;border-radius:13px;background:linear-gradient(160deg,rgba(201,162,74,.22),rgba(138,102,32,.09));
+  border:1px solid var(--gold-line);color:var(--gold-2);display:grid;place-items:center;font-size:20px;flex:0 0 auto}
+.sec-kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);margin-bottom:6px;font-weight:600}
+h2{font-family:var(--serif);font-size:27px;letter-spacing:-.005em;margin:0;font-weight:600;color:var(--fg)}
+.sec-head p{margin:7px 0 0;color:var(--fg-dim);font-size:14.5px;max-width:92ch}
+h3.grp{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin:28px 0 12px;
+  color:var(--fg-dim);display:flex;align-items:center;gap:10px;font-weight:600}
+h3.grp .cnt{font-size:10.5px;color:var(--gold-2);background:var(--gold-soft);border:1px solid var(--gold-line);
+  border-radius:99px;padding:1.5px 10px;letter-spacing:.06em}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.card{position:relative;border:1px solid var(--border);border-radius:var(--radius);background:var(--raised);
+  padding:20px 22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;
+  transition:border-color .2s,transform .2s,box-shadow .2s}
+.card::before{content:"";position:absolute;left:16px;right:16px;top:-1px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold-bright),transparent)}
+.card:hover{border-color:var(--border-strong);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.card.feature{border-color:var(--gold-line);background:linear-gradient(180deg,rgba(201,162,74,.10),var(--raised) 58%)}
+.card-top{display:flex;align-items:flex-start;gap:12px}
+.card-ico{width:40px;height:40px;border-radius:11px;background:linear-gradient(160deg,rgba(201,162,74,.24),rgba(138,102,32,.09));
+  border:1px solid var(--gold-line);color:var(--gold-2);display:grid;place-items:center;font-size:18px;flex:0 0 auto}
+.card h4{margin:0;font-family:var(--serif);font-size:17.5px;font-weight:600;line-height:1.34;color:var(--fg)}
+.card .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.card p{margin:0;font-size:14px;color:var(--fg-dim);line-height:1.68}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{display:inline-block;padding:3px 10px;border-radius:7px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:700;white-space:nowrap}
+.p-cat{background:var(--gold-soft);color:var(--gold-2);border:1px solid var(--gold-line)}
+.p-sekolah{background:rgba(28,109,120,.10);color:var(--cyan);border:1px solid rgba(28,109,120,.30)}
+.p-baru{background:linear-gradient(102deg,var(--gold-bright),var(--gold));color:#241c0a;border:1px solid transparent}
+.p-live{background:var(--success-soft);color:var(--success);border:1px solid rgba(19,107,76,.30)}
+.p-doc{background:var(--warning-soft);color:var(--warning);border:1px solid rgba(150,97,12,.30)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-family:var(--mono);font-size:10.5px;color:var(--fg-dim);background:var(--sunken);
+  border:1px solid var(--border);border-radius:6px;padding:2.5px 8px}
+.stat{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+.btn{display:inline-flex;align-items:center;gap:7px;height:35px;padding:0 15px;border-radius:var(--radius-sm);
+  border:1px solid var(--border);background:var(--raised);font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--fg-dim);cursor:pointer;
+  transition:background .2s,border-color .2s,color .2s}
+.btn:hover{background:var(--sunken);color:var(--fg);border-color:var(--border-strong)}
+.btn-primary{background:linear-gradient(102deg,var(--gold-bright),var(--gold));border-color:transparent;color:#241c0a}
+.btn-primary:hover{background:linear-gradient(102deg,var(--gold),var(--gold-2));color:#241c0a}
+.btn-sm{height:30px;padding:0 12px;font-size:10px}
+.rowlist{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(268px,1fr))}
+.rowitem{display:flex;align-items:center;gap:11px;border:1px solid var(--border);border-radius:11px;
+  background:var(--raised);padding:10px 13px;font-size:13.8px;transition:border-color .2s,background .2s}
+.rowitem:hover{border-color:var(--border-strong);background:#fffdf8}
+.rowitem .n{width:24px;height:24px;border-radius:7px;background:var(--gold-soft);color:var(--gold-2);
+  display:grid;place-items:center;font-family:var(--mono);font-size:10.5px;font-weight:700;flex:0 0 auto}
+.rowitem a{color:var(--fg);font-weight:600}
+.rowitem a:hover{color:var(--gold)}
+.rowitem .pdf{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:2px 7px}
+.rowitem .pdf:hover{color:var(--gold);border-color:var(--border-strong)}
+.searchbar{display:flex;gap:10px;align-items:center;margin-top:24px;flex-wrap:wrap}
+.searchbar input{flex:1 1 280px;min-width:210px;height:44px;border:1px solid var(--border);border-radius:11px;
+  padding:0 15px;font-size:14.5px;background:var(--raised);color:var(--fg);font-family:var(--sans);
+  box-shadow:var(--shadow)}
+.searchbar input::placeholder{color:var(--muted)}
+.searchbar input:focus{outline:none;border-color:var(--border-strong);box-shadow:0 0 0 3px rgba(201,162,74,.22)}
+.count{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted)}
+.hidden{display:none!important}
+footer{padding:34px 0 52px;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.07em;
+  border-top:1px solid var(--border);text-transform:uppercase;background:var(--bg2)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+/* --- 6 tokoh korporat --- */
+.tokoh-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(372px,1fr))}
+.tokoh{position:relative;border:1px solid var(--border);border-radius:var(--radius);background:var(--raised);
+  padding:24px;display:flex;flex-direction:column;gap:15px;box-shadow:var(--shadow);
+  transition:border-color .2s,transform .2s,box-shadow .2s;overflow:hidden}
+.tokoh::after{content:"";position:absolute;right:-70px;top:-70px;width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,162,74,.20),transparent 68%);pointer-events:none}
+.tokoh:hover{border-color:var(--border-strong);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.tokoh-top{display:flex;align-items:center;gap:14px;position:relative}
+.tokoh-av{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-family:var(--mono);
+  font-weight:700;font-size:14px;letter-spacing:.04em;color:#241c0a;
+  background:linear-gradient(135deg,var(--gold-bright),var(--gold));flex:0 0 auto}
+.tokoh-code{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);font-weight:700}
+.tokoh-nama{font-family:var(--serif);font-size:20.5px;font-weight:600;line-height:1.24;margin:3px 0 0;color:var(--fg)}
+.tokoh-jawatan{font-size:13.8px;color:var(--fg-dim);line-height:1.58}
+.tokoh-org{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tokoh-skop{font-size:14px;color:var(--fg-dim);line-height:1.68;border-left:2px solid var(--gold-line);padding-left:13px}
+/* --- bookmark platform --- */
+.bm-wrap{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1 1 auto}
+.bm-wrap a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.bm-wrap .dom{font-family:var(--mono);font-size:10.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.bm-wrap .old{font-family:var(--mono);font-size:10.5px;color:var(--muted);opacity:.9}
+.bm-dead{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;color:var(--muted);
+  text-decoration:line-through;text-decoration-color:rgba(91,98,111,.55);cursor:default}
+.rowitem .pill{margin-left:auto;flex:0 0 auto}
+/* --- status & rujukan ------------------------------------------------- */
+.st-band{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 22px}
+.st-kat{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--gold-soft);border:1px solid var(--gold-line);color:var(--gold-2);
+  border-radius:999px;padding:5px 13px;font-weight:700}
+.st-kat .c{opacity:.72;margin-left:6px}
+.st-card{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--raised);
+  padding:15px 17px;box-shadow:var(--shadow)}
+.st-card h4{margin:0 0 3px;font-family:var(--serif);font-size:16.5px;letter-spacing:-.01em}
+.st-card .st-meta{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-bottom:9px}
+.st-card p{margin:0 0 9px;font-size:14px;color:var(--fg-dim);line-height:1.66}
+.st-card .st-asal{margin:0;font-size:12.5px;color:var(--muted);border-left:2px solid var(--gold-line);padding-left:11px}
+.tool-card{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--raised);padding:14px 16px}
+.tool-card h4{margin:0 0 3px;font-family:var(--mono);font-size:13px;letter-spacing:.02em}
+.tool-card .st-meta{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-bottom:8px}
+.tool-card p{margin:0 0 10px;font-size:13.5px;color:var(--fg-dim);line-height:1.62}
+.tool-card code{display:block;font-family:var(--mono);font-size:12px;background:var(--sunken);
+  border:1px solid var(--border);border-radius:8px;padding:7px 10px;color:var(--gold-2);overflow-x:auto;white-space:nowrap}
+.kerja-card{border:1px solid var(--gold-line);border-radius:var(--radius-sm);
+  background:linear-gradient(180deg,rgba(201,162,74,.10),var(--raised) 58%);padding:15px 17px}
+.kerja-card h4{margin:0 0 3px;font-family:var(--serif);font-size:16.5px}
+.kerja-card .st-meta{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-bottom:9px}
+.kerja-card p{margin:0 0 10px;font-size:14px;color:var(--fg-dim);line-height:1.66}
+.kerja-links{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.kerja-links a{font-family:var(--mono);font-size:11px;background:var(--sunken);border:1px solid var(--border);
+  border-radius:7px;padding:4px 9px;color:var(--gold-2)}
+.kerja-links a:hover{border-color:var(--border-strong)}
+.kerja-bukti{margin:0;font-family:var(--mono);font-size:11px;color:var(--success)}
+.bm-note{font-size:14px;color:var(--fg-dim);margin:0 0 14px}
+/* --- PaaS/SaaS app cards --- */
+.app-card{position:relative;border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--raised);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;
+  transition:border-color .2s,transform .2s,box-shadow .2s}
+.app-card:hover{border-color:var(--border-strong);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.app-band{height:5px;background:linear-gradient(90deg,var(--gold-bright),var(--gold) 52%,var(--cyan))}
+.app-body{padding:20px 22px;display:flex;flex-direction:column;gap:12px;flex:1}
+.app-head{display:flex;align-items:flex-start;gap:13px}
+.app-ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:21px;flex:0 0 auto;
+  background:linear-gradient(160deg,rgba(201,162,74,.24),rgba(138,102,32,.09));border:1px solid var(--gold-line)}
+.app-card h4{margin:0;font-family:var(--serif);font-size:18px;font-weight:600;line-height:1.3;color:var(--fg)}
+.app-card .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.app-card p{margin:0;font-size:14px;color:var(--fg-dim);line-height:1.68}
+.app-feat{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.app-feat li{font-size:13.5px;color:var(--fg-dim);display:flex;gap:9px;align-items:flex-start;line-height:1.6}
+.app-feat li::before{content:"▪";color:var(--gold-bright);font-size:13px;line-height:1.55;flex:0 0 auto}
+@media (max-width:640px){.wrap{padding:0 18px}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Platform Induk 01 · Pendidikan</div>
+  <div class="crumb"><a href="index.html">Portal Kerja</a> / Platform Induk 1</div>
+  <h1>Platform Induk 1 — <span class="accent">Bahan PdP &amp; Permainan Interaktif</span></h1>
+  <p class="sub">Himpunan bahan Pengajaran dan Pemudahcaraan (PdP) serta permainan interaktif pendidikan. Semua pautan dibuka dalam tab baharu.</p>
+  <div class="kpis"><div class="kpi"><b>107</b><span>Bahan PdP</span></div><div class="kpi"><b>4</b><span>Permainan</span></div><div class="kpi"><b>7</b><span>Bidang PI T3</span></div><div class="kpi"><b>A4</b><span>Versi cetakan</span></div></div>
+  <div class="searchbar"><input id="q" type="search" placeholder="Cari…" aria-label="Cari"><span class="count" id="count"></span></div>
+</div></header>
+<nav class="toc" aria-label="Kategori"><div class="wrap"><ul><li><a href="#games">🎮 Gamifikasi</a></li><li><a href="#bahan-pdp">📚 Bahan PdP</a></li><li><a href="#maths-t3">➗ Mate T3</a></li><li><a href="#maths-t4">➗ Mate T4</a></li><li><a href="#sains-t3">🔬 Sains T3</a></li><li><a href="#pi-t4">📖 PI T4</a></li><li><a href="#pi-t5">📖 PI T5</a></li><li><a href="#alat">🛠️ Alat</a></li></ul></div></nav>
+<main class="wrap">
+<section id="games" data-sec><div class="sec-head"><div class="sec-ico">🎮</div><div><div class="sec-kicker">Kategori 01 · Gamifikasi</div><h2>Permainan Interaktif</h2><p>Platform gamifikasi pembelajaran yang boleh dimainkan terus dalam pelayar — termasuk gamifikasi bacaan Iqra' (kanan ke kiri) untuk Tahun 6.</p></div></div><div class="grid"><article class="card" data-search="IQRA' QUEST Gamifikasi Bacaan Iqra Tahun 6 Kajian Tindakan SK Salimpodon Darat Mod 5 Iqra 1 halaman demi halaman kanan ke kiri 19 lencana 5 modul offline game interaktif">
+  <div class="card-top"><div class="card-ico">🕌</div><div><h4>IQRA' QUEST — Bacaan Iqra' Tahun 6</h4><div class="meta">32 muka surat · 5 modul · 19 lencana</div></div></div>
+  <div class="pills"><span class="pill p-baru">TERBARU</span><span class="pill p-live">Interaktif</span><span class="pill p-cat">Game</span></div>
+  <p>Gamifikasi bacaan Iqra' untuk Kajian Tindakan Tahun 6 SK Salimpodon Darat. Lima modul, termasuk Mod 5 — 32 muka surat buku Iqra' 1 sebenar, 8 soalan setiap muka surat, cop Gangsa/Perak/Emas. Tiada audio automatik (butang 🔊 Dengar sahaja); huruf bersambung hidup kanan ke kiri dan setiap huruf berbaris fathah.</p>
+  <div class="tags"><span class="tag">HTML/CSS/JS</span><span class="tag">Kanan → kiri</span><span class="tag">Mod 5 · Iqra' 1</span><span class="tag">19 lencana</span><span class="tag">Luar talian</span></div>
+  <div class="actions"><a class="btn btn-primary" href="works/games/iqra-quest/index.html" target="_blank" rel="noopener">Buka dalam tab baharu ↗</a><a class="btn" href="works/bahan-pdp/kajian-tindakan/Panduan_Workflow_Kajian_Tindakan_Iqra_Tahun6_SK_Salimpodon_Darat.docx" target="_blank" rel="noopener">📘 Panduan kajian</a></div>
+</article><article class="card" data-search="Islamic Quest — Tahun 3 HTML/CSS/JS LocalStorage Audio game interaktif">
+  <div class="card-top"><div class="card-ico">🎮</div><div><h4>Islamic Quest — Tahun 3</h4><div class="meta">60 langkah · 7 pulau</div></div></div>
+  <div class="pills"><span class="pill p-live">Interaktif</span><span class="pill p-cat">Game</span></div>
+  <p>Laman gamifikasi DSKP Pendidikan Islam Tahun 3. 7 pulau, 12 unit, 60 langkah interaktif, kedai ganjaran dan lencana.</p>
+  <div class="tags"><span class="tag">HTML/CSS/JS</span><span class="tag">LocalStorage</span><span class="tag">Audio</span></div>
+  <div class="actions"><a class="btn btn-primary" href="works/games/islamic-quest/index.html" target="_blank" rel="noopener">Buka dalam tab baharu ↗</a></div>
+</article><article class="card" data-search="Islamic Legends — Tahun 4 HTML/CSS/JS Web Audio SpeechSynthesis game interaktif">
+  <div class="card-top"><div class="card-ico">🎮</div><div><h4>Islamic Legends — Tahun 4</h4><div class="meta">55 aktiviti · 7 dunia</div></div></div>
+  <div class="pills"><span class="pill p-live">Interaktif</span><span class="pill p-cat">Game</span></div>
+  <p>Kembara ilmu DSKP Pendidikan Islam Tahun 4. 7 dunia, 26 unit, 55 aktiviti, 8 jenis aktiviti interaktif.</p>
+  <div class="tags"><span class="tag">HTML/CSS/JS</span><span class="tag">Web Audio</span><span class="tag">SpeechSynthesis</span></div>
+  <div class="actions"><a class="btn btn-primary" href="works/games/islamic-legends/index.html" target="_blank" rel="noopener">Buka dalam tab baharu ↗</a></div>
+</article><article class="card" data-search="AI Playground Kanak-Kanak HTML/CSS/ESM PWA Web Audio game interaktif">
+  <div class="card-top"><div class="card-ico">🎮</div><div><h4>AI Playground Kanak-Kanak</h4><div class="meta">12 modul · 5 tahap</div></div></div>
+  <div class="pills"><span class="pill p-live">Interaktif</span><span class="pill p-cat">Game</span></div>
+  <p>Platform interaktif edukasi untuk kanak-kanak 5–8 tahun. 12 modul permainan, AI adaptif, dashboard ibu bapa, PWA offline.</p>
+  <div class="tags"><span class="tag">HTML/CSS/ESM</span><span class="tag">PWA</span><span class="tag">Web Audio</span></div>
+  <div class="actions"><a class="btn btn-primary" href="works/games/ai-playground/index.html" target="_blank" rel="noopener">Buka dalam tab baharu ↗</a></div>
+</article></div></section>
+<section id="bahan-pdp" data-sec><div class="sec-head"><div class="sec-ico">📚</div><div><div class="sec-kicker">Kategori 02 · Bahan PdP</div><h2>Bahan PdP — Pendidikan Islam Tahun 3</h2><p>Bahan Pengajaran dan Pemudahcaraan — infografik, peta minda, nota, diagram dan kuiz interaktif. Setiap bahan ada versi cetakan A4 (PDF).</p></div></div><h3 class="grp" id="pi3-alquran">PI Tahun 3 · Al-Quran</h3><div class="rowlist"><div class="rowitem" data-search="PI Tahun3 Al Quran Hafazan Surah Al Asr"><span class="n">1</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_HafazanSurahAlAsr.html" target="_blank" rel="noopener">PI Tahun3 Al Quran Hafazan Surah Al Asr</a><a class="pdf" href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_HafazanSurahAlAsr_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun3 Al Quran Hafazan Surah Al Kafirun"><span class="n">2</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_HafazanSurahAlKafirun.html" target="_blank" rel="noopener">PI Tahun3 Al Quran Hafazan Surah Al Kafirun</a><a class="pdf" href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_HafazanSurahAlKafirun_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun3 Al Quran Kefahaman Surah Al Fatihah"><span class="n">3</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_KefahamanSurahAlFatihah.html" target="_blank" rel="noopener">PI Tahun3 Al Quran Kefahaman Surah Al Fatihah</a><a class="pdf" href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_KefahamanSurahAlFatihah_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun3 Al Quran Surah Al Asr"><span class="n">4</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_SurahAlAsr.html" target="_blank" rel="noopener">PI Tahun3 Al Quran Surah Al Asr</a><a class="pdf" href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_SurahAlAsr_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun3 Al Quran Surah Al Kafirun"><span class="n">5</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_SurahAlKafirun.html" target="_blank" rel="noopener">PI Tahun3 Al Quran Surah Al Kafirun</a><a class="pdf" href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_SurahAlKafirun_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun3 Al Quran Tajwid Nun Sakinah Tanwin"><span class="n">6</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_TajwidNunSakinahTanwin.html" target="_blank" rel="noopener">PI Tahun3 Al Quran Tajwid Nun Sakinah Tanwin</a><a class="pdf" href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_AlQuran_TajwidNunSakinahTanwin_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div></div><h3 class="grp" id="pi3-hadis">PI Tahun 3 · Hadis</h3><div class="rowlist"><div class="rowitem" data-search="PI Tahun3 Hadis Yang Muda Dikasihi"><span class="n">1</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Hadis_YangMudaDikasihi.html" target="_blank" rel="noopener">PI Tahun3 Hadis Yang Muda Dikasihi</a></div></div><h3 class="grp" id="pi3-akidah">PI Tahun 3 · Akidah</h3><div class="rowlist"><div class="rowitem" data-search="PI Tahun3 Akidah Al Alim Al Hakim"><span class="n">1</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Akidah_AlAlim_AlHakim.html" target="_blank" rel="noopener">PI Tahun3 Akidah Al Alim Al Hakim</a></div><div class="rowitem" data-search="PI Tahun3 Akidah Beriman Kepada Kitab"><span class="n">2</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Akidah_BerimanKepadaKitab.html" target="_blank" rel="noopener">PI Tahun3 Akidah Beriman Kepada Kitab</a></div></div><h3 class="grp" id="pi3-ibadah">PI Tahun 3 · Ibadah</h3><div class="rowlist"><div class="rowitem" data-search="PI Tahun3 Ibadah Bersuci Hadas Besar"><span class="n">1</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Ibadah_BersuciHadasBesar.html" target="_blank" rel="noopener">PI Tahun3 Ibadah Bersuci Hadas Besar</a></div><div class="rowitem" data-search="PI Tahun3 Ibadah Solat Sempurna"><span class="n">2</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Ibadah_SolatSempurna.html" target="_blank" rel="noopener">PI Tahun3 Ibadah Solat Sempurna</a></div><div class="rowitem" data-search="PI Tahun3 Ibadah Sunat Abadh Haiat"><span class="n">3</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Ibadah_SunatAbadhHaiat.html" target="_blank" rel="noopener">PI Tahun3 Ibadah Sunat Abadh Haiat</a></div></div><h3 class="grp" id="pi3-sirah">PI Tahun 3 · Sirah</h3><div class="rowlist"><div class="rowitem" data-search="PI Tahun3 Sirah Keperibadian Nabi"><span class="n">1</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Sirah_KeperibadianNabi.html" target="_blank" rel="noopener">PI Tahun3 Sirah Keperibadian Nabi</a><a class="pdf" href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Sirah_KeperibadianNabi_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun3 Sirah Sifat Tabligh"><span class="n">2</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Sirah_SifatTabligh.html" target="_blank" rel="noopener">PI Tahun3 Sirah Sifat Tabligh</a></div><div class="rowitem" data-search="PI Tahun3 Sirah Wahyu Teragung"><span class="n">3</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Sirah_WahyuTeragung.html" target="_blank" rel="noopener">PI Tahun3 Sirah Wahyu Teragung</a></div></div><h3 class="grp" id="pi3-adab">PI Tahun 3 · Adab</h3><div class="rowlist"><div class="rowitem" data-search="PI Tahun3 Adab Adab Menuntut Ilmu"><span class="n">1</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Adab_AdabMenuntutIlmu.html" target="_blank" rel="noopener">PI Tahun3 Adab Adab Menuntut Ilmu</a><a class="pdf" href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Adab_AdabMenuntutIlmu_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun3 Adab Adab Tidur"><span class="n">2</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Adab_AdabTidur.html" target="_blank" rel="noopener">PI Tahun3 Adab Adab Tidur</a><a class="pdf" href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Adab_AdabTidur_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun3 Adab Sunnah Rasulullah"><span class="n">3</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Adab_SunnahRasulullah.html" target="_blank" rel="noopener">PI Tahun3 Adab Sunnah Rasulullah</a><a class="pdf" href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Adab_SunnahRasulullah_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun3 Adab Syukur"><span class="n">4</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Adab_Syukur.html" target="_blank" rel="noopener">PI Tahun3 Adab Syukur</a><a class="pdf" href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Adab_Syukur_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div></div><h3 class="grp" id="pi3-jawi">PI Tahun 3 · Jawi</h3><div class="rowlist"><div class="rowitem" data-search="PI Tahun3 Jawi Imbuhan Awalan"><span class="n">1</span><a href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Jawi_ImbuhanAwalan.html" target="_blank" rel="noopener">PI Tahun3 Jawi Imbuhan Awalan</a><a class="pdf" href="works/bahan-pdp/Bahan_PdP_PI_Tahun3_Jawi_ImbuhanAwalan_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div></div></section>
+<section id="maths-t3" data-sec><div class="sec-head"><div class="sec-ico">➗</div><div><div class="sec-kicker">Kategori 03 · Matematik</div><h2>Matematik Tahun 3</h2><p>Bahan PdP Matematik Tahun 3 mengikut Standard Kandungan.</p></div></div><div class="rowlist"><div class="rowitem" data-search="Matematik Tahun3 SK 1118 Nombor Bulat Hingga10000"><span class="n">1</span><a href="works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK1118_NomborBulatHingga10000.html" target="_blank" rel="noopener">Matematik Tahun3 SK 1118 Nombor Bulat Hingga10000</a></div><div class="rowitem" data-search="Matematik Tahun3 SK 2122 Tambahdan Tolak"><span class="n">2</span><a href="works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK2122_TambahdanTolak.html" target="_blank" rel="noopener">Matematik Tahun3 SK 2122 Tambahdan Tolak</a></div><div class="rowitem" data-search="Matematik Tahun3 SK 2324 Darabdan Bahagi"><span class="n">3</span><a href="works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK2324_DarabdanBahagi.html" target="_blank" rel="noopener">Matematik Tahun3 SK 2324 Darabdan Bahagi</a></div><div class="rowitem" data-search="Matematik Tahun3 SK 2526 Operasi Bergabungdan Anu"><span class="n">4</span><a href="works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK2526_OperasiBergabungdanAnu.html" target="_blank" rel="noopener">Matematik Tahun3 SK 2526 Operasi Bergabungdan Anu</a></div><div class="rowitem" data-search="Matematik Tahun3 SK 31 Pecahan"><span class="n">5</span><a href="works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK31_Pecahan.html" target="_blank" rel="noopener">Matematik Tahun3 SK 31 Pecahan</a></div><div class="rowitem" data-search="Matematik Tahun3 SK 3233 Perpuluhandan Peratus"><span class="n">6</span><a href="works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK3233_PerpuluhandanPeratus.html" target="_blank" rel="noopener">Matematik Tahun3 SK 3233 Perpuluhandan Peratus</a></div><div class="rowitem" data-search="Matematik Tahun3 SK 41 Wang"><span class="n">7</span><a href="works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK41_Wang.html" target="_blank" rel="noopener">Matematik Tahun3 SK 41 Wang</a></div><div class="rowitem" data-search="Matematik Tahun3 SK 5155 Masadan Waktu"><span class="n">8</span><a href="works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK5155_MasadanWaktu.html" target="_blank" rel="noopener">Matematik Tahun3 SK 5155 Masadan Waktu</a></div><div class="rowitem" data-search="Matematik Tahun3 SK 6163 Ukurandan Sukatan"><span class="n">9</span><a href="works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK6163_UkurandanSukatan.html" target="_blank" rel="noopener">Matematik Tahun3 SK 6163 Ukurandan Sukatan</a></div><div class="rowitem" data-search="Matematik Tahun3 SK 7173 Ruang"><span class="n">10</span><a href="works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK7173_Ruang.html" target="_blank" rel="noopener">Matematik Tahun3 SK 7173 Ruang</a></div><div class="rowitem" data-search="Matematik Tahun3 SK 8192 Koordinat,Nisbah,Datadan Kebolehjadian"><span class="n">11</span><a href="works/bahan-pdp/maths_t3/Bahan_PdP_Matematik_Tahun3_SK8192_Koordinat,Nisbah,DatadanKebolehjadian.html" target="_blank" rel="noopener">Matematik Tahun3 SK 8192 Koordinat,Nisbah,Datadan Kebolehjadian</a></div></div></section>
+<section id="maths-t4" data-sec><div class="sec-head"><div class="sec-ico">➗</div><div><div class="sec-kicker">Kategori 04 · Matematik</div><h2>Matematik Tahun 4</h2><p>Bahan PdP Matematik Tahun 4 mengikut Standard Kandungan.</p></div></div><div class="rowlist"><div class="rowitem" data-search="Matematik Tahun4 SK 1117 Nombor Bulat Hingga100000"><span class="n">1</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK1117_NomborBulatHingga100000.html" target="_blank" rel="noopener">Matematik Tahun4 SK 1117 Nombor Bulat Hingga100000</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 2122 Tambah Hingga100000"><span class="n">2</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK2122_TambahHingga100000.html" target="_blank" rel="noopener">Matematik Tahun4 SK 2122 Tambah Hingga100000</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 2122 Tolak Hingga100000"><span class="n">3</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK2122_TolakHingga100000.html" target="_blank" rel="noopener">Matematik Tahun4 SK 2122 Tolak Hingga100000</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 2324 Darabdan Bahagi Hingga100000"><span class="n">4</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK2324_DarabdanBahagiHingga100000.html" target="_blank" rel="noopener">Matematik Tahun4 SK 2324 Darabdan Bahagi Hingga100000</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 25 Operasi Bergabung Hingga100000"><span class="n">5</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK25_OperasiBergabungHingga100000.html" target="_blank" rel="noopener">Matematik Tahun4 SK 25 Operasi Bergabung Hingga100000</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 31 Pecahan"><span class="n">6</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK31_Pecahan.html" target="_blank" rel="noopener">Matematik Tahun4 SK 31 Pecahan</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 3233 Perpuluhandan Peratus"><span class="n">7</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK3233_PerpuluhandanPeratus.html" target="_blank" rel="noopener">Matematik Tahun4 SK 3233 Perpuluhandan Peratus</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 41 Wang Hingga RM100000"><span class="n">8</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK41_WangHinggaRM100000.html" target="_blank" rel="noopener">Matematik Tahun4 SK 41 Wang Hingga RM100000</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 5153 Masadan Waktu"><span class="n">9</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK5153_MasadanWaktu.html" target="_blank" rel="noopener">Matematik Tahun4 SK 5153 Masadan Waktu</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 61 Panjang"><span class="n">10</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK61_Panjang.html" target="_blank" rel="noopener">Matematik Tahun4 SK 61 Panjang</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 62 Jisim"><span class="n">11</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK62_Jisim.html" target="_blank" rel="noopener">Matematik Tahun4 SK 62 Jisim</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 63 Isi Padu Cecair"><span class="n">12</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK63_IsiPaduCecair.html" target="_blank" rel="noopener">Matematik Tahun4 SK 63 Isi Padu Cecair</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 7172 Ruang-Perimeterdan Luas"><span class="n">13</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK7172_Ruang-PerimeterdanLuas.html" target="_blank" rel="noopener">Matematik Tahun4 SK 7172 Ruang-Perimeterdan Luas</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 73 Ruang-Isi Padu"><span class="n">14</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK73_Ruang-IsiPadu.html" target="_blank" rel="noopener">Matematik Tahun4 SK 73 Ruang-Isi Padu</a></div><div class="rowitem" data-search="Matematik Tahun4 SK 8192 Koordinat,Nisbah,Datadan Kebolehjadian"><span class="n">15</span><a href="works/bahan-pdp/maths_t4/Bahan_PdP_Matematik_Tahun4_SK8192_Koordinat,Nisbah,DatadanKebolehjadian.html" target="_blank" rel="noopener">Matematik Tahun4 SK 8192 Koordinat,Nisbah,Datadan Kebolehjadian</a></div></div></section>
+<section id="sains-t3" data-sec><div class="sec-head"><div class="sec-ico">🔬</div><div><div class="sec-kicker">Kategori 05 · Sains</div><h2>Sains Tahun 3</h2><p>Bahan PdP Sains Tahun 3 mengikut Standard Kandungan.</p></div></div><div class="rowlist"><div class="rowitem" data-search="Sains Tahun3 SK 101 Takal"><span class="n">1</span><a href="works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK101_Takal.html" target="_blank" rel="noopener">Sains Tahun3 SK 101 Takal</a></div><div class="rowitem" data-search="Sains Tahun3 SK 11 Kemahiran Proses Sains"><span class="n">2</span><a href="works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK11_KemahiranProsesSains.html" target="_blank" rel="noopener">Sains Tahun3 SK 11 Kemahiran Proses Sains</a></div><div class="rowitem" data-search="Sains Tahun3 SK 12 Kemahiran Manipulatif"><span class="n">3</span><a href="works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK12_KemahiranManipulatif.html" target="_blank" rel="noopener">Sains Tahun3 SK 12 Kemahiran Manipulatif</a></div><div class="rowitem" data-search="Sains Tahun3 SK 21 Peraturan Bilik Sains"><span class="n">4</span><a href="works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK21_PeraturanBilikSains.html" target="_blank" rel="noopener">Sains Tahun3 SK 21 Peraturan Bilik Sains</a></div><div class="rowitem" data-search="Sains Tahun3 SK 31 Gigi"><span class="n">5</span><a href="works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK31_Gigi.html" target="_blank" rel="noopener">Sains Tahun3 SK 31 Gigi</a></div><div class="rowitem" data-search="Sains Tahun3 SK 32 Kelas Makanan"><span class="n">6</span><a href="works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK32_KelasMakanan.html" target="_blank" rel="noopener">Sains Tahun3 SK 32 Kelas Makanan</a></div><div class="rowitem" data-search="Sains Tahun3 SK 33 Pencernaan"><span class="n">7</span><a href="works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK33_Pencernaan.html" target="_blank" rel="noopener">Sains Tahun3 SK 33 Pencernaan</a></div><div class="rowitem" data-search="Sains Tahun3 SK 41 Tabiat Pemakanan Haiwan"><span class="n">8</span><a href="works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK41_TabiatPemakananHaiwan.html" target="_blank" rel="noopener">Sains Tahun3 SK 41 Tabiat Pemakanan Haiwan</a></div><div class="rowitem" data-search="Sains Tahun3 SK 51 Pembiakan Tumbuhan"><span class="n">9</span><a href="works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK51_PembiakanTumbuhan.html" target="_blank" rel="noopener">Sains Tahun3 SK 51 Pembiakan Tumbuhan</a></div><div class="rowitem" data-search="Sains Tahun3 SK 61 Pengukuran Luasdan Isi Padu"><span class="n">10</span><a href="works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK61_PengukuranLuasdanIsiPadu.html" target="_blank" rel="noopener">Sains Tahun3 SK 61 Pengukuran Luasdan Isi Padu</a></div><div class="rowitem" data-search="Sains Tahun3 SK 71 Ketumpatan"><span class="n">11</span><a href="works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK71_Ketumpatan.html" target="_blank" rel="noopener">Sains Tahun3 SK 71 Ketumpatan</a></div><div class="rowitem" data-search="Sains Tahun3 SK 81 Asiddan Alkali"><span class="n">12</span><a href="works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK81_AsiddanAlkali.html" target="_blank" rel="noopener">Sains Tahun3 SK 81 Asiddan Alkali</a></div><div class="rowitem" data-search="Sains Tahun3 SK 91 Sistem Suria"><span class="n">13</span><a href="works/bahan-pdp/sains_t3/Bahan_PdP_Sains_Tahun3_SK91_SistemSuria.html" target="_blank" rel="noopener">Sains Tahun3 SK 91 Sistem Suria</a></div></div></section>
+<section id="pi-t4" data-sec><div class="sec-head"><div class="sec-ico">📖</div><div><div class="sec-kicker">Kategori 06 · Pendidikan Islam</div><h2>Pendidikan Islam Tahun 4</h2><p>Bahan PdP PI Tahun 4 merentas semua bidang.</p></div></div><div class="rowlist"><div class="rowitem" data-search="PI Tahun4 Adab Adab Beriadah"><span class="n">1</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Adab_AdabBeriadah.html" target="_blank" rel="noopener">PI Tahun4 Adab Adab Beriadah</a></div><div class="rowitem" data-search="PI Tahun4 Adab Adab Berjiran"><span class="n">2</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Adab_AdabBerjiran.html" target="_blank" rel="noopener">PI Tahun4 Adab Adab Berjiran</a></div><div class="rowitem" data-search="PI Tahun4 Adab Adab Berpakaian"><span class="n">3</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Adab_AdabBerpakaian.html" target="_blank" rel="noopener">PI Tahun4 Adab Adab Berpakaian</a></div><div class="rowitem" data-search="PI Tahun4 Adab Adab Terhadap Guru"><span class="n">4</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Adab_AdabTerhadapGuru.html" target="_blank" rel="noopener">PI Tahun4 Adab Adab Terhadap Guru</a></div><div class="rowitem" data-search="PI Tahun4 Akidah Beriman Kepada Rasul"><span class="n">5</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Akidah_BerimanKepadaRasul.html" target="_blank" rel="noopener">PI Tahun4 Akidah Beriman Kepada Rasul</a></div><div class="rowitem" data-search="PI Tahun4 Akidah Mempertahankan Aqidah Kufur"><span class="n">6</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Akidah_MempertahankanAqidahKufur.html" target="_blank" rel="noopener">PI Tahun4 Akidah Mempertahankan Aqidah Kufur</a></div><div class="rowitem" data-search="PI Tahun4 Akidah Mempertahankan Aqidah Nifak"><span class="n">7</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Akidah_MempertahankanAqidahNifak.html" target="_blank" rel="noopener">PI Tahun4 Akidah Mempertahankan Aqidah Nifak</a></div><div class="rowitem" data-search="PI Tahun4 Akidah Nama Allah Al Azim Al Hamid"><span class="n">8</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Akidah_NamaAllahAlAzimAlHamid.html" target="_blank" rel="noopener">PI Tahun4 Akidah Nama Allah Al Azim Al Hamid</a></div><div class="rowitem" data-search="PI Tahun4 Al Quran Hafazan Surah Al Qariah"><span class="n">9</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_HafazanSurahAlQariah.html" target="_blank" rel="noopener">PI Tahun4 Al Quran Hafazan Surah Al Qariah</a></div><div class="rowitem" data-search="PI Tahun4 Al Quran Hafazan Surah At Takathur"><span class="n">10</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_HafazanSurahAtTakathur.html" target="_blank" rel="noopener">PI Tahun4 Al Quran Hafazan Surah At Takathur</a></div><div class="rowitem" data-search="PI Tahun4 Al Quran Kefahaman Surah Al Ikhlas"><span class="n">11</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_KefahamanSurahAlIkhlas.html" target="_blank" rel="noopener">PI Tahun4 Al Quran Kefahaman Surah Al Ikhlas</a></div><div class="rowitem" data-search="PI Tahun4 Al Quran Tajwid Mim Sakinah Tanwin"><span class="n">12</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_TajwidMimSakinahTanwin.html" target="_blank" rel="noopener">PI Tahun4 Al Quran Tajwid Mim Sakinah Tanwin</a></div><div class="rowitem" data-search="PI Tahun4 Al Quran Tajwid Qalqalah"><span class="n">13</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_TajwidQalqalah.html" target="_blank" rel="noopener">PI Tahun4 Al Quran Tajwid Qalqalah</a></div><div class="rowitem" data-search="PI Tahun4 Al Quran Tajwid Tanda Waqaf"><span class="n">14</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_TajwidTandaWaqaf.html" target="_blank" rel="noopener">PI Tahun4 Al Quran Tajwid Tanda Waqaf</a></div><div class="rowitem" data-search="PI Tahun4 Al Quran Tilawah Surah Al Qariah"><span class="n">15</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_TilawahSurahAlQariah.html" target="_blank" rel="noopener">PI Tahun4 Al Quran Tilawah Surah Al Qariah</a></div><div class="rowitem" data-search="PI Tahun4 Al Quran Tilawah Surah At Takathur"><span class="n">16</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_AlQuran_TilawahSurahAtTakathur.html" target="_blank" rel="noopener">PI Tahun4 Al Quran Tilawah Surah At Takathur</a></div><div class="rowitem" data-search="PI Tahun4 Hadis Memuliakan Tetamu"><span class="n">17</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Hadis_MemuliakanTetamu.html" target="_blank" rel="noopener">PI Tahun4 Hadis Memuliakan Tetamu</a></div><div class="rowitem" data-search="PI Tahun4 Ibadah Azan Dan Iqamah"><span class="n">18</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Ibadah_AzanDanIqamah.html" target="_blank" rel="noopener">PI Tahun4 Ibadah Azan Dan Iqamah</a></div><div class="rowitem" data-search="PI Tahun4 Ibadah Bersuci Najis"><span class="n">19</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Ibadah_BersuciNajis.html" target="_blank" rel="noopener">PI Tahun4 Ibadah Bersuci Najis</a></div><div class="rowitem" data-search="PI Tahun4 Ibadah Puasa Ramadan"><span class="n">20</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Ibadah_PuasaRamadan.html" target="_blank" rel="noopener">PI Tahun4 Ibadah Puasa Ramadan</a></div><div class="rowitem" data-search="PI Tahun4 Jawi Perkataan Berhuruf Hamzah"><span class="n">21</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Jawi_PerkataanBerhurufHamzah.html" target="_blank" rel="noopener">PI Tahun4 Jawi Perkataan Berhuruf Hamzah</a></div><div class="rowitem" data-search="PI Tahun4 Jawi Perkataan Pinjaman Bahasa Inggeris"><span class="n">22</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Jawi_PerkataanPinjamanBahasaInggeris.html" target="_blank" rel="noopener">PI Tahun4 Jawi Perkataan Pinjaman Bahasa Inggeris</a></div><div class="rowitem" data-search="PI Tahun4 Jawi Perkataan Tradisi"><span class="n">23</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Jawi_PerkataanTradisi.html" target="_blank" rel="noopener">PI Tahun4 Jawi Perkataan Tradisi</a></div><div class="rowitem" data-search="PI Tahun4 Sirah Keperibadian Nabi Berdakwah"><span class="n">24</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Sirah_KeperibadianNabiBerdakwah.html" target="_blank" rel="noopener">PI Tahun4 Sirah Keperibadian Nabi Berdakwah</a></div><div class="rowitem" data-search="PI Tahun4 Sirah Perjanjian Aqabah"><span class="n">25</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Sirah_PerjanjianAqabah.html" target="_blank" rel="noopener">PI Tahun4 Sirah Perjanjian Aqabah</a></div><div class="rowitem" data-search="PI Tahun4 Sirah Sifat Fatanah Nabi"><span class="n">26</span><a href="works/bahan-pdp/tahun4/Bahan_PdP_PI_Tahun4_Sirah_SifatFatanahNabi.html" target="_blank" rel="noopener">PI Tahun4 Sirah Sifat Fatanah Nabi</a></div></div></section>
+<section id="pi-t5" data-sec><div class="sec-head"><div class="sec-ico">📖</div><div><div class="sec-kicker">Kategori 07 · Pendidikan Islam</div><h2>Pendidikan Islam Tahun 5</h2><p>Bahan PdP PI Tahun 5 merentas semua bidang.</p></div></div><div class="rowlist"><div class="rowitem" data-search="PI Tahun5 Adab Adab Alam Sekitar"><span class="n">1</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Adab_AdabAlamSekitar.html" target="_blank" rel="noopener">PI Tahun5 Adab Adab Alam Sekitar</a></div><div class="rowitem" data-search="PI Tahun5 Adab Adab Berkomunikasi"><span class="n">2</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Adab_AdabBerkomunikasi.html" target="_blank" rel="noopener">PI Tahun5 Adab Adab Berkomunikasi</a></div><div class="rowitem" data-search="PI Tahun5 Adab Adab Jual Beli"><span class="n">3</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Adab_AdabJualBeli.html" target="_blank" rel="noopener">PI Tahun5 Adab Adab Jual Beli</a></div><div class="rowitem" data-search="PI Tahun5 Adab Adab Menaiki Kenderaan"><span class="n">4</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Adab_AdabMenaikiKenderaan.html" target="_blank" rel="noopener">PI Tahun5 Adab Adab Menaiki Kenderaan</a></div><div class="rowitem" data-search="PI Tahun5 Akidah Beriman Hari Akhirat"><span class="n">5</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Akidah_BerimanHariAkhirat.html" target="_blank" rel="noopener">PI Tahun5 Akidah Beriman Hari Akhirat</a><a class="pdf" href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Akidah_BerimanHariAkhirat_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun5 Akidah Mempertahankan Aqidah Sihir"><span class="n">6</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSihir.html" target="_blank" rel="noopener">PI Tahun5 Akidah Mempertahankan Aqidah Sihir</a><a class="pdf" href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSihir_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun5 Akidah Mempertahankan Aqidah Syirik"><span class="n">7</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSyirik.html" target="_blank" rel="noopener">PI Tahun5 Akidah Mempertahankan Aqidah Syirik</a><a class="pdf" href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSyirik_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun5 Akidah Nama Allah Al Malik Al Hasib"><span class="n">8</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Akidah_NamaAllahAlMalikAlHasib.html" target="_blank" rel="noopener">PI Tahun5 Akidah Nama Allah Al Malik Al Hasib</a><a class="pdf" href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Akidah_NamaAllahAlMalikAlHasib_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun5 Al Quran Hafazan Surah Al Qadr"><span class="n">9</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAlQadr.html" target="_blank" rel="noopener">PI Tahun5 Al Quran Hafazan Surah Al Qadr</a><a class="pdf" href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAlQadr_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun5 Al Quran Hafazan Surah At Tin"><span class="n">10</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAtTin.html" target="_blank" rel="noopener">PI Tahun5 Al Quran Hafazan Surah At Tin</a><a class="pdf" href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAtTin_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun5 Al Quran Hukum Mad"><span class="n">11</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_HukumMad.html" target="_blank" rel="noopener">PI Tahun5 Al Quran Hukum Mad</a></div><div class="rowitem" data-search="PI Tahun5 Al Quran Kefahaman Surah Al Asr"><span class="n">12</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_KefahamanSurahAlAsr.html" target="_blank" rel="noopener">PI Tahun5 Al Quran Kefahaman Surah Al Asr</a><a class="pdf" href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_KefahamanSurahAlAsr_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun5 Al Quran Tilawah Surah Al Qadr"><span class="n">13</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAlQadr.html" target="_blank" rel="noopener">PI Tahun5 Al Quran Tilawah Surah Al Qadr</a><a class="pdf" href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAlQadr_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun5 Al Quran Tilawah Surah At Tin"><span class="n">14</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAtTin.html" target="_blank" rel="noopener">PI Tahun5 Al Quran Tilawah Surah At Tin</a><a class="pdf" href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAtTin_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun5 Hadis Mentaati Pemimpin"><span class="n">15</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Hadis_MentaatiPemimpin.html" target="_blank" rel="noopener">PI Tahun5 Hadis Mentaati Pemimpin</a><a class="pdf" href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Hadis_MentaatiPemimpin_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun5 Ibadah Solat Berjemaah"><span class="n">16</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Ibadah_SolatBerjemaah.html" target="_blank" rel="noopener">PI Tahun5 Ibadah Solat Berjemaah</a><a class="pdf" href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Ibadah_SolatBerjemaah_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun5 Ibadah Solat Jumaat"><span class="n">17</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Ibadah_SolatJumaat.html" target="_blank" rel="noopener">PI Tahun5 Ibadah Solat Jumaat</a><a class="pdf" href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Ibadah_SolatJumaat_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun5 Ibadah Solat Sunat Dua Hari Raya"><span class="n">18</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Ibadah_SolatSunatDuaHariRaya.html" target="_blank" rel="noopener">PI Tahun5 Ibadah Solat Sunat Dua Hari Raya</a></div><div class="rowitem" data-search="PI Tahun5 Ibadah Tayammum"><span class="n">19</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Ibadah_Tayammum.html" target="_blank" rel="noopener">PI Tahun5 Ibadah Tayammum</a><a class="pdf" href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Ibadah_Tayammum_CetakanA4.pdf" target="_blank" rel="noopener">PDF</a></div><div class="rowitem" data-search="PI Tahun5 Sirah Hijrah Rasulullah Madinah"><span class="n">20</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Sirah_HijrahRasulullahMadinah.html" target="_blank" rel="noopener">PI Tahun5 Sirah Hijrah Rasulullah Madinah</a></div><div class="rowitem" data-search="PI Tahun5 Sirah Keperibadian Nabi Pemimpin"><span class="n">21</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Sirah_KeperibadianNabiPemimpin.html" target="_blank" rel="noopener">PI Tahun5 Sirah Keperibadian Nabi Pemimpin</a></div><div class="rowitem" data-search="PI Tahun5 Sirah Sifat Itqan Nabi"><span class="n">22</span><a href="works/bahan-pdp/tahun5/Bahan_PdP_PI_Tahun5_Sirah_SifatItqanNabi.html" target="_blank" rel="noopener">PI Tahun5 Sirah Sifat Itqan Nabi</a></div></div></section>
+<section id="alat" data-sec><div class="sec-head"><div class="sec-ico">🛠️</div><div><div class="sec-kicker">Kategori 08 · Alat</div><h2>Alat &amp; Panduan</h2><p>Panduan menghasilkan bahan PdP dan aset sokongan.</p></div></div><div class="grid"><article class="card" data-search="Panduan Workflow Kajian Tindakan Iqra Tahun 6 SK Salimpodon Darat docx kajian tindakan bacaan iqra"><div class="card-top"><div class="card-ico">📘</div><div><h4>Panduan Workflow Kajian Tindakan Iqra' — Tahun 6</h4><div class="meta">A4 · .docx · 85 jadual</div></div></div><div class="pills"><span class="pill p-baru">TERBARU</span><span class="pill p-doc">Panduan</span></div><p>Panduan penuh Kajian Tindakan kelemahan bacaan Iqra' Tahun 6 di SK Salimpodon Darat — 13 bahagian, KPI 1–16, Lampiran A–I. Merangkumi lima modul IQRA' QUEST, Mod 5 (32 muka surat buku Iqra' 1), dasar bunyi dan aliran pengesahan guru.</p><div class="actions"><a class="btn btn-primary" href="works/bahan-pdp/kajian-tindakan/Panduan_Workflow_Kajian_Tindakan_Iqra_Tahun6_SK_Salimpodon_Darat.docx" target="_blank" rel="noopener">Muat turun (.docx) ↗</a></div></article><article class="card" data-search="prompt dna panduan bahan pdp"><div class="card-top"><div class="card-ico">🧬</div><div><h4>Panduan Prompt DNA</h4><div class="meta">prompt_dna</div></div></div><div class="pills"><span class="pill p-doc">Panduan</span></div><p>Panduan penghasilan bahan PdP menggunakan corak Prompt DNA.</p><div class="actions"><a class="btn btn-primary" href="works/bahan-pdp/prompt_dna/Panduan_Prompt_DNA.html" target="_blank" rel="noopener">Buka dalam tab baharu ↗</a></div></article><article class="card" data-search="portal bahan pdp index asal"><div class="card-top"><div class="card-ico">🗂️</div><div><h4>Portal Bahan PdP (asal)</h4><div class="meta">index.html</div></div></div><div class="pills"><span class="pill p-doc">Portal</span></div><p>Portal asal himpunan bahan PdP.</p><div class="actions"><a class="btn" href="works/bahan-pdp/index.html" target="_blank" rel="noopener">Buka ↗</a></div></article></div></section>
+</main>
+<footer><div class="wrap">
+  <span>Portal Kerja · WorkBuddy AI · 2026-10-05</span>
+  <span>Semua pautan dibuka dalam tab baharu</span>
+</div></footer>
+<script>
+/* New-tab links: ALWAYS take over the click so the parent page never navigates
+   and never opens a duplicate tab. Falls back to same-tab navigation only when
+   the host blocks window.open (embedded preview panels often do). */
+(function(){
+  document.addEventListener('click',function(e){
+    var a=e.target.closest?e.target.closest('a[target="_blank"]'):null;
+    if(!a) return;
+    var href=a.getAttribute('href');
+    if(!href||href.charAt(0)==='#') return;
+    e.preventDefault();
+    var w=null;
+    try{ w=window.open(href,'_blank'); }catch(err){ w=null; }
+    if(!w){ window.location.href=href; }
+  },true);
+})();
+(function(){
+  var q=document.getElementById('q'), count=document.getElementById('count');
+  if(!q) return;
+  var items=Array.prototype.slice.call(document.querySelectorAll('[data-search]'));
+  var secs=Array.prototype.slice.call(document.querySelectorAll('section[data-sec]'));
+  var grps=Array.prototype.slice.call(document.querySelectorAll('h3.grp'));
+  function nampak(c){
+    if(c.classList.contains('hidden')) return false;
+    if(document.documentElement.getAttribute('data-kr-mod')==='audien'
+       && c.getAttribute('data-kr-state')==='buang') return false;
+    return true;
+  }
+  function kemasKumpulan(){
+    grps.forEach(function(g){
+      var sib=g.nextElementSibling;
+      if(!sib||!sib.querySelector) return;
+      var all=sib.querySelectorAll('[data-search]');
+      if(!all.length) return;
+      g.classList.toggle('hidden', !Array.prototype.some.call(all,nampak));
+    });
+    secs.forEach(function(s){
+      var all=s.querySelectorAll('[data-search]');
+      if(!all.length) return;
+      s.classList.toggle('hidden', !Array.prototype.some.call(all,nampak));
+    });
+  }
+  function apply(){
+    var t=(q.value||'').trim().toLowerCase(), shown=0;
+    items.forEach(function(c){
+      var ui=c.querySelector('[data-kr-ui]'), tx=c.textContent;
+      if(ui) tx=tx.replace(ui.textContent,'');
+      var hay=(c.getAttribute('data-search')+' '+tx).toLowerCase();
+      var ok=!t||hay.indexOf(t)!==-1;
+      c.classList.toggle('hidden',!ok); if(ok) shown++;
+    });
+    kemasKumpulan();
+    if(count) count.textContent = t ? (shown+' padanan') : '';
+  }
+  q.addEventListener('input',apply);
+  document.addEventListener('kurasi:ubah',kemasKumpulan);
+  kemasKumpulan();
+})();
+</script>
+<script src="_kurasi-terbit.js"></script>
+<script src="_kurasi.js"></script>
+</body>
+</html>

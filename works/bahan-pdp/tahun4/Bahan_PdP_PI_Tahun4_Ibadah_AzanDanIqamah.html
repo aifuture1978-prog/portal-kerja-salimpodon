@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibadah (Azan dan Iqamah) &mdash; Pendidikan Islam Tahun 4</title>
+<style>
+  :root{
+    --sky1:#e2ece7; --sky2:#f1f7f4; --sky3:#e7f0eb;
+    --grass1:#a0c8bc; --grass2:#1a4a3e; --grass3:#0e2a22;
+    --paper:#f5faf8; --ink:#1a2422; --muted:#6a7a72;
+    --gold:#8a6a2a; --teal:#6a4e1a; --aqua:#dce8e4;
+    --line:#d8e8e0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);
+    font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:rtl}
+  .jf{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:ltr;unicode-bidi:isolate}
+
+  .skybg{position:fixed;inset:0;z-index:-1;
+    background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#eaf2ee 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:#dce8e4;top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:#e6dcc0;top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:#e8f0ed;bottom:-140px;left:18%}
+
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(74,50,56,.16)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;
+    background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#1a4a3e;font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:#0e2a22;letter-spacing:.4px;
+    text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:#6a7a72;font-weight:600}
+
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;
+    box-shadow:0 3px 10px rgba(74,50,56,.07)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(74,50,56,.07)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--grass2);font-weight:800;
+    display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#f0f6f3;border:1.4px solid var(--line);
+    border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(140deg,var(--grass1),var(--grass2));box-shadow:0 2px 0 var(--grass3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--grass3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#fdf6ec;border:1.4px dashed var(--gold);border-radius:13px;
+    padding:10px 13px;font-size:12.5px;color:#2e2208;line-height:1.55}
+  .toc .note b{color:#2e2208}
+
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(74,50,56,.07);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;
+    display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;
+    box-shadow:0 2px 0 var(--grass3)}
+  h3{font-size:13px;letter-spacing:.8px;color:var(--grass2);margin:18px 0 9px;
+    display:flex;align-items:center;gap:8px;text-transform:uppercase}
+  h3::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--gold);flex:none}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+  h2 .mascot{flex:none;margin-left:auto;display:block}
+  .deko{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:14px 0 0}
+  .deko svg{display:block}
+
+  /* ===== kotak doa / lafaz ===== */
+  .doa{background:#fdf6ec;border:1.5px solid var(--gold);border-radius:16px;padding:14px 16px;margin:10px 0 4px}
+  .doa .ar{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,serif;direction:rtl;
+    font-size:24px;line-height:2;text-align:right;color:#2e2208;unicode-bidi:isolate;display:block}
+  .doa .rm{font-size:12.5px;font-weight:700;color:var(--grass3);margin:8px 0 3px}
+  .doa .ms{font-size:12.5px;color:#4a3b2f}
+
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f0f6f3;color:var(--grass3);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  td.c{text-align:center;white-space:nowrap;font-weight:700;color:var(--grass2)}
+  tr:nth-child(even) td{background:#f0f6f3}
+  tr.on td{background:#fdf6ec;font-weight:700}
+  .lafaz td.bil{text-align:center;font-weight:800;color:var(--gold);width:52px;white-space:nowrap}
+  .lafaz td.ar{text-align:right}
+  .lafaz td.ar span{font-size:21px;line-height:1.9}
+  .lafaz td.rm{font-weight:700;color:var(--grass2);width:30%}
+  .lafaz td.ms{color:#4a3b2f;width:34%}
+  .lafaz tr.sub td{background:#fdf6ec}
+
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes floatBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    @keyframes softGlow{0%,100%{filter:drop-shadow(0 0 3px rgba(255,230,176,.5))}50%{filter:drop-shadow(0 0 8px rgba(255,230,176,.8))}}
+    @keyframes gentleSway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+    @keyframes drift{from{transform:translateX(0)}to{transform:translateX(26px)}}
+    @keyframes twinkle{0%,100%{opacity:.35}50%{opacity:1}}
+    @keyframes cardEntrance{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+    @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+    @keyframes t4bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+    @keyframes t4drift{0%{transform:translateX(-9px)}100%{transform:translateX(9px)}}
+    @keyframes t4twinkle{0%,100%{opacity:.4}50%{opacity:1}}
+    @keyframes t4pulse{0%,100%{opacity:.25;transform:scale(1)}50%{opacity:.6;transform:scale(1.08)}}
+    h2 .mascot,.deko svg{animation:t4bob 2.6s ease-in-out infinite}
+    .deko svg:nth-child(2){animation-delay:.45s}
+    .deko svg:nth-child(3){animation-delay:.9s}
+    .anim-drift{animation:t4drift 8s ease-in-out infinite alternate}
+    .anim-twinkle{animation:t4twinkle 2.2s ease-in-out infinite}
+    .anim-bob{animation:floatBob 3.2s ease-in-out infinite}
+    .anim-glow{animation:softGlow 2.8s ease-in-out infinite}
+    .anim-sway{animation:gentleSway 4s ease-in-out infinite;transform-origin:center bottom}
+    .anim-drift26{animation:drift 9s ease-in-out infinite alternate}
+    .anim-twinkle2{animation:twinkle 2.4s ease-in-out infinite}
+    .anim-pulse{animation:t4pulse 3.4s ease-in-out infinite;transform-origin:center}
+    section{animation:cardEntrance .55s ease both}
+    .shimmer{background-image:linear-gradient(90deg,#fdf6ec 0%,#f5e6c8 45%,#fdf6ec 90%);
+      background-size:200% 100%;animation:shimmer 4s linear infinite}
+  }
+  @media print{
+    h2 .mascot,.deko svg,.anim-drift,.anim-twinkle,.anim-bob,.anim-glow,.anim-sway,.anim-drift26,.anim-twinkle2,
+    .anim-pulse,.shimmer,section{animation:none !important}
+  }
+
+  .nota{border-left:5px solid var(--gold);background:#fdf6ec;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol,.nota ul{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#2e2208}
+  .nota li:last-child{margin-bottom:0}
+
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:linear-gradient(135deg,#f0f6f3,#fdf6ec);border:1.5px solid var(--line);
+    border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#dce8e4;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;
+    background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .scorebar .hint2{font-size:12px;color:var(--muted);font-weight:600}
+
+  .qcard{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:13px;
+    background:#f5faf8;transition:box-shadow .25s}
+  .qcard.done{box-shadow:0 3px 12px rgba(26,74,62,.18)}
+  .qhead{display:flex;gap:9px;align-items:flex-start;margin-bottom:11px}
+  .qn{background:var(--teal);color:#fff;min-width:26px;height:26px;border-radius:8px;display:inline-flex;
+    align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+  .qtext{font-weight:700;font-size:14.5px}
+  .opts{display:grid;grid-template-columns:1fr;gap:7px}
+  @media(min-width:640px){.opts{grid-template-columns:1fr 1fr 1fr}}
+  .opt{font-family:inherit;text-align:left;font-size:13.5px;font-weight:600;cursor:pointer;
+    background:#e8f0ed;border:2px solid #d8e8e0;border-radius:11px;padding:9px 12px;color:var(--ink);
+    transition:transform .12s,background .2s,border-color .2s;display:flex;gap:7px;align-items:flex-start;
+    width:100%}
+  .opt:hover:not(:disabled){transform:translateY(-2px);background:#fff;border-color:var(--teal)}
+  .opt:disabled{cursor:default}
+  .opt .k{font-weight:800;color:var(--teal);flex:none}
+  .opt.ok{background:#dce8e4;border-color:var(--grass2);color:#0e2a22}
+  .opt.ok .k{color:var(--grass3)}
+  .opt.bad{background:#e9efe8;border-color:#2e7a66;color:#1a4a3e}
+  .opt.bad .k{color:#061410}
+  .opt.dim{opacity:.45}
+
+  .fb{display:none;margin-top:11px;border-radius:12px;padding:10px 13px;font-size:13.5px;
+    background:#f0f6f3;border:1.5px dashed var(--grass2);align-items:flex-start;gap:11px}
+  .fb.show{display:flex}
+  .fb.wrong{background:#e8f0ed;border-color:#2e7a66}
+  .fb .face{flex:none;width:52px;height:52px}
+  .fb .txt b{color:var(--grass3)}
+  .fb.wrong .txt b{color:#061410}
+
+  .result{display:none;text-align:center;padding:20px;border-radius:18px;margin-top:6px;
+    background:linear-gradient(135deg,#f0f6f3,#fdf6ec);border:2px solid var(--grass1)}
+  .result.show{display:block}
+  .result .big{font-size:30px;font-weight:800;color:var(--grass3);margin:6px 0}
+  .result .msg{font-size:14.5px;font-weight:600;margin-bottom:12px}
+  .stars{font-size:22px;letter-spacing:3px;margin-bottom:6px}
+  button.act{font-family:inherit;font-size:13.5px;font-weight:700;border-radius:11px;padding:10px 18px;
+    border:2px solid var(--grass2);background:#fff;color:var(--grass3);cursor:pointer;transition:background .2s}
+  button.act:hover{background:var(--grass1);color:#fff}
+  button.act.solid{background:var(--grass2);color:#fff}
+  button.act.solid:hover{background:var(--grass3)}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-top:4px}
+
+  @media print{
+    .hint{display:none}
+    .qcard .opts{pointer-events:none}
+    .qcard .ans{display:block !important}
+    body{background:#fff}
+    .skybg,.blob{display:none}
+    .wrap{max-width:100%;padding:0}
+    .scorebar{display:none}
+    section{box-shadow:none;page-break-inside:avoid;padding:14px 16px}
+    .toc{box-shadow:none;page-break-inside:avoid;break-inside:avoid}
+    h2,h3,.hint{page-break-after:avoid;break-after:avoid}
+    table{font-size:11.6px}
+    th,td{padding:3.5px 8px}
+    .lafaz td.ar span{font-size:17px}
+    .qcard{page-break-inside:avoid;padding:10px 13px;margin-bottom:8px}
+    .qhead .qtext{font-size:13px}
+    .opt{padding:6px 9px;font-size:11.5px;transform:none !important}
+    .fb{margin-top:7px;padding:7px 10px;font-size:11.5px}
+    .fb .face{width:40px;height:40px}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4 portrait;margin:12mm}
+
+</style>
+</head>
+<body>
+
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<!-- ===== Watak kartun & ilustrasi (defs) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <!-- Muazzin kecil: budak lelaki melaungkan azan, dua tangan di telinga -->
+  <g id="muazzin">
+    <ellipse cx="55" cy="158" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="118" width="13" height="36" rx="6" fill="#4e6f96"/>
+    <rect x="57" y="118" width="13" height="36" rx="6" fill="#4e6f96"/>
+    <ellipse cx="46" cy="155" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="155" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M33 78 q22-12 44 0 l8 42 h-60 z" fill="#f2f7f5" stroke="#6a4e1a" stroke-width="2"/>
+    <path d="M55 84 v34" stroke="#d8e8e0" stroke-width="1.6"/>
+    <path d="M36 88 q-13-15 -9-33" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 88 q13-15 9-33" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="28" cy="53" rx="6.5" ry="7.5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="82" cy="53" rx="6.5" ry="7.5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M31 37 q24-17 48 0 q-24-7 -48 0 z" fill="#1a4a3e"/>
+    <ellipse cx="55" cy="37" rx="24" ry="4.6" fill="#0e2a22"/>
+    <ellipse cx="44" cy="52" rx="7.2" ry="8.2" fill="#fff"/>
+    <ellipse cx="66" cy="52" rx="7.2" ry="8.2" fill="#fff"/>
+    <circle cx="45" cy="53" r="4" fill="#2b3a34"/>
+    <circle cx="67" cy="53" r="4" fill="#2b3a34"/>
+    <circle cx="46.6" cy="50.8" r="1.4" fill="#fff"/>
+    <circle cx="68.6" cy="50.8" r="1.4" fill="#fff"/>
+    <path d="M38 42 q6-3.4 12 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 42 q6-3.4 12 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="55" cy="66" rx="7.5" ry="6.5" fill="#8c4a4a"/>
+    <path d="M48.5 66 q6.5 5 13 0 z" fill="#e08a8a"/>
+    <ellipse cx="36" cy="61" rx="5.5" ry="3.2" fill="#e8a08a" opacity=".5"/>
+    <ellipse cx="74" cy="61" rx="5.5" ry="3.2" fill="#e8a08a" opacity=".5"/>
+  </g>
+
+  <!-- Adam: mendengar azan sambil mengangkat tangan berdoa -->
+  <g id="adam">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <rect x="57" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <ellipse cx="46" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l7 44 h-56 z" fill="#7fc4b8" stroke="#6a4e1a" stroke-width="2"/>
+    <path d="M36 82 q-13 13 -9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 82 q13 13 9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="27" cy="116" rx="6" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="116" rx="6" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <ellipse cx="44" cy="52" rx="7.2" ry="8.2" fill="#fff"/>
+    <ellipse cx="66" cy="52" rx="7.2" ry="8.2" fill="#fff"/>
+    <circle cx="45" cy="53" r="4" fill="#2b3a34"/>
+    <circle cx="67" cy="53" r="4" fill="#2b3a34"/>
+    <circle cx="46.6" cy="50.8" r="1.4" fill="#fff"/>
+    <circle cx="68.6" cy="50.8" r="1.4" fill="#fff"/>
+    <path d="M38 42 q6-3.4 12 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 42 q6-3.4 12 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M48 65 q7 7 14 0" stroke="#8c4a4a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="36" cy="60" rx="5.5" ry="3.2" fill="#e8a08a" opacity=".5"/>
+    <ellipse cx="74" cy="60" rx="5.5" ry="3.2" fill="#e8a08a" opacity=".5"/>
+  </g>
+
+  <!-- Nur: mendengar azan dengan tangan di dada -->
+  <g id="nur">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <path d="M38 76 q17 30 34 46 h-34 z" fill="#e8b0c4" stroke="#6a4e1a" stroke-width="2"/>
+    <rect x="42" y="116" width="11" height="32" rx="5.5" fill="#e8b0c4"/>
+    <rect x="58" y="116" width="11" height="32" rx="5.5" fill="#e8b0c4"/>
+    <ellipse cx="47" cy="150" rx="9" ry="5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="150" rx="9" ry="5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l6 22 h-54 z" fill="#e8b0c4" stroke="#6a4e1a" stroke-width="2"/>
+    <path d="M40 82 q-12 12 -7 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M70 82 q12 12 7 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="33" cy="112" rx="6" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="77" cy="112" rx="6" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M25 52 q0-36 30-36 q30 0 30 36 q-6-18 -30 -18 q-24 0 -30 18 z" fill="#2e7a66"/>
+    <path d="M25 52 q-6 18 2 34 l8 -30 z" fill="#2e7a66"/>
+    <path d="M85 52 q6 18 -2 34 l-8 -30 z" fill="#2e7a66"/>
+    <ellipse cx="44" cy="52" rx="7.2" ry="8.2" fill="#fff"/>
+    <ellipse cx="66" cy="52" rx="7.2" ry="8.2" fill="#fff"/>
+    <circle cx="45" cy="53" r="4" fill="#2b3a34"/>
+    <circle cx="67" cy="53" r="4" fill="#2b3a34"/>
+    <circle cx="46.6" cy="50.8" r="1.4" fill="#fff"/>
+    <circle cx="68.6" cy="50.8" r="1.4" fill="#fff"/>
+    <path d="M38 42 q6-3.4 12 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 42 q6-3.4 12 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M48 65 q7 7 14 0" stroke="#8c4a4a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="36" cy="60" rx="5.5" ry="3.2" fill="#e8a08a" opacity=".45"/>
+    <ellipse cx="74" cy="60" rx="5.5" ry="3.2" fill="#e8a08a" opacity=".45"/>
+  </g>
+
+  <!-- Kepala Adam (maskot kecil) -->
+  <g id="kepalaAdam">
+    <ellipse cx="33" cy="22" rx="24" ry="22" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M9 22 a24 22 0 0 1 48 0 q-8-16 -24 -16 q-16 0 -24 16 z" fill="#5a3b28"/>
+    <ellipse cx="25" cy="26" rx="5.6" ry="6.4" fill="#fff"/>
+    <ellipse cx="41" cy="26" rx="5.6" ry="6.4" fill="#fff"/>
+    <circle cx="26" cy="27" r="3.1" fill="#2b3a34"/>
+    <circle cx="42" cy="27" r="3.1" fill="#2b3a34"/>
+    <circle cx="27.2" cy="25.2" r="1.1" fill="#fff"/>
+    <circle cx="43.2" cy="25.2" r="1.1" fill="#fff"/>
+    <path d="M22 34 q11 8 22 0" stroke="#8c4a4a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Muka gembira -->
+  <g id="faceYay">
+    <circle cx="30" cy="30" r="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M8 22 a24 18 0 0 1 44 0 q-8-13 -22 -13 q-14 0 -22 13 z" fill="#5a3b28"/>
+    <path d="M18 26 q5-6 10 0" stroke="#2b3a34" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M32 26 q5-6 10 0" stroke="#2b3a34" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M20 38 q10 11 20 0" stroke="#8c4a4a" stroke-width="2.6" fill="#f7d5b5" stroke-linecap="round"/>
+    <ellipse cx="13" cy="36" rx="5" ry="3" fill="#e8a08a" opacity=".55"/>
+    <ellipse cx="47" cy="36" rx="5" ry="3" fill="#e8a08a" opacity=".55"/>
+  </g>
+
+  <!-- Muka "belum tepat" -->
+  <g id="faceOops">
+    <circle cx="30" cy="30" r="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M8 22 a24 18 0 0 1 44 0 q-8-13 -22 -13 q-14 0 -22 13 z" fill="#5a3b28"/>
+    <ellipse cx="23" cy="27" rx="5.6" ry="6.4" fill="#fff"/>
+    <ellipse cx="37" cy="27" rx="5.6" ry="6.4" fill="#fff"/>
+    <circle cx="24" cy="28" r="3.1" fill="#2b3a34"/>
+    <circle cx="38" cy="28" r="3.1" fill="#2b3a34"/>
+    <path d="M19 20 l7 4" stroke="#2b3a34" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M34 20 l7 4" stroke="#2b3a34" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M21 42 q9-8 18 0" stroke="#8c4a4a" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="37" rx="5" ry="3" fill="#e8a08a" opacity=".45"/>
+    <ellipse cx="47" cy="37" rx="5" ry="3" fill="#e8a08a" opacity=".45"/>
+  </g>
+
+  <!-- Burung -->
+  <g id="burung">
+    <path d="M6 24 q10-16 20-2" fill="none" stroke="#4a5b54" stroke-width="3" stroke-linecap="round"/>
+    <path d="M26 22 q10-14 20 2" fill="none" stroke="#4a5b54" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="33" cy="18" rx="7" ry="6" fill="#7fc4b8" stroke="#6a4e1a" stroke-width="1.4"/>
+    <path d="M39 17 l8 2 -8 2.4 z" fill="#8a6a2a"/>
+    <circle cx="35.5" cy="16.4" r="1.4" fill="#0e2a22"/>
+    <path d="M26 24 q7 6 14 0" fill="#a0c8bc" opacity=".8"/>
+  </g>
+
+  <!-- Awan -->
+  <g id="awan">
+    <ellipse cx="40" cy="26" rx="26" ry="14" fill="#ffffff" opacity=".85"/>
+    <ellipse cx="20" cy="30" rx="17" ry="11" fill="#ffffff" opacity=".85"/>
+    <ellipse cx="60" cy="30" rx="19" ry="12" fill="#ffffff" opacity=".85"/>
+  </g>
+
+  <!-- Menara masjid -->
+  <g id="menara">
+    <path d="M26 214 h40 v-32 h-40 z" fill="#dce8e4" stroke="#1a4a3e" stroke-width="2"/>
+    <path d="M32 182 h28 v-112 h-28 z" fill="#f5faf8" stroke="#1a4a3e" stroke-width="2"/>
+    <path d="M40 160 a6 8 0 0 1 12 0 v10 h-12 z" fill="#2e7a66" opacity=".55"/>
+    <path d="M40 132 a6 8 0 0 1 12 0 v10 h-12 z" fill="#2e7a66" opacity=".55"/>
+    <rect x="24" y="60" width="44" height="14" rx="3" fill="#dce8e4" stroke="#1a4a3e" stroke-width="2"/>
+    <path d="M28 74 v-8 M36 74 v-8 M44 74 v-8 M52 74 v-8 M60 74 v-8" stroke="#1a4a3e" stroke-width="1.2"/>
+    <path d="M36 60 h20 v-14 h-20 z" fill="#f5faf8" stroke="#1a4a3e" stroke-width="2"/>
+    <path d="M46 8 q16 16 0 30 q-16-14 0-30 z" fill="#1a4a3e"/>
+    <path d="M46 4 v6" stroke="#8a6a2a" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="46" cy="4" r="3" fill="#8a6a2a"/>
+  </g>
+
+  <!-- Masjid kecil -->
+  <g id="masjidKecil">
+    <rect x="8" y="62" width="110" height="32" rx="4" fill="#f5faf8" stroke="#1a4a3e" stroke-width="2"/>
+    <path d="M44 62 a22 22 0 0 1 44 0 z" fill="#1a4a3e"/>
+    <circle cx="66" cy="36" r="3.6" fill="#8a6a2a"/>
+    <path d="M18 62 a11 11 0 0 1 22 0 z" fill="#2e7a66"/>
+    <path d="M90 62 a11 11 0 0 1 22 0 z" fill="#2e7a66"/>
+    <path d="M26 94 v-10 a8 8 0 0 1 16 0 v10 z" fill="#1a4a3e" opacity=".6"/>
+    <path d="M56 94 v-10 a8 8 0 0 1 16 0 v10 z" fill="#1a4a3e" opacity=".6"/>
+    <path d="M86 94 v-10 a8 8 0 0 1 16 0 v10 z" fill="#1a4a3e" opacity=".6"/>
+    <path d="M120 62 h12 v-42 h-12 z" fill="#e8f0ed" stroke="#1a4a3e" stroke-width="1.8"/>
+    <path d="M126 8 q8 8 0 16 q-8-8 0-16 z" fill="#1a4a3e"/>
+    <rect x="0" y="94" width="140" height="6" rx="3" fill="#a0c8bc"/>
+  </g>
+
+  <!-- Bulan sabit & bintang -->
+  <g id="bulan">
+    <path d="M42 10 a22 22 0 1 0 0 40 a26 26 0 0 1 0 -40 z" fill="#8a6a2a"/>
+    <path d="M14 16 l3 6.2 6.2 3 -6.2 3 -3 6.2 -3-6.2 -6.2-3 6.2-3 z" fill="#c9a44c"/>
+  </g>
+
+  <g id="bintang">
+    <path d="M10 0 l2.6 6.4 7 .5 -5.3 4.6 1.6 6.9 -6-3.7 -6 3.7 1.6-6.9 -5.3-4.6 7-.5 z" fill="#f5e6c8"/>
+  </g>
+
+  <g id="bintangPrestasi">
+    <circle cx="30" cy="30" r="26" fill="#fdf6ec" stroke="#8a6a2a" stroke-width="1.4" opacity=".55"/>
+    <path d="M30 6 l6.4 15.6 16 .8 -12.4 10.2 4 15.6 -14.4-8.8 -14.4 8.8 4-15.6 -12.4-10.2 16-.8 z" fill="#c9a44c" stroke="#8a6a2a" stroke-width="1.4"/>
+    <circle cx="30" cy="26" r="4" fill="#fdf6ec"/>
+  </g>
+
+  <!-- Sejadah -->
+  <g id="sejadah">
+    <rect x="6" y="12" width="92" height="38" rx="6" fill="#2e7a66" stroke="#0e2a22" stroke-width="2"/>
+    <rect x="12" y="18" width="80" height="26" rx="4" fill="none" stroke="#f5e6c8" stroke-width="1.6"/>
+    <path d="M52 18 v26" stroke="#f5e6c8" stroke-width="1.2"/>
+    <path d="M52 24 l-8 8 8 8 8-8 z" fill="none" stroke="#f5e6c8" stroke-width="1.4"/>
+    <g stroke="#2e7a66" stroke-width="2" stroke-linecap="round">
+      <path d="M14 50 v6"/><path d="M26 50 v6"/><path d="M38 50 v6"/><path d="M50 50 v6"/>
+      <path d="M62 50 v6"/><path d="M74 50 v6"/><path d="M86 50 v6"/>
+    </g>
+  </g>
+
+  <!-- Tasbih -->
+  <g id="tasbih">
+    <circle cx="28" cy="30" r="17" fill="none" stroke="#8a6a2a" stroke-width="1.6"/>
+    <g fill="#c9a44c" stroke="#8a6a2a" stroke-width="1.2">
+      <circle cx="28" cy="13" r="3.4"/><circle cx="40" cy="18" r="3.4"/><circle cx="45" cy="30" r="3.4"/>
+      <circle cx="40" cy="42" r="3.4"/><circle cx="28" cy="47" r="3.4"/><circle cx="16" cy="42" r="3.4"/>
+      <circle cx="11" cy="30" r="3.4"/><circle cx="16" cy="18" r="3.4"/>
+    </g>
+    <path d="M45 30 l9 12" stroke="#8a6a2a" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="55" cy="44" r="4.6" fill="#8a6a2a"/>
+  </g>
+</defs>
+</svg>
+
+<div class="wrap">
+
+<!-- ===== HERO — waktu Subuh di masjid: menara, muazzin melaungkan azan, dua murid mendengar ===== -->
+<div class="hero">
+  <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg" aria-label="Ilustrasi masjid dengan menara, muazzin melaungkan azan dan dua murid mendengarnya">
+    <defs>
+      <linearGradient id="hT4sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#cfe0ea"/><stop offset="45%" stop-color="#e8efe7"/><stop offset="100%" stop-color="#f7efe0"/>
+      </linearGradient>
+      <linearGradient id="hT4gnd" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#bcd8c8"/><stop offset="100%" stop-color="#9bc3ae"/>
+      </linearGradient>
+      <radialGradient id="hT4sun">
+        <stop offset="0%" stop-color="#fff6dc" stop-opacity=".95"/><stop offset="100%" stop-color="#fff6dc" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="820" height="300" fill="url(#hT4sky)"/>
+    <circle cx="700" cy="60" r="90" fill="url(#hT4sun)"/>
+    <circle cx="700" cy="58" r="20" fill="#f7e3b0"/>
+    <g transform="translate(60,26) scale(1.2)" class="anim-drift"><use href="#awan"/></g>
+    <g transform="translate(430,10) scale(.85)" class="anim-twinkle"><use href="#awan"/></g>
+    <g transform="translate(690,120)" class="anim-bob"><use href="#bulan"/></g>
+    <g transform="translate(600,46) scale(.9)" class="anim-twinkle"><use href="#bintang"/></g>
+    <g transform="translate(640,20) scale(.7)" class="anim-twinkle2"><use href="#bintang"/></g>
+    <g transform="translate(520,74) scale(.6)" class="anim-twinkle"><use href="#bintang"/></g>
+    <g transform="translate(310,40) scale(1.1)" class="anim-drift"><use href="#burung"/></g>
+    <g transform="translate(360,66) scale(.8)" class="anim-drift"><use href="#burung"/></g>
+
+    <!-- tanah -->
+    <path d="M0 232 q180 -18 420 -6 q240 12 400 -4 v78 H0 z" fill="url(#hT4gnd)"/>
+    <path d="M0 250 q200 -10 420 0 q220 10 400 -4 v54 H0 z" fill="#a8ccb8" opacity=".7"/>
+
+    <!-- masjid & menara -->
+    <g transform="translate(56,42) scale(.95)"><use href="#masjidKecil"/></g>
+    <g transform="translate(150,44) scale(.95)" class="anim-sway"><use href="#menara"/></g>
+    <g transform="translate(163,58) scale(.36)" class="anim-bob"><use href="#muazzin"/></g>
+
+    <!-- gelombang suara azan -->
+    <g fill="none" stroke="#1a4a3e" stroke-linecap="round" opacity=".35">
+      <path d="M212 108 q14 -12 0 -24" stroke-width="3"/>
+      <path d="M226 116 q22 -20 0 -40" stroke-width="3"/>
+      <path d="M242 126 q30 -28 0 -56" stroke-width="2.6"/>
+    </g>
+    <g fill="none" stroke="#8a6a2a" stroke-linecap="round" opacity=".3">
+      <path d="M218 92 q10 -9 0 -18" stroke-width="2.4"/>
+      <path d="M234 100 q18 -16 0 -32" stroke-width="2.4"/>
+    </g>
+
+    <!-- dua murid mendengar -->
+    <g transform="translate(470,90) scale(.95)" class="anim-bob"><use href="#adam"/></g>
+    <g transform="translate(600,92) scale(.95)" class="anim-bob"><use href="#nur"/></g>
+
+    <!-- pokok & rumput -->
+    <g transform="translate(760,140) scale(.7)">
+      <rect x="26" y="40" width="10" height="52" rx="4" fill="#7a5a3a"/>
+      <circle cx="31" cy="34" r="30" fill="#a0c8bc"/>
+      <circle cx="12" cy="48" r="18" fill="#8fbdae"/>
+      <circle cx="50" cy="46" r="18" fill="#8fbdae"/>
+    </g>
+    <g stroke="#7fae97" stroke-width="2.4" stroke-linecap="round" opacity=".8">
+      <path d="M300 276 q4 -10 8 0"/><path d="M330 280 q4 -10 8 0"/><path d="M700 282 q4 -10 8 0"/>
+      <path d="M730 278 q4 -10 8 0"/><path d="M120 284 q4 -10 8 0"/>
+    </g>
+    <text x="410" y="292" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#4a5b54" text-anchor="middle" opacity=".8">&#8220;Menyambut seruan Ilahi&#8221; &mdash; Unit 4.2, Buku Teks Pendidikan Islam Tahun 4</text>
+  </svg>
+  <div class="hero-txt">
+    <div class="kick">Pendidikan Islam &bull; Tahun 4 &bull; Bidang Ibadah</div>
+    <h1>Azan dan Iqamah</h1>
+    <div class="sub">SK 4.2 &mdash; Menyambut Seruan Ilahi &nbsp;&#65372;&nbsp; <span class="jf">اذان dan إقامة</span></div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="chip"><div class="lbl">Bidang</div><div class="val">Ibadah</div></div>
+  <div class="chip"><div class="lbl">Standard Kandungan</div><div class="val">4.2 &mdash; Azan dan Iqamah</div></div>
+  <div class="chip"><div class="lbl">Standard Pembelajaran</div><div class="val">4.2.1 &ndash; 4.2.5</div></div>
+  <div class="chip"><div class="lbl">Kurikulum</div><div class="val">KSSR Semakan 2017 &bull; SK</div></div>
+</div>
+
+<div class="toc">
+  <div class="ttl">Isi Kandungan Bahan PdP</div>
+  <div class="grid">
+    <div class="it"><span class="n">1</span><span><span class="t">Infografik</span><span class="d">Maksud, lafaz azan &amp; iqamah, bilangan, perbezaan dan nilai murni</span></span></div>
+    <div class="it"><span class="n">2</span><span><span class="t">Peta Minda</span><span class="d">Maksud &bull; Dalil &bull; Amalan &bull; Nilai &bull; Iktibar</span></span></div>
+    <div class="it"><span class="n">3</span><span><span class="t">Nota Ringkas</span><span class="d">10 perkara penting untuk dihafaz</span></span></div>
+    <div class="it"><span class="n">4</span><span><span class="t">Diagram Alir</span><span class="d">Adab sebelum, semasa dan selepas azan &amp; iqamah</span></span></div>
+    <div class="it"><span class="n">5</span><span><span class="t">Kuiz Interaktif</span><span class="d">10 soalan dengan skor serta-merta</span></span></div>
+    <div class="it"><span class="n">&#10023;</span><span><span class="t">Lampiran</span><span class="d">Senarai 26 SK Pendidikan Islam Tahun 4</span></span></div>
+  </div>
+  <div class="note"><b>Fokus unit:</b> murid dapat menyatakan maksud azan dan iqamah, <b>membaca dan menghafaz lafaznya serta jawabnya</b>, memperdengarkannya dengan betul, memperincikan <b>adab sebelum, semasa dan selepasnya</b>, serta <b>menghormati azan dan iqamah</b> dengan bersegera menunaikan solat berjemaah secara beradab dan istiqamah.</div>
+</div>
+
+<!-- ===== 1. INFOGRAFIK ===== -->
+<section id="infografik">
+  <h2><span class="num">1</span> Infografik &mdash; Azan dan Iqamah<svg class="mascot" width="34" height="21" viewBox="0 0 66 44" aria-hidden="true"><use href="#kepalaAdam"/></svg></h2>
+  <p class="hint">Lafaz disusun mengikut amalan masyhur di Malaysia (Mazhab Syafi&lsquo;i). Bilangan: azan 15 lafaz, iqamah 11 lafaz.</p>
+  <svg class="art" viewBox="0 0 820 1740" xmlns="http://www.w3.org/2000/svg" aria-label="Infografik Azan dan Iqamah: maksud, fakta, lafaz, jawab, perbezaan, nilai murni">
+    <defs>
+      <linearGradient id="gAzhd" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a4a3e"/><stop offset="100%" stop-color="#0e2a22"/>
+      </linearGradient>
+      <linearGradient id="gAzcard" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#dce8e4"/><stop offset="100%" stop-color="#f5faf8"/>
+      </linearGradient>
+      <linearGradient id="gAzgold" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fdf6ec"/><stop offset="100%" stop-color="#f5e6c8"/>
+      </linearGradient>
+    </defs>
+    <rect width="820" height="1740" fill="#f5faf8"/>
+
+    <!-- tajuk -->
+    <rect x="0" y="0" width="820" height="56" fill="url(#gAzhd)"/>
+    <text x="410" y="30" font-family="Trebuchet MS,Segoe UI,Arial" font-size="19" font-weight="700" fill="#f5faf8" text-anchor="middle">AZAN &amp; IQAMAH &#65372; <tspan class="jf" font-family="Scheherazade New,serif" font-size="20">اذان &#1604; إقامة</tspan></text>
+    <text x="410" y="48" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#dce8e4" text-anchor="middle">SK 4.2 &bull; SP 4.2.1 &ndash; 4.2.5 &bull; Azan 15 lafaz &bull; Iqamah 11 lafaz &bull; Hukum: sunat muakkad</text>
+
+    <!-- panel maksud -->
+    <rect x="20" y="70" width="380" height="88" rx="10" fill="url(#gAzgold)" stroke="#8a6a2a" stroke-width="1.4"/>
+    <text x="40" y="92" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#2e2208">MAKSUD AZAN <tspan class="jf" font-family="Scheherazade New,serif" font-size="17" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate">اذان</tspan></text>
+    <text x="40" y="112" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#4a3b2f">Lafaz khusus yang disyariatkan oleh Islam</text>
+    <text x="40" y="128" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#4a3b2f">untuk <tspan font-weight="700">menyatakan masuknya waktu</tspan></text>
+    <text x="40" y="144" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#4a3b2f"><tspan font-weight="700">solat fardu</tspan> dengan lafaz tertentu.</text>
+
+    <rect x="420" y="70" width="380" height="88" rx="10" fill="url(#gAzcard)" stroke="#1a4a3e" stroke-width="1.4"/>
+    <text x="440" y="92" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#0e2a22">MAKSUD IQAMAH <tspan class="jf" font-family="Scheherazade New,serif" font-size="17" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate">إقامة</tspan></text>
+    <text x="440" y="112" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#4a3b2f">Lafaz yang disyariatkan oleh Islam yang</text>
+    <text x="440" y="128" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#4a3b2f">diucapkan bagi <tspan font-weight="700">menyeru umat Islam</tspan></text>
+    <text x="440" y="144" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#4a3b2f"><tspan font-weight="700">mendirikan / memulakan solat</tspan>.</text>
+
+    <!-- 4 kad fakta -->
+    <rect x="20" y="174" width="184" height="112" rx="12" fill="url(#gAzcard)" stroke="#1a4a3e" stroke-width="1.5"/>
+    <rect x="20" y="174" width="184" height="7" rx="3.5" fill="#1a4a3e"/>
+    <text x="112" y="208" font-family="Trebuchet MS,Segoe UI,Arial" font-size="30" font-weight="800" fill="#0e2a22" text-anchor="middle">15</text>
+    <text x="112" y="230" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#1a4a3e" text-anchor="middle">Lafaz azan</text>
+    <text x="112" y="248" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">7 kalimah &bull; takbir 4&#215;</text>
+    <text x="112" y="272" class="jf" font-family="Scheherazade New,serif" font-size="20" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate" text-anchor="middle">١٥ لفظا</text>
+
+    <rect x="218" y="174" width="184" height="112" rx="12" fill="url(#gAzcard)" stroke="#2e7a66" stroke-width="1.5"/>
+    <rect x="218" y="174" width="184" height="7" rx="3.5" fill="#2e7a66"/>
+    <text x="310" y="208" font-family="Trebuchet MS,Segoe UI,Arial" font-size="30" font-weight="800" fill="#0e2a22" text-anchor="middle">11</text>
+    <text x="310" y="230" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#2e7a66" text-anchor="middle">Lafaz iqamah</text>
+    <text x="310" y="248" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">lebih ringkas &amp; pantas</text>
+    <text x="310" y="272" class="jf" font-family="Scheherazade New,serif" font-size="20" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate" text-anchor="middle">١١ لفظا</text>
+
+    <rect x="416" y="174" width="184" height="112" rx="12" fill="url(#gAzcard)" stroke="#8a6a2a" stroke-width="1.5"/>
+    <rect x="416" y="174" width="184" height="7" rx="3.5" fill="#8a6a2a"/>
+    <text x="508" y="208" font-family="Trebuchet MS,Segoe UI,Arial" font-size="30" font-weight="800" fill="#0e2a22" text-anchor="middle">17</text>
+    <text x="508" y="230" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#8a6a2a" text-anchor="middle">Azan Subuh</text>
+    <text x="508" y="248" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">tambah 2 lafaz tathwib</text>
+    <text x="508" y="272" class="jf" font-family="Scheherazade New,serif" font-size="19" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate" text-anchor="middle">الصلاة خير من النوم</text>
+
+    <rect x="614" y="174" width="184" height="112" rx="12" fill="url(#gAzcard)" stroke="#4e9a7e" stroke-width="1.5"/>
+    <rect x="614" y="174" width="184" height="7" rx="3.5" fill="#4e9a7e"/>
+    <text x="706" y="204" font-family="Trebuchet MS,Segoe UI,Arial" font-size="17" font-weight="800" fill="#0e2a22" text-anchor="middle">Sunat</text>
+    <text x="706" y="224" font-family="Trebuchet MS,Segoe UI,Arial" font-size="17" font-weight="800" fill="#0e2a22" text-anchor="middle">Muakkad</text>
+    <text x="706" y="246" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">hukum bagi lelaki pada</text>
+    <text x="706" y="262" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">solat fardu (azan &amp; iqamah)</text>
+    <text x="706" y="278" class="jf" font-family="Scheherazade New,serif" font-size="17" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate" text-anchor="middle">سنة مؤكدة</text>
+
+    <!-- PANEL: lafaz azan -->
+    <rect x="20" y="302" width="780" height="302" rx="12" fill="#ffffff" stroke="#d8e8e0" stroke-width="1.4"/>
+    <rect x="20" y="302" width="12" height="302" rx="6" fill="#1a4a3e"/>
+    <text x="46" y="328" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14.5" font-weight="800" fill="#0e2a22">LAFAZ AZAN &mdash; 15 lafaz, 7 kalimah &nbsp;&lsaquo;SP 4.2.2 &amp; 4.2.3&rang;</text>
+    <text x="774" y="328" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="end">dilaungkan apabila masuk waktu solat fardu</text>
+
+    <rect x="44" y="338" width="732" height="34" rx="8" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="68" cy="355" r="11" fill="#1a4a3e"/><text x="68" y="359" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">1</text>
+    <text x="88" y="359" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;4</text>
+    <text x="124" y="360" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#1a4a3e">Allahu Akbar</text>
+    <text x="560" y="361" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">اللَّهُ أَكْبَرُ</text>
+
+    <rect x="44" y="374" width="732" height="34" rx="8" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="68" cy="391" r="11" fill="#2e7a66"/><text x="68" y="395" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">2</text>
+    <text x="88" y="395" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;2</text>
+    <text x="124" y="396" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#1a4a3e">Asyhadu alla ilaha illallah</text>
+    <text x="560" y="397" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ</text>
+
+    <rect x="44" y="410" width="732" height="34" rx="8" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="68" cy="427" r="11" fill="#8a6a2a"/><text x="68" y="431" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">3</text>
+    <text x="88" y="431" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;2</text>
+    <text x="124" y="432" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#1a4a3e">Asyhadu anna Muhammadar Rasulullah</text>
+    <text x="560" y="433" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">أَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللّٰهِ</text>
+
+    <rect x="44" y="446" width="732" height="34" rx="8" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="68" cy="463" r="11" fill="#4e9a7e"/><text x="68" y="467" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">4</text>
+    <text x="88" y="467" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;2</text>
+    <text x="124" y="468" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#1a4a3e">Hayya &lsquo;alas solah</text>
+    <text x="560" y="469" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">حَيَّ عَلَى الصَّلَاةِ</text>
+
+    <rect x="44" y="482" width="732" height="34" rx="8" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="68" cy="499" r="11" fill="#b5722c"/><text x="68" y="503" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">5</text>
+    <text x="88" y="503" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;2</text>
+    <text x="124" y="504" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#1a4a3e">Hayya &lsquo;alal falah</text>
+    <text x="560" y="505" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">حَيَّ عَلَى الْفَلَاحِ</text>
+
+    <rect x="44" y="518" width="732" height="34" rx="8" fill="#fdf6ec" stroke="#efe3cb" stroke-width="1"/>
+    <circle cx="68" cy="535" r="11" fill="#5b7fa8"/><text x="68" y="539" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">6</text>
+    <text x="88" y="539" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;2</text>
+    <text x="124" y="540" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#8a6a2a">Allahu Akbar</text>
+    <text x="560" y="541" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">اللَّهُ أَكْبَرُ</text>
+
+    <rect x="44" y="554" width="732" height="34" rx="8" fill="#fdf6ec" stroke="#efe3cb" stroke-width="1"/>
+    <circle cx="68" cy="571" r="11" fill="#8a5fc0"/><text x="68" y="575" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">7</text>
+    <text x="88" y="575" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;1</text>
+    <text x="124" y="576" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#8a6a2a">La ilaha illallah</text>
+    <text x="560" y="577" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">لَا إِلٰهَ إِلَّا اللّٰهُ</text>
+
+    <text x="46" y="600" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72">Azan Subuh: tambah <tspan class="jf" font-family="Scheherazade New,serif" font-size="15" direction="ltr" unicode-bidi="isolate">الصَّلَاةُ خَيْرٌ مِنَ النَّوْمِ</tspan> (As-solatu khairum minan naum) &#215;2 selepas kalimah ke-5 &rarr; 17 lafaz.</text>
+
+    <!-- PANEL: lafaz iqamah -->
+    <rect x="20" y="620" width="780" height="338" rx="12" fill="#ffffff" stroke="#d8e8e0" stroke-width="1.4"/>
+    <rect x="20" y="620" width="12" height="338" rx="6" fill="#8a6a2a"/>
+    <text x="46" y="646" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14.5" font-weight="800" fill="#0e2a22">LAFAZ IQAMAH &mdash; 11 lafaz, 8 kalimah &nbsp;&lsaquo;SP 4.2.2 &amp; 4.2.3&rang;</text>
+    <text x="774" y="646" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="end">dilaungkan apabila solat akan didirikan</text>
+
+    <rect x="44" y="656" width="732" height="34" rx="8" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="68" cy="673" r="11" fill="#1a4a3e"/><text x="68" y="677" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">1</text>
+    <text x="88" y="677" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;2</text>
+    <text x="124" y="678" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#1a4a3e">Allahu Akbar</text>
+    <text x="560" y="679" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">اللَّهُ أَكْبَرُ</text>
+
+    <rect x="44" y="692" width="732" height="34" rx="8" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="68" cy="709" r="11" fill="#2e7a66"/><text x="68" y="713" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">2</text>
+    <text x="88" y="713" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;1</text>
+    <text x="124" y="714" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#1a4a3e">Asyhadu alla ilaha illallah</text>
+    <text x="560" y="715" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ</text>
+
+    <rect x="44" y="728" width="732" height="34" rx="8" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="68" cy="745" r="11" fill="#8a6a2a"/><text x="68" y="749" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">3</text>
+    <text x="88" y="749" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;1</text>
+    <text x="124" y="750" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#1a4a3e">Asyhadu anna Muhammadar Rasulullah</text>
+    <text x="560" y="751" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">أَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللّٰهِ</text>
+
+    <rect x="44" y="764" width="732" height="34" rx="8" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="68" cy="781" r="11" fill="#4e9a7e"/><text x="68" y="785" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">4</text>
+    <text x="88" y="785" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;1</text>
+    <text x="124" y="786" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#1a4a3e">Hayya &lsquo;alas solah</text>
+    <text x="560" y="787" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">حَيَّ عَلَى الصَّلَاةِ</text>
+
+    <rect x="44" y="800" width="732" height="34" rx="8" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="68" cy="817" r="11" fill="#b5722c"/><text x="68" y="821" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">5</text>
+    <text x="88" y="821" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;1</text>
+    <text x="124" y="822" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#1a4a3e">Hayya &lsquo;alal falah</text>
+    <text x="560" y="823" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">حَيَّ عَلَى الْفَلَاحِ</text>
+
+    <rect x="44" y="836" width="732" height="34" rx="8" fill="#fdf6ec" stroke="#8a6a2a" stroke-width="1.4"/>
+    <circle cx="68" cy="853" r="11" fill="#c9707f"/><text x="68" y="857" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">6</text>
+    <text x="88" y="857" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;2</text>
+    <text x="124" y="858" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#8a6a2a">Qad qamatis solah</text>
+    <text x="560" y="859" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">قَدْ قَامَتِ الصَّلَاةُ</text>
+    <text x="700" y="859" font-family="Trebuchet MS,Segoe UI,Arial" font-size="9.5" font-weight="800" fill="#c9707f">KHAS IQAMAH</text>
+
+    <rect x="44" y="872" width="732" height="34" rx="8" fill="#fdf6ec" stroke="#efe3cb" stroke-width="1"/>
+    <circle cx="68" cy="889" r="11" fill="#5b7fa8"/><text x="68" y="893" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">7</text>
+    <text x="88" y="893" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;2</text>
+    <text x="124" y="894" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#8a6a2a">Allahu Akbar</text>
+    <text x="560" y="895" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">اللَّهُ أَكْبَرُ</text>
+
+    <rect x="44" y="908" width="732" height="34" rx="8" fill="#fdf6ec" stroke="#efe3cb" stroke-width="1"/>
+    <circle cx="68" cy="925" r="11" fill="#8a5fc0"/><text x="68" y="929" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#fdf6ec" text-anchor="middle">8</text>
+    <text x="88" y="929" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#8a6a2a">&#215;1</text>
+    <text x="124" y="930" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#8a6a2a">La ilaha illallah</text>
+    <text x="560" y="931" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="21" fill="#0e2a22" direction="rtl" text-anchor="middle">لَا إِلٰهَ إِلَّا اللّٰهُ</text>
+
+    <text x="46" y="952" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72">Iqamah dibaca <tspan font-weight="700">lebih cepat (ringkas)</tspan> berbanding azan dan tidak ditambah lafaz tathwib pada waktu Subuh.</text>
+
+    <!-- PANEL: jawab azan & selepas azan -->
+    <rect x="20" y="974" width="780" height="230" rx="12" fill="#ffffff" stroke="#d8e8e0" stroke-width="1.4"/>
+    <rect x="20" y="974" width="12" height="230" rx="6" fill="#2e7a66"/>
+    <text x="46" y="1000" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14.5" font-weight="800" fill="#0e2a22">JAWAB AZAN &amp; IQAMAH DAN AMALAN SELEPASNYA &nbsp;&lsaquo;SP 4.2.2 &amp; 4.2.4&rang;</text>
+
+    <rect x="44" y="1012" width="356" height="176" rx="10" fill="#f0f6f3" stroke="#d8e8e0" stroke-width="1"/>
+    <text x="64" y="1034" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#1a4a3e">SEMASA: JAWAB LAFAZ</text>
+    <text x="64" y="1054" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Ulangi lafaz muazzin dengan perlahan.</text>
+    <text x="64" y="1072" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; <tspan class="jf" font-family="Scheherazade New,serif" font-size="15" direction="ltr" unicode-bidi="isolate">حَيَّ عَلَى الصَّلَاةِ</tspan> / <tspan class="jf" font-family="Scheherazade New,serif" font-size="15" direction="ltr" unicode-bidi="isolate">الْفَلَاحِ</tspan> dijawab:</text>
+    <text x="78" y="1092" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="17" fill="#0e2a22" direction="rtl">لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ</text>
+    <text x="78" y="1108" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" font-weight="700" fill="#8a6a2a">La haula wa la quwwata illa billah</text>
+    <text x="64" y="1128" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Syahadah Rasul dijawab: <tspan font-weight="700">Sadaqta wa bararta</tspan></text>
+    <text x="78" y="1146" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="15" fill="#0e2a22" direction="rtl">صَدَقْتَ وَبَرَرْتَ</text>
+    <text x="64" y="1166" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; <tspan class="jf" font-family="Scheherazade New,serif" font-size="15" direction="ltr" unicode-bidi="isolate">قَدْ قَامَتِ</tspan> (iqamah) dijawab:</text>
+    <text x="78" y="1184" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" font-weight="700" fill="#8a6a2a">Aqamaha Allah wa adamaha &mdash; <tspan class="arab" font-family="Scheherazade New,serif" font-size="15" direction="rtl">أَقَامَهَا اللّٰهُ وَأَدَامَهَا</tspan></text>
+
+    <rect x="420" y="1012" width="356" height="176" rx="10" fill="#fdf6ec" stroke="#efe3cb" stroke-width="1"/>
+    <text x="440" y="1034" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#8a6a2a">SELEPAS: SELAWAT &amp; DOA</text>
+    <text x="440" y="1054" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Berselawat ke atas Nabi Muhammad SAW.</text>
+    <text x="440" y="1070" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="15" fill="#0e2a22" direction="rtl">اللَّٰهُمَّ صَلِّ عَلٰى مُحَمَّدٍ</text>
+    <text x="440" y="1090" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Membaca doa selepas azan:</text>
+    <text x="452" y="1110" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="15" fill="#0e2a22" direction="rtl">اللَّٰهُمَّ رَبَّ هٰذِهِ الدَّعْوَةِ التَّامَّةِ</text>
+    <text x="452" y="1128" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="15" fill="#0e2a22" direction="rtl">وَالصَّلَاةِ الْقَائِمَةِ آتِ مُحَمَّدًا الْوَسِيلَةَ</text>
+    <text x="452" y="1146" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="15" fill="#0e2a22" direction="rtl">وَالْفَضِيلَةَ وَابْعَثْهُ مَقَامًا مَحْمُودًا</text>
+    <text x="440" y="1166" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; <tspan font-weight="700">Berdoa antara azan dan iqamah</tspan> &mdash; doa</text>
+    <text x="440" y="1182" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#160;&#160;pada waktu itu <tspan font-weight="700">tidak ditolak</tspan>.</text>
+
+    <!-- PANEL: perbezaan -->
+    <rect x="20" y="1220" width="780" height="236" rx="12" fill="#ffffff" stroke="#d8e8e0" stroke-width="1.4"/>
+    <rect x="20" y="1220" width="12" height="236" rx="6" fill="#4e9a7e"/>
+    <text x="46" y="1246" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14.5" font-weight="800" fill="#0e2a22">PERBEZAAN AZAN DAN IQAMAH</text>
+    <text x="774" y="1246" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="end">persamaan: kedua-duanya seruan mulia &amp; sunat muakkad bagi lelaki</text>
+
+    <rect x="44" y="1258" width="356" height="180" rx="10" fill="#f0f6f3" stroke="#d8e8e0" stroke-width="1"/>
+    <text x="64" y="1280" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#1a4a3e">AZAN</text>
+    <text x="64" y="1300" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; <tspan font-weight="700">15 lafaz</tspan> (7 kalimah)</text>
+    <text x="64" y="1318" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Takbir <tspan font-weight="700">4&#215;</tspan> di awal, 2&#215; di akhir</text>
+    <text x="64" y="1336" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; <tspan font-weight="700">Tiada</tspan> <tspan class="jf" font-family="Scheherazade New,serif" font-size="15" direction="ltr" unicode-bidi="isolate">قَدْ قَامَتِ</tspan></text>
+    <text x="64" y="1354" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Dilaungkan <tspan font-weight="700">apabila masuk waktu</tspan></text>
+    <text x="64" y="1372" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Bacaan <tspan font-weight="700">perlahan &amp; panjang</tspan></text>
+    <text x="64" y="1390" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Subuh: tambah 2 lafaz tathwib</text>
+    <text x="64" y="1412" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#6a7a72" font-style="italic">Tempoh antara azan &amp; iqamah ialah waktu mustajab</text>
+    <text x="64" y="1426" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#6a7a72" font-style="italic">untuk berdoa.</text>
+
+    <rect x="420" y="1258" width="356" height="180" rx="10" fill="#fdf6ec" stroke="#efe3cb" stroke-width="1"/>
+    <text x="440" y="1280" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#8a6a2a">IQAMAH</text>
+    <text x="440" y="1300" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; <tspan font-weight="700">11 lafaz</tspan> (8 kalimah)</text>
+    <text x="440" y="1318" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Takbir <tspan font-weight="700">2&#215;</tspan> di awal, 2&#215; di akhir</text>
+    <text x="440" y="1336" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; <tspan font-weight="700">Ada</tspan> <tspan class="jf" font-family="Scheherazade New,serif" font-size="15" direction="ltr" unicode-bidi="isolate">قَدْ قَامَتِ الصَّلَاةُ</tspan> &#215;2</text>
+    <text x="440" y="1354" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Dilaungkan <tspan font-weight="700">apabila solat didirikan</tspan></text>
+    <text x="440" y="1372" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Bacaan <tspan font-weight="700">lebih cepat &amp; ringkas</tspan></text>
+    <text x="440" y="1390" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Tidak ada tambahan lafaz tathwib</text>
+    <text x="440" y="1412" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#6a7a72" font-style="italic">Selepas iqamah, makmum terus berdiri</text>
+    <text x="440" y="1426" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#6a7a72" font-style="italic">dan menyusun saf untuk solat berjemaah.</text>
+
+    <!-- ilustrasi -->
+    <g transform="translate(30,1466) scale(.62)" class="anim-sway"><use href="#masjidKecil"/></g>
+    <g transform="translate(210,1466) scale(.62)" class="anim-sway"><use href="#menara"/></g>
+    <g transform="translate(222,1478) scale(.24)" class="anim-bob"><use href="#muazzin"/></g>
+    <g transform="translate(430,1478) scale(.62)" class="anim-bob"><use href="#adam"/></g>
+    <g transform="translate(540,1480) scale(.62)" class="anim-bob"><use href="#nur"/></g>
+    <g transform="translate(680,1478) scale(.9)" class="anim-glow"><use href="#bintangPrestasi"/></g>
+    <g transform="translate(730,1490) scale(.9)" class="anim-twinkle"><use href="#bintang"/></g>
+
+    <!-- cip nilai murni -->
+    <rect x="20" y="1576" width="780" height="96" rx="12" fill="url(#gAzgold)" stroke="#8a6a2a" stroke-width="1.4"/>
+    <text x="410" y="1598" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#2e2208" text-anchor="middle">NILAI MURNI YANG DIBINA MELALUI AZAN DAN IQAMAH</text>
+    <g font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.2" font-weight="700" text-anchor="middle">
+      <rect x="36" y="1608" width="118" height="40" rx="20" fill="#1a4a3e"/><text x="95" y="1633" fill="#fdf6ec">Menghormati</text>
+      <rect x="164" y="1608" width="118" height="40" rx="20" fill="#2e7a66"/><text x="223" y="1633" fill="#fdf6ec">Disiplin</text>
+      <rect x="292" y="1608" width="118" height="40" rx="20" fill="#8a6a2a"/><text x="351" y="1633" fill="#fdf6ec">Menepati Masa</text>
+      <rect x="420" y="1608" width="118" height="40" rx="20" fill="#4e9a7e"/><text x="479" y="1633" fill="#fdf6ec">Bersegera</text>
+      <rect x="548" y="1608" width="118" height="40" rx="20" fill="#b5722c"/><text x="607" y="1633" fill="#fdf6ec">Istiqamah</text>
+      <rect x="676" y="1608" width="110" height="40" rx="20" fill="#5b7fa8"/><text x="731" y="1633" fill="#fdf6ec">Bersatu Padu</text>
+    </g>
+
+    <text x="410" y="1700" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6a7a72" text-anchor="middle">Sumber: DSKP Pendidikan Islam Tahun 4 (SK 4.2), Buku Teks Pendidikan Islam Tahun 4 SK (ms. 122&ndash;128), RPT Tahun 4. Lafaz mengikut amalan masyhur Malaysia (Mazhab Syafi&lsquo;i).</text>
+    <text x="410" y="1720" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle" font-style="italic">Kegunaan azan selain solat: ketika ditimpa musibah &#8226; menyambut kelahiran anak &#8226; meredakan ketakutan &#8226; sebelum memulakan musafir.</text>
+  </svg>
+
+  <h3>Senarai lengkap lafaz azan (15 lafaz)</h3>
+  <table class="lafaz">
+    <thead><tr><th style="width:6%">Bil</th><th style="width:26%">Lafaz Arab</th><th style="width:30%">Transliterasi Rumi</th><th>Maksud</th><th style="width:8%">Ulang</th></tr></thead>
+    <tbody>
+      <tr><td class="c">1</td><td class="ar"><span class="arab">اللَّهُ أَكْبَرُ</span></td><td class="rm">Allahu Akbar</td><td class="ms">Allah Maha Besar</td><td class="bil">4&#215;</td></tr>
+      <tr><td class="c">2</td><td class="ar"><span class="arab">أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ</span></td><td class="rm">Asyhadu alla ilaha illallah</td><td class="ms">Aku bersaksi bahawa tiada Tuhan yang layak disembah melainkan Allah</td><td class="bil">2&#215;</td></tr>
+      <tr><td class="c">3</td><td class="ar"><span class="arab">أَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللّٰهِ</span></td><td class="rm">Asyhadu anna Muhammadar Rasulullah</td><td class="ms">Aku bersaksi bahawa Nabi Muhammad itu pesuruh Allah</td><td class="bil">2&#215;</td></tr>
+      <tr><td class="c">4</td><td class="ar"><span class="arab">حَيَّ عَلَى الصَّلَاةِ</span></td><td class="rm">Hayya &lsquo;alas solah</td><td class="ms">Marilah menunaikan solat</td><td class="bil">2&#215;</td></tr>
+      <tr><td class="c">5</td><td class="ar"><span class="arab">حَيَّ عَلَى الْفَلَاحِ</span></td><td class="rm">Hayya &lsquo;alal falah</td><td class="ms">Marilah mencapai kejayaan (kebahagiaan)</td><td class="bil">2&#215;</td></tr>
+      <tr><td class="c">6</td><td class="ar"><span class="arab">اللَّهُ أَكْبَرُ</span></td><td class="rm">Allahu Akbar</td><td class="ms">Allah Maha Besar</td><td class="bil">2&#215;</td></tr>
+      <tr><td class="c">7</td><td class="ar"><span class="arab">لَا إِلٰهَ إِلَّا اللّٰهُ</span></td><td class="rm">La ilaha illallah</td><td class="ms">Tiada Tuhan melainkan Allah</td><td class="bil">1&#215;</td></tr>
+      <tr class="sub"><td class="c">&#9733;</td><td class="ar"><span class="arab">الصَّلَاةُ خَيْرٌ مِنَ النَّوْمِ</span></td><td class="rm">As-solatu khairum minan naum</td><td class="ms">Solat itu lebih baik daripada tidur <b>(tambahan azan Subuh sahaja)</b></td><td class="bil">2&#215;</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:12px;color:#6a7a72;margin:8px 0 0">Jumlah azan: 4 + 2 + 2 + 2 + 2 + 2 + 1 = <b>15 lafaz</b>. Azan Subuh menjadi <b>17 lafaz</b> dengan tambahan <i>tathwib</i> pada kalimah ke-8 (selepas Hayya &lsquo;alal falah).</p>
+
+  <h3>Senarai lengkap lafaz iqamah (11 lafaz)</h3>
+  <table class="lafaz">
+    <thead><tr><th style="width:6%">Bil</th><th style="width:26%">Lafaz Arab</th><th style="width:30%">Transliterasi Rumi</th><th>Maksud</th><th style="width:8%">Ulang</th></tr></thead>
+    <tbody>
+      <tr><td class="c">1</td><td class="ar"><span class="arab">اللَّهُ أَكْبَرُ</span></td><td class="rm">Allahu Akbar</td><td class="ms">Allah Maha Besar</td><td class="bil">2&#215;</td></tr>
+      <tr><td class="c">2</td><td class="ar"><span class="arab">أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ</span></td><td class="rm">Asyhadu alla ilaha illallah</td><td class="ms">Aku bersaksi bahawa tiada Tuhan melainkan Allah</td><td class="bil">1&#215;</td></tr>
+      <tr><td class="c">3</td><td class="ar"><span class="arab">أَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللّٰهِ</span></td><td class="rm">Asyhadu anna Muhammadar Rasulullah</td><td class="ms">Aku bersaksi bahawa Nabi Muhammad itu pesuruh Allah</td><td class="bil">1&#215;</td></tr>
+      <tr><td class="c">4</td><td class="ar"><span class="arab">حَيَّ عَلَى الصَّلَاةِ</span></td><td class="rm">Hayya &lsquo;alas solah</td><td class="ms">Marilah menunaikan solat</td><td class="bil">1&#215;</td></tr>
+      <tr><td class="c">5</td><td class="ar"><span class="arab">حَيَّ عَلَى الْفَلَاحِ</span></td><td class="rm">Hayya &lsquo;alal falah</td><td class="ms">Marilah mencapai kejayaan</td><td class="bil">1&#215;</td></tr>
+      <tr><td class="c">6</td><td class="ar"><span class="arab">قَدْ قَامَتِ الصَّلَاةُ</span></td><td class="rm">Qad qamatis solah</td><td class="ms">Sesungguhnya solat telah didirikan (dimulakan)</td><td class="bil">2&#215;</td></tr>
+      <tr><td class="c">7</td><td class="ar"><span class="arab">اللَّهُ أَكْبَرُ</span></td><td class="rm">Allahu Akbar</td><td class="ms">Allah Maha Besar</td><td class="bil">2&#215;</td></tr>
+      <tr><td class="c">8</td><td class="ar"><span class="arab">لَا إِلٰهَ إِلَّا اللّٰهُ</span></td><td class="rm">La ilaha illallah</td><td class="ms">Tiada Tuhan melainkan Allah</td><td class="bil">1&#215;</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:12px;color:#6a7a72;margin:8px 0 0">Jumlah iqamah: 2 + 1 + 1 + 1 + 1 + 2 + 2 + 1 = <b>11 lafaz</b>. Bezanya dengan azan: takbir awal hanya <b>2 kali</b>, setiap kalimah syahadah dan seruan <b>sekali</b>, serta adanya <span class="jf">قَدْ قَامَتِ الصَّلَاةُ</span> sebanyak <b>2 kali</b>.</p>
+
+  <h3>Jawab azan, selawat dan doa selepas azan</h3>
+  <div class="doa">
+    <span class="ar">اللَّٰهُمَّ رَبَّ هٰذِهِ الدَّعْوَةِ التَّامَّةِ وَالصَّلَاةِ الْقَائِمَةِ آتِ مُحَمَّدًا الْوَسِيلَةَ وَالْفَضِيلَةَ وَابْعَثْهُ مَقَامًا مَحْمُودًا الَّذِي وَعَدْتَهُ</span>
+    <div class="rm">Allahumma rabba hadhihid-da&lsquo;watit-tammati was-solatil-qa&rsquo;imati, ati Muhammadan al-wasilata wal-fadilata, wab&lsquo;ath-hu maqaman mahmudan alladzi wa&lsquo;adtah.</div>
+    <div class="ms">&ldquo;Ya Allah, Tuhan yang memiliki seruan yang sempurna ini dan solat yang didirikan, kurniakanlah kepada Nabi Muhammad <b>al-wasilah</b> dan <b>al-fadilah</b>, serta bangkitkanlah beliau pada <b>kedudukan yang terpuji</b> yang telah Engkau janjikan.&rdquo;</div>
+  </div>
+  <p style="font-size:12.5px;margin:10px 0 0">Selepas azan: (1) berselawat ke atas Nabi SAW &mdash; <span class="arab">اللَّٰهُمَّ صَلِّ عَلٰى مُحَمَّدٍ</span>; (2) membaca doa di atas; (3) berdoa apa sahaja hajat <b>antara azan dan iqamah</b> kerana doa pada waktu itu tidak ditolak; (4) bersegera ke surau atau masjid untuk solat berjemaah.</p>
+  <div class="deko">
+    <svg width="70" height="46" viewBox="0 0 104 60" aria-hidden="true"><use href="#sejadah"/></svg>
+    <svg width="60" height="60" viewBox="0 0 60 60" aria-hidden="true"><use href="#tasbih"/></svg>
+    <svg width="70" height="46" viewBox="0 0 60 40" aria-hidden="true"><use href="#burung"/></svg>
+  </div>
+</section>
+
+<!-- ===== 2. PETA MINDA ===== -->
+<section id="peta-minda">
+  <h2><span class="num">2</span> Peta Minda<svg class="mascot" width="40" height="25" viewBox="0 0 60 40" aria-hidden="true"><use href="#burung"/></svg></h2>
+  <p class="hint">Gunakan peta ini untuk mengingat kembali isi unit: apa maksudnya, apa dalilnya, bagaimana diamalkan, nilai apa dibina, dan iktibar apa diambil.</p>
+  <svg class="art" viewBox="0 0 820 800" xmlns="http://www.w3.org/2000/svg" aria-label="Peta Minda Azan dan Iqamah">
+    <defs>
+      <linearGradient id="gPmhd" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a4a3e"/><stop offset="100%" stop-color="#0e2a22"/>
+      </linearGradient>
+      <linearGradient id="gPmct" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2e7a66"/><stop offset="100%" stop-color="#0e2a22"/>
+      </linearGradient>
+      <linearGradient id="gPmc" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#dce8e4"/><stop offset="100%" stop-color="#f5faf8"/>
+      </linearGradient>
+      <linearGradient id="gPmg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fdf6ec"/><stop offset="100%" stop-color="#f5e6c8"/>
+      </linearGradient>
+    </defs>
+    <rect width="820" height="800" fill="#f5faf8"/>
+
+    <rect x="0" y="0" width="820" height="50" fill="url(#gPmhd)"/>
+    <text x="410" y="32" font-family="Trebuchet MS,Segoe UI,Arial" font-size="18" font-weight="700" fill="#f5faf8" text-anchor="middle">PETA MINDA: AZAN DAN IQAMAH &mdash; SK 4.2</text>
+
+    <!-- nod tengah -->
+    <ellipse cx="410" cy="132" rx="180" ry="54" fill="url(#gPmct)" stroke="#0e2a22" stroke-width="2"/>
+    <text x="410" y="126" font-family="Trebuchet MS,Segoe UI,Arial" font-size="18" font-weight="800" fill="#fdf6ec" text-anchor="middle">AZAN &amp; IQAMAH</text>
+    <text x="410" y="146" class="jf" font-family="Scheherazade New,serif" font-size="18" fill="#f5e6c8" direction="ltr" unicode-bidi="isolate" text-anchor="middle">اذان &#1604; إقامة</text>
+    <text x="410" y="164" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#a0c8bc" text-anchor="middle">Seruan Ilahi &bull; sunat muakkad &bull; SP 4.2.1 &ndash; 4.2.5</text>
+
+    <!-- cabang -->
+    <path d="M268 164 Q180 230 122 314" stroke="#1a4a3e" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M340 180 Q300 250 268 320" stroke="#2e7a66" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M410 184 L410 330" stroke="#8a6a2a" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M480 180 Q520 250 552 320" stroke="#4e9a7e" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M552 164 Q640 230 698 314" stroke="#b5722c" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+
+    <!-- 1 MAKSUD -->
+    <rect x="24" y="314" width="200" height="188" rx="14" fill="url(#gPmc)" stroke="#1a4a3e" stroke-width="1.8"/>
+    <rect x="24" y="314" width="200" height="8" rx="4" fill="#1a4a3e"/>
+    <text x="124" y="344" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#1a4a3e" text-anchor="middle">1. MAKSUD</text>
+    <text x="44" y="368" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Azan: lafaz khusus tanda</text>
+    <text x="44" y="384" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#160;&#160;<tspan font-weight="700">masuk waktu solat fardu</tspan></text>
+    <text x="44" y="404" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Iqamah: lafaz seruan untuk</text>
+    <text x="44" y="420" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#160;&#160;<tspan font-weight="700">mendirikan / memulakan solat</tspan></text>
+    <text x="44" y="442" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Azan <tspan font-weight="700">15 lafaz</tspan>, iqamah <tspan font-weight="700">11</tspan></text>
+    <text x="44" y="460" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Hukum: sunat muakkad bagi lelaki</text>
+    <text x="124" y="486" class="jf" font-family="Scheherazade New,serif" font-size="18" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate" text-anchor="middle">اذان &#1604; إقامة</text>
+
+    <!-- 2 DALIL -->
+    <rect x="240" y="320" width="200" height="182" rx="14" fill="url(#gPmg)" stroke="#8a6a2a" stroke-width="1.8"/>
+    <rect x="240" y="320" width="200" height="8" rx="4" fill="#2e7a66"/>
+    <text x="340" y="350" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#8a6a2a" text-anchor="middle">2. DALIL</text>
+    <text x="340" y="368" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10" fill="#6a7a72" text-anchor="middle">Surah al-Jumu&lsquo;ah 62:9</text>
+    <text x="340" y="392" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,serif" font-size="17" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">إِذَا نُودِيَ لِلصَّلَاةِ</text>
+    <text x="340" y="412" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,serif" font-size="17" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">فَاسْعَوْا إِلٰى ذِكْرِ اللّٰهِ</text>
+    <text x="340" y="434" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#2e2208" text-anchor="middle">&#8226; Hadis: &ldquo;Ucapkanlah seperti</text>
+    <text x="340" y="448" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#2e2208" text-anchor="middle">&#160;&#160;yang diucapkan muazzin&rdquo;</text>
+    <text x="340" y="464" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#2e2208" text-anchor="middle">&#8226; Hadis: doa antara azan &amp;</text>
+    <text x="340" y="478" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#2e2208" text-anchor="middle">&#160;&#160;iqamah tidak ditolak</text>
+    <text x="340" y="494" font-family="Trebuchet MS,Segoe UI,Arial" font-size="9.8" fill="#6a7a72" text-anchor="middle">(Riwayat al-Bukhari, Muslim,</text>
+    <text x="340" y="506" font-family="Trebuchet MS,Segoe UI,Arial" font-size="9.8" fill="#6a7a72" text-anchor="middle">Abu Dawud &amp; at-Tirmizi)</text>
+
+    <!-- 3 CONTOH / AMALAN -->
+    <rect x="310" y="560" width="200" height="200" rx="14" fill="url(#gPmc)" stroke="#8a6a2a" stroke-width="1.8"/>
+    <rect x="310" y="560" width="200" height="8" rx="4" fill="#8a6a2a"/>
+    <text x="410" y="590" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#8a6a2a" text-anchor="middle">3. CONTOH / AMALAN</text>
+    <text x="330" y="614" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Berwuduk sebelum azan</text>
+    <text x="330" y="632" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Diam &amp; menjawab lafaz azan</text>
+    <text x="330" y="650" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Selawat &amp; doa selepas azan</text>
+    <text x="330" y="668" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Berdoa antara azan &amp; iqamah</text>
+    <text x="330" y="686" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Bersegera ke surau / masjid</text>
+    <text x="330" y="704" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Solat berjemaah pada awal</text>
+    <text x="330" y="720" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#160;&#160;waktu secara istiqamah</text>
+    <g transform="translate(360,724) scale(0.2)" class="anim-bob"><use href="#adam"/></g>
+
+    <!-- 4 NILAI MURNI -->
+    <rect x="24" y="528" width="268" height="232" rx="14" fill="url(#gPmc)" stroke="#2e7a66" stroke-width="1.8"/>
+    <rect x="24" y="528" width="268" height="8" rx="4" fill="#4e9a7e"/>
+    <text x="158" y="558" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#2e7a66" text-anchor="middle">4. NILAI MURNI</text>
+    <g font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" font-weight="700" text-anchor="middle" fill="#fdf6ec">
+      <rect x="44" y="572" width="108" height="34" rx="17" fill="#1a4a3e"/><text x="98" y="594" fill="#fdf6ec">Menghormati</text>
+      <rect x="164" y="572" width="108" height="34" rx="17" fill="#2e7a66"/><text x="218" y="594" fill="#fdf6ec">Disiplin</text>
+      <rect x="44" y="614" width="108" height="34" rx="17" fill="#8a6a2a"/><text x="98" y="636" fill="#fdf6ec">Menepati Masa</text>
+      <rect x="164" y="614" width="108" height="34" rx="17" fill="#4e9a7e"/><text x="218" y="636" fill="#fdf6ec">Bersegera</text>
+      <rect x="44" y="656" width="108" height="34" rx="17" fill="#b5722c"/><text x="98" y="678" fill="#fdf6ec">Istiqamah</text>
+      <rect x="164" y="656" width="108" height="34" rx="17" fill="#5b7fa8"/><text x="218" y="678" fill="#fdf6ec">Bersatu Padu</text>
+    </g>
+    <text x="158" y="716" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#6a7a72" text-anchor="middle">Nilai diamalkan setiap kali azan</text>
+    <text x="158" y="732" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#6a7a72" text-anchor="middle">berkumandang lima kali sehari.</text>
+    <text x="158" y="750" class="jf" font-family="Scheherazade New,serif" font-size="17" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate" text-anchor="middle">الاحترام والانضباط</text>
+
+    <!-- 5 IKTIBAR -->
+    <rect x="528" y="560" width="268" height="200" rx="14" fill="url(#gPmg)" stroke="#b5722c" stroke-width="1.8"/>
+    <rect x="528" y="560" width="268" height="8" rx="4" fill="#b5722c"/>
+    <text x="662" y="590" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#8a6a2a" text-anchor="middle">5. IKTIBAR</text>
+    <text x="548" y="614" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#8226; Azan mengingatkan kita kepada</text>
+    <text x="548" y="630" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#160;&#160;Allah di tengah kesibukan dunia</text>
+    <text x="548" y="650" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#8226; Waktu itu amat singkat &mdash; jangan</text>
+    <text x="548" y="666" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#160;&#160;ditangguhkan dengan urusan lain</text>
+    <text x="548" y="686" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#8226; Solat berjemaah menyatukan</text>
+    <text x="548" y="702" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#160;&#160;umat tanpa mengira pangkat</text>
+    <text x="548" y="722" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#8226; Siapa yang istiqamah menyahut</text>
+    <text x="548" y="738" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#160;&#160;seruan itu akan tenang hidupnya</text>
+    <g transform="translate(596,724) scale(0.2)" class="anim-bob"><use href="#nur"/></g>
+    <g transform="translate(700,716) scale(0.4)" class="anim-glow"><use href="#bintangPrestasi"/></g>
+
+    <!-- cabang bawah -->
+    <path d="M340 502 Q300 530 300 556" stroke="#8a6a2a" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M300 512 Q180 530 158 524" stroke="#2e7a66" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M470 512 Q600 530 662 556" stroke="#b5722c" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+
+    <text x="410" y="788" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6a7a72" text-anchor="middle">Fokus utama SK 4.2: merumus konsep azan dan iqamah, membaca dan menghafaz lafaz serta jawabnya, memperdengarkannya dengan betul, dan mengamalkannya secara beradab dan istiqamah.</text>
+  </svg>
+</section>
+
+<!-- ===== 3. NOTA RINGKAS ===== -->
+<section id="nota">
+  <h2><span class="num">3</span> Nota Ringkas &mdash; 10 Perkara<svg class="mascot" width="34" height="34" viewBox="0 0 60 60" aria-hidden="true"><use href="#bulan"/></svg></h2>
+  <p class="hint">Baca sebelum melaungkan azan dan ulang selepas setiap solat fardu. Nota ini merangkumi SP 4.2.1 hingga SP 4.2.5.</p>
+  <div class="nota">
+    <ol>
+      <li><b>Maksud azan.</b> Azan <span class="jf">اذان</span> ialah <b>lafaz khusus yang disyariatkan oleh Islam untuk menyatakan masuknya waktu solat fardu</b> dengan lafaz tertentu.</li>
+      <li><b>Maksud iqamah.</b> Iqamah <span class="jf">إقامة</span> ialah <b>lafaz yang disyariatkan oleh Islam yang diucapkan bagi menyeru umat Islam mendirikan (memulakan) solat</b>.</li>
+      <li><b>Bilangan lafaz.</b> Azan terdiri daripada <b>15 lafaz</b> (7 kalimah; takbir 4 kali di awal). Iqamah terdiri daripada <b>11 lafaz</b> (8 kalimah; takbir 2 kali di awal). Azan Subuh menjadi <b>17 lafaz</b> dengan tambahan <span class="arab">الصَّلَاةُ خَيْرٌ مِنَ النَّوْمِ</span> sebanyak 2 kali.</li>
+      <li><b>Beza utama.</b> Iqamah <b>lebih ringkas dan lebih cepat</b> daripada azan, serta mengandungi lafaz <span class="arab">قَدْ قَامَتِ الصَّلَاةُ</span> (Qad qamatis solah) sebanyak <b>2 kali</b> yang <b>tidak ada</b> dalam azan.</li>
+      <li><b>Hukum.</b> Azan dan iqamah <b>sunat muakkad</b> bagi lelaki untuk solat fardu, dan menjadi <b>syiar</b> yang menandakan kehadiran Islam di sesuatu tempat.</li>
+      <li><b>Menjawab azan.</b> Ulangi lafaz muazzin dengan perlahan. Pada <span class="arab">حَيَّ عَلَى الصَّلَاةِ</span> dan <span class="arab">حَيَّ عَلَى الْفَلَاحِ</span> dijawab <span class="arab">لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ</span> (<b>La haula wa la quwwata illa billah</b>); pada syahadah Rasul dijawab <span class="arab">صَدَقْتَ وَبَرَرْتَ</span> (<b>Sadaqta wa bararta</b>); pada <span class="arab">قَدْ قَامَتِ الصَّلَاةُ</span> dijawab <b>Aqamaha Allah wa adamaha</b>.</li>
+      <li><b>Selepas azan.</b> Berselawat ke atas Nabi SAW, membaca <b>doa selepas azan</b> (<span class="arab">اللَّٰهُمَّ رَبَّ هٰذِهِ الدَّعْوَةِ التَّامَّةِ&hellip;</span>), dan <b>berdoa antara azan dan iqamah</b> &mdash; doa pada waktu itu tidak ditolak.</li>
+      <li><b>Adab sebelum.</b> Bagi muazzin: <b>berwuduk (suci daripada hadas kecil dan besar)</b>, <b>menghadap kiblat</b> dan <b>berdiri</b>. Bagi pendengar: bersedia menyambut seruan dengan hati yang khusyuk.</li>
+      <li><b>Adab semasa.</b> Muazzin menyebut lafaz dengan <b>tenang dan tartil</b>, memalingkan muka ke <b>kanan</b> pada <span class="arab">حَيَّ عَلَى الصَّلَاةِ</span> dan ke <b>kiri</b> pada <span class="arab">حَيَّ عَلَى الْفَلَاحِ</span>. Pendengar pula <b>diam dan menjawab</b> lafaz tersebut.</li>
+      <li><b>Amalan berterusan.</b> <b>Bersegera</b> ke surau atau masjid apabila azan berkumandang, tunaikan <b>solat berjemaah</b> pada awal waktu, dan lakukan secara <b>beradab dan istiqamah</b> (SP 4.2.5).</li>
+    </ol>
+  </div>
+  <div class="deko">
+    <svg width="70" height="46" viewBox="0 0 90 220" aria-hidden="true"><use href="#menara"/></svg>
+    <svg width="80" height="46" viewBox="0 0 140 100" aria-hidden="true"><use href="#masjidKecil"/></svg>
+    <svg width="70" height="46" viewBox="0 0 60 40" aria-hidden="true"><use href="#burung"/></svg>
+  </div>
+</section>
+
+<!-- ===== 4. DIAGRAM ALIR ===== -->
+<section id="diagram">
+  <h2><span class="num">4</span> Diagram Alir &mdash; Adab Azan dan Iqamah<svg class="mascot" width="34" height="34" viewBox="0 0 60 60" aria-hidden="true"><use href="#bintangPrestasi"/></svg></h2>
+  <p class="hint">Tiga peringkat adab &mdash; sebelum, semasa dan selepas &mdash; untuk muazzin dan orang yang mendengar (SP 4.2.4).</p>
+  <svg class="art" viewBox="0 0 820 620" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram alir adab sebelum, semasa dan selepas azan serta iqamah">
+    <defs>
+      <linearGradient id="gAlhd" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a4a3e"/><stop offset="100%" stop-color="#0e2a22"/>
+      </linearGradient>
+      <linearGradient id="gAl1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#dce8e4"/><stop offset="100%" stop-color="#f5faf8"/>
+      </linearGradient>
+      <linearGradient id="gAlg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fdf6ec"/><stop offset="100%" stop-color="#f5e6c8"/>
+      </linearGradient>
+      <marker id="mPanah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="#1a4a3e"/>
+      </marker>
+    </defs>
+    <rect width="820" height="620" fill="#f5faf8"/>
+
+    <rect x="0" y="0" width="820" height="50" fill="url(#gAlhd)"/>
+    <text x="410" y="32" font-family="Trebuchet MS,Segoe UI,Arial" font-size="18" font-weight="700" fill="#f5faf8" text-anchor="middle">ADAB SEBELUM &bull; SEMASA &bull; SELEPAS AZAN DAN IQAMAH</text>
+
+    <!-- kepala 3 peringkat -->
+    <rect x="24" y="66" width="240" height="40" rx="20" fill="#1a4a3e"/>
+    <text x="144" y="91" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#fdf6ec" text-anchor="middle">1. SEBELUM</text>
+    <rect x="290" y="66" width="240" height="40" rx="20" fill="#8a6a2a"/>
+    <text x="410" y="91" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#fdf6ec" text-anchor="middle">2. SEMASA</text>
+    <rect x="556" y="66" width="240" height="40" rx="20" fill="#2e7a66"/>
+    <text x="676" y="91" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#fdf6ec" text-anchor="middle">3. SELEPAS</text>
+
+    <path d="M264 86 L286 86" stroke="#1a4a3e" stroke-width="3" marker-end="url(#mPanah)"/>
+    <path d="M530 86 L552 86" stroke="#1a4a3e" stroke-width="3" marker-end="url(#mPanah)"/>
+
+    <!-- baris MUazzin -->
+    <text x="24" y="130" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" font-weight="800" fill="#8a6a2a">MU&#700;AZZIN (yang melaungkan)</text>
+
+    <rect x="24" y="140" width="240" height="150" rx="12" fill="url(#gAlg)" stroke="#8a6a2a" stroke-width="1.6"/>
+    <text x="44" y="162" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#2e2208">Bersedia menyambut seruan</text>
+    <text x="44" y="182" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Berwuduk &mdash; suci daripada hadas</text>
+    <text x="44" y="198" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#160;&#160;kecil dan hadas besar</text>
+    <text x="44" y="216" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Menghadap ke arah kiblat</text>
+    <text x="44" y="234" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Berdiri dengan penuh adab</text>
+    <text x="44" y="252" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Niat kerana Allah semata-mata</text>
+    <text x="44" y="272" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#6a7a72" font-style="italic">Baca perlahan &amp; jelas makhraj.</text>
+
+    <rect x="290" y="140" width="240" height="150" rx="12" fill="url(#gAlg)" stroke="#8a6a2a" stroke-width="1.6"/>
+    <text x="310" y="162" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#2e2208">Tertib ketika melaungkan</text>
+    <text x="310" y="182" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Sebut kalimah dengan <tspan font-weight="700">tenang</tspan></text>
+    <text x="310" y="200" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Muka ke <tspan font-weight="700">kanan</tspan>: Hayya &lsquo;alas solah</text>
+    <text x="310" y="218" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Muka ke <tspan font-weight="700">kiri</tspan>: Hayya &lsquo;alal falah</text>
+    <text x="310" y="238" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; <tspan font-weight="700">Tathwib</tspan> 2&#215; pada azan Subuh</text>
+    <text x="310" y="256" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; <tspan font-weight="700">Tarji&lsquo;</tspan>: syahadah perlahan dahulu</text>
+    <text x="310" y="276" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#6a7a72" font-style="italic">Iqamah dibaca lebih cepat.</text>
+
+    <rect x="556" y="140" width="240" height="150" rx="12" fill="url(#gAlg)" stroke="#8a6a2a" stroke-width="1.6"/>
+    <text x="576" y="162" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#2e2208">Menutup dengan doa</text>
+    <text x="576" y="182" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Berselawat ke atas Nabi SAW</text>
+    <text x="576" y="200" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Berdoa untuk diri &amp; umat</text>
+    <text x="576" y="220" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Berdoa <tspan font-weight="700">antara azan &amp; iqamah</tspan></text>
+    <text x="576" y="238" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Menyertai saf solat berjemaah</text>
+    <text x="576" y="258" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Menghormati azan &amp; iqamah</text>
+    <text x="576" y="278" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#6a7a72" font-style="italic">Doa waktu itu tidak ditolak.</text>
+
+    <!-- baris PENDENGAR -->
+    <text x="24" y="322" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" font-weight="800" fill="#1a4a3e">ORANG YANG MENDENGAR</text>
+
+    <rect x="24" y="332" width="240" height="150" rx="12" fill="url(#gAl1)" stroke="#1a4a3e" stroke-width="1.6"/>
+    <text x="44" y="354" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#0e2a22">Bersedia lebih awal</text>
+    <text x="44" y="374" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Berwuduk sebelum waktu masuk</text>
+    <text x="44" y="392" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Memakai pakaian yang menutup</text>
+    <text x="44" y="408" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#160;&#160;aurat dan bersih</text>
+    <text x="44" y="426" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Berada di tempat yang suci</text>
+    <text x="44" y="444" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Menenangkan hati &amp; menghadap</text>
+    <text x="44" y="460" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#160;&#160;kiblat</text>
+    <text x="44" y="476" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#6a7a72" font-style="italic">Sedia sebelum azan berkumandang.</text>
+
+    <rect x="290" y="332" width="240" height="150" rx="12" fill="url(#gAl1)" stroke="#1a4a3e" stroke-width="1.6"/>
+    <text x="310" y="354" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#0e2a22">Diam dan menjawab</text>
+    <text x="310" y="374" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; <tspan font-weight="700">Diam</tspan> &mdash; berhenti bercakap</text>
+    <text x="310" y="392" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Ulangi lafaz muazzin perlahan</text>
+    <text x="310" y="412" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; <tspan class="jf" font-family="Scheherazade New,serif" font-size="14" direction="ltr" unicode-bidi="isolate">حَيَّ عَلَى</tspan> dijawab <tspan font-weight="700">La haula</tspan></text>
+    <text x="310" y="428" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#160;&#160;<tspan font-weight="700">wa la quwwata illa billah</tspan></text>
+    <text x="310" y="448" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; <tspan class="jf" font-family="Scheherazade New,serif" font-size="14" direction="ltr" unicode-bidi="isolate">قَدْ قَامَتِ</tspan> dijawab <tspan font-weight="700">Aqamaha</tspan></text>
+    <text x="310" y="464" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#160;&#160;<tspan font-weight="700">Allah wa adamaha</tspan></text>
+    <text x="310" y="478" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#6a7a72" font-style="italic">Jawab ikut lafaz, jangan diubah.</text>
+
+    <rect x="556" y="332" width="240" height="150" rx="12" fill="url(#gAl1)" stroke="#1a4a3e" stroke-width="1.6"/>
+    <text x="576" y="354" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#0e2a22">Bersegera &amp; berdoa</text>
+    <text x="576" y="374" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Selawat ke atas Nabi SAW</text>
+    <text x="576" y="392" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Baca doa selepas azan</text>
+    <text x="576" y="412" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Berdoa dengan khusyuk (waktu</text>
+    <text x="576" y="428" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#160;&#160;antara azan &amp; iqamah mustajab)</text>
+    <text x="576" y="448" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Berjalan tenang ke surau/masjid</text>
+    <text x="576" y="466" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#4a3b2f">&#8226; Luruskan saf, solat berjemaah</text>
+    <text x="576" y="478" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.2" fill="#6a7a72" font-style="italic">Istiqamah pada awal waktu.</text>
+
+    <!-- ilustrasi -->
+    <g transform="translate(60,500) scale(.5)" class="anim-bob"><use href="#muazzin"/></g>
+    <g transform="translate(330,500) scale(.5)" class="anim-bob"><use href="#adam"/></g>
+    <g transform="translate(430,502) scale(.5)" class="anim-bob"><use href="#nur"/></g>
+    <g transform="translate(660,494) scale(.8)" class="anim-glow"><use href="#bintangPrestasi"/></g>
+    <g transform="translate(730,512) scale(.9)" class="anim-twinkle"><use href="#bintang"/></g>
+
+    <text x="410" y="606" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6a7a72" text-anchor="middle">Rumusan: sebelum &rarr; suci &amp; menghadap kiblat &nbsp;&#8226;&nbsp; semasa &rarr; khusyuk &amp; menjawab lafaz &nbsp;&#8226;&nbsp; selepas &rarr; selawat, doa, lalu bersegera solat berjemaah.</text>
+  </svg>
+
+  <h3>Jadual perbandingan ringkas azan dan iqamah</h3>
+  <table>
+    <thead><tr><th style="width:22%">Aspek</th><th style="width:39%">Azan</th><th>Iqamah</th></tr></thead>
+    <tbody>
+      <tr><td>Maksud</td><td>Lafaz khusus yang disyariatkan untuk menyatakan masuknya waktu solat fardu</td><td>Lafaz yang disyariatkan bagi menyeru umat Islam mendirikan (memulakan) solat</td></tr>
+      <tr><td>Bilangan lafaz</td><td><b>15 lafaz</b> (7 kalimah)</td><td><b>11 lafaz</b> (8 kalimah)</td></tr>
+      <tr><td>Takbir di awal</td><td><b>4 kali</b></td><td><b>2 kali</b></td></tr>
+      <tr><td>Lafaz <span class="jf">قَدْ قَامَتِ الصَّلَاةُ</span></td><td>Tiada</td><td>Ada, <b>2 kali</b></td></tr>
+      <tr><td>Tempoh / cara</td><td>Lebih panjang, perlahan dan berlagu</td><td>Lebih ringkas, cepat dan padat</td></tr>
+      <tr><td>Waktu dilaungkan</td><td>Apabila masuk waktu solat fardu</td><td>Apabila solat hendak didirikan</td></tr>
+      <tr><td>Tambahan Subuh</td><td>Ada <i>tathwib</i> <span class="jf">الصَّلَاةُ خَيْرٌ مِنَ النَّوْمِ</span> &#215;2</td><td>Tiada tambahan</td></tr>
+      <tr><td>Hukum</td><td>Sunat muakkad bagi lelaki</td><td>Sunat muakkad bagi lelaki</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== 5. KUIZ INTERAKTIF ===== -->
+<section id="quiz">
+  <h2><span class="num">5</span> Kuiz Interaktif &mdash; 10 Soalan<svg class="mascot" width="34" height="21" viewBox="0 0 66 44" aria-hidden="true"><use href="#kepalaAdam"/></svg></h2>
+  <p class="hint">Klik pilihan jawapan. Maklum balas dan skor diberikan serta-merta.</p>
+
+  <div class="scorebar">
+    <span class="sc">Skor: <span id="sc">0</span> / 10</span>
+    <span class="bar"><i id="bar"></i></span>
+    <span class="hint2">Dijawab: <span id="done">0</span>/10</span>
+  </div>
+
+  <div class="qlist">
+
+    <div class="qcard" data-ans="1" data-exp="Azan ialah <b>lafaz khusus yang disyariatkan oleh Islam untuk menyatakan masuknya waktu solat fardu</b> dengan lafaz tertentu.">
+      <div class="qhead"><span class="qn">1</span><span class="qtext">Apakah <b>maksud azan</b>?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span>Lafaz untuk menyeru umat Islam supaya solat didirikan</span></button>
+        <button class="opt"><span class="k">B</span><span><b>Lafaz khusus yang menyatakan masuknya waktu solat fardu</b></span></button>
+        <button class="opt"><span class="k">C</span><span>Lafaz zikir yang dibaca selepas solat</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="2" data-exp="Iqamah ialah lafaz yang disyariatkan oleh Islam yang diucapkan bagi <b>menyeru umat Islam mendirikan (memulakan) solat</b>.">
+      <div class="qhead"><span class="qn">2</span><span class="qtext">Apakah <b>maksud iqamah</b>?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span>Pemberitahuan bahawa waktu solat telah tamat</span></button>
+        <button class="opt"><span class="k">B</span><span>Bacaan doa selepas selesai solat</span></button>
+        <button class="opt"><span class="k">C</span><span><b>Lafaz seruan bahawa solat akan didirikan</b></span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="0" data-exp="Bilangan lafaz azan ialah <b>15 lafaz</b>: takbir 4&#215;, syahadah 2&#215;, syahadah Rasul 2&#215;, Hayya &lsquo;alas solah 2&#215;, Hayya &lsquo;alal falah 2&#215;, takbir 2&#215; dan tahlil 1&#215;.">
+      <div class="qhead"><span class="qn">3</span><span class="qtext">Berapakah <b>bilangan lafaz azan</b>?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span><b>15 lafaz</b></span></button>
+        <button class="opt"><span class="k">B</span><span>11 lafaz</span></button>
+        <button class="opt"><span class="k">C</span><span>17 lafaz</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="1" data-exp="Iqamah terdiri daripada <b>11 lafaz</b>: takbir 2&#215;, syahadah 1&#215;, syahadah Rasul 1&#215;, Hayya &lsquo;alas solah 1&#215;, Hayya &lsquo;alal falah 1&#215;, <span class='jf'>قَدْ قَامَتِ الصَّلَاةُ</span> 2&#215;, takbir 2&#215; dan tahlil 1&#215;.">
+      <div class="qhead"><span class="qn">4</span><span class="qtext">Berapakah <b>bilangan lafaz iqamah</b>?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span>15 lafaz</span></button>
+        <button class="opt"><span class="k">B</span><span><b>11 lafaz</b></span></button>
+        <button class="opt"><span class="k">C</span><span>13 lafaz</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="2" data-exp="Lafaz tambahan bagi azan Subuh ialah <span class='arab'>الصَّلَاةُ خَيْرٌ مِنَ النَّوْمِ</span> (<b>As-solatu khairum minan naum</b>) sebanyak 2 kali, disebut selepas Hayya &lsquo;alal falah &mdash; dinamakan <b>tathwib</b>.">
+      <div class="qhead"><span class="qn">5</span><span class="qtext">Apakah <b>lafaz tambahan</b> bagi azan Subuh?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span><span class="arab">قَدْ قَامَتِ الصَّلَاةُ</span> (Qad qamatis solah)</span></button>
+        <button class="opt"><span class="k">B</span><span><span class="arab">اللَّهُ أَكْبَرُ</span> (Allahu Akbar) 4 kali lagi</span></button>
+        <button class="opt"><span class="k">C</span><span><b><span class="arab">الصَّلَاةُ خَيْرٌ مِنَ النَّوْمِ</span> (As-solatu khairum minan naum)</b></span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="0" data-exp="<span class='jf'>قَدْ قَامَتِ الصَّلَاةُ</span> (<b>Qad qamatis solah</b>) hanya ada dalam <b>iqamah</b> sebanyak 2 kali &mdash; inilah beza yang paling ketara antara azan dan iqamah.">
+      <div class="qhead"><span class="qn">6</span><span class="qtext">Lafaz manakah yang <b>ada dalam iqamah tetapi tidak ada dalam azan</b>?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span><b><span class="arab">قَدْ قَامَتِ الصَّلَاةُ</span> (Qad qamatis solah)</b></span></button>
+        <button class="opt"><span class="k">B</span><span><span class="arab">حَيَّ عَلَى الْفَلَاحِ</span> (Hayya &lsquo;alal falah)</span></button>
+        <button class="opt"><span class="k">C</span><span><span class="arab">لَا إِلٰهَ إِلَّا اللّٰهُ</span> (La ilaha illallah)</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="1" data-exp="Ketika mendengar <span class='arab'>حَيَّ عَلَى الصَّلَاةِ</span> dan <span class='arab'>حَيَّ عَلَى الْفَلَاحِ</span> kita menjawab <span class='arab'>لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ</span> &mdash; <b>La haula wa la quwwata illa billah</b>, bukan mengulang lafaznya.">
+      <div class="qhead"><span class="qn">7</span><span class="qtext">Bagaimanakah cara menjawab lafaz <span class="jf">حَيَّ عَلَى الصَّلَاةِ</span>?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span>Mengulang &ldquo;Hayya &lsquo;alas solah&rdquo;</span></button>
+        <button class="opt"><span class="k">B</span><span><b>Menyebut &ldquo;La haula wa la quwwata illa billah&rdquo;</b></span></button>
+        <button class="opt"><span class="k">C</span><span>Menyebut &ldquo;Sadaqta wa bararta&rdquo;</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="2" data-exp="Lafaz <span class='jf'>قَدْ قَامَتِ الصَّلَاةُ</span> dalam iqamah dijawab dengan <b>Aqamaha Allah wa adamaha</b> &mdash; <span class='arab'>أَقَامَهَا اللّٰهُ وَأَدَامَهَا</span> (semoga Allah menegakkan dan mengekalkannya).">
+      <div class="qhead"><span class="qn">8</span><span class="qtext">Apakah jawapan bagi lafaz <span class="jf">قَدْ قَامَتِ الصَّلَاةُ</span>?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span>Sadaqta wa bararta</span></button>
+        <button class="opt"><span class="k">B</span><span>Subhana Allah</span></button>
+        <button class="opt"><span class="k">C</span><span><b>Aqamaha Allah wa adamaha</b></span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="0" data-exp="Adab <b>sebelum</b> azan bagi muazzin: <b>berwuduk (suci daripada hadas kecil dan besar), menghadap kiblat dan berdiri</b>. Menjawab lafaz pula ialah adab <b>semasa</b> azan.">
+      <div class="qhead"><span class="qn">9</span><span class="qtext">Antara berikut, yang manakah <b>adab sebelum azan</b> bagi muazzin?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span><b>Berwuduk, menghadap kiblat dan berdiri</b></span></button>
+        <button class="opt"><span class="k">B</span><span>Menjawab lafaz azan dengan perlahan</span></button>
+        <button class="opt"><span class="k">C</span><span>Berselawat dan berdoa selepas azan</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="1" data-exp="Rasulullah SAW bersabda bahawa <b>doa antara azan dan iqamah tidak ditolak</b> &mdash; kerana itu kita digalakkan berdoa pada waktu tersebut sebelum solat didirikan.">
+      <div class="qhead"><span class="qn">10</span><span class="qtext">Mengapakah kita digalakkan <b>berdoa antara azan dan iqamah</b>?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span>Kerana waktu itu paling lama lapangnya</span></button>
+        <button class="opt"><span class="k">B</span><span><b>Kerana doa pada waktu itu tidak ditolak</b></span></button>
+        <button class="opt"><span class="k">C</span><span>Kerana azan sudah selesai dilaungkan</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+  </div>
+
+  <div class="result" id="result">
+    <svg viewBox="0 0 220 170" style="width:200px;height:auto;margin:0 auto 4px;display:block">
+      <g transform="translate(22,4) scale(.95)"><use href="#muazzin"/></g>
+      <g transform="translate(114,4) scale(.95)"><use href="#adam"/></g>
+    </svg>
+    <div class="stars" id="stars"></div>
+    <div class="big" id="rscore"></div>
+    <div class="msg" id="rmsg"></div>
+    <button class="act solid" onclick="resetQuiz()">Cuba Lagi</button>
+    <button class="act" onclick="window.print()">Cetak / Simpan PDF</button>
+  </div>
+</section>
+
+<!-- ===== LAMPIRAN ===== -->
+<section id="lampiran">
+  <h2>Lampiran: Senarai 26 Standard Kandungan Pendidikan Islam Tahun 4</h2>
+  <p class="hint">KSSR Semakan 2017. Baris berwarna emas ialah unit yang dibina dalam bahan PdP ini.</p>
+  <table>
+    <thead><tr><th style="width:15%">Bidang</th><th style="width:7%">SK</th><th>Standard Kandungan (ringkasan)</th><th class="c" style="width:6%">&#10003;</th></tr></thead>
+    <tbody>
+      <tr><td>al-Quran</td><td>1.1</td><td>Tilawah: membaca dan mengamalkan Surah at-Takathur dengan betul dan bertajwid</td><td class="c">&#9675;</td></tr>
+      <tr><td>al-Quran</td><td>1.2</td><td>Tilawah: membaca dan mengamalkan Surah al-Qari&lsquo;ah dengan betul dan bertajwid</td><td class="c">&#9675;</td></tr>
+      <tr><td>al-Quran</td><td>1.3</td><td>Hafazan: membaca dan menghafaz serta mengamalkan Surah at-Takathur dalam solat dan kehidupan harian</td><td class="c">&#9675;</td></tr>
+      <tr><td>al-Quran</td><td>1.4</td><td>Hafazan: membaca dan menghafaz serta mengamalkan Surah al-Qari&lsquo;ah dengan betul dan bertajwid</td><td class="c">&#9675;</td></tr>
+      <tr><td>al-Quran</td><td>1.5</td><td>Kefahaman: menganalisis, mengamal dan menghayati Surah al-Ikhlas</td><td class="c">&#9675;</td></tr>
+      <tr><td>al-Quran</td><td>1.6</td><td>Tajwid: hukum mim sakinah dan tanwin</td><td class="c">&#9675;</td></tr>
+      <tr><td>al-Quran</td><td>1.7</td><td>Tajwid: hukum qalqalah</td><td class="c">&#9675;</td></tr>
+      <tr><td>al-Quran</td><td>1.8</td><td>Tajwid: tanda waqaf</td><td class="c">&#9675;</td></tr>
+      <tr><td>Hadis</td><td>2.1</td><td>Hadis: memuliakan tetamu</td><td class="c">&#9675;</td></tr>
+      <tr><td>Akidah</td><td>3.1</td><td>Nama-nama Allah: al-&lsquo;Azim dan al-Hamid</td><td class="c">&#9675;</td></tr>
+      <tr><td>Akidah</td><td>3.2</td><td>Beriman kepada rasul</td><td class="c">&#9675;</td></tr>
+      <tr><td>Akidah</td><td>3.3</td><td>Mempertahankan akidah daripada unsur kufur</td><td class="c">&#9675;</td></tr>
+      <tr><td>Akidah</td><td>3.4</td><td>Mempertahankan akidah daripada unsur nifak</td><td class="c">&#9675;</td></tr>
+      <tr><td>Ibadah</td><td>4.1</td><td>Bersuci daripada najis</td><td class="c">&#9675;</td></tr>
+      <tr class="on"><td>Ibadah</td><td>4.2</td><td><b>Azan dan iqamah &mdash; merumus konsep azan dan iqamah serta mengamalkannya dan menghayatinya secara beradab dan istiqamah</b> &mdash; unit ini &check;</td><td class="c" style="color:#1a4a3e">&#9679;</td></tr>
+      <tr><td>Ibadah</td><td>4.3</td><td>Puasa Ramadan</td><td class="c">&#9675;</td></tr>
+      <tr><td>Sirah</td><td>5.1</td><td>Perjanjian &lsquo;Aqabah</td><td class="c">&#9675;</td></tr>
+      <tr><td>Sirah</td><td>5.2</td><td>Sifat fatanah Nabi Muhammad SAW</td><td class="c">&#9675;</td></tr>
+      <tr><td>Sirah</td><td>5.3</td><td>Keperibadian Nabi Muhammad SAW semasa berdakwah</td><td class="c">&#9675;</td></tr>
+      <tr><td>Adab</td><td>6.1</td><td>Adab berpakaian</td><td class="c">&#9675;</td></tr>
+      <tr><td>Adab</td><td>6.2</td><td>Adab beriadah</td><td class="c">&#9675;</td></tr>
+      <tr><td>Adab</td><td>6.3</td><td>Adab berjiran</td><td class="c">&#9675;</td></tr>
+      <tr><td>Adab</td><td>6.4</td><td>Adab terhadap guru</td><td class="c">&#9675;</td></tr>
+      <tr><td>Jawi</td><td>7.1</td><td>Jawi: huruf hamzah</td><td class="c">&#9675;</td></tr>
+      <tr><td>Jawi</td><td>7.2</td><td>Jawi: perkataan tradisi</td><td class="c">&#9675;</td></tr>
+      <tr><td>Jawi</td><td>7.3</td><td>Jawi: kata pinjaman bahasa Inggeris</td><td class="c">&#9675;</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:12px;background:#fdf6ec;border:1.4px dashed var(--gold);border-radius:13px;padding:10px 13px;font-size:12.5px;color:#2e2208;line-height:1.55">Nota: SK <b>4.2 (Azan dan Iqamah)</b> ditandakan <span style="color:#1a4a3e">&#9679;</span> kerana diliputi dalam bahan PdP ini. <span style="color:#6a7a72">&#9675;</span> = belum dibina.</p>
+</section>
+
+<footer>
+  Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 4 (BPK, KPM), RPT Tahun 4, dan Buku Teks Pendidikan Islam Tahun 4 SK (unit 4.2, ms. 122&ndash;128). Lafaz azan (15) dan iqamah (11) mengikut amalan masyhur Malaysia &mdash; Mazhab Syafi&lsquo;i.
+</footer>
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+  var scEl = document.getElementById('sc');
+  var doneEl = document.getElementById('done');
+  var barEl = document.getElementById('bar');
+  var resultEl = document.getElementById('result');
+  var total = cards.length;
+
+  function refresh(){
+    var score = 0, answered = 0;
+    cards.forEach(function(c){
+      if(c.dataset.state === 'correct'){ score++; answered++; }
+      else if(c.dataset.state === 'wrong'){ answered++; }
+    });
+    scEl.textContent = score;
+    doneEl.textContent = answered;
+    barEl.style.width = (answered/total*100) + '%';
+    if(answered === total) showResult(score);
+  }
+
+  function showResult(score){
+    resultEl.classList.add('show');
+    document.getElementById('rscore').textContent = score + ' / ' + total;
+    document.getElementById('stars').textContent =
+      score >= 9 ? '\u2605\u2605\u2605\u2605\u2605' : score >= 7 ? '\u2605\u2605\u2605\u2605\u2606' : score >= 5 ? '\u2605\u2605\u2605\u2606\u2606' : '\u2605\u2605\u2606\u2606\u2606';
+    document.getElementById('rmsg').textContent =
+      score === 10 ? 'Syabas! Kamu benar-benar menghayati azan dan iqamah.'
+      : score >= 8 ? 'Bagus sekali! Teruskan menyahut seruan azan pada awal waktu.'
+      : score >= 6 ? 'Bagus! Ulangi lafaz azan dan iqamah sekali lagi setiap hari.'
+      : score >= 4 ? 'Jangan putus asa \u2014 hafaz 15 lafaz azan dan 11 lafaz iqamah secara berperingkat.'
+      : 'Mari ulang bersama-sama. Baca nota ringkas, dengar bacaan guru, kemudian cuba lagi.';
+    resultEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  cards.forEach(function(card){
+    var opts = Array.prototype.slice.call(card.querySelectorAll('.opt'));
+    var fb = card.querySelector('.fb');
+    var face = fb.querySelector('use');
+    var txt = fb.querySelector('.txt');
+    var ans = parseInt(card.dataset.ans, 10);
+    var exp = card.dataset.exp;
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(card.dataset.state) return;
+        var ok = (i === ans);
+        card.dataset.state = ok ? 'correct' : 'wrong';
+        card.classList.add('done');
+
+        opts.forEach(function(b, j){
+          b.disabled = true;
+          if(j === ans){ b.classList.add('ok'); }
+          else if(j === i){ b.classList.add('bad'); }
+          else { b.classList.add('dim'); }
+        });
+
+        face.setAttribute('href', ok ? '#faceYay' : '#faceOops');
+        txt.innerHTML = (ok ? '<b>Betul!</b> ' : '<b>Belum tepat.</b> Jawapan yang betul ialah <b>' +
+                        String.fromCharCode(65+ans) + '</b>. ') + exp;
+        fb.classList.add('show');
+        if(!ok) fb.classList.add('wrong');
+
+        refresh();
+      });
+    });
+  });
+
+  window.resetQuiz = function(){
+    cards.forEach(function(c){
+      delete c.dataset.state;
+      c.classList.remove('done');
+      var fb = c.querySelector('.fb');
+      fb.classList.remove('show','wrong');
+      c.querySelectorAll('.opt').forEach(function(b){
+        b.disabled = false;
+        b.classList.remove('ok','bad','dim');
+      });
+    });
+    resultEl.classList.remove('show');
+    refresh();
+    window.scrollTo({top: document.getElementById('quiz').offsetTop - 20, behavior:'smooth'});
+  };
+
+  window.addEventListener('beforeprint', function(){
+    cards.forEach(function(c){
+      var ans = parseInt(c.dataset.ans,10);
+      c.querySelectorAll('.opt').forEach(function(b,j){
+        if(j === ans) b.classList.add('ok');
+      });
+      if(!c.querySelector('.fb').classList.contains('show')){
+        var fb = c.querySelector('.fb');
+        fb.querySelector('.txt').innerHTML = '<b>Jawapan: ' + String.fromCharCode(65+ans) + '</b>. ' + c.dataset.exp;
+        fb.classList.add('show');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

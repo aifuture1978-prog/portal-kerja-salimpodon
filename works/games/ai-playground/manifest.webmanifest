@@ -1,0 +1,35 @@
+{
+  "id": "ai-playground-kanak-kanak",
+  "name": "AI Playground Kanak-Kanak",
+  "short_name": "AI Playground",
+  "description": "12 permainan edukasi interaktif untuk kanak-kanak 5-8 tahun. Animasi 2D gaya Pixar, AI adaptif, mesra akses, selamat dan tanpa iklan.",
+  "lang": "ms",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#FFF9F0",
+  "theme_color": "#5BC0EB",
+  "categories": ["education", "kids", "games"],
+  "icons": [
+    {
+      "src": "assets/img/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    { "name": "Mula Bermain", "url": "./index.html#/playground" },
+    { "name": "Cerita Interaktif", "url": "./index.html#/story" },
+    { "name": "Mod Ibu Bapa", "url": "./index.html#/parent" }
+  ]
+}

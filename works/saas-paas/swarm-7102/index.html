@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIAP · SWARM COMMAND — Pusat Arahan Swarm 50 Ejen (K02)</title>
+<meta name="description" content="Prototaip konsep pusat arahan swarm 50 ejen K02 untuk SIAP — Sistem Infrastruktur Aset Pintar Sabah. Draf Konsep v3.0.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#04090f; --bg2:#071019; --panel:#0a1620; --panel2:#0e1e2b; --panel3:#122635;
+  --line:#193246; --line2:#22475f;
+  --ink:#e8f2fa; --ink2:#9bb5c7; --ink3:#7f9db4;
+  --acc:#35a7e0; --acc2:#8fd4f5; --teal:#2fbf9f; --gold:#e2b64c; --red:#f0805f; --violet:#8b7ce8;
+  --ok:#2fbf9f; --warn:#e2b64c; --bad:#f0805f;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --rl:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+.topbar{position:sticky;top:0;z-index:60;background:rgba(4,9,15,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.tb-in{display:flex;align-items:center;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.brand-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--acc),#14608c);display:grid;place-items:center;font-weight:800;color:#03121c;font-size:15px}
+.brand-tx b{display:block;font-size:13.5px;font-weight:800;letter-spacing:.04em;line-height:1.2}
+.brand-tx span{display:block;font-size:10.5px;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase}
+.tb-nav{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+.tb-nav a{padding:7px 11px;border-radius:8px;font-size:12.5px;font-weight:500;color:var(--ink2)}
+.tb-nav a:hover{background:var(--panel2);color:var(--ink)}
+.tb-back{padding:7px 12px;border:1px solid var(--line2);border-radius:8px;font-size:12px;font-weight:600;color:var(--ink2);flex-shrink:0}
+.tb-back:hover{border-color:var(--acc);color:var(--acc)}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.badge.sim{background:rgba(53,167,224,.12);color:var(--acc);border:1px solid rgba(53,167,224,.35)}
+.badge.live{background:rgba(47,191,159,.12);color:var(--ok);border:1px solid rgba(47,191,159,.35)}
+.badge.warnb{background:rgba(226,182,76,.12);color:var(--gold);border:1px solid rgba(226,182,76,.35)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.dot.pulse{animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+main{padding-bottom:40px}
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+.sec-h{margin-bottom:26px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:9px}
+h1{font-size:clamp(28px,4.4vw,46px);line-height:1.12;font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(21px,2.7vw,30px);line-height:1.2;font-weight:800;letter-spacing:-.015em;margin-bottom:10px}
+h3{font-size:16.5px;font-weight:700}
+h4{font-size:14px;font-weight:700}
+.lede{font-size:16px;color:var(--ink2);max-width:76ch}
+.lede b{color:var(--ink)}
+.sub{font-size:13px;color:var(--ink3)}
+.note{font-size:12.5px;color:var(--ink3);font-style:italic;margin-top:12px}
+.src{font-family:var(--mono);font-size:10.5px;color:var(--ink3);letter-spacing:.02em}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}.tb-nav{display:none}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--rl);padding:18px}
+.card.hi{border-color:rgba(53,167,224,.4);background:linear-gradient(160deg,rgba(53,167,224,.08),var(--panel))}
+.kpi-b{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.kpi-b.acc{color:var(--acc)}
+.kpi-l{font-size:12px;color:var(--ink2);margin-top:5px}
+.kpi-m{font-size:11px;color:var(--ink3);margin-top:2px;font-family:var(--mono)}
+.chip{display:inline-block;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:600;background:var(--panel2);border:1px solid var(--line);color:var(--ink2)}
+.chip.acc{background:rgba(53,167,224,.1);border-color:rgba(53,167,224,.3);color:var(--acc)}
+
+.hero{padding:64px 0 52px;background:
+  radial-gradient(900px 380px at 10% -10%,rgba(53,167,224,.15),transparent 62%),
+  radial-gradient(760px 360px at 94% 6%,rgba(47,191,159,.12),transparent 60%),var(--bg)}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.hero .lede{margin-top:16px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.mark{display:inline-flex;align-items:center;gap:10px;margin:22px 0 4px}
+.mark-s{width:52px;height:52px;border-radius:13px;background:linear-gradient(135deg,var(--acc),#0d5d87);display:grid;place-items:center;font-weight:800;font-size:25px;color:#03121c}
+.mark-tx b{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.mark-tx > span{display:block;font-size:12.5px;color:var(--ink3)}
+.quote{margin-top:16px;padding:14px 16px;border-left:3px solid var(--acc);background:rgba(53,167,224,.05);border-radius:0 10px 10px 0}
+.quote p{font-size:14px;color:var(--ink);font-style:italic}
+
+.cmd{background:radial-gradient(760px 300px at 50% 0,rgba(47,191,159,.09),transparent 65%),var(--bg2)}
+.cmd-panel{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:20px;overflow:hidden;box-shadow:0 26px 70px -30px rgba(0,0,0,.9)}
+.cmd-head{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line);background:rgba(4,9,15,.5);flex-wrap:wrap}
+.cmd-head h3{font-size:15px}
+.cmd-head .sp{margin-left:auto;display:flex;gap:8px;align-items:center}
+.cmd-body{padding:18px}
+.sit-wrap{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}
+.sit{background:var(--panel3);border:1px solid var(--line2);border-radius:10px;padding:10px 13px;cursor:pointer;text-align:left;color:var(--ink);font-family:var(--sans);transition:.16s;min-width:0}
+.sit:hover{border-color:var(--acc);transform:translateY(-1px)}
+.sit.on{border-color:var(--acc);background:rgba(53,167,224,.14);box-shadow:0 0 0 1px rgba(53,167,224,.4)}
+.sit b{display:block;font-size:12.5px;font-weight:700;margin-bottom:2px}
+.sit span{display:block;font-size:10.5px;color:var(--ink3);font-family:var(--mono)}
+.sit:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.counters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+@media(max-width:620px){.counters{grid-template-columns:repeat(2,1fr)}}
+.ctr{background:var(--panel3);border:1px solid var(--line);border-radius:11px;padding:12px 13px}
+.ctr b{display:block;font-family:var(--mono);font-size:25px;font-weight:700;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums}
+.ctr.act b{color:var(--acc)}.ctr.inv b{color:var(--teal)}.ctr.tim b{color:var(--gold)}.ctr.run b{color:var(--violet)}
+.ctr span{display:block;font-size:11px;color:var(--ink2);margin-top:3px}
+.layers{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+@media(max-width:820px){.layers{grid-template-columns:repeat(2,1fr)}}
+.ly{background:var(--panel3);border:1px solid var(--line);border-radius:11px;padding:12px 13px;transition:.2s}
+.ly.on{border-color:var(--acc);background:rgba(53,167,224,.1)}
+.ly.done{border-color:rgba(47,191,159,.5);background:rgba(47,191,159,.07)}
+.ly b{display:block;font-size:12.5px;font-weight:700}
+.ly span{display:block;font-size:10.5px;color:var(--ink3);margin-top:2px}
+.ly-bar{height:4px;border-radius:99px;background:var(--line);margin-top:9px;overflow:hidden}
+.ly-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s}
+.ly.done .ly-bar i{background:linear-gradient(90deg,var(--teal),#7fe0c8)}
+.sk{background:var(--panel3);border:1px solid var(--line);border-radius:11px;padding:12px;margin-bottom:16px}
+.sk-h{display:flex;align-items:center;gap:10px;margin-bottom:9px;flex-wrap:wrap}
+.sk-h h4{font-size:12.5px}
+.sk-h .sp{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.sk-grp{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin:9px 0 5px}
+.sk-row{display:grid;grid-template-columns:212px 1fr;gap:10px;align-items:center;padding:2.5px 0}
+@media(max-width:700px){.sk-row{grid-template-columns:1fr;gap:3px}}
+.sk-nm{font-size:11.5px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sk-pips{display:flex;gap:3px;flex-wrap:wrap}
+.pip{width:14px;height:14px;border-radius:3.5px;background:var(--line);border:1px solid var(--line2);transition:.22s}
+.pip.on{background:var(--acc);border-color:var(--acc2);box-shadow:0 0 8px rgba(53,167,224,.55)}
+.pip.done{background:var(--teal);border-color:#7fe0c8}
+.audit{background:#02060b;border:1px solid var(--line);border-radius:11px;overflow:hidden}
+.audit-h{display:flex;align-items:center;gap:8px;padding:9px 13px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02);flex-wrap:wrap}
+.audit-h b{font-size:12px;font-weight:700}
+.audit-h .sp{margin-left:auto;font-size:10.5px;color:var(--ink3);font-family:var(--mono)}
+.log{height:268px;overflow-y:auto;padding:10px 13px;font-family:var(--mono);font-size:11.5px;line-height:1.75}
+.log::-webkit-scrollbar{width:9px}
+.log::-webkit-scrollbar-thumb{background:var(--line2);border-radius:9px}
+.ln{display:flex;gap:10px;animation:fin .28s ease-out}
+@keyframes fin{from{opacity:0;transform:translateX(-5px)}to{opacity:1;transform:none}}
+.ln .t{color:var(--ink3);flex-shrink:0}
+.ln .m{color:var(--ink2);min-width:0}
+.ln.l0 .m{color:#cfdde9}.ln.l1 .m{color:var(--acc)}.ln.l2 .m{color:var(--violet)}.ln.l3 .m{color:var(--teal)}
+.ln.sys .m{color:var(--gold)}
+.ln.idle .m{color:var(--ink3);font-style:italic}
+.brief{margin-top:16px;border:1px solid rgba(47,191,159,.45);background:linear-gradient(160deg,rgba(47,191,159,.09),var(--panel3));border-radius:12px;padding:16px;display:none}
+.brief.show{display:block;animation:fin .35s}
+.brief h4{color:var(--teal);margin-bottom:9px;font-size:13.5px}
+.brief ul{list-style:none;display:grid;gap:7px;margin-bottom:12px}
+.brief li{font-size:13px;color:var(--ink2);padding-left:19px;position:relative}
+.brief li:before{content:'';position:absolute;left:5px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--teal)}
+.brief li b{color:var(--ink)}
+.gate{display:flex;gap:9px;flex-wrap:wrap;align-items:center;border-top:1px solid rgba(47,191,159,.25);padding-top:12px}
+.gate p{font-size:12px;color:var(--ink3);margin-right:auto}
+.btn{border:1px solid var(--line2);background:var(--panel3);color:var(--ink);padding:8px 15px;border-radius:9px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:.15s}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.go{background:linear-gradient(135deg,var(--teal),#1e8f76);border-color:transparent;color:#04140f;font-weight:700}
+.btn.go:hover{filter:brightness(1.1);color:#04140f}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.tbl th{text-align:left;padding:10px 12px;background:var(--panel2);color:var(--ink2);font-weight:600;font-size:11.5px;letter-spacing:.03em;border-bottom:1px solid var(--line2)}
+.tbl td{padding:11px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td b{color:var(--ink)}
+.scroll{overflow-x:auto}
+.nrw{display:grid;gap:12px}
+.nrw-i{border:1px solid var(--line);border-radius:11px;padding:13px 15px;background:var(--panel2)}
+.nrw-i b{display:block;font-size:12.5px}
+.nrw-i .v{font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:4px 0}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin:9px 0}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2))}
+.lay3{display:grid;gap:12px}
+.l3{border:1px solid var(--line);border-radius:13px;background:var(--panel);overflow:hidden}
+.l3-h{display:flex;align-items:center;gap:11px;padding:13px 16px;border-bottom:1px solid var(--line);background:var(--panel2);flex-wrap:wrap}
+.l3-h b{font-size:14.5px}
+.l3-h .tag{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:99px;background:rgba(53,167,224,.13);color:var(--acc);border:1px solid rgba(53,167,224,.3)}
+.l3-b{padding:14px 16px;display:grid;gap:10px}
+.mo{display:grid;grid-template-columns:30px 1fr;gap:11px}
+.mo em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--acc);padding-top:2px}
+.mo b{display:block;font-size:13px;margin-bottom:3px}
+.mo p{font-size:12.5px;color:var(--ink2)}
+.mo .rf{display:block;margin-top:4px;font-family:var(--mono);font-size:10.5px;color:var(--ink3)}
+.opt{display:grid;gap:11px}
+.op{border:1px solid var(--line);border-radius:13px;padding:15px;background:var(--panel);position:relative}
+.op.pick{border-color:var(--acc);background:linear-gradient(150deg,rgba(53,167,224,.09),var(--panel))}
+.op .rec{position:absolute;top:-9px;right:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;padding:3px 9px;border-radius:99px;background:var(--acc);color:#03121c;font-weight:700}
+.op h4{font-size:14px;margin-bottom:4px}
+.op p{font-size:12.5px;color:var(--ink2)}
+.scores{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+@media(max-width:620px){.scores{grid-template-columns:repeat(2,1fr)}}
+.sc-i{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:9px 10px}
+.sc-i span{display:block;font-size:10px;color:var(--ink3);margin-bottom:3px}
+.sc-i b{font-family:var(--mono);font-size:14px;color:var(--acc)}
+.ris{display:grid;gap:9px}
+.ri{border:1px solid var(--line);border-radius:11px;padding:13px 15px;background:var(--panel);border-left:3px solid var(--line2)}
+.ri.hi{border-left-color:var(--bad)}.ri.md{border-left-color:var(--warn)}
+.ri-h{display:flex;align-items:center;gap:9px;margin-bottom:6px;flex-wrap:wrap}
+.ri-h b{font-size:13.5px}
+.ri p{font-size:12.5px;color:var(--ink2)}
+.lv{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:99px;letter-spacing:.06em;text-transform:uppercase}
+.lv.hi{background:rgba(224,96,63,.15);color:var(--bad)}
+.lv.md{background:rgba(226,182,76,.15);color:var(--warn)}
+.lv.lo{background:rgba(47,191,159,.15);color:var(--ok)}
+.fasa{display:grid;gap:11px}
+.fa{border:1px solid var(--line);border-radius:13px;background:var(--panel);overflow:hidden}
+.fa-h{display:flex;align-items:center;gap:11px;padding:12px 15px;background:var(--panel2);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.fa-h b{font-size:13.5px}
+.fa-h .cost{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--gold)}
+.fa-b{padding:13px 15px}
+.fa-b p{font-size:12.5px;color:var(--ink2)}
+.outs{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.outs span{font-size:11px;padding:4px 9px;border-radius:99px;background:var(--panel3);border:1px solid var(--line);color:var(--ink2)}
+.gate3{display:grid;gap:10px;margin-top:22px}
+.g3-i{display:grid;grid-template-columns:34px 1fr;gap:12px;border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--panel)}
+.g3-i em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--gold);padding-top:2px}
+.g3-i b{display:block;font-size:13.5px;margin-bottom:3px}
+.g3-i p{font-size:12.5px;color:var(--ink2)}
+footer{padding:34px 0 46px;background:var(--bg2);border-top:1px solid var(--line)}
+footer p{font-size:12px;color:var(--ink3);max-width:92ch}
+footer p+p{margin-top:8px}
+footer b{color:var(--ink2)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap tb-in">
+    <a href="#arahan" class="brand">
+      <span class="brand-mark">S</span>
+      <span class="brand-tx"><b>SIAP</b><span>Swarm Command · 50 Ejen · K02</span></span>
+    </a>
+    <nav class="tb-nav">
+      <a href="#arahan">Pusat Arahan</a>
+      <a href="#monitor">NRW &amp; KPI</a>
+      <a href="#inisiatif">Inisiatif &amp; Opsyen</a>
+      <a href="#senibina">Tiga Lapisan</a>
+      <a href="#pelan">Pelan &amp; Kos</a>
+      <a href="#sumber">Sumber</a>
+    </nav>
+    <a class="tb-back" href="../../../saas-paas.html">← Platform Induk</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="pills">
+      <span class="badge sim">Draf Konsep v3.0 · Sulit</span>
+      <span class="badge live"><span class="dot"></span>Swarm 50 Ejen · K02</span>
+      <span class="badge warnb">Untuk pertimbangan YB</span>
+    </div>
+
+    <div class="mark">
+      <span class="mark-s">S</span>
+      <span class="mark-tx"><b>SIAP.</b><span>Sistem Infrastruktur Aset Pintar Sabah</span></span>
+    </div>
+
+    <h1>“Supaya projek <em>siap</em>, data <em>siap</em>, perkhidmatan <em>siap</em>.”</h1>
+    <p class="lede">SIAP ialah arkitektur bersepadu <b>SaaS · MaaS · PaaS</b> yang ditapis semula daripada draf SIIP v2.0 melalui analisis kritikal, pengesahan fakta 20 carian, dan enam modifikasi utama — supaya setiap angka yang dibentangkan kepada <b>YB Datuk Seri Dr. Ruddy Awah</b> berdiri atas fakta yang boleh disahkan, dibina atas inisiatif kerajaan yang telah wujud, dan disasarkan secara realistik.</p>
+
+    <div class="grid g4" style="margin-top:24px">
+      <div class="card hi"><div class="kpi-b acc">20</div><div class="kpi-l">carian pengesahan fakta</div><div class="kpi-m">Sep 2026</div></div>
+      <div class="card"><div class="kpi-b" style="color:var(--ok)">17</div><div class="kpi-l">klaim disahkan awam</div><div class="kpi-m">SAH</div></div>
+      <div class="card"><div class="kpi-b" style="color:var(--gold)">6</div><div class="kpi-l">item data dalaman berlabel</div><div class="kpi-m">DALAMAN</div></div>
+      <div class="card"><div class="kpi-b" style="color:var(--bad)">6</div><div class="kpi-l">klaim dibetulkan / dibuang</div><div class="kpi-m">DIBUANG</div></div>
+    </div>
+
+    <div class="grid g3" style="margin-top:22px">
+      <div class="card"><div class="eyebrow">Prinsip 01</div><h4>Fakta Terdahulu</h4><p class="sub" style="margin-top:6px">Setiap klaim dilabel: SAH, DALAMAN, atau dibuang. Tiada angka tanpa asal usul.</p></div>
+      <div class="card"><div class="eyebrow">Prinsip 02</div><h4>Bina Atas Yang Ada</h4><p class="sub" style="margin-top:6px">KUS, MYJalan, eBencana JKR bukan pesaing SIAP — mereka pengasasnya. Platform ini menyambung, bukan mengganti.</p></div>
+      <div class="card"><div class="eyebrow">Prinsip 03</div><h4>Sasaran Berhati-Hati</h4><p class="sub" style="margin-top:6px">Impak global dipindahkan sebagai benchmark jangka panjang; sasaran SIAP dipotong konservatif supaya boleh dibuktikan.</p></div>
+    </div>
+
+    <div class="quote" style="margin-top:24px">
+      <p>Pembentangan ke Dewan Undangan Negeri pada Julai 2026 mengesahkan apa yang sudah lama diketahui: pemindahan utiliti ialah antara punca utama kelewatan Lebuhraya Pan Borneo yang bernilai terlapor sekitar <b>RM22–26 bilion</b>. Kadar Air Tidak Berpendapatan (NRW) Sabah dilaporkan sekitar <b>60 peratus</b> — antara yang tertinggi di Malaysia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PUSAT ARAHAN ======================= -->
+<section id="arahan" class="cmd">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Pusat Arahan · Swarm 50 Ejen · K02</div>
+      <h2>Lima pain point. Satu enjin orkestrasi.</h2>
+      <p class="lede">Setiap situasi di bawah sepadan dengan satu pain point yang direkodkan dalam pembentangan DUN dan laporan audit. Enjin merancang, mewakilkan kepada modul SIAP yang berkaitan, menyemak secara bebas, kemudian menyintesis taklimat untuk kelulusan manusia.</p>
+    </div>
+
+    <div class="cmd-panel">
+      <div class="cmd-head">
+        <span class="badge live"><span class="dot pulse"></span>Enjin orkestrasi</span>
+        <h3>SIAP · SWARM COMMAND</h3>
+        <div class="sp"><span class="src">skuad K02: 50 ejen · 14 modul · 4 lapisan</span></div>
+      </div>
+      <div class="cmd-body">
+
+        <div class="sit-wrap" id="sitWrap"></div>
+
+        <div class="counters">
+          <div class="ctr act"><b id="cAktif">0</b><span>Ejen aktif</span></div>
+          <div class="ctr inv"><b id="cTerlibat">0</b><span>Ejen terlibat</span></div>
+          <div class="ctr tim"><b id="cMasa">0.0s</b><span>Masa</span></div>
+          <div class="ctr run"><b id="cSim">0</b><span>Simulasi dijalankan</span></div>
+        </div>
+
+        <div class="layers" id="layers"></div>
+
+        <div class="sk">
+          <div class="sk-h">
+            <h4>Skuad · 50 ejen</h4>
+            <span class="src">14 modul SIAP · kumpulan Urus / Padu / Data</span>
+            <span class="sp" id="skStat">0 / 50 aktif</span>
+          </div>
+          <div id="skRows"></div>
+        </div>
+
+        <div class="audit">
+          <div class="audit-h">
+            <b>Jejak audit langsung</b>
+            <span class="sp">jejak penuh · PDPA 2010 · hosting dalam ekosistem awan kerajaan</span>
+          </div>
+          <div class="log" id="log">
+            <div class="ln idle"><span class="t">--:--:--</span><span class="m">Menunggu arahan. Pilih satu situasi di atas.</span></div>
+          </div>
+        </div>
+
+        <div class="brief" id="brief">
+          <h4>Taklimat sintesis · untuk kelulusan manusia</h4>
+          <ul id="briefList"></ul>
+          <div class="gate">
+            <p>Setiap taklimat menyebut sumbernya. Keputusan kekal pada pegawai jabatan.</p>
+            <button class="btn go" id="btnLulus" disabled>Luluskan</button>
+            <button class="btn" id="btnTahan" disabled>Tahan untuk semakan</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= NRW & KPI ======================= -->
+<section id="monitor">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Metrik pangkalan garis</div>
+      <h2>NRW — mengapa SIAP Data wujud</h2>
+      <p class="lede">JANS mensasarkan pengurangan NRW ke <b>25%</b> dengan penjimatan <b>10 juta liter/hari</b> — SIAP Data memberi instrumen pengukuran untuk perjuangan itu.</p>
+    </div>
+    <div class="grid g3">
+      <div class="nrw-i"><b>Sabah (2023, dilaporkan)</b><div class="v" style="color:var(--bad)">~60%</div><div class="bar"><i style="width:60%;background:linear-gradient(90deg,var(--bad),#f09070)"></i></div><p class="src">Pengisytiharan rasmi Timbalan Ketua Menteri · Jesselton Times, Apr 2023</p></div>
+      <div class="nrw-i"><b>Purata global (industri)</b><div class="v" style="color:var(--gold)">~30%</div><div class="bar"><i style="width:30%;background:linear-gradient(90deg,var(--gold),#f0d089)"></i></div><p class="src">World Bank / industri air</p></div>
+      <div class="nrw-i"><b>Singapura (PUB)</b><div class="v" style="color:var(--ok)">~5%</div><div class="bar"><i style="width:5%;background:linear-gradient(90deg,var(--ok),#7fe0c8)"></i></div><p class="src">PUB Smart Water Grid</p></div>
+    </div>
+
+    <h3 style="margin:32px 0 6px">KPI berperingkat</h3>
+    <p class="sub">Sasaran Sabah sengaja lebih rendah daripada benchmark global — jurang antara sasaran dan benchmark ialah ruang keselamatan yang memastikan pencapaian sentiasa boleh dibuktikan.</p>
+    <div class="card scroll" style="padding:0;margin-top:13px">
+      <table class="tbl">
+        <thead><tr><th style="width:24%">KPI</th><th style="width:34%">Benchmark global (disahkan)</th><th style="width:21%">Sasaran Fasa 2</th><th>Sasaran Fasa 4</th></tr></thead>
+        <tbody>
+          <tr><td><b>Masa keputusan permit utiliti</b></td><td>Chongqing: koordinasi satu platform wilayah</td><td>−20% pada pakej perintis</td><td>−30% merentas projek aktif KUS</td></tr>
+          <tr><td><b>Kos pembaikan kecemasan</b></td><td>Amalan CMMS: pencegahan mengurangkan kerja kecemasan</td><td>−15%</td><td>−25%</td></tr>
+          <tr><td><b>Masa pembaikan kerosakan jalan</b></td><td>Yongin: 1–2 hari melalui pengesanan automatik</td><td>7 → 3 hari (zon perintis)</td><td>3 → 1–2 hari</td></tr>
+          <tr><td><b>Pengesanan kebocoran utama</b></td><td>PUB ALF: pemantauan 24/7 berasaskan sensor</td><td>dari aduan → pengesanan ≤48 jam (DMA perintis)</td><td>≤24 jam</td></tr>
+          <tr><td><b>Pematuhan pemeriksaan berkala</b></td><td>Jepun: melebihi 99% (mandat 5-tahun)</td><td>registri + jadual 80% aset kritikal</td><td>≥95%</td></tr>
+          <tr><td><b>Air tidak berpendapatan (NRW)</b></td><td>Sabah ~60% dilaporkan; sasaran KK 25% (JANS)</td><td>dasar data + DMA perintis beroperasi</td><td>peralihan −3 mata peratusan (5 tahun)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Nota integriti dokumen: “−60% masa pemindahan utiliti” dan “−35% kos” daripada draf v2.0 telah <b>dibuang</b> kerana tiada pangkalan garis Sabah. Angka “kemalangan paip ↓70%” dan “henti gas 12j → 2j” juga dibuang sepenuhnya — mekanisme “korek sekali sahaja” dikekalkan sebagai prinsip reka bentuk, bukan statistik.</p>
+  </div>
+</section>
+
+<!-- ======================= INISIATIF & OPSYEN ======================= -->
+<section id="inisiatif">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">SIAP tidak bermula dari kosong</div>
+      <h2>Bina atas inisiatif yang telah wujud</h2>
+      <p class="lede">Keputusan paling penting dalam v3.0: SIAP dibina <b>atas</b> inisiatif yang telah wujud dan dibiayai, bukan bersebelahan dengannya.</p>
+    </div>
+    <div class="card scroll" style="padding:0">
+      <table class="tbl">
+        <thead><tr><th style="width:26%">Inisiatif sedia ada</th><th style="width:10%">Status</th><th style="width:32%">Apa yang telah ada</th><th>Peranan SIAP</th></tr></thead>
+        <tbody>
+          <tr><td><b>KUS — Koridor Utiliti Sabah</b><div class="src">dilancar Julai 2025</div></td><td><span class="lv lo">SAH</span></td><td>Agensi satu pintu untuk permit kerja utiliti + mandat membina pangkalan data aset utiliti negeri</td><td>Tuan rumah SIAP Padu. SIAP menjadi enjin digital bagi mandat yang KUS sudah pegang.</td></tr>
+          <tr><td><b>MYJalan</b><div class="src">KKR, dilancar Ogo 2023</div></td><td><span class="lv lo">SAH</span></td><td>Aduan kerosakan jalan rakyat, 10 kategori, kadar selesai 95.83%</td><td>Kekal sebagai kanal rakyat. Aduan mengalir masuk ke SIAP Urus — tiada aplikasi baharu untuk rakyat belajar.</td></tr>
+          <tr><td><b>eBencana JKR</b><div class="src">dilancar Nov 2024</div></td><td><span class="lv lo">SAH</span></td><td>Sistem GIS maklumat jalan terjejas bencana untuk awam</td><td>Diintegrasikan. Pendaftaran mangsa offline SIAP Padu melengkapkan lapisan lapangan.</td></tr>
+          <tr><td><b>Starlink luar bandar</b><div class="src">Paitan, Kota Marudu, Pitas — Feb 2026</div></td><td><span class="lv lo">SAH</span></td><td>Unit satelit sementara untuk pemulihan komunikasi pasca-banjir</td><td>Lapisan konektiviti. SIAP direka offline-first dan menggunakan tetingkap konektiviti ini.</td></tr>
+          <tr><td><b>Deklarasi Data Aset Jalan Sabah</b><div class="src">Jul 2026</div></td><td><span class="lv md">DALAMAN</span></td><td>Lebih 20,000 km jalan negeri mula direkodkan</td><td>Asas registri. SIAP mewarisi dan memudikemas dataset ini, bukan mendaftar semula dari sifar.</td></tr>
+          <tr><td><b>Scan-BIM aset air</b><div class="src">inisiatif negeri</div></td><td><span class="lv md">DALAMAN</span></td><td>Pemodelan digital aset air bermula</td><td>Output Scan-BIM dimasukkan ke SIAP Data supaya model tidak terpisah daripada sistem penyelenggaraan.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin:32px 0 6px">Bukti global tersaring</h3>
+    <p class="sub">Hanya mekanisme yang selamat daripada saringan pengesahan dikekalkan pada kad rujukan ini.</p>
+    <div class="grid g4" style="margin-top:13px">
+      <div class="card"><div class="eyebrow">Singapura</div><h4>PUB — Anomaly Leak Finder</h4><p class="sub" style="margin-top:6px">Digital twin grid air dengan lebih 90 sensor pintar, pemantauan 24/7, pengesanan kebocoran tersembunyi, arkitektur cloud-agnostic.</p><p class="src" style="margin-top:8px">MDPI 2024 · Bentley Systems</p></div>
+      <div class="card"><div class="eyebrow">China</div><h4>Chongqing — Digital Pipeline</h4><p class="sub" style="margin-top:6px">Sistem digital twin paip bawah tanah peringkat wilayah pertama China; 62,000 km data vektor empat jenis paip.</p><p class="src" style="margin-top:8px">iChongqing, Apr 2025</p></div>
+      <div class="card"><div class="eyebrow">Korea</div><h4>K-water &amp; Yongin</h4><p class="sub" style="margin-top:6px">AI loji rawatan diiktiraf OECD pada sekitar 43–44 loji; SWNM melaporkan penjimatan 7,000 m³/km/tahun; 300 bas sensor pothole di Yongin.</p><p class="src" style="margin-top:8px">Business Korea · UPI · K-water · JoongAng</p></div>
+      <div class="card"><div class="eyebrow">Jepun</div><h4>Mandat 5-Tahun &amp; MMS</h4><p class="sub" style="margin-top:6px">Pemeriksaan jambatan/terowong wajib setiap 5 tahun dengan pematuhan melebihi 99%; MMS menghasilkan data 3D jalan negara.</p><p class="src" style="margin-top:8px">MLIT · NILIM · IEEE Spectrum</p></div>
+    </div>
+
+    <h3 style="margin:32px 0 6px">Empat opsyen pelaksanaan, satu disyorkan</h3>
+    <p class="sub">Skor 1–10 berdasarkan penilaian dalaman terhadap konteks Sabah: belanjawan berperingkat, keupayaan vendor tempatan, dan keperluan hasil yang cepat dilihat.</p>
+    <div class="opt" style="margin-top:13px">
+      <div class="op">
+        <h4>Opsyen A — Perolehan Terus Antarabangsa</h4>
+        <p>Beli platform penuh daripada vendor global. Cepat dari segi teknologi, tetapi mahal, bergantung penuh kepada vendor asing, dan kurang faham realiti offline Sabah.</p>
+        <div class="scores"><div class="sc-i"><span>Kos</span><b>3.0</b></div><div class="sc-i"><span>Kepantasan</span><b>7.5</b></div><div class="sc-i"><span>Kesesuaian Sabah</span><b>3.5</b></div><div class="sc-i"><span>Pemindahan ilmu</span><b>2.5</b></div></div>
+      </div>
+      <div class="op">
+        <h4>Opsyen B — Bina Penuh Dari Kosong</h4>
+        <p>Pembangunan custom oleh perusahaan teknologi tempatan. Kawalan penuh dan pemilikan intelektual tempatan, tetapi tempoh pembangunan panjang dan kos sebenar lazimnya melebihi anggaran awal.</p>
+        <div class="scores"><div class="sc-i"><span>Kos</span><b>2.5</b></div><div class="sc-i"><span>Kepantasan</span><b>3.0</b></div><div class="sc-i"><span>Kesesuaian Sabah</span><b>8.5</b></div><div class="sc-i"><span>Pemindahan ilmu</span><b>8.0</b></div></div>
+      </div>
+      <div class="op pick">
+        <span class="rec">DISYORKAN</span>
+        <h4>Opsyen C — Modular Hibrid (SIAP)</h4>
+        <p>Teras CMMS terbuka + integrasi tempatan + fasa berperingkat. Menggunakan teras sistem terbuka yang telah terbukti, dilapisi integrasi tempatan (KUS, MYJalan, eBencana) dengan klausa pemindahan ilmu. Kos awal rendah, hasil Fasa 1 dalam 3–6 bulan, setiap fasa boleh dihentikan.</p>
+        <div class="scores"><div class="sc-i"><span>Kos</span><b>8.0</b></div><div class="sc-i"><span>Kepantasan</span><b>7.0</b></div><div class="sc-i"><span>Kesesuaian Sabah</span><b>8.0</b></div><div class="sc-i"><span>Pemindahan ilmu</span><b>6.5</b></div></div>
+      </div>
+      <div class="op">
+        <h4>Opsyen D — Status Quo Dipertingkat</h4>
+        <p>Kekal manual + aplikasi sedia ada tanpa integrasi. Kos kosong hari ini, tetapi kos tersembunyi berterusan: kelewatan Pan Borneo, tuntutan lanjutan masa, gangguan bencana, dan jurang audit aset air kekal tidak diselesaikan.</p>
+        <div class="scores"><div class="sc-i"><span>Kos</span><b>9.5</b></div><div class="sc-i"><span>Kepantasan</span><b>2.0</b></div><div class="sc-i"><span>Kesesuaian Sabah</span><b>3.0</b></div><div class="sc-i"><span>Pemindahan ilmu</span><b>1.5</b></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TIGA LAPISAN ======================= -->
+<section id="senibina">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Konsep akhir</div>
+      <h2>Tiga lapisan SIAP, satu rangkaian aset</h2>
+      <p class="lede">Setiap lapisan menjawab pain point spesifik, membina atas sistem kerajaan yang telah wujud, dan hanya menggunakan mekanisme global yang telah melalui saringan pengesahan.</p>
+    </div>
+
+    <div class="lay3">
+      <div class="l3">
+        <div class="l3-h"><span class="tag">Lapisan 01 · SaaS</span><b>SIAP Urus — Penyelenggaraan Pencegahan</b></div>
+        <div class="l3-b">
+          <p class="sub">CMMS yang menukar penyelenggaraan reaktif kepada pencegahan berjadual — menjawab temuan audit bahawa aset air negeri tidak mempunyai pelan pencegahan berjadual.</p>
+          <div class="mo"><em>01</em><div><b>Registri Aset + GIS</b><p>Pendaftaran aset jalan, paip, loji, dan jambatan dengan koordinat, kondisi, dan sejarah penyelenggaraan — asas kepada 20,000+ km jalan negeri yang mula direkodkan.</p><span class="rf">Rujukan: LTA Singapura (9,500+ lane-km berpusat)</span></div></div>
+          <div class="mo"><em>02</em><div><b>Jadual Pemeriksaan Berjadual (Mandat Dalaman)</b><p>Pemeriksaan berkala berasaskan keutamaan risiko bagi jambatan dan loji air, dengan jadual automatik dan laporan pematuhan siap-audit.</p><span class="rf">Rujukan: Akta Jalan Jepun 2013 — pematuhan &gt;99% (MLIT)</span></div></div>
+          <div class="mo"><em>03</em><div><b>Perintah Kerja &amp; Eskalasi</b><p>Work order digital dengan status semasa, tanggungjawab jelas, dan eskalasi automatik apabila melebihi SLA — jejak penuh untuk audit.</p><span class="rf">Amalan CMMS standard industri</span></div></div>
+          <div class="mo"><em>04</em><div><b>Aplikasi Pemeriksaan Lapangan (Offline-First)</b><p>Pemeriksaan dengan gambar, GPS, dan senarai semak — berfungsi tanpa internet dan menyegerak apabila isyarat kembali. Reka bentuk untuk realiti liputan Pitas.</p><span class="rf">Reka bentuk: konteks Sabah · amalan luar bandar Jepun</span></div></div>
+          <div class="mo"><em>05</em><div><b>Pengesanan Kerosakan Jalan Berasaskan Kenderaan</b><p>Sensor + kamera pada kenderaan jabatan mengesan pothole semasa perjalanan rutin, dan mencipta perintah kerja secara automatik.</p><span class="rf">Rujukan: Yongin, Korea — 300 bas sensor, pembaikan 1–2 hari</span></div></div>
+        </div>
+      </div>
+
+      <div class="l3">
+        <div class="l3-h"><span class="tag">Lapisan 02 · MaaS</span><b>SIAP Padu — Koordinasi Satu Pintu Digital</b></div>
+        <div class="l3-b">
+          <p class="sub">Enjin digital KUS — bukan pesaingnya. Menyatukan JKR, SESB, Telekom, Jabatan Air, dan kontraktor ke dalam satu meja digital untuk pemindahan utiliti dan respons bencana.</p>
+          <div class="mo"><em>01</em><div><b>Hub Pemindahan Utiliti</b><p>Papan pemuka koordinasi antara agensi untuk setiap koridor projek: status pemindahan per lokasi, pemilik aset jelas, konflik dikesan sebelum penggalian — prinsip “korek sekali sahaja”.</p><span class="rf">Rujukan: Chongqing — 62,000 km data vektor paip</span></div></div>
+          <div class="mo"><em>02</em><div><b>Aliran Kerja Permit Digital (di bawah KUS)</b><p>Permit kerja utiliti melalui KUS diproses dalam satu aliran digital — selaras dengan amanah KUS sebagai agensi satu pintu sejak Julai 2025.</p><span class="rf">Selari: amanah rasmi KUS (Borneo Post / Daily Express, Jul 2025)</span></div></div>
+          <div class="mo"><em>03</em><div><b>Pendaftaran Mangsa Bencana (Offline-First)</b><p>Aplikasi pendaftaran pusat pemindahan yang berfungsi tanpa internet, menyegerak apabila isyarat atau Starlink tersedia — melengkapkan eBencana JKR.</p><span class="rf">Rujukan: Agensi Digital Jepun · Starlink Paitan/Pitas Feb 2026</span></div></div>
+          <div class="mo"><em>04</em><div><b>Pemetaan Hotspot Kecurian Kabel</b><p>Rekod kes (seperti 13 kes DUN Karambunai 2025) dipetakan, dianalisis corak lokasi dan masa, dan memandu rondaan berpandukan data serta pencahayaan solar di titik panas.</p><span class="rf">Sumber: pembentangan DUN Jul 2026 (data dalaman berlabel)</span></div></div>
+        </div>
+      </div>
+
+      <div class="l3">
+        <div class="l3-h"><span class="tag">Lapisan 03 · PaaS</span><b>SIAP Data — Otak Analitik Negeri</b></div>
+        <div class="l3-b">
+          <p class="sub">Lapisan data berpusat yang menghubungkan semua aset kepada satu sumber kebenaran — dengan pengesanan kebocoran berpandukan sensor sebagai kapal perintis paling bernilai dalam konteks NRW Sabah yang tinggi.</p>
+          <div class="mo"><em>01</em><div><b>Data Lake Infrastruktur</b><p>Satu repositori untuk data jalan, air, elektrik, dan utiliti daripada JKR, KUS, SESB, dan Jabatan Air — dengan piawaian metadata yang sama.</p><span class="rf">Rujukan: CIM Qingdao (QSTheory 2025)</span></div></div>
+          <div class="mo"><em>02</em><div><b>Pengesanan Kebocoran Berpandukan Sensor</b><p>Sensor tekanan/aliran di zon kritikal dengan model pengesanan anomali — memantau kebocoran tersembunyi 24/7. Kapal perintis: DMA terpilih di bandar, kemudian loji luar bandar.</p><span class="rf">Rujukan: PUB ALF — lebih 90 sensor pintar, digital twin 24/7 (MDPI 2024)</span></div></div>
+          <div class="mo"><em>03</em><div><b>Capture 3D &amp; BIM (Gerbang Fasa 3)</b><p>Mobile Mapping System untuk merekod data 3D koridor jalan utama — melalui gerbang keputusan berasingan kerana kosnya berbeza.</p><span class="rf">Rujukan: MMS Jepun (IEEE Spectrum · ISPRS)</span></div></div>
+          <div class="mo"><em>04</em><div><b>Papan Pemuka Eksekutif</b><p>KPI portfolio, status projek, keadaan aset, dan aliran aduan — dalam satu skrin untuk keputusan YB mingguan, dengan data yang boleh disemak pegawai jabatan.</p><span class="rf">Amalan standard pengurusan portfolio</span></div></div>
+          <div class="mo"><em>05</em><div><b>Gateway Integrasi (API)</b><p>Antara muka terbuka untuk menghubungkan sistem agensi sedia ada — bukan menuntut sistem baharu daripada setiap jabatan.</p><span class="rf">Rujukan: arkitektur cloud-agnostic PUB ALF (Bentley)</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PELAN & KOS ======================= -->
+<section id="pelan">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Pelan, kos &amp; risiko</div>
+      <h2>Empat fasa, setiap satu ada gerbang keputusan</h2>
+      <p class="lede">Tiada fasa berikutnya bermula tanpa hasil fasa sebelumnya dilaporkan dan disemak. Kos dinyatakan sebagai julat kerana angka muktamad bergantung kepada kajian kebolehlaksanaan Fasa 1.</p>
+    </div>
+
+    <div class="fasa">
+      <div class="fa"><div class="fa-h"><b>Fasa 01 · Bulan 0–6 · Pilot Pitas</b><span class="cost">RM2.0–3.5 juta</span></div>
+        <div class="fa-b"><p>Bukti konsep boleh disemak: registri aset air Pitas, CMMS asas, aplikasi pendaftaran bencana offline, sensor asas di titik kritikal, dan papan pemuka eksekutif pertama. Ujian lapangan bersama petugas sebenar sebelum peluasan.</p>
+        <div class="outs"><span>Registri aset air Pitas (90 hari)</span><span>Aplikasi bencana offline</span><span>CMMS loji perintis</span><span>Laporan gerbang 1</span></div></div></div>
+      <div class="fa"><div class="fa-h"><b>Fasa 02 · Bulan 6–12 · Hub Pemindahan Utiliti</b><span class="cost">RM5–9 juta</span></div>
+        <div class="fa-b"><p>Satu pakej Pan Borneo sebagai perintis: permit digital di bawah KUS, status pemindahan per lokasi, pengesanan konflik pra-penggalian, dan pemetaan hotspot kecurian kabel.</p>
+        <div class="outs"><span>Hub utiliti pakej perintis</span><span>Permit digital KUS</span><span>Peta hotspot kabel</span><span>Laporan gerbang 2</span></div></div></div>
+      <div class="fa"><div class="fa-h"><b>Fasa 03 · Bulan 12–18 · Data &amp; Analitik KKRUS</b><span class="cost">RM8–14 juta</span></div>
+        <div class="fa-b"><p>Data lake antara agensi, pengesanan kebocoran berpandukan sensor di zon DMA perintis, dan gerbang keputusan berasingan untuk capture 3D (MMS) mengikut keperluan sebenar yang diukur pada Fasa 1–2.</p>
+        <div class="outs"><span>Data lake KKRUS</span><span>Sensor DMA perintis</span><span>Gateway API agensi</span><span>Laporan gerbang 3</span></div></div></div>
+      <div class="fa"><div class="fa-h"><b>Fasa 04 · Bulan 18–24 · Skala Negeri Melalui KUS</b><span class="cost">RM12–20 juta</span></div>
+        <div class="fa-b"><p>Peluasan ke daerah-daerah utama melalui KUS, latihan agensi, standardisasi proses, dan peralihan operasi kepada pasukan jabatan dengan klausa pemindahan ilmu vendor.</p>
+        <div class="outs"><span>Rollout berperingkat daerah</span><span>Latihan agensi</span><span>Standard proses</span><span>Handover operasi</span></div></div></div>
+    </div>
+
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card hi"><div class="kpi-b acc">RM27–46.5j</div><div class="kpi-l">Jumlah kos 24 bulan</div><div class="kpi-m">Julat disyorkan dibawa ke kajian kebolehlaksanaan</div></div>
+      <div class="card"><div class="kpi-b">RM6–9j</div><div class="kpi-l">OPEX selepas 24 bulan / tahun</div><div class="kpi-m">Hosting, lesen, sokongan, pengurusan data</div></div>
+      <div class="card"><div class="kpi-b" style="color:var(--ok)">&lt; 0.2%</div><div class="kpi-l">Perbandingan nilai</div><div class="kpi-m">Kos Pan Borneo — penjimatan EOT &amp; L&amp;E melampaui kos platform</div></div>
+    </div>
+
+    <h3 style="margin:32px 0 6px">Tujuh risiko yang YB patut tanya, dijawab dulu</h3>
+    <p class="sub">Kejujuran ini sendiri menjadi isyarat kematangan kepada EXCO.</p>
+    <div class="ris" style="margin-top:13px">
+      <div class="ri md"><div class="ri-h"><b>Perubahan politik selepas PRN17 / rombakan EXCO</b><span class="lv md">Sederhana</span><span class="lv hi">Kesan tinggi</span></div><p>Institusikan SIAP di bawah KUS (bukan peribadi kepada individu); MoU antara agensi ditandatangani sebelum tetingkap pilihan raya; nilai platform dibingkai merentasi garisan parti kerana ia menjawab temuan audit.</p></div>
+      <div class="ri hi"><div class="ri-h"><b>Data aset tidak lengkap di peringkat awal</b><span class="lv hi">Tinggi</span><span class="lv md">Kesan sederhana</span></div><p>Registri bermula dengan aset kritikal sahaja (loji air Pitas, koridor pakej perintis); warisan dataset Deklarasi Data Aset Jalan; data lengkap bukan prasyarat permulaan — ia hasil Fasa 1–3.</p></div>
+      <div class="ri md"><div class="ri-h"><b>Keselamatan siber &amp; kedaulatan data</b><span class="lv md">Sederhana</span><span class="lv hi">Kesan tinggi</span></div><p>Hosting dalam ekosistem awan kerajaan; pematuhan PDPA 2010; penilaian risiko mengikut garis panduan keselamatan siber negeri/persekutuan sebelum penggunaan live; backup dan mod operasi offline.</p></div>
+      <div class="ri hi"><div class="ri-h"><b>Kesukaran koordinasi SESB/Telekom (entiti di luar kawalan terus negeri)</b><span class="lv hi">Tinggi</span><span class="lv md">Kesan sederhana</span></div><p>Pelaburan awal: MoU perkongsian data melalui KUS; nilai tawaran kepada mereka ialah permit lebih pantas dan konflik kurang — bukan tanggungjawab tambahan tanpa pulangan.</p></div>
+      <div class="ri md"><div class="ri-h"><b>Kesinambungan belanjawan selepas tahun pertama</b><span class="lv md">Sederhana</span><span class="lv md">Kesan sederhana</span></div><p>Struktur fasa dengan gerbang pelulusan; permohonan pembiayaan gabungan (negeri, peruntukan persekutuan KKR untuk modul jalan, NADMA untuk modul bencana); ROI Fasa 1 didokumenkan sebelum Fasa 2.</p></div>
+      <div class="ri md"><div class="ri-h"><b>Adopsi rendah oleh pegawai lapangan</b><span class="lv md">Sederhana</span><span class="lv md">Kesan sederhana</span></div><p>Pelajaran MYJalan dan ulasan pengguna aplikasi sedia ada diambil kira: ujian UX bersama petugas sebenar, reka bentuk offline-first, latihan berperingkat, dan integrasi (bukan penambahan) beban kerja.</p></div>
+      <div class="ri md"><div class="ri-h"><b>Kesilapan jangkaan — platform dianggap penyelesaian segera semua masalah</b><span class="lv md">Sederhana</span><span class="lv md">Kesan sederhana</span></div><p>Pelaporan gerbang yang jujur; KPI diisytiharkan sebagai sasaran bertingkat; komunikasi awam memfokuskan bukti yang dicapai, bukan angka aspiratif.</p></div>
+    </div>
+
+    <h3 style="margin:32px 0 6px">Tiga keputusan yang diminta daripada YB</h3>
+    <p class="sub">Dokumen ini tidak meminta kelulusan pelaksanaan penuh. Ia meminta tiga keputusan kecil yang membuka jalan keputusan besar dengan fakta yang cukup.</p>
+    <div class="gate3">
+      <div class="g3-i"><em>01</em><div><b>Lulus konsep SIAP v3.0 sebagai asas kajian kebolehlaksanaan</b><p>Kajian Fasa 1 menghasilkan anggaran kos muktamad, senarai aset kritikal Pitas, dan reka bentuk akhir aplikasi bencana offline — dalam tempoh 90 hari.</p></div></div>
+      <div class="g3-i"><em>02</em><div><b>Lantik KUS sebagai tuan rumah institusi</b><p>Arahkan KUS membawa SIAP Padu ke dalam pelan kerjanya sebagai enjin digital permit dan registri aset utiliti — memastikan platform hidup walaupun politik berubah.</p></div></div>
+      <div class="g3-i"><em>03</em><div><b>Peruntukan awal Fasa 1 (RM2.0–3.5 juta)</b><p>Peruntukan kecil dengan laporan gerbang yang dijanjikan. Sekiranya hasil tidak memuaskan, kerajaan berhenti dengan kehilangan minimum — dan dengan bukti yang jujur.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SUMBER ======================= -->
+<section id="sumber">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Provenans</div>
+      <h2>Sumber dan status setiap angka</h2>
+      <p class="lede">Prototaip ini dibina semula daripada dokumen konsep SIAP v3.0 yang sedia ada. Tiada angka ditambah di luar dokumen itu.</p>
+    </div>
+    <div class="card scroll" style="padding:0">
+      <table class="tbl">
+        <thead><tr><th style="width:34%">Bahagian</th><th style="width:33%">Sumber</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>NRW Sabah ~60% · global ~30% · Singapura ~5%</td><td>Jesselton Times (Apr 2023) · World Bank · PUB Smart Water Grid</td><td>SAH — disahkan sumber awam</td></tr>
+          <tr><td>Pan Borneo RM22–26 bilion · pemindahan utiliti</td><td>Malay Mail &amp; The Star (pembentangan DUN Sabah, Jul 2026)</td><td>SAH</td></tr>
+          <tr><td>13 kes kecurian kabel DUN Karambunai (2025)</td><td>Pembentangan DUN Jul 2026 (rekod YB)</td><td>DALAMAN — data dalaman berlabel</td></tr>
+          <tr><td>Empat negara: PUB ALF · Chongqing · K-water/Yongin · Jepun</td><td>MDPI 2024 · iChongqing Apr 2025 · K-water · MLIT</td><td>SAH — mekanisme tersaring</td></tr>
+          <tr><td>Kos fasa RM2.0–3.5j / 5–9j / 8–14j / 12–20j; OPEX RM6–9j</td><td>Draf Konsep SIAP v3.0, seksyen Pelan &amp; Kos</td><td>Petikan terus</td></tr>
+          <tr><td>Angka yang <b>dibuang</b>: “−60% masa”, “−35% kos”, “kemalangan paip ↓70%”, “150+ bandar”, “1.1 juta muat turun”</td><td>Draf v2.0 → analisis kritikal v3.0</td><td>DIBUANG — tiada sumber awam</td></tr>
+          <tr><td>Skuad 50 ejen (14 modul × bilangan ejen) · situasi simulasi</td><td>Reka bentuk prototaip — modul dipetik daripada dokumen SIAP</td><td>Simulasi (bukan angka dokumen)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Fail sumber: <span class="src">SIAP-Konsep-v3.0.html</span> (Sistem Infrastruktur Aset Pintar Sabah · Draf Konsep v3.0) · rekod bookmark: <span class="src">localhost:7102/#swarm</span> · nama prototaip: <span class="src">SIAP · SWARM COMMAND — Pusat Arahan Swarm 50 Ejen K02</span>. Kod nama skuad <b>K02</b> diambil daripada rekod bookmark.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Prototaip konsep untuk perbincangan. Bukan laman rasmi kerajaan.</b> Data prestasi, aduan, anomali dan KPI ialah simulasi. Label status: <b>SAH</b> = sumber awam · <b>DALAMAN</b> = data pembentangan dalaman · <b>DIBUANG</b> = dikeluarkan daripada v3.0. Sahkan semula fakta sebelum sebarang keputusan rasmi.</p>
+    <p>Dibina semula sebagai sebahagian Platform Induk · Kategori 02 SaaS/PaaS · Prototaip Swarm Command. Semua kandungan dijejak kepada dokumen sumber yang disenaraikan di bahagian <b>Sumber</b>.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+/* ==========================================================================
+   SIAP · SWARM COMMAND — enjin orkestrasi simulasi (skuad K02 · 50 ejen)
+   Data domain daripada SIAP-Konsep-v3.0.html; modul skuad = 14 modul SIAP.
+   ========================================================================== */
+(function () {
+
+  var $ = function (s) { return document.querySelector(s); };
+  var esc = function (s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  };
+
+  /* ---------- skuad: 14 modul SIAP, 3 kumpulan, jumlah 50 ejen ---------- */
+  var GRP = [
+    { g: 'SIAP Urus · SaaS', mods: [
+      { k: 'registri',  n: 'Registri Aset + GIS',            c: 4 },
+      { k: 'jadual',    n: 'Jadual Pemeriksaan Berjadual',   c: 3 },
+      { k: 'workorder', n: 'Perintah Kerja & Eskalasi',      c: 4 },
+      { k: 'lapangan',  n: 'Pemeriksaan Lapangan (Offline)', c: 4 },
+      { k: 'pothole',   n: 'Pengesanan Kerosakan Jalan',     c: 3 }
+    ]},
+    { g: 'SIAP Padu · MaaS', mods: [
+      { k: 'hub',       n: 'Hub Pemindahan Utiliti',         c: 5 },
+      { k: 'permit',    n: 'Permit Digital KUS',             c: 4 },
+      { k: 'bencana',   n: 'Pendaftaran Mangsa Bencana',     c: 4 },
+      { k: 'kabel',     n: 'Pemetaan Hotspot Kabel',         c: 3 }
+    ]},
+    { g: 'SIAP Data · PaaS', mods: [
+      { k: 'lake',      n: 'Data Lake Infrastruktur',        c: 4 },
+      { k: 'leak',      n: 'Pengesanan Kebocoran Sensor',    c: 4 },
+      { k: 'bim',       n: 'Capture 3D & BIM',               c: 2 },
+      { k: 'papan',     n: 'Papan Pemuka Eksekutif',         c: 3 },
+      { k: 'gateway',   n: 'Gateway Integrasi (API)',        c: 3 }
+    ]}
+  ];
+  var MODS = [];
+  GRP.forEach(function (x) { x.mods.forEach(function (m) { MODS.push(m); }); });
+  var TOTAL = MODS.reduce(function (a, b) { return a + b.c; }, 0);   // 50
+  function modName(k) { var m = MODS.filter(function (x) { return x.k === k; })[0]; return m ? m.n : k; }
+
+  var LAYERS = [
+    { n: 'Analisis',  d: 'Baca arahan, kumpul bukti aset, bina hipotesis' },
+    { n: 'Delegasi',  d: 'Agih kepada modul SIAP yang berkaitan' },
+    { n: 'Semakan',   d: 'Semakan bebas silang mengikut piawaian' },
+    { n: 'Sintesis',  d: 'Satukan taklimat + cadangan untuk kelulusan manusia' }
+  ];
+
+  /* ---------- situasi: satu per pain point SIAP ---------- */
+  var SITUASI = [
+    {
+      id: 'utiliti', t: 'Pemindahan utiliti tidak terselaras', dom: 'Pan Borneo · koridor projek',
+      roles: ['hub', 'permit', 'registri', 'gateway', 'papan'],
+      steps: [
+        { l: 0, a: 'hub',     x: 'Arahan: 4 koridor Pan Borneo menunjukkan konflik pemindahan utiliti.' },
+        { l: 0, a: 'registri',x: 'Aset sedia ada ditarik — pemilik paip dan kabel dikenal pasti.' },
+        { l: 0, a: 'gateway', x: 'Data daripada JKR, SESB, Telekom dan Jabatan Air diselaraskan.' },
+        { l: 1, a: 'hub',     x: 'Delegasi: konflik pra-penggalian dikesan pada 3 lokasi.' },
+        { l: 1, a: 'permit',  x: 'Aliran permit digital KUS disediakan untuk koridor terjejas.' },
+        { l: 2, a: 'registri',x: 'Semakan silang: 2 konflik ialah data lapuk, bukan konflik sebenar.' },
+        { l: 2, a: 'papan',   x: 'Semakan bebas mengesahkan 1 konflik kritikal + 1 keutamaan rendah.' },
+        { l: 3, a: 'hub',     x: 'Sintesis: taklimat koordinasi + cadangan jadual penggalian disediakan.' }
+      ],
+      brief: [
+        '<b>4</b> koridor disemak; <b>3</b> konflik pra-penggalian dikesan pada peringkat awal.',
+        '<b>1</b> konflik kritikal (pakej Pan Borneo) — boleh dielak sebelum penggalian, bukan selepas paip pecah.',
+        'Prinsip <b>“korek sekali sahaja”</b> dikuatkuasakan melalui permit digital di bawah KUS.',
+        'Sumber: SIAP-Konsep-v3.0 — Lapisan SIAP Padu, Hub Pemindahan Utiliti.'
+      ]
+    },
+    {
+      id: 'nrw', t: 'Kebocoran air / NRW tinggi', dom: 'DMA perintis · pengesanan sensor',
+      roles: ['leak', 'lake', 'papan', 'registri', 'workorder'],
+      steps: [
+        { l: 0, a: 'leak',    x: 'Sensor tekanan/aliran membaca anomali pada 2 zon DMA.' },
+        { l: 0, a: 'lake',    x: 'Data air dan aset diselaraskan dengan pangkalan garis NRW ~60%.' },
+        { l: 0, a: 'papan',   x: 'Konteks: JANS mensasarkan 25% dan 10 juta liter/hari penjimatan.' },
+        { l: 1, a: 'leak',    x: 'Delegasi: model anomali dijalankan pada zon kritikal terpilih.' },
+        { l: 1, a: 'registri',x: 'Aset air berkaitan dikenal pasti dengan sejarah penyelenggaraan.' },
+        { l: 2, a: 'lake',    x: 'Semakan silang: 1 anomali berpunca daripada turun naik permintaan.' },
+        { l: 2, a: 'leak',    x: 'Semakan bebas mengesahkan 1 kebocoran tersembunyi untuk tindakan.' },
+        { l: 3, a: 'workorder', x: 'Sintesis: perintah kerja + taklimat pengesanan ≤48 jam disediakan.' }
+      ],
+      brief: [
+        '<b>2</b> zon DMA menunjukkan anomali; <b>1</b> kebocoran tersembunyi disahkan.',
+        'Sasaran konservatif Fasa 2: <b>dari aduan → pengesanan ≤48 jam</b> pada DMA perintis.',
+        'Kapal perintis: PUB ALF — digital twin dengan lebih 90 sensor pintar, pemantauan 24/7.',
+        'Sumber: SIAP-Konsep-v3.0 — SIAP Data, Pengesanan Kebocoran Berpandukan Sensor.'
+      ]
+    },
+    {
+      id: 'kabel', t: 'Kecurian kabel berulang', dom: 'DUN Karambunai · hotspot',
+      roles: ['kabel', 'registri', 'lake', 'papan'],
+      steps: [
+        { l: 0, a: 'kabel',   x: 'Arahan: 13 kes kecurian kabel voltan sederhana direkodkan sepanjang 2025.' },
+        { l: 0, a: 'registri',x: 'Lokasi aset kabel dan pencahayaan sedia ada dipetakan.' },
+        { l: 0, a: 'lake',    x: 'Corak lokasi dan masa dianalisis untuk titik panas.' },
+        { l: 1, a: 'kabel',   x: 'Delegasi: hotspot disusun mengikut risiko dan kebolehcapaian.' },
+        { l: 1, a: 'papan',   x: 'Cadangan rondaan berpandukan data disediakan.' },
+        { l: 2, a: 'lake',    x: 'Semakan silang: 3 kes berulang pada satu koridor yang sama.' },
+        { l: 2, a: 'kabel',   x: 'Semakan bebas mengesahkan 5 hotspot keutamaan.' },
+        { l: 3, a: 'kabel',   x: 'Sintesis: taklimat hotspot + cadangan pencahayaan solar disediakan.' }
+      ],
+      brief: [
+        '<b>13</b> kes (2025) dipetakan kepada <b>5</b> hotspot keutamaan; 3 kes berulang pada satu koridor.',
+        'Cadangan: rondaan berpandukan data + pencahayaan solar di titik panas.',
+        'Sumber kes: pembentangan DUN Julai 2026 — <b>data dalaman berlabel</b>, bukan statistik awam.',
+        'Sumber: SIAP-Konsep-v3.0 — SIAP Padu, Pemetaan Hotspot Kecurian Kabel.'
+      ]
+    },
+    {
+      id: 'penyelenggaraan', t: 'Penyelenggaraan reaktif', dom: 'Audit aset air negeri',
+      roles: ['jadual', 'registri', 'workorder', 'lapangan', 'pothole'],
+      steps: [
+        { l: 0, a: 'registri',x: 'Arahan: Laporan Ketua Audit Negara merekod tiada pelan pencegahan berjadual.' },
+        { l: 0, a: 'jadual',  x: 'Aset kritikal disenaraikan mengikut keutamaan risiko.' },
+        { l: 0, a: 'lapangan',x: 'Keadaan aset dari pemeriksaan lapangan offline diselaraskan.' },
+        { l: 1, a: 'jadual',  x: 'Delegasi: jadual pemeriksaan berkala disusun untuk aset kritikal.' },
+        { l: 1, a: 'workorder', x: 'Perintah kerja dibuka untuk 6 aset melebihi selang pemeriksaan.' },
+        { l: 2, a: 'lapangan',x: 'Semakan silang: 2 aset sebenarnya sudah diperiksa, rekod belum dikemas.' },
+        { l: 2, a: 'pothole', x: 'Semakan bebas mengesahkan 4 aset memerlukan tindakan segera.' },
+        { l: 3, a: 'jadual',  x: 'Sintesis: taklimat pematuhan + jadual siap-audit disediakan.' }
+      ],
+      brief: [
+        '<b>4</b> aset kritikal memerlukan tindakan segera; 2 rekod pemeriksaan belum dikemas.',
+        'Sasaran Fasa 2: registri + jadual bagi <b>80% aset kritikal</b>; Fasa 4: pematuhan <b>≥95%</b>.',
+        'Benchmark: Akta Jalan Jepun 2013 — pemeriksaan 5 tahun wajib, pematuhan melebihi 99% (MLIT).',
+        'Sumber: SIAP-Konsep-v3.0 — SIAP Urus, Jadual Pemeriksaan Berjadual.'
+      ]
+    },
+    {
+      id: 'bencana', t: 'Pendaftaran mangsa bencana manual', dom: 'PPS · liputan internet terhad',
+      roles: ['bencana', 'lapangan', 'gateway', 'papan'],
+      steps: [
+        { l: 0, a: 'bencana', x: 'Arahan: petugas pendaftaran mangsa banjir masih bekerja manual.' },
+        { l: 0, a: 'lapangan',x: 'Reka bentuk offline-first disemak — berfungsi tanpa internet.' },
+        { l: 0, a: 'gateway', x: 'eBencana JKR dikenal pasti sebagai saluran rasmi sedia ada.' },
+        { l: 1, a: 'bencana', x: 'Delegasi: 3 pusat pemindahan sementara (PPS) dimasukkan ke senarai.' },
+        { l: 1, a: 'gateway', x: 'Penyegerakan disediakan untuk tetingkap Starlink Paitan/Pitas.' },
+        { l: 2, a: 'lapangan',x: 'Semakan silang: 1 PPS tiada liputan, 2 PPS ada isyarat berselang.' },
+        { l: 2, a: 'bencana', x: 'Semakan bebas mengesahkan pendaftaran offline berfungsi pada 3 PPS.' },
+        { l: 3, a: 'bencana', x: 'Sintesis: taklimat lapangan + pelan penyegerakan disediakan.' }
+      ],
+      brief: [
+        '<b>3</b> PPS diuji; pendaftaran berfungsi tanpa internet dan menyegerak apabila isyarat kembali.',
+        'SIAP Padu <b>melengkapkan</b> eBencana JKR — bukan menggantikannya.',
+        'Lapisan konektiviti: unit Starlink Paitan / Kota Marudu / Pitas (Feb 2026).',
+        'Sumber: SIAP-Konsep-v3.0 — SIAP Padu, Pendaftaran Mangsa Bencana (Offline-First).'
+      ]
+    }
+  ];
+
+  var st = { run: false, aktif: 0, terlibat: 0, sims: 0, t0: 0, tick: null };
+
+  function nowStr() {
+    var d = new Date(), p = function (n) { return String(n).padStart(2, '0'); };
+    return p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+  }
+  function fmtTime(ms) { return (ms / 1000).toFixed(1) + 's'; }
+
+  function buildSituations() {
+    $('#sitWrap').innerHTML = SITUASI.map(function (s, i) {
+      return '<button class="sit" data-i="' + i + '"><b>' + esc(s.t) + '</b><span>' + esc(s.dom) + '</span></button>';
+    }).join('');
+    $('#sitWrap').addEventListener('click', function (e) {
+      var b = e.target.closest('.sit'); if (!b) return;
+      run(parseInt(b.dataset.i, 10));
+    });
+  }
+
+  function buildLayers() {
+    $('#layers').innerHTML = LAYERS.map(function (l, i) {
+      return '<div class="ly" data-i="' + i + '"><b>' + esc(l.n) + '</b><span>' + esc(l.d) +
+             '</span><div class="ly-bar"><i></i></div></div>';
+    }).join('');
+  }
+
+  function buildSquad() {
+    var html = '';
+    GRP.forEach(function (x) {
+      html += '<div class="sk-grp">' + esc(x.g) + ' · ' +
+              x.mods.reduce(function (a, b) { return a + b.c; }, 0) + ' ejen</div>';
+      x.mods.forEach(function (m) {
+        var pips = '';
+        for (var i = 0; i < m.c; i++) pips += '<span class="pip" data-r="' + m.k + '"></span>';
+        html += '<div class="sk-row"><span class="sk-nm">' + esc(m.n) + '</span><div class="sk-pips">' + pips + '</div></div>';
+      });
+    });
+    $('#skRows').innerHTML = html;
+  }
+
+  function logLine(cls, t, m) {
+    var el = document.createElement('div');
+    el.className = 'ln ' + cls;
+    el.innerHTML = '<span class="t">' + esc(t) + '</span><span class="m">' + m + '</span>';
+    var box = $('#log');
+    box.appendChild(el);
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function pipState(role, state) {
+    var list = document.querySelectorAll('.pip[data-r="' + role + '"]');
+    for (var i = 0; i < list.length; i++) {
+      list[i].classList.remove('on');
+      if (state === 'on') list[i].classList.add('on');
+      if (state === 'done') list[i].classList.add('done');
+    }
+  }
+  function allPips(state) {
+    var list = document.querySelectorAll('.pip');
+    for (var i = 0; i < list.length; i++) {
+      list[i].classList.remove('on', 'done');
+      if (state === 'done') list[i].classList.add('done');
+    }
+  }
+  function activeCount() { return document.querySelectorAll('.pip.on').length; }
+  function doneCount() { return document.querySelectorAll('.pip.done').length; }
+
+  function setCounters() {
+    $('#cAktif').textContent = st.aktif;
+    $('#cTerlibat').textContent = st.terlibat;
+    $('#cSim').textContent = st.sims;
+    $('#skStat').textContent = (activeCount() + doneCount()) + ' / ' + TOTAL + ' aktif';
+  }
+  function startClock() {
+    st.t0 = Date.now();
+    st.tick = setInterval(function () { $('#cMasa').textContent = fmtTime(Date.now() - st.t0); }, 100);
+  }
+  function stopClock() {
+    if (st.tick) clearInterval(st.tick);
+    st.tick = null;
+    $('#cMasa').textContent = fmtTime(Date.now() - st.t0);
+  }
+
+  function run(i) {
+    if (st.run) return;
+    var s = SITUASI[i];
+    st.run = true; st.sims++;
+
+    document.querySelectorAll('.sit').forEach(function (b) { b.classList.remove('on'); b.disabled = true; });
+    document.querySelector('.sit[data-i="' + i + '"]').classList.add('on');
+    $('#brief').classList.remove('show');
+    $('#btnLulus').disabled = true; $('#btnTahan').disabled = true;
+    $('#log').innerHTML = '';
+    allPips(null);
+    document.querySelectorAll('.ly').forEach(function (l) { l.classList.remove('on', 'done'); l.querySelector('.ly-bar i').style.width = '0'; });
+
+    st.aktif = 0; st.terlibat = 0;
+    setCounters(); startClock();
+
+    logLine('sys', nowStr(), 'Arahan diterima · <b>' + esc(s.t) + '</b>');
+    logLine('sys', nowStr(), 'Planner memetakan arahan kepada 14 modul SIAP…');
+
+    s.roles.forEach(function (r) {
+      var list = document.querySelectorAll('.pip[data-r="' + r + '"]');
+      var i2 = 0;
+      var t = setInterval(function () {
+        list[i2].classList.add('on');
+        st.aktif = activeCount(); st.terlibat += 1;
+        setCounters();
+        if (++i2 >= list.length) clearInterval(t);
+      }, 30);
+    });
+
+    var delay = 620;
+    s.steps.forEach(function (step, k) { setTimeout(function () { playStep(step, k, s); }, delay * (k + 1)); });
+    setTimeout(function () { finish(s); }, delay * (s.steps.length + 1));
+  }
+
+  function playStep(step, k, s) {
+    var ly = document.querySelector('.ly[data-i="' + step.l + '"]');
+    document.querySelectorAll('.ly').forEach(function (x) { x.classList.remove('on'); });
+    ly.classList.add('on');
+    var total = s.steps.filter(function (x) { return x.l === step.l; }).length;
+    var seen = s.steps.slice(0, k + 1).filter(function (x) { return x.l === step.l; }).length;
+    ly.querySelector('.ly-bar i').style.width = Math.round(seen / total * 100) + '%';
+    for (var j = 0; j < step.l; j++) {
+      var p = document.querySelector('.ly[data-i="' + j + '"]');
+      p.classList.remove('on'); p.classList.add('done');
+      p.querySelector('.ly-bar i').style.width = '100%';
+    }
+    logLine('l' + step.l, nowStr(), '[' + esc(LAYERS[step.l].n) + ' · ' + esc(modName(step.a)) + '] ' + step.x);
+    var prof = [0.55, 1.0, 0.72, 0.34][step.l];
+    st.aktif = Math.max(1, Math.round(st.terlibat * prof));
+    setCounters();
+    if (step.l === 3) pipState(step.a, 'done');
+  }
+
+  function finish(s) {
+    document.querySelectorAll('.ly').forEach(function (l) {
+      l.classList.remove('on'); l.classList.add('done');
+      l.querySelector('.ly-bar i').style.width = '100%';
+    });
+    st.aktif = 0;
+    document.querySelectorAll('.pip.on').forEach(function (p) { p.classList.remove('on'); p.classList.add('done'); });
+    setCounters();
+    logLine('sys', nowStr(), 'Semakan bebas selesai · taklimat sintesis dijana');
+    logLine('sys', nowStr(), 'Menunggu kelulusan manusia — keputusan kekal pada pegawai jabatan.');
+    $('#briefList').innerHTML = s.brief.map(function (b) { return '<li>' + b + '</li>'; }).join('');
+    $('#brief').classList.add('show');
+    $('#btnLulus').disabled = false; $('#btnTahan').disabled = false;
+    stopClock();
+    st.run = false;
+    document.querySelectorAll('.sit').forEach(function (b) { b.disabled = false; });
+  }
+
+  function decide(kind) {
+    if (!$('#brief').classList.contains('show')) return;
+    logLine('sys', nowStr(), kind === 'lulus'
+      ? 'Keputusan manusia: <b>DILULUSKAN</b> — taklimat dihantar kepada pegawai berkenaan.'
+      : 'Keputusan manusia: <b>DITAHAN</b> — dikembalikan untuk semakan lanjut.');
+    $('#btnLulus').disabled = true; $('#btnTahan').disabled = true;
+  }
+
+  buildSituations(); buildLayers(); buildSquad(); setCounters();
+  $('#btnLulus').addEventListener('click', function () { decide('lulus'); });
+  $('#btnTahan').addEventListener('click', function () { decide('tahan'); });
+
+})();
+</script>
+</body>
+</html>

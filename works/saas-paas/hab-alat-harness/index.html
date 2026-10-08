@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pusat Kawalan Alat &amp; Harness — Platform Induk</title>
+<style>
+:root{
+  --bg:#f7f5f0; --bg2:#fffefb; --raised:#ffffff; --sunken:#f1ede5;
+  --fg:#1b1e25; --fg2:#414855; --muted:#5b626f;
+  --border:rgba(27,30,37,.11); --border2:rgba(27,30,37,.18);
+  --gold:#8a6620; --gold2:#6b4d13; --gold-line:#dcc793; --gold-bright:#c9a24a;
+  --gold-soft:rgba(138,102,32,.09);
+  --cyan:#1c6d78; --violet:#5b4a9c;
+  --ok:#136b4c; --ok-soft:rgba(19,107,76,.10);
+  /* --warn is #8f5c0b, not #96610c: on the warn-soft pill background the lighter
+     tone measured 4.48:1, just under the 4.5:1 AA floor. */
+  --warn:#8f5c0b; --warn-soft:rgba(143,92,11,.11);
+  --bad:#a8321c; --bad-soft:rgba(168,50,28,.10);
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",sans-serif;
+  --r:14px; --rs:9px;
+  --sh:0 1px 2px rgba(27,30,37,.05),0 14px 34px -20px rgba(27,30,37,.22);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold2)}
+h1,h2,h3,h4{margin:0;line-height:1.25;letter-spacing:-.01em}
+h2{font-size:1.5rem;font-weight:660}
+h3{font-size:1.05rem;font-weight:640}
+h4{font-size:.95rem;font-weight:640}
+p{margin:.5rem 0}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px 90px}
+
+/* ---------- top ---------- */
+.top{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:30}
+.top-in{max-width:1180px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.logo{width:38px;height:38px;flex:0 0 auto;border-radius:11px;display:grid;place-items:center;
+  font-size:19px;background:linear-gradient(140deg,var(--gold-soft),rgba(28,109,120,.12));
+  border:1px solid var(--gold-line)}
+.brand h1{font-size:1.02rem;font-weight:660}
+.brand span{display:block;font-size:.74rem;color:var(--muted);letter-spacing:.07em;text-transform:uppercase}
+.back{margin-left:auto;font-size:.83rem;text-decoration:none;padding:8px 14px;border-radius:999px;
+  border:1px solid var(--border2);background:var(--raised);white-space:nowrap}
+.back:hover{border-color:var(--gold);color:var(--gold2)}
+
+/* ---------- hero ---------- */
+.hero{padding:34px 0 6px}
+.kick{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:660}
+.hero h2{font-size:1.85rem;margin:.35rem 0 .5rem}
+.hero p{color:var(--fg2);max-width:74ch}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{font-size:.76rem;padding:5px 11px;border-radius:999px;border:1px solid var(--border);
+  background:var(--raised);color:var(--fg2)}
+.chip b{color:var(--fg);font-weight:640}
+
+/* ---------- counters ---------- */
+.counters{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin:22px 0 6px}
+.ctr{background:var(--raised);border:1px solid var(--border);border-radius:var(--r);
+  padding:14px 16px;box-shadow:var(--sh)}
+.ctr .n{font-family:var(--mono);font-size:1.6rem;font-weight:680;color:var(--gold2);line-height:1.1}
+.ctr .l{font-size:.76rem;color:var(--muted);margin-top:3px;letter-spacing:.03em}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:26px 0 0;padding-bottom:2px;
+  border-bottom:1px solid var(--border);position:sticky;top:67px;background:var(--bg);z-index:20}
+.tab{appearance:none;border:1px solid transparent;background:none;font:inherit;font-size:.87rem;
+  color:var(--muted);padding:9px 15px;border-radius:9px 9px 0 0;cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--fg);background:var(--sunken)}
+.tab.on{color:var(--gold2);font-weight:640;background:var(--raised);
+  border-color:var(--border);border-bottom-color:var(--raised);margin-bottom:-1px}
+.tab .num{font-family:var(--mono);font-size:.72rem;opacity:.65;margin-right:5px}
+
+section.pane{display:none;padding-top:26px}
+section.pane.on{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+.panel{background:var(--raised);border:1px solid var(--border);border-radius:var(--r);
+  padding:20px 22px;box-shadow:var(--sh);margin-bottom:16px}
+.panel > h3{margin-bottom:.3rem}
+.panel .hint{font-size:.85rem;color:var(--muted);margin:.2rem 0 .9rem}
+
+/* ---------- forms ---------- */
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input[type=text],input[type=number],select,textarea{
+  font:inherit;font-size:.9rem;padding:10px 13px;border-radius:var(--rs);
+  border:1px solid var(--border2);background:var(--bg2);color:var(--fg);min-width:0}
+input[type=text]{flex:1 1 300px}
+input.sm{flex:0 0 130px}
+textarea{width:100%;min-height:88px;resize:vertical;font-family:var(--mono);font-size:.85rem}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold-bright);outline-offset:1px;border-color:var(--gold)}
+.btn{appearance:none;font:inherit;font-size:.88rem;font-weight:620;padding:10px 20px;border-radius:var(--rs);
+  border:1px solid var(--gold);background:var(--gold);color:#fff;cursor:pointer;white-space:nowrap}
+.btn:hover{background:var(--gold2);border-color:var(--gold2)}
+.btn.ghost{background:var(--raised);color:var(--gold2);border-color:var(--border2)}
+.btn.ghost:hover{border-color:var(--gold);background:var(--gold-soft)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* ---------- result ---------- */
+.res{margin-top:14px}
+.kv{display:grid;grid-template-columns:minmax(120px,168px) 1fr;gap:0;
+  border:1px solid var(--border);border-radius:var(--rs);overflow:hidden;background:var(--bg2)}
+.kv > div{padding:9px 14px;border-bottom:1px solid var(--border);font-size:.88rem}
+.kv > div:nth-child(odd){background:var(--sunken);color:var(--muted);font-size:.79rem;
+  letter-spacing:.03em;text-transform:uppercase;font-weight:600}
+.kv > div:nth-child(even){font-family:var(--mono);font-size:.85rem}
+.kv > div:nth-last-child(-n+2){border-bottom:0}
+.big{font-family:var(--mono);font-size:1.15rem;font-weight:680;color:var(--gold2)}
+
+/* ---------- log ---------- */
+.log{background:#fbfaf6;border:1px solid var(--border);border-radius:var(--rs);
+  font-family:var(--mono);font-size:.815rem;line-height:1.72;padding:13px 15px;
+  max-height:290px;overflow-y:auto;white-space:pre-wrap;word-break:break-word;color:var(--fg2)}
+.log .t{color:var(--muted)}
+.log .ok{color:var(--ok)} .log .wr{color:var(--warn)} .log .er{color:var(--bad)}
+.log .hi{color:var(--gold2);font-weight:600} .log .cy{color:var(--cyan)}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;border:1px solid var(--border);border-radius:var(--rs);background:var(--bg2)}
+table{border-collapse:collapse;width:100%;font-size:.845rem}
+th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--sunken);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);font-weight:660;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:rgba(138,102,32,.045)}
+td.mono,th.mono{font-family:var(--mono);font-size:.81rem}
+td.c,th.c{text-align:center}
+
+/* ---------- pills ---------- */
+.pill{display:inline-block;font-size:.72rem;font-weight:620;padding:3px 9px;border-radius:999px;
+  border:1px solid transparent;white-space:nowrap;letter-spacing:.02em}
+.p-ok{background:var(--ok-soft);color:var(--ok);border-color:rgba(19,107,76,.3)}
+.p-warn{background:var(--warn-soft);color:var(--warn);border-color:rgba(150,97,12,.3)}
+.p-bad{background:var(--bad-soft);color:var(--bad);border-color:rgba(168,50,28,.3)}
+.p-info{background:var(--gold-soft);color:var(--gold2);border-color:var(--gold-line)}
+.p-neu{background:var(--sunken);color:var(--muted);border-color:var(--border2)}
+
+/* ---------- cards grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:13px}
+.card{border:1px solid var(--border);border-radius:var(--rs);padding:15px 16px;background:var(--bg2)}
+.card h4{margin-bottom:.25rem}
+.card p{font-size:.855rem;color:var(--fg2);margin:.3rem 0 0}
+.card .tag{font-size:.72rem;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;font-weight:620}
+
+/* ---------- health ---------- */
+.hrow{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;
+  padding:14px 16px;border:1px solid var(--border);border-radius:var(--rs);
+  background:var(--bg2);margin-bottom:11px}
+.dot{width:11px;height:11px;border-radius:50%;margin-top:7px;flex:0 0 auto}
+.dot.up{background:var(--ok);box-shadow:0 0 0 4px var(--ok-soft)}
+.dot.down{background:var(--bad);box-shadow:0 0 0 4px var(--bad-soft)}
+.hrow .meta{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-top:3px}
+.hrow .meta b{color:var(--fg2)}
+
+pre.cmd{font-family:var(--mono);font-size:.8rem;background:#fbfaf6;border:1px solid var(--border);
+  border-radius:8px;padding:10px 12px;margin:.55rem 0 0;overflow-x:auto;cursor:pointer;
+  color:var(--fg2);white-space:pre;line-height:1.65}
+pre.cmd:hover{border-color:var(--gold);background:var(--gold-soft)}
+pre.cmd::after{content:"klik untuk pilih";float:right;font-size:.68rem;color:var(--muted);opacity:.7}
+
+.note{border-left:3px solid var(--gold-bright);background:var(--gold-soft);
+  padding:11px 15px;border-radius:0 8px 8px 0;font-size:.86rem;margin:12px 0 0}
+.note.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+.note.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+.note b{font-weight:660}
+
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.78rem;color:var(--muted);margin-top:10px}
+.legend span{display:flex;align-items:center;gap:6px}
+
+/* ---------- footer ---------- */
+footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--border);
+  font-size:.8rem;color:var(--muted);display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+
+@media(max-width:720px){
+  .hero h2{font-size:1.45rem}
+  .tabs{top:0;position:static}
+  .kv{grid-template-columns:1fr}
+  .kv > div:nth-child(odd){border-bottom:0;padding-bottom:2px}
+  .hrow{grid-template-columns:auto 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="top-in">
+    <div class="brand">
+      <div class="logo">🛠️</div>
+      <div>
+        <h1>Pusat Kawalan Alat &amp; Harness</h1>
+        <span>Platform Induk · Kategori Alat &amp; Harness</span>
+      </div>
+    </div>
+    <a class="back" href="../../../saas-paas.html">← Kembali ke SaaS/PaaS</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="kick">Prototaip konsep · dibina daripada fail sumber yang ada</div>
+    <h2>Konsol untuk router kepakaran, pasaran model, dan dua harness tempatan</h2>
+    <p>Halaman ini ialah <b>pusat data dan rujukan</b> bagi kategori <b>Alat &amp; Harness</b>. Ia
+      menghimpunkan logik penghalaan kepakaran yang sebenar, pasaran model M6, serta status dua
+      servis tempatan yang sebelum ini hanya dicatat sebagai &ldquo;pelayan mati&rdquo;. Setiap angka
+      dijejak kepada fail sumbernya di bahagian <a href="#sumber">Sumber</a>.</p>
+    <div class="chips">
+      <span class="chip">Sumber: <b>router_kepakaran.py</b></span>
+      <span class="chip">Sumber: <b>17_DEEPSEEK_HARNESS_4_MODE_KOS_PLUGIN.md</b></span>
+      <span class="chip">Sumber: <b>memori 2026-09-30</b></span>
+      <span class="chip">Status pelayan: <b>diukur 2026-10-03</b></span>
+    </div>
+  </div>
+
+  <div class="counters">
+    <div class="ctr"><div class="n" id="c-run">0</div><div class="l">Klasifikasi dijalankan</div></div>
+    <div class="ctr"><div class="n" id="c-route">11</div><div class="l">Rute kepakaran</div></div>
+    <div class="ctr"><div class="n" id="c-model">12</div><div class="l">Rantaian failover</div></div>
+    <div class="ctr"><div class="n" id="c-live">2 / 3</div><div class="l">Pelayan hidup</div></div>
+  </div>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab on" data-p="arahan"><span class="num">01</span>Pusat Arahan</button>
+    <button class="tab" data-p="pasaran"><span class="num">02</span>Pasaran Model M6</button>
+    <button class="tab" data-p="dsh"><span class="num">03</span>DeepSeek Harness</button>
+    <button class="tab" data-p="hermes"><span class="num">04</span>Hermes Agent</button>
+    <button class="tab" data-p="kesihatan"><span class="num">05</span>Kesihatan Pelayan</button>
+    <button class="tab" data-p="sumber"><span class="num">06</span>Sumber</button>
+  </nav>
+
+  <!-- ================= 01 AR​AHAN ================= -->
+  <section class="pane on" id="p-arahan">
+    <div class="panel">
+      <h3>01 · Router Kepakaran — klasifikasi tugasan</h3>
+      <p class="hint">Taip satu tugasan dalam Bahasa Melayu. Enjin di bawah ialah salinan sebenar
+        logik <code>router_kepakaran.py</code> — jadual rute, kata kunci dan susunan keutamaan yang sama.</p>
+      <div class="row">
+        <input type="text" id="q" placeholder="Contoh: Jana 100 RPH Bahasa Melayu" autocomplete="off">
+        <input type="number" id="qty" class="sm" placeholder="Kuantiti (pilihan)" min="1">
+        <button class="btn" id="go">Klasifikasi</button>
+      </div>
+      <div class="res" id="out"></div>
+      <div class="log" id="log">--:--:-- Menunggu arahan. Taip satu tugasan di atas untuk klasifikasi.</div>
+      <div class="legend">
+        <span><i class="dot up" style="width:8px;height:8px;display:inline-block;border-radius:50%;background:var(--ok)"></i> rute dijumpai</span>
+        <span><i class="dot down" style="width:8px;height:8px;display:inline-block;border-radius:50%;background:var(--warn)"></i> jatuh ke lalai</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Jadual penuh 11 rute kepakaran</h3>
+      <p class="hint">Disalin verbatim daripada <code>ROUTES</code> dalam <code>router_kepakaran.py</code>.</p>
+      <div class="tw"><table id="tbl-routes">
+        <thead><tr><th>Jenis</th><th>Agen (L2)</th><th>Model (L3)</th><th>Kunci (L4)</th><th>Anggaran kos</th><th>Nota</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </div>
+
+    <div class="panel">
+      <h3>Cara kos dikira</h3>
+      <p class="hint">Hanya dua jenis kerja mempunyai kadar empirikal. Jenis lain hanya memaparkan
+        anggaran julat — halaman ini <b>tidak</b> mencipta nombor yang tiada dalam sumber.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Jenis</th><th class="mono">RM / unit</th><th>Sumber kadar</th></tr></thead>
+        <tbody>
+          <tr><td>draf</td><td class="mono">0.0065</td><td>[DIUKUR] ~RM5–6 bagi 865 RPH waktu luar puncak</td></tr>
+          <tr><td>perancangan</td><td class="mono">0.005</td><td>[ANGGARAN] draf dokumen pendek</td></tr>
+          <tr><td colspan="3" style="color:var(--muted)">Jenis lain — tiada kadar unit dalam sumber; gunakan julat anggaran dalam jadual rute.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- ================= 02 PASARAN ================= -->
+  <section class="pane" id="p-pasaran">
+    <div class="panel">
+      <h3>02 · Pasaran Model M6 — pilihan semasa</h3>
+      <p class="hint">Tujuh jenis kerja dan model yang dipasang sekarang. Disalin daripada
+        <code>pasaran_model_config.json</code>.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Jenis kerja</th><th class="mono">Model dipasang</th></tr></thead>
+        <tbody id="tbl-m6"></tbody>
+      </table></div>
+      <div class="note"><b>Perubahan yang direkodkan:</b> dokumen status 28 Ogos mencatat
+        <code>coding → moonshotai/kimi-k3</code>, tetapi konfigurasi bertarikh 29 Ogos menukarnya kepada
+        <code>nex-agi/nex-n2-pro:free</code>. Konfigurasi yang lebih baharu dipaparkan di atas;
+        kedua-duanya direkodkan supaya sejarah keputusan tidak hilang.</div>
+    </div>
+
+    <div class="panel">
+      <h3>Rantaian failover — 12 jenis kerja</h3>
+      <p class="hint">Disalin daripada <code>FAILOVER</code> dalam <code>openrouter_failover.py</code>.
+        Model pertama dicuba dahulu; jika gagal, jatuh ke yang berikutnya.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Jenis</th><th>Rantaian (utama → ganti)</th></tr></thead>
+        <tbody id="tbl-fo"></tbody>
+      </table></div>
+      <p class="hint" style="margin-top:10px">Sandaran lalai: <code>deepseek/deepseek-v4-flash</code> →
+        <code>moonshotai/kimi-k3</code> → <code>qwen/qwen3.8-flash</code>. Katalog pada 28 Ogos 2026
+        memuatkan <b>387 model</b> OpenRouter.</p>
+    </div>
+
+    <div class="panel">
+      <h3>Peta 10 syarikat AI China → model</h3>
+      <p class="hint">Daripada <code>07_KAJIAN_HERMES_MANUS_MODEL_CHINA_2026.md</code> §6 — semua ID
+        disahkan wujud di OpenRouter pada 28 Ogos 2026.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Syarikat</th><th>Model</th><th class="mono">ID OpenRouter</th><th>Kekuatan</th></tr></thead>
+        <tbody id="tbl-cn"></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- ================= 03 DSH ================= -->
+  <section class="pane" id="p-dsh">
+    <div class="panel">
+      <h3>03 · DeepSeek Harness (DSH) — empat mod</h3>
+      <p class="hint">DSH ialah orkestrator ejen berasaskan rangka kerja plugin Cordis. Ia bukan
+        &ldquo;chat&rdquo; — ia lapisan plugin tersusun yang menjalankan ejen, aliran kerja, sub-ejen,
+        RALPH dan automasi. Pakej yang dipasang pada mesin ini:
+        <code>@deepseek-ai/dsh 0.1.1-rc.2</code> — versi ini diukur terus daripada
+        <code>package.json</code> dalam pemasangan npm global, bukan daripada dokumen.</p>
+      <div class="tw"><table>
+        <thead><tr><th>#</th><th>Mod</th><th>Status</th><th class="mono">Perintah</th><th>Kegunaan</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">1</td><td><b>Web</b> (UI pelayar)</td><td><span class="pill p-ok">Ada</span></td><td class="mono">dsh web</td><td>Kerja interaktif penuh — perbualan, ejen, aliran kerja, plugin, sub-ejen</td></tr>
+          <tr><td class="mono">2</td><td><b>Headless</b> (satu tugasan)</td><td><span class="pill p-ok">Ada</span></td><td class="mono">dsh --profile headless "tugas"</td><td>Automasi skrip/CI, batch, ujian, integrasi program lain</td></tr>
+          <tr><td class="mono">3</td><td><b>TUI</b> (UI terminal)</td><td><span class="pill p-warn">Belum dipasang</span></td><td class="mono">dsh --profile tui</td><td>Kerja interaktif tanpa pelayar — sesuai untuk pelayan / SSH</td></tr>
+          <tr><td class="mono">4</td><td><b>Kustom / Plugin</b></td><td><span class="pill p-warn">Cipta sendiri</span></td><td class="mono">dsh plugin --profile &lt;nama&gt;</td><td>Profil khas projek (cth. profil MyGuruKSSR) dengan plugin terpilih</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="panel">
+      <h3>Anggaran kos setiap mod</h3>
+      <p class="hint">DSH sendiri percuma (sumber terbuka) — kosnya ialah kos model LLM yang digunakan.
+        Dokumen sumber sendiri melabel angka ini <b>[ANGGARAN]</b>; ia dikekalkan sebagai anggaran di sini.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Mod</th><th>Kos asas</th><th>Anggaran tugasan</th><th>Nota</th></tr></thead>
+        <tbody>
+          <tr><td>Web</td><td>Model sahaja</td><td class="mono">~RM0.01–0.50</td><td>Ikut tugasan + bilangan alat</td></tr>
+          <tr><td>Headless</td><td>Model sahaja</td><td class="mono">~RM0.01–0.10</td><td>Satu sesi pendek</td></tr>
+          <tr><td>TUI</td><td>Model sahaja</td><td class="mono">~RM0.01–0.50</td><td>Sama dengan Web</td></tr>
+          <tr><td>Kustom</td><td>Model + plugin</td><td>Bergantung</td><td>Plugin boleh ada kos sendiri</td></tr>
+        </tbody>
+      </table></div>
+      <p class="hint" style="margin-top:10px">Faktor kos yang direkodkan: model murah (V4-Flash) ≈
+        RM0.005–0.05/tugasan · model mahal (Kimi K3, Pro) lebih tinggi · sub-ejen/rantai panjang =
+        gandaan token · waktu luar puncak = 50% lebih murah.</p>
+    </div>
+
+    <div class="panel">
+      <h3>Plugin yang wujud dalam DSH</h3>
+      <p class="hint">Plugin = bundle yang menambah fungsi. Disimpan dalam
+        <code>profiles/web/package.json</code> dan <code>cordis.patch.yml</code>.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Kategori</th><th class="mono">Plugin</th><th>Fungsi</th></tr></thead>
+        <tbody>
+          <tr><td>Alat</td><td class="mono">dsh-tool-bash/pwsh, dsh-tool-fs, dsh-tool-web</td><td>Jalankan arahan, akses fail, web</td></tr>
+          <tr><td>Sub-ejen</td><td class="mono">dsh-subagent, dsh-tool-subagent</td><td>Ejen berasingan</td></tr>
+          <tr><td>RALPH</td><td class="mono">dsh-tool-ralph</td><td>Gelung ejen segar</td></tr>
+          <tr><td>Workflow</td><td class="mono">dsh-tool-workflow</td><td>Aliran berbilang ejen</td></tr>
+          <tr><td>Skil</td><td class="mono">dsh-skill, dsh-tool-skill</td><td>Keupayaan skil</td></tr>
+          <tr><td>Model</td><td class="mono">dsh-llm-deepseek, dsh-llm-pi-ai</td><td>Penyedia LLM</td></tr>
+          <tr><td>Sandbox</td><td class="mono">dsh-bash-sandbox, dsh-pwsh-sandbox</td><td>Keselamatan</td></tr>
+          <tr><td>Sesi / Telemetri</td><td class="mono">dsh-session-telemetry-otel</td><td>Log dan kos</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="panel">
+      <h3>Penjana arahan headless</h3>
+      <p class="hint">Alat bantu untuk menulis perintah headless dengan betul. Halaman ini
+        <b>tidak</b> memanggil DSH — ia hanya menyediakan arahan untuk anda jalankan sendiri.</p>
+      <div class="row">
+        <input type="text" id="dsh-q" placeholder="Contoh: ringkaskan konsep platform All-in-One" autocomplete="off">
+        <button class="btn" id="dsh-go">Jana arahan</button>
+      </div>
+      <pre class="cmd" id="dsh-out" style="display:none"></pre>
+      <div class="note warn"><b>Kenapa tidak dijalankan dari sini?</b> Halaman ini dibuka melalui
+        <code>file://</code>. Pelayar menyekat permintaan rentas-asal daripada halaman <code>file://</code>
+        ke <code>http://127.0.0.1</code>, jadi sebarang &ldquo;panggilan hidup&rdquo; yang dipaparkan
+        di sini hanya akan menjadi simulasi. Arahan sebenar disediakan untuk dijalankan dalam terminal.</div>
+    </div>
+  </section>
+
+  <!-- ================= 04 HERMES ================= -->
+  <section class="pane" id="p-hermes">
+    <div class="panel">
+      <h3>04 · Hermes Agent — fakta yang disahkan</h3>
+      <p class="hint">Semua baris di bawah diukur pada mesin ini dan direkodkan dalam log kerja
+        30 September 2026.</p>
+      <div class="kv">
+        <div>Versi</div><div>Hermes Agent v0.21.0 (2026.8.31) · kaedah git</div>
+        <div>Platform</div><div>Windows asli — BUKAN WSL2</div>
+        <div>Binari</div><div>C:\Users\User\AppData\Local\hermes\bin\hermes.exe</div>
+        <div>Home</div><div>C:\Users\User\AppData\Local\hermes\ (config.yaml, .env, auth.json)</div>
+        <div>Model aktif</div><div>z-ai/glm-5.3-flash → ditukar kepada deepseek/deepseek-v4.1-flash (oleh pemilik, 30 Sep)</div>
+        <div>Skil terbina</div><div>26 fail skil dalam router_kepakaran/hermes_skills/</div>
+        <div>Memori</div><div>132 entri unik diarkibkan (had log aktif = 100 entri terkini)</div>
+      </div>
+      <div class="note bad"><b>Jangan jalankan <code>install.sh</code>.</b> Skrip itu untuk
+        Linux/macOS dan akan merosakkan pemasangan sedia ada pada Windows.</div>
+    </div>
+
+    <div class="panel">
+      <h3>Tema &ldquo;Navy Gold&rdquo;</h3>
+      <p class="hint">Tema tersuai yang ditambah pada UI web Hermes. Ia berdaftar di dua tempat —
+        nama mesti sepadan di kedua-duanya.</p>
+      <div class="grid">
+        <div class="card"><div class="tag">Palet</div>
+          <div class="kv" style="margin-top:8px">
+            <div>Latar</div><div>#071120</div>
+            <div>Teks</div><div>#e8c96a</div>
+            <div>Utama / emas</div><div>#d4af37</div>
+            <div>Kad</div><div>#0d1d33</div>
+            <div>Aksen</div><div>#1b3554</div>
+            <div>Sempadan</div><div>rgba(212,175,55,.30)</div>
+          </div>
+        </div>
+        <div class="card"><div class="tag">Fail yang diubah</div>
+          <p>1. <code>web/src/themes/presets.ts</code> — tambah <code>navyGoldTheme</code> dan daftar dalam <code>BUILTIN_THEMES</code>.</p>
+          <p>2. <code>hermes_cli/web_server_dashboard.py</code> — tambah entri <code>navy-gold</code> dalam <code>_BUILTIN_DASHBOARD_THEMES</code>.</p>
+          <p>3. <code>config.yaml</code> — set <code>dashboard.theme: navy-gold</code> sebagai lalai.</p>
+          <p style="color:var(--muted)">Font: Inter + JetBrains Mono · jejari 0.625rem</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Perbandingan model — diukur 30 September 2026</h3>
+      <div class="tw"><table>
+        <thead><tr><th>Model</th><th>Jenis</th><th class="mono">Masa</th><th class="mono">Token keluar</th><th class="mono">Token penaakulan</th><th class="mono">Kos / ujian</th><th>Jawapan</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">deepseek/deepseek-v4.1-flash</td><td>penaakulan</td><td class="mono">2.1–3.7s</td><td class="mono">266–424</td><td class="mono">259–344</td><td class="mono">$0.00029–0.00046</td><td>Tepat, ringkas</td></tr>
+          <tr><td class="mono">z-ai/glm-5.3-flash</td><td>bukan-penaakulan</td><td class="mono">9.2–10.5s</td><td class="mono">5–164</td><td class="mono">~1</td><td class="mono">$0.00002–0.00019</td><td>Tepat, ada nota tambahan</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note warn"><b>Risiko yang direkodkan:</b> <code>deepseek-v4.1-flash</code> ialah model
+        <b>penaakulan</b> — ia membakar ~250–350 token penaakulan sebelum menjawab. Jika
+        <code>max_tokens</code> diset rendah (&lt;~300), ia memulangkan <code>content: null</code> dengan
+        <code>finish_reason: "length"</code>. Untuk model penaakulan, sentiasa
+        <code>max_tokens</code> ≥ 1000.</div>
+    </div>
+
+    <div class="panel">
+      <h3>26 skil Hermes</h3>
+      <p class="hint">Disenaraikan daripada kandungan folder <code>router_kepakaran/hermes_skills/</code>.</p>
+      <div class="grid" id="skills"></div>
+    </div>
+  </section>
+
+  <!-- ================= 05 KESIHATAN ================= -->
+  <section class="pane" id="p-kesihatan">
+    <div class="panel">
+      <h3>05 · Kesihatan pelayan — diukur, bukan diandaikan</h3>
+      <p class="hint">Diukur pada <b>2026-10-03</b> menggunakan <code>netstat</code> dan
+        <code>curl --noproxy '*'</code>. Registry Platform Induk sebelum ini mencatatkan ketiga-tiga
+        entri di bawah sebagai &ldquo;pelayan mati&rdquo;. Dua daripadanya sebenarnya <b>hidup</b>.</p>
+
+      <div class="hrow">
+        <div class="dot up"></div>
+        <div>
+          <h4>127.0.0.1:3080 — DeepSeek Harness (mod Web)</h4>
+          <div class="meta">LISTENING · HTTP <b>200</b> · 14,523 bait · <b>&lt;title&gt;DeepSeek Harness&lt;/title&gt;</b> · pakej <b>@deepseek-ai/dsh 0.1.1-rc.2</b></div>
+          <p style="font-size:.85rem;color:var(--fg2);margin:.45rem 0 0">Pihak ketiga (DeepSeek). Bukan
+            prototaip kami — ini pemasangan DSH sebenar. Endpoint <code>/api/*</code> memulangkan 404,
+            jadi kesihatan disemak pada halaman akar sahaja.</p>
+          <pre class="cmd" onclick="pilih(this)">curl -s --noproxy '*' -o /dev/null -w 'HTTP %{http_code}\n' http://127.0.0.1:3080/</pre>
+        </div>
+        <div><span class="pill p-ok">HIDUP</span></div>
+      </div>
+
+      <div class="hrow">
+        <div class="dot up"></div>
+        <div>
+          <h4>127.0.0.1:8765 — Hab WebUI All-in-One</h4>
+          <div class="meta">LISTENING · HTTP <b>200</b> · 12,131 bait · <b>/api/health</b> → <code>{"status":"ok","app":"All-in-One WebUI"}</code></div>
+          <p style="font-size:.85rem;color:var(--fg2);margin:.45rem 0 0">Ini <b>artifak kami sendiri</b> —
+            hab 11 tab yang memautkan kedua-dua harness. Ia tidak pernah didaftarkan dalam Platform Induk.
+            Sumber penuh: <code>C:\DSH\12_WORKSPACE_ALL_IN_ONE\webui\</code>.</p>
+          <pre class="cmd" onclick="pilih(this)">curl -s --noproxy '*' http://127.0.0.1:8765/api/health</pre>
+        </div>
+        <div><span class="pill p-ok">HIDUP</span></div>
+      </div>
+
+      <div class="hrow">
+        <div class="dot down"></div>
+        <div>
+          <h4>127.0.0.1:9119 — Dashboard Hermes Agent</h4>
+          <div class="meta">Tiada LISTENING · curl → HTTP <b>000</b> (sambungan ditolak)</div>
+          <p style="font-size:.85rem;color:var(--fg2);margin:.45rem 0 0">Hermes <b>dipasang</b> pada mesin
+            ini, tetapi dashboardnya tidak berjalan. Ia mesti dilancarkan <b>oleh anda sendiri</b> —
+            lihat nota batasan host di bawah.</p>
+          <pre class="cmd" onclick="pilih(this)">cd C:\Users\User\AppData\Local\hermes
+"C:\Users\User\AppData\Local\hermes\hermes-agent\venv\Scripts\python.exe" -m hermes_cli.main dashboard --skip-build</pre>
+          <p style="font-size:.83rem;color:var(--muted);margin:.5rem 0 0">Atau klik dua kali pelancar
+            sedia ada: <code>C:\Users\User\AppData\Local\hermes\mula_dashboard.cmd</code>. Baris kejayaan:
+            <code>HERMES_DASHBOARD_READY port=9119</code>.</p>
+        </div>
+        <div><span class="pill p-bad">MATI</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Dua perangkap yang direkodkan</h3>
+      <div class="note bad"><b>Perangkap 1 — 502 palsu daripada proksi.</b> Sesi ini mempunyai
+        <code>http_proxy=http://127.0.0.1:51702</code>. Melalui proksi itu, <code>curl</code> biasa
+        memulangkan <b>502</b> walaupun pelayan sebenarnya hidup, kerana proksi tidak boleh menembusi
+        <i>loopback</i>. <b>Sentiasa guna <code>curl --noproxy '*'</code></b> untuk menguji pelayan
+        tempatan. 502 daripada proksi bukan bukti pelayan mati — dan 200 daripada proksi pun bukan
+        bukti pasti ia hidup.</div>
+      <div class="note warn"><b>Perangkap 2 — batasan host.</b> Host membunuh seluruh pokok proses pada
+        setiap sempadan panggilan alat. Eksperimen yang direkodkan: <code>nohup ... &amp;</code>,
+        <code>Start-Process</code>, <code>cmd /c start /B</code> dan
+        <code>DETACHED_PROCESS|CREATE_BREAKAWAY_FROM_JOB</code> semuanya dibunuh; <code>schtasks</code>
+        dan WMI <code>Win32_Process.Create</code> disekat oleh polisi keselamatan.
+        <b>Kesannya:</b> proses yang perlu kekal hidup mesti dilancarkan oleh pengguna, bukan oleh sesi
+        automasi.</div>
+    </div>
+
+    <div class="panel">
+      <h3>Apa yang berubah pada registry Platform Induk</h3>
+      <div class="tw"><table>
+        <thead><tr><th>Entri</th><th>Catatan lama</th><th>Keadaan sebenar</th><th>Tindakan</th></tr></thead>
+        <tbody>
+          <tr><td>deepseek-3080</td><td><span class="pill p-bad">Pelayan mati</span></td><td><span class="pill p-ok">Hidup · HTTP 200</span></td><td>Dikemas kini — bukan lagi kerja menunggu</td></tr>
+          <tr><td>hermes-9119</td><td><span class="pill p-bad">Pelayan mati</span></td><td><span class="pill p-bad">Mati · boleh dilancarkan sendiri</span></td><td>Kekal dalam registry, nota dibetulkan</td></tr>
+          <tr><td>hab-8765</td><td><span class="pill p-neu">Tiada rekod</span></td><td><span class="pill p-ok">Hidup · HTTP 200</span></td><td>Didaftarkan — artifak kami sendiri</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- ================= 06 SUMBER ================= -->
+  <section class="pane" id="p-sumber">
+    <div class="panel">
+      <h3>06 · Sumber — setiap angka dijejak</h3>
+      <p class="hint">Setiap bahagian halaman ini dijejak kepada fail sumbernya. Lajur <b>Status</b>
+        menyatakan sama ada kandungan itu disalin terus, diukur sendiri, atau bersifat ilustratif.
+        Tiada angka dicipta tanpa sumber.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Bahagian</th><th>Sumber</th><th>Status</th></tr></thead>
+        <tbody id="tbl-src"></tbody>
+      </table></div>
+      <div class="legend">
+        <span><span class="pill p-ok">SAH</span> disalin atau diukur daripada sumber</span>
+        <span><span class="pill p-warn">ILUSTRATIF</span> paparan sahaja, tiada sistem sebenar dipanggil</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Fail sumber (lokasi sebenar)</h3>
+      <div class="tw"><table>
+        <thead><tr><th>Fail</th><th class="mono">Laluan</th></tr></thead>
+        <tbody>
+          <tr><td>Router kepakaran</td><td class="mono">C:\DSH\12_WORKSPACE_ALL_IN_ONE\router_kepakaran\router_kepakaran.py</td></tr>
+          <tr><td>Pasaran model</td><td class="mono">…\router_kepakaran\pasaran_model_config.json</td></tr>
+          <tr><td>Failover OpenRouter</td><td class="mono">…\router_kepakaran\openrouter_failover.py</td></tr>
+          <tr><td>Skil Hermes (26)</td><td class="mono">…\router_kepakaran\hermes_skills\</td></tr>
+          <tr><td>Arkib memori Hermes</td><td class="mono">…\router_kepakaran\hermes_log_ARKIB_penuh.md</td></tr>
+          <tr><td>DSH 4 mod / kos / plugin</td><td class="mono">C:\DSH\12_WORKSPACE_ALL_IN_ONE\17_DEEPSEEK_HARNESS_4_MODE_KOS_PLUGIN.md</td></tr>
+          <tr><td>Kajian Hermes/Manus/model China</td><td class="mono">…\12_WORKSPACE_ALL_IN_ONE\07_KAJIAN_HERMES_MANUS_MODEL_CHINA_2026.md</td></tr>
+          <tr><td>Status platform 28 Ogos</td><td class="mono">…\12_WORKSPACE_ALL_IN_ONE\STATUS_TERKINI.md</td></tr>
+          <tr><td>Hab WebUI (sumber penuh)</td><td class="mono">…\12_WORKSPACE_ALL_IN_ONE\webui\</td></tr>
+          <tr><td>Log kerja Hermes 30 Sep</td><td class="mono">C:\Users\User\WorkBuddy AI\2026-09-30-12-51-52\.workbuddy-ai\memory\2026-09-30.md</td></tr>
+          <tr><td>Arkib bookmark (rekod asal)</td><td class="mono">2026-10-03-portfolio-hub\_bookmarks.json — entri [29] dan [88]</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note"><b>Penafian.</b> Dua servis tempatan di atas (3080 dan 9119) ialah
+        <b>perisian pihak ketiga</b> — DeepSeek Harness dan Hermes Agent. Halaman ini tidak menyalin
+        semula antara muka mereka dan tidak berpura-pura menjadi mereka. Ia merekodkan apa yang
+        disahkan, menyediakan arahan untuk mengesannya semula, dan membina semula bahagian yang
+        benar-benar milik kami: logik router kepakaran.</div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Pusat Kawalan Alat &amp; Harness · Platform Induk · dibina 2026-10-03</span>
+    <span><a href="../../../status.html">Status &amp; Rujukan Kerja</a> · <a href="../../../index.html">Hab Utama</a></span>
+  </footer>
+</div>
+
+<script>
+/* =========================================================================
+   Router Kepakaran — disalin verbatim daripada router_kepakaran.py
+   ========================================================================= */
+var ROUTES = [
+  {j:'draf',         agen:'DeepSeek Harness + n8n',              model:'DeepSeek V4-Flash',                kunci:'DeepSeek',                kos:'~RM0.005-0.01/tugasan', nota:'Volum batch RPH/teks/JSON'},
+  {j:'coding',       agen:'Kimi Code / Claude Code',             model:'Kimi K3 / V4-Pro',                 kunci:'OpenRouter/DeepSeek',     kos:'RM0.05-0.50/tugasan',   nota:'Frontend/bina app'},
+  {j:'vibe',         agen:'Coze + Dify + Cikgu AI',              model:'Qwen 3.7 Max',                     kunci:'OpenRouter',              kos:'murah',                 nota:'Bina tanpa kod (non-coder)'},
+  {j:'vision',       agen:'Ejen OCR / RAG',                      model:'Gemini 2.5 Flash',                 kunci:'Gemini',                  kos:'murah',                 nota:'OCR/scan/embedding'},
+  {j:'imej',         agen:'Studio (pukal)',                      model:'Gemini Flash Lite / Qwen-Image',   kunci:'Profil Chrome / DashScope', kos:'RM0 (kuota)',         nota:'Jana imej pukal'},
+  {j:'video',        agen:'Pipeline Ken Burns + ElevenLabs',     model:'FFmpeg + TTS',                     kunci:'ElevenLabs',              kos:'RM0-0.05',              nota:'Bina video/BBM'},
+  {j:'suara',        agen:'Ejen Suara',                          model:'ElevenLabs multilingual v2',       kunci:'ElevenLabs',              kos:'kuota',                 nota:'TTS Bahasa Melayu'},
+  {j:'database',     agen:'Supabase',                            model:'SQL',                              kunci:'Supabase',                kos:'RM0',                   nota:'Pangkalan data'},
+  {j:'penyelidikan', agen:'Manus / Perplexity Scout',            model:'Pelbagai',                         kunci:'OpenRouter',              kos:'kecil',                 nota:'Carian/pengkajian web'},
+  {j:'automasi',     agen:'Ejen Auto-Chrome (VLM)',              model:'DeepSeek V4-Flash-Vision',         kunci:'DeepSeek',                kos:'kecil',                 nota:'Automasi browser/GUI'},
+  {j:'perancangan',  agen:'Orkestrator (harness)',               model:'DeepSeek V4-Flash',                kunci:'DeepSeek',                kos:'~RM0.005',              nota:'Tulis pelan/strategi/draf dokumen'}
+];
+
+var KEYWORDS = {
+  'automasi':    ['automasi','auto-browse','isi borang','kawal chrome','browser','gui','tindakan','auto-chrome','jana imej berjadual'],
+  'video':       ['video','ken burns','bbm','slideshow','klipping','klip','montaj'],
+  'imej':        ['imej','gambar','illustrasi','ghibli','pixar','logo','lukisan','illustration','image'],
+  'suara':       ['suara','voiceover','tts','narasi','dub','baca kuat','voice'],
+  'coding':      ['kod','coding','app','aplikasi','frontend','backend','program','function','komponen','build app','kembangan'],
+  'database':    ['database','sql','supabase','pangkalan data','simpan data','tabel','table'],
+  'penyelidikan':['cari','kajian','riset','research','semak harga','banding','web','penyelidikan','analisis pasaran'],
+  'vision':      ['ocr','scan','embedding','baca imej','vision','nombor dalam gambar','extract dari imej','tulis dari gambar'],
+  'vibe':        ['tanpa kod','non-coder','buat tanpa kod','vibe coding','drag-drop','visual'],
+  'draf':        ['rph','rpt','teks','json','draf','surat','dokumen','ringkasan','contoh','tulis','jana 100','batch','pukal'],
+  'perancangan': ['pelan','strategi','roadmap','perancangan','blueprint','cadangan','rancangan','proposal']
+};
+var PRIORITY = ['automasi','video','imej','suara','coding','database',
+                'penyelidikan','vision','vibe','draf','perancangan'];
+var EMPIRICAL = {draf:0.0065, perancangan:0.005};
+
+function classify(task){
+  var low = (task||'').toLowerCase();
+  for (var i=0;i<PRIORITY.length;i++){
+    var kind = PRIORITY[i];
+    var kws = KEYWORDS[kind] || [];
+    for (var k=0;k<kws.length;k++){ if (low.indexOf(kws[k]) !== -1) return kind; }
+  }
+  return 'perancangan';
+}
+function routeFor(kind){
+  for (var i=0;i<ROUTES.length;i++){ if (ROUTES[i].j === kind) return ROUTES[i]; }
+  return ROUTES[ROUTES.length-1];
+}
+function calcCost(kind, qty){
+  if (qty && EMPIRICAL.hasOwnProperty(kind)) return EMPIRICAL[kind] * qty;
+  return null;
+}
+function esc(s){
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* =========================================================================
+   Data pasaran
+   ========================================================================= */
+var M6 = [
+  ['draf','qwen/qwen3.8-max'],
+  ['perancangan','z-ai/glm-5.3-flash'],
+  ['coding','nex-agi/nex-n2-pro:free'],
+  ['agentic','nex-agi/nex-n2-pro:free'],
+  ['vision','qwen/qwen3-vl-32b-instruct'],
+  ['imej','google/gemini-3.1-flash-image'],
+  ['vibe','minimax/minimax-m3']
+];
+
+var FAILOVER = [
+  ['draf',        ['deepseek/deepseek-v4-flash','moonshotai/kimi-k3','qwen/qwen3.8-flash']],
+  ['coding',      ['nex-agi/nex-n2-pro:free','moonshotai/kimi-k3','deepseek/deepseek-v4-flash','qwen/qwen3-coder']],
+  ['agentic',     ['nex-agi/nex-n2-pro:free','moonshotai/kimi-k3','deepseek/deepseek-v4-flash']],
+  ['vibe',        ['qwen/qwen3.8-flash','deepseek/deepseek-v4-flash','z-ai/glm-5.3-flash']],
+  ['vision',      ['qwen/qwen3-vl-32b-instruct','google/gemini-3.5-flash']],
+  ['penyelidikan',['perplexity/sonar-pro','deepseek/deepseek-v4-flash','qwen/qwen3.8-flash']],
+  ['perancangan', ['deepseek/deepseek-v4-flash','moonshotai/kimi-k3','qwen/qwen3.8-flash']],
+  ['database',    ['deepseek/deepseek-v4-flash','qwen/qwen3.8-flash']],
+  ['automasi',    ['deepseek/deepseek-v4-flash','moonshotai/kimi-k3']],
+  ['video',       ['deepseek/deepseek-v4-flash','moonshotai/kimi-k3']],
+  ['imej',        ['deepseek/deepseek-v4-flash','qwen/qwen3.8-flash']],
+  ['suara',       ['deepseek/deepseek-v4-flash','moonshotai/kimi-k3']]
+];
+
+var CN = [
+  ['Alibaba (Qwen)','Qwen3.8-Max','(via DashScope; pilihan max di OpenRouter: qwen3.7-max)','#1 SuperCLUE Julai 2026 — all-round'],
+  ['Alibaba (Qwen)','Qwen3.6 / 3.5','qwen/qwen3.6-*, qwen/qwen3.5-*','Volum, murah, sumber terbuka'],
+  ['Alibaba (Qwen)','Qwen Coder','qwen/qwen3-coder','Coding'],
+  ['Alibaba (Qwen)','Qwen-VL','qwen/qwen3-vl-32b-instruct','Vision / OCR'],
+  ['Xiaomi (MiMo)','MiMo V2.5','xiaomi/mimo-v2.5','Edge / 1T, kos rendah'],
+  ['Xiaomi (MiMo)','MiMo V2.5-Pro','xiaomi/mimo-v2.5-pro','Ejen tugasan panjang'],
+  ['Tencent (Hunyuan)','Hunyuan Hy4 Preview','—','Sumber terbuka peringkat atas (baharu)'],
+  ['Tencent (Hunyuan)','Hunyuan Hy3','tencent/hy3','Keupayaan ejen'],
+  ['Tencent (Hunyuan)','Hunyuan A13B','tencent/hunyuan-a13b-instruct','Volum, murah'],
+  ['MiniMax','M3','minimax/minimax-m3','Konteks 1M, multimodal asli'],
+  ['MiniMax','M2.7','minimax/minimax-m2.7','Sumber terbuka'],
+  ['MiniMax','M2.5 / M2.1','minimax/minimax-m2.5, minimax-m2.1','Multimodal'],
+  ['Baidu (ERNIE)','ERNIE 5.1','(via Baidu Cloud)','Penaakulan'],
+  ['Baidu (ERNIE)','ERNIE 4.5-VL','baidu/ernie-4.5-vl-424b-a47b','Vision multimodal'],
+  ['ByteDance (Seed)','Seed2.1','bytedance-seed/seed-2-1-turbo','Produktiviti AI'],
+  ['ByteDance (Seed)','Seed2.0 Code','bytedance-seed/seed-2.0-code','Coding'],
+  ['ByteDance (Seed)','Seed1.6','bytedance-seed/seed-1.6, -flash','Volum murah'],
+  ['Zhipu (GLM)','GLM-5.3','z-ai/glm-5.3','Agentic & coding'],
+  ['Zhipu (GLM)','GLM-5.3-Flash','z-ai/glm-5.3-flash','Cepat, murah'],
+  ['Zhipu (GLM)','GLM-4.7 / 4.6','z-ai/glm-4.7, glm-4.6','Terdahulu'],
+  ['Moonshot (Kimi)','Kimi K3','moonshotai/kimi-k3','#1 agentic coding'],
+  ['Moonshot (Kimi)','Kimi K2.7-Code','moonshotai/kimi-k2.7-code','Coding'],
+  ['DeepSeek','V4-Flash','deepseek/deepseek-v4-flash','Termurah (strategi 90/10)'],
+  ['DeepSeek','V4-Pro','deepseek/deepseek-v4-pro-0813','Kualiti tinggi'],
+  ['DeepSeek','R1','deepseek/deepseek-r1','Penaakulan'],
+  ['StepFun (Step)','Step 3.7-Flash','stepfun/step-3.7-flash','Desktop / agentic, murah'],
+  ['StepFun (Step)','Step 3.5-Flash','stepfun/step-3.5-flash','Terdahulu']
+];
+
+var SKILLS = ['automasi_aliran','bina_rpt_deterministik','bina_tanpa_kod','cybersecurity',
+  'gelung_memori_dan_gerbang_ukur','gelung_memori_dan_pembelajaran','model_china_viral_2026',
+  'monetisasi_saas_malaysia','ocr_vision_embedding','pangkalan_data_supabase','pembangunan_kod_app',
+  'pembuatan_video_ken_burns','pengurusan_projek','penjajaran_rph_rpt','penjanaan_imej',
+  'penulisan_konten_pendidikan','penyelidikan_pasaran','peraturan_haram_ubah_myguru',
+  'reka_bentuk_modul_platform','sahkan_sebelum_percaya','sandaran_model_mesra_kos',
+  'semak_arahan_sebelum_laksana','semak_kos','suara_tts','sumber_kebenaran_dsh',
+  'urutan_kerja_rph_rpt'];
+
+var SRC = [
+  ['Router — ROUTES / KEYWORDS / PRIORITY','router_kepakaran/router_kepakaran.py','SAH'],
+  ['Router — kadar kos empirikal','router_kepakaran.py — EMPIRICAL [DIUKUR] ~RM5–6 / 865 RPH luar puncak','SAH'],
+  ['Pasaran M6 — 7 jenis kerja','router_kepakaran/pasaran_model_config.json','SAH'],
+  ['Pasaran M6 — 12 rantaian failover','router_kepakaran/openrouter_failover.py — FAILOVER','SAH'],
+  ['Pasaran M6 — 387 model OpenRouter','webui/static/index.html + komen openrouter_failover.py','SAH'],
+  ['Pasaran M6 — peta 10 syarikat China','07_KAJIAN_HERMES_MANUS_MODEL_CHINA_2026.md §6','SAH'],
+  ['DSH — 4 mod, perintah, status','17_DEEPSEEK_HARNESS_4_MODE_KOS_PLUGIN.md §2–3','SAH'],
+  ['DSH — jadual kos','17_DEEPSEEK_HARNESS_4_MODE_KOS_PLUGIN.md §4 (dokumen sendiri label [ANGGARAN])','SAH'],
+  ['DSH — 8 kategori plugin','17_DEEPSEEK_HARNESS_4_MODE_KOS_PLUGIN.md §5','SAH'],
+  ['DSH — versi 0.1.1-rc.2','@deepseek-ai/dsh/package.json (npm global)','SAH'],
+  ['Hermes — fakta v0.21.0, bin, home, model','.workbuddy-ai/memory/2026-09-30.md','SAH'],
+  ['Hermes — palet & fail tema navy-gold','.workbuddy-ai/memory/2026-09-30.md','SAH'],
+  ['Hermes — perbandingan model','.workbuddy-ai/memory/2026-09-30.md (diukur 30 Sep 2026)','SAH'],
+  ['Hermes — 26 skil','router_kepakaran/hermes_skills/ (senarai fail)','SAH'],
+  ['Hermes — 132 entri memori','router_kepakaran/hermes_log_ARKIB_penuh.md','SAH'],
+  ['Kesihatan — status 3080 / 8765 / 9119','netstat + curl --noproxy, diukur 2026-10-03 semasa halaman ini dibina','SAH'],
+  ['Kesihatan — perangkap proksi 502 palsu','.workbuddy-ai/memory/2026-09-30.md','SAH'],
+  ['Kesihatan — batasan host (proses dibunuh)','.workbuddy-ai/memory/2026-09-30.md','SAH'],
+  ['Penjana arahan headless DSH','—','ILUSTRATIF'],
+  ['Status &quot;HIDUP / MATI&quot; pada halaman ini','Ukuran 2026-10-03 — bukan siasatan langsung dari halaman ini','SAH']
+];
+
+/* =========================================================================
+   Bina jadual
+   ========================================================================= */
+function fill(id, html){ var e=document.getElementById(id); if(e) e.innerHTML = html; }
+
+fill('tbl-routes', ROUTES.map(function(r){
+  return '<tr><td><b>'+esc(r.j)+'</b></td><td>'+esc(r.agen)+'</td><td class="mono">'+esc(r.model)+
+    '</td><td class="mono">'+esc(r.kunci)+'</td><td class="mono">'+esc(r.kos)+'</td><td>'+esc(r.nota)+'</td></tr>';
+}).join(''));
+
+fill('tbl-m6', M6.map(function(m){
+  return '<tr><td><b>'+esc(m[0])+'</b></td><td class="mono">'+esc(m[1])+'</td></tr>';
+}).join(''));
+
+fill('tbl-fo', FAILOVER.map(function(f){
+  var chain = f[1].map(function(m,i){
+    var cls = i===0 ? 'pill p-ok' : 'pill p-neu';
+    return '<span class="'+cls+'">'+esc(m)+'</span>';
+  }).join(' <span style="color:var(--muted)">→</span> ');
+  return '<tr><td><b>'+esc(f[0])+'</b></td><td>'+chain+'</td></tr>';
+}).join(''));
+
+fill('tbl-cn', CN.map(function(c){
+  return '<tr><td>'+esc(c[0])+'</td><td>'+esc(c[1])+'</td><td class="mono">'+esc(c[2])+
+    '</td><td>'+esc(c[3])+'</td></tr>';
+}).join(''));
+
+fill('skills', SKILLS.map(function(s){
+  return '<div class="card"><div class="mono" style="font-size:.83rem">'+esc(s)+'</div></div>';
+}).join(''));
+
+fill('tbl-src', SRC.map(function(s){
+  var cls = s[2]==='SAH' ? 'p-ok' : 'p-warn';
+  return '<tr><td>'+s[0]+'</td><td class="mono" style="font-size:.79rem">'+esc(s[1])+
+    '</td><td><span class="pill '+cls+'">'+esc(s[2])+'</span></td></tr>';
+}).join(''));
+
+/* =========================================================================
+   Tab
+   ========================================================================= */
+var tabs = document.querySelectorAll('.tab');
+for (var i=0;i<tabs.length;i++){
+  tabs[i].addEventListener('click', function(){
+    for (var k=0;k<tabs.length;k++) tabs[k].classList.remove('on');
+    this.classList.add('on');
+    var panes = document.querySelectorAll('section.pane');
+    for (var k2=0;k2<panes.length;k2++) panes[k2].classList.remove('on');
+    var el = document.getElementById('p-' + this.getAttribute('data-p'));
+    if (el) el.classList.add('on');
+  });
+}
+
+/* =========================================================================
+   Utiliti
+   ========================================================================= */
+function pilih(pre){
+  var r = document.createRange(); r.selectNodeContents(pre);
+  var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+}
+window.pilih = pilih;
+
+function jam(){
+  var d = new Date();
+  function p(n){ return (n<10?'0':'')+n; }
+  return p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds());
+}
+
+var logEl = document.getElementById('log');
+function logLine(cls, msg){
+  var div = document.createElement('div');
+  div.innerHTML = '<span class="t">'+jam()+'</span> <span class="'+cls+'">'+esc(msg)+'</span>';
+  logEl.appendChild(div);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+function resetLog(msg){
+  logEl.innerHTML = '<div><span class="t">--:--:--</span> '+esc(msg)+'</div>';
+}
+
+/* =========================================================================
+   Klasifikasi
+   ========================================================================= */
+var runCount = 0;
+var cRun = document.getElementById('c-run');
+var outEl = document.getElementById('out');
+
+function jalankan(){
+  var task = document.getElementById('q').value.trim();
+  var qtyRaw = document.getElementById('qty').value.trim();
+  var qty = qtyRaw ? parseInt(qtyRaw,10) : null;
+  if (qty !== null && (isNaN(qty) || qty <= 0)) qty = null;
+
+  if (!task){
+    resetLog('Sila taip satu tugasan dahulu.');
+    outEl.innerHTML = '';
+    return;
+  }
+
+  var kind = classify(task);
+  var r = routeFor(kind);
+  var jatuhLalai = (kind === 'perancangan' &&
+    !KEYWORDS['perancangan'].some(function(k){ return task.toLowerCase().indexOf(k) !== -1; }));
+
+  resetLog('Arahan diterima — menganalisis…');
+  outEl.innerHTML = '<div class="kv"><div>Jenis</div><div class="big" id="r-jenis">…</div></div>';
+
+  var steps = [
+    ['',        'Arahan diterima: "' + task + '"'],
+    ['cy',      'Menormalkan teks (huruf kecil)…'],
+    ['cy',      'Menyemak ' + PRIORITY.length + ' jenis kerja mengikut susunan keutamaan…'],
+    ['',        'Padanan pertama: ' + kind.toUpperCase()],
+    [jatuhLalai ? 'wr' : 'ok',
+                jatuhLalai
+                  ? 'Tiada kata kunci padan — jatuh ke rute lalai: PERANCANGAN'
+                  : 'Rute dijumpai — agen L2: ' + r.agen],
+    ['',        'Model L3: ' + r.model + '  ·  Kunci L4: ' + r.kunci],
+    ['',        'Anggaran kos: ' + r.kos]
+  ];
+  if (qty){
+    var tot = calcCost(kind, qty);
+    if (tot !== null){
+      steps.push(['hi', 'Kos berjumlah: ~RM' + tot.toFixed(2) + '  (' + qty + ' unit × RM' +
+        EMPIRICAL[kind] + ')']);
+    } else {
+      steps.push(['wr', 'Tiada kadar unit untuk jenis "' + kind +
+        '" — kuantiti ' + qty + ' hanya boleh didarab dengan julat anggaran di atas.']);
+    }
+  }
+
+  var i = 0;
+  (function next(){
+    if (i >= steps.length){ papar(task, kind, r, qty); return; }
+    logLine(steps[i][0], steps[i][1]);
+    i++;
+    setTimeout(next, 110);
+  })();
+}
+
+function papar(task, kind, r, qty){
+  var rows = [
+    ['Tugasan', task],
+    ['Jenis', '<span class="big">' + esc(kind.toUpperCase()) + '</span>'],
+    ['Agen (L2)', esc(r.agen)],
+    ['Model (L3)', esc(r.model)],
+    ['Kunci (L4)', esc(r.kunci)],
+    ['Anggaran kos', esc(r.kos)]
+  ];
+  if (qty){
+    var tot = calcCost(kind, qty);
+    rows.push(['Kuantiti', esc(String(qty))]);
+    rows.push(['Jumlah kos', tot !== null
+      ? '<span class="big">~RM' + tot.toFixed(2) + '</span>'
+      : '<span style="color:var(--warn)">Tiada kadar unit — guna julat anggaran</span>']);
+  }
+  rows.push(['Nota', esc(r.nota)]);
+  outEl.innerHTML = '<div class="kv">' + rows.map(function(x){
+    return '<div>' + x[0] + '</div><div>' + x[1] + '</div>';
+  }).join('') + '</div>';
+
+  runCount++;
+  cRun.textContent = String(runCount);
+  logLine('ok', 'Selesai. Rute "' + kind + '" dipilih.');
+}
+
+document.getElementById('go').addEventListener('click', jalankan);
+document.getElementById('q').addEventListener('keydown', function(e){
+  if (e.key === 'Enter') jalankan();
+});
+document.getElementById('qty').addEventListener('keydown', function(e){
+  if (e.key === 'Enter') jalankan();
+});
+
+/* =========================================================================
+   Penjana arahan DSH headless
+   ========================================================================= */
+document.getElementById('dsh-go').addEventListener('click', function(){
+  var t = document.getElementById('dsh-q').value.trim();
+  var pre = document.getElementById('dsh-out');
+  if (!t){ pre.style.display = 'none'; return; }
+  pre.textContent = 'dsh --profile headless "' + t.replace(/"/g,'\\"') + '"';
+  pre.style.display = 'block';
+});
+document.getElementById('dsh-q').addEventListener('keydown', function(e){
+  if (e.key === 'Enter') document.getElementById('dsh-go').click();
+});
+</script>
+</body>
+</html>

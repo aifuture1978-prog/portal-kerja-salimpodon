@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keperibadian Nabi sebagai Pemimpin &mdash; Sirah | Pendidikan Islam Tahun 5</title>
+<style>
+  :root{
+    --sky1:#f0e8e0; --sky2:#f9f5f0; --sky3:#f5ede4;
+    --grass1:#d4a878; --grass2:#5a3a1a; --grass3:#3a2410;
+    --paper:#fdfaf6; --ink:#2a1e14; --muted:#7a6b5a;
+    --gold:#b48a3a; --teal:#7a5a1a; --aqua:#f0e4d0;
+    --line:#e8dcc8;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);
+    font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:rtl}
+  .jf{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:ltr;unicode-bidi:isolate}
+
+  .skybg{position:fixed;inset:0;z-index:-1;
+    background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#f2ebde 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:#f0e4d0;top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:#f7e6c8;top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:#f5ede4;bottom:-140px;left:18%}
+
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(58,36,16,.16)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;
+    background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#5a3a1a;font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:#3a2410;letter-spacing:.4px;
+    text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:#7a6b5a;font-weight:600}
+
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;
+    box-shadow:0 3px 10px rgba(58,36,16,.07)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(58,36,16,.07)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--grass2);font-weight:800;
+    display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#fbf8f2;border:1.4px solid var(--line);
+    border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(140deg,var(--grass1),var(--grass2));box-shadow:0 2px 0 var(--grass3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--grass3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#fdf6ec;border:1.4px dashed var(--gold);border-radius:13px;
+    padding:10px 13px;font-size:12.5px;color:#3d2405;line-height:1.55}
+  .toc .note b{color:#3d2405}
+
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(58,36,16,.07);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;
+    display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;
+    box-shadow:0 2px 0 var(--grass3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+  h2 .mascot{flex:none;margin-left:auto;display:block}
+  .deko{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:14px 0 0}
+  .deko svg{display:block}
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes g18bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+    @keyframes g18drift{0%{transform:translateX(-9px)}100%{transform:translateX(9px)}}
+    @keyframes g18twinkle{0%,100%{opacity:.4}50%{opacity:1}}
+    h2 .mascot,.deko svg{animation:g18bob 2.6s ease-in-out infinite}
+    .deko svg:nth-child(2){animation-delay:.45s}
+    .deko svg:nth-child(3){animation-delay:.9s}
+    .anim-drift{animation:g18drift 8s ease-in-out infinite alternate}
+    .anim-twinkle{animation:g18twinkle 2.2s ease-in-out infinite}
+  }
+  @media print{
+    h2 .mascot,.deko svg,.anim-drift,.anim-twinkle{animation:none !important}
+  }
+
+  .nota{border-left:5px solid var(--gold);background:#fdf6ec;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#3d2405}
+  .nota li:last-child{margin-bottom:0}
+
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:linear-gradient(135deg,#faf7fc,#fdf6ec);border:1.5px solid var(--line);
+    border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#e8dcc8;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;
+    background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .scorebar .hint2{font-size:12px;color:var(--muted);font-weight:600}
+
+  .qcard{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:13px;
+    background:#fefcfa;transition:box-shadow .25s}
+  .qcard.done{box-shadow:0 3px 12px rgba(180,138,58,.18)}
+  .qhead{display:flex;gap:9px;align-items:flex-start;margin-bottom:11px}
+  .qn{background:var(--teal);color:#fff;min-width:26px;height:26px;border-radius:8px;display:inline-flex;
+    align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+  .qtext{font-weight:700;font-size:14.5px}
+  .opts{display:grid;grid-template-columns:1fr;gap:7px}
+  @media(min-width:640px){.opts{grid-template-columns:1fr 1fr 1fr}}
+  .opt{font-family:inherit;text-align:left;font-size:13.5px;font-weight:600;cursor:pointer;
+    background:#f0e8dc;border:2px solid #e8dcc8;border-radius:11px;padding:9px 12px;color:var(--ink);
+    transition:transform .12s,background .2s,border-color .2s;display:flex;gap:7px;align-items:flex-start}
+  .opt:hover:not(:disabled){transform:translateY(-2px);background:#fff;border-color:var(--teal)}
+  .opt:disabled{cursor:default}
+  .opt .k{font-weight:800;color:var(--teal);flex:none}
+  .opt.ok{background:#f0e4d0;border-color:var(--grass2);color:#3a2410}
+  .opt.ok .k{color:var(--grass3)}
+  .opt.bad{background:#efe7d8;border-color:#8a6a3a;color:#5a3a1a}
+  .opt.bad .k{color:#261008}
+  .opt.dim{opacity:.45}
+
+  .fb{display:none;margin-top:11px;border-radius:12px;padding:10px 13px;font-size:13.5px;
+    background:#faf7f0;border:1.5px dashed var(--grass2);align-items:flex-start;gap:11px}
+  .fb.show{display:flex}
+  .fb.wrong{background:#f5efe2;border-color:#8a6a3a}
+  .fb .face{flex:none;width:52px;height:52px}
+  .fb .txt b{color:var(--grass3)}
+  .fb.wrong .txt b{color:#261008}
+
+  .result{display:none;text-align:center;padding:20px;border-radius:18px;margin-top:6px;
+    background:linear-gradient(135deg,#faf7f0,#fdf6ec);border:2px solid var(--grass1)}
+  .result.show{display:block}
+  .result .big{font-size:30px;font-weight:800;color:var(--grass3);margin:6px 0}
+  .result .msg{font-size:14.5px;font-weight:600;margin-bottom:12px}
+  .stars{font-size:22px;letter-spacing:3px;margin-bottom:6px}
+  button.act{font-family:inherit;font-size:13.5px;font-weight:700;border-radius:11px;padding:10px 18px;
+    border:2px solid var(--grass2);background:#fff;color:var(--grass3);cursor:pointer;transition:background .2s}
+  button.act:hover{background:var(--grass1);color:#fff}
+  button.act.solid{background:var(--grass2);color:#fff}
+  button.act.solid:hover{background:var(--grass3)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#faf7f0;color:var(--grass3);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  td.c{text-align:center;white-space:nowrap;font-weight:700;color:var(--grass2)}
+  tr:nth-child(even) td{background:#fbf8f2}
+  tr.on td{background:#fdf6ec;font-weight:700}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-top:4px}
+
+  @media print{
+    body{background:#fff}
+    .skybg,.blob{display:none}
+    .wrap{max-width:100%;padding:0}
+    .scorebar{display:none}
+    section{box-shadow:none;page-break-inside:avoid;padding:14px 16px}
+    .toc{box-shadow:none;page-break-inside:avoid;break-inside:avoid}
+    h2,.hint{page-break-after:avoid;break-after:avoid}
+    #art-info{width:auto;height:923px;display:block;margin:0 auto}
+    table{font-size:11.6px}
+    th,td{padding:3.5px 8px}
+    .qcard{page-break-inside:avoid;padding:10px 13px;margin-bottom:8px}
+    .qhead .qtext{font-size:13px}
+    .opt{padding:6px 9px;font-size:11.5px;transform:none !important}
+    .fb{margin-top:7px;padding:7px 10px;font-size:11.5px}
+    .fb .face{width:40px;height:40px}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4;margin:12mm}
+</style>
+</head>
+<body>
+
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<!-- ===== Pustaka watak & prop (Ghibli 2D) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <g id="adam">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="116" width="13" height="34" rx="6" fill="#5a3a1a"/>
+    <rect x="57" y="116" width="13" height="34" rx="6" fill="#5a3a1a"/>
+    <ellipse cx="46" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l7 44 h-56 z" fill="#7fc4b8" stroke="#5a3a1a" stroke-width="2"/>
+    <path d="M36 82 q-13 13 -9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 82 q13 13 9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M29 40 q26-24 52 0 q1 5 -3 5 h-46 q-4 0 -3 -5 z" fill="#3f7a45" stroke="#2f5c33" stroke-width="1.8"/>
+    <path d="M39 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="46.5" r="1.9" fill="#fff"/><circle cx="68" cy="46.5" r="1.9" fill="#fff"/>
+    <path d="M55 56 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M49 63 q6 6.5 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+  <g id="nur">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="43" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <rect x="58" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <ellipse cx="48" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="63" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <path d="M33 78 q22-11 44 0 l12 46 h-68 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <path d="M36 84 q-13 12 -10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 84 q13 12 10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z" fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="51.5" r="1.9" fill="#fff"/><circle cx="67" cy="51.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+  <g id="adamDuduk">
+    <ellipse cx="55" cy="154" rx="35" ry="6" fill="#000" opacity=".08"/>
+    <path d="M20 152 q0-32 35-32 q35 0 35 32 z" fill="#e8e3d2" stroke="#cfc7b0" stroke-width="2"/>
+    <ellipse cx="42" cy="152" rx="12" ry="5" fill="#6b4f3a"/>
+    <ellipse cx="68" cy="152" rx="12" ry="5" fill="#6b4f3a"/>
+    <path d="M32 78 q23-11 46 0 l10 46 h-66 z" fill="#7fc4b8" stroke="#5a3a1a" stroke-width="2"/>
+    <path d="M38 88 q-6 26 4 42" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M72 88 q6 26 -4 42" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="32" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="61" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="50" y="68" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="52" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="52" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="48" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 48 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M29 42 q26-24 52 0 q1 5 -3 5 h-46 q-4 0 -3 -5 z" fill="#3f7a45" stroke="#2f5c33" stroke-width="1.8"/>
+    <path d="M39 42 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 42 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="53" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="53" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="50.5" r="1.9" fill="#fff"/><circle cx="68" cy="50.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 5 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="62" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="62" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+  <g id="nurDuduk">
+    <ellipse cx="55" cy="154" rx="35" ry="6" fill="#000" opacity=".08"/>
+    <path d="M20 152 q0-32 35-32 q35 0 35 32 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <ellipse cx="42" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="68" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <path d="M32 80 q23-11 46 0 l10 44 h-66 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <path d="M38 90 q-6 24 4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M72 90 q6 24 -4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="32" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="61" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <path d="M22 50 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z" fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="55" cy="54" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="53.5" r="1.9" fill="#fff"/><circle cx="67" cy="53.5" r="1.9" fill="#fff"/>
+    <path d="M55 62 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 69 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+  <g id="kepalaAdam">
+    <ellipse cx="35" cy="37" rx="26" ry="28" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M9 37 a26 28 0 0 1 52 0 q-8-18 -26-18 q-18 0 -26 18 z" fill="#5a3b28"/>
+    <path d="M21 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M39 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="26" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <ellipse cx="44" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <circle cx="27.8" cy="37.6" r="1.7" fill="#fff"/><circle cx="45.8" cy="37.6" r="1.7" fill="#fff"/>
+    <path d="M35 47 q-3 4 1 5" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M29 54 q6 6 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="17" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="53" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+  </g>
+  <g id="kepalaNur">
+    <path d="M4 40 q0-32 32-32 q32 0 32 32 q0 30 -11 32 q-6-24 -21-24 q-15 0 -21 24 q-11-2 -11-32 z" fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="36" cy="41" rx="22" ry="24" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M22 34 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M40 34 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="27" cy="43" rx="4.6" ry="6" fill="#3a2b22"/>
+    <ellipse cx="45" cy="43" rx="4.6" ry="6" fill="#3a2b22"/>
+    <circle cx="28.8" cy="40.6" r="1.7" fill="#fff"/><circle cx="46.8" cy="40.6" r="1.7" fill="#fff"/>
+    <path d="M36 50 q-3 4 1 5" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M31 57 q5 5.5 10 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="19" cy="52" rx="5.6" ry="3.6" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="53" cy="52" rx="5.6" ry="3.6" fill="#f2a2a2" opacity=".55"/>
+  </g>
+  <g id="faceYay">
+    <circle cx="30" cy="30" r="26" fill="#f0e4d0" stroke="#5a3a1a" stroke-width="2.5"/>
+    <ellipse cx="22" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="25.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="25.4" r="1.3" fill="#fff"/>
+    <path d="M20 38 q10 9 20 0" stroke="#3a2410" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="14" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <ellipse cx="46" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <path d="M30 2 l3 5 5 1 -4 4 1 5 -5-3 -5 3 1-5 -4-4 5-1 z" fill="#b48a3a"/>
+  </g>
+  <g id="faceOops">
+    <circle cx="30" cy="30" r="26" fill="#f5efe2" stroke="#8a6a3a" stroke-width="2.5"/>
+    <ellipse cx="22" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="26.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="26.4" r="1.3" fill="#fff"/>
+    <path d="M15 21 q7-5 13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M45 21 q-7-5 -13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M21 41 q9-7 18 0" stroke="#261008" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+    <ellipse cx="47" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+  </g>
+  <g id="awan">
+    <g fill="#ffffff">
+      <circle cx="20" cy="27" r="13"/><circle cx="39" cy="19" r="17"/>
+      <circle cx="59" cy="26" r="14"/><rect x="20" y="25" width="39" height="14" rx="7"/>
+    </g>
+    <path d="M8 33 q11 8 31 8 q20 0 31-8" stroke="#e8dcc8" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  </g>
+  <g id="palm">
+    <ellipse cx="40" cy="150" rx="24" ry="5" fill="#000" opacity=".07"/>
+    <path d="M36 150 q-5-58 3-98 l9 0 q-6 42 -3 98 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.3" stroke-linejoin="round">
+      <path d="M43 54 q-34-8 -43 11 q23-9 43-4 z"/>
+      <path d="M43 54 q34-8 43 11 q-23-9 -43-4 z"/>
+      <path d="M43 52 q-24-26 -42-25 q17 15 40 33 z"/>
+      <path d="M43 52 q24-26 42-25 q-17 15 -40 33 z"/>
+      <path d="M43 48 q-5-31 4-47 q9 16 4 47 z"/>
+    </g>
+    <circle cx="33" cy="62" r="4" fill="#b48a3a"/>
+    <circle cx="51" cy="62" r="4" fill="#b48a3a"/>
+  </g>
+  <g id="pokokBesar">
+    <ellipse cx="60" cy="148" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M54 148 v-54 h12 v54 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.4">
+      <ellipse cx="60" cy="50" rx="40" ry="30"/>
+      <ellipse cx="30" cy="70" rx="26" ry="21"/>
+      <ellipse cx="90" cy="70" rx="26" ry="21"/>
+      <ellipse cx="60" cy="86" rx="34" ry="20"/>
+    </g>
+    <g fill="#a9d383" opacity=".7">
+      <ellipse cx="46" cy="42" rx="18" ry="12"/><ellipse cx="82" cy="58" rx="13" ry="9"/>
+    </g>
+    <g fill="#b48a3a"><circle cx="48" cy="64" r="3"/><circle cx="72" cy="50" r="3"/><circle cx="64" cy="76" r="3"/></g>
+  </g>
+  <g id="semak">
+    <ellipse cx="34" cy="44" rx="30" ry="4" fill="#000" opacity=".06"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.3">
+      <circle cx="18" cy="32" r="15"/><circle cx="38" cy="24" r="18"/><circle cx="56" cy="33" r="14"/>
+    </g>
+    <g fill="#a9d383" opacity=".65"><circle cx="30" cy="20" r="7"/><circle cx="52" cy="28" r="5"/></g>
+  </g>
+  <g id="bungaSatu">
+    <path d="M0 24 v-13" stroke="#6d9c4a" stroke-width="1.6" stroke-linecap="round"/>
+    <g fill="#f2b8c6" stroke="#d98da0" stroke-width="1">
+      <circle cx="0" cy="4" r="3.6"/><circle cx="-4" cy="8" r="3.6"/>
+      <circle cx="4" cy="8" r="3.6"/><circle cx="0" cy="12" r="3.6"/>
+    </g>
+    <circle cx="0" cy="8" r="2.4" fill="#b48a3a"/>
+  </g>
+  <g id="bunga">
+    <use href="#bungaSatu" x="0" y="0"/><use href="#bungaSatu" x="16" y="-5"/><use href="#bungaSatu" x="31" y="2"/>
+  </g>
+  <g id="bintangBulan">
+    <path d="M24 4 a17 17 0 1 0 15 21 a13.2 13.2 0 1 1 -15-21 z" fill="#b48a3a"/>
+    <path d="M37 5 L39.8 13.6 L48 16.4 L39.8 19.2 L37 28 L34.2 19.2 L26 16.4 L34.2 13.6 Z" fill="#b48a3a"/>
+  </g>
+  <g id="bintang">
+    <path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="#b48a3a"/>
+  </g>
+  <g id="mahkota">
+    <path d="M4 36 L12 14 L20 30 L30 6 L40 30 L50 14 L58 36 Z" fill="#b48a3a" stroke="#5a3a1a" stroke-width="2" stroke-linejoin="round"/>
+    <rect x="4" y="36" width="54" height="10" rx="3" fill="#d4a878" stroke="#5a3a1a" stroke-width="1.8"/>
+    <circle cx="30" cy="6" r="4" fill="#c9707f" stroke="#5a3a1a" stroke-width="1.4"/>
+    <circle cx="12" cy="14" r="3" fill="#7fc4b8" stroke="#5a3a1a" stroke-width="1.2"/>
+    <circle cx="50" cy="14" r="3" fill="#7fc4b8" stroke="#5a3a1a" stroke-width="1.2"/>
+    <circle cx="20" cy="30" r="2.6" fill="#fff6cf" stroke="#5a3a1a" stroke-width="1"/>
+    <circle cx="40" cy="30" r="2.6" fill="#fff6cf" stroke="#5a3a1a" stroke-width="1"/>
+  </g>
+  <g id="skrol">
+    <ellipse cx="42" cy="66" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M8 20 q34-8 68 0 v44 q-34 8 -68 0 z" fill="#fdf6ec" stroke="#cbb99a" stroke-width="1.6"/>
+    <rect x="4" y="18" width="10" height="48" rx="5" fill="#b48a3a" stroke="#5a3a1a" stroke-width="1.4"/>
+    <rect x="70" y="18" width="10" height="48" rx="5" fill="#b48a3a" stroke="#5a3a1a" stroke-width="1.4"/>
+    <g stroke="#cbb99a" stroke-width="1.2" opacity=".85">
+      <path d="M20 30 h44"/><path d="M20 38 h44"/><path d="M20 46 h44"/><path d="M20 54 h30"/>
+    </g>
+  </g>
+  <g id="neraca">
+    <rect x="38" y="64" width="6" height="14" fill="#b48a3a" stroke="#5a3a1a" stroke-width="1.4"/>
+    <rect x="30" y="78" width="22" height="6" rx="3" fill="#b48a3a" stroke="#5a3a1a" stroke-width="1.4"/>
+    <path d="M41 64 v-44" stroke="#b48a3a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M4 20 h74" stroke="#b48a3a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M4 20 q-10 16 0 28 q10 -12 0 -28 z" fill="none" stroke="#5a3a1a" stroke-width="1.6"/>
+    <path d="M74 20 q-10 16 0 28 q10 -12 0 -28 z" fill="none" stroke="#5a3a1a" stroke-width="1.6"/>
+    <path d="M4 20 q10 -10 16 0" fill="#fdf6ec" stroke="#5a3a1a" stroke-width="1.6"/>
+    <path d="M74 20 q-10 -10 -16 0" fill="#fdf6ec" stroke="#5a3a1a" stroke-width="1.6"/>
+    <circle cx="41" cy="14" r="5" fill="#b48a3a" stroke="#5a3a1a" stroke-width="1.6"/>
+  </g>
+  <g id="jantung">
+    <path d="M30 56 C6 38 6 14 18 10 C24 8 30 14 30 20 C30 14 36 8 42 10 C54 14 54 38 30 56 z" fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <path d="M30 30 q-6-8 -12-4" stroke="#fff6cf" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".8"/>
+  </g>
+  <g id="rehal">
+    <ellipse cx="40" cy="56" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M10 54 L34 24" stroke="#a87f5c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M70 54 L46 24" stroke="#a87f5c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M15 44 L65 44" stroke="#8a6544" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M6 24 L40 12 L74 24 L74 29 L40 17 L6 29 Z" fill="#fdf6ec" stroke="#cbb99a" stroke-width="1.5"/>
+    <path d="M40 12 v5" stroke="#cbb99a" stroke-width="1.5"/>
+    <g stroke="#cbb99a" stroke-width="1" opacity=".8">
+      <path d="M13 24 h19"/><path d="M13 28 h19"/><path d="M48 24 h19"/><path d="M48 28 h19"/>
+    </g>
+  </g>
+  <g id="masjid">
+    <ellipse cx="110" cy="188" rx="98" ry="7" fill="#000" opacity=".07"/>
+    <rect x="18" y="78" width="21" height="110" fill="#fdf6ec" stroke="#e8dcc8" stroke-width="2"/>
+    <path d="M18 78 q10.5-18 21 0 z" fill="#b48a3a" stroke="#5a3a1a" stroke-width="1.6"/>
+    <rect x="22" y="98" width="13" height="7" rx="2.5" fill="#7a5a1a"/>
+    <circle cx="28.5" cy="71" r="3.2" fill="#b48a3a"/>
+    <rect x="181" y="78" width="21" height="110" fill="#fdf6ec" stroke="#e8dcc8" stroke-width="2"/>
+    <path d="M181 78 q10.5-18 21 0 z" fill="#b48a3a" stroke="#5a3a1a" stroke-width="1.6"/>
+    <rect x="185" y="98" width="13" height="7" rx="2.5" fill="#7a5a1a"/>
+    <circle cx="191.5" cy="71" r="3.2" fill="#b48a3a"/>
+    <rect x="46" y="100" width="128" height="88" fill="#fdf6ec" stroke="#e8dcc8" stroke-width="2"/>
+    <path d="M44 102 C44 62 76 44 110 28 C144 44 176 62 176 102 Z" fill="#b48a3a" stroke="#5a3a1a" stroke-width="2"/>
+    <path d="M110 28 C144 44 176 62 176 102 L150 102 C150 74 132 54 110 42 Z" fill="#7a5a1a" opacity=".5"/>
+    <path d="M110 28 v-13" stroke="#b48a3a" stroke-width="2.4"/>
+    <path d="M103 9 a7.4 7.4 0 1 0 9 8.4 a5.9 5.9 0 1 1 -9-8.4 z" fill="#b48a3a"/>
+    <path d="M88 188 v-40 q22-27 44 0 v40 z" fill="#7a5a1a" stroke="#5c3808" stroke-width="1.8"/>
+    <path d="M110 148 v40" stroke="#5c3808" stroke-width="1.2" opacity=".55"/>
+    <path d="M58 158 v-20 q10-13 20 0 v20 z" fill="#e8dcc8" stroke="#b48a3a" stroke-width="1.4"/>
+    <path d="M142 158 v-20 q10-13 20 0 v20 z" fill="#e8dcc8" stroke="#b48a3a" stroke-width="1.4"/>
+    <path d="M46 116 h128" stroke="#b48a3a" stroke-width="2" opacity=".55"/>
+  </g>
+  <g id="papanNotis">
+    <rect x="0" y="0" width="150" height="104" rx="6" fill="#b98a5a" stroke="#8a6544" stroke-width="2.4"/>
+    <rect x="6" y="6" width="138" height="92" rx="4" fill="#e6dcc8" stroke="#a8825c" stroke-width="1.2"/>
+    <rect x="14" y="14" width="42" height="34" rx="2" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.1" transform="rotate(-4 35 31)"/>
+    <rect x="60" y="16" width="40" height="32" rx="2" fill="#fdf6ec" stroke="#cbb99a" stroke-width="1.1" transform="rotate(3 80 32)"/>
+    <rect x="104" y="14" width="34" height="36" rx="2" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.1"/>
+    <rect x="20" y="56" width="52" height="34" rx="2" fill="#e8f3ec" stroke="#cbb99a" stroke-width="1.1" transform="rotate(2 46 73)"/>
+    <rect x="80" y="58" width="56" height="32" rx="2" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.1"/>
+    <g stroke="#b9b09a" stroke-width="1.1" opacity=".85">
+      <path d="M18 22 h34"/><path d="M18 28 h34"/><path d="M18 34 h22"/>
+      <path d="M64 24 h32"/><path d="M64 30 h32"/><path d="M64 36 h20"/>
+      <path d="M108 22 h26"/><path d="M108 28 h26"/><path d="M108 34 h26"/><path d="M108 40 h16"/>
+      <path d="M24 64 h44"/><path d="M24 70 h44"/><path d="M24 76 h30"/>
+      <path d="M84 66 h48"/><path d="M84 72 h48"/><path d="M84 78 h32"/>
+    </g>
+    <g fill="#c9707f"><circle cx="35" cy="13" r="3"/><circle cx="80" cy="15" r="3"/><circle cx="121" cy="13" r="3"/>
+      <circle cx="46" cy="55" r="3"/><circle cx="108" cy="57" r="3"/></g>
+  </g>
+  <g id="tongkat">
+    <rect x="28" y="4" width="5" height="76" rx="2.5" fill="#a87f5c" stroke="#8a6544" stroke-width="1.4"/>
+    <circle cx="30" cy="6" r="6" fill="#b48a3a" stroke="#5a3a1a" stroke-width="1.6"/>
+    <circle cx="30" cy="6" r="2.4" fill="#fff6cf"/>
+    <rect x="24" y="78" width="13" height="6" rx="3" fill="#8a6544" stroke="#5a3a1a" stroke-width="1.2"/>
+  </g>
+  <g id="burung">
+    <path d="M6 16 q-8-7 -5-13 q6 4 8 9 z" fill="#7ab6d8" stroke="#4a8cb0" stroke-width="1.2" stroke-linejoin="round"/>
+    <ellipse cx="20" cy="19" rx="13" ry="10" fill="#8ec6e6" stroke="#4a8cb0" stroke-width="1.4"/>
+    <circle cx="31" cy="12" r="8" fill="#9fd2ec" stroke="#4a8cb0" stroke-width="1.4"/>
+    <path d="M38 11 l7 3 -7 3 z" fill="#b48a3a"/>
+    <circle cx="32" cy="10.5" r="1.8" fill="#2f3b45"/>
+    <path d="M15 26 q5 3 10 0" stroke="#4a8cb0" stroke-width="1.2" fill="none" opacity=".6"/>
+  </g>
+  <g id="kambing">
+    <ellipse cx="42" cy="56" rx="28" ry="4" fill="#000" opacity=".08"/>
+    <path d="M20 30 q22-16 44 0 q4 14 -3 22 h-38 q-7-8 -3-22 z" fill="#f4eee0" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M22 44 q20 5 40 0" stroke="#cbb99a" stroke-width="1.2" fill="none" opacity=".6"/>
+    <path d="M64 26 q10-4 8-12" stroke="#cbb99a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <circle cx="64" cy="26" r="10.5" fill="#f8f3e6" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M58 15 q-7-8 0-13" stroke="#cbb99a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M70 15 q7-8 0-13" stroke="#cbb99a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="67" cy="25" rx="1.9" ry="2.4" fill="#3a2b22"/>
+    <ellipse cx="73" cy="30" rx="2.6" ry="1.8" fill="#e0b9a8"/>
+    <rect x="24" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <rect x="34" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <rect x="50" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <rect x="58" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <path d="M16 30 q-7-6 -3-13" stroke="#cbb99a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  </g>
+</defs>
+</svg>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <svg viewBox="0 0 940 300" role="img" aria-label="Nabi Muhammad SAW sebagai pemimpin duduk bermusyawarah dengan sahabat">
+    <defs>
+      <linearGradient id="ghHero" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9f5f0"/><stop offset="1" stop-color="#f0e8e0"/>
+      </linearGradient>
+      <radialGradient id="ghSun" cx=".5" cy=".3" r=".6">
+        <stop offset="0" stop-color="#fff6cf" stop-opacity=".7"/><stop offset="1" stop-color="#fff6cf" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect x="0" y="0" width="940" height="300" fill="url(#ghHero)"/>
+    <rect x="0" y="0" width="940" height="300" fill="url(#ghSun)"/>
+    <circle cx="470" cy="70" r="42" fill="#fff6cf" opacity=".7"/>
+    <circle cx="470" cy="70" r="28" fill="#f7e6c8" opacity=".8"/>
+    <g class="anim-drift"><g transform="translate(120,40) scale(.85)"><use href="#awan"/></g></g>
+    <g class="anim-drift" style="animation-delay:1.2s"><g transform="translate(680,56) scale(.7)"><use href="#awan"/></g></g>
+    <g class="anim-drift" style="animation-delay:2.1s"><g transform="translate(440,22) scale(.55)"><use href="#awan"/></g></g>
+    <path d="M0 200 Q220 170 470 192 Q720 212 940 188 V300 H0 Z" fill="#d4a878" opacity=".35"/>
+    <path d="M0 232 Q235 214 470 234 Q705 254 940 226 V300 H0 Z" fill="#c9a06a" opacity=".55"/>
+    <path d="M0 256 Q235 244 470 258 Q705 272 940 248 V300 H0 Z" fill="#b48a3a" opacity=".45"/>
+    <g transform="translate(36,96) scale(.9)"><use href="#palm"/></g>
+    <g transform="translate(836,100) scale(.85)"><use href="#palm"/></g>
+    <g transform="translate(760,140) scale(.6)"><use href="#pokokBesar"/></g>
+    <g transform="translate(30,232) scale(.6)"><use href="#semak"/></g>
+    <g transform="translate(180,250) scale(.55)"><use href="#bunga"/></g>
+    <g transform="translate(720,250) scale(.55)"><use href="#bunga"/></g>
+    <g transform="translate(860,236) scale(.6)"><use href="#semak"/></g>
+    <ellipse cx="470" cy="270" rx="220" ry="40" fill="#f0e4d0" stroke="#e8dcc8" stroke-width="2.2"/>
+    <ellipse cx="470" cy="270" rx="180" ry="30" fill="none" stroke="#e8dcc8" stroke-width="1.4"/>
+    <g transform="translate(330,196) scale(.5)"><use href="#adamDuduk"/></g>
+    <g transform="translate(560,196) scale(.5)"><use href="#nurDuduk"/></g>
+    <g transform="translate(410,210) scale(.5)"><use href="#adamDuduk"/></g>
+    <g transform="translate(480,210) scale(.5)"><use href="#nurDuduk"/></g>
+    <g transform="translate(440,150) scale(.62)">
+      <ellipse cx="55" cy="158" rx="40" ry="7" fill="#000" opacity=".1"/>
+      <path d="M16 156 q0-36 39-36 q39 0 39 36 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+      <ellipse cx="42" cy="156" rx="13" ry="5.5" fill="#6b4f3a"/>
+      <ellipse cx="68" cy="156" rx="13" ry="5.5" fill="#6b4f3a"/>
+      <path d="M28 80 q27-13 54 0 l14 76 h-82 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+      <path d="M30 90 q-10 14 -5 30 q10 3 14 -8 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+      <path d="M80 90 q10 14 5 30 q-10 3 -14 -8 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+      <path d="M37 96 q12 8 14 24" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M73 96 q-12 8 -14 24" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <rect x="38" y="118" width="34" height="24" rx="3" fill="#b48a3a" stroke="#5a3a1a" stroke-width="1.6"/>
+      <rect x="41" y="121" width="28" height="18" rx="2" fill="#fdf6ec"/>
+      <rect x="50" y="72" width="10" height="13" fill="#eec6a6"/>
+      <ellipse cx="27" cy="54" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+      <ellipse cx="83" cy="54" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+      <ellipse cx="55" cy="50" rx="27" ry="29" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+      <path d="M28 50 a27 29 0 0 1 54 0 q-8-18 -27-18 q-19 0 -27 18 z" fill="#4a3526"/>
+      <path d="M33 64 q22 22 44 0 q-3 24 -22 24 q-19 0 -22-24 z" fill="#5a3b28"/>
+      <path d="M29 44 q26-24 52 0 q1 5 -3 5 h-46 q-4 0 -3 -5 z" fill="#3f7a45" stroke="#2f5c33" stroke-width="1.8"/>
+      <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <ellipse cx="45" cy="55" rx="5" ry="6.5" fill="#3a2b22"/>
+      <ellipse cx="65" cy="55" rx="5" ry="6.5" fill="#3a2b22"/>
+      <circle cx="47" cy="52.5" r="1.9" fill="#fff"/><circle cx="67" cy="52.5" r="1.9" fill="#fff"/>
+      <path d="M55 62 q-3 3.6 1 4.6" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+      <path d="M50 70 q5 5 10 0" stroke="#b5714f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(230,60) scale(.55)"><use href="#burung"/></g>
+    <g transform="translate(700,80) scale(.5)"><use href="#burung"/></g>
+    <g class="anim-twinkle"><g transform="translate(40,30) scale(.5)"><use href="#bintang"/></g></g>
+    <g class="anim-twinkle" style="animation-delay:.8s"><g transform="translate(880,36) scale(.45)"><use href="#bintang"/></g></g>
+  </svg>
+  <div class="hero-txt">
+    <div class="kick">Pendidikan Islam &bull; Tahun 5 &bull; Bidang Sirah</div>
+    <h1>Keperibadian Nabi sebagai Pemimpin</h1>
+    <div class="sub">Sirah &bull; 6 Ciri Kepimpinan &bull; Teladan untuk Semua</div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="chip"><div class="lbl">Bidang</div><div class="val">Sirah</div></div>
+  <div class="chip"><div class="lbl">Standard Kandungan (SK)</div><div class="val">Menghuraikan ciri keperibadian Nabi Muhammad SAW sebagai <b>pemimpin</b> dan mengamalkannya</div></div>
+  <div class="chip"><div class="lbl">Standard Pembelajaran (SP)</div><div class="val">5.3.1 &ndash; 5.3.5</div></div>
+  <div class="chip"><div class="lbl">Sumber</div><div class="val">DSKP PI T5 (ms. 33) &bull; Buku Teks PI T5 SK (ms. 150&ndash;157)</div></div>
+</div>
+
+<div class="toc">
+  <div class="ttl">Kandungan &amp; Panduan Penggunaan</div>
+  <div class="grid">
+    <div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">6 ciri kepimpinan Nabi dengan ilustrasi Ghibli</div></div></div>
+    <div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">Ciri, sirah, dalil, kepentingan &amp; amalan</div></div></div>
+    <div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">10 poin ringkasan untuk rujukan pantas</div></div></div>
+    <div class="it"><div class="n">4</div><div><div class="t">Diagram Alir</div><div class="d">Langkah mengamalkan ciri kepimpinan Nabi</div></div></div>
+    <div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan dengan maklum balas segera</div></div></div>
+    <div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Senarai 24 Standard Kandungan PI Tahun 5</div></div></div>
+  </div>
+  <div class="note"><b>Cara guna:</b> Buka fail ini dalam pelayar web. Pada kuiz, klik pilihan jawapan untuk maklum balas segera dan skor automatik. Tekan butang <b>Cetak / Simpan PDF</b> untuk versi kertas &mdash; semua jawapan akan dipaparkan secara automatik supaya boleh dijadikan lembaran kerja.</div>
+</div>
+
+<!-- ===== 1. INFOGRAFIK ===== -->
+<section>
+  <h2><span class="num">1</span> Infografik<svg class="mascot" width="26" height="27" viewBox="0 0 70 74" aria-hidden="true"><use href="#kepalaAdam"/></svg></h2>
+  <p class="hint">6 ciri kepimpinan Nabi Muhammad SAW &rarr; musyawarah, adil, pemaaf, berjiwa besar, tegas &amp; tawadduk.</p>
+
+  <svg class="art" id="art-info" viewBox="0 0 820 1150" role="img" aria-label="Infografik 6 ciri kepimpinan Nabi Muhammad SAW">
+    <defs>
+      <linearGradient id="gh18h" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#5a3a1a"/><stop offset="1" stop-color="#3a2410"/>
+      </linearGradient>
+      <linearGradient id="gd18h" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#fdf6ec"/><stop offset="1" stop-color="#f0e4d0"/>
+      </linearGradient>
+    </defs>
+
+    <!-- KEPALA -->
+    <rect x="0" y="0" width="820" height="140" rx="16" fill="url(#gh18h)"/>
+    <g fill="#ffffff" opacity=".14"><circle cx="70" cy="30" r="26"/><circle cx="750" cy="108" r="30"/></g>
+    <g fill="#fff9e6" opacity=".85">
+      <path d="M150 30 L152.6 38 L160 40.6 L152.6 43.2 L150 51 L147.4 43.2 L140 40.6 L147.4 38 Z"/>
+      <path d="M672 34 L674.2 41 L681 43.2 L674.2 45.4 L672 52 L669.8 45.4 L663 43.2 L669.8 41 Z"/>
+      <circle cx="196" cy="88" r="2.6"/><circle cx="628" cy="102" r="2.2"/><circle cx="100" cy="102" r="2"/>
+    </g>
+    <g transform="translate(24,2) scale(.56)"><use href="#mahkota"/></g>
+    <g transform="translate(736,4) scale(.5)"><use href="#skrol"/></g>
+    <text x="410" y="60" text-anchor="middle" font-family="Trebuchet MS" font-size="25" font-weight="700" fill="#ffffff">KEPERIBADIAN NABI SEBAGAI PEMIMPIN</text>
+    <text x="410" y="92" text-anchor="middle" font-family="Trebuchet MS" font-size="18" font-weight="700" fill="#ffffff">6 CIRI KEPEMIMPINAN RASULULLAH SAW</text>
+    <rect x="284" y="106" width="252" height="24" rx="12" fill="#ffffff" opacity=".24"/>
+    <text x="410" y="123" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.6">BIDANG SIRAH &bull; SK 5.3</text>
+
+    <!-- DALIL PUCUK -->
+    <rect x="40" y="156" width="740" height="150" rx="14" fill="url(#gd18h)" stroke="#5a3a1a" stroke-width="1.6"/>
+    <rect x="40" y="156" width="740" height="30" rx="14" fill="#3a2410"/>
+    <rect x="40" y="178" width="740" height="8" fill="#3a2410"/>
+    <text x="410" y="177" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.4">DALIL KEPEMIMPINAN NABI</text>
+
+    <rect x="66" y="196" width="378" height="104" rx="12" fill="#ffffff" stroke="#b48a3a" stroke-width="1.6"/>
+    <text x="80" y="216" font-family="Trebuchet MS" font-size="12.5" font-weight="700" fill="#7a5a1a">AL-QURAN &mdash; ALI IMRAN 3:159</text>
+    <text x="255" y="246" text-anchor="middle" class="arab" font-family="Scheherazade New" font-size="21" fill="#2a1e14">فَبِمَا رَحْمَةٍۢ مِّنَ ٱللَّهِ لِنتَ لَهُمْ ۖ وَلَوْ كُنتَ فَظًّا غَلِيظَ ٱلْقَلْبِ لَٱنفَضُّوا۟ مِنْ حَوْلِكَ</text>
+    <text x="80" y="272" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">&ldquo;Maka disebabkan rahmat Allah engkau berlemah-lembut dgn mereka.</text>
+    <text x="80" y="287" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">Dan sekiranya engkau bersifat <tspan font-weight="700">kasar dan berhati keras</tspan>, nescaya mereka menjauhkan diri.&rdquo;</text>
+    <text x="80" y="300" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#7a5a1a">&rarr; pemaaf &amp; bermusyawarah</text>
+
+    <rect x="454" y="196" width="326" height="104" rx="12" fill="#ffffff" stroke="#7a5a1a" stroke-width="1.6"/>
+    <text x="468" y="216" font-family="Trebuchet MS" font-size="12.5" font-weight="700" fill="#5a3a1a">HADIS &mdash; RIWAYAT AL-BUKHARI &amp; MUSLIM</text>
+    <text x="617" y="246" text-anchor="middle" class="arab" font-family="Scheherazade New" font-size="19" fill="#2a1e14">كُلُّكُمْ رَاعٍ، وَكُلُّ رَاعٍ مَسْؤُولٌ عَنْ رَعِيَّتِهِ</text>
+    <text x="468" y="272" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">&ldquo;Setiap kamu adalah <tspan font-weight="700">pemimpin</tspan>, dan setiap pemimpin</text>
+    <text x="468" y="287" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">akan <tspan font-weight="700">ditanya</tspan> tentang kepimpinannya.&rdquo;</text>
+    <text x="468" y="300" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#5a3a1a">&rarr; tanggungjawab semua</text>
+
+    <!-- CIRI 1: BERMUSYAWARAH -->
+    <rect x="40" y="318" width="370" height="200" rx="14" fill="#fefcfa" stroke="#b48a3a" stroke-width="1.6"/>
+    <rect x="40" y="318" width="370" height="34" rx="14" fill="#b48a3a"/>
+    <rect x="40" y="340" width="370" height="12" fill="#b48a3a"/>
+    <circle cx="64" cy="335" r="13" fill="#fff"/>
+    <text x="64" y="340" text-anchor="middle" font-family="Trebuchet MS" font-size="15" font-weight="700" fill="#b48a3a">1</text>
+    <text x="86" y="340" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">BERMUSYAWARAH</text>
+    <text x="396" y="340" text-anchor="end" font-family="Trebuchet MS" font-size="10.5" font-weight="700" fill="#fff6cf">SP 5.3.1</text>
+    <g transform="translate(60,362) scale(.42)"><use href="#papanNotis"/></g>
+    <g transform="translate(236,372) scale(.5)"><use href="#adamDuduk"/></g>
+    <g transform="translate(304,372) scale(.5)"><use href="#nurDuduk"/></g>
+    <text x="56" y="490" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">Nabi <tspan font-weight="700">berbincang</tspan> dgn sahabat dalam urusan</text>
+    <text x="56" y="506" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">penting &mdash; Perang Badar, Uhud &amp; Hudaibiyah.</text>
+
+    <!-- CIRI 2: ADIL -->
+    <rect x="410" y="318" width="370" height="200" rx="14" fill="#fefcfa" stroke="#7a5a1a" stroke-width="1.6"/>
+    <rect x="410" y="318" width="370" height="34" rx="14" fill="#7a5a1a"/>
+    <rect x="410" y="340" width="370" height="12" fill="#7a5a1a"/>
+    <circle cx="434" cy="335" r="13" fill="#fff"/>
+    <text x="434" y="340" text-anchor="middle" font-family="Trebuchet MS" font-size="15" font-weight="700" fill="#7a5a1a">2</text>
+    <text x="456" y="340" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">ADIL</text>
+    <text x="766" y="340" text-anchor="end" font-family="Trebuchet MS" font-size="10.5" font-weight="700" fill="#fff6cf">SP 5.3.3</text>
+    <g transform="translate(540,360) scale(.7)"><use href="#neraca"/></g>
+    <text x="426" y="490" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">Nabi <tspan font-weight="700">sama rata</tspan> tanpa pilih kasih &mdash;</text>
+    <text x="426" y="506" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">kaya atau miskin, arab atau bukan arab.</text>
+
+    <!-- CIRI 3: PEMAAF -->
+    <rect x="40" y="528" width="370" height="200" rx="14" fill="#fefcfa" stroke="#b48a3a" stroke-width="1.6"/>
+    <rect x="40" y="528" width="370" height="34" rx="14" fill="#b48a3a"/>
+    <rect x="40" y="550" width="370" height="12" fill="#b48a3a"/>
+    <circle cx="64" cy="545" r="13" fill="#fff"/>
+    <text x="64" y="550" text-anchor="middle" font-family="Trebuchet MS" font-size="15" font-weight="700" fill="#b48a3a">3</text>
+    <text x="86" y="550" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">PEMAAF</text>
+    <text x="396" y="550" text-anchor="end" font-family="Trebuchet MS" font-size="10.5" font-weight="700" fill="#fff6cf">SP 5.3.2</text>
+    <g transform="translate(150,560) scale(.7)"><use href="#jantung"/></g>
+    <g transform="translate(260,572) scale(.45)"><use href="#adam"/></g>
+    <text x="56" y="700" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">Pembebasan Makkah: <tspan font-weight="700">&ldquo;Pergilah, kamu bebas.&rdquo;</tspan></text>
+    <text x="56" y="716" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">Nabi memaafkan musuh sekalipun.</text>
+
+    <!-- CIRI 4: BERJIWA BESAR -->
+    <rect x="410" y="528" width="370" height="200" rx="14" fill="#fefcfa" stroke="#7a5a1a" stroke-width="1.6"/>
+    <rect x="410" y="528" width="370" height="34" rx="14" fill="#7a5a1a"/>
+    <rect x="410" y="550" width="370" height="12" fill="#7a5a1a"/>
+    <circle cx="434" cy="545" r="13" fill="#fff"/>
+    <text x="434" y="550" text-anchor="middle" font-family="Trebuchet MS" font-size="15" font-weight="700" fill="#7a5a1a">4</text>
+    <text x="456" y="550" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">BERJIWA BESAR</text>
+    <text x="766" y="550" text-anchor="end" font-family="Trebuchet MS" font-size="10.5" font-weight="700" fill="#fff6cf">SP 5.3.3</text>
+    <g transform="translate(560,566) scale(.6)"><use href="#mahkota"/></g>
+    <g transform="translate(648,572) scale(.45)"><use href="#nur"/></g>
+    <text x="426" y="700" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">Tidak berdendam &mdash; <tspan font-weight="700">menerima syarat Hudaibiyah</tspan></text>
+    <text x="426" y="716" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">yg nampak tidak menguntungkan demi damai.</text>
+
+    <!-- CIRI 5: TEGAS -->
+    <rect x="40" y="738" width="370" height="200" rx="14" fill="#fefcfa" stroke="#b48a3a" stroke-width="1.6"/>
+    <rect x="40" y="738" width="370" height="34" rx="14" fill="#b48a3a"/>
+    <rect x="40" y="760" width="370" height="12" fill="#b48a3a"/>
+    <circle cx="64" cy="755" r="13" fill="#fff"/>
+    <text x="64" y="760" text-anchor="middle" font-family="Trebuchet MS" font-size="15" font-weight="700" fill="#b48a3a">5</text>
+    <text x="86" y="760" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">TEGAS</text>
+    <text x="396" y="760" text-anchor="end" font-family="Trebuchet MS" font-size="10.5" font-weight="700" fill="#fff6cf">SP 5.3.3</text>
+    <g transform="translate(150,770) scale(.7)"><use href="#tongkat"/></g>
+    <g transform="translate(258,776) scale(.45)"><use href="#adam"/></g>
+    <text x="56" y="910" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">Tegas dgn <tspan font-weight="700">kebenaran</tspan> &mdash; tidak</text>
+    <text x="56" y="926" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">berkompromi dgn batil &amp; maksiat.</text>
+
+    <!-- CIRI 6: TAWADDUK -->
+    <rect x="410" y="738" width="370" height="200" rx="14" fill="#fefcfa" stroke="#7a5a1a" stroke-width="1.6"/>
+    <rect x="410" y="738" width="370" height="34" rx="14" fill="#7a5a1a"/>
+    <rect x="410" y="760" width="370" height="12" fill="#7a5a1a"/>
+    <circle cx="434" cy="755" r="13" fill="#fff"/>
+    <text x="434" y="760" text-anchor="middle" font-family="Trebuchet MS" font-size="15" font-weight="700" fill="#7a5a1a">6</text>
+    <text x="456" y="760" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">TAWADDUK</text>
+    <text x="766" y="760" text-anchor="end" font-family="Trebuchet MS" font-size="10.5" font-weight="700" fill="#fff6cf">SP 5.3.5</text>
+    <g transform="translate(540,770) scale(.55)"><use href="#kambing"/></g>
+    <g transform="translate(644,776) scale(.45)"><use href="#nur"/></g>
+    <text x="426" y="910" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">Nabi <tspan font-weight="700">mengikat keldai, menampal baju</tspan>,</text>
+    <text x="426" y="926" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">membantu sahabat &amp; jamah jamaah.</text>
+
+    <!-- SIRAH KETIGA -->
+    <rect x="40" y="948" width="740" height="186" rx="14" fill="#f0e4d0" stroke="#e8dcc8" stroke-width="1.6"/>
+    <path d="M40 962 a14 14 0 0 1 14-14 h712 a14 14 0 0 1 14 14 v30 h-740 z" fill="#5a3a1a"/>
+    <circle cx="66" cy="976" r="13" fill="#fff"/>
+    <text x="66" y="981" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#5a3a1a">S</text>
+    <text x="88" y="981" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">SIRAH NABI SEBAGAI PEMIMPIN</text>
+    <text x="764" y="981" text-anchor="end" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#f0e4d0">SP 5.3.2</text>
+
+    <rect x="56" y="1004" width="232" height="120" rx="11" fill="#fff" stroke="#b48a3a" stroke-width="1.4"/>
+    <text x="172" y="1024" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" font-weight="700" fill="#7a5a1a">PEMIMPIN MADINAH</text>
+    <g transform="translate(108,1030) scale(.32)"><use href="#masjid"/></g>
+    <text x="70" y="1112" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14">Nabi sbg <tspan font-weight="700">ketua negara, hakim,</tspan></text>
+    <text x="70" y="1124" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14"><tspan font-weight="700">panglima tentera &amp; guru.</tspan></text>
+
+    <rect x="294" y="1004" width="232" height="120" rx="11" fill="#fff" stroke="#7a5a1a" stroke-width="1.4"/>
+    <text x="410" y="1024" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" font-weight="700" fill="#5a3a1a">PERJANJIAN HUDAIBIYAH</text>
+    <text x="410" y="1042" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#7a5a1a">6H / 628M</text>
+    <g transform="translate(348,1046) scale(.5)"><use href="#skrol"/></g>
+    <text x="308" y="1112" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14">Nabi <tspan font-weight="700">menerima syarat</tspan> yg</text>
+    <text x="308" y="1124" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14">tidak menguntungkan demi <tspan font-weight="700">damai</tspan>.</text>
+
+    <rect x="532" y="1004" width="232" height="120" rx="11" fill="#fff" stroke="#b48a3a" stroke-width="1.4"/>
+    <text x="648" y="1024" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" font-weight="700" fill="#7a5a1a">PEMBEBASAN MAKKAH</text>
+    <text x="648" y="1042" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#7a5a1a">8H / 630M</text>
+    <g transform="translate(596,1044) scale(.42)"><use href="#mahkota"/></g>
+    <g transform="translate(676,1046) scale(.34)"><use href="#neraca"/></g>
+    <text x="546" y="1112" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14">Nabi <tspan font-weight="700">memaafkan</tspan> penduduk</text>
+    <text x="546" y="1124" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14">Makkah: &ldquo;<tspan font-weight="700">Pergilah, kamu bebas.</tspan>&rdquo;</text>
+  </svg>
+
+  <div class="deko">
+    <svg width="44" height="40" viewBox="0 0 66 60"><use href="#bunga"/></svg>
+    <svg width="46" height="40" viewBox="0 0 70 74"><use href="#kepalaAdam"/></svg>
+    <svg width="44" height="40" viewBox="0 0 66 60"><use href="#bunga"/></svg>
+  </div>
+</section>
+
+<!-- ===== 2. PETA MINDA ===== -->
+<section>
+  <h2><span class="num">2</span> Peta Minda<svg class="mascot" width="26" height="27" viewBox="0 0 70 74" aria-hidden="true"><use href="#kepalaNur"/></svg></h2>
+  <p class="hint">Nabi sebagai Pemimpin &rarr; 5 cabang: Ciri, Sirah, Dalil, Kepentingan &amp; Amalan.</p>
+
+  <svg class="art" id="art-minda" viewBox="0 0 820 730" role="img" aria-label="Peta minda Nabi sebagai pemimpin">
+    <defs>
+      <linearGradient id="g18c" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#d4a878"/><stop offset="1" stop-color="#5a3a1a"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="820" height="730" rx="16" fill="#fdfaf6" stroke="#e8dcc8" stroke-width="1.6"/>
+    <g fill="#f0e4d0" opacity=".5"><circle cx="60" cy="60" r="30"/><circle cx="760" cy="680" r="36"/></g>
+
+    <g stroke="#b48a3a" stroke-width="3" fill="none" stroke-linecap="round">
+      <path d="M410 230 C410 200 250 200 250 170"/>
+      <path d="M410 230 C410 200 570 200 570 170"/>
+      <path d="M410 330 C410 360 180 360 180 390"/>
+      <path d="M410 330 C410 360 640 360 640 390"/>
+      <path d="M410 330 C410 400 410 530 410 590"/>
+    </g>
+
+    <!-- PUSAT -->
+    <ellipse cx="410" cy="280" rx="130" ry="56" fill="url(#g18c)" stroke="#3a2410" stroke-width="2.4"/>
+    <g transform="translate(360,238) scale(.4)"><use href="#mahkota"/></g>
+    <text x="410" y="282" text-anchor="middle" font-family="Trebuchet MS" font-size="18" font-weight="700" fill="#ffffff">NABI SEBAGAI</text>
+    <text x="410" y="304" text-anchor="middle" font-family="Trebuchet MS" font-size="18" font-weight="700" fill="#fff6cf">PEMIMPIN</text>
+    <text x="410" y="320" text-anchor="middle" font-family="Trebuchet MS" font-size="10" font-weight="700" fill="#f0e4d0">SK 5.3</text>
+
+    <!-- CABANG 1: CIRI (atas kiri) -->
+    <rect x="100" y="110" width="300" height="60" rx="14" fill="#fff" stroke="#b48a3a" stroke-width="1.8"/>
+    <text x="116" y="135" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#7a5a1a">CIRI KEPEMIMPINAN</text>
+    <text x="116" y="156" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">musyawarah &bull; adil &bull; pemaaf</text>
+    <text x="116" y="170" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">berjiwa besar &bull; tegas &bull; tawadduk</text>
+
+    <!-- CABANG 2: SIRAH (atas kanan) -->
+    <rect x="420" y="110" width="300" height="60" rx="14" fill="#fff" stroke="#7a5a1a" stroke-width="1.8"/>
+    <text x="436" y="135" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#5a3a1a">SIRAH PEMIMPIN</text>
+    <text x="436" y="156" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">Pemimpin Madinah &bull; Hudaibiyah</text>
+    <text x="436" y="170" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">Pembebasan Makkah (8H)</text>
+
+    <!-- CABANG 3: DALIL (kiri bawah) -->
+    <rect x="40" y="390" width="280" height="80" rx="14" fill="#fff" stroke="#b48a3a" stroke-width="1.8"/>
+    <text x="56" y="414" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#7a5a1a">DALIL</text>
+    <text x="56" y="436" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">al-Quran &mdash; Ali Imran 3:159</text>
+    <text x="56" y="452" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">Hadis: &ldquo;Setiap kamu pemimpin&hellip;&rdquo;</text>
+    <text x="56" y="466" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">Riwayat al-Bukhari &amp; Muslim</text>
+
+    <!-- CABANG 4: KEPENTINGAN (kanan bawah) -->
+    <rect x="500" y="390" width="280" height="80" rx="14" fill="#fff" stroke="#7a5a1a" stroke-width="1.8"/>
+    <text x="516" y="414" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#5a3a1a">KEPENTINGAN</text>
+    <text x="516" y="436" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">Keharmonian masyarakat</text>
+    <text x="516" y="452" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">Keadilan untuk semua</text>
+    <text x="516" y="466" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">Kemajuan &amp; perpaduan umat</text>
+
+    <!-- CABANG 5: AMALAN (bawah tengah) -->
+    <rect x="270" y="590" width="280" height="110" rx="14" fill="#fff" stroke="#b48a3a" stroke-width="1.8"/>
+    <text x="410" y="614" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#7a5a1a">AMALAN HARIAN</text>
+    <text x="286" y="638" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">&bull; Sebagai <tspan font-weight="700">ketua kelas</tspan></text>
+    <text x="286" y="656" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">&bull; Sebagai <tspan font-weight="700">ketua rumah</tspan></text>
+    <text x="286" y="674" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">&bull; Sebagai <tspan font-weight="700">ketua kumpulan</tspan></text>
+    <text x="286" y="692" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">&bull; Bermusyawarah dgn rakan</text>
+    <g transform="translate(504,640) scale(.45)"><use href="#kepalaAdam"/></g>
+    <g transform="translate(504,690) scale(.45)"><use href="#kepalaNur"/></g>
+  </svg>
+</section>
+
+<!-- ===== 3. NOTA RINGKAS ===== -->
+<section>
+  <h2><span class="num">3</span> Nota Ringkas<svg class="mascot" width="26" height="27" viewBox="0 0 70 74" aria-hidden="true"><use href="#kepalaAdam"/></svg></h2>
+  <p class="hint">10 poin penting tentang keperibadian Nabi sebagai pemimpin.</p>
+
+  <svg class="art" id="art-nota" viewBox="0 0 820 600" role="img" aria-label="Nota ringkas 10 poin kepimpinan Nabi">
+    <defs>
+      <linearGradient id="gn18" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#d4a878" stop-opacity=".15"/><stop offset="1" stop-color="#f0e4d0" stop-opacity=".1"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="820" height="600" rx="16" fill="url(#gn18)" stroke="#e8dcc8" stroke-width="1.4"/>
+    <g transform="translate(700,20) scale(.5)"><use href="#mahkota"/></g>
+    <g transform="translate(20,540) scale(.5)"><use href="#skrol"/></g>
+
+    <text x="410" y="36" text-anchor="middle" font-family="Trebuchet MS" font-size="17" font-weight="700" fill="#5a3a1a">10 POIN KEPEMIMPINAN NABI MUHAMMAD SAW</text>
+    <line x1="280" y1="46" x2="540" y2="46" stroke="#b48a3a" stroke-width="2"/>
+
+    <!-- poin 1-2 -->
+    <rect x="36" y="60" width="372" height="48" rx="11" fill="#fff" stroke="#b48a3a" stroke-width="1.4"/>
+    <circle cx="58" cy="84" r="14" fill="#b48a3a"/>
+    <text x="58" y="89" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#fff">1</text>
+    <text x="80" y="80" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#7a5a1a">PEMIMPIN MADINAH</text>
+    <text x="80" y="98" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">Nabi menjadi ketua negara, hakim, panglima &amp; guru.</text>
+
+    <rect x="412" y="60" width="372" height="48" rx="11" fill="#fff" stroke="#7a5a1a" stroke-width="1.4"/>
+    <circle cx="434" cy="84" r="14" fill="#7a5a1a"/>
+    <text x="434" y="89" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#fff">2</text>
+    <text x="456" y="80" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#5a3a1a">HUDAIBIYAH (6H)</text>
+    <text x="456" y="98" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">Nabi terima syarat tidak menguntungkan demi damai.</text>
+
+    <!-- poin 3-4 -->
+    <rect x="36" y="118" width="372" height="48" rx="11" fill="#fff" stroke="#b48a3a" stroke-width="1.4"/>
+    <circle cx="58" cy="142" r="14" fill="#b48a3a"/>
+    <text x="58" y="147" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#fff">3</text>
+    <text x="80" y="138" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#7a5a1a">PEMBEBASAN MAKKAH (8H)</text>
+    <text x="80" y="156" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">Nabi maafkan musuh: &ldquo;Pergilah, kamu bebas.&rdquo;</text>
+
+    <rect x="412" y="118" width="372" height="48" rx="11" fill="#fff" stroke="#7a5a1a" stroke-width="1.4"/>
+    <circle cx="434" cy="142" r="14" fill="#7a5a1a"/>
+    <text x="434" y="147" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#fff">4</text>
+    <text x="456" y="138" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#5a3a1a">BERMUSYAWARAH</text>
+    <text x="456" y="156" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">Nabi berbincang dgn sahabat &mdash; Ali Imran 3:159.</text>
+
+    <!-- poin 5-6 -->
+    <rect x="36" y="176" width="372" height="48" rx="11" fill="#fff" stroke="#b48a3a" stroke-width="1.4"/>
+    <circle cx="58" cy="200" r="14" fill="#b48a3a"/>
+    <text x="58" y="205" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#fff">5</text>
+    <text x="80" y="196" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#7a5a1a">ADIL</text>
+    <text x="80" y="214" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">Sama rata tanpa pilih kasih &mdash; kaya atau miskin.</text>
+
+    <rect x="412" y="176" width="372" height="48" rx="11" fill="#fff" stroke="#7a5a1a" stroke-width="1.4"/>
+    <circle cx="434" cy="200" r="14" fill="#7a5a1a"/>
+    <text x="434" y="205" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#fff">6</text>
+    <text x="456" y="196" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#5a3a1a">PEMAAF</text>
+    <text x="456" y="214" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">Memaafkan musuh sekalipun &mdash; tidak berdendam.</text>
+
+    <!-- poin 7-8 -->
+    <rect x="36" y="234" width="372" height="48" rx="11" fill="#fff" stroke="#b48a3a" stroke-width="1.4"/>
+    <circle cx="58" cy="258" r="14" fill="#b48a3a"/>
+    <text x="58" y="263" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#fff">7</text>
+    <text x="80" y="254" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#7a5a1a">BERJIWA BESAR</text>
+    <text x="80" y="272" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">Tidak dendam &mdash; menerima syarat demi kebaikan.</text>
+
+    <rect x="412" y="234" width="372" height="48" rx="11" fill="#fff" stroke="#7a5a1a" stroke-width="1.4"/>
+    <circle cx="434" cy="258" r="14" fill="#7a5a1a"/>
+    <text x="434" y="263" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#fff">8</text>
+    <text x="456" y="254" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#5a3a1a">TEGAS</text>
+    <text x="456" y="272" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">Tegas dgn kebenaran, tidak berkompromi dgn batil.</text>
+
+    <!-- poin 9-10 -->
+    <rect x="36" y="292" width="372" height="48" rx="11" fill="#fff" stroke="#b48a3a" stroke-width="1.4"/>
+    <circle cx="58" cy="316" r="14" fill="#b48a3a"/>
+    <text x="58" y="321" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#fff">9</text>
+    <text x="80" y="312" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#7a5a1a">TAWADDUK (RENDAH DIRI)</text>
+    <text x="80" y="330" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">Nabi mengikat keldai, menampal baju, jamah jamaah.</text>
+
+    <rect x="412" y="292" width="372" height="48" rx="11" fill="#fff" stroke="#7a5a1a" stroke-width="1.4"/>
+    <circle cx="434" cy="316" r="14" fill="#7a5a1a"/>
+    <text x="434" y="321" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#fff">10</text>
+    <text x="456" y="312" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#5a3a1a">SETIAP KAMU PEMIMPIN</text>
+    <text x="456" y="330" font-family="Trebuchet MS" font-size="11" fill="#2a1e14">Hadis Bukhari &amp; Muslim &mdash; amalkan sbg ketua kelas/rumah.</text>
+
+    <!-- dalil penuh di bawah -->
+    <rect x="36" y="356" width="748" height="108" rx="12" fill="#fdf6ec" stroke="#b48a3a" stroke-width="1.6" stroke-dasharray="5 3"/>
+    <text x="56" y="378" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#7a5a1a">DALIL &mdash; ALI IMRAN 3:159</text>
+    <text x="410" y="404" text-anchor="middle" class="arab" font-family="Scheherazade New" font-size="18" fill="#2a1e14">فَبِمَا رَحْمَةٍۢ مِّنَ ٱللَّهِ لِنتَ لَهُمْ ۖ وَلَوْ كُنتَ فَظًّا غَلِيظَ ٱلْقَلْبِ لَٱنفَضُّوا۟ مِنْ حَوْلِكَ ۖ فَٱعْفُ عَنْهُمْ وَٱسْتَغْفِرْ لَهُمْ وَشَاوِرْهُمْ فِى ٱلْأَمْرِ</text>
+    <text x="56" y="430" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14">&ldquo;Maka disebabkan rahmat Allah engkau berlemah-lembut dgn mereka. Dan sekiranya engkau bersifat kasar dan berhati keras,</text>
+    <text x="56" y="444" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14">nescaya mereka menjauhkan diri dari sekelilingmu. Oleh itu, <tspan font-weight="700">maafkanlah mereka dan mintalah ampun untuk mereka,</tspan></text>
+    <text x="56" y="458" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14">dan <tspan font-weight="700">bermusyawarahlah</tspan> dgn mereka dalam urusan tersebut.&rdquo;</text>
+
+    <!-- amalan ringkas -->
+    <rect x="36" y="476" width="748" height="100" rx="12" fill="#fff" stroke="#7a5a1a" stroke-width="1.4"/>
+    <text x="56" y="498" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#5a3a1a">AMALAN DALAM KEHIDUPAN HARIAN</text>
+    <g transform="translate(56,508) scale(.4)"><use href="#papanNotis"/></g>
+    <text x="220" y="520" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">&bull; Sebagai <tspan font-weight="700">ketua kelas</tspan>: bermusyawarah dgn ahli kelas</text>
+    <text x="220" y="538" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">&bull; Sebagai <tspan font-weight="700">ketua rumah</tspan>: adil &amp; pemaaf kepada rakan rumah</text>
+    <text x="220" y="556" font-family="Trebuchet MS" font-size="11.5" fill="#2a1e14">&bull; Sebagai <tspan font-weight="700">ketua kumpulan</tspan>: tegas, berjiwa besar &amp; tawadduk</text>
+  </svg>
+
+  <div class="nota">
+    <ol>
+      <li>Nabi Muhammad SAW menjadi <b>pemimpin Madinah</b> &mdash; ketua negara, hakim, panglima tentera dan guru.</li>
+      <li><b>Perjanjian Hudaibiyah (6H/628M)</b>: Nabi menerima syarat yang nampak tidak menguntungkan demi perdamaian &mdash; menunjukkan sifat <b>pemaaf dan berjiwa besar</b>.</li>
+      <li><b>Pembebasan Makkah (8H/630M)</b>: Nabi memaafkan penduduk Makkah yang pernah menyeksa beliau &mdash; &ldquo;<b>Pergilah, kamu bebas</b>.&rdquo;</li>
+      <li>Ciri kepimpinan Nabi: <b>bermusyawarah, adil, pemaaf, berjiwa besar, tegas</b> dan <b>tawadduk (rendah diri)</b>.</li>
+      <li>Dalil al-Quran <b>Ali Imran 3:159</b>: Nabi berlemah-lembut, memaafkan dan bermusyawarah dgn sahabat.</li>
+      <li>Hadis: &ldquo;<b>Setiap kamu adalah pemimpin, dan setiap pemimpin akan ditanya tentang kepimpinannya.</b>&rdquo; (Bukhari &amp; Muslim)</li>
+      <li>Kepentingan ciri kepimpinan Nabi: <b>keharmonian, keadilan</b> dan <b>kemajuan</b> masyarakat.</li>
+      <li>Nabi <b>adil</b> &mdash; sama rata tanpa pilih kasih, sama ada kaya atau miskin.</li>
+      <li>Nabi <b>tawadduk</b> &mdash; membantu sahabat mengikat keldai, menampal baju dan jamah jamaah.</li>
+      <li>Amalkan ciri kepimpinan Nabi sebagai <b>ketua kelas, ketua rumah</b> dan <b>ketua kumpulan</b>.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== 4. DIAGRAM ALIR ===== -->
+<section>
+  <h2><span class="num">4</span> Diagram Alir<svg class="mascot" width="26" height="27" viewBox="0 0 70 74" aria-hidden="true"><use href="#kepalaNur"/></svg></h2>
+  <p class="hint">Langkah mengamalkan ciri kepimpinan Nabi dalam kehidupan harian.</p>
+
+  <svg class="art" id="art-diag" viewBox="0 0 820 430" role="img" aria-label="Diagram alir amalan kepimpinan Nabi">
+    <defs>
+      <linearGradient id="gd18f" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#b48a3a"/><stop offset="1" stop-color="#7a5a1a"/>
+      </linearGradient>
+      <marker id="arr18" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+        <path d="M0 0 L7 3 L0 6 z" fill="#5a3a1a"/>
+      </marker>
+    </defs>
+    <rect x="0" y="0" width="820" height="430" rx="16" fill="#fdfaf6" stroke="#e8dcc8" stroke-width="1.4"/>
+
+    <rect x="30" y="24" width="150" height="56" rx="14" fill="url(#gd18f)" stroke="#5a3a1a" stroke-width="1.8"/>
+    <text x="105" y="50" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#fff">NIAT</text>
+    <text x="105" y="68" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" fill="#fff6cf">ikhlas kerana Allah</text>
+    <g transform="translate(150,76) scale(.22)"><use href="#bintangBulan"/></g>
+    <path d="M180 52 H224" stroke="#5a3a1a" stroke-width="3" marker-end="url(#arr18)" fill="none"/>
+
+    <rect x="228" y="24" width="150" height="56" rx="14" fill="#fff" stroke="#b48a3a" stroke-width="1.8"/>
+    <text x="303" y="50" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#7a5a1a">BERMUSYAWARAH</text>
+    <text x="303" y="68" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14">berbincang dgn rakan</text>
+    <g transform="translate(338,66) scale(.3)"><use href="#papanNotis"/></g>
+    <path d="M378 52 H422" stroke="#5a3a1a" stroke-width="3" marker-end="url(#arr18)" fill="none"/>
+
+    <rect x="426" y="24" width="150" height="56" rx="14" fill="#fff" stroke="#7a5a1a" stroke-width="1.8"/>
+    <text x="501" y="50" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#5a3a1a">ADIL</text>
+    <text x="501" y="68" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14">dalam keputusan</text>
+    <g transform="translate(540,40) scale(.45)"><use href="#neraca"/></g>
+    <path d="M576 52 H620" stroke="#5a3a1a" stroke-width="3" marker-end="url(#arr18)" fill="none"/>
+
+    <rect x="624" y="24" width="166" height="56" rx="14" fill="#fff" stroke="#b48a3a" stroke-width="1.8"/>
+    <text x="707" y="50" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#7a5a1a">PEMAAF</text>
+    <text x="707" y="68" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14">terhadap rakan</text>
+    <g transform="translate(750,40) scale(.5)"><use href="#jantung"/></g>
+    <path d="M707 80 V124" stroke="#5a3a1a" stroke-width="3" marker-end="url(#arr18)" fill="none"/>
+
+    <rect x="624" y="128" width="166" height="56" rx="14" fill="#fff" stroke="#7a5a1a" stroke-width="1.8"/>
+    <text x="707" y="154" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#5a3a1a">TEGAS</text>
+    <text x="707" y="172" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14">dalam kebenaran</text>
+    <g transform="translate(630,138) scale(.5)"><use href="#tongkat"/></g>
+    <path d="M624 156 H580" stroke="#5a3a1a" stroke-width="3" marker-end="url(#arr18)" fill="none"/>
+
+    <rect x="426" y="128" width="150" height="56" rx="14" fill="#fff" stroke="#b48a3a" stroke-width="1.8"/>
+    <text x="501" y="154" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#7a5a1a">TAWADDUK</text>
+    <text x="501" y="172" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" fill="#2a1e14">rendah diri</text>
+    <g transform="translate(430,138) scale(.5)"><use href="#kambing"/></g>
+    <path d="M426 156 H382" stroke="#5a3a1a" stroke-width="3" marker-end="url(#arr18)" fill="none"/>
+
+    <rect x="160" y="120" width="218" height="72" rx="16" fill="url(#gd18f)" stroke="#5a3a1a" stroke-width="2"/>
+    <text x="269" y="150" text-anchor="middle" font-family="Trebuchet MS" font-size="15" font-weight="700" fill="#fff">PEMIMPIN DICINTAI</text>
+    <text x="269" y="170" text-anchor="middle" font-family="Trebuchet MS" font-size="11" fill="#fff6cf">disegani &amp; dihormati</text>
+    <g transform="translate(338,128) scale(.3)"><use href="#mahkota"/></g>
+
+    <rect x="30" y="220" width="760" height="186" rx="14" fill="#f0e4d0" stroke="#e8dcc8" stroke-width="1.6"/>
+    <text x="410" y="246" text-anchor="middle" font-family="Trebuchet MS" font-size="15" font-weight="700" fill="#5a3a1a">IKTIBAR DARI SIRAH NABI SAW</text>
+    <line x1="300" y1="256" x2="520" y2="256" stroke="#b48a3a" stroke-width="2"/>
+    <g transform="translate(60,270) scale(.42)"><use href="#rehal"/></g>
+    <text x="180" y="284" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">&bull; Nabi berlemah-lembut <tspan font-weight="700">(pemaaf)</tspan> &mdash; bukan kasar &amp; berhati keras.</text>
+    <text x="180" y="302" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">&bull; Nabi <tspan font-weight="700">bermusyawarah</tspan> dgn sahabat dalam urusan penting.</text>
+    <text x="180" y="320" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">&bull; Nabi <tspan font-weight="700">adil</tspan> &mdash; tidak memilih kasih antara sahabat.</text>
+    <text x="180" y="338" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">&bull; Nabi <tspan font-weight="700">tegas</tspan> dalam kebenaran, tidak tunduk kpd batil.</text>
+    <text x="180" y="356" font-family="Trebuchet MS" font-size="12" fill="#2a1e14">&bull; Nabi <tspan font-weight="700">tawadduk</tspan> &mdash; membantu kerja harian bersama jamaah.</text>
+    <text x="180" y="374" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#7a5a1a">&rarr; Hasilnya: Nabi dicintai, disegani &amp; dihormati oleh semua.</text>
+    <text x="180" y="394" font-family="Trebuchet MS" font-size="11" font-style="italic" fill="#5a3a1a">&ldquo;Setiap kamu adalah pemimpin, dan setiap pemimpin akan ditanya tentang kepimpinannya.&rdquo;</text>
+  </svg>
+</section>
+
+<!-- ===== 5. KUIZ INTERAKTIF ===== -->
+<section>
+  <h2><span class="num">5</span> Kuiz Interaktif &mdash; 10 Soalan<svg class="mascot" width="40" height="25" viewBox="0 0 66 40" aria-hidden="true"><use href="#kambing"/></svg></h2>
+  <p class="hint">Klik pilihan jawapan. Maklum balas dan skor diberikan serta-merta.</p>
+
+  <div class="scorebar">
+    <span class="sc">Skor: <span id="sc">0</span> / 10</span>
+    <span class="bar"><i id="bar"></i></span>
+    <span class="hint2">Dijawab: <span id="done">0</span>/10</span>
+    <button class="act" onclick="resetQuiz()">Ulang Semula</button>
+    <button class="act solid" onclick="window.print()">Cetak / Simpan PDF</button>
+  </div>
+
+  <div id="quiz">
+
+    <div class="qcard" data-ans="2" data-exp="Nabi Muhammad SAW menjadi pemimpin di <b>Madinah</b> selepas hijrah. Beliau menjadi ketua negara, hakim, panglima tentera dan guru.">
+      <div class="qhead"><span class="qn">1</span><span class="qtext">Di manakah Nabi Muhammad SAW menjadi <b>pemimpin negara</b>?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span>Makkah</span></button>
+        <button class="opt"><span class="k">B</span><span>Taif</span></button>
+        <button class="opt"><span class="k">C</span><span><b>Madinah</b></span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="1" data-exp="Perjanjian Hudaibiyah berlaku pada <b>6H / 628M</b>. Nabi menerima syarat yang nampak tidak menguntungkan demi perdamaian.">
+      <div class="qhead"><span class="qn">2</span><span class="qtext">Pada tahun berapakah berlakunya <b>Perjanjian Hudaibiyah</b>?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span>8H / 630M</span></button>
+        <button class="opt"><span class="k">B</span><span><b>6H / 628M</b></span></button>
+        <button class="opt"><span class="k">C</span><span>2H / 624M</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="0" data-exp="Semasa <b>Pembebasan Makkah (8H)</b>, Nabi memaafkan penduduk Makkah yang pernah menyeksa beliau dan bersabda: &ldquo;Pergilah, kamu bebas.&rdquo;">
+      <div class="qhead"><span class="qn">3</span><span class="qtext">Apakah kata-kata Nabi ketika <b>Pembebasan Makkah</b>?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span><b>&ldquo;Pergilah, kamu bebas.&rdquo;</b></span></button>
+        <button class="opt"><span class="k">B</span><span>&ldquo;Balaslah dosa mereka.&rdquo;</span></button>
+        <button class="opt"><span class="k">C</span><span>&ldquo;Usir mereka semua.&rdquo;</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="2" data-exp="Dalil al-Quran tentang kepimpinan Nabi ialah <b>Ali Imran 3:159</b> &mdash; Nabi berlemah-lembut, memaafkan dan bermusyawarah dgn sahabat.">
+      <div class="qhead"><span class="qn">4</span><span class="qtext">Surah dan ayat al-Quran yang menyebut tentang <b>bermusyawarah</b> ialah&hellip;</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span>al-Baqarah 2:159</span></button>
+        <button class="opt"><span class="k">B</span><span>an-Nisa 4:159</span></button>
+        <button class="opt"><span class="k">C</span><span><b>Ali Imran 3:159</b></span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="1" data-exp="Hadis &ldquo;Setiap kamu adalah pemimpin&hellip;&rdquo; diriwayatkan oleh <b>al-Bukhari dan Muslim</b> (Muttafaq &lsquo;alaih), merujuk kepada tanggungjawab setiap individu.">
+      <div class="qhead"><span class="qn">5</span><span class="qtext">Siapakah <b>perawi</b> hadis &ldquo;Setiap kamu adalah pemimpin&rdquo;?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span>Abu Dawud sahaja</span></button>
+        <button class="opt"><span class="k">B</span><span><b>al-Bukhari dan Muslim</b></span></button>
+        <button class="opt"><span class="k">C</span><span>at-Tirmidzi sahaja</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="0" data-exp="Sifat <b>bermusyawarah</b> bermaksud berbincang dgn sahabat dalam urusan penting &mdash; seperti Perang Badar, Uhud dan Hudaibiyah.">
+      <div class="qhead"><span class="qn">6</span><span class="qtext">Apakah maksud ciri <b>bermusyawarah</b> dalam kepimpinan Nabi?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span><b>Berbincang dgn sahabat dalam urusan penting</b></span></button>
+        <button class="opt"><span class="k">B</span><span>Memutuskan sendiri tanpa berbincang</span></button>
+        <button class="opt"><span class="k">C</span><span>Menyuruh sahabat membuat keputusan</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="1" data-exp="Nabi bersifat <b>adil</b> &mdash; sama rata tanpa pilih kasih, sama ada kaya atau miskin, arab atau bukan arab.">
+      <div class="qhead"><span class="qn">7</span><span class="qtext">Ciri kepimpinan Nabi yang bermaksud <b>sama rata tanpa pilih kasih</b> ialah&hellip;</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span>Pemaaf</span></button>
+        <button class="opt"><span class="k">B</span><span><b>Adil</b></span></button>
+        <button class="opt"><span class="k">C</span><span>Tegas</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="2" data-exp="Nabi mempunyai sifat <b>tawadduk (rendah diri)</b> &mdash; beliau membantu sahabat mengikat keldai, menampal baju dan jamah jamaah.">
+      <div class="qhead"><span class="qn">8</span><span class="qtext">Nabi membantu sahabat mengikat keldai dan menampal baju. Ini menunjukkan sifat&hellip;</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span>Berjiwa besar</span></button>
+        <button class="opt"><span class="k">B</span><span>Tegas</span></button>
+        <button class="opt"><span class="k">C</span><span><b>Tawadduk (rendah diri)</b></span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="0" data-exp="Antara kepentingan ciri kepimpinan Nabi ialah <b>keharmonian masyarakat</b>, keadilan untuk semua dan kemajuan umat.">
+      <div class="qhead"><span class="qn">9</span><span class="qtext">Antara <b>kepentingan ciri kepimpinan Nabi</b> dalam masyarakat ialah&hellip;</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span><b>Keharmonian masyarakat</b></span></button>
+        <button class="opt"><span class="k">B</span><span>Persaingan dan permusuhan</span></button>
+        <button class="opt"><span class="k">C</span><span>Kebanggaan dan kemewahan</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+    <div class="qcard" data-ans="1" data-exp="Ciri kepimpinan Nabi boleh diamalkan sebagai <b>ketua kelas, ketua rumah</b> dan <b>ketua kumpulan</b> &mdash; bermusyawarah, adil, pemaaf, tegas dan tawadduk.">
+      <div class="qhead"><span class="qn">10</span><span class="qtext">Bagaimanakah cara <b>mengamalkan ciri kepimpinan Nabi</b> dalam kehidupan harian?</span></div>
+      <div class="opts">
+        <button class="opt"><span class="k">A</span><span>Hanya menunggu arahan guru</span></button>
+        <button class="opt"><span class="k">B</span><span><b>Sebagai ketua kelas, ketua rumah &amp; ketua kumpulan</b></span></button>
+        <button class="opt"><span class="k">C</span><span>Dengan bersaing dgn rakan</span></button>
+      </div>
+      <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+    </div>
+
+  </div>
+
+  <div class="result" id="result">
+    <svg viewBox="0 0 220 170" style="width:200px;height:auto;margin:0 auto 4px;display:block">
+      <g transform="translate(24,4) scale(.85)"><use href="#adamDuduk"/></g>
+      <g transform="translate(116,4) scale(.85)"><use href="#nurDuduk"/></g>
+    </svg>
+    <div class="stars" id="stars"></div>
+    <div class="big" id="rscore"></div>
+    <div class="msg" id="rmsg"></div>
+    <button class="act solid" onclick="resetQuiz()">Cuba Lagi</button>
+    <button class="act" onclick="window.print()">Cetak / Simpan PDF</button>
+  </div>
+</section>
+
+<!-- ===== LAMPIRAN ===== -->
+<section>
+  <h2><span class="num">&#9733;</span> Lampiran &mdash; Senarai SK Pendidikan Islam Tahun 5<svg class="mascot" width="26" height="27" viewBox="0 0 70 74" aria-hidden="true"><use href="#kepalaAdam"/></svg></h2>
+  <p class="hint">Unit yang telah siap ditanda. Sebut nombor unit untuk menjana bahan seterusnya.</p>
+  <table>
+    <thead><tr><th style="width:38px">#</th><th>Bidang</th><th>Standard Kandungan (SK)</th></tr></thead>
+    <tbody>
+      <tr class="on"><td class="c">1</td><td>al-Quran (Tilawah)</td><td>Membaca dan mengamalkan <b>Surah al-Qadr</b> dengan betul dan bertajwid &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 1 &check;)</span></td></tr>
+      <tr class="on"><td class="c">2</td><td>al-Quran (Tilawah)</td><td>Membaca dan mengamalkan <b>Surah at-Tin</b> dengan betul dan bertajwid &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 2 &check;)</span></td></tr>
+      <tr class="on"><td class="c">3</td><td>al-Quran (Hafazan)</td><td>Menghafaz dan mengamalkan <b>Surah al-Qadr</b> dengan betul dan bertajwid dalam solat dan kehidupan harian &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 3 &check;)</span></td></tr>
+      <tr class="on"><td class="c">4</td><td>al-Quran (Hafazan)</td><td>Menghafaz dan mengamalkan <b>Surah at-Tin</b> dengan betul dan bertajwid dalam solat dan kehidupan harian &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 4 &check;)</span></td></tr>
+      <tr class="on"><td class="c">5</td><td>al-Quran (Kefahaman)</td><td>Merumus, mengamal dan menghayati <b>Surah al-&lsquo;Asr</b> &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 5 &check;)</span></td></tr>
+      <tr><td class="c">6</td><td>al-Quran (Tajwid)</td><td>Hukum <b>mad</b>: mad silah qasirah, mad badal, mad &lsquo;iwad, mad tamkin dan mad tabi&rsquo;i</td></tr>
+      <tr class="on"><td class="c">7</td><td>Hadis</td><td>Merumus dan menghayati <b>hadis mentaati pemimpin</b> serta mengamalkan tuntutannya &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 7 &check;)</span></td></tr>
+      <tr class="on"><td class="c">8</td><td>Aqidah</td><td>Meyakini konsep nama Allah <b>al-Malik dan al-Hasib</b> &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 8 &check;)</span></td></tr>
+      <tr class="on"><td class="c">9</td><td>Akidah</td><td>Meyakini konsep <b>beriman kepada hari akhirat</b> &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 9 &check;)</span></td></tr>
+      <tr class="on"><td class="c">10</td><td>Akidah</td><td>Merumus kepentingan mempertahankan akidah daripada <b>syirik</b> &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 10 &check;)</span></td></tr>
+      <tr class="on"><td class="c">11</td><td>Akidah</td><td>Merumus kepentingan mempertahankan akidah daripada <b>sihir</b> &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 11 &check;)</span></td></tr>
+      <tr class="on"><td class="c">12</td><td>Ibadah</td><td>Merumus dan mengamalkan konsep <b>tayammum</b> dengan betul &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 12 &check;)</span></td></tr>
+      <tr class="on"><td class="c">13</td><td>Ibadah</td><td>Merumus konsep <b>solat berjemaah</b> serta menghayatinya &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 13 &check;)</span></td></tr>
+      <tr class="on"><td class="c">14</td><td>Ibadah</td><td>Merumus konsep <b>solat Jumaat</b> serta menghayatinya &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 14 &check;)</span></td></tr>
+      <tr><td class="c">15</td><td>Ibadah</td><td>Merumus konsep <b>solat sunat dua hari raya</b> serta menghayatinya</td></tr>
+      <tr><td class="c">16</td><td>Sirah</td><td>Merumus i&lsquo;tibar peristiwa <b>hijrah Rasulullah ke Madinah</b></td></tr>
+      <tr><td class="c">17</td><td>Sirah</td><td>Merumus i&lsquo;tibar keunggulan <b>sifat itqan</b> Nabi Muhammad SAW</td></tr>
+      <tr class="on"><td class="c">18</td><td>Sirah</td><td>Meneladani keperibadian Nabi Muhammad SAW sebagai <b>pemimpin</b> &nbsp;<span style="color:#5a3a1a;font-weight:700">(unit 18 &check;)</span></td></tr>
+      <tr><td class="c">19</td><td>Adab</td><td>Merumus konsep <b>adab menaiki kenderaan</b></td></tr>
+      <tr><td class="c">20</td><td>Adab</td><td>Merumus konsep <b>adab jual beli</b> yang menepati syarak</td></tr>
+      <tr><td class="c">21</td><td>Adab</td><td>Merumus konsep <b>adab berkomunikasi</b> yang menepati syarak</td></tr>
+      <tr><td class="c">22</td><td>Adab</td><td>Merumus <b>adab terhadap alam sekitar</b> yang menepati syarak</td></tr>
+      <tr><td class="c">23</td><td>Jawi</td><td>Membaca, membina dan menulis pelbagai jenis <b>teks</b> berdasarkan tema</td></tr>
+      <tr><td class="c">24</td><td>Jawi</td><td>Mengenal dan menulis <b>khat naskh</b> dengan betul</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 5 (BPK, 2019) &amp; Buku Teks Pendidikan Islam Tahun 5 SK (KPM).
+</footer>
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+  var scEl = document.getElementById('sc');
+  var doneEl = document.getElementById('done');
+  var barEl = document.getElementById('bar');
+  var resultEl = document.getElementById('result');
+  var total = cards.length;
+
+  function refresh(){
+    var score = 0, answered = 0;
+    cards.forEach(function(c){
+      if(c.dataset.state === 'correct'){ score++; answered++; }
+      else if(c.dataset.state === 'wrong'){ answered++; }
+    });
+    scEl.textContent = score;
+    doneEl.textContent = answered;
+    barEl.style.width = (answered/total*100) + '%';
+    if(answered === total) showResult(score);
+  }
+
+  function showResult(score){
+    resultEl.classList.add('show');
+    document.getElementById('rscore').textContent = score + ' / ' + total;
+    document.getElementById('stars').textContent =
+      score >= 9 ? '\u2605\u2605\u2605\u2605\u2605' : score >= 7 ? '\u2605\u2605\u2605\u2605\u2606' : score >= 5 ? '\u2605\u2605\u2605\u2606\u2606' : '\u2605\u2605\u2606\u2606\u2606';
+    document.getElementById('rmsg').textContent =
+      score === 10 ? 'Syabas! Kamu benar-benar menguasai tajuk ini.'
+      : score >= 8 ? 'Bagus sekali! Teruskan usaha kamu.'
+      : score >= 6 ? 'Bagus! Ulangi nota sekali lagi untuk lebih mantap.'
+      : score >= 4 ? 'Jangan putus asa \u2014 baca semula nota ringkas di atas.'
+      : 'Mari ulang bersama-sama. Baca nota ringkas, kemudian cuba lagi.';
+    resultEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  cards.forEach(function(card){
+    var opts = Array.prototype.slice.call(card.querySelectorAll('.opt'));
+    var fb = card.querySelector('.fb');
+    var face = fb.querySelector('use');
+    var txt = fb.querySelector('.txt');
+    var ans = parseInt(card.dataset.ans, 10);
+    var exp = card.dataset.exp;
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(card.dataset.state) return;
+        var ok = (i === ans);
+        card.dataset.state = ok ? 'correct' : 'wrong';
+        card.classList.add('done');
+
+        opts.forEach(function(b, j){
+          b.disabled = true;
+          if(j === ans){ b.classList.add('ok'); }
+          else if(j === i){ b.classList.add('bad'); }
+          else { b.classList.add('dim'); }
+        });
+
+        face.setAttribute('href', ok ? '#faceYay' : '#faceOops');
+        txt.innerHTML = (ok ? '<b>Betul!</b> ' : '<b>Belum tepat.</b> Jawapan yang betul ialah <b>' +
+                        String.fromCharCode(65+ans) + '</b>. ') + exp;
+        fb.classList.add('show');
+        if(!ok) fb.classList.add('wrong');
+
+        refresh();
+      });
+    });
+  });
+
+  window.resetQuiz = function(){
+    cards.forEach(function(c){
+      delete c.dataset.state;
+      c.classList.remove('done');
+      var fb = c.querySelector('.fb');
+      fb.classList.remove('show','wrong');
+      c.querySelectorAll('.opt').forEach(function(b){
+        b.disabled = false;
+        b.classList.remove('ok','bad','dim');
+      });
+    });
+    resultEl.classList.remove('show');
+    refresh();
+    window.scrollTo({top: document.getElementById('quiz').offsetTop - 20, behavior:'smooth'});
+  };
+
+  window.addEventListener('beforeprint', function(){
+    cards.forEach(function(c){
+      var ans = parseInt(c.dataset.ans,10);
+      c.querySelectorAll('.opt').forEach(function(b,j){
+        if(j === ans) b.classList.add('ok');
+      });
+      if(!c.querySelector('.fb').classList.contains('show')){
+        var fb = c.querySelector('.fb');
+        fb.querySelector('.txt').innerHTML = '<b>Jawapan: ' + String.fromCharCode(65+ans) + '</b>. ' + c.dataset.exp;
+        fb.classList.add('show');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
+

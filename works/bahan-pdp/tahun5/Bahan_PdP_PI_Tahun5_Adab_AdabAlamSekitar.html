@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adab terhadap Alam Sekitar &mdash; Adab | Pendidikan Islam Tahun 5</title>
+<style>
+  :root{
+    --sky1:#e0f0e4; --sky2:#f0f8f2; --sky3:#e4f0e8;
+    --grass1:#a0d4a8; --grass2:#1a5a2a; --grass3:#0e3818;
+    --paper:#f5fcf8; --ink:#1a2820; --muted:#6a7a62;
+    --gold:#4a8a3a; --teal:#2a5a1a; --aqua:#d0eed4;
+    --line:#c8e0cc;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);
+    font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:rtl}
+  .jf{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:ltr;unicode-bidi:isolate}
+  .skybg{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#e4f0e8 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:#d0eed4;top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:#a0d4a8;top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:#e4f0e8;bottom:-140px;left:18%}
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;box-shadow:0 10px 30px rgba(14,56,24,.16)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#1a5a2a;font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:#0e3818;letter-spacing:.4px;text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:#6a7a62;font-weight:600}
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:0 3px 10px rgba(14,56,24,.07)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;margin-bottom:22px;box-shadow:0 4px 16px rgba(14,56,24,.07)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--grass2);font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#f0f8f2;border:1.4px solid var(--line);border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,var(--grass1),var(--grass2));box-shadow:0 2px 0 var(--grass3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--grass3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#e4f0e8;border:1.4px dashed var(--gold);border-radius:13px;padding:10px 13px;font-size:12.5px;color:#1a2820;line-height:1.55}
+  .toc .note b{color:#0e3818}
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;margin-bottom:22px;box-shadow:0 4px 16px rgba(14,56,24,.07);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;box-shadow:0 2px 0 var(--grass3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  h2 .mascot{flex:none;margin-left:auto;display:block}
+  .deko{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:14px 0 0}
+  .deko svg{display:block}
+  .art-wrap{overflow:hidden;border-radius:12px}
+  .card{background:#f0f8f2;border:1.5px solid var(--line);border-radius:14px;padding:16px 18px}
+  .card ul{margin:0;padding-left:20px}
+  .card li{margin-bottom:9px;font-size:14.5px}
+  .card li b{color:#0e3818}
+  .card li:last-child{margin-bottom:0}
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes g22bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+    @keyframes g22drift{0%{transform:translateX(-9px)}100%{transform:translateX(9px)}}
+    @keyframes g22twinkle{0%,100%{opacity:.4}50%{opacity:1}}
+    @keyframes g22sway{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
+    @keyframes g22flutter{0%,100%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(8px,-4px) rotate(3deg)}50%{transform:translate(4px,-8px) rotate(-2deg)}75%{transform:translate(-4px,-4px) rotate(2deg)}}
+    @keyframes g22leaf{0%{transform:translate(0,0) rotate(0deg);opacity:.7}50%{transform:translate(6px,4px) rotate(8deg);opacity:1}100%{transform:translate(0,0) rotate(0deg);opacity:.7}}
+    @keyframes g22flow{0%{stroke-dashoffset:0}100%{stroke-dashoffset:-20}}
+    h2 .mascot,.deko svg{animation:g22bob 2.6s ease-in-out infinite}
+    .deko svg:nth-child(2){animation-delay:.45s}
+    .deko svg:nth-child(3){animation-delay:.9s}
+    .anim-drift{animation:g22drift 8s ease-in-out infinite alternate}
+    .anim-twinkle{animation:g22twinkle 2.2s ease-in-out infinite}
+    .anim-sway{animation:g22sway 4s ease-in-out infinite;transform-origin:bottom center}
+    .anim-flutter{animation:g22flutter 5s ease-in-out infinite}
+    .anim-leaf{animation:g22leaf 4.5s ease-in-out infinite}
+    .anim-flow{animation:g22flow 1.5s linear infinite}
+  }
+  @media print{h2 .mascot,.deko svg,.anim-drift,.anim-twinkle,.anim-sway,.anim-flutter,.anim-leaf,.anim-flow{animation:none !important}}
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(135deg,#f0f8f2,#e4f0e8);border:1.5px solid var(--line);border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#e4f0e8;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .scorebar .hint2{font-size:12px;color:var(--muted);font-weight:600}
+  .qcard{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:13px;background:#f5fcf8;transition:box-shadow .25s}
+  .qcard.done{box-shadow:0 3px 12px rgba(42,90,26,.18)}
+  .qhead{display:flex;gap:9px;align-items:flex-start;margin-bottom:11px}
+  .qn{background:var(--teal);color:#fff;min-width:26px;height:26px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+  .qtext{font-weight:700;font-size:14.5px}
+  .opts{display:grid;grid-template-columns:1fr;gap:7px}
+  @media(min-width:640px){.opts{grid-template-columns:1fr 1fr 1fr}}
+  .opt{font-family:inherit;text-align:left;font-size:13.5px;font-weight:600;cursor:pointer;background:#e4f0e8;border:2px solid #c8e0cc;border-radius:11px;padding:9px 12px;color:var(--ink);transition:transform .12s,background .2s,border-color .2s;display:flex;gap:7px;align-items:flex-start}
+  .opt:hover:not(:disabled){transform:translateY(-2px);background:#fff;border-color:var(--teal)}
+  .opt:disabled{cursor:default}
+  .opt .k{font-weight:800;color:var(--teal);flex:none}
+  .opt.ok{background:#d0eed4;border-color:var(--grass2);color:#0e3818}
+  .opt.ok .k{color:var(--grass3)}
+  .opt.bad{background:#e4f0e8;border-color:#2a5a1a;color:#1a5a2a}
+  .opt.bad .k{color:#061410}
+  .opt.dim{opacity:.45}
+  .fb{display:none;margin-top:11px;border-radius:12px;padding:10px 13px;font-size:13.5px;background:#f0f8f2;border:1.5px dashed var(--grass2);align-items:flex-start;gap:11px}
+  .fb.show{display:flex}
+  .fb.wrong{background:#e4f0e8;border-color:#2a5a1a}
+  .fb .face{flex:none;width:52px;height:52px}
+  .fb .txt b{color:var(--grass3)}
+  .fb.wrong .txt b{color:#061410}
+  .result{display:none;text-align:center;padding:20px;border-radius:18px;margin-top:6px;background:linear-gradient(135deg,#f0f8f2,#e4f0e8);border:2px solid var(--grass1)}
+  .result.show{display:block}
+  .result .big{font-size:30px;font-weight:800;color:var(--grass3);margin:6px 0}
+  .result .msg{font-size:14.5px;font-weight:600;margin-bottom:12px}
+  .stars{font-size:22px;letter-spacing:3px;margin-bottom:6px}
+  button.act{font-family:inherit;font-size:13.5px;font-weight:700;border-radius:11px;padding:10px 18px;border:2px solid var(--grass2);background:#fff;color:var(--grass3);cursor:pointer;transition:background .2s}
+  button.act:hover{background:var(--grass1);color:#fff}
+  button.act.solid{background:var(--grass2);color:#fff}
+  button.act.solid:hover{background:var(--grass3)}
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#e4f0e8;color:var(--grass3);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  td.c{text-align:center;white-space:nowrap;font-weight:700;color:var(--grass2)}
+  tr:nth-child(even) td{background:#f0f8f2}
+  tr.on td{background:#e4f0e8;font-weight:700}
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-top:4px}
+  @media print{
+    body{background:#fff}.skybg,.blob{display:none}.wrap{max-width:100%;padding:0}.scorebar{display:none}
+    section{box-shadow:none;page-break-inside:avoid;padding:14px 16px}
+    .toc{box-shadow:none;page-break-inside:avoid;break-inside:avoid}
+    h2,.hint{page-break-after:avoid;break-after:avoid}
+    #art-info{width:auto;height:1150px;display:block;margin:0 auto}
+    table{font-size:11.6px}th,td{padding:3.5px 8px}
+    .qcard{page-break-inside:avoid;padding:10px 13px;margin-bottom:8px}
+    .qhead .qtext{font-size:13px}.opt{padding:6px 9px;font-size:11.5px;transform:none !important}
+    .fb{margin-top:7px;padding:7px 10px;font-size:11.5px}.fb .face{width:40px;height:40px}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4;margin:12mm}
+
+  /* ===== Supplementary CSS for Unit 22 components ===== */
+  .lead{font-size:13.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  .svgbox{width:100%;overflow:hidden;border-radius:12px}
+  .svgbox svg{display:block;width:100%;height:auto}
+  .quiz-grid{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:700px){.quiz-grid{grid-template-columns:1fr 1fr}}
+  .qbadge{background:var(--teal);color:#fff;min-width:28px;height:28px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+  .scorebar-l{flex:1;font-size:15px;font-weight:800;color:var(--grass3)}
+  .scorebar-r{flex:none}
+  .btn-rst{font-family:inherit;font-size:13px;font-weight:700;border-radius:11px;padding:9px 18px;border:2px solid var(--grass2);background:#fff;color:var(--grass3);cursor:pointer;transition:background .2s,color .2s}
+  .btn-rst:hover{background:var(--grass2);color:#fff}
+  .opt.correct{background:#d0eed4 !important;border-color:var(--grass2) !important;color:#0e3818 !important}
+  .opt.wrong{background:#f0e8e8 !important;border-color:#8a3a3a !important;color:#3a1a1a !important}
+  .fb.fb-show{display:block;margin-top:11px;border-radius:12px;padding:10px 13px;font-size:13.5px}
+  .fb.fb-correct{background:#d0eed4;border:1.5px solid var(--grass2)}
+  .fb.fb-wrong{background:#f0e8e8;border:1.5px solid #8a3a3a}
+  .fb .fb-y{color:var(--grass2);font-weight:800;font-size:16px}
+  .fb .fb-n{color:#8a3a3a;font-weight:800;font-size:16px}
+  .result-inner{display:flex;align-items:center;gap:16px;justify-content:center}
+  .result-face{flex:none}
+  .result-txt{text-align:left}
+  .result-score{font-size:24px;font-weight:800;color:var(--grass3);margin:0 0 4px}
+  .result-msg{font-size:14px;font-weight:600;color:var(--ink);margin:0}
+  .lampiran-table{overflow-x:auto}
+  .lampiran-table table{width:100%;border-collapse:collapse;font-size:12.5px}
+  .lampiran-table th,.lampiran-table td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  .lampiran-table th{background:#e4f0e8;color:var(--grass3);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  .lampiran-table tr:nth-child(even) td{background:#f0f8f2}
+  .lampiran-table td.done{color:var(--grass2);font-weight:800;text-align:center;font-size:15px}
+  .lampiran-table td.pending{color:var(--muted);text-align:center}
+  .lampiran-table tr.current-row td{background:#d0eed4 !important;font-weight:700}
+  .foot{text-align:center;font-size:12px;color:var(--muted);padding:20px 0 10px}
+  .foot-inner{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:16px 20px}
+  .foot-tag{font-size:11.5px;color:var(--teal);font-style:italic;margin-top:6px}
+  .card-h{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  .card-h .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;box-shadow:0 2px 0 var(--grass3)}
+  @media print{
+    .quiz-grid{grid-template-columns:1fr}
+    .lampiran-table table{font-size:10.5px}
+    .foot{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <g id="adam">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="116" width="13" height="34" rx="6" fill="#5b8a4a"/>
+    <rect x="57" y="116" width="13" height="34" rx="6" fill="#5b8a4a"/>
+    <ellipse cx="46" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l7 44 h-56 z" fill="#7fc48a" stroke="#2a5a1a" stroke-width="2"/>
+    <path d="M36 82 q-13 13 -9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 82 q13 13 9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M39 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="46.5" r="1.9" fill="#fff"/><circle cx="68" cy="46.5" r="1.9" fill="#fff"/>
+    <path d="M55 56 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M49 63 q6 6.5 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+  <g id="nur">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="43" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <rect x="58" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <ellipse cx="48" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="63" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <path d="M33 78 q22-11 44 0 l12 46 h-68 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <path d="M36 84 q-13 12 -10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 84 q13 12 10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z" fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="51.5" r="1.9" fill="#fff"/><circle cx="67" cy="51.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+  <g id="faceYay">
+    <circle cx="30" cy="30" r="26" fill="#d0eed4" stroke="#1a5a2a" stroke-width="2.5"/>
+    <ellipse cx="22" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="25.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="25.4" r="1.3" fill="#fff"/>
+    <path d="M20 38 q10 9 20 0" stroke="#0e3818" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="14" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <ellipse cx="46" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <path d="M30 2 l3 5 5 1 -4 4 1 5 -5-3 -5 3 1-5 -4-4 5-1 z" fill="#4a8a3a"/>
+  </g>
+  <g id="faceOops">
+    <circle cx="30" cy="30" r="26" fill="#e4f0e8" stroke="#2a5a1a" stroke-width="2.5"/>
+    <ellipse cx="22" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="26.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="26.4" r="1.3" fill="#fff"/>
+    <path d="M15 21 q7-5 13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M45 21 q-7-5 -13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M21 41 q9-7 18 0" stroke="#061410" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+    <ellipse cx="47" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+  </g>
+  <g id="kucing">
+    <ellipse cx="40" cy="66" rx="28" ry="4" fill="#000" opacity=".08"/>
+    <path d="M24 64 q-7-26 16-26 q23 0 16 26 z" fill="#f4d8a8" stroke="#c9a86b" stroke-width="1.6"/>
+    <path d="M56 62 q15-6 13-22" stroke="#c9a86b" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M24 20 l-4-14 13 8 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M56 20 l4-14 -13 8 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="40" cy="30" r="20" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.6"/>
+    <ellipse cx="33" cy="30" rx="3.1" ry="4.1" fill="#3a2b22"/>
+    <ellipse cx="47" cy="30" rx="3.1" ry="4.1" fill="#3a2b22"/>
+    <circle cx="34" cy="28.6" r="1.2" fill="#fff"/><circle cx="48" cy="28.6" r="1.2" fill="#fff"/>
+    <path d="M40 35 q-3 3.4 0 4.4" stroke="#c98f63" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M35 41 q5 4 10 0" stroke="#a8794f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <g stroke="#c9a86b" stroke-width="1" opacity=".75" stroke-linecap="round"><path d="M22 32 h-9"/><path d="M22 36 h-9"/><path d="M58 32 h9"/><path d="M58 36 h9"/></g>
+    <ellipse cx="31" cy="25" rx="4" ry="2.5" fill="#e88ba0" opacity=".38"/>
+    <ellipse cx="49" cy="25" rx="4" ry="2.5" fill="#e88ba0" opacity=".38"/>
+  </g>
+  <g id="burung">
+    <path d="M6 16 q-8-7 -5-13 q6 4 8 9 z" fill="#7ab6d8" stroke="#4a8cb0" stroke-width="1.2" stroke-linejoin="round"/>
+    <ellipse cx="20" cy="19" rx="13" ry="10" fill="#8ec6e6" stroke="#4a8cb0" stroke-width="1.4"/>
+    <circle cx="31" cy="12" r="8" fill="#9fd2ec" stroke="#4a8cb0" stroke-width="1.4"/>
+    <path d="M38 11 l7 3 -7 3 z" fill="#e8a94a"/>
+    <circle cx="32" cy="10.5" r="1.8" fill="#2f3b45"/>
+    <path d="M15 26 q5 3 10 0" stroke="#4a8cb0" stroke-width="1.2" fill="none" opacity=".6"/>
+  </g>
+  <g id="awan">
+    <g fill="#ffffff"><circle cx="20" cy="27" r="13"/><circle cx="39" cy="19" r="17"/><circle cx="59" cy="26" r="14"/><rect x="20" y="25" width="39" height="14" rx="7"/></g>
+    <path d="M8 33 q11 8 31 8 q20 0 31-8" stroke="#dfe8f4" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  </g>
+  <g id="pokokBesar">
+    <ellipse cx="60" cy="148" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M54 148 v-54 h12 v54 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <path d="M60 106 q-16-6 -22-20" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M60 114 q16-8 22-22" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.4"><ellipse cx="60" cy="50" rx="40" ry="30"/><ellipse cx="30" cy="70" rx="26" ry="21"/><ellipse cx="90" cy="70" rx="26" ry="21"/><ellipse cx="60" cy="86" rx="34" ry="20"/></g>
+    <g fill="#a9d383" opacity=".7"><ellipse cx="46" cy="42" rx="18" ry="12"/><ellipse cx="82" cy="58" rx="13" ry="9"/></g>
+  </g>
+  <g id="bungaSatu">
+    <path d="M0 24 v-13" stroke="#6d9c4a" stroke-width="1.6" stroke-linecap="round"/>
+    <g fill="#f2b8c6" stroke="#d98da0" stroke-width="1"><circle cx="0" cy="4" r="3.6"/><circle cx="-4" cy="8" r="3.6"/><circle cx="4" cy="8" r="3.6"/><circle cx="0" cy="12" r="3.6"/></g>
+    <circle cx="0" cy="8" r="2.4" fill="#e8a94a"/>
+  </g>
+  <g id="bunga"><use href="#bungaSatu" x="0" y="0"/><use href="#bungaSatu" x="16" y="-5"/><use href="#bungaSatu" x="31" y="2"/></g>
+  <g id="bintang"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="#e8b44a"/></g>
+  <g id="kepalaAdam">
+    <ellipse cx="35" cy="37" rx="26" ry="28" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M9 37 a26 28 0 0 1 52 0 q-8-18 -26-18 q-18 0 -26 18 z" fill="#5a3b28"/>
+    <path d="M21 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M39 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="26" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <ellipse cx="44" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <circle cx="27.8" cy="37.6" r="1.7" fill="#fff"/><circle cx="45.8" cy="37.6" r="1.7" fill="#fff"/>
+    <path d="M35 47 q-3 4 1 5" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M29 54 q6 6 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="17" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="53" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+  </g>
+  <g id="kepalaNur">
+    <path d="M4 40 q0-32 32-32 q32 0 32 32 q0 30 -11 32 q-6-24 -21-24 q-15 0 -21 24 q-11-2 -11-32 z" fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="36" cy="41" rx="22" ry="24" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M22 34 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M40 34 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="27" cy="43" rx="4.6" ry="6" fill="#3a2b22"/>
+    <ellipse cx="45" cy="43" rx="4.6" ry="6" fill="#3a2b22"/>
+    <circle cx="28.8" cy="40.6" r="1.7" fill="#fff"/><circle cx="46.8" cy="40.6" r="1.7" fill="#fff"/>
+    <path d="M36 50 q-3 4 1 5" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M31 57 q5 5.5 10 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="19" cy="52" rx="5.6" ry="3.6" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="53" cy="52" rx="5.6" ry="3.6" fill="#f2a2a2" opacity=".55"/>
+  </g>
+  <g id="rama">
+    <ellipse cx="10" cy="12" rx="1.6" ry="8" fill="#3a2b22"/>
+    <path d="M9 5 q-10-5 -10 5 q0 8 10 5 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="1"/>
+    <path d="M11 5 q10-5 10 5 q0 8 -10 5 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="1"/>
+    <path d="M9 14 q-8 4 -8 10 q0 4 8 2 z" fill="#e88ba0" stroke="#d98da0" stroke-width="1"/>
+    <path d="M11 14 q8 4 8 10 q0 4 -8 2 z" fill="#e88ba0" stroke="#d98da0" stroke-width="1"/>
+    <circle cx="10" cy="5" r="1.4" fill="#3a2b22"/>
+    <path d="M10 5 v-3" stroke="#3a2b22" stroke-width="1" stroke-linecap="round"/>
+  </g>
+  <g id="daun">
+    <path d="M0 10 C4 0 16 0 20 10 C16 20 4 20 0 10 Z" fill="#a0d4a8" stroke="#6d9c4a" stroke-width="1.2"/>
+    <path d="M0 10 H20" stroke="#6d9c4a" stroke-width="1" opacity=".6"/>
+  </g>
+  <g id="anakPokok">
+    <ellipse cx="30" cy="80" rx="22" ry="4" fill="#000" opacity=".08"/>
+    <path d="M16 80 q0-8 14-8 q14 0 14 8 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.4"/>
+    <rect x="16" y="76" width="28" height="6" rx="3" fill="#c49a63" stroke="#8a6544" stroke-width="1.2"/>
+    <path d="M30 76 v-26" stroke="#6d9c4a" stroke-width="2.4" stroke-linecap="round"/>
+    <ellipse cx="22" cy="50" rx="8" ry="6" fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.2"/>
+    <ellipse cx="38" cy="50" rx="8" ry="6" fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.2"/>
+    <ellipse cx="30" cy="42" rx="10" ry="7" fill="#a9d383" stroke="#6d9c4a" stroke-width="1.2"/>
+  </g>
+  <g id="pokokTinggi">
+    <ellipse cx="40" cy="150" rx="30" ry="5" fill="#000" opacity=".07"/>
+    <path d="M36 150 q-3-60 2-100 l6 0 q-3 42 2 100 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.3" stroke-linejoin="round"><ellipse cx="40" cy="48" rx="38" ry="28"/><ellipse cx="14" cy="66" rx="22" ry="18"/><ellipse cx="66" cy="64" rx="22" ry="18"/><ellipse cx="40" cy="80" rx="30" ry="18"/></g>
+    <g fill="#a9d383" opacity=".65"><ellipse cx="28" cy="42" rx="16" ry="10"/><ellipse cx="56" cy="56" rx="12" ry="8"/></g>
+  </g>
+  <g id="sungai">
+    <path d="M0 20 Q40 8 80 20 Q120 32 160 20" fill="none" stroke="#7ab6d8" stroke-width="8" stroke-linecap="round" opacity=".8"/>
+    <path d="M0 20 Q40 8 80 20 Q120 32 160 20" fill="none" stroke="#b0d4f0" stroke-width="3" stroke-linecap="round" opacity=".6" stroke-dasharray="6 8"/>
+  </g>
+  <g id="titikAir">
+    <path d="M14 4 C4 14 0 22 0 28 C0 36 6 42 14 42 C22 42 28 36 28 28 C28 22 24 14 14 4 Z" fill="#7ab6d8" stroke="#4a8cb0" stroke-width="1.4"/>
+    <ellipse cx="10" cy="24" rx="3.4" ry="5" fill="#b0d4f0" opacity=".7"/>
+  </g>
+  <g id="tongSampah">
+    <ellipse cx="22" cy="52" rx="18" ry="4" fill="#000" opacity=".08"/>
+    <path d="M6 18 q0-6 16-6 q16 0 16 6 v32 q0 4 -16 4 q-16 0 -16-4 z" fill="#4a8a3a" stroke="#2a5a1a" stroke-width="1.6"/>
+    <ellipse cx="22" cy="18" rx="16" ry="4" fill="#6d9c4a" stroke="#2a5a1a" stroke-width="1.4"/>
+    <path d="M14 12 q0-4 8-4 q8 0 8 4" fill="none" stroke="#2a5a1a" stroke-width="1.4" stroke-linecap="round"/>
+  </g>
+  <g id="ikan">
+    <ellipse cx="16" cy="10" rx="12" ry="7" fill="#7ab6d8" stroke="#4a8cb0" stroke-width="1.2"/>
+    <path d="M4 10 q-8-4 -8-8 q0 8 0 16 q0-4 8-8 z" fill="#7ab6d8" stroke="#4a8cb0" stroke-width="1.2"/>
+    <circle cx="22" cy="8" r="1.8" fill="#2f3b45"/>
+  </g>
+</defs>
+</svg>
+
+<div class="wrap">
+  <div class="hero">
+    <svg viewBox="0 0 940 300" role="img" aria-label="Ilustrasi: Pemandangan hutan dan taman yang hijau dengan anak menanam pokok dan anak memeluk kucing">
+      <defs>
+        <linearGradient id="h22sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e0f0e4"/><stop offset="45%" stop-color="#f0f8f2"/><stop offset="100%" stop-color="#e4f0e8"/></linearGradient>
+        <linearGradient id="h22gnd" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#a0d4a8"/><stop offset="100%" stop-color="#5a8a4a"/></linearGradient>
+        <linearGradient id="h22beam" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a8a3a" stop-opacity="0.18"/><stop offset="100%" stop-color="#4a8a3a" stop-opacity="0"/></linearGradient>
+        <radialGradient id="h22sun"><stop offset="0%" stop-color="#fff6cf" stop-opacity="0.5"/><stop offset="100%" stop-color="#fff6cf" stop-opacity="0"/></radialGradient>
+        <linearGradient id="h22water" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7ab6d8" stop-opacity="0.7"/><stop offset="50%" stop-color="#b0d4f0" stop-opacity="0.5"/><stop offset="100%" stop-color="#7ab6d8" stop-opacity="0.7"/></linearGradient>
+      </defs>
+      <rect width="940" height="300" fill="url(#h22sky)"/>
+      <circle cx="780" cy="70" r="80" fill="url(#h22sun)"/>
+      <circle cx="780" cy="70" r="28" fill="#fff6cf" opacity="0.7"/>
+      <path d="M0,210 L120,120 L200,170 L320,90 L440,160 L560,110 L680,170 L820,100 L940,160 L940,300 L0,300 Z" fill="#8aaa8a" opacity="0.5"/>
+      <path d="M320,90 L440,160 L320,160 Z" fill="#6d9c8a" opacity="0.4"/>
+      <path d="M820,100 L940,160 L820,160 Z" fill="#6d9c8a" opacity="0.4"/>
+      <path d="M320,90 L340,118 L300,118 Z" fill="#f5fcf8" opacity="0.85"/>
+      <path d="M820,100 L840,128 L800,128 Z" fill="#f5fcf8" opacity="0.85"/>
+      <path d="M0,225 Q240,210 480,225 T940,220 L940,300 L0,300 Z" fill="url(#h22gnd)"/>
+      <polygon points="120,40 780,70 940,300 0,300" fill="url(#h22beam)"/>
+      <g class="anim-sway"><use href="#pokokBesar" x="20" y="60" width="130" height="170"/></g>
+      <g class="anim-sway" style="animation-delay:.8s"><use href="#pokokTinggi" x="130" y="80" width="110" height="160"/></g>
+      <g class="anim-sway" style="animation-delay:.4s"><use href="#pokokBesar" x="780" y="60" width="130" height="170"/></g>
+      <g class="anim-sway" style="animation-delay:1.2s"><use href="#pokokTinggi" x="680" y="80" width="110" height="160"/></g>
+      <g transform="translate(280,200)">
+        <path d="M0,0 Q60,-8 120,0 Q180,8 240,0 Q300,-8 360,0" fill="none" stroke="url(#h22water)" stroke-width="14" stroke-linecap="round"/>
+        <path class="anim-flow" d="M0,0 Q60,-8 120,0 Q180,8 240,0 Q300,-8 360,0" fill="none" stroke="#d0eed4" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 12" opacity="0.7"/>
+      </g>
+      <g class="anim-flutter"><use href="#rama" x="340" y="120" width="24" height="24"/></g>
+      <g class="anim-flutter" style="animation-delay:1.5s"><use href="#rama" x="520" y="100" width="20" height="20"/></g>
+      <g class="anim-flutter" style="animation-delay:2.8s"><use href="#rama" x="620" y="140" width="22" height="22"/></g>
+      <g class="anim-drift"><use href="#burung" x="400" y="40" width="28" height="22"/></g>
+      <g class="anim-drift" style="animation-delay:1s"><use href="#burung" x="500" y="55" width="24" height="20"/></g>
+      <use href="#bunga" x="50" y="245" width="45" height="30"/>
+      <use href="#bunga" x="250" y="255" width="40" height="28"/>
+      <use href="#bunga" x="600" y="250" width="42" height="28"/>
+      <use href="#bunga" x="820" y="255" width="40" height="28"/>
+      <g transform="translate(360,150)">
+        <ellipse cx="20" cy="72" rx="24" ry="6" fill="#6b4f3a" opacity="0.6"/>
+        <use href="#anakPokok" x="-5" y="0" width="50" height="75"/>
+        <g transform="translate(-15,0)">
+          <ellipse cx="35" cy="75" rx="22" ry="4" fill="#000" opacity=".08"/>
+          <path d="M14 75 q0-18 21-18 q21 0 21 18 z" fill="#7fc48a" stroke="#2a5a1a" stroke-width="1.6"/>
+          <path d="M16 62 q-7 8 -4 16" stroke="#f7d5b5" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <path d="M50 62 q7 8 4 16" stroke="#f7d5b5" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <rect x="30" y="55" width="10" height="10" fill="#eec6a6"/>
+          <ellipse cx="20" cy="45" rx="4.5" ry="6" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+          <ellipse cx="50" cy="45" rx="4.5" ry="6" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+          <ellipse cx="35" cy="42" rx="22" ry="23" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.8"/>
+          <path d="M13 42 a22 23 0 0 1 44 0 q-7-14 -22-14 q-15 0 -22 14 z" fill="#5a3b28"/>
+          <path d="M22 36 q4-2.5 8 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M40 36 q4-2.5 8 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <ellipse cx="27" cy="44" rx="4" ry="5" fill="#3a2b22"/>
+          <ellipse cx="43" cy="44" rx="4" ry="5" fill="#3a2b22"/>
+          <circle cx="28.2" cy="41.8" r="1.5" fill="#fff"/><circle cx="44.2" cy="41.8" r="1.5" fill="#fff"/>
+          <path d="M35 50 q-2 3 1 4" stroke="#c98f63" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <path d="M30 56 q5 5 10 0" stroke="#b5714f" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </g>
+      </g>
+      <g transform="translate(560,160)">
+        <ellipse cx="30" cy="65" rx="26" ry="4" fill="#000" opacity=".08"/>
+        <path d="M8 65 q0-20 22-20 q22 0 22 20 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="1.6"/>
+        <path d="M8 48 q0-26 22-26 q22 0 22 26 q0 36 -10 50 q-6-22 -12-22 q-6 0 -12 22 q-10-14 -10-50 z" fill="#e88ba0" stroke="#c9707f" stroke-width="1.8"/>
+        <ellipse cx="30" cy="38" rx="19" ry="21" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.6"/>
+        <path d="M11 38 a19 21 0 0 1 38 0 q-6-12 -19-12 q-13 0 -19 12 z" fill="#f2b8c6"/>
+        <path d="M19 34 q4-2.5 8 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M33 34 q4-2.5 8 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="23" cy="40" rx="4" ry="5" fill="#3a2b22"/>
+        <ellipse cx="37" cy="40" rx="4" ry="5" fill="#3a2b22"/>
+        <circle cx="24.2" cy="37.8" r="1.5" fill="#fff"/><circle cx="38.2" cy="37.8" r="1.5" fill="#fff"/>
+        <path d="M30 46 q-2 3 1 4" stroke="#c98f63" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <use href="#kucing" x="-2" y="30" width="40" height="40"/>
+      </g>
+      <g class="anim-leaf"><use href="#daun" x="300" y="80" width="20" height="20"/></g>
+      <g class="anim-leaf" style="animation-delay:1.2s"><use href="#daun" x="650" y="90" width="18" height="18"/></g>
+      <g class="anim-leaf" style="animation-delay:2.5s"><use href="#daun" x="450" y="70" width="16" height="16"/></g>
+      <g class="anim-twinkle"><use href="#bintang" x="200" y="30" width="14" height="14"/></g>
+      <g class="anim-twinkle" style="animation-delay:.7s"><use href="#bintang" x="700" y="25" width="12" height="12"/></g>
+      <g class="anim-twinkle" style="animation-delay:1.4s"><use href="#bintang" x="500" y="20" width="10" height="10"/></g>
+    </svg>
+    <div class="hero-txt">
+      <div class="kick">Pendidikan Islam &bull; Tahun 5 &bull; Bidang Adab</div>
+      <h1>Adab terhadap Alam Sekitar</h1>
+      <div class="sub">Adab &bull; 5 Standard Pembelajaran &bull; Sayang Alam &amp; Syukur Nikmat</div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="chip"><div class="lbl">Bidang</div><div class="val">Adab</div></div>
+    <div class="chip"><div class="lbl">Standard Kandungan (SK)</div><div class="val">Mengamalkan <b>adab terhadap alam sekitar</b> dengan betul</div></div>
+    <div class="chip"><div class="lbl">Standard Pembelajaran (SP)</div><div class="val">6.4.1 &ndash; 6.4.5</div></div>
+    <div class="chip"><div class="lbl">Sumber</div><div class="val">DSKP PI T5 (ms. 36) &bull; Buku Teks PI T5 SK (ms. 180&ndash;185)</div></div>
+  </div>
+
+  <div class="toc">
+    <div class="ttl">Kandungan &amp; Panduan Penggunaan</div>
+    <div class="grid">
+      <div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">Adab menjaga kebersihan, tumbuhan, haiwan &amp; sumber air</div></div></div>
+      <div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">Adab alam sekitar: kebersihan, tumbuhan, haiwan, air &amp; dalil</div></div></div>
+      <div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">10 poin ringkasan untuk rujukan pantas</div></div></div>
+      <div class="it"><div class="n">4</div><div><div class="t">Diagram Alir</div><div class="d">Sedar &rarr; Jaga &rarr; Tanam &rarr; Sayang &rarr; Jimat &rarr; Syukur</div></div></div>
+      <div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan dengan maklum balas segera</div></div></div>
+      <div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Senarai 24 Standard Kandungan PI Tahun 5</div></div></div>
+    </div>
+    <div class="note"><b>Cara guna:</b> Buka fail ini dalam pelayar web. Pada kuiz, klik pilihan jawapan untuk maklum balas segera dan skor automatik. Tekan butang <b>Cetak / Simpan PDF</b> untuk versi kertas &mdash; semua jawapan akan dipaparkan secara automatik supaya boleh dijadikan lembaran kerja.</div>
+  </div>
+
+<section id="infografik">
+  <h2>Infografik<svg class="mascot" width="36" height="22" viewBox="0 0 66 40" aria-hidden="true"><use href="#burung"/></svg></h2>
+  <div class="art-wrap">
+    <svg id="art-info" viewBox="0 0 820 1150" xmlns="http://www.w3.org/2000/svg" aria-label="Infografik Adab terhadap Alam Sekitar">
+      <defs>
+        <linearGradient id="gh22u22" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a5a2a"/><stop offset="100%" stop-color="#0e3818"/></linearGradient>
+        <linearGradient id="gd22u22" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d0eed4"/><stop offset="100%" stop-color="#f5fcf8"/></linearGradient>
+      </defs>
+      <rect width="820" height="1150" fill="#f5fcf8"/>
+      <rect x="0" y="0" width="820" height="100" fill="url(#gh22u22)"/>
+      <text x="410" y="42" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="30" font-weight="700" fill="#f5fcf8" text-anchor="middle">ADAB TERHADAP ALAM SEKITAR</text>
+      <text x="410" y="70" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="14" fill="#d0eed4" text-anchor="middle">KEBERSIHAN &#8226; TUMBUHAN &#8226; HAIWAN &#8226; SUMBER AIR</text>
+      <text x="410" y="90" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#6a7a62" text-anchor="middle">BIDANG ADAB &#8226; SK 6.4</text>
+      <rect x="22" y="112" width="776" height="80" rx="10" fill="#f9fcf9" stroke="#c8e0cc" stroke-width="1.5"/>
+      <text x="44" y="138" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="600" fill="#1a5a2a">DALIL UTAMA</text>
+      <text x="44" y="164" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="20" fill="#1a2820"><tspan class="jf">&#1610;&#1614;&#1575; &#1576;&#1614;&#1606;&#1616;&#1610; &#1573;&#1616;&#1587;&#1618;&#1585;&#1614;&#1575;&#1574;&#1616;&#1610;&#1604;&#1614; &#1603;&#1615;&#1604;&#1615;&#1608;&#1575;&#1618; &#1608;&#1614;&#1575;&#1588;&#1618;&#1585;&#1614;&#1576;&#1615;&#1608;&#1575;&#1618; &#1608;&#1614;&#1604;&#1614;&#1575; &#1578;&#1615;&#1587;&#1618;&#1585;&#1616;&#1601;&#1615;&#1608;&#1575;&#1618;</tspan></text>
+      <text x="44" y="184" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#6a7a62">Surah al-A&#8216;raaf 7:31 &mdash; &ldquo;Makan dan minumlah, tetapi jangan berlebihan.&rdquo;</text>
+      <rect x="22" y="202" width="776" height="200" rx="12" fill="url(#gd22u22)" stroke="#c8e0cc" stroke-width="1.5"/>
+      <rect x="22" y="202" width="776" height="34" rx="12" fill="#1a5a2a"/><rect x="22" y="224" width="776" height="12" fill="#1a5a2a"/>
+      <text x="44" y="226" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#f5fcf8">SP 6.4.1 &#8212; ADAB MENJAGA KEBERSIHAN ALAM</text>
+      <use href="#tongSampah" x="40" y="250" width="50" height="60"/>
+      <use href="#pokokBesar" x="100" y="245" width="70" height="70"/>
+      <text x="190" y="268" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Buang sampah di tempat sampah</text>
+      <text x="190" y="286" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Tidak mencemarkan sungai, laut &amp; udara</text>
+      <text x="190" y="304" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Kitar semula (recycle) bahan yang boleh</text>
+      <text x="190" y="322" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Bersihkan persekitaran rumah, sekolah &amp; masjid</text>
+      <text x="190" y="340" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#6a7a62">&#9679; Hadis Muslim: &ldquo;Kebersihan adalah sebahagian dari iman&rdquo;</text>
+      <text x="190" y="358" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#6a7a62">&#9679; Hadis Tirmidzi: &ldquo;Allah bersih dan menyukai kebersihan&rdquo;</text>
+      <text x="190" y="382" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" font-style="italic" fill="#4a8a3a">Kebersihan alam = sebahagian dari iman</text>
+      <rect x="22" y="414" width="776" height="170" rx="12" fill="url(#gd22u22)" stroke="#c8e0cc" stroke-width="1.5"/>
+      <rect x="22" y="414" width="776" height="34" rx="12" fill="#2a5a1a"/><rect x="22" y="436" width="776" height="12" fill="#2a5a1a"/>
+      <text x="44" y="438" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#f5fcf8">SP 6.4.2 &#8212; ADAB MENJAGA TUMBUHAN</text>
+      <use href="#anakPokok" x="40" y="462" width="50" height="60"/>
+      <use href="#pokokTinggi" x="100" y="455" width="65" height="70"/>
+      <text x="190" y="478" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Menanam pokok di rumah, sekolah &amp; masjid</text>
+      <text x="190" y="496" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Tidak menebang pokok sewenang-wenangnya</text>
+      <text x="190" y="514" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Tidak membakar hutan atau merosakkan taman</text>
+      <text x="190" y="532" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Menjaga dan menyiram pokok dengan tekun</text>
+      <text x="190" y="550" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#6a7a62">&#9679; Hadis: &ldquo;Jika kiamat datang dan di tangan ada anak pokok, tanamlah jika mampu.&rdquo;</text>
+      <text x="190" y="568" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" font-style="italic" fill="#4a8a3a">Mengelakkan pembaziran kertas (dari pokok)</text>
+      <rect x="22" y="596" width="776" height="170" rx="12" fill="url(#gd22u22)" stroke="#c8e0cc" stroke-width="1.5"/>
+      <rect x="22" y="596" width="776" height="34" rx="12" fill="#1a5a2a"/><rect x="22" y="618" width="776" height="12" fill="#1a5a2a"/>
+      <text x="44" y="620" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#f5fcf8">SP 6.4.3 &#8212; ADAB MENJAGA HAIWAN</text>
+      <use href="#kucing" x="40" y="644" width="50" height="50"/>
+      <use href="#burung" x="100" y="648" width="40" height="35"/>
+      <use href="#ikan" x="145" y="658" width="35" height="30"/>
+      <text x="210" y="660" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Memberi makan dan minum haiwan</text>
+      <text x="210" y="678" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Tidak menyeksa atau menyiksa haiwan</text>
+      <text x="210" y="696" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Menjaga habitat semula jadi haiwan</text>
+      <text x="210" y="714" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#6a7a62">&#9679; Hadis Bukhari: Perempuan pezina diampuni kerana memberi minum anjing dahaga</text>
+      <text x="210" y="732" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#6a7a62">&#9679; Hadis Abu Daud: Nabi melarang membunuh haiwan kecuali ular, kala jengking &amp; tikus</text>
+      <text x="210" y="752" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" font-style="italic" fill="#4a8a3a">Haiwan juga makhluk Allah yang perlu disayangi</text>
+      <rect x="22" y="778" width="776" height="160" rx="12" fill="url(#gd22u22)" stroke="#c8e0cc" stroke-width="1.5"/>
+      <rect x="22" y="778" width="776" height="34" rx="12" fill="#2a5a1a"/><rect x="22" y="800" width="776" height="12" fill="#2a5a1a"/>
+      <text x="44" y="802" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#f5fcf8">SP 6.4.4 &#8212; ADAB MENJAGA SUMBER AIR</text>
+      <use href="#titikAir" x="45" y="826" width="35" height="50"/>
+      <use href="#sungai" x="90" y="843" width="90" height="30"/>
+      <text x="210" y="842" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Tidak membazir air walau di tepi sungai mengalir</text>
+      <text x="210" y="860" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Tidak mencemarkan sungai/laut dengan sampah &amp; toksik</text>
+      <text x="210" y="878" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#1a2820">&#9679; Tidak mengotori telaga atau paip awam</text>
+      <text x="210" y="896" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#6a7a62">&#9679; Hadis: &ldquo;Jangan membazir air walau di tepi sungai yang mengalir.&rdquo;</text>
+      <text x="210" y="914" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" font-style="italic" fill="#4a8a3a">Air = nikmat Allah (Surah al-Anbiya 21:30)</text>
+      <rect x="22" y="952" width="776" height="60" rx="10" fill="#e4f0e8" stroke="#c8e0cc" stroke-width="1.4"/>
+      <text x="44" y="976" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="18" fill="#1a2820"><tspan class="jf">&#1608;&#1614;&#1580;&#1614;&#1593;&#1614;&#1604;&#1618;&#1606;&#1614;&#1575; &#1605;&#1616;&#1606;&#1614; &#1575;&#1604;&#1618;&#1605;&#1614;&#1570;&#1574;&#1616; &#1603;&#1615;&#1604;&#1617;&#1614; &#1588;&#1614;&#1610;&#1618;&#1569;&#1613; &#1581;&#1614;&#1610;&#1617;&#1613;</tspan></text>
+      <text x="44" y="1000" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#6a7a62">Surah al-Anbiya 21:30 &mdash; &ldquo;Dan Kami jadikan daripada air setiap sesuatu yang hidup.&rdquo;</text>
+      <rect x="22" y="1024" width="776" height="40" rx="8" fill="url(#gh22u22)"/>
+      <text x="410" y="1050" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.5" font-weight="600" fill="#d0eed4" text-anchor="middle">SP 6.4.5: Mengamalkan adab terhadap alam sekitar dalam kehidupan harian</text>
+      <rect x="22" y="1078" width="776" height="48" rx="8" fill="#e4f0e8"/>
+      <text x="410" y="1108" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.5" font-weight="600" fill="#1a5a2a" text-anchor="middle">NILAI MURNI: Bertanggungjawab &#8226; Bersyukur &#8226; Penyayang &#8226; Menghargai nikmat Allah</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== PETA MINDA ===== -->
+<section class="card" id="pm">
+  <h2 class="card-h"><span class="num">02</span>Peta Minda</h2>
+  <p class="lead">Hubungan antara adab-adab terhadap alam sekitar dalam kehidupan harian.</p>
+  <div class="svgbox">
+    <svg viewBox="0 0 820 730" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peta Minda Adab terhadap Alam Sekitar">
+      <defs>
+        <linearGradient id="pm22bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f0f8f2"/>
+          <stop offset="1" stop-color="#e0f0e4"/>
+        </linearGradient>
+        <radialGradient id="pm22c" cx="50%" cy="40%" r="60%">
+          <stop offset="0" stop-color="#7fc48a"/>
+          <stop offset="100%" stop-color="#2a5a1a"/>
+        </radialGradient>
+      </defs>
+      <rect width="820" height="730" rx="12" fill="url(#pm22bg)" stroke="#c8e0cc" stroke-width="1.5"/>
+
+      <!-- background leaves -->
+      <use href="#daun" x="30" y="40" width="40" height="40" opacity=".25" transform="rotate(-20 50 60)"/>
+      <use href="#daun" x="740" y="50" width="36" height="36" opacity=".25" transform="rotate(25 758 68)"/>
+      <use href="#daun" x="40" y="660" width="38" height="38" opacity=".25" transform="rotate(15 59 679)"/>
+      <use href="#daun" x="730" y="660" width="34" height="34" opacity=".25" transform="rotate(-30 747 677)"/>
+
+      <!-- central node -->
+      <ellipse cx="410" cy="80" rx="200" ry="48" fill="url(#pm22c)" stroke="#0e3818" stroke-width="2"/>
+      <text x="410" y="76" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="18" font-weight="700" fill="#f5fcf8" text-anchor="middle">Adab terhadap</text>
+      <text x="410" y="98" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="18" font-weight="700" fill="#f5fcf8" text-anchor="middle">Alam Sekitar</text>
+
+      <!-- connector lines from center to 5 branches -->
+      <path d="M 410 128 C 410 180, 140 190, 140 240" stroke="#1a5a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 410 128 C 410 170, 280 190, 280 240" stroke="#1a5a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 410 128 L 410 240" stroke="#1a5a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 410 128 C 410 170, 540 190, 540 240" stroke="#1a5a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 410 128 C 410 180, 680 190, 680 240" stroke="#1a5a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+      <!-- branch sub-lines -->
+      <path d="M 140 290 L 140 360" stroke="#4a8a3a" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+      <path d="M 140 370 L 140 440" stroke="#4a8a3a" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+      <path d="M 280 290 L 280 360" stroke="#4a8a3a" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+      <path d="M 280 370 L 280 440" stroke="#4a8a3a" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+      <path d="M 410 290 L 410 360" stroke="#4a8a3a" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+      <path d="M 410 370 L 410 440" stroke="#4a8a3a" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+      <path d="M 540 290 L 540 360" stroke="#4a8a3a" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+      <path d="M 540 370 L 540 440" stroke="#4a8a3a" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+      <path d="M 680 290 L 680 360" stroke="#4a8a3a" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+      <path d="M 680 370 L 680 440" stroke="#4a8a3a" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+
+      <!-- link from branches down to dalil box -->
+      <path d="M 140 500 C 140 560, 300 580, 410 590" stroke="#1a5a2a" stroke-width="2" fill="none" stroke-dasharray="3 5"/>
+      <path d="M 280 500 C 280 560, 360 575, 410 585" stroke="#1a5a2a" stroke-width="2" fill="none" stroke-dasharray="3 5"/>
+      <path d="M 410 500 L 410 575" stroke="#1a5a2a" stroke-width="2" fill="none" stroke-dasharray="3 5"/>
+      <path d="M 540 500 C 540 560, 460 575, 410 585" stroke="#1a5a2a" stroke-width="2" fill="none" stroke-dasharray="3 5"/>
+      <path d="M 680 500 C 680 560, 520 580, 410 590" stroke="#1a5a2a" stroke-width="2" fill="none" stroke-dasharray="3 5"/>
+
+      <!-- 5 branch nodes -->
+      <!-- 1: Kebersihan -->
+      <rect x="40" y="240" width="200" height="50" rx="10" fill="#d0eed4" stroke="#1a5a2a" stroke-width="1.5"/>
+      <use href="#titikAir" x="48" y="248" width="28" height="34"/>
+      <text x="82" y="271" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="13" font-weight="700" fill="#0e3818">Kebersihan Alam</text>
+
+      <!-- 2: Tumbuhan -->
+      <rect x="180" y="240" width="200" height="50" rx="10" fill="#d0eed4" stroke="#1a5a2a" stroke-width="1.5"/>
+      <use href="#anakPokok" x="188" y="246" width="30" height="36"/>
+      <text x="224" y="271" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="13" font-weight="700" fill="#0e3818">Tumbuhan &amp; Pokok</text>
+
+      <!-- 3: Haiwan -->
+      <rect x="310" y="240" width="200" height="50" rx="10" fill="#d0eed4" stroke="#1a5a2a" stroke-width="1.5"/>
+      <use href="#burung" x="320" y="250" width="30" height="30"/>
+      <text x="356" y="271" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="13" font-weight="700" fill="#0e3818">Haiwan &amp; Ikan</text>
+
+      <!-- 4: Sumber Air -->
+      <rect x="440" y="240" width="200" height="50" rx="10" fill="#d0eed4" stroke="#1a5a2a" stroke-width="1.5"/>
+      <use href="#sungai" x="450" y="253" width="36" height="26"/>
+      <text x="492" y="271" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="13" font-weight="700" fill="#0e3818">Sumber Air</text>
+
+      <!-- 5: Amalan Harian -->
+      <rect x="580" y="240" width="200" height="50" rx="10" fill="#d0eed4" stroke="#1a5a2a" stroke-width="1.5"/>
+      <use href="#tongSampah" x="590" y="248" width="28" height="34"/>
+      <text x="624" y="271" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="13" font-weight="700" fill="#0e3818">Amalan Harian</text>
+
+      <!-- sub-points: Kebersihan -->
+      <rect x="50" y="360" width="180" height="36" rx="8" fill="#e4f0e8" stroke="#c8e0cc"/>
+      <text x="60" y="383" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.5" fill="#1a2820">Buang sampah di tempatnya</text>
+      <rect x="50" y="440" width="180" height="36" rx="8" fill="#e4f0e8" stroke="#c8e0cc"/>
+      <text x="60" y="463" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.5" fill="#1a2820">Kekalkan kebersihan taman</text>
+
+      <!-- sub-points: Tumbuhan -->
+      <rect x="190" y="360" width="180" height="36" rx="8" fill="#e4f0e8" stroke="#c8e0cc"/>
+      <text x="200" y="383" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.5" fill="#1a2820">Tanam &amp; jaga pokok</text>
+      <rect x="190" y="440" width="180" height="36" rx="8" fill="#e4f0e8" stroke="#c8e0cc"/>
+      <text x="200" y="463" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.5" fill="#1a2820">Elak menebang tanpa keperluan</text>
+
+      <!-- sub-points: Haiwan -->
+      <rect x="320" y="360" width="180" height="36" rx="8" fill="#e4f0e8" stroke="#c8e0cc"/>
+      <text x="330" y="383" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.5" fill="#1a2820">Sayang &amp; jaga haiwan</text>
+      <rect x="320" y="440" width="180" height="36" rx="8" fill="#e4f0e8" stroke="#c8e0cc"/>
+      <text x="330" y="463" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.5" fill="#1a2820">Tidak menyakiti / memburu</text>
+
+      <!-- sub-points: Air -->
+      <rect x="450" y="360" width="180" height="36" rx="8" fill="#e4f0e8" stroke="#c8e0cc"/>
+      <text x="460" y="383" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.5" fill="#1a2820">Jimat air &mdash; jangan bazir</text>
+      <rect x="450" y="440" width="180" height="36" rx="8" fill="#e4f0e8" stroke="#c8e0cc"/>
+      <text x="460" y="463" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.5" fill="#1a2820">Tidak cetekkan sungai/laut</text>
+
+      <!-- sub-points: Amalan -->
+      <rect x="590" y="360" width="180" height="36" rx="8" fill="#e4f0e8" stroke="#c8e0cc"/>
+      <text x="600" y="383" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.5" fill="#1a2820">Kitar semula &amp; guna semula</text>
+      <rect x="590" y="440" width="180" height="36" rx="8" fill="#e4f0e8" stroke="#c8e0cc"/>
+      <text x="600" y="463" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.5" fill="#1a2820">Kurang guna plastik sekali guna</text>
+
+      <!-- Dalil box -->
+      <rect x="200" y="585" width="420" height="110" rx="12" fill="#0e3818" stroke="#1a5a2a" stroke-width="2"/>
+      <text x="410" y="612" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="12" font-weight="700" fill="#7fc48a" text-anchor="middle">DALIL UTAMA</text>
+      <text x="410" y="642" class="arab" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="18" fill="#f5fcf8" text-anchor="middle">&#1603;&#1615;&#1604;&#1615;&#1608;&#1575; &#1608;&#1614;&#1575;&#1588;&#1618;&#1585;&#1614;&#1576;&#1615;&#1608;&#1575; &#1608;&#1614;&#1604;&#1614;&#1575; &#1578;&#1615;&#1587;&#1618;&#1585;&#1616;&#1601;&#1615;&#1608;&#1575;</text>
+      <text x="410" y="670" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.5" fill="#d0eed4" text-anchor="middle">al-A'raaf 7:31 &mdash; &ldquo;Makanlah dan minumlah, tetapi jangan membazir.&rdquo;</text>
+      <text x="410" y="688" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10.5" fill="#a0d4a8" text-anchor="middle">SP 6.4.1 &mdash; 6.4.5 | SK 6.4: Adab terhadap Alam Sekitar</text>
+
+      <!-- icons on corners -->
+      <use href="#rama" class="anim-flutter" x="60" y="510" width="28" height="24" opacity=".7"/>
+      <use href="#rama" class="anim-flutter" x="730" y="520" width="24" height="20" opacity=".7" style="animation-delay:1.2s"/>
+      <use href="#bintang" class="anim-twinkle" x="100" y="80" width="14" height="14" opacity=".6"/>
+      <use href="#bintang" class="anim-twinkle" x="720" y="90" width="12" height="12" opacity=".6" style="animation-delay:.8s"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== NOTA RINGKAS ===== -->
+<section class="card" id="nota">
+  <h2 class="card-h"><span class="num">03</span>Nota Ringkas</h2>
+  <p class="lead">10 perkara penting tentang adab terhadap alam sekitar.</p>
+  <div class="svgbox">
+    <svg viewBox="0 0 820 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nota Ringkas">
+      <defs>
+        <linearGradient id="nr22bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f5fcf8"/>
+          <stop offset="1" stop-color="#e4f0e8"/>
+        </linearGradient>
+      </defs>
+      <rect width="820" height="600" rx="12" fill="url(#nr22bg)" stroke="#c8e0cc" stroke-width="1.5"/>
+
+      <!-- left column 1-5 -->
+      <g transform="translate(22,20)">
+        <rect width="368" height="100" rx="10" fill="#d0eed4" stroke="#1a5a2a" stroke-width="1"/>
+        <circle cx="34" cy="34" r="20" fill="#1a5a2a"/>
+        <text x="34" y="40" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="16" font-weight="700" fill="#f5fcf8" text-anchor="middle">1</text>
+        <use href="#tongSampah" x="64" y="18" width="28" height="34"/>
+        <text x="102" y="34" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#0e3818">Buang Sampah Tempatnya</text>
+        <text x="102" y="54" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">Sampah dikitar semula atau dibuang</text>
+        <text x="102" y="72" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">di tong yang betul &mdash; bukan di jalan,</text>
+        <text x="102" y="90" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">sungai, atau longkang.</text>
+      </g>
+
+      <g transform="translate(22,130)">
+        <rect width="368" height="100" rx="10" fill="#e4f0e8" stroke="#1a5a2a" stroke-width="1"/>
+        <circle cx="34" cy="34" r="20" fill="#2a5a1a"/>
+        <text x="34" y="40" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="16" font-weight="700" fill="#f5fcf8" text-anchor="middle">2</text>
+        <use href="#anakPokok" x="62" y="14" width="30" height="40"/>
+        <text x="102" y="34" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#0e3818">Tanam &amp; Jaga Pokok</text>
+        <text x="102" y="54" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">Menanam pokok amalan mulia &mdash;</text>
+        <text x="102" y="72" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">pahala mengalir selagi pokok hidup</text>
+        <text x="102" y="90" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">dan memberi manfaat kepada makhluk.</text>
+      </g>
+
+      <g transform="translate(22,240)">
+        <rect width="368" height="100" rx="10" fill="#d0eed4" stroke="#1a5a2a" stroke-width="1"/>
+        <circle cx="34" cy="34" r="20" fill="#1a5a2a"/>
+        <text x="34" y="40" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="16" font-weight="700" fill="#f5fcf8" text-anchor="middle">3</text>
+        <use href="#burung" x="62" y="18" width="30" height="30"/>
+        <text x="102" y="34" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#0e3818">Sayang Haiwan</text>
+        <text x="102" y="54" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">Memberi makan, minum dan perlindungan</text>
+        <text x="102" y="72" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">kepada haiwan &mdash; tidak menyakiti</text>
+        <text x="102" y="90" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">atau membunuh tanpa alasan yang dibenar.</text>
+      </g>
+
+      <g transform="translate(22,350)">
+        <rect width="368" height="100" rx="10" fill="#e4f0e8" stroke="#1a5a2a" stroke-width="1"/>
+        <circle cx="34" cy="34" r="20" fill="#2a5a1a"/>
+        <text x="34" y="40" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="16" font-weight="700" fill="#f5fcf8" text-anchor="middle">4</text>
+        <use href="#titikAir" x="62" y="12" width="28" height="40"/>
+        <text x="102" y="34" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#0e3818">Jimat &amp; Hargai Air</text>
+        <text x="102" y="54" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">Tidak membazir air walaupun di tepi</text>
+        <text x="102" y="72" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">sungai mengalir (hadis Nabi SAW).</text>
+        <text x="102" y="90" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">Air = nikmat Allah &mdash; Surah al-Anbiya 21:30.</text>
+      </g>
+
+      <g transform="translate(22,460)">
+        <rect width="368" height="100" rx="10" fill="#d0eed4" stroke="#1a5a2a" stroke-width="1"/>
+        <circle cx="34" cy="34" r="20" fill="#1a5a2a"/>
+        <text x="34" y="40" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="16" font-weight="700" fill="#f5fcf8" text-anchor="middle">5</text>
+        <use href="#daun" x="60" y="16" width="32" height="32"/>
+        <text x="102" y="34" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#0e3818">Tidak Membazir</text>
+        <text x="102" y="54" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">&ldquo;Makanlah dan minumlah, tetapi</text>
+        <text x="102" y="72" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">jangan membazir&rdquo; &mdash; Allah tidak menyukai</text>
+        <text x="102" y="90" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">orang yang membazir (al-A'raaf 7:31).</text>
+      </g>
+
+      <!-- right column 6-10 -->
+      <g transform="translate(430,20)">
+        <rect width="368" height="100" rx="10" fill="#e4f0e8" stroke="#1a5a2a" stroke-width="1"/>
+        <circle cx="34" cy="34" r="20" fill="#2a5a1a"/>
+        <text x="34" y="40" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="16" font-weight="700" fill="#f5fcf8" text-anchor="middle">6</text>
+        <use href="#tongSampah" x="64" y="18" width="28" height="34"/>
+        <text x="102" y="34" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#0e3818">Kitar Semula</text>
+        <text x="102" y="54" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">Asingkan sampah: kertas, plastik,</text>
+        <text x="102" y="72" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">logam, dan organik untuk dikitar semula</text>
+        <text x="102" y="90" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">atau dijadikan kompos untuk tanaman.</text>
+      </g>
+
+      <g transform="translate(430,130)">
+        <rect width="368" height="100" rx="10" fill="#d0eed4" stroke="#1a5a2a" stroke-width="1"/>
+        <circle cx="34" cy="34" r="20" fill="#1a5a2a"/>
+        <text x="34" y="40" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="16" font-weight="700" fill="#f5fcf8" text-anchor="middle">7</text>
+        <use href="#pokokTinggi" x="60" y="10" width="34" height="44"/>
+        <text x="102" y="34" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#0e3818">Jaga Tumbuhan Hijau</text>
+        <text x="102" y="54" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">Tidak menebang pokok sewenang-wenangnya;</text>
+        <text x="102" y="72" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">pokok memberi teduhan, oksigen,</text>
+        <text x="102" y="90" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">buah, dan tempat tinggal haiwan.</text>
+      </g>
+
+      <g transform="translate(430,240)">
+        <rect width="368" height="100" rx="10" fill="#e4f0e8" stroke="#1a5a2a" stroke-width="1"/>
+        <circle cx="34" cy="34" r="20" fill="#2a5a1a"/>
+        <text x="34" y="40" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="16" font-weight="700" fill="#f5fcf8" text-anchor="middle">8</text>
+        <use href="#ikan" x="62" y="20" width="34" height="26"/>
+        <text x="102" y="34" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#0e3818">Tidak Cemarkan Sungai/Laut</text>
+        <text x="102" y="54" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">Sampah dan toksik boleh membunuh ikan</text>
+        <text x="102" y="72" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">dan haiwan air. Buang sampah di tong,</text>
+        <text x="102" y="90" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">bukan di sungai atau laut.</text>
+      </g>
+
+      <g transform="translate(430,350)">
+        <rect width="368" height="100" rx="10" fill="#d0eed4" stroke="#1a5a2a" stroke-width="1"/>
+        <circle cx="34" cy="34" r="20" fill="#1a5a2a"/>
+        <text x="34" y="40" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="16" font-weight="700" fill="#f5fcf8" text-anchor="middle">9</text>
+        <use href="#daun" x="60" y="16" width="32" height="32" transform="rotate(20 76 32)"/>
+        <text x="102" y="34" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#0e3818">Kurang Plastik Sekali Guna</text>
+        <text x="102" y="54" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">Bawa beg sendiri, guna botol minum</text>
+        <text x="102" y="72" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">boleh guna semula &mdash; kurangkan plastik</text>
+        <text x="102" y="90" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">yang mencemarkan bumi.</text>
+      </g>
+
+      <g transform="translate(430,460)">
+        <rect width="368" height="100" rx="10" fill="#e4f0e8" stroke="#1a5a2a" stroke-width="1"/>
+        <circle cx="34" cy="34" r="20" fill="#2a5a1a"/>
+        <text x="34" y="40" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="16" font-weight="700" fill="#f5fcf8" text-anchor="middle">10</text>
+        <use href="#bintang" x="62" y="16" width="30" height="30"/>
+        <text x="102" y="34" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#0e3818">Syukur Nikmat Allah</text>
+        <text x="102" y="54" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">Alam adalah nikmat &mdash; menjaganya</text>
+        <text x="102" y="72" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">adalah bentuk syukur kepada Allah SWT.</text>
+        <text x="102" y="90" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#1a2820">&ldquo;Dan Kami jadikan daripada air setiap yang hidup.&rdquo;</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== DIAGRAM ALIR ===== -->
+<section class="card" id="diag">
+  <h2 class="card-h"><span class="num">04</span>Diagram Alir</h2>
+  <p class="lead">Aliran amalan adab terhadap alam sekitar dalam kehidupan harian.</p>
+  <div class="svgbox">
+    <svg viewBox="0 0 820 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram Alir Adab Alam Sekitar">
+      <defs>
+        <linearGradient id="dg22bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f0f8f2"/>
+          <stop offset="1" stop-color="#e4f0e8"/>
+        </linearGradient>
+        <marker id="arrow22" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a5a2a"/>
+        </marker>
+      </defs>
+      <rect width="820" height="430" rx="12" fill="url(#dg22bg)" stroke="#c8e0cc" stroke-width="1.5"/>
+
+      <!-- Step 1: Sedar -->
+      <rect x="30" y="30" width="140" height="70" rx="14" fill="#1a5a2a" stroke="#0e3818" stroke-width="2"/>
+      <use href="#kepalaAdam" x="40" y="42" width="36" height="46"/>
+      <text x="100" y="60" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="12.5" font-weight="700" fill="#f5fcf8" text-anchor="middle">Sedar</text>
+      <text x="100" y="78" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10" fill="#d0eed4" text-anchor="middle">Alam = nikmat Allah</text>
+      <text x="100" y="92" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10" fill="#d0eed4" text-anchor="middle">perlu dijaga</text>
+
+      <!-- arrow 1 -->
+      <line x1="178" y1="65" x2="196" y2="65" stroke="#1a5a2a" stroke-width="3" marker-end="url(#arrow22)"/>
+
+      <!-- Step 2: Jaga Kebersihan -->
+      <rect x="200" y="30" width="140" height="70" rx="14" fill="#d0eed4" stroke="#1a5a2a" stroke-width="1.5"/>
+      <use href="#tongSampah" x="210" y="44" width="28" height="42"/>
+      <text x="270" y="60" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="12" font-weight="700" fill="#0e3818" text-anchor="middle">Jaga Kebersihan</text>
+      <text x="270" y="78" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10" fill="#1a2820" text-anchor="middle">Buang sampah</text>
+      <text x="270" y="92" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10" fill="#1a2820" text-anchor="middle">di tempatnya</text>
+
+      <!-- arrow 2 -->
+      <line x1="348" y1="65" x2="366" y2="65" stroke="#1a5a2a" stroke-width="3" marker-end="url(#arrow22)"/>
+
+      <!-- Step 3: Tanam Pokok -->
+      <rect x="370" y="30" width="140" height="70" rx="14" fill="#e4f0e8" stroke="#1a5a2a" stroke-width="1.5"/>
+      <use href="#anakPokok" x="380" y="38" width="30" height="48"/>
+      <text x="440" y="60" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="12" font-weight="700" fill="#0e3818" text-anchor="middle">Tanam Pokok</text>
+      <text x="440" y="78" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10" fill="#1a2820" text-anchor="middle">Hijaukan bumi</text>
+      <text x="440" y="92" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10" fill="#1a2820" text-anchor="middle">&amp; jaga tumbuhan</text>
+
+      <!-- arrow 3 -->
+      <line x1="518" y1="65" x2="536" y2="65" stroke="#1a5a2a" stroke-width="3" marker-end="url(#arrow22)"/>
+
+      <!-- Step 4: Sayang Haiwan -->
+      <rect x="540" y="30" width="140" height="70" rx="14" fill="#d0eed4" stroke="#1a5a2a" stroke-width="1.5"/>
+      <use href="#burung" x="552" y="44" width="28" height="28"/>
+      <text x="610" y="60" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="12" font-weight="700" fill="#0e3818" text-anchor="middle">Sayang Haiwan</text>
+      <text x="610" y="78" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10" fill="#1a2820" text-anchor="middle">Berikan makan</text>
+      <text x="610" y="92" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10" fill="#1a2820" text-anchor="middle">&amp; minum</text>
+
+      <!-- arrow 4 -->
+      <line x1="688" y1="65" x2="706" y2="65" stroke="#1a5a2a" stroke-width="3" marker-end="url(#arrow22)"/>
+
+      <!-- Step 5: Jimat Air -->
+      <rect x="710" y="30" width="80" height="70" rx="14" fill="#e4f0e8" stroke="#1a5a2a" stroke-width="1.5"/>
+      <use href="#titikAir" x="730" y="40" width="26" height="36"/>
+      <text x="750" y="92" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="11" font-weight="700" fill="#0e3818" text-anchor="middle">Jimat Air</text>
+
+      <!-- vertical down from Step 5 -->
+      <path d="M 750 105 L 750 165" stroke="#1a5a2a" stroke-width="3" fill="none" marker-end="url(#arrow22)"/>
+
+      <!-- Step 6: Amalan Harian (bottom row) -->
+      <rect x="560" y="170" width="230" height="70" rx="14" fill="#1a5a2a" stroke="#0e3818" stroke-width="2"/>
+      <use href="#daun" x="572" y="188" width="30" height="30" transform="rotate(-15 587 203)"/>
+      <text x="675" y="200" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="12.5" font-weight="700" fill="#f5fcf8" text-anchor="middle">Amalan Harian</text>
+      <text x="675" y="218" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10" fill="#d0eed4" text-anchor="middle">Kitar semula, kurang plastik,</text>
+      <text x="675" y="232" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10" fill="#d0eed4" text-anchor="middle">guna semula barang</text>
+
+      <!-- arrow left from Step 6 -->
+      <line x1="555" y1="205" x2="537" y2="205" stroke="#1a5a2a" stroke-width="3" marker-end="url(#arrow22)"/>
+
+      <!-- Step 7: Tidak Membazir -->
+      <rect x="330" y="170" width="200" height="70" rx="14" fill="#d0eed4" stroke="#1a5a2a" stroke-width="1.5"/>
+      <use href="#bintang" x="342" y="188" width="26" height="26"/>
+      <text x="430" y="200" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="12" font-weight="700" fill="#0e3818" text-anchor="middle">Tidak Membazir</text>
+      <text x="430" y="218" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10" fill="#1a2820" text-anchor="middle">al-A'raaf 7:31</text>
+      <text x="430" y="232" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10" fill="#1a2820" text-anchor="middle">&ldquo;Jangan membazir&rdquo;</text>
+
+      <!-- arrow left from Step 7 -->
+      <line x1="325" y1="205" x2="307" y2="205" stroke="#1a5a2a" stroke-width="3" marker-end="url(#arrow22)"/>
+
+      <!-- Step 8: Syukur (final) -->
+      <rect x="30" y="170" width="270" height="70" rx="14" fill="#0e3818" stroke="#1a5a2a" stroke-width="2"/>
+      <use href="#kepalaNur" x="42" y="182" width="36" height="46"/>
+      <text x="165" y="200" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="13" font-weight="700" fill="#7fc48a" text-anchor="middle">Syukur Nikmat Allah</text>
+      <text x="165" y="218" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10.5" fill="#d0eed4" text-anchor="middle">&ldquo;Dan Kami jadikan daripada air</text>
+      <text x="165" y="232" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10.5" fill="#d0eed4" text-anchor="middle">setiap sesuatu yang hidup.&rdquo; (al-Anbiya 21:30)</text>
+
+      <!-- vertical up connecting bottom to top left -->
+      <path d="M 165 170 L 165 110 L 100 110 L 100 105" stroke="#1a5a2a" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+
+      <!-- bottom dalil banner -->
+      <rect x="30" y="280" width="760" height="40" rx="8" fill="#e4f0e8" stroke="#c8e0cc"/>
+      <text x="410" y="306" font-family="Trebuchet MS,Segoe UI,Verdana,sans-serif" font-size="12" font-weight="600" fill="#1a5a2a" text-anchor="middle">Hadis: &ldquo;Jangan membazir air walau di tepi sungai yang mengalir.&rdquo; &mdash; Nabi Muhammad SAW</text>
+
+      <!-- decorations -->
+      <use href="#rama" class="anim-flutter" x="50" y="360" width="24" height="20" opacity=".6"/>
+      <use href="#rama" class="anim-flutter" x="740" y="360" width="20" height="16" opacity=".6" style="animation-delay:1s"/>
+      <use href="#bunga" x="380" y="370" width="24" height="24" opacity=".5"/>
+      <use href="#bunga" x="440" y="370" width="20" height="20" opacity=".5"/>
+      <use href="#daun" x="340" y="372" width="22" height="22" opacity=".4" transform="rotate(-20 351 383)"/>
+      <use href="#daun" x="490" y="372" width="22" height="22" opacity=".4" transform="rotate(25 501 383)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== KUIZ ===== -->
+<section class="card" id="kuiz">
+  <h2 class="card-h"><span class="num">05</span>Kuiz &mdash; 10 Soalan</h2>
+  <p class="lead">Jawab semua soalan. Pilih jawapan yang paling tepat.</p>
+  <div class="scorebar">
+    <div class="scorebar-l"><span id="s22l">0</span> / 10 betul</div>
+    <div class="scorebar-r"><button type="button" class="btn-rst" onclick="resetQuiz22()">Semula</button></div>
+  </div>
+  <div class="quiz-grid">
+
+    <div class="qcard" data-q="1" data-a="b">
+      <div class="qhead"><span class="qbadge">Q1</span><span class="qtext">Apakah amalan utama untuk menjaga kebersihan alam sekitar?</span></div>
+      <div class="opts">
+        <button class="opt" data-q="1" data-v="a">Membuang sampah di jalan</button>
+        <button class="opt" data-q="1" data-v="b">Membuang sampah di tempatnya</button>
+        <button class="opt" data-q="1" data-v="c">Membakar sampah di halaman</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="qcard" data-q="2" data-a="c">
+      <div class="qhead"><span class="qbadge">Q2</span><span class="qtext">Apakah dalil al-Quran yang mengajar kita supaya tidak membazir?</span></div>
+      <div class="opts">
+        <button class="opt" data-q="2" data-v="a">Surah al-Fatihah 1:1</button>
+        <button class="opt" data-q="2" data-v="b">Surah al-Anbiya 21:30</button>
+        <button class="opt" data-q="2" data-v="c">Surah al-A'raaf 7:31</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="qcard" data-q="3" data-a="a">
+      <div class="qhead"><span class="qbadge">Q3</span><span class="qtext">Apakah hukum membazir air walaupun di tepi sungai mengalir menurut hadis Nabi?</span></div>
+      <div class="opts">
+        <button class="opt" data-q="3" data-v="a">Tidak dibenarkan (haram)</button>
+        <button class="opt" data-q="3" data-v="b">Dibenarkan jika air banyak</button>
+        <button class="opt" data-q="3" data-v="c">Makruh sahaja</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="qcard" data-q="4" data-a="b">
+      <div class="qhead"><span class="qbadge">Q4</span><span class="qtext">Maksud &ldquo;Dan Kami jadikan daripada air setiap sesuatu yang hidup&rdquo; adalah daripada surah?</span></div>
+      <div class="opts">
+        <button class="opt" data-q="4" data-v="a">Surah al-A'raaf</button>
+        <button class="opt" data-q="4" data-v="b">Surah al-Anbiya 21:30</button>
+        <button class="opt" data-q="4" data-v="c">Surah al-Baqarah</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="qcard" data-q="5" data-a="c">
+      <div class="qhead"><span class="qbadge">Q5</span><span class="qtext">Antara berikut, yang manakah cara menjaga tumbuhan dengan betul?</span></div>
+      <div class="opts">
+        <button class="opt" data-q="5" data-v="a">Menebang semua pokok untuk bina rumah</button>
+        <button class="opt" data-q="5" data-v="b">Membakar hutan untuk tanah pertanian</button>
+        <button class="opt" data-q="5" data-v="c">Menanam pokok dan tidak menebang sewenang-wenangnya</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="qcard" data-q="6" data-a="a">
+      <div class="qhead"><span class="qbadge">Q6</span><span class="qtext">Apakah contoh adab terhadap haiwan?</span></div>
+      <div class="opts">
+        <button class="opt" data-q="6" data-v="a">Memberi makan dan minum kepada haiwan</button>
+        <button class="opt" data-q="6" data-v="b">Menyakiti haiwan untuk hiburan</button>
+        <button class="opt" data-q="6" data-v="c">Memburu haiwan untuk berseronok</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="qcard" data-q="7" data-a="b">
+      <div class="qhead"><span class="qbadge">Q7</span><span class="qtext">Mengapa kita perlu mengasingkan sampah untuk dikitar semula?</span></div>
+      <div class="opts">
+        <button class="opt" data-q="7" data-v="a">Untuk dijual semula dengan harga tinggi</button>
+        <button class="opt" data-q="7" data-v="b">Untuk mengurangkan pencemaran dan menjaga alam</button>
+        <button class="opt" data-q="7" data-v="c">Kerana ia hukum wajib solat</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="qcard" data-q="8" data-a="c">
+      <div class="qhead"><span class="qbadge">Q8</span><span class="qtext">Apakah nilai murni utama dalam menjaga alam sekitar?</span></div>
+      <div class="opts">
+        <button class="opt" data-q="8" data-v="a">Bakhil dan kedekut</button>
+        <button class="opt" data-q="8" data-v="b">Sombong dan riak</button>
+        <button class="opt" data-q="8" data-v="c">Bertanggungjawab dan bersyukur</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="qcard" data-q="9" data-a="a">
+      <div class="qhead"><span class="qbadge">Q9</span><span class="qtext">Apakah SP yang berkaitan dengan kebersihan alam sekitar?</span></div>
+      <div class="opts">
+        <button class="opt" data-q="9" data-v="a">SP 6.4.1</button>
+        <button class="opt" data-q="9" data-v="b">SP 6.4.2</button>
+        <button class="opt" data-q="9" data-v="c">SP 6.4.3</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="qcard" data-q="10" data-a="b">
+      <div class="qhead"><span class="qbadge">Q10</span><span class="qtext">Apakah contoh amalan harian untuk mengurangkan plastik?</span></div>
+      <div class="opts">
+        <button class="opt" data-q="10" data-v="a">Beli beg plastik setiap hari</button>
+        <button class="opt" data-q="10" data-v="b">Membawa beg sendiri dan botol boleh guna semula</button>
+        <button class="opt" data-q="10" data-v="c">Bakar semua plastik lama</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+  </div>
+
+  <div class="result" id="result22" style="display:none;">
+    <div class="result-inner">
+      <svg class="result-face" viewBox="0 0 80 80" width="72" height="72">
+        <use href="#faceYay" x="0" y="0" width="80" height="80" id="rface22"/>
+      </svg>
+      <div class="result-txt">
+        <p class="result-score" id="rScore22"></p>
+        <p class="result-msg" id="rMsg22"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LAMPIRAN ===== -->
+<section class="card" id="lampiran">
+  <h2 class="card-h"><span class="num">06</span>Lampiran &mdash; Standard Kandungan (SK) Tahun 5</h2>
+  <p class="lead">Senarai 24 SK Pendidikan Islam Tahun 5. SK 6.4 disiapkan dalam unit ini.</p>
+  <div class="lampiran-table">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:60px;">Bil.</th>
+          <th style="width:80px;">Kod SK</th>
+          <th>Bidang</th>
+          <th>Standard Kandungan</th>
+          <th style="width:70px;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>SK 1.1</td><td>al-Quran</td><td>Membaca Surah al-Fatihah dengan tajwid yang betul</td><td class="done">&#10003;</td></tr>
+        <tr><td>2</td><td>SK 1.2</td><td>al-Quran</td><td>Membaca Surah al-Ikhlas dengan tajwid yang betul</td><td class="done">&#10003;</td></tr>
+        <tr><td>3</td><td>SK 1.3</td><td>al-Quran</td><td>Menghafaz Surah al-Fatihah dan Surah al-Ikhlas</td><td class="done">&#10003;</td></tr>
+        <tr><td>4</td><td>SK 1.4</td><td>al-Quran</td><td>Membaca Surah al-Falaq dengan tajwid yang betul</td><td class="done">&#10003;</td></tr>
+        <tr><td>5</td><td>SK 1.5</td><td>al-Quran</td><td>Memahami Hukum Nun Mati dan Tanwin (Idgham)</td><td class="done">&#10003;</td></tr>
+        <tr><td>6</td><td>SK 1.6</td><td>al-Quran</td><td>Memahami Hukum Mim Mati (Ikhfa Syafawi)</td><td class="pending">&mdash;</td></tr>
+        <tr><td>7</td><td>SK 2.1</td><td>Hadis</td><td>Menghafaz hadis tentang kebersihan</td><td class="done">&#10003;</td></tr>
+        <tr><td>8</td><td>SK 2.2</td><td>Hadis</td><td>Menghafaz hadis tentang menepati janji</td><td class="done">&#10003;</td></tr>
+        <tr><td>9</td><td>SK 2.3</td><td>Hadis</td><td>Menghafaz hadis tentang suruhan menjaga jiran</td><td class="done">&#10003;</td></tr>
+        <tr><td>10</td><td>SK 2.4</td><td>Hadis</td><td>Menghafaz hadis tentang larangan membazir</td><td class="done">&#10003;</td></tr>
+        <tr><td>11</td><td>SK 3.1</td><td>Aqidah</td><td>Memahami Rukun Iman: Beriman kepada Allah</td><td class="done">&#10003;</td></tr>
+        <tr><td>12</td><td>SK 3.2</td><td>Aqidah</td><td>Memahami Rukun Iman: Beriman kepada Malaikat</td><td class="done">&#10003;</td></tr>
+        <tr><td>13</td><td>SK 3.3</td><td>Aqidah</td><td>Memahami Rukun Iman: Beriman kepada Kitab-kitab Allah</td><td class="done">&#10003;</td></tr>
+        <tr><td>14</td><td>SK 3.4</td><td>Aqidah</td><td>Memahami Rukun Iman: Beriman kepada Rasul</td><td class="done">&#10003;</td></tr>
+        <tr><td>15</td><td>SK 3.5</td><td>Aqidah</td><td>Memahami Rukun Iman: Beriman kepada Hari Akhirat</td><td class="done">&#10003;</td></tr>
+        <tr><td>16</td><td>SK 4.1</td><td>Ibadah</td><td>Mengenal pasti rukun solat dan perkara yang membatalkan solat</td><td class="done">&#10003;</td></tr>
+        <tr><td>17</td><td>SK 4.2</td><td>Ibadah</td><td>Memahami hukum dan adab berjemaah dalam solat</td><td class="done">&#10003;</td></tr>
+        <tr><td>18</td><td>SK 4.3</td><td>Ibadah</td><td>Memahami ibadah zakat: jenis dan golongan penerima</td><td class="done">&#10003;</td></tr>
+        <tr><td>19</td><td>SK 4.4</td><td>Ibadah</td><td>Memahami ibadah puasa: rukun dan perkara yang membatalkan</td><td class="done">&#10003;</td></tr>
+        <tr><td>20</td><td>SK 4.5</td><td>Ibadah</td><td>Memahami hukum dan adab solat Jumaat</td><td class="done">&#10003;</td></tr>
+        <tr><td>21</td><td>SK 5.1</td><td>Sirah</td><td>Mengenal pasti sifat-sifat utama Rasulullah SAW</td><td class="done">&#10003;</td></tr>
+        <tr><td>22</td><td>SK 5.2</td><td>Sirah</td><td>Memahami peristiwa Hijrah Rasulullah ke Madinah</td><td class="done">&#10003;</td></tr>
+        <tr><td>23</td><td>SK 5.3</td><td>Sirah</td><td>Memahami sifat itqan dan ketekunan Rasulullah SAW</td><td class="done">&#10003;</td></tr>
+        <tr class="current-row"><td>24</td><td>SK 6.4</td><td>Adab</td><td>Mengamalkan adab terhadap alam sekitar</td><td class="done">&#10003;</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="foot">
+  <div class="foot-inner">
+    <p><strong>Pendidikan Islam Tahun 5</strong> &mdash; Unit 22: Adab terhadap Alam Sekitar</p>
+    <p>SK 6.4 | SP 6.4.1 &mdash; 6.4.5 | Ghibli 2D Pixar Style &mdash; Lush Green Nature Palette</p>
+    <p class="foot-tag">&ldquo;Dan Kami jadikan daripada air setiap sesuatu yang hidup.&rdquo; &mdash; Surah al-Anbiya 21:30</p>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var answered = {};
+  var correctCount = 0;
+  var total = 10;
+
+  function refreshScore(){
+    document.getElementById('s22l').textContent = correctCount;
+  }
+
+  function showResult(){
+    var el = document.getElementById('result22');
+    var scoreEl = document.getElementById('rScore22');
+    var msgEl = document.getElementById('rMsg22');
+    var face = document.getElementById('rface22');
+    var pct = Math.round(correctCount / total * 100);
+    scoreEl.textContent = 'Skor: ' + correctCount + ' / ' + total + ' (' + pct + '%)';
+    if(correctCount >= 8){
+      msgEl.textContent = 'MasyaAllah! Hebat sekali. Teruskan amalan menjaga alam sekitar!';
+      if(face) face.setAttribute('href','#faceYay');
+    } else if(correctCount >= 5){
+      msgEl.textContent = 'Bagus! Baca semula nota dan cuba lagi untuk skor yang lebih baik.';
+      if(face) face.setAttribute('href','#faceYay');
+    } else {
+      msgEl.textContent = 'Jangan putus asa. Baca semula nota dan cuba lagi.';
+      if(face) face.setAttribute('href','#faceOops');
+    }
+    el.style.display = 'block';
+  }
+
+  var opts = document.querySelectorAll('.opt');
+  opts.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var q = btn.getAttribute('data-q');
+      var v = btn.getAttribute('data-v');
+      if(answered[q]) return;
+      var card = btn.closest('.qcard');
+      var correctAns = card.getAttribute('data-a');
+      var fb = card.querySelector('.fb');
+      var allOpts = card.querySelectorAll('.opt');
+      answered[q] = v;
+      allOpts.forEach(function(o){
+        o.disabled = true;
+        if(o.getAttribute('data-v') === correctAns){
+          o.classList.add('correct');
+        }
+      });
+      if(v === correctAns){
+        correctCount++;
+        fb.innerHTML = '<span class="fb-y">&#10003;</span> Betul! Jawapan yang tepat.';
+        fb.className = 'fb fb-show fb-correct';
+      } else {
+        btn.classList.add('wrong');
+        fb.innerHTML = '<span class="fb-n">&#10007;</span> Maaf, jawapan yang betul ialah pilihan diubah suai.';
+        fb.className = 'fb fb-show fb-wrong';
+      }
+      refreshScore();
+      if(Object.keys(answered).length >= total){
+        showResult();
+      }
+    });
+  });
+
+  window.resetQuiz22 = function(){
+    answered = {};
+    correctCount = 0;
+    refreshScore();
+    document.getElementById('result22').style.display = 'none';
+    var cards = document.querySelectorAll('.qcard');
+    cards.forEach(function(card){
+      var fb = card.querySelector('.fb');
+      fb.textContent = '';
+      fb.className = 'fb';
+      var allOpts = card.querySelectorAll('.opt');
+      allOpts.forEach(function(o){
+        o.disabled = false;
+        o.classList.remove('correct','wrong');
+      });
+    });
+  };
+
+  window.addEventListener('beforeprint', function(){
+    document.querySelectorAll('.qcard').forEach(function(card){
+      if(!answered[card.getAttribute('data-q')]){
+        card.style.borderColor = '#c8e0cc';
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

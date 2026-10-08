@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yang Muda Dikasihi, Yang Tua Dihormati — Pendidikan Islam Tahun 3</title>
+<style>
+  :root{
+    --teal:#0f6f66; --teal-d:#0a4f49; --teal-l:#e3f2f0;
+    --gold:#b07d1a; --gold-l:#fdf6e3;
+    --ink:#1f2937; --muted:#5b6b70;
+    --line:#dde5e4; --card:#ffffff; --bg:#f4f7f6;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; padding:0; background:var(--bg); color:var(--ink);
+    font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
+    line-height:1.6;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:24px 20px 60px}
+  .arab{font-family:"Traditional Arabic","Amiri","KFGQPC Uthmanic Script HAFS",serif;direction:rtl}
+
+  /* ---- Header ---- */
+  .doc-head{
+    background:linear-gradient(135deg,var(--teal) 0%,var(--teal-d) 100%);
+    color:#fff;border-radius:14px;padding:22px 26px;margin-bottom:22px;
+    box-shadow:0 4px 14px rgba(15,111,102,.18);
+  }
+  .doc-head .kicker{font-size:12px;letter-spacing:2.5px;opacity:.85;text-transform:uppercase}
+  .doc-head h1{margin:6px 0 4px;font-size:27px;line-height:1.25}
+  .doc-head .sub{font-size:14px;opacity:.9;margin-bottom:14px}
+
+  .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+  .meta .box{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:9px;padding:9px 12px}
+  .meta .lbl{font-size:10.5px;letter-spacing:1.4px;opacity:.85;text-transform:uppercase;font-weight:700}
+  .meta .val{font-size:13.5px;font-weight:600;margin-top:2px}
+
+  /* ---- Sections ---- */
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.6px;color:var(--teal);text-transform:uppercase;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--teal);color:#fff;width:26px;height:26px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 16px;padding-left:35px}
+  svg{display:block;width:100%;height:auto;margin:6px 0 2px}
+
+  /* ---- Nota ---- */
+  .nota{border-left:4px solid var(--gold);background:var(--gold-l);border-radius:0 10px 10px 0;padding:16px 18px}
+  .nota ol{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:var(--teal-d)}
+  .nota li:last-child{margin-bottom:0}
+
+  /* ---- Kuiz ---- */
+  .q{border:1px solid var(--line);border-radius:11px;padding:14px 16px;margin-bottom:12px;background:#fcfdfd;break-inside:avoid;page-break-inside:avoid}
+  .q .qt{font-weight:600;font-size:14.5px;margin-bottom:9px}
+  .q .qt .n{color:var(--teal);font-weight:800;margin-right:6px}
+  .opts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;font-size:13.5px}
+  .opts div{background:#f2f6f5;border:1px solid #e1eae8;border-radius:7px;padding:6px 10px}
+  .ans{display:none;margin-top:10px;font-size:13.5px;background:var(--teal-l);border:1px dashed var(--teal);border-radius:8px;padding:7px 11px;color:var(--teal-d);font-weight:600}
+  .ans.on{display:block}
+  .btnbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}
+  button{font:inherit;font-size:13px;font-weight:600;border-radius:8px;padding:8px 14px;border:1px solid var(--teal);background:#fff;color:var(--teal);cursor:pointer}
+  button:hover{background:var(--teal-l)}
+  button.solid{background:var(--teal);color:#fff}
+  button.solid:hover{background:var(--teal-d)}
+
+  /* ---- Appendix ---- */
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:var(--teal-l);color:var(--teal-d);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  td.c{text-align:center;white-space:nowrap;font-weight:700;color:var(--teal)}
+  tr:nth-child(even) td{background:#fafcfc}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-top:6px}
+
+  @media print{
+    body{background:#fff}
+    .wrap{max-width:100%;padding:0}
+    .btnbar{display:none}
+    .ans{display:block !important}
+    section{border-color:#bbb;box-shadow:none;page-break-inside:avoid}
+    .doc-head{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4;margin:12mm}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="doc-head">
+    <div class="kicker">Pendidikan Islam &bull; Tahun 3 &bull; KSSR Semakan 2017</div>
+    <h1>Yang Muda Dikasihi, Yang Tua Dihormati</h1>
+    <div class="sub">Set Bahan PdP lengkap: Infografik &bull; Peta Minda &bull; Nota Ringkas &bull; Diagram &bull; Kuiz 10 Soalan</div>
+    <div class="meta">
+      <div class="box"><div class="lbl">Bidang</div><div class="val">Hadis</div></div>
+      <div class="box"><div class="lbl">Standard Kandungan (SK)</div><div class="val">2.1 — Merumus mengasihi orang yang lebih muda dan menghormati orang yang lebih tua secara beradab dan istiqamah</div></div>
+      <div class="box"><div class="lbl">Standard Pembelajaran (SP)</div><div class="val">2.1.1 &ndash; 2.1.6</div></div>
+      <div class="box"><div class="lbl">Sumber</div><div class="val">DSKP PI Tahun 3 (ms. 26&ndash;27) &bull; Buku Teks PI T3 SK (ms. 37&ndash;44)</div></div>
+    </div>
+  </div>
+
+  <!-- 1. INFOGRAFIK -->
+  <section>
+    <h2><span class="num">1</span> Infografik</h2>
+    <p class="hint">Tajuk besar di atas &rarr; dalil &amp; 4 fakta utama di tengah &rarr; nilai murni di bawah.</p>
+
+    <svg viewBox="0 0 820 1150" role="img" aria-label="Infografik Yang Muda Dikasihi, Yang Tua Dihormati">
+      <defs>
+        <linearGradient id="gh" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#0f6f66"/><stop offset="1" stop-color="#0a4f49"/>
+        </linearGradient>
+        <linearGradient id="gg" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#fdf6e3"/><stop offset="1" stop-color="#f8ecd2"/>
+        </linearGradient>
+      </defs>
+
+      <!-- HEADER -->
+      <rect x="0" y="0" width="820" height="152" rx="14" fill="url(#gh)"/>
+      <text x="410" y="62" text-anchor="middle" font-family="Segoe UI,Arial" font-size="34" font-weight="700" fill="#ffffff">YANG MUDA DIKASIHI,</text>
+      <text x="410" y="99" text-anchor="middle" font-family="Segoe UI,Arial" font-size="34" font-weight="700" fill="#ffffff">YANG TUA DIHORMATI</text>
+      <rect x="300" y="112" width="220" height="24" rx="12" fill="#ffffff" opacity=".22"/>
+      <text x="410" y="129" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" font-weight="600" fill="#ffffff" letter-spacing="1.6">BIDANG HADIS &bull; TAHUN 3</text>
+
+      <!-- DALIL -->
+      <rect x="40" y="170" width="740" height="164" rx="12" fill="url(#gg)" stroke="#b07d1a" stroke-width="1.5"/>
+      <rect x="40" y="170" width="740" height="30" rx="12" fill="#b07d1a"/>
+      <rect x="40" y="192" width="740" height="8" fill="#b07d1a"/>
+      <text x="410" y="191" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.4">DALIL &mdash; SABDA RASULULLAH SAW</text>
+      <text x="410" y="243" text-anchor="middle" class="arab" font-family="Traditional Arabic, Amiri, serif" font-size="31" fill="#0a4f49" direction="rtl">لَيْسَ مِنَّا مَنْ لَمْ يَرْحَمْ صَغِيرَنَا وَيُوَقِّرْ كَبِيرَنَا</text>
+      <text x="410" y="272" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13.5" fill="#1f2937">&ldquo;Bukan daripada golongan kami orang yang tidak mengasihi orang yang lebih muda</text>
+      <text x="410" y="291" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13.5" fill="#1f2937">dan tidak memuliakan orang yang lebih tua.&rdquo;</text>
+      <text x="410" y="316" text-anchor="middle" font-family="Segoe UI,Arial" font-size="12.5" font-weight="600" fill="#b07d1a">Perawi: Ibn Abbas R.A. &nbsp;&bull;&nbsp; Riwayat: Abu Daud dan al-Tirmizi</text>
+
+      <!-- CARD 1 -->
+      <rect x="40" y="352" width="350" height="264" rx="12" fill="#ffffff" stroke="#dde5e4"/>
+      <path d="M40 364 a12 12 0 0 1 12-12 h326 a12 12 0 0 1 12 12 v30 h-350 z" fill="#0f6f66"/>
+      <circle cx="66" cy="381" r="12" fill="#ffffff"/>
+      <text x="66" y="386" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" font-weight="700" fill="#0f6f66">1</text>
+      <text x="88" y="386" font-family="Segoe UI,Arial" font-size="14" font-weight="700" fill="#ffffff">PENGERTIAN HADIS</text>
+      <text x="58" y="424" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Segala perkataan, perbuatan,</text>
+      <text x="74" y="444" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">pengakuan &amp; sifat Nabi SAW.</text>
+      <text x="58" y="472" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Sumber hukum ke-2 selepas</text>
+      <text x="74" y="492" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">al-Quran.</text>
+      <text x="58" y="520" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Menjelaskan hukum secara</text>
+      <text x="74" y="540" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">terperinci.</text>
+      <text x="58" y="576" font-family="Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#b07d1a">Kata kunci: sanad &bull; matan &bull; rawi</text>
+
+      <!-- CARD 2 -->
+      <rect x="430" y="352" width="350" height="264" rx="12" fill="#ffffff" stroke="#dde5e4"/>
+      <path d="M430 364 a12 12 0 0 1 12-12 h326 a12 12 0 0 1 12 12 v30 h-350 z" fill="#0f6f66"/>
+      <circle cx="456" cy="381" r="12" fill="#ffffff"/>
+      <text x="456" y="386" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" font-weight="700" fill="#0f6f66">2</text>
+      <text x="478" y="386" font-family="Segoe UI,Arial" font-size="14" font-weight="700" fill="#ffffff">KEPENTINGAN HADIS</text>
+      <text x="448" y="424" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Menjadi panduan hidup Muslim.</text>
+      <text x="448" y="452" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Menguatkan akhlak mulia dalam</text>
+      <text x="464" y="472" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">keluarga &amp; masyarakat.</text>
+      <text x="448" y="500" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Mewujudkan kasih sayang antara</text>
+      <text x="464" y="520" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">golongan muda &amp; tua.</text>
+      <text x="448" y="556" font-family="Segoe UI,Arial" font-size="13" font-weight="700" fill="#0f6f66">Terjemahan hadis:</text>
+      <text x="448" y="576" font-family="Segoe UI,Arial" font-size="12.5" fill="#5b6b70">&ldquo;Tidak termasuk golongan kami&hellip;&rdquo;</text>
+
+      <!-- CARD 3 -->
+      <rect x="40" y="630" width="350" height="264" rx="12" fill="#ffffff" stroke="#dde5e4"/>
+      <path d="M40 642 a12 12 0 0 1 12-12 h326 a12 12 0 0 1 12 12 v30 h-350 z" fill="#127a70"/>
+      <circle cx="66" cy="659" r="12" fill="#ffffff"/>
+      <text x="66" y="664" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" font-weight="700" fill="#127a70">3</text>
+      <text x="88" y="664" font-family="Segoe UI,Arial" font-size="14" font-weight="700" fill="#ffffff">ADAB MENGASIHI ORANG MUDA</text>
+      <text x="58" y="702" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Melihat mereka penuh kasih sayang</text>
+      <text x="58" y="726" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Menunjukkan contoh teladan baik</text>
+      <text x="58" y="750" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Menasihati dengan kata-kata baik</text>
+      <text x="58" y="774" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Bersikap lemah lembut &amp; sabar</text>
+      <text x="58" y="798" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Ringan tulang untuk membantu</text>
+      <text x="58" y="822" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Mewujudkan hubungan yang baik</text>
+      <text x="58" y="858" font-family="Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#b07d1a">Kesan: orang muda lebih sopan</text>
+
+      <!-- CARD 4 -->
+      <rect x="430" y="630" width="350" height="264" rx="12" fill="#ffffff" stroke="#dde5e4"/>
+      <path d="M430 642 a12 12 0 0 1 12-12 h326 a12 12 0 0 1 12 12 v30 h-350 z" fill="#127a70"/>
+      <circle cx="456" cy="659" r="12" fill="#ffffff"/>
+      <text x="456" y="664" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" font-weight="700" fill="#127a70">4</text>
+      <text x="478" y="664" font-family="Segoe UI,Arial" font-size="14" font-weight="700" fill="#ffffff">ADAB MENGHORMATI ORANG TUA</text>
+      <text x="448" y="702" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Memberi salam &amp; nada mesra</text>
+      <text x="448" y="726" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Memanggil panggilan terhormat</text>
+      <text x="448" y="750" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Mendahulukan mereka semua hal</text>
+      <text x="448" y="774" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Taat &amp; meminta nasihat mereka</text>
+      <text x="448" y="798" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Sopan santun ketika berbicara</text>
+      <text x="448" y="822" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">&#8226; Tidak menderhaka kepada mereka</text>
+      <text x="448" y="858" font-family="Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#b07d1a">Kesan: hidup diberkati &amp; diredai</text>
+
+      <!-- NILAI MURNI -->
+      <rect x="40" y="910" width="740" height="196" rx="12" fill="#e3f2f0" stroke="#0f6f66" stroke-width="1.5"/>
+      <text x="410" y="946" text-anchor="middle" font-family="Segoe UI,Arial" font-size="16" font-weight="700" fill="#0a4f49" letter-spacing="2">NILAI MURNI</text>
+      <g font-family="Segoe UI,Arial" font-size="13.5" font-weight="600" fill="#0a4f49">
+        <rect x="62"  y="964" width="128" height="40" rx="20" fill="#ffffff" stroke="#0f6f66"/><text x="126" y="989" text-anchor="middle">Kasih Sayang</text>
+        <rect x="204" y="964" width="164" height="40" rx="20" fill="#ffffff" stroke="#0f6f66"/><text x="286" y="989" text-anchor="middle">Hormat-Menghormati</text>
+        <rect x="382" y="964" width="128" height="40" rx="20" fill="#ffffff" stroke="#0f6f66"/><text x="446" y="989" text-anchor="middle">Sopan Santun</text>
+        <rect x="524" y="964" width="146" height="40" rx="20" fill="#ffffff" stroke="#0f6f66"/><text x="597" y="989" text-anchor="middle">Tanggungjawab</text>
+        <rect x="330" y="1016" width="160" height="40" rx="20" fill="#ffffff" stroke="#0f6f66"/><text x="410" y="1041" text-anchor="middle">Kerjasama</text>
+      </g>
+      <text x="410" y="1080" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">Hidup diberkati &bull; keluarga bahagia &bull; masyarakat harmoni &amp; aman</text>
+
+      <!-- FOOTER -->
+      <text x="410" y="1126" text-anchor="middle" font-family="Segoe UI,Arial" font-size="11.5" fill="#5b6b70">DSKP Pendidikan Islam Tahun 3 &bull; SK 2.1 &bull; SP 2.1.1 &ndash; 2.1.6 &bull; Sumber: Buku Teks PI T3 SK, ms. 37&ndash;44</text>
+    </svg>
+  </section>
+
+  <!-- 2. PETA MINDA -->
+  <section>
+    <h2><span class="num">2</span> Peta Minda</h2>
+    <p class="hint">Teks pusat di tengah, 5 cabang: Maksud &bull; Dalil &bull; Contoh/Amalan &bull; Nilai Murni &bull; Iktibar.</p>
+
+    <svg viewBox="0 0 820 730" role="img" aria-label="Peta Minda Yang Muda Dikasihi, Yang Tua Dihormati">
+      <!-- connectors -->
+      <path d="M300 250 C240 200 190 170 150 160" fill="none" stroke="#b07d1a" stroke-width="2.5"/>
+      <path d="M520 250 C580 200 630 170 670 160" fill="none" stroke="#0f6f66" stroke-width="2.5"/>
+      <path d="M520 380 C580 430 630 460 670 470" fill="none" stroke="#0f6f66" stroke-width="2.5"/>
+      <path d="M300 380 C240 430 190 460 150 470" fill="none" stroke="#0f6f66" stroke-width="2.5"/>
+      <path d="M410 400 L410 520" fill="none" stroke="#b07d1a" stroke-width="2.5"/>
+
+      <!-- centre -->
+      <ellipse cx="410" cy="315" rx="168" ry="90" fill="#0f6f66"/>
+      <ellipse cx="410" cy="315" rx="158" ry="80" fill="none" stroke="#ffffff" stroke-width="1.2" opacity=".45"/>
+      <text x="410" y="298" text-anchor="middle" font-family="Segoe UI,Arial" font-size="18" font-weight="700" fill="#ffffff">YANG MUDA</text>
+      <text x="410" y="322" text-anchor="middle" font-family="Segoe UI,Arial" font-size="18" font-weight="700" fill="#ffffff">DIKASIHI, YANG TUA</text>
+      <text x="410" y="346" text-anchor="middle" font-family="Segoe UI,Arial" font-size="18" font-weight="700" fill="#ffffff">DIHORMATI</text>
+      <text x="410" y="372" text-anchor="middle" font-family="Segoe UI,Arial" font-size="11.5" fill="#c9e6e2" letter-spacing="1.2">HADIS &bull; SK 2.1</text>
+
+      <!-- Cabang 1 MAKSUD -->
+      <rect x="24" y="86" width="252" height="152" rx="12" fill="#fdf6e3" stroke="#b07d1a" stroke-width="1.5"/>
+      <rect x="24" y="86" width="252" height="30" rx="12" fill="#b07d1a"/>
+      <rect x="24" y="108" width="252" height="8" fill="#b07d1a"/>
+      <text x="150" y="107" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">1 &nbsp;MAKSUD</text>
+      <text x="40" y="140" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">Mengasihi: belas kasihan &amp;</text>
+      <text x="40" y="158" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">melindungi yang lebih muda.</text>
+      <text x="40" y="182" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">Menghormati: memuliakan &amp;</text>
+      <text x="40" y="200" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">mendahulukan yang lebih tua.</text>
+      <text x="40" y="224" font-family="Segoe UI,Arial" font-size="12" font-weight="600" fill="#b07d1a">Kedua-duanya tuntutan Islam.</text>
+
+      <!-- Cabang 2 DALIL -->
+      <rect x="544" y="86" width="252" height="152" rx="12" fill="#e3f2f0" stroke="#0f6f66" stroke-width="1.5"/>
+      <rect x="544" y="86" width="252" height="30" rx="12" fill="#0f6f66"/>
+      <rect x="544" y="108" width="252" height="8" fill="#0f6f66"/>
+      <text x="670" y="107" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">2 &nbsp;DALIL</text>
+      <text x="670" y="140" text-anchor="middle" class="arab" font-family="Traditional Arabic, Amiri, serif" font-size="21" fill="#0a4f49" direction="rtl">لَيْسَ مِنَّا مَنْ لَمْ يَرْحَمْ صَغِيرَنَا</text>
+      <text x="670" y="163" text-anchor="middle" class="arab" font-family="Traditional Arabic, Amiri, serif" font-size="21" fill="#0a4f49" direction="rtl">وَيُوَقِّرْ كَبِيرَنَا</text>
+      <text x="560" y="188" font-family="Segoe UI,Arial" font-size="12" fill="#1f2937">Perawi: Ibn Abbas R.A.</text>
+      <text x="560" y="206" font-family="Segoe UI,Arial" font-size="12" fill="#1f2937">Rawi: Abu Daud &amp; al-Tirmizi</text>
+      <text x="560" y="226" font-family="Segoe UI,Arial" font-size="11.5" font-weight="600" fill="#0f6f66">SP 2.1.2 &mdash; baca &amp; terjemah</text>
+
+      <!-- Cabang 3 CONTOH / AMALAN -->
+      <rect x="544" y="424" width="252" height="176" rx="12" fill="#e3f2f0" stroke="#0f6f66" stroke-width="1.5"/>
+      <rect x="544" y="424" width="252" height="30" rx="12" fill="#0f6f66"/>
+      <rect x="544" y="446" width="252" height="8" fill="#0f6f66"/>
+      <text x="670" y="445" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">3 &nbsp;CONTOH / AMALAN</text>
+      <text x="560" y="478" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">&#8226; Beri salam kepada ibu bapa</text>
+      <text x="560" y="498" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">&#8226; Bantu adik buat kerja sekolah</text>
+      <text x="560" y="518" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">&#8226; Dahulukan orang tua makan</text>
+      <text x="560" y="538" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">&#8226; Cium tangan datuk &amp; nenek</text>
+      <text x="560" y="558" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">&#8226; Ajar kawan yang lebih muda</text>
+      <text x="560" y="580" font-family="Segoe UI,Arial" font-size="11.5" font-weight="600" fill="#0f6f66">Amalkan setiap hari, di rumah</text>
+      <text x="560" y="594" font-family="Segoe UI,Arial" font-size="11.5" font-weight="600" fill="#0f6f66">&amp; di sekolah. (SP 2.1.5)</text>
+
+      <!-- Cabang 4 NILAI MURNI -->
+      <rect x="24" y="424" width="252" height="176" rx="12" fill="#fdf6e3" stroke="#b07d1a" stroke-width="1.5"/>
+      <rect x="24" y="424" width="252" height="30" rx="12" fill="#b07d1a"/>
+      <rect x="24" y="446" width="252" height="8" fill="#b07d1a"/>
+      <text x="150" y="445" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">4 &nbsp;NILAI MURNI</text>
+      <text x="40" y="478" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">&#8226; Kasih sayang sesama insan</text>
+      <text x="40" y="498" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">&#8226; Hormat-menghormati</text>
+      <text x="40" y="518" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">&#8226; Sopan santun &amp; lemah lembut</text>
+      <text x="40" y="538" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">&#8226; Tanggungjawab &amp; amanah</text>
+      <text x="40" y="558" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">&#8226; Kerjasama &amp; muafakat</text>
+      <text x="40" y="580" font-family="Segoe UI,Arial" font-size="12.5" fill="#1f2937">&#8226; Sabar &amp; tidak menderhaka</text>
+      <text x="40" y="598" font-family="Segoe UI,Arial" font-size="11.5" font-weight="600" fill="#b07d1a">Melahirkan insan berakhlak mulia.</text>
+
+      <!-- Cabang 5 IKTIBAR -->
+      <rect x="272" y="524" width="276" height="150" rx="12" fill="#0a4f49" stroke="#0a4f49"/>
+      <text x="410" y="552" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">5 &nbsp;IKTIBAR</text>
+      <text x="410" y="580" text-anchor="middle" font-family="Segoe UI,Arial" font-size="12.5" fill="#e7f4f2">Orang yang tidak mengasihi yang muda</text>
+      <text x="410" y="598" text-anchor="middle" font-family="Segoe UI,Arial" font-size="12.5" fill="#e7f4f2">dan tidak menghormati yang tua</text>
+      <text x="410" y="616" text-anchor="middle" font-family="Segoe UI,Arial" font-size="12.5" fill="#e7f4f2">tidak dianggap mengikuti sunnah Nabi SAW.</text>
+      <line x1="300" y1="628" x2="520" y2="628" stroke="#ffffff" stroke-width="1" opacity=".4"/>
+      <text x="410" y="650" text-anchor="middle" font-family="Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#ffd98a">Amalkan secara beradab &amp; istiqamah</text>
+      <text x="410" y="666" text-anchor="middle" font-family="Segoe UI,Arial" font-size="11.5" fill="#c9e6e2">agar hidup diberkati dan diredai Allah.</text>
+    </svg>
+  </section>
+
+  <!-- 3. NOTA RINGKAS -->
+  <section>
+    <h2><span class="num">3</span> Nota Ringkas</h2>
+    <p class="hint">Ringkasan isi untuk rujukan pantas murid &mdash; sesuai dijadikan kad imbasan.</p>
+    <div class="nota">
+      <ol>
+        <li><b>Pengertian hadis.</b> Segala perkara yang disandarkan kepada Nabi Muhammad SAW sama ada dari segi <b>perkataan, perbuatan, pengakuan atau sifat</b> baginda.</li>
+        <li><b>Kedudukan hadis.</b> Hadis ialah <b>sumber hukum yang kedua</b> selepas al-Quran dan berfungsi menjelaskan hukum secara terperinci.</li>
+        <li><b>Matan &amp; maksud hadis.</b> &ldquo;Bukan daripada golongan kami orang yang tidak mengasihi orang yang lebih muda dan tidak memuliakan orang yang lebih tua.&rdquo; Perawi: <b>Ibn Abbas R.A.</b> &nbsp;|&nbsp; Riwayat: <b>Abu Daud dan al-Tirmizi</b>.</li>
+        <li><b>Adab mengasihi orang muda.</b> Melihat dengan kasih sayang, memberi contoh teladan baik, menasihati dengan kata-kata baik, bersikap lemah lembut, ringan tulang membantu dan mewujudkan hubungan baik.</li>
+        <li><b>Adab menghormati orang tua.</b> Memberi salam, bercakap dengan nada mesra, memanggil dengan panggilan terhormat, mendahulukan mereka dalam semua hal, taat, meminta nasihat dan menjaga sopan santun.</li>
+        <li><b>Kesan mengasihi orang muda.</b> Wujud kasih sayang antara muda dan tua, orang muda lebih sopan, masyarakat hidup aman, keluarga bahagia dan wujud kerjasama dalam semua urusan.</li>
+        <li><b>Kesan menghormati orang tua.</b> Dikasihi Allah dan Rasul, dihormati masyarakat, memperoleh ketenangan jiwa, kehidupan lebih diberkati dan masyarakat lebih harmoni.</li>
+        <li><b>Nilai murni.</b> Kasih sayang, hormat-menghormati, sopan santun, tanggungjawab, kerjasama, sabar dan tidak menderhaka.</li>
+        <li><b>Rumusan.</b> Kita hendaklah <b>menghormati orang tua dan mengasihi orang muda</b> agar kehidupan diberkati dan diredai Allah sebagaimana yang disarankan dalam hadis.</li>
+        <li><b>Amali (SP 2.1.5).</b> Amalkan tuntutan hadis setiap hari di rumah dan di sekolah secara <b>beradab dan istiqamah</b>.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4. DIAGRAM -->
+  <section>
+    <h2><span class="num">4</span> Diagram Alir &mdash; Cara Mengamalkan Tuntutan Hadis</h2>
+    <p class="hint">Jenis: <b>Alir</b>. Langkah 1 &rarr; 2 &rarr; 3 &rarr; 4, dengan label sikap pada setiap langkah.</p>
+
+    <svg viewBox="0 0 820 430" role="img" aria-label="Diagram alir cara mengamalkan tuntutan hadis">
+      <defs>
+        <marker id="ar" markerWidth="10" markerHeight="10" refX="9" refY="3.2" orient="auto">
+          <path d="M0,0 L9,3.2 L0,6.4 z" fill="#b07d1a"/>
+        </marker>
+      </defs>
+
+      <text x="410" y="34" text-anchor="middle" font-family="Segoe UI,Arial" font-size="15" font-weight="700" fill="#0a4f49" letter-spacing="1.6">LANGKAH MENGAMALKAN TUNTUTAN HADIS</text>
+
+      <g font-family="Segoe UI,Arial" font-size="13" fill="#1f2937">
+        <!-- step 1 -->
+        <rect x="24" y="60" width="172" height="176" rx="12" fill="#fdf6e3" stroke="#b07d1a" stroke-width="1.5"/>
+        <circle cx="110" cy="92" r="18" fill="#b07d1a"/>
+        <text x="110" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">1</text>
+        <text x="110" y="130" text-anchor="middle" font-weight="700" fill="#0a4f49">NIAT &amp;</text>
+        <text x="110" y="148" text-anchor="middle" font-weight="700" fill="#0a4f49">KEFAHAMAN</text>
+        <text x="38" y="176" font-size="12">&#8226; Fahami maksud</text>
+        <text x="38" y="194" font-size="12">hadis</text>
+        <text x="38" y="214" font-size="12">&#8226; Niat kerana Allah</text>
+        <rect x="44" y="222" width="132" height="24" rx="12" fill="#ffffff" stroke="#b07d1a"/>
+        <text x="110" y="238" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b07d1a">IKHLAS</text>
+
+        <!-- step 2 -->
+        <rect x="230" y="60" width="172" height="176" rx="12" fill="#e3f2f0" stroke="#0f6f66" stroke-width="1.5"/>
+        <circle cx="316" cy="92" r="18" fill="#0f6f66"/>
+        <text x="316" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">2</text>
+        <text x="316" y="130" text-anchor="middle" font-weight="700" fill="#0a4f49">MULAKAN</text>
+        <text x="316" y="148" text-anchor="middle" font-weight="700" fill="#0a4f49">DENGAN ADAB</text>
+        <text x="244" y="176" font-size="12">&#8226; Beri salam</text>
+        <text x="244" y="196" font-size="12">&#8226; Kata-kata baik</text>
+        <text x="244" y="216" font-size="12">&#8226; Nada suara mesra</text>
+        <rect x="250" y="222" width="132" height="24" rx="12" fill="#ffffff" stroke="#0f6f66"/>
+        <text x="316" y="238" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f6f66">SOPAN SANTUN</text>
+
+        <!-- step 3 -->
+        <rect x="436" y="60" width="172" height="176" rx="12" fill="#e3f2f0" stroke="#0f6f66" stroke-width="1.5"/>
+        <circle cx="522" cy="92" r="18" fill="#0f6f66"/>
+        <text x="522" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">3</text>
+        <text x="522" y="130" text-anchor="middle" font-weight="700" fill="#0a4f49">AMALKAN</text>
+        <text x="522" y="148" text-anchor="middle" font-weight="700" fill="#0a4f49">SETIAP HARI</text>
+        <text x="450" y="176" font-size="12">&#8226; Bantu &amp; taat</text>
+        <text x="450" y="196" font-size="12">&#8226; Dahulukan mereka</text>
+        <text x="450" y="216" font-size="12">&#8226; Ringan tulang</text>
+        <rect x="456" y="222" width="132" height="24" rx="12" fill="#ffffff" stroke="#0f6f66"/>
+        <text x="522" y="238" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f6f66">TANGGUNGJAWAB</text>
+
+        <!-- step 4 -->
+        <rect x="642" y="60" width="172" height="176" rx="12" fill="#fdf6e3" stroke="#b07d1a" stroke-width="1.5"/>
+        <circle cx="728" cy="92" r="18" fill="#b07d1a"/>
+        <text x="728" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">4</text>
+        <text x="728" y="130" text-anchor="middle" font-weight="700" fill="#0a4f49">ISTIQAMAH</text>
+        <text x="728" y="148" text-anchor="middle" font-weight="700" fill="#0a4f49">&amp; CONTOHI</text>
+        <text x="656" y="176" font-size="12">&#8226; Ulang setiap masa</text>
+        <text x="656" y="196" font-size="12">&#8226; Jadi teladan</text>
+        <text x="656" y="216" font-size="12">&#8226; Tidak menderhaka</text>
+        <rect x="662" y="222" width="132" height="24" rx="12" fill="#ffffff" stroke="#b07d1a"/>
+        <text x="728" y="238" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b07d1a">ISTIQAMAH</text>
+      </g>
+
+      <!-- arrows -->
+      <line x1="198" y1="148" x2="224" y2="148" stroke="#b07d1a" stroke-width="2.5" marker-end="url(#ar)"/>
+      <line x1="404" y1="148" x2="430" y2="148" stroke="#b07d1a" stroke-width="2.5" marker-end="url(#ar)"/>
+      <line x1="610" y1="148" x2="636" y2="148" stroke="#b07d1a" stroke-width="2.5" marker-end="url(#ar)"/>
+
+      <!-- outcome -->
+      <rect x="150" y="272" width="520" height="62" rx="12" fill="#0f6f66"/>
+      <text x="410" y="298" text-anchor="middle" font-family="Segoe UI,Arial" font-size="14" font-weight="700" fill="#ffffff">HASIL: HIDUP DIBERKATI &amp; DIREDAI ALLAH</text>
+      <text x="410" y="320" text-anchor="middle" font-family="Segoe UI,Arial" font-size="12.5" fill="#c9e6e2">keluarga bahagia &bull; masyarakat harmoni &bull; dikasihi Allah dan Rasul</text>
+      <path d="M410 238 L410 268" stroke="#b07d1a" stroke-width="2.5" marker-end="url(#ar)"/>
+
+      <!-- label row -->
+      <text x="410" y="366" text-anchor="middle" font-family="Segoe UI,Arial" font-size="12" font-weight="700" fill="#0a4f49" letter-spacing="1.4">LABEL SIKAP</text>
+      <g font-family="Segoe UI,Arial" font-size="12" fill="#1f2937">
+        <rect x="120" y="378" width="110" height="30" rx="15" fill="#fdf6e3" stroke="#b07d1a"/><text x="175" y="398" text-anchor="middle">Ikhlas</text>
+        <rect x="242" y="378" width="110" height="30" rx="15" fill="#e3f2f0" stroke="#0f6f66"/><text x="297" y="398" text-anchor="middle">Lemah lembut</text>
+        <rect x="364" y="378" width="110" height="30" rx="15" fill="#e3f2f0" stroke="#0f6f66"/><text x="419" y="398" text-anchor="middle">Taat</text>
+        <rect x="486" y="378" width="110" height="30" rx="15" fill="#fdf6e3" stroke="#b07d1a"/><text x="541" y="398" text-anchor="middle">Sabar</text>
+        <rect x="608" y="378" width="110" height="30" rx="15" fill="#e3f2f0" stroke="#0f6f66"/><text x="663" y="398" text-anchor="middle">Bertanggungjawab</text>
+      </g>
+    </svg>
+  </section>
+
+  <!-- 5. KUIZ -->
+  <section>
+    <h2><span class="num">5</span> Set Kuiz &mdash; 10 Soalan</h2>
+    <p class="hint">Objektif aneka pilihan (A / B / C). Klik butang di bawah untuk buka atau tutup semua jawapan.</p>
+
+    <div class="btnbar">
+      <button class="solid" onclick="toggleAll(true)">Tunjuk Semua Jawapan</button>
+      <button onclick="toggleAll(false)">Sembunyi Semua Jawapan</button>
+      <button onclick="window.print()">Cetak / Simpan PDF</button>
+    </div>
+
+    <div id="quiz">
+      <div class="q"><div class="qt"><span class="n">1.</span> Perawi hadis &ldquo;Yang Muda Dikasihi, Yang Tua Dihormati&rdquo; ialah &hellip;</div>
+        <div class="opts"><div>A) Abu Hurairah</div><div>B) Ibn Abbas</div><div>C) Anas bin Malik</div></div>
+        <div class="ans">Jawapan: <b>B</b> &mdash; Hadis ini diriwayatkan daripada Ibn Abbas R.A.</div></div>
+
+      <div class="q"><div class="qt"><span class="n">2.</span> Hadis tersebut diriwayatkan oleh &hellip;</div>
+        <div class="opts"><div>A) Abu Daud dan al-Tirmizi</div><div>B) al-Bukhari dan Muslim</div><div>C) Ibnu Majah dan an-Nasa&rsquo;i</div></div>
+        <div class="ans">Jawapan: <b>A</b> &mdash; Riwayat Abu Daud dan al-Tirmizi.</div></div>
+
+      <div class="q"><div class="qt"><span class="n">3.</span> Hadis ialah &hellip;</div>
+        <div class="opts"><div>A) firman Allah SWT</div><div>B) segala perkara yang disandarkan kepada Nabi Muhammad SAW</div><div>C) pendapat para sahabat</div></div>
+        <div class="ans">Jawapan: <b>B</b> &mdash; Perkataan, perbuatan, pengakuan dan sifat Nabi SAW.</div></div>
+
+      <div class="q"><div class="qt"><span class="n">4.</span> Kedudukan hadis dalam Islam ialah &hellip;</div>
+        <div class="opts"><div>A) sumber hukum yang pertama</div><div>B) sumber hukum yang kedua selepas al-Quran</div><div>C) sumber hukum yang ketiga</div></div>
+        <div class="ans">Jawapan: <b>B</b> &mdash; Hadis menjelaskan hukum secara terperinci.</div></div>
+
+      <div class="q"><div class="qt"><span class="n">5.</span> Perkataan <span class="arab" style="font-size:17px">صَغِيرَنَا</span> dalam hadis bermaksud &hellip;</div>
+        <div class="opts"><div>A) orang yang lebih tua</div><div>B) orang yang lebih muda</div><div>C) orang yang kaya</div></div>
+        <div class="ans">Jawapan: <b>B</b> &mdash; صَغِيرَنَا = orang yang lebih muda / kecil dalam kalangan kami.</div></div>
+
+      <div class="q"><div class="qt"><span class="n">6.</span> Maksud <span class="arab" style="font-size:17px">لَيْسَ مِنَّا</span> ialah &hellip;</div>
+        <div class="opts"><div>A) bukan daripada golongan kami</div><div>B) bersama golongan kami</div><div>C) daripada golongan kami</div></div>
+        <div class="ans">Jawapan: <b>A</b> &mdash; لَيْسَ مِنَّا = bukan daripada golongan kami (tidak mengikuti sunnah).</div></div>
+
+      <div class="q"><div class="qt"><span class="n">7.</span> Antara adab menghormati orang yang lebih tua ialah &hellip;</div>
+        <div class="opts"><div>A) memanggil mereka dengan nama timangan sahaja</div><div>B) mendahulukan mereka dalam semua hal</div><div>C) membiarkan mereka bercakap seorang diri</div></div>
+        <div class="ans">Jawapan: <b>B</b> &mdash; Mendahulukan orang tua dalam semua hal menunjukkan adab hormat.</div></div>
+
+      <div class="q"><div class="qt"><span class="n">8.</span> Yang manakah adab mengasihi orang yang lebih muda?</div>
+        <div class="opts"><div>A) Menunjukkan contoh teladan yang baik</div><div>B) Memarahi mereka setiap masa</div><div>C) Mengabaikan permintaan mereka</div></div>
+        <div class="ans">Jawapan: <b>A</b> &mdash; Menjadi teladan baik mendidik mereka dengan kasih sayang.</div></div>
+
+      <div class="q"><div class="qt"><span class="n">9.</span> Antara kesan menghormati orang yang lebih tua ialah &hellip;</div>
+        <div class="opts"><div>A) kehidupan lebih diberkati</div><div>B) hidup menjadi semakin susah</div><div>C) ramai musuh dalam masyarakat</div></div>
+        <div class="ans">Jawapan: <b>A</b> &mdash; Hidup diberkati, diredai Allah, tenang jiwa dan masyarakat harmoni.</div></div>
+
+      <div class="q"><div class="qt"><span class="n">10.</span> Sikap yang <b>bertentangan</b> dengan tuntutan hadis ini ialah &hellip;</div>
+        <div class="opts"><div>A) membantu adik membuat kerja sekolah</div><div>B) meninggikan suara ketika bercakap dengan ibu bapa</div><div>C) memberi salam kepada guru</div></div>
+        <div class="ans">Jawapan: <b>B</b> &mdash; Meninggikan suara kepada ibu bapa adalah derhaka dan tidak menghormati.</div></div>
+    </div>
+
+    <div class="nota" style="margin-top:16px">
+      <b>Kunci jawapan ringkas:</b> 1)&thinsp;B &nbsp; 2)&thinsp;A &nbsp; 3)&thinsp;B &nbsp; 4)&thinsp;B &nbsp; 5)&thinsp;B &nbsp; 6)&thinsp;A &nbsp; 7)&thinsp;B &nbsp; 8)&thinsp;A &nbsp; 9)&thinsp;A &nbsp; 10)&thinsp;B
+    </div>
+  </section>
+
+  <!-- LAMPIRAN -->
+  <section>
+    <h2><span class="num">&#9733;</span> Lampiran &mdash; Senarai SK / SP Pendidikan Islam Tahun 3</h2>
+    <p class="hint">Rujukan silang untuk merancang set bahan bagi tajuk-tajuk lain.</p>
+    <table>
+      <thead><tr><th style="width:38px">#</th><th>Bidang</th><th>Standard Kandungan (SK)</th></tr></thead>
+      <tbody>
+        <tr><td class="c">1</td><td>al-Quran (Tilawah)</td><td>Membaca dan mengamalkan <b>Surah al-Kafirun</b> dengan betul dan bertajwid</td></tr>
+        <tr><td class="c">2</td><td>al-Quran (Tilawah)</td><td>Membaca dan mengamalkan <b>Surah al-&lsquo;Asr</b> dengan betul dan bertajwid</td></tr>
+        <tr><td class="c">3</td><td>al-Quran (Hafazan)</td><td>Menghafaz dan mengamalkan <b>Surah al-Kafirun</b> dalam solat dan kehidupan harian</td></tr>
+        <tr><td class="c">4</td><td>al-Quran (Hafazan)</td><td>Menghafaz dan mengamalkan <b>Surah al-&lsquo;Asr</b> dalam solat dan kehidupan harian</td></tr>
+        <tr><td class="c">5</td><td>al-Quran (Kefahaman)</td><td>Menganalisis, mengamal dan menghayati <b>Surah al-Fatihah</b></td></tr>
+        <tr><td class="c">6</td><td>al-Quran (Tajwid)</td><td>Hukum <b>nun sakinah dan tanwin</b>: izhar halqi, idgham, iqlab, ikhfa&rsquo; haqiqi</td></tr>
+        <tr><td class="c">7</td><td>Hadis</td><td><b>Yang Muda Dikasihi, Yang Tua Dihormati</b> &nbsp;<span style="color:#0f6f66;font-weight:700">(tajuk ini)</span></td></tr>
+        <tr><td class="c">8</td><td>Akidah</td><td>Nama Allah <b>al-&lsquo;Alim</b> dan <b>al-Hakim</b></td></tr>
+        <tr><td class="c">9</td><td>Akidah</td><td>Beriman kepada <b>kitab</b></td></tr>
+        <tr><td class="c">10</td><td>Ibadah</td><td>Bersuci daripada <b>hadas besar</b> (mandi wajib)</td></tr>
+        <tr><td class="c">11</td><td>Ibadah</td><td><b>Perkara yang membatalkan solat</b> dan solat yang sempurna</td></tr>
+        <tr><td class="c">12</td><td>Ibadah</td><td><b>Sunat ab&lsquo;adh</b> dan <b>sunat hai&rsquo;at</b> dalam solat</td></tr>
+        <tr><td class="c">13</td><td>Sirah</td><td>Iktibar peristiwa <b>penerimaan wahyu pertama</b></td></tr>
+        <tr><td class="c">14</td><td>Sirah</td><td>Keunggulan sifat Nabi Muhammad SAW (tabligh)</td></tr>
+        <tr><td class="c">15</td><td>Sirah</td><td>Meneladani keperibadian Nabi SAW dalam <b>kehidupan bermasyarakat</b></td></tr>
+        <tr><td class="c">16</td><td>Adab</td><td><b>Adab tidur</b> mengikut sunnah (termasuk qailulah)</td></tr>
+        <tr><td class="c">17</td><td>Adab</td><td><b>Adab menuntut ilmu</b> (ilmu fardu ain &amp; fardu kifayah)</td></tr>
+        <tr><td class="c">18</td><td>Adab</td><td>Adab terhadap Allah melalui <b>syukur</b></td></tr>
+        <tr><td class="c">19</td><td>Adab</td><td>Mengikut <b>sunnah Rasulullah</b>: perkataan &amp; perbuatan</td></tr>
+        <tr><td class="c">20</td><td>Jawi</td><td>Membaca &amp; menulis teks &mdash; perkataan ber<b>imbuhan awalan</b></td></tr>
+        <tr><td class="c">21</td><td>Jawi</td><td>Membaca &amp; menulis teks &mdash; perkataan ber<b>imbuhan akhiran</b></td></tr>
+        <tr><td class="c">22</td><td>Jawi</td><td>Membaca &amp; menulis teks &mdash; perkataan ber<b>imbuhan apitan</b></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 3 &amp; Buku Teks Pendidikan Islam Tahun 3 SK (DBP, 2018).
+  </footer>
+</div>
+
+<script>
+  function toggleAll(show){
+    document.querySelectorAll('#quiz .ans').forEach(function(a){
+      a.classList.toggle('on', show);
+    });
+  }
+</script>
+</body>
+</html>

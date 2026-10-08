@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adab Tidur Mengikut Sunnah &mdash; Amalan Sebelum &amp; Selepas Tidur serta Qailulah | Pendidikan Islam Tahun 3</title>
+<style>
+  :root{
+    --sky1:#dbe9f7; --sky2:#f7fbfe; --sky3:#fdf4e4;
+    --grass1:#9ec9e2; --grass2:#4f8fb5; --grass3:#2b5f80;
+    --paper:#fffcf9; --ink:#2f3b47; --muted:#6b7f8f;
+    --gold:#e0b04a; --teal:#4f9a8c; --aqua:#a8d5c8;
+    --line:#dce8f2;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);
+    font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Traditional Arabic","Amiri",serif;direction:rtl}
+
+  .skybg{position:fixed;inset:0;z-index:-1;
+    background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#e4eef7 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:#d8e7f4;top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:#e6eef7;top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:#f8efd8;bottom:-140px;left:18%}
+
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(74,50,56,.16)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;
+    background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#4f8fb5;font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:#2b5f80;letter-spacing:.4px;
+    text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:#6b7f8f;font-weight:600}
+
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;
+    box-shadow:0 3px 10px rgba(74,50,56,.07)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(74,50,56,.07)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--grass2);font-weight:800;
+    display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#f7fbfe;border:1.4px solid var(--line);
+    border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(140deg,var(--grass1),var(--grass2));box-shadow:0 2px 0 var(--grass3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--grass3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#fdf4e4;border:1.4px dashed var(--gold);border-radius:13px;
+    padding:10px 13px;font-size:12.5px;color:#6b5420;line-height:1.55}
+  .toc .note b{color:#8a6a1e}
+
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(74,50,56,.07);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;
+    display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;
+    box-shadow:0 2px 0 var(--grass3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+
+  .nota{border-left:5px solid var(--gold);background:#fdf4e4;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#8a6a1e}
+  .nota li:last-child{margin-bottom:0}
+
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:linear-gradient(135deg,#eef6fb,#fdf4e4);border:1.5px solid var(--line);
+    border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#dce8f2;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;
+    background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .scorebar .hint2{font-size:12px;color:var(--muted);font-weight:600}
+
+  .qcard{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:13px;
+    background:#fdfefe;transition:box-shadow .25s}
+  .qcard.done{box-shadow:0 3px 12px rgba(191,95,87,.18)}
+  .qhead{display:flex;gap:9px;align-items:flex-start;margin-bottom:11px}
+  .qn{background:var(--teal);color:#fff;min-width:26px;height:26px;border-radius:8px;display:inline-flex;
+    align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+  .qtext{font-weight:700;font-size:14.5px}
+  .opts{display:grid;grid-template-columns:1fr;gap:7px}
+  @media(min-width:640px){.opts{grid-template-columns:1fr 1fr 1fr}}
+  .opt{font-family:inherit;text-align:left;font-size:13.5px;font-weight:600;cursor:pointer;
+    background:#f7fafc;border:2px solid #dce8f2;border-radius:11px;padding:9px 12px;color:var(--ink);
+    transition:transform .12s,background .2s,border-color .2s;display:flex;gap:7px;align-items:flex-start}
+  .opt:hover:not(:disabled){transform:translateY(-2px);background:#fff;border-color:var(--teal)}
+  .opt:disabled{cursor:default}
+  .opt .k{font-weight:800;color:var(--teal);flex:none}
+  .opt.ok{background:#fbdfd7;border-color:var(--grass2);color:#2b5f80}
+  .opt.ok .k{color:var(--grass3)}
+  .opt.bad{background:#fbe0e4;border-color:#6ba6cc;color:#8a3345}
+  .opt.bad .k{color:#b04a60}
+  .opt.dim{opacity:.45}
+
+  .fb{display:none;margin-top:11px;border-radius:12px;padding:10px 13px;font-size:13.5px;
+    background:#eef6fb;border:1.5px dashed var(--grass2);align-items:flex-start;gap:11px}
+  .fb.show{display:flex}
+  .fb.wrong{background:#f2f8fc;border-color:#6ba6cc}
+  .fb .face{flex:none;width:52px;height:52px}
+  .fb .txt b{color:var(--grass3)}
+  .fb.wrong .txt b{color:#2f6f9e}
+
+  .result{display:none;text-align:center;padding:20px;border-radius:18px;margin-top:6px;
+    background:linear-gradient(135deg,#eef6fb,#fdf4e4);border:2px solid var(--grass1)}
+  .result.show{display:block}
+  .result .big{font-size:30px;font-weight:800;color:var(--grass3);margin:6px 0}
+  .result .msg{font-size:14.5px;font-weight:600;margin-bottom:12px}
+  .stars{font-size:22px;letter-spacing:3px;margin-bottom:6px}
+  button.act{font-family:inherit;font-size:13.5px;font-weight:700;border-radius:11px;padding:10px 18px;
+    border:2px solid var(--grass2);background:#fff;color:var(--grass3);cursor:pointer;transition:background .2s}
+  button.act:hover{background:var(--grass1);color:#fff}
+  button.act.solid{background:var(--grass2);color:#fff}
+  button.act.solid:hover{background:var(--grass3)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#eef6fb;color:var(--grass3);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  td.c{text-align:center;white-space:nowrap;font-weight:700;color:var(--grass2)}
+  tr:nth-child(even) td{background:#fbfdfe}
+  tr.on td{background:#fdf4e4;font-weight:700}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-top:4px}
+
+  @media print{
+    body{background:#fff}
+    .skybg,.blob{display:none}
+    .wrap{max-width:100%;padding:0}
+    .scorebar{display:none}
+    section{box-shadow:none;page-break-inside:avoid;padding:14px 16px}
+    .toc{box-shadow:none;page-break-inside:avoid;break-inside:avoid}
+    h2,.hint{page-break-after:avoid;break-after:avoid}
+    #art-info{width:auto;height:930px;display:block;margin:0 auto}
+    .qcard{page-break-inside:avoid;padding:10px 13px;margin-bottom:8px}
+    .qhead .qtext{font-size:13px}
+    .opt{padding:6px 9px;font-size:11.5px;transform:none !important}
+    .fb{margin-top:7px;padding:7px 10px;font-size:11.5px}
+    .fb .face{width:40px;height:40px}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4;margin:12mm}
+</style>
+</head>
+<body>
+
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<!-- ===== Watak kartun (statik) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <g id="adam">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <rect x="57" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <ellipse cx="46" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l7 44 h-56 z" fill="#7fc4b8" stroke="#4f8a80" stroke-width="2"/>
+    <path d="M36 82 q-13 13 -9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 82 q13 13 9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M39 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="46.5" r="1.9" fill="#fff"/><circle cx="68" cy="46.5" r="1.9" fill="#fff"/>
+    <path d="M55 56 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M49 63 q6 6.5 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="nur">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="43" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <rect x="58" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <ellipse cx="48" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="63" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <path d="M33 78 q22-11 44 0 l12 46 h-68 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <path d="M36 84 q-13 12 -10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 84 q13 12 10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="51.5" r="1.9" fill="#fff"/><circle cx="67" cy="51.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Adam berdiri solat (bersedekap, berkopiah) -->
+  <g id="adamSolat">
+    <ellipse cx="55" cy="157" rx="32" ry="6" fill="#000" opacity=".08"/>
+    <path d="M30 74 q25-12 50 0 l13 84 h-76 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <ellipse cx="46" cy="156" rx="11" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="156" rx="11" ry="5.5" fill="#6b4f3a"/>
+    <path d="M35 80 q-10 12 -6 26 q10 4 14 -6 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <path d="M75 80 q10 12 6 26 q-10 4 -14 -6 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <path d="M40 84 q10 8 12 20" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M70 84 q-10 8 -12 20" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="42" y="104" width="26" height="12" rx="6" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M29 40 q26-24 52 0 q1 5 -3 5 h-46 q-4 0 -3 -5 z" fill="#3f7a45" stroke="#2f5c33" stroke-width="1.8"/>
+    <path d="M39 40 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 40 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="51" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="51" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="48.5" r="1.9" fill="#fff"/><circle cx="68" cy="48.5" r="1.9" fill="#fff"/>
+    <path d="M55 58 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 65 q5.5 5 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="60" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="60" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Adam duduk (tahiyyat) -->
+  <g id="adamDuduk">
+    <ellipse cx="55" cy="154" rx="35" ry="6" fill="#000" opacity=".08"/>
+    <path d="M20 152 q0-32 35-32 q35 0 35 32 z" fill="#e8e3d2" stroke="#cfc7b0" stroke-width="2"/>
+    <ellipse cx="42" cy="152" rx="12" ry="5" fill="#6b4f3a"/>
+    <ellipse cx="68" cy="152" rx="12" ry="5" fill="#6b4f3a"/>
+    <path d="M32 78 q23-11 46 0 l10 46 h-66 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <path d="M38 88 q-6 26 4 42" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M72 88 q6 26 -4 42" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="32" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="61" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="50" y="68" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="52" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="52" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="48" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 48 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M29 42 q26-24 52 0 q1 5 -3 5 h-46 q-4 0 -3 -5 z" fill="#3f7a45" stroke="#2f5c33" stroke-width="1.8"/>
+    <path d="M39 42 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 42 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="53" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="53" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="50.5" r="1.9" fill="#fff"/><circle cx="68" cy="50.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 5 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="62" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="62" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="faceYay">
+    <circle cx="30" cy="30" r="26" fill="#fbdfd7" stroke="#4f8fb5" stroke-width="2.5"/>
+    <ellipse cx="22" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="25.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="25.4" r="1.3" fill="#fff"/>
+    <path d="M20 38 q10 9 20 0" stroke="#2b5f80" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="14" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <ellipse cx="46" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <path d="M30 2 l3 5 5 1 -4 4 1 5 -5-3 -5 3 1-5 -4-4 5-1 z" fill="#e0b04a"/>
+  </g>
+
+  <g id="faceOops">
+    <circle cx="30" cy="30" r="26" fill="#f2f8fc" stroke="#6ba6cc" stroke-width="2.5"/>
+    <ellipse cx="22" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="26.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="26.4" r="1.3" fill="#fff"/>
+    <path d="M15 21 q7-5 13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M45 21 q-7-5 -13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M21 41 q9-7 18 0" stroke="#2f6f9e" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+    <ellipse cx="47" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+  </g>
+
+  <!-- Kambing (gembalaan Nabi SAW) -->
+  <g id="kambing">
+    <ellipse cx="42" cy="56" rx="28" ry="4" fill="#000" opacity=".08"/>
+    <path d="M20 30 q22-16 44 0 q4 14 -3 22 h-38 q-7-8 -3-22 z" fill="#f4eee0" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M22 44 q20 5 40 0" stroke="#cbb99a" stroke-width="1.2" fill="none" opacity=".6"/>
+    <path d="M64 26 q10-4 8-12" stroke="#cbb99a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <circle cx="64" cy="26" r="10.5" fill="#f8f3e6" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M58 15 q-7-8 0-13" stroke="#cbb99a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M70 15 q7-8 0-13" stroke="#cbb99a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="67" cy="25" rx="1.9" ry="2.4" fill="#3a2b22"/>
+    <ellipse cx="73" cy="30" rx="2.6" ry="1.8" fill="#e0b9a8"/>
+    <rect x="24" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <rect x="34" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <rect x="50" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <rect x="58" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <path d="M16 30 q-7-6 -3-13" stroke="#cbb99a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  </g>
+</defs>
+</svg>
+
+<div class="wrap">
+
+  <!-- ===== HERO (statik) ===== -->
+  <div class="hero">
+    <svg viewBox="0 0 940 300" role="img" aria-label="Bilik tidur yang kemas pada waktu malam dengan kanak-kanak sedang tidur mengiring ke kanan, tingkap terbuka menunjukkan bulan sabit dan bintang, gaya Ghibli">
+      <defs>
+        <linearGradient id="wWall" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fdf7ee"/><stop offset=".55" stop-color="#f6e8d6"/><stop offset="1" stop-color="#eddbc6"/>
+        </linearGradient>
+        <linearGradient id="wFloor" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#dcb994"/><stop offset="1" stop-color="#c19a72"/>
+        </linearGradient>
+        <linearGradient id="wNight" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#20344c"/><stop offset=".5" stop-color="#3f6f96"/><stop offset="1" stop-color="#8ab8d6"/>
+        </linearGradient>
+        <linearGradient id="wBlanket" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7fb3d5"/><stop offset="1" stop-color="#5a94bd"/>
+        </linearGradient>
+        <filter id="wSoft" x="-45%" y="-45%" width="190%" height="190%"><feGaussianBlur stdDeviation="9"/></filter>
+        <clipPath id="wWin"><rect x="600" y="50" width="244" height="150" rx="8"/></clipPath>
+      </defs>
+
+      <!-- dinding & lantai -->
+      <rect width="940" height="300" fill="url(#wWall)"/>
+      <rect x="0" y="222" width="940" height="10" fill="#e3cdb2"/>
+      <rect x="0" y="232" width="940" height="68" fill="url(#wFloor)"/>
+      <g stroke="#b08a63" stroke-width="1" opacity=".3">
+        <path d="M118 232 V300"/><path d="M318 232 V300"/><path d="M518 232 V300"/><path d="M718 232 V300"/>
+      </g>
+
+      <!-- bingkai gambar bulan & bintang di dinding -->
+      <rect x="16" y="44" width="102" height="74" rx="8" fill="#ffffff" stroke="#e3cdb2" stroke-width="4"/>
+      <rect x="26" y="54" width="82" height="54" rx="5" fill="#dbe9f7"/>
+      <path d="M48 72 A13 13 0 1 0 48 100 A10 10 0 1 1 48 72 Z" fill="#e0b04a"/>
+      <path d="M88 68 L91 76 L99 79 L91 82 L88 90 L85 82 L77 79 L85 76 Z" fill="#e0b04a"/>
+      <circle cx="76" cy="96" r="2.2" fill="#e0b04a"/><circle cx="99" cy="60" r="1.8" fill="#e0b04a"/>
+
+      <!-- tingkap malam -->
+      <rect x="588" y="38" width="268" height="176" rx="16" fill="#ffffff" stroke="#e3cdb2" stroke-width="4"/>
+      <g clip-path="url(#wWin)">
+        <rect x="600" y="50" width="244" height="150" fill="url(#wNight)"/>
+        <path d="M600 166 L648 146 L694 162 L740 140 L788 160 L844 144 V200 H600 Z" fill="#2f4a68" opacity=".7"/>
+        <g fill="#fff9ea">
+          <circle cx="624" cy="72" r="2.2"/><circle cx="668" cy="62" r="1.7"/><circle cx="700" cy="86" r="2"/>
+          <circle cx="748" cy="66" r="1.8"/><circle cx="792" cy="80" r="2.2"/><circle cx="820" cy="62" r="1.6"/>
+          <circle cx="640" cy="102" r="1.6"/><circle cx="778" cy="112" r="1.8"/><circle cx="700" cy="118" r="1.5"/>
+        </g>
+        <g fill="#fff9ea" opacity=".95">
+          <path d="M660 92 L662.4 99 L669 101.4 L662.4 103.8 L660 111 L657.6 103.8 L651 101.4 L657.6 99 Z"/>
+          <path d="M806 96 L807.8 101.4 L813 103.2 L807.8 105 L806 110.4 L804.2 105 L799 103.2 L804.2 101.4 Z"/>
+        </g>
+        <path d="M712 78 A24 24 0 1 0 712 126 A19 19 0 1 1 712 78 Z" fill="#ffe9a8"/>
+      </g>
+      <rect x="718" y="50" width="8" height="150" fill="#ffffff"/>
+      <rect x="600" y="118" width="244" height="8" fill="#ffffff"/>
+      <rect x="582" y="206" width="280" height="13" rx="5" fill="#ffffff" stroke="#e3cdb2" stroke-width="3"/>
+
+      <!-- meja sisi + lampu -->
+      <rect x="486" y="192" width="86" height="12" rx="5" fill="#c9a184" stroke="#a87f5c" stroke-width="2"/>
+      <rect x="492" y="204" width="74" height="50" rx="6" fill="#b39070"/>
+      <rect x="496" y="216" width="66" height="26" rx="4" fill="#a87f5c" opacity=".5"/>
+      <rect x="498" y="252" width="9" height="16" rx="3" fill="#8a6a4e"/>
+      <rect x="552" y="252" width="9" height="16" rx="3" fill="#8a6a4e"/>
+      <circle cx="529" cy="158" r="46" fill="#ffe9a8" opacity=".3" filter="url(#wSoft)"/>
+      <rect x="526" y="150" width="6" height="42" rx="3" fill="#a87f5c"/>
+      <ellipse cx="529" cy="192" rx="15" ry="4.5" fill="#8a6a4e"/>
+      <path d="M504 150 L554 150 L546 122 L512 122 Z" fill="#ffe9a8" stroke="#e0b04a" stroke-width="2.5" stroke-linejoin="round"/>
+
+      <!-- katil -->
+      <rect x="60" y="130" width="44" height="104" rx="12" fill="#a87f5c" stroke="#8a6a4e" stroke-width="2.5"/>
+      <rect x="96" y="208" width="382" height="42" rx="9" fill="#b39070" stroke="#8a6a4e" stroke-width="2"/>
+      <rect x="100" y="190" width="374" height="26" rx="9" fill="#ffffff" stroke="#e8e3d2" stroke-width="2"/>
+      <rect x="112" y="168" width="98" height="36" rx="15" fill="#ffffff" stroke="#e8e3d2" stroke-width="2"/>
+      <!-- kanak-kanak tidur mengiring ke kanan -->
+      <circle cx="158" cy="176" r="24" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+      <path d="M134 174 a24 24 0 0 1 48 0 z" fill="#2b5f80"/>
+      <rect x="133" y="169" width="50" height="8" rx="4" fill="#4f8fb5"/>
+      <ellipse cx="185" cy="181" rx="4" ry="5.5" fill="#eec6a6"/>
+      <g stroke="#8a5a4a" stroke-width="2.2" fill="none" stroke-linecap="round">
+        <path d="M147 185 q6 5 12 0"/>
+        <path d="M166 185 q6 5 12 0"/>
+      </g>
+      <ellipse cx="146" cy="193" rx="5" ry="3" fill="#f2a2a2" opacity=".45"/>
+      <ellipse cx="179" cy="193" rx="5" ry="3" fill="#f2a2a2" opacity=".45"/>
+      <path d="M157 196 q5 3 10 0" stroke="#8a5a4a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <!-- selimut -->
+      <rect x="184" y="186" width="298" height="54" rx="16" fill="url(#wBlanket)" stroke="#4f8fb5" stroke-width="2"/>
+      <rect x="184" y="200" width="298" height="12" fill="#9ec9e2" opacity=".6"/>
+      <g stroke="#ffffff" stroke-width="1.3" opacity=".3">
+        <path d="M226 236 L258 190"/><path d="M272 236 L304 190"/><path d="M318 236 L350 190"/>
+        <path d="M364 236 L396 190"/><path d="M410 236 L442 190"/>
+      </g>
+      <path d="M452 186 q34 6 30 27 q-4 21 -30 27 z" fill="#5a94bd" stroke="#4f8fb5" stroke-width="2"/>
+      <rect x="108" y="250" width="12" height="18" rx="3" fill="#8a6a4e"/>
+      <rect x="456" y="250" width="12" height="18" rx="3" fill="#8a6a4e"/>
+
+      <!-- permaidani & selipar -->
+      <ellipse cx="320" cy="280" rx="168" ry="15" fill="#a8d5c8" opacity=".85"/>
+      <ellipse cx="320" cy="280" rx="142" ry="10" fill="none" stroke="#ffffff" stroke-width="2" opacity=".7"/>
+      <ellipse cx="320" cy="280" rx="112" ry="6" fill="#c8e6dc" opacity=".8"/>
+      <ellipse cx="470" cy="266" rx="14" ry="7" fill="#c2dcee" stroke="#4f8fb5" stroke-width="1.6"/>
+      <ellipse cx="498" cy="270" rx="14" ry="7" fill="#c2dcee" stroke="#4f8fb5" stroke-width="1.6"/>
+
+      <!-- zikir malam di udara -->
+      <g fill="#4f8fb5" opacity=".45">
+        <path d="M566 70 L568 76 L574 78 L568 80 L566 86 L564 80 L558 78 L564 76 Z"/>
+        <path d="M892 96 L894.5 103 L901 105.5 L894.5 108 L892 115 L889.5 108 L883 105.5 L889.5 103 Z"/>
+      </g>
+    </svg>
+    <div class="hero-txt">
+      <div class="kick">Pendidikan Islam &bull; Tahun 3 &bull; KSSR Semakan 2017</div>
+      <h1>Adab Tidur Mengikut Sunnah</h1>
+      <div class="sub">Amalan Sebelum &amp; Selepas Tidur &bull; Qailulah &bull; Kuiz Interaktif</div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="chip"><div class="lbl">Bidang</div><div class="val">Adab</div></div>
+    <div class="chip"><div class="lbl">Standard Kandungan (SK)</div><div class="val">Merumus konsep adab tidur mengikut sunnah Rasulullah SAW secara beradab dan istiqamah</div></div>
+    <div class="chip"><div class="lbl">Standard Pembelajaran (SP)</div><div class="val">6.1.1 &ndash; 6.1.5</div></div>
+    <div class="chip"><div class="lbl">Sumber</div><div class="val">DSKP PI T3 (ms. 36) &bull; Buku Teks PI T3 SK (ms. 122&ndash;127)</div></div>
+  </div>
+
+  <div class="toc">
+    <div class="ttl">Kandungan &amp; Panduan Penggunaan</div>
+    <div class="grid">
+      <div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">Maksud adab tidur, amalan sebelum &amp; selepas tidur, qailulah</div></div></div>
+      <div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">Maksud, dalil, amalan, nilai murni, iktibar</div></div></div>
+      <div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">10 poin ringkasan untuk rujukan pantas</div></div></div>
+      <div class="it"><div class="n">4</div><div><div class="t">Diagram Kitaran</div><div class="d">Kitaran harian: sebelum tidur &rarr; qailulah</div></div></div>
+      <div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan dengan maklum balas segera</div></div></div>
+      <div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Senarai 22 Standard Kandungan PI Tahun 3</div></div></div>
+    </div>
+    <div class="note"><b>Cara guna:</b> Buka fail ini dalam pelayar web. Pada kuiz, klik pilihan jawapan untuk maklum balas segera dan skor automatik. Tekan butang <b>Cetak / Simpan PDF</b> untuk versi kertas &mdash; semua jawapan akan dipaparkan secara automatik supaya boleh dijadikan lembaran kerja.</div>
+  </div>
+
+  <!-- ===== 1. INFOGRAFIK ===== -->
+  <section>
+    <h2><span class="num">1</span> Infografik</h2>
+    <p class="hint">Tajuk besar di atas &rarr; maksud adab tidur &rarr; 4 kad fakta &rarr; nilai murni di bawah.</p>
+
+    <svg class="art" id="art-info" viewBox="0 0 820 1256" role="img" aria-label="Infografik adab tidur mengikut sunnah Rasulullah SAW">
+      <defs>
+        <linearGradient id="gh2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#4f8fb5"/><stop offset="1" stop-color="#2b5f80"/>
+        </linearGradient>
+        <linearGradient id="gd" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#fdf4e4"/><stop offset="1" stop-color="#f8e6c0"/>
+        </linearGradient>
+      </defs>
+
+      <!-- ===== KEPALA ===== -->
+      <rect x="0" y="0" width="820" height="150" rx="16" fill="url(#gh2)"/>
+      <g fill="#ffffff" opacity=".2"><circle cx="70" cy="30" r="26"/><circle cx="750" cy="118" r="30"/></g>
+      <g fill="#fff9ea" opacity=".85">
+        <path d="M150 30 L152.6 38 L160 40.6 L152.6 43.2 L150 51 L147.4 43.2 L140 40.6 L147.4 38 Z"/>
+        <path d="M672 34 L674.2 41 L681 43.2 L674.2 45.4 L672 52 L669.8 45.4 L663 43.2 L669.8 41 Z"/>
+        <circle cx="196" cy="98" r="2.6"/><circle cx="628" cy="112" r="2.2"/><circle cx="100" cy="112" r="2"/>
+      </g>
+      <g transform="translate(28,6) scale(.62)"><use href="#adam"/></g>
+      <g transform="translate(714,6) scale(.62)"><use href="#nur"/></g>
+      <text x="410" y="62" text-anchor="middle" font-family="Trebuchet MS" font-size="26" font-weight="700" fill="#ffffff">ADAB TIDUR MENGIKUT SUNNAH</text>
+      <text x="410" y="98" text-anchor="middle" font-family="Trebuchet MS" font-size="19" font-weight="700" fill="#ffffff">AMALAN SEBELUM &amp; SELEPAS TIDUR</text>
+      <rect x="284" y="112" width="252" height="24" rx="12" fill="#ffffff" opacity=".24"/>
+      <text x="410" y="129" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.6">BIDANG ADAB &bull; SK 6.1</text>
+
+      <!-- ===== MAKSUD ===== -->
+      <rect x="40" y="168" width="740" height="154" rx="14" fill="url(#gd)" stroke="#e0b04a" stroke-width="1.6"/>
+      <rect x="40" y="168" width="740" height="30" rx="14" fill="#e0b04a"/>
+      <rect x="40" y="190" width="740" height="8" fill="#e0b04a"/>
+      <text x="410" y="189" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.4">APAKAH ADAB TIDUR ITU?</text>
+
+      <rect x="66" y="210" width="340" height="96" rx="12" fill="#ffffff" stroke="#4f8fb5" stroke-width="1.6"/>
+      <text x="236" y="234" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#2b5f80">ADAB TIDUR</text>
+      <text x="236" y="260" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">Cara dan amalan yang diajarkan Rasulullah</text>
+      <text x="236" y="280" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">SAW sebelum dan selepas tidur. Tidur yang</text>
+      <text x="236" y="300" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">beradab boleh menjadi <tspan font-weight="700">ibadah</tspan> kepada Allah.</text>
+
+      <rect x="414" y="210" width="340" height="96" rx="12" fill="#ffffff" stroke="#4f9a8c" stroke-width="1.6"/>
+      <text x="584" y="234" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#2b5f80">SUNNAH RASULULLAH SAW</text>
+      <text x="584" y="260" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">Tidur awal, berwuduk, mengemas tempat</text>
+      <text x="584" y="280" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">tidur, membaca basmalah dan doa, serta</text>
+      <text x="584" y="300" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">tidur <tspan font-weight="700">mengiring ke sebelah kanan</tspan>.</text>
+
+      <!-- ===== KAD 1: AMALAN SEBELUM TIDUR ===== -->
+      <rect x="40" y="342" width="350" height="340" rx="14" fill="#fffcf9" stroke="#dce8f2" stroke-width="1.6"/>
+      <path d="M40 356 a14 14 0 0 1 14-14 h322 a14 14 0 0 1 14 14 v30 h-350 z" fill="#4f8fb5"/>
+      <circle cx="68" cy="374" r="13" fill="#ffffff"/>
+      <text x="68" y="379" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#4f8fb5">1</text>
+      <text x="90" y="379" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">AMALAN SEBELUM TIDUR</text>
+      <text x="58" y="412" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">Lakukan perkara berikut sebelum tidur:</text>
+      <g font-family="Trebuchet MS">
+        <circle cx="64" cy="436" r="11" fill="#eef6fb" stroke="#4f8fb5" stroke-width="1.3"/>
+        <text x="64" y="440" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2b5f80">1</text>
+        <text x="84" y="440" font-size="12.5" fill="#2f3b47">Tidur awal pada waktu malam</text>
+        <circle cx="64" cy="474" r="11" fill="#eef6fb" stroke="#4f8fb5" stroke-width="1.3"/>
+        <text x="64" y="478" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2b5f80">2</text>
+        <text x="84" y="478" font-size="12.5" fill="#2f3b47">Berwuduk sebelum tidur</text>
+        <circle cx="64" cy="512" r="11" fill="#eef6fb" stroke="#4f8fb5" stroke-width="1.3"/>
+        <text x="64" y="516" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2b5f80">3</text>
+        <text x="84" y="516" font-size="12.5" fill="#2f3b47">Mengemas dan menyiapkan tempat tidur</text>
+        <circle cx="64" cy="550" r="11" fill="#eef6fb" stroke="#4f8fb5" stroke-width="1.3"/>
+        <text x="64" y="554" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2b5f80">4</text>
+        <text x="84" y="554" font-size="12.5" fill="#2f3b47">Membaca <tspan font-weight="700">basmalah</tspan></text>
+        <circle cx="64" cy="588" r="11" fill="#eef6fb" stroke="#4f8fb5" stroke-width="1.3"/>
+        <text x="64" y="592" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2b5f80">5</text>
+        <text x="84" y="592" font-size="12.5" fill="#2f3b47">Tidur mengiring ke sebelah kanan</text>
+        <circle cx="64" cy="626" r="11" fill="#eef6fb" stroke="#4f8fb5" stroke-width="1.3"/>
+        <text x="64" y="630" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2b5f80">6</text>
+        <text x="84" y="630" font-size="12.5" fill="#2f3b47">Membaca doa dan berzikir</text>
+      </g>
+      <rect x="58" y="644" width="314" height="28" rx="8" fill="#eef6fb"/>
+      <text x="215" y="663" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#2b5f80">Tidur awal memudahkan bangun solat Subuh.</text>
+
+      <!-- ===== KAD 2: AMALAN SELEPAS BANGUN TIDUR ===== -->
+      <rect x="430" y="342" width="350" height="340" rx="14" fill="#fffcf9" stroke="#dce8f2" stroke-width="1.6"/>
+      <path d="M430 356 a14 14 0 0 1 14-14 h322 a14 14 0 0 1 14 14 v30 h-350 z" fill="#4f9a8c"/>
+      <circle cx="458" cy="374" r="13" fill="#ffffff"/>
+      <text x="458" y="379" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#4f9a8c">2</text>
+      <text x="480" y="379" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">AMALAN SELEPAS BANGUN TIDUR</text>
+      <g font-family="Trebuchet MS">
+        <circle cx="454" cy="404" r="11" fill="#edf7f4" stroke="#4f9a8c" stroke-width="1.3"/>
+        <text x="454" y="408" text-anchor="middle" font-size="11.5" font-weight="700" fill="#35786c">1</text>
+        <text x="474" y="408" font-size="12.5" fill="#2f3b47">Membaca doa bangun tidur</text>
+        <circle cx="454" cy="436" r="11" fill="#edf7f4" stroke="#4f9a8c" stroke-width="1.3"/>
+        <text x="454" y="440" text-anchor="middle" font-size="11.5" font-weight="700" fill="#35786c">2</text>
+        <text x="474" y="440" font-size="12.5" fill="#2f3b47">Mengemas tempat tidur</text>
+        <circle cx="454" cy="468" r="11" fill="#edf7f4" stroke="#4f9a8c" stroke-width="1.3"/>
+        <text x="454" y="472" text-anchor="middle" font-size="11.5" font-weight="700" fill="#35786c">3</text>
+        <text x="474" y="472" font-size="12.5" fill="#2f3b47">Membasuh tangan</text>
+        <circle cx="454" cy="500" r="11" fill="#edf7f4" stroke="#4f9a8c" stroke-width="1.3"/>
+        <text x="454" y="504" text-anchor="middle" font-size="11.5" font-weight="700" fill="#35786c">4</text>
+        <text x="474" y="504" font-size="12.5" fill="#2f3b47">Membasuh muka dan mencuci hidung</text>
+        <circle cx="454" cy="532" r="11" fill="#edf7f4" stroke="#4f9a8c" stroke-width="1.3"/>
+        <text x="454" y="536" text-anchor="middle" font-size="11.5" font-weight="700" fill="#35786c">5</text>
+        <text x="474" y="536" font-size="12.5" fill="#2f3b47">Bersiwak atau memberus gigi</text>
+      </g>
+      <rect x="448" y="560" width="314" height="106" rx="10" fill="#edf7f4" stroke="#4f9a8c" stroke-width="1.2"/>
+      <text x="605" y="582" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#35786c" letter-spacing=".6">DOA BANGUN TIDUR</text>
+      <text x="605" y="606" text-anchor="middle" font-family="Traditional Arabic, Amiri, serif" font-size="15" fill="#2b5f80">الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</text>
+      <text x="605" y="630" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" fill="#2f3b47">&ldquo;Segala puji bagi Allah yang menghidupkan kami</text>
+      <text x="605" y="645" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" fill="#2f3b47">setelah mematikan kami dan kepadaNya kami</text>
+      <text x="605" y="660" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" fill="#2f3b47">dibangkitkan.&rdquo;</text>
+
+      <!-- ===== KAD 3: APAKAH QAYLULAH ===== -->
+      <rect x="40" y="702" width="350" height="340" rx="14" fill="#fffcf9" stroke="#dce8f2" stroke-width="1.6"/>
+      <path d="M40 716 a14 14 0 0 1 14-14 h322 a14 14 0 0 1 14 14 v30 h-350 z" fill="#4f8fb5"/>
+      <circle cx="68" cy="734" r="13" fill="#ffffff"/>
+      <text x="68" y="739" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#4f8fb5">3</text>
+      <text x="90" y="739" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">APAKAH QAYLULAH?</text>
+      <g font-family="Trebuchet MS">
+        <text x="58" y="776" font-size="12.5" font-weight="700" fill="#2b5f80">MAKSUD</text>
+        <text x="58" y="795" font-size="12" fill="#2f3b47">Tidur sekejap sebelum masuk waktu Zohor.</text>
+        <text x="58" y="822" font-size="12.5" font-weight="700" fill="#2b5f80">WAKTU</text>
+        <text x="58" y="841" font-size="12" fill="#2f3b47">10 hingga 30 minit. Inilah masa paling afdal.</text>
+        <text x="58" y="868" font-size="12.5" font-weight="700" fill="#2b5f80">KEPENTINGAN &mdash; MENTAL</text>
+        <text x="58" y="887" font-size="12" fill="#2f3b47">&#8226; Mengoptimumkan otak, menguatkan ingatan</text>
+        <text x="58" y="905" font-size="12" fill="#2f3b47">&#8226; Menghilangkan tekanan, meningkatkan faham</text>
+        <text x="58" y="932" font-size="12.5" font-weight="700" fill="#2b5f80">KEPENTINGAN &mdash; FIZIKAL</text>
+        <text x="58" y="951" font-size="12" fill="#2f3b47">&#8226; Mengumpul tenaga dan meningkatkan produktiviti</text>
+        <text x="58" y="969" font-size="12" fill="#2f3b47">&#8226; Membantu pertumbuhan otot dan sistem pertahanan</text>
+        <text x="58" y="987" font-size="12" fill="#2f3b47">&#8226; Memberi tenaga untuk qiamullail</text>
+      </g>
+      <rect x="58" y="1000" width="314" height="28" rx="8" fill="#eef6fb"/>
+      <text x="215" y="1019" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#2b5f80">Tidur berkualiti menjadikan ibadah sempurna.</text>
+
+      <!-- ===== KAD 4: KEPENTINGAN MENGAMALKANNYA ===== -->
+      <rect x="430" y="702" width="350" height="340" rx="14" fill="#fffcf9" stroke="#dce8f2" stroke-width="1.6"/>
+      <path d="M430 716 a14 14 0 0 1 14-14 h322 a14 14 0 0 1 14 14 v30 h-350 z" fill="#4f9a8c"/>
+      <circle cx="458" cy="734" r="13" fill="#ffffff"/>
+      <text x="458" y="739" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#4f9a8c">4</text>
+      <text x="480" y="739" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">KEPENTINGAN MENGAMALKANNYA</text>
+      <g font-family="Trebuchet MS" font-size="12" fill="#2f3b47">
+        <text x="448" y="776">&#8226; Menjadikan tidur satu ibadah kepada Allah</text>
+        <text x="448" y="804">&#8226; Menjaga kesihatan fizikal dan mental</text>
+        <text x="448" y="832">&#8226; Melaksanakan sunnah Nabi Muhammad SAW</text>
+        <text x="448" y="860">&#8226; Mendapat pahala daripada Allah SWT</text>
+        <text x="448" y="888">&#8226; Menghindari diri daripada gangguan syaitan</text>
+      </g>
+      <rect x="448" y="908" width="314" height="88" rx="10" fill="#eef6fb" stroke="#4f9a8c" stroke-width="1.2"/>
+      <text x="605" y="930" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#2b5f80">Rumusan: Tidur mengiring ke kanan dan</text>
+      <text x="605" y="948" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#2b5f80">memakai pakaian yang menutup aurat</text>
+      <text x="605" y="966" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#2b5f80">menjadikan tidur berkat dan badan sihat.</text>
+      <text x="605" y="986" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" font-style="italic" fill="#6b7f8f">SK 6.1 &bull; SP 6.1.1 &ndash; 6.1.5</text>
+
+      <!-- ===== NILAI MURNI ===== -->
+      <rect x="40" y="1058" width="740" height="178" rx="14" fill="#eef6fb" stroke="#4f8fb5" stroke-width="1.6"/>
+      <text x="410" y="1094" text-anchor="middle" font-family="Trebuchet MS" font-size="16" font-weight="700" fill="#2b5f80" letter-spacing="2">NILAI MURNI</text>
+      <g font-family="Trebuchet MS" font-size="13.5" font-weight="700" fill="#2b5f80">
+        <rect x="132" y="1110" width="130" height="40" rx="20" fill="#fffcf9" stroke="#4f8fb5" stroke-width="1.5"/><text x="197" y="1135" text-anchor="middle">Bersih</text>
+        <rect x="274" y="1110" width="130" height="40" rx="20" fill="#fffcf9" stroke="#4f8fb5" stroke-width="1.5"/><text x="339" y="1135" text-anchor="middle">Tertib</text>
+        <rect x="416" y="1110" width="130" height="40" rx="20" fill="#fffcf9" stroke="#4f8fb5" stroke-width="1.5"/><text x="481" y="1135" text-anchor="middle">Syukur</text>
+        <rect x="558" y="1110" width="130" height="40" rx="20" fill="#fffcf9" stroke="#4f8fb5" stroke-width="1.5"/><text x="623" y="1135" text-anchor="middle">Sederhana</text>
+        <rect x="155" y="1162" width="250" height="40" rx="20" fill="#fffcf9" stroke="#4f8fb5" stroke-width="1.5"/><text x="280" y="1187" text-anchor="middle">Istiqamah</text>
+        <rect x="415" y="1162" width="250" height="40" rx="20" fill="#fffcf9" stroke="#4f8fb5" stroke-width="1.5"/><text x="540" y="1187" text-anchor="middle">Menjaga Kesihatan</text>
+      </g>
+      <text x="410" y="1226" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#2b5f80">Tidur beradab &rarr; badan sihat &rarr; ibadah sempurna &rarr; diberkati Allah</text>
+    </svg>
+  </section>
+
+  <!-- ===== 2. PETA MINDA ===== -->
+  <section>
+    <h2><span class="num">2</span> Peta Minda</h2>
+    <p class="hint">Teks pusat di tengah &rarr; Maksud, Dalil, Contoh/Amalan, Nilai Murni, Iktibar.</p>
+
+    <svg class="art" viewBox="0 0 820 740" role="img" aria-label="Peta minda adab tidur mengikut sunnah">
+      <g fill="#ffffff" opacity=".55"><circle cx="70" cy="60" r="30"/><circle cx="96" cy="44" r="22"/></g>
+
+      <path d="M302 254 C244 206 196 176 156 166" fill="none" stroke="#e0b04a" stroke-width="3"/>
+      <path d="M518 254 C576 206 624 176 664 166" fill="none" stroke="#4f8fb5" stroke-width="3"/>
+      <path d="M518 384 C576 434 624 464 664 474" fill="none" stroke="#4f8fb5" stroke-width="3"/>
+      <path d="M302 384 C244 434 196 464 156 474" fill="none" stroke="#e0b04a" stroke-width="3"/>
+      <path d="M410 404 L410 524" fill="none" stroke="#e0b04a" stroke-width="3"/>
+
+      <ellipse cx="410" cy="320" rx="172" ry="94" fill="#4f8fb5"/>
+      <ellipse cx="410" cy="320" rx="161" ry="83" fill="none" stroke="#ffffff" stroke-width="1.3" opacity=".45"/>
+      <text x="410" y="298" text-anchor="middle" font-family="Trebuchet MS" font-size="18" font-weight="700" fill="#ffffff">ADAB TIDUR</text>
+      <text x="410" y="324" text-anchor="middle" font-family="Trebuchet MS" font-size="18" font-weight="700" fill="#ffffff">MENGIKUT SUNNAH</text>
+      <text x="410" y="352" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#e3f0f7" letter-spacing="1.2">ADAB &bull; SK 6.1</text>
+      <text x="410" y="376" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" fill="#d9eaf3">Amalan sebelum dan selepas tidur</text>
+
+      <!-- 1 MAKSUD -->
+      <rect x="26" y="88" width="254" height="170" rx="14" fill="#fdf4e4" stroke="#e0b04a" stroke-width="1.6"/>
+      <rect x="26" y="88" width="254" height="30" rx="14" fill="#e0b04a"/>
+      <rect x="26" y="110" width="254" height="8" fill="#e0b04a"/>
+      <text x="153" y="109" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">1 &nbsp;MAKSUD</text>
+      <text x="42" y="142" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47"><tspan font-weight="700">Adab tidur</tspan> ialah cara dan</text>
+      <text x="42" y="162" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">amalan yang diajarkan Rasulullah</text>
+      <text x="42" y="182" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">SAW sebelum dan selepas tidur.</text>
+      <text x="42" y="208" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">Tidur yang mengikut adab</text>
+      <text x="42" y="226" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">boleh menjadi <tspan font-weight="700">ibadah</tspan> kepada</text>
+      <text x="42" y="244" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">Allah SWT.</text>
+
+      <!-- 2 DALIL -->
+      <rect x="540" y="88" width="254" height="170" rx="14" fill="#eef6fb" stroke="#4f8fb5" stroke-width="1.6"/>
+      <rect x="540" y="88" width="254" height="30" rx="14" fill="#4f8fb5"/>
+      <rect x="540" y="110" width="254" height="8" fill="#4f8fb5"/>
+      <text x="667" y="109" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">2 &nbsp;DALIL</text>
+      <text x="667" y="132" text-anchor="middle" font-family="Traditional Arabic, Amiri, serif" font-size="13" fill="#2b5f80">إِذَا أَتَيْتَ مَضْجَعَكَ فَتَوَضَّأْ</text>
+      <text x="667" y="150" text-anchor="middle" font-family="Traditional Arabic, Amiri, serif" font-size="13" fill="#2b5f80">وُضُوءَكَ لِلصَّلَاةِ ثُمَّ اضْطَجِعْ</text>
+      <text x="667" y="168" text-anchor="middle" font-family="Traditional Arabic, Amiri, serif" font-size="13" fill="#2b5f80">عَلَى شِقِّكَ الْأَيْمَنِ</text>
+      <text x="556" y="186" font-family="Trebuchet MS" font-size="11" font-style="italic" fill="#6b7f8f">Riwayat al-Bukhari &amp; Muslim</text>
+      <text x="556" y="206" font-family="Trebuchet MS" font-size="11" fill="#2f3b47">&ldquo;Apabila engkau hendak tidur, maka</text>
+      <text x="556" y="222" font-family="Trebuchet MS" font-size="11" fill="#2f3b47">berwuduklah seperti wuduk untuk solat,</text>
+      <text x="556" y="238" font-family="Trebuchet MS" font-size="11" fill="#2f3b47">kemudian mengiringlah ke kanan.&rdquo;</text>
+
+      <!-- 3 CONTOH / AMALAN -->
+      <rect x="540" y="428" width="254" height="180" rx="14" fill="#eef6fb" stroke="#4f8fb5" stroke-width="1.6"/>
+      <rect x="540" y="428" width="254" height="30" rx="14" fill="#4f8fb5"/>
+      <rect x="540" y="450" width="254" height="8" fill="#4f8fb5"/>
+      <text x="667" y="449" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">3 &nbsp;CONTOH / AMALAN</text>
+      <text x="556" y="476" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#8a6a1e">Sebelum tidur:</text>
+      <text x="556" y="494" font-family="Trebuchet MS" font-size="12" fill="#2f3b47">&#8226; Tidur awal dan berwuduk</text>
+      <text x="556" y="512" font-family="Trebuchet MS" font-size="12" fill="#2f3b47">&#8226; Basmalah, doa dan zikir</text>
+      <text x="556" y="530" font-family="Trebuchet MS" font-size="12" fill="#2f3b47">&#8226; Mengiring ke sebelah kanan</text>
+      <text x="556" y="556" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#8a6a1e">Selepas bangun tidur:</text>
+      <text x="556" y="574" font-family="Trebuchet MS" font-size="12" fill="#2f3b47">&#8226; Doa dan kemas tempat tidur</text>
+      <text x="556" y="592" font-family="Trebuchet MS" font-size="12" fill="#2f3b47">&#8226; Basuh tangan, muka dan gigi</text>
+
+      <!-- 4 NILAI MURNI -->
+      <rect x="26" y="428" width="254" height="180" rx="14" fill="#fdf4e4" stroke="#e0b04a" stroke-width="1.6"/>
+      <rect x="26" y="428" width="254" height="30" rx="14" fill="#e0b04a"/>
+      <rect x="26" y="450" width="254" height="8" fill="#e0b04a"/>
+      <text x="153" y="449" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">4 &nbsp;NILAI MURNI</text>
+      <text x="42" y="480" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">&#8226; Bersih dan suci</text>
+      <text x="42" y="502" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">&#8226; Tertib dan disiplin diri</text>
+      <text x="42" y="524" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">&#8226; Syukur atas nikmat rehat</text>
+      <text x="42" y="546" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">&#8226; Istiqamah amalan sunnah</text>
+      <text x="42" y="568" font-family="Trebuchet MS" font-size="12.5" fill="#2f3b47">&#8226; Sederhana dan menjaga kesihatan</text>
+      <text x="42" y="594" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#8a6a1e">Tidur bukan masa yang terbuang.</text>
+
+      <!-- 5 IKTIBAR -->
+      <rect x="282" y="530" width="256" height="164" rx="14" fill="#2b5f80"/>
+      <text x="410" y="560" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">5 &nbsp;IKTIBAR</text>
+      <text x="410" y="590" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#e3f0f7">Kita hendaklah mengamalkan</text>
+      <text x="410" y="608" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#e3f0f7">adab tidur mengikut sunnah</text>
+      <text x="410" y="626" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#e3f0f7">Rasulullah SAW supaya tidur</text>
+      <text x="410" y="644" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#e3f0f7">menjadi ibadah dan berkat.</text>
+      <line x1="310" y1="660" x2="510" y2="660" stroke="#ffffff" stroke-width="1" opacity=".4"/>
+      <text x="410" y="680" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" font-weight="700" fill="#ffe9a8">Tidur beradab, badan sihat</text>
+
+      <g transform="translate(52,608) scale(.5)"><use href="#adam"/></g>
+      <g transform="translate(700,608) scale(.5)"><use href="#nur"/></g>
+    </svg>
+  </section>
+
+  <!-- ===== 3. NOTA RINGKAS ===== -->
+  <section>
+    <h2><span class="num">3</span> Nota Ringkas</h2>
+    <p class="hint">Ringkasan isi untuk rujukan pantas murid.</p>
+    <div class="nota">
+      <ol>
+        <li><b>Pengertian adab tidur (SP 6.1.1).</b> Adab tidur ialah <b>cara dan amalan yang diajarkan oleh Rasulullah SAW</b> sebelum dan selepas tidur. Tidur yang mengikut adab boleh menjadi <b>ibadah</b> kepada Allah SWT.</li>
+        <li><b>Dalil naqli adab tidur (SP 6.1.2).</b> Rasulullah SAW bersabda: &ldquo;Apabila engkau hendak tidur, maka <b>berwuduklah seperti wuduk untuk solat</b>, kemudian <b>berbaringlah mengiring ke sebelah kanan</b>.&rdquo; (Riwayat al-Bukhari dan Muslim)</li>
+        <li><b>Amalan sebelum tidur.</b> <b>Tidur awal</b> pada waktu malam; <b>berwuduk</b>; <b>mengemas dan menyiapkan tempat tidur</b>; membaca <b>basmalah</b>; tidur <b>mengiring ke sebelah kanan</b>; serta <b>membaca doa dan berzikir</b>.</li>
+        <li><b>Doa sebelum tidur.</b> Baginda membaca <span class="arab">بِاسْمِكَ اللَّهُمَّ أَحْيَا وَأَمُوتُ</span> yang bermaksud &ldquo;Dengan namaMu ya Allah, aku hidup dan aku mati.&rdquo;</li>
+        <li><b>Amalan selepas bangun tidur.</b> <b>Membaca doa bangun tidur</b>; <b>mengemas tempat tidur</b>; <b>membasuh tangan</b>; <b>membasuh muka dan mencuci hidung</b> dengan memasukkan air lalu menghembuskannya; serta <b>bersiwak atau memberus gigi</b>.</li>
+        <li><b>Doa bangun tidur.</b> <span class="arab">الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</span> &mdash; &ldquo;Segala puji bagi Allah yang menghidupkan kami setelah mematikan kami dan kepadaNya kami dibangkitkan.&rdquo;</li>
+        <li><b>Apakah qailulah (SP 6.1.3).</b> <b>Qailulah</b> ialah <b>tidur sekejap sebelum masuk waktu Zohor</b>. Masa yang paling afdal ialah antara <b>10 hingga 30 minit</b>.</li>
+        <li><b>Kepentingan qailulah (SP 6.1.3).</b> Dari segi <b>mental</b>: mengoptimumkan otak, menguatkan ingatan, menghilangkan tekanan dan meningkatkan kefahaman. Dari segi <b>fizikal</b>: mengumpul tenaga, membantu pertumbuhan otot, meningkatkan produktiviti, meningkatkan sistem pertahanan badan dan memberi tenaga untuk <b>qiamullail</b>.</li>
+        <li><b>Kepentingan mengamalkan adab tidur (SP 6.1.4).</b> Menjadikan tidur satu <b>ibadah</b>; menjaga <b>kesihatan fizikal dan mental</b>; <b>melaksanakan sunnah</b> Nabi Muhammad SAW; mendapat <b>pahala</b> daripada Allah SWT; dan <b>menghindari diri daripada gangguan syaitan</b>.</li>
+        <li><b>Amalan kita (SP 6.1.5).</b> Tidur <b>awal</b> supaya mudah bangun solat Subuh; tidur <b>mengiring ke sebelah kanan</b> dan memakai pakaian yang <b>menutup aurat</b>; berwuduk dan membaca doa; serta mengamalkannya secara <b>istiqamah</b> setiap hari.</li>
+      </ol>
+      <p style="margin:14px 0 0;padding:12px 14px;border-radius:12px;background:#fff9ea;border:1.5px dashed #e0b04a;font-size:14px"><b>Rumusan:</b> Kita hendaklah mengamalkan adab tidur mengikut sunnah Rasulullah SAW supaya tidur kita menjadi <b>ibadah</b>, badan <b>sihat</b> dan hidup <b>diberkati Allah SWT</b>.</p>
+    </div>
+  </section>
+
+  <!-- ===== 4. DIAGRAM KITARAN ===== -->
+  <section>
+    <h2><span class="num">4</span> Diagram Kitaran &mdash; Adab Tidur</h2>
+    <p class="hint">Jenis: <b>Kitaran</b>. Empat peringkat rutin harian yang berkait antara satu sama lain.</p>
+
+    <svg class="art" viewBox="0 0 820 800" role="img" aria-label="Diagram kitaran harian adab tidur mengikut sunnah">
+      <defs>
+        <marker id="ah10" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 Z" fill="#4f8fb5"/>
+        </marker>
+      </defs>
+
+      <rect width="820" height="800" rx="14" fill="#f9fbfd"/>
+      <rect x="40" y="6" width="740" height="44" rx="12" fill="#eef6fb" stroke="#4f8fb5" stroke-width="1.4"/>
+      <text x="410" y="34" text-anchor="middle" font-family="Trebuchet MS" font-size="15" font-weight="700" fill="#2b5f80" letter-spacing="1.4">KITARAN HARIAN ADAB TIDUR MENGIKUT SUNNAH</text>
+
+      <!-- anak panah kitaran -->
+      <g fill="none" stroke="#4f8fb5" stroke-width="3" marker-end="url(#ah10)">
+        <path d="M548 162 C648 182 676 246 640 334"/>
+        <path d="M640 446 C672 530 648 600 548 646"/>
+        <path d="M272 646 C180 600 152 530 186 446"/>
+        <path d="M186 334 C152 246 180 182 272 162"/>
+      </g>
+
+      <!-- pusat -->
+      <circle cx="410" cy="390" r="96" fill="#4f8fb5"/>
+      <circle cx="410" cy="390" r="86" fill="none" stroke="#ffffff" stroke-width="1.4" opacity=".45"/>
+      <text x="410" y="362" text-anchor="middle" font-family="Trebuchet MS" font-size="17" font-weight="700" fill="#ffffff">ADAB TIDUR</text>
+      <text x="410" y="386" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#e3f0f7">MENGIKUT SUNNAH</text>
+      <text x="410" y="408" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#e3f0f7">RASULULLAH SAW</text>
+      <text x="410" y="432" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" fill="#d9eaf3" letter-spacing="1.2">SK 6.1 &bull; SP 6.1.1&ndash;6.1.5</text>
+
+      <!-- 1 SEBELUM TIDUR -->
+      <rect x="272" y="64" width="276" height="112" rx="16" fill="#fffcf9" stroke="#4f8fb5" stroke-width="1.8"/>
+      <path d="M272 80 a16 16 0 0 1 16-16 h244 a16 16 0 0 1 16 16 v18 h-276 z" fill="#4f8fb5"/>
+      <circle cx="296" cy="81" r="11" fill="#ffffff"/>
+      <text x="296" y="85" text-anchor="middle" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#4f8fb5">1</text>
+      <text x="314" y="86" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff">SEBELUM TIDUR</text>
+      <g font-family="Trebuchet MS" font-size="11.5" fill="#2f3b47" text-anchor="middle">
+        <text x="410" y="122">Tidur awal dan berwuduk</text>
+        <text x="410" y="142">Kemas tempat tidur, baca basmalah</text>
+        <text x="410" y="162">Mengiring ke kanan, doa dan zikir</text>
+      </g>
+
+      <!-- 2 TIDUR -->
+      <rect x="534" y="334" width="262" height="112" rx="16" fill="#fffcf9" stroke="#4f9a8c" stroke-width="1.8"/>
+      <path d="M534 350 a16 16 0 0 1 16-16 h230 a16 16 0 0 1 16 16 v18 h-262 z" fill="#4f9a8c"/>
+      <circle cx="558" cy="351" r="11" fill="#ffffff"/>
+      <text x="558" y="355" text-anchor="middle" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#4f9a8c">2</text>
+      <text x="576" y="356" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff">TIDUR</text>
+      <g font-family="Trebuchet MS" font-size="11.5" fill="#2f3b47" text-anchor="middle">
+        <text x="665" y="392">Mengiring ke sebelah kanan</text>
+        <text x="665" y="412">Pakaian menutup aurat</text>
+        <text x="665" y="432">Niat tidur sebagai ibadah</text>
+      </g>
+
+      <!-- 3 BANGUN TIDUR -->
+      <rect x="272" y="604" width="276" height="112" rx="16" fill="#fffcf9" stroke="#4f8fb5" stroke-width="1.8"/>
+      <path d="M272 620 a16 16 0 0 1 16-16 h244 a16 16 0 0 1 16 16 v18 h-276 z" fill="#4f8fb5"/>
+      <circle cx="296" cy="621" r="11" fill="#ffffff"/>
+      <text x="296" y="625" text-anchor="middle" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#4f8fb5">3</text>
+      <text x="314" y="626" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff">BANGUN TIDUR</text>
+      <g font-family="Trebuchet MS" font-size="11.5" fill="#2f3b47" text-anchor="middle">
+        <text x="410" y="662">Membaca doa bangun tidur</text>
+        <text x="410" y="682">Mengemas tempat tidur</text>
+        <text x="410" y="702">Basuh tangan, muka dan gigi</text>
+      </g>
+
+      <!-- 4 QAYLULAH -->
+      <rect x="24" y="334" width="262" height="112" rx="16" fill="#fffcf9" stroke="#e0b04a" stroke-width="1.8"/>
+      <path d="M24 350 a16 16 0 0 1 16-16 h230 a16 16 0 0 1 16 16 v18 h-262 z" fill="#e0b04a"/>
+      <circle cx="48" cy="351" r="11" fill="#ffffff"/>
+      <text x="48" y="355" text-anchor="middle" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#e0b04a">4</text>
+      <text x="66" y="356" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff">QAYLULAH</text>
+      <g font-family="Trebuchet MS" font-size="11.5" fill="#2f3b47" text-anchor="middle">
+        <text x="155" y="392">Tidur sekejap sebelum Zohor</text>
+        <text x="155" y="412">10 hingga 30 minit sahaja</text>
+        <text x="155" y="432">Menyegarkan otak dan badan</text>
+      </g>
+
+      <!-- rumusan -->
+      <rect x="40" y="740" width="740" height="52" rx="14" fill="#2b5f80"/>
+      <text x="410" y="763" text-anchor="middle" font-family="Trebuchet MS" font-size="15" font-weight="700" fill="#ffe9a8" letter-spacing="1">JADIKAN TIDUR SEBAGAI IBADAH</text>
+      <text x="410" y="782" text-anchor="middle" font-family="Trebuchet MS" font-size="11" fill="#e3f0f7">Tidur awal &bull; berwuduk &bull; mengiring ke kanan &bull; doa dan zikir &bull; qailulah 10&ndash;30 minit</text>
+    </svg>
+  </section>
+
+  <!-- ===== 5. KUIZ INTERAKTIF ===== -->
+  <section>
+    <h2><span class="num">5</span> Kuiz Interaktif &mdash; 10 Soalan</h2>
+    <p class="hint">Klik pilihan jawapan. Maklum balas dan skor diberikan serta-merta.</p>
+
+    <div class="scorebar">
+      <span class="sc">Skor: <span id="sc">0</span> / 10</span>
+      <span class="bar"><i id="bar"></i></span>
+      <span class="hint2">Dijawab: <span id="done">0</span>/10</span>
+      <button class="act" onclick="resetQuiz()">Ulang Semula</button>
+    </div>
+
+    <div id="quiz">
+
+      <div class="qcard" data-ans="0" data-exp="Adab tidur ialah cara dan amalan yang diajarkan Rasulullah SAW sebelum dan selepas tidur.">
+        <div class="qhead"><span class="qn">1</span><span class="qtext">Apakah maksud adab tidur?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Cara dan amalan yang diajarkan Rasulullah SAW sebelum dan selepas tidur</span></button>
+          <button class="opt"><span class="k">B</span><span>Cara tidur yang paling lama dan paling nyenyak</span></button>
+          <button class="opt"><span class="k">C</span><span>Adat resam sesuatu kaum ketika hendak tidur</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Baginda bersabda: &ldquo;Apabila engkau hendak tidur, maka berwuduklah seperti wuduk untuk solat, kemudian berbaringlah mengiring ke sebelah kanan.&rdquo;">
+        <div class="qhead"><span class="qn">2</span><span class="qtext">Menurut hadis, sebelum tidur Rasulullah SAW menyuruh kita berwuduk seperti wuduk untuk &hellip;</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Membaca al-Quran</span></button>
+          <button class="opt"><span class="k">B</span><span>Solat</span></button>
+          <button class="opt"><span class="k">C</span><span>Berzikir</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Membasuh muka dan mencuci hidung ialah amalan selepas bangun tidur, bukan sebelum tidur.">
+        <div class="qhead"><span class="qn">3</span><span class="qtext">Antara berikut, yang manakah <b>BUKAN</b> amalan sebelum tidur?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Membaca basmalah</span></button>
+          <button class="opt"><span class="k">B</span><span>Tidur mengiring ke sebelah kanan</span></button>
+          <button class="opt"><span class="k">C</span><span>Membasuh muka dan mencuci hidung</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Qailulah ialah tidur sekejap sebelum masuk waktu Zohor.">
+        <div class="qhead"><span class="qn">4</span><span class="qtext">Apakah maksud <b>qailulah</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Tidur sekejap sebelum masuk waktu Zohor</span></button>
+          <button class="opt"><span class="k">B</span><span>Tidur yang panjang pada waktu malam</span></button>
+          <button class="opt"><span class="k">C</span><span>Tidur selepas waktu Asar</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Masa yang paling afdal untuk qailulah ialah antara 10 hingga 30 minit sahaja.">
+        <div class="qhead"><span class="qn">5</span><span class="qtext">Berapakah masa yang paling afdal untuk qailulah?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>1 hingga 2 jam</span></button>
+          <button class="opt"><span class="k">B</span><span>10 hingga 30 minit</span></button>
+          <button class="opt"><span class="k">C</span><span>3 hingga 4 jam</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Doa sebelum tidur <span class=&quot;arab&quot;>بِاسْمِكَ اللَّهُمَّ أَحْيَا وَأَمُوتُ</span> bermaksud &ldquo;Dengan namaMu ya Allah, aku hidup dan aku mati.&rdquo;">
+        <div class="qhead"><span class="qn">6</span><span class="qtext">Apakah maksud doa sebelum tidur yang dibaca oleh Rasulullah SAW?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>&ldquo;Dengan namaMu ya Allah, aku hidup dan aku mati.&rdquo;</span></button>
+          <button class="opt"><span class="k">B</span><span>&ldquo;Segala puji bagi Allah yang menghidupkan kami.&rdquo;</span></button>
+          <button class="opt"><span class="k">C</span><span>&ldquo;Ya Allah, lindungilah aku daripada api neraka.&rdquo;</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Doa bangun tidur bermaksud &ldquo;Segala puji bagi Allah yang menghidupkan kami setelah mematikan kami dan kepadaNya kami dibangkitkan.&rdquo;">
+        <div class="qhead"><span class="qn">7</span><span class="qtext">Apakah maksud doa bangun tidur?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>&ldquo;Dengan namaMu ya Allah, aku hidup dan aku mati.&rdquo;</span></button>
+          <button class="opt"><span class="k">B</span><span>&ldquo;Segala puji bagi Allah yang menghidupkan kami setelah mematikan kami dan kepadaNya kami dibangkitkan.&rdquo;</span></button>
+          <button class="opt"><span class="k">C</span><span>&ldquo;Ya Allah, aku memohon keampunan daripadaMu.&rdquo;</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Dari segi mental, qailulah mengoptimumkan otak, menguatkan ingatan, menghilangkan tekanan dan meningkatkan kefahaman.">
+        <div class="qhead"><span class="qn">8</span><span class="qtext">Mengapakah qailulah penting dari segi <b>mental</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Menjadikan badan lebih tinggi</span></button>
+          <button class="opt"><span class="k">B</span><span>Menghilangkan tekanan dan meningkatkan kefahaman</span></button>
+          <button class="opt"><span class="k">C</span><span>Menambah berat badan</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Adab tidur menjadikan tidur satu ibadah, menjaga kesihatan, melaksanakan sunnah Nabi SAW, mendapat pahala dan menghindari gangguan syaitan.">
+        <div class="qhead"><span class="qn">9</span><span class="qtext">Antara berikut, yang manakah kepentingan mengamalkan adab tidur?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Menjadikan tidur satu ibadah dan mendapat pahala</span></button>
+          <button class="opt"><span class="k">B</span><span>Dapat menambah harta kekayaan</span></button>
+          <button class="opt"><span class="k">C</span><span>Menjadi terkenal dalam masyarakat</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Kita hendaklah tidur mengiring ke sebelah kanan dan memakai pakaian yang menutup aurat.">
+        <div class="qhead"><span class="qn">10</span><span class="qtext">Apakah yang hendaklah kita lakukan sebelum tidur?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Tidur mengiring ke sebelah kanan dan memakai pakaian yang menutup aurat</span></button>
+          <button class="opt"><span class="k">B</span><span>Tidur meniarap supaya lebih selesa</span></button>
+          <button class="opt"><span class="k">C</span><span>Tidur dengan lampu terang sepanjang malam</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+    </div>
+
+    <div class="result" id="result">
+      <svg viewBox="0 0 220 170" style="width:200px;height:auto;margin:0 auto 4px;display:block">
+        <g transform="translate(24,4) scale(.95)"><use href="#adam"/></g>
+        <g transform="translate(116,4) scale(.95)"><use href="#nur"/></g>
+      </svg>
+      <div class="stars" id="stars"></div>
+      <div class="big" id="rscore"></div>
+      <div class="msg" id="rmsg"></div>
+      <button class="act solid" onclick="resetQuiz()">Cuba Lagi</button>
+      <button class="act" onclick="window.print()">Cetak / Simpan PDF</button>
+    </div>
+  </section>
+
+  <!-- ===== LAMPIRAN ===== -->
+  <section>
+    <h2><span class="num">&#9733;</span> Lampiran &mdash; Senarai SK Pendidikan Islam Tahun 3</h2>
+    <p class="hint">Tajuk yang telah siap ditanda kuning. Sebut nombor untuk menjana set seterusnya.</p>
+    <table>
+      <thead><tr><th style="width:38px">#</th><th>Bidang</th><th>Standard Kandungan (SK)</th></tr></thead>
+      <tbody>
+        <tr><td class="c">1</td><td>al-Quran (Tilawah)</td><td>Membaca dan mengamalkan <b>Surah al-Kafirun</b> dengan betul dan bertajwid</td></tr>
+        <tr><td class="c">2</td><td>al-Quran (Tilawah)</td><td>Membaca dan mengamalkan <b>Surah al-&lsquo;Asr</b> dengan betul dan bertajwid</td></tr>
+        <tr><td class="c">3</td><td>al-Quran (Hafazan)</td><td>Menghafaz dan mengamalkan <b>Surah al-Kafirun</b> dalam solat dan kehidupan harian</td></tr>
+        <tr><td class="c">4</td><td>al-Quran (Hafazan)</td><td>Menghafaz dan mengamalkan <b>Surah al-&lsquo;Asr</b> dalam solat dan kehidupan harian</td></tr>
+        <tr><td class="c">5</td><td>al-Quran (Kefahaman)</td><td>Menganalisis, mengamal dan menghayati <b>Surah al-Fatihah</b></td></tr>
+        <tr><td class="c">6</td><td>al-Quran (Tajwid)</td><td>Hukum <b>nun sakinah dan tanwin</b>: izhar halqi, idgham, iqlab, ikhfa&rsquo; haqiqi</td></tr>
+        <tr><td class="c">7</td><td>Hadis</td><td><b>Yang Muda Dikasihi, Yang Tua Dihormati</b> &nbsp;<span style="color:#4f8fb5;font-weight:700">(set 1 &check;)</span></td></tr>
+        <tr><td class="c">8</td><td>Akidah</td><td><b>Nama Allah al-&lsquo;Alim dan al-Hakim</b> &nbsp;<span style="color:#4f8fb5;font-weight:700">(set 2 &check;)</span></td></tr>
+        <tr><td class="c">9</td><td>Akidah</td><td><b>Beriman kepada kitab</b> &nbsp;<span style="color:#4f8fb5;font-weight:700">(set 3 &check;)</span></td></tr>
+        <tr><td class="c">10</td><td>Ibadah</td><td><b>Bersuci daripada hadas besar</b> (mandi wajib) &nbsp;<span style="color:#4f8fb5;font-weight:700">(set 4 &check;)</span></td></tr>
+        <tr><td class="c">11</td><td>Ibadah</td><td><b>Perkara yang membatalkan solat</b> &amp; solat yang sempurna &nbsp;<span style="color:#4f8fb5;font-weight:700">(set 5 &check;)</span></td></tr>
+        <tr><td class="c">12</td><td>Ibadah</td><td><b>Sunat ab&lsquo;adh</b> dan <b>sunat hai&rsquo;at</b> dalam solat &nbsp;<span style="color:#4f8fb5;font-weight:700">(set 6 &check;)</span></td></tr>
+        <tr><td class="c">13</td><td>Sirah</td><td>Iktibar peristiwa <b>penerimaan wahyu pertama</b> &nbsp;<span style="color:#4f8fb5;font-weight:700">(set 7 &check;)</span></td></tr>
+        <tr><td class="c">14</td><td>Sirah</td><td>Keunggulan sifat Nabi Muhammad SAW (<b>tabligh</b>) &nbsp;<span style="color:#4f8fb5;font-weight:700">(set 8 &check;)</span></td></tr>
+        <tr><td class="c">15</td><td>Sirah</td><td>Meneladani keperibadian Nabi SAW dalam <b>kehidupan bermasyarakat</b> &nbsp;<span style="color:#4f8fb5;font-weight:700">(set 9 &check;)</span></td></tr>
+        <tr class="on"><td class="c">16</td><td>Adab</td><td><b>Adab tidur</b> mengikut sunnah (termasuk qailulah) &nbsp;<span style="color:#a97c14;font-weight:700">(set 10 &check;)</span></td></tr>
+        <tr><td class="c">17</td><td>Adab</td><td><b>Adab menuntut ilmu</b> (ilmu fardu ain &amp; fardu kifayah)</td></tr>
+        <tr><td class="c">18</td><td>Adab</td><td>Adab terhadap Allah melalui <b>syukur</b></td></tr>
+        <tr><td class="c">19</td><td>Adab</td><td>Mengikut <b>sunnah Rasulullah</b>: perkataan &amp; perbuatan</td></tr>
+        <tr><td class="c">20</td><td>Jawi</td><td>Membaca &amp; menulis teks &mdash; perkataan ber<b>imbuhan awalan</b></td></tr>
+        <tr><td class="c">21</td><td>Jawi</td><td>Membaca &amp; menulis teks &mdash; perkataan ber<b>imbuhan akhiran</b></td></tr>
+        <tr><td class="c">22</td><td>Jawi</td><td>Membaca &amp; menulis teks &mdash; perkataan ber<b>imbuhan apitan</b></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 3 &amp; Buku Teks Pendidikan Islam Tahun 3 SK (DBP, 2018).
+  </footer>
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+  var scEl = document.getElementById('sc');
+  var doneEl = document.getElementById('done');
+  var barEl = document.getElementById('bar');
+  var resultEl = document.getElementById('result');
+  var total = cards.length;
+
+  function refresh(){
+    var score = 0, answered = 0;
+    cards.forEach(function(c){
+      if(c.dataset.state === 'correct'){ score++; answered++; }
+      else if(c.dataset.state === 'wrong'){ answered++; }
+    });
+    scEl.textContent = score;
+    doneEl.textContent = answered;
+    barEl.style.width = (answered/total*100) + '%';
+    if(answered === total) showResult(score);
+  }
+
+  function showResult(score){
+    resultEl.classList.add('show');
+    document.getElementById('rscore').textContent = score + ' / ' + total;
+    document.getElementById('stars').textContent =
+      score >= 9 ? '★★★★★' : score >= 7 ? '★★★★☆' : score >= 5 ? '★★★☆☆' : '★★☆☆☆';
+    document.getElementById('rmsg').textContent =
+      score === 10 ? 'Syabas! Kamu benar-benar menguasai tajuk ini.'
+      : score >= 8 ? 'Bagus sekali! Teruskan usaha kamu.'
+      : score >= 6 ? 'Bagus! Ulangi nota sekali lagi untuk lebih mantap.'
+      : score >= 4 ? 'Jangan putus asa — baca semula nota ringkas di atas.'
+      : 'Mari ulang bersama-sama. Baca nota ringkas, kemudian cuba lagi.';
+    resultEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  cards.forEach(function(card){
+    var opts = Array.prototype.slice.call(card.querySelectorAll('.opt'));
+    var fb = card.querySelector('.fb');
+    var face = fb.querySelector('use');
+    var txt = fb.querySelector('.txt');
+    var ans = parseInt(card.dataset.ans, 10);
+    var exp = card.dataset.exp;
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(card.dataset.state) return;
+        var ok = (i === ans);
+        card.dataset.state = ok ? 'correct' : 'wrong';
+        card.classList.add('done');
+
+        opts.forEach(function(b, j){
+          b.disabled = true;
+          if(j === ans){ b.classList.add('ok'); }
+          else if(j === i){ b.classList.add('bad'); }
+          else { b.classList.add('dim'); }
+        });
+
+        face.setAttribute('href', ok ? '#faceYay' : '#faceOops');
+        txt.innerHTML = (ok ? '<b>Betul!</b> ' : '<b>Belum tepat.</b> Jawapan yang betul ialah <b>' +
+                        String.fromCharCode(65+ans) + '</b>. ') + exp;
+        fb.classList.add('show');
+        if(!ok) fb.classList.add('wrong');
+
+        refresh();
+      });
+    });
+  });
+
+  window.resetQuiz = function(){
+    cards.forEach(function(c){
+      delete c.dataset.state;
+      c.classList.remove('done');
+      var fb = c.querySelector('.fb');
+      fb.classList.remove('show','wrong');
+      c.querySelectorAll('.opt').forEach(function(b){
+        b.disabled = false;
+        b.classList.remove('ok','bad','dim');
+      });
+    });
+    resultEl.classList.remove('show');
+    refresh();
+    window.scrollTo({top: document.getElementById('quiz').offsetTop - 20, behavior:'smooth'});
+  };
+
+  window.addEventListener('beforeprint', function(){
+    cards.forEach(function(c){
+      var ans = parseInt(c.dataset.ans,10);
+      c.querySelectorAll('.opt').forEach(function(b,j){
+        if(j === ans) b.classList.add('ok');
+      });
+      if(!c.querySelector('.fb').classList.contains('show')){
+        var fb = c.querySelector('.fb');
+        fb.querySelector('.txt').innerHTML = '<b>Jawapan: ' + String.fromCharCode(65+ans) + '</b>. ' + c.dataset.exp;
+        fb.classList.add('show');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

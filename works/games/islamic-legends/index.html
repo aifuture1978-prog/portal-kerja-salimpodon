@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#05080f" />
+<meta name="description" content="Islamic Legends - Kembara Ilmu Tahun 4: laman gamifikasi Pendidikan Islam Tahun 4 (KSSR Semakan 2017)." />
+<title>Islamic Legends — Kembara Ilmu Tahun 4</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ============ UI ICON SPRITE ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10.5V20h13v-9.5"/><path d="M9.5 20v-5.5h5V20"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9v6h3l5 4V5L7 9H4Z"/><path d="M16.5 9a4.5 4.5 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></symbol>
+  <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4 9v6h3l5 4V5L7 9H4Z"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.6a2.5 2.5 0 1 1 3.3 2.3c-.6.2-.9.8-.9 1.5v.3"/><path d="M12 16.8h.01"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M4.5 20.2c0-3.6 3.4-6 7.5-6s7.5 2.4 7.5 6"/></symbol>
+  <symbol id="i-gem" viewBox="0 0 24 24"><path d="M12 3l4.2 5.2L12 21l-4.2-12.8L12 3Z"/><path d="M7.8 8.2h8.4"/><path d="M12 3v18"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21c3.3 0 6-2.5 6-5.6 0-4.4-4.5-6.4-4.5-11.4 0 0-3 1.8-3 5.1 0 1.4.8 2.4.8 3.3 0 1-.8 1.8-1.7 1.8-1.2 0-2-1-2-2.3 0-1-.4-1.9-.9-2.5C5.9 11.6 6 13.6 6 15.4 6 18.5 8.7 21 12 21Z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/><path d="M12 14v2.5"/></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><path d="M4 18.5h16"/><path d="M4 18.5l1.4-9 4.6 4 2-8.5 2 8.5 4.6-4 1.4 9"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.6 4.6L19 7"/></symbol>
+  <symbol id="i-cross" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 4l2.4 5.1 5.6.7-4.1 3.9 1.1 5.5L12 16.6 7 19.2l1.1-5.5L4 9.8l5.6-.7L12 4Z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5l11 6.5-11 6.5V5.5Z"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.7-6"/><path d="M20 3.5V8h-4.5"/></symbol>
+  <symbol id="i-shop" viewBox="0 0 24 24"><path d="M4 8h16l-1.2 12H5.2L4 8Z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></symbol>
+  <symbol id="i-scroll" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="16" rx="2"/><path d="M9 9h6M9 12.5h6M9 16h4"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 20V11M12 20V4M19 20v-7"/></symbol>
+  <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M4 9v6h3l5 4V5L7 9H4Z"/><path d="M16.5 9a4.5 4.5 0 0 1 0 6"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M4 4l16 16"/><path d="M9.9 5.8A9.6 9.6 0 0 1 12 5.5c6 0 9.5 6.5 9.5 6.5a17 17 0 0 1-2.7 3.6"/><path d="M6.3 8.1A16.7 16.7 0 0 0 2.5 12S6 18.5 12 18.5c1.2 0 2.3-.2 3.3-.6"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/></symbol>
+</svg>
+
+<canvas id="bg-stars" aria-hidden="true"></canvas>
+<div id="aurora" aria-hidden="true"></div>
+<div id="fx" aria-hidden="true"></div>
+
+<div id="app">
+
+  <header id="topbar">
+    <div class="tb-side tb-left">
+      <button id="btn-back" class="btn-icon" hidden aria-label="Kembali">
+        <svg class="ic"><use href="#i-back"/></svg>
+      </button>
+      <button id="btn-home" class="btn-icon" hidden aria-label="Peta Kembara">
+        <svg class="ic"><use href="#i-home"/></svg>
+      </button>
+    </div>
+
+    <div class="tb-title">
+      <div class="tb-sub">KEMBARA ILMU · TAHUN 4</div>
+      <div class="tb-main" id="tb-main">Peta Kembara</div>
+    </div>
+
+    <div class="tb-side tb-right">
+      <div class="chip chip-gem" title="Permata Ilmu">
+        <svg class="ic"><use href="#i-gem"/></svg><span id="gem-count">0</span>
+      </div>
+      <div class="chip chip-flame" title="Api Semangat (streak harian)">
+        <svg class="ic"><use href="#i-flame"/></svg><span id="streak-count">0</span>
+      </div>
+      <button id="btn-sound" class="btn-icon" aria-label="Hidupkan atau matikan bunyi">
+        <svg class="ic"><use href="#i-sound"/></svg>
+      </button>
+      <button id="btn-help" class="btn-icon" aria-label="Bantuan">
+        <svg class="ic"><use href="#i-help"/></svg>
+      </button>
+      <button id="btn-profile" class="btn-icon" aria-label="Profil saya">
+        <svg class="ic"><use href="#i-user"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="stage">
+
+    <!-- ================= PETA KEMBARA ================= -->
+    <section id="view-home" class="view is-active">
+      <div class="wrap">
+        <div class="home-head">
+          <div class="crest">
+            <svg viewBox="0 0 60 60" class="crest-svg" aria-hidden="true">
+              <path d="M30 5l6 12 13 2-9.5 9.5 2.5 13L30 35l-12 6.5 2.5-13L11 19l13-2 6-12Z"/>
+              <circle cx="30" cy="30" r="6"/>
+            </svg>
+          </div>
+          <h1 class="logo">Islamic <span>Legends</span></h1>
+          <p class="logo-sub">Kembara Ilmu — Pendidikan Islam Tahun 4</p>
+          <div class="hero-line">
+            <strong id="hero-name">Ilmu</strong>, pilih satu dunia untuk memulakan misi!
+          </div>
+        </div>
+
+        <div class="map-wrap">
+          <svg id="map-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path id="map-trail" d="" fill="none" vector-effect="non-scaling-stroke"></path>
+            <path id="map-trail-done" d="" fill="none" vector-effect="non-scaling-stroke"></path>
+          </svg>
+          <div id="map-nodes"></div>
+        </div>
+
+        <div class="daily-strip">
+          <div class="daily-head">
+            <svg class="ic"><use href="#i-star"/></svg>
+            <span>Misi Hari Ini</span>
+            <em id="daily-date"></em>
+          </div>
+          <div id="daily-list" class="daily-list"></div>
+        </div>
+
+        <p class="foot-note">
+          Kandungan berpandukan DSKP KSSR Semakan 2017 — Pendidikan Islam Tahun 4 (7 bidang, 26 unit).
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= DUNIA ================= -->
+    <section id="view-world" class="view">
+      <div class="wrap">
+        <div id="world-head" class="world-head"></div>
+        <div id="unit-grid" class="unit-grid"></div>
+      </div>
+    </section>
+
+    <!-- ================= AKTIVITI ================= -->
+    <section id="view-activity" class="view">
+      <div class="wrap">
+        <div class="act-head">
+          <div class="act-dots" id="act-dots"></div>
+          <h2 id="act-title">Aktiviti</h2>
+          <div class="act-instr">
+            <button class="btn-speak" id="btn-speak" aria-label="Dengar arahan">
+              <svg class="ic"><use href="#i-speaker"/></svg> Dengar
+            </button>
+            <p id="act-instruction"></p>
+          </div>
+        </div>
+        <div id="act-body" class="act-body"></div>
+        <div class="act-nav">
+          <button id="act-prev" class="btn btn-ghost"><svg class="ic"><use href="#i-back"/></svg> Sebelumnya</button>
+          <button id="act-next" class="btn btn-gold">Seterusnya <svg class="ic"><use href="#i-next"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROFIL ================= -->
+    <section id="view-profile" class="view">
+      <div class="wrap" id="profile-body"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ================= HERO MASCOT ================= -->
+<div id="hero" aria-hidden="true">
+  <div id="hero-bubble" class="bubble">Assalamu’alaikum!</div>
+  <svg class="hero-svg" viewBox="0 0 130 160">
+    <ellipse class="hero-shadow" cx="65" cy="150" rx="34" ry="7"/>
+    <g class="hero-body">
+      <path class="h-robe" d="M65 52c14 0 22 8 25 20l7 62c-9 5-22 7-32 7s-23-2-32-7l7-62c3-12 11-20 25-20Z"/>
+      <path class="h-trim" d="M65 52v89"/>
+      <path class="h-sash" d="M46 88h38"/>
+      <rect class="h-arm" x="33" y="66" width="11" height="34" rx="5.5"/>
+      <rect class="h-arm" x="86" y="66" width="11" height="34" rx="5.5"/>
+      <circle class="h-head" cx="65" cy="36" r="18"/>
+      <path class="h-turban" d="M47 33c0-10 8-17 18-17s18 7 18 17c-5-3-11-4-18-4s-13 1-18 4Z"/>
+      <path class="h-turban" d="M83 31c5 2 7 6 6 11"/>
+      <circle class="h-eye" cx="59" cy="36" r="1.9"/>
+      <circle class="h-eye" cx="71" cy="36" r="1.9"/>
+      <path class="h-smile" d="M60 42c2 2.2 8 2.2 10 0"/>
+      <path class="h-gem" d="M65 60l5 6-5 12-5-12 5-6Z"/>
+    </g>
+  </svg>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<div id="modal" class="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-x" id="modal-x" aria-label="Tutup"><svg class="ic"><use href="#i-cross"/></svg></button>
+    <h3 id="modal-title">Tajuk</h3>
+    <div id="modal-body"></div>
+    <div id="modal-actions" class="modal-actions"></div>
+  </div>
+</div>
+
+<script src="js/audio.js"></script>
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/activities.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

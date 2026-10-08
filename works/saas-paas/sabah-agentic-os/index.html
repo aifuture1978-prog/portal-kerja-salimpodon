@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic OS Sabah — Dashboard 6 Tokoh &amp; Integrasi API</title>
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">AO</div>
+      <div class="brand-text">
+        <strong>Agentic OS</strong>
+        <span>Sabah · SMJ 2.0</span>
+      </div>
+    </div>
+    <nav id="nav" class="nav"></nav>
+    <div class="side-foot">
+      <div class="badge-demo">Mod demonstrasi</div>
+      <p>Data berasaskan garis dasar laporan + data simulasi untuk prototaip.</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1 id="pageTitle">Ringkasan Eksekutif</h1>
+        <p id="pageSub">Enam tokoh strategik · enam dashboard · satu lapisan integrasi data</p>
+      </div>
+      <div class="topbar-right">
+        <div class="stamp">Sulit — Semakan Strategik</div>
+        <div class="date" id="today"></div>
+      </div>
+    </header>
+    <div id="view" class="view"></div>
+    <footer class="foot">
+      Sumber: Laporan Induk Analisis Keperluan SaaS/MaaS/PaaS — Enam Tokoh Strategik Sabah &amp; Persekutuan (16 September 2026).
+      Angka operasi dalam prototaip ini ialah data simulasi untuk demonstrasi seni bina &amp; penyepaduan API.
+    </footer>
+  </main>
+</div>
+
+<div id="modal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3 id="modalTitle">Tajuk</h3>
+      <button class="x" onclick="closeModal()">×</button>
+    </div>
+    <div id="modalBody" class="modal-body"></div>
+  </div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/views.js"></script>
+<script src="assets/js/apiconsole.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

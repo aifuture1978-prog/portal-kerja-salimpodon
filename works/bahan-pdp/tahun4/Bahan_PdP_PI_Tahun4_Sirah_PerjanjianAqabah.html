@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sirah: Perjanjian Aqabah Pertama &amp; Kedua &mdash; Pendidikan Islam Tahun 4</title>
+<style>
+  :root{
+    --sky1:#e0e6f2; --sky2:#eef2fb; --sky3:#e6ebf7;
+    --grass1:#7a94c4; --grass2:#2a4a7a; --grass3:#1a3058;
+    --paper:#f7f9fd; --ink:#181f2e; --muted:#5a6278;
+    --gold:#6f7d9e; --teal:#2c4e82; --aqua:#d8e0f0;
+    --line:#d0d8e8; --silver:#b3bdd1; --silver2:#8e9ab5;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:rtl}
+  .jf{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:ltr;unicode-bidi:isolate}
+  .arab-lg{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,serif;direction:rtl;display:block;font-size:26px;line-height:1.9;color:var(--grass3);text-align:center;margin:8px 0 4px}
+  .skybg{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#eaf1fb 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:var(--aqua);top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:var(--silver);top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:var(--sky3);bottom:-140px;left:18%}
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--grass2);font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:var(--grass3);letter-spacing:.4px;text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:var(--muted);font-weight:600}
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:0 3px 10px rgba(0,0,0,.08)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;margin-bottom:22px;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--grass2);font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#eff5fc;border:1.4px solid var(--line);border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,var(--grass1),var(--grass2));box-shadow:0 2px 0 var(--grass3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--grass3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#f1f4f8;border:1.4px dashed var(--silver2);border-radius:13px;padding:10px 13px;font-size:12.5px;color:#2b3440;line-height:1.55}
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;margin-bottom:22px;box-shadow:0 4px 16px rgba(0,0,0,.08);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;box-shadow:0 2px 0 var(--grass3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+  h2 .mascot{flex:none;margin-left:auto;display:block}
+  .deko{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:14px 0 0}
+  .deko svg{display:block}
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes floatBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    @keyframes softGlow{0%,100%{filter:drop-shadow(0 0 3px rgba(200,220,255,.6))}50%{filter:drop-shadow(0 0 8px rgba(200,220,255,.95))}}
+    @keyframes gentleSway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+    @keyframes drift{from{transform:translateX(0)}to{transform:translateX(26px)}}
+    @keyframes twinkle{0%,100%{opacity:.35}50%{opacity:1}}
+    @keyframes g14bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+    @keyframes g14drift{0%{transform:translateX(-9px)}100%{transform:translateX(9px)}}
+    @keyframes g14twinkle{0%,100%{opacity:.4}50%{opacity:1}}
+    @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+    @keyframes cardEntrance{0%{opacity:0;transform:translateY(14px) scale(.98)}100%{opacity:1;transform:none}}
+    h2 .mascot,.deko svg{animation:g14bob 2.6s ease-in-out infinite}
+    .deko svg:nth-child(2){animation-delay:.45s}
+    .deko svg:nth-child(3){animation-delay:.9s}
+    .anim-drift{animation:g14drift 8s ease-in-out infinite alternate}
+    .anim-twinkle{animation:g14twinkle 2.2s ease-in-out infinite}
+    .anim-bob{animation:floatBob 3.2s ease-in-out infinite}
+    .anim-glow{animation:softGlow 2.8s ease-in-out infinite}
+    .anim-sway{animation:gentleSway 4s ease-in-out infinite;transform-origin:center bottom}
+    .anim-drift26{animation:drift 9s ease-in-out infinite alternate}
+    .anim-twinkle2{animation:g14twinkle 2.4s ease-in-out infinite}
+  }
+  @media print{
+    h2 .mascot,.deko svg,.anim-drift,.anim-twinkle,.anim-bob,.anim-glow,.anim-sway,.anim-drift26,.anim-twinkle2{animation:none !important}
+  }
+  .nota{border-left:5px solid var(--silver2);background:#f1f4f8;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol,.nota ul{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#2b3440}
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(135deg,#eff5fc,#f1f4f8);border:1.5px solid var(--line);border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#dbe6f4;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .qcard{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+  .qtop{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+  .qn{flex:none;width:28px;height:28px;border-radius:9px;background:var(--grass2);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 0 var(--grass3)}
+  .qt{font-size:14px;font-weight:700;color:var(--ink);line-height:1.45}
+  .opts{display:flex;flex-direction:column;gap:8px}
+  .opt{text-align:left;border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;background:#fff;cursor:pointer;font-size:13.5px;color:var(--ink);transition:all .2s}
+  .opt:hover:not(:disabled){background:#f3f7fb;border-color:var(--grass1)}
+  .opt.ok{border-color:#3cb371;background:#e8f5ee;color:#145a32}
+  .opt.bad{border-color:#e06c75;background:#fcebed;color:#7a1f26}
+  .opt.dim{opacity:.55}
+  .fb{display:none;align-items:flex-start;gap:10px;margin-top:10px;padding:10px 12px;border-radius:12px;background:#e8f5ee;border:1.5px solid #b5e0c5}
+  .fb.wrong{background:#fcebed;border-color:#e8b5b5}
+  .fb.show{display:flex}
+  .ff{flex:none;width:44px;height:44px}
+  .fb .txt{font-size:13px;line-height:1.5;color:#2b3440}
+  .result{display:none;background:linear-gradient(135deg,#e8f5ee,#d4edda);border:2px solid #3cb371;border-radius:18px;padding:16px;text-align:center}
+  .result.show{display:block}
+  .stars{font-size:26px;color:#f4c430;letter-spacing:4px;margin:6px 0}
+  .card{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px}
+  .card table{width:100%;border-collapse:collapse;font-size:12.5px}
+  .card th{text-align:left;padding:8px 10px;background:var(--grass2);color:#fff;font-weight:700}
+  .card td{padding:8px 10px;border-bottom:1px solid var(--line)}
+  .card tr.on td{background:#f1f8f5}
+  .card .c{text-align:center}
+  footer{text-align:center;font-size:11.5px;color:var(--muted);margin-top:30px}
+  @media print{body{background:#fff} section{box-shadow:none;margin-bottom:14px} .opt.ok{border-color:#3cb371;background:#e8f5ee} .fb{display:flex} .result{display:block}}
+  @media print{@page{size:A4 portrait;margin:12mm}}
+</style>
+</head>
+<body>
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="wrap">
+
+<div class="hero">
+<svg viewBox="0 0 940 300" xmlns="http://www.w3.org/2000/svg"><rect width="940" height="300" fill="#e0e6f2"/><ellipse cx="470" cy="260" rx="420" ry="30" fill="#e0e6f2" opacity=".6"/><g class="anim-bob"><rect x="340" y="110" width="260" height="100" rx="16" fill="#fff" stroke="#999" stroke-width="2"/><text x="470" y="155" text-anchor="middle" font-size="14" fill="#333" font-family="Segoe UI,Trebuchet MS,sans-serif">Sirah: Perjanjian Aqabah Pertama &amp; </text><text x="470" y="180" text-anchor="middle" font-size="12" fill="#555">Merumus I&#x27;tibar Peristiwa Perjanjian Aqabah</text></g><circle cx="120" cy="70" r="22" fill="#fff" opacity=".85" class="anim-glow"/><circle cx="820" cy="100" r="16" fill="#fff" opacity=".6" class="anim-glow" style="animation-delay:.7s"/></svg>
+<div class="hero-txt">
+<div class="kick">Bahan PdP &middot; Pendidikan Islam &middot; Tahun 4</div>
+<h1>Sirah: Perjanjian Aqabah Pertama &amp; Kedua</h1>
+<div class="sub">Merumus I&#x27;tibar Peristiwa Perjanjian Aqabah</div>
+</div>
+</div>
+
+<div class="strip">
+<div class="chip"><div class="lbl">Bidang</div><div class="val">Sirah</div></div>
+<div class="chip"><div class="lbl">SK</div><div class="val">5.1</div></div>
+<div class="chip"><div class="lbl">SP</div><div class="val">5.1.1 - 5.1.3</div></div>
+<div class="chip"><div class="lbl">Unit</div><div class="val">17/26</div></div>
+</div>
+
+<div class="toc">
+<div class="ttl">Kandungan Bahan PdP</div>
+<div class="grid"><div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">Visual ringkasan topik utama</div></div></div><div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">Rangka topik secara minda</div></div></div><div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">Nota penting untuk rujukan</div></div></div><div class="it"><div class="n">4</div><div><div class="t">Diagram</div><div class="d">Rajah penjelasan</div></div></div><div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan + jawapan</div></div></div><div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Senarai SK & SP</div></div></div></div>
+<div class="note"><b>Nota:</b> Bahan ini merangkumi 6 komponen utama untuk membantu guru dan murid menguasai <b>SK 5.1</b> dalam pembelajaran Pendidikan Islam Tahun 4.</div>
+</div>
+
+<section>
+<h2><span class="num">1</span> Infografik <span class="mascot">&#128640;</span></h2>
+<div class="hint">Ringkasan visual topik utama</div>
+<svg class="art"><svg viewBox="0 0 900 344" xmlns="http://www.w3.org/2000/svg"><rect width="900" height="344" rx="18" fill="var(--aqua)" stroke="var(--line)" stroke-width="1.5"/><g><rect x="30" y="30" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="54" font-size="12" fill="var(--grass2)" font-weight="700">Latar Belakang</text><text x="860" y="54" text-anchor="end" font-size="12" fill="var(--ink)">Orang Madinah berbai&#x27;ah kepada Nabi SAW di Aqabah</text></g><g><rect x="30" y="74" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="98" font-size="12" fill="var(--grass2)" font-weight="700">Aqabah Pertama</text><text x="860" y="98" text-anchor="end" font-size="12" fill="var(--ink)">12 orang lelaki daripada Khazraj &amp; Aus, bai&#x27;ah pertama</text></g><g><rect x="30" y="118" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="142" font-size="12" fill="var(--grass2)" font-weight="700">Aqabah Kedua</text><text x="860" y="142" text-anchor="end" font-size="12" fill="var(--ink)">75 orang lelaki &amp; 2 wanita, bai&#x27;ah melindungi Nabi SAW</text></g><g><rect x="30" y="162" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="186" font-size="12" fill="var(--grass2)" font-weight="700">Isi Perjanjian</text><text x="860" y="186" text-anchor="end" font-size="12" fill="var(--ink)">Melindungi Nabi, beriman, tidak syirik, taat</text></g><g><rect x="30" y="206" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="230" font-size="12" fill="var(--grass2)" font-weight="700">Kepentingan</text><text x="860" y="230" text-anchor="end" font-size="12" fill="var(--ink)">Asas penubuhan negara Madinah, perpaduan ummah</text></g><g><rect x="30" y="250" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="274" font-size="12" fill="var(--grass2)" font-weight="700">I&#x27;tibar</text><text x="860" y="274" text-anchor="end" font-size="12" fill="var(--ink)">Bersatu, taat kepada pemimpin, berani membela agama</text></g></svg></svg>
+</section>
+
+<section>
+<h2><span class="num">2</span> Peta Minda <span class="mascot">&#128640;</span></h2>
+<div class="hint">Rangka topik secara minda</div>
+<svg class="art"><svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg"><rect width="900" height="340" rx="18" fill="var(--sky2)" stroke="var(--line)" stroke-width="1.5"/><circle cx="450" cy="170" r="52" fill="#fff" stroke="var(--grass2)" stroke-width="2.5"/><text x="450" y="175" text-anchor="middle" font-size="12" fill="var(--grass3)" font-weight="700">Aqabah</text><line x1="450.0" y1="120.0" x2="450.0" y2="78.0" stroke="var(--grass1)" stroke-width="2"/><rect x="384.0" y="20.0" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="450.0" y="45.0" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Bai&#x27;ah Pertama (12)</text><line x1="493.30127018922195" y1="145.0" x2="529.6743371481684" y2="124.0" stroke="var(--grass1)" stroke-width="2"/><rect x="496.58330249197707" y="85.0" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="562.5833024919771" y="110.0" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Bai&#x27;ah Kedua (75)</text><line x1="493.30127018922195" y1="195.0" x2="529.6743371481684" y2="215.99999999999997" stroke="var(--grass1)" stroke-width="2"/><rect x="496.58330249197707" y="214.99999999999997" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="562.5833024919771" y="239.99999999999997" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Melindungi Nabi</text><line x1="450.0" y1="220.0" x2="450.0" y2="262.0" stroke="var(--grass1)" stroke-width="2"/><rect x="384.0" y="280.0" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="450.0" y="305.0" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Taat Kepada Allah</text><line x1="406.6987298107781" y1="195.00000000000003" x2="370.3256628518317" y2="216.00000000000006" stroke="var(--grass1)" stroke-width="2"/><rect x="271.416697508023" y="215.00000000000006" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="337.416697508023" y="240.00000000000006" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Perpaduan Ummah</text><line x1="406.69872981077805" y1="145.0" x2="370.3256628518317" y2="123.99999999999999" stroke="var(--grass1)" stroke-width="2"/><rect x="271.416697508023" y="84.99999999999999" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="337.416697508023" y="109.99999999999999" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Asas Madinah</text></svg></svg>
+</section>
+
+<section>
+<h2><span class="num">3</span> Nota Ringkas <span class="mascot">&#128640;</span></h2>
+<div class="hint">Nota penting untuk rujukan</div>
+<div class="nota"><ul><li><b>Perjanjian Aqabah</b> berlaku di Bukit Aqabah, Mekah, semasa musim haji.</li><li><b>Aqabah Pertama:</b> 12 orang lelaki daripada suku Khazraj dan Aus berbai'ah kepada Nabi SAW. Mereka dikenali sebagai <b>Ansar</b>.</li><li><b>Aqabah Kedua:</b> 75 orang lelaki dan 2 wanita berbai'ah untuk melindungi Nabi SAW dan Islam. Nabi SAW diikuti oleh Mus'ab bin Umayr.</li><li><b>Isi bai'ah:</b> Tidak menyekutukan Allah, tidak mencuri, tidak berzina, tidak membunuh anak, tidak mengada-adakan kebohongan, dan taat kepada Nabi SAW dalam kebaikan.</li><li><b>Kepentingan:</b> Perjanjian ini menjadi asas penubuhan negara Madinah dan perpaduan antara Muhajirin dan Ansar.</li><li><b>I'tibar:</b> Bersatu padu, taat kepada pemimpin, berani membela agama, dan sedia berkorban untuk Islam.</li><li>Dalil firman Allah Surah Ali 'Imran 3:110:<br><span class="arab">كُنتُمْ خَيْرَ أُمَّةٍ أُخْرِجَتْ لِلنَّاسِ تَأْمُرُونَ بِٱلْمَعْرُوفِ وَتَنْهَوْنَ عَنِ ٱلْمُنكَرِ وَتُؤْمِنُونَ بِٱللَّهِ ۗ وَلَوْ ءَامَنَ أَهْلُ ٱلْكِتَٰبِ لَكَانَ خَيْرًۭا لَّهُم ۚ مِّنْهُمُ ٱلْمُؤْمِنُونَ وَأَكْثَرُهُمُ ٱلْفَٰسِقُونَ</span></li></ul></div>
+</section>
+
+<section>
+<h2><span class="num">4</span> Diagram <span class="mascot">&#128640;</span></h2>
+<div class="hint">Rajah penjelasan</div>
+<svg class="art"><svg viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg"><rect width="900" height="220" rx="18" fill="var(--sky2)" stroke="var(--line)" stroke-width="1.5"/><rect x="50" y="80" width="110" height="50" rx="10" fill="#fff" stroke="var(--grass2)" stroke-width="2"/><text x="105" y="110" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Musim Haji</text><line x1="160" y1="105" x2="178" y2="105" stroke="var(--grass1)" stroke-width="2"/><polygon points="178,100 186,105 178,110" fill="var(--grass1)"/><rect x="186" y="80" width="110" height="50" rx="10" fill="#fff" stroke="var(--grass2)" stroke-width="2"/><text x="241" y="110" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Pertemuan di Aqabah</text><line x1="296" y1="105" x2="314" y2="105" stroke="var(--grass1)" stroke-width="2"/><polygon points="314,100 322,105 314,110" fill="var(--grass1)"/><rect x="322" y="80" width="110" height="50" rx="10" fill="#fff" stroke="var(--grass2)" stroke-width="2"/><text x="377" y="110" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Bai&#x27;ah Pertama (12)</text><line x1="432" y1="105" x2="450" y2="105" stroke="var(--grass1)" stroke-width="2"/><polygon points="450,100 458,105 450,110" fill="var(--grass1)"/><rect x="458" y="80" width="110" height="50" rx="10" fill="#fff" stroke="var(--grass2)" stroke-width="2"/><text x="513" y="110" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Bai&#x27;ah Kedua (75)</text><line x1="568" y1="105" x2="586" y2="105" stroke="var(--grass1)" stroke-width="2"/><polygon points="586,100 594,105 586,110" fill="var(--grass1)"/><rect x="594" y="80" width="110" height="50" rx="10" fill="#fff" stroke="var(--grass2)" stroke-width="2"/><text x="649" y="110" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Hijrah ke Madinah</text><line x1="704" y1="105" x2="722" y2="105" stroke="var(--grass1)" stroke-width="2"/><polygon points="722,100 730,105 722,110" fill="var(--grass1)"/><rect x="730" y="80" width="110" height="50" rx="10" fill="#fff" stroke="var(--grass2)" stroke-width="2"/><text x="785" y="110" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Penubungan Negara Madinah</text></svg></svg>
+</section>
+
+<section id="quiz">
+<h2><span class="num">5</span> Kuiz Interaktif <span class="mascot">&#128640;</span></h2>
+<div class="hint">10 soalan — jawapan terdedah apabila cetak</div>
+<div class="scorebar">
+<div class="sc">Skor: <span id="sc">0</span> / <span id="done">0</span></div>
+<div class="bar"><i id="bar"></i></div>
+<button onclick="resetQuiz()" style="border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:6px 12px;font-size:12px;cursor:pointer">Ulang Kuiz</button>
+</div>
+<div class="qcard" data-ans="1" data-exp="Perjanjian Aqabah berlaku di Bukit Aqabah, Mekah semasa musim haji."><div class="qtop"><div class="qn">1</div><div class="qt">Di manakah Perjanjian Aqabah berlaku?</div></div><div class="opts"><button class="opt">A. Madinah</button><button class="opt">B. Mekah (Bukit Aqabah)</button><button class="opt">C. Taif</button><button class="opt">D. Yathrib</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Bai&#x27;ah Aqabah Pertama melibatkan 12 orang lelaki daripada suku Khazraj dan Aus."><div class="qtop"><div class="qn">2</div><div class="qt">Berapakah jumlah orang yang terlibat dalam Bai&#x27;ah Aqabah Pertama?</div></div><div class="opts"><button class="opt">A. 10</button><button class="opt">B. 12</button><button class="opt">C. 75</button><button class="opt">D. 100</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Orang Madinah yang berbai&#x27;ah kepada Nabi SAW dikenali sebagai Ansar (penolong)."><div class="qtop"><div class="qn">3</div><div class="qt">Apakah nama gelaran kepada orang Madinah yang berbai&#x27;ah?</div></div><div class="opts"><button class="opt">A. Muhajirin</button><button class="opt">B. Ansar</button><button class="opt">C. Quraisy</button><button class="opt">D. Badui</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Bai&#x27;ah Aqabah Kedua melibatkan 75 orang lelaki dan 2 wanita."><div class="qtop"><div class="qn">4</div><div class="qt">Berapakah jumlah orang yang terlibat dalam Bai&#x27;ah Aqabah Kedua?</div></div><div class="opts"><button class="opt">A. 12 lelaki</button><button class="opt">B. 75 lelaki dan 2 wanita</button><button class="opt">C. 100 orang</button><button class="opt">D. 50 lelaki</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="2" data-exp="Mus&#x27;ab bin Umayr dihantar ke Madinah untuk mengajar Islam kepada penduduk Madinah."><div class="qtop"><div class="qn">5</div><div class="qt">Siapakah yang dihantar Nabi SAW ke Madinah selepas Bai&#x27;ah Kedua?</div></div><div class="opts"><button class="opt">A. Abu Bakar</button><button class="opt">B. Umar</button><button class="opt">C. Mus&#x27;ab bin Umayr</button><button class="opt">D. Ali bin Abi Talib</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Isi bai&#x27;ah termasuk tidak menyekutukan Allah, taat kepada Nabi SAW, dan melindungi beliau."><div class="qtop"><div class="qn">6</div><div class="qt">Apakah isi utama bai&#x27;ah Aqabah?</div></div><div class="opts"><button class="opt">A. Mencuri harta</button><button class="opt">B. Tidak syirik, taat, melindungi Nabi</button><button class="opt">C. Membunuh musuh</button><button class="opt">D. Tidak berpuasa</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Perjanjian Aqabah menjadi asas penubuhan negara Madinah dan perpaduan Muhajirin-Ansar."><div class="qtop"><div class="qn">7</div><div class="qt">Apakah kepentingan Perjanjian Aqabah?</div></div><div class="opts"><button class="opt">A. Membina masjid</button><button class="opt">B. Asas penubuhan negara Madinah</button><button class="opt">C. Mengumpul zakat</button><button class="opt">D. Menulis al-Quran</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Suku Khazraj dan Aus dari Yathrib (Madinah) terlibat dalam bai&#x27;ah Aqabah."><div class="qtop"><div class="qn">8</div><div class="qt">Suku manakah yang terlibat dalam Bai&#x27;ah Aqabah?</div></div><div class="opts"><button class="opt">A. Quraisy</button><button class="opt">B. Khazraj dan Aus</button><button class="opt">C. Bani Hashim</button><button class="opt">D. Bani Umayyah</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="I&#x27;tibar Aqabah ialah perpaduan ummah dan ketaatan kepada pemimpin dalam kebaikan."><div class="qtop"><div class="qn">9</div><div class="qt">I&#x27;tibar daripada Perjanjian Aqabah termasuklah...</div></div><div class="opts"><button class="opt">A. Berselisih faham</button><button class="opt">B. Bersatu padu dan taat kepada pemimpin</button><button class="opt">C. Meninggalkan solat</button><button class="opt">D. Tidak mempercayai rakan</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Nabi SAW berhijrah ke Madinah setelah Bai&#x27;ah Aqabah Kedua, dengan izin Allah."><div class="qtop"><div class="qn">10</div><div class="qt">Nabi SAW berhijrah ke Madinah selepas...</div></div><div class="opts"><button class="opt">A. Bai&#x27;ah Pertama</button><button class="opt">B. Bai&#x27;ah Kedua</button><button class="opt">C. Perang Badar</button><button class="opt">D. Perang Uhud</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="result" id="result">
+<div style="font-size:15px;font-weight:800;color:var(--grass3)">Keputusan</div>
+<div class="stars" id="stars"></div>
+<div id="rscore" style="font-size:20px;font-weight:800;color:var(--grass2);margin:4px 0"></div>
+<div id="rmsg" style="font-size:13px;color:#2b3440;margin-top:6px"></div>
+</div>
+</section>
+
+<section>
+<h2><span class="num">6</span> Lampiran: Senarai SK &amp; SP <span class="mascot">&#128640;</span></h2>
+<div class="hint">Standard Kandungan & Standard Pembelajaran Tahun 4</div>
+<div class="card" style="margin-bottom:14px">
+<h3 style="margin:0 0 10px;font-size:13px;color:var(--grass3)">SK 5.1 — Merumus i&#x27;tibar peristiwa perjanjian Aqabah Pertama dan Kedua secara beradab dan istiqamah.</h3>
+<ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.7"><li>5.1.1 Menyatakan latar belakang peristiwa Perjanjian Aqabah.</li><li>5.1.2 Menjelaskan isi kandungan Perjanjian Aqabah Pertama dan Kedua.</li><li>5.1.3 Menganalisis kepentingan Perjanjian Aqabah Pertama dan Kedua.</li></ol>
+</div>
+<div class="card">
+<table>
+<thead><tr><th class="c">Bil</th><th>Bidang</th><th class="c">SK</th><th>Standard Kandungan</th><th class="c">Status</th></tr></thead>
+<tbody><tr><td class="c">1</td><td>al-Quran</td><td class="c">1.1</td><td>Tilawah: Membaca surah at-Takathur</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">2</td><td>al-Quran</td><td class="c">1.2</td><td>Tilawah: Membaca surah al-Qari&#x27;ah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">3</td><td>al-Quran</td><td class="c">1.3</td><td>Hafazan: Menghafaz surah at-Takathur</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">4</td><td>al-Quran</td><td class="c">1.4</td><td>Hafazan: Menghafaz surah al-Qari&#x27;ah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">5</td><td>al-Quran</td><td class="c">1.5</td><td>Kefahaman: Memahami maksud surah al-Ikhlas</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">6</td><td>al-Quran</td><td class="c">1.6</td><td>Tajwid: Membaca ayat mengandungi mim sakinah &amp; tanwin</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">7</td><td>al-Quran</td><td class="c">1.7</td><td>Tajwid: Membaca ayat mengandungi qalqalah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">8</td><td>al-Quran</td><td class="c">1.8</td><td>Tajwid: Mengenal pasti &amp; membaca ayat mengandungi tanda waqaf</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">9</td><td>Hadis</td><td class="c">2.1</td><td>Hadis: Memuliakan tetamu</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">10</td><td>Akidah</td><td class="c">3.1</td><td>Mengenal nama-nama Allah: al-&#x27;Azim &amp; al-Hamid</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">11</td><td>Akidah</td><td class="c">3.2</td><td>Beriman kepada rasul-rasul Allah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">12</td><td>Akidah</td><td class="c">3.3</td><td>Mempertahankan akidah daripada unsur kufur</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">13</td><td>Akidah</td><td class="c">3.4</td><td>Mempertahankan akidah daripada unsur nifak</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">14</td><td>Ibadah</td><td class="c">4.1</td><td>Bersuci daripada najis</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">15</td><td>Ibadah</td><td class="c">4.2</td><td>Azan dan iqamah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">16</td><td>Ibadah</td><td class="c">4.3</td><td>Puasa Ramadan</td><td class="c">&#9675;</td></tr>
+<tr class="on"><td class="c">17</td><td>Sirah</td><td class="c">5.1</td><td>Perjanjian Aqabah</td><td class="c" style="color:#2a4a7a">&#9679;</td></tr>
+<tr><td class="c">18</td><td>Sirah</td><td class="c">5.2</td><td>Sifat fatanah Rasulullah SAW</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">19</td><td>Sirah</td><td class="c">5.3</td><td>Keperibadian Rasulullah SAW dalam berdakwah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">20</td><td>Adab</td><td class="c">6.1</td><td>Adab berpakaian</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">21</td><td>Adab</td><td class="c">6.2</td><td>Adab beriadah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">22</td><td>Adab</td><td class="c">6.3</td><td>Adab berjiran</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">23</td><td>Adab</td><td class="c">6.4</td><td>Adab terhadap guru</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">24</td><td>Jawi</td><td class="c">7.1</td><td>Menulis huruf Jawi: huruf hamzah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">25</td><td>Jawi</td><td class="c">7.2</td><td>Menulis perkataan Jawi: perkataan tradisi</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">26</td><td>Jawi</td><td class="c">7.3</td><td>Menulis perkataan Jawi: pinjaman bahasa Inggeris</td><td class="c">&#9675;</td></tr></tbody>
+</table>
+<p class="note" style="margin-top:12px;background:#f1f4f8;border:1.4px dashed var(--silver2);border-radius:13px;padding:10px 13px;font-size:12.5px;color:#2b3440;line-height:1.55">Nota: <span style="color:var(--grass2)">&#9679;</span> = diliputi dalam bahan PdP ini (SK 5.1). <span>&#9675;</span> = SK lain dalam Tahun 4. Senarai disusun mengikut DSKP Pendidikan Islam Tahun 4, KSSR Semakan 2017.</p>
+</div>
+</section>
+
+<footer>
+Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 4 (BPK, KPM) &amp; Buku Teks Pendidikan Islam Tahun 4 SK. Teks ayat al-Quran disahkan daripada mushaf Uthmani melalui api.alquran.cloud.
+</footer>
+</div>
+
+<svg style="position:absolute;width:0;height:0" aria-hidden="true">
+<defs>
+<symbol id="faceYay" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#3cb371"/><circle cx="14" cy="17" r="2.5" fill="#fff"/><circle cx="30" cy="17" r="2.5" fill="#fff"/><path d="M13 28q9 8 18 0" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="faceOops" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#e06c75"/><circle cx="14" cy="17" r="2.5" fill="#fff"/><circle cx="30" cy="17" r="2.5" fill="#fff"/><path d="M14 31q8-6 16 0" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></symbol>
+</defs>
+</svg>
+
+<script>
+(function(){
+var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+var scEl = document.getElementById('sc');
+var doneEl = document.getElementById('done');
+var barEl = document.getElementById('bar');
+var resultEl = document.getElementById('result');
+var total = cards.length;
+function refresh(){
+var score=0,answered=0;
+cards.forEach(function(c){ if(c.dataset.state==='correct'){score++;answered++;} else if(c.dataset.state==='wrong'){answered++;} });
+scEl.textContent=score; doneEl.textContent=answered; barEl.style.width=(answered/total*100)+'%';
+if(answered===total) showResult(score);
+}
+function showResult(score){
+resultEl.classList.add('show');
+document.getElementById('rscore').textContent=score+' / '+total;
+document.getElementById('stars').textContent=score>=9?'★★★★★':score>=7?'★★★★☆':score>=5?'★★★☆☆':'★★☆☆☆';
+document.getElementById('rmsg').textContent="Syabas! Kamu benar-benar menguasai topik ini.";
+}
+cards.forEach(function(card){
+var opts=Array.prototype.slice.call(card.querySelectorAll('.opt'));
+var fb=card.querySelector('.fb');
+var face=fb.querySelector('use');
+var txt=fb.querySelector('.txt');
+var ans=parseInt(card.dataset.ans,10);
+var exp=card.dataset.exp;
+opts.forEach(function(btn,i){
+btn.addEventListener('click',function(){
+if(card.dataset.state) return;
+var ok=(i===ans);
+card.dataset.state=ok?'correct':'wrong';
+card.classList.add('done');
+opts.forEach(function(b,j){
+b.disabled=true;
+if(j===ans) b.classList.add('ok');
+else if(j===i) b.classList.add('bad');
+else b.classList.add('dim');
+});
+face.setAttribute('href',ok?'#faceYay':'#faceOops');
+txt.innerHTML=(ok?'<b>Betul!</b> ':'<b>Belum tepat.</b> Jawapan yang betul ialah <b>'+String.fromCharCode(65+ans)+'</b>. ')+exp;
+fb.classList.add('show');
+if(!ok) fb.classList.add('wrong');
+refresh();
+});
+});
+});
+window.resetQuiz=function(){
+cards.forEach(function(c){
+delete c.dataset.state; c.classList.remove('done');
+var fb=c.querySelector('.fb'); fb.classList.remove('show','wrong');
+c.querySelectorAll('.opt').forEach(function(b){ b.disabled=false; b.classList.remove('ok','bad','dim'); });
+});
+resultEl.classList.remove('show'); refresh();
+window.scrollTo({top:document.getElementById('quiz').offsetTop-20,behavior:'smooth'});
+};
+window.addEventListener('beforeprint',function(){
+cards.forEach(function(c){
+var ans=parseInt(c.dataset.ans,10);
+c.querySelectorAll('.opt').forEach(function(b,j){ if(j===ans) b.classList.add('ok'); });
+var fb=c.querySelector('.fb');
+fb.querySelector('.txt').innerHTML='<b>Jawapan: '+String.fromCharCode(65+ans)+'</b>. '+c.dataset.exp;
+fb.classList.add('show');
+});
+});
+})();
+</script>
+</body>
+</html>

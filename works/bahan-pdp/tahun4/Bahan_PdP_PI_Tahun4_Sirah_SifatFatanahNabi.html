@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sirah: Sifat Fatanah Nabi Muhammad SAW &mdash; Pendidikan Islam Tahun 4</title>
+<style>
+  :root{
+    --sky1:#f2e0e6; --sky2:#fbeef2; --sky3:#f7e6ec;
+    --grass1:#c47a94; --grass2:#7a2a4a; --grass3:#581a30;
+    --paper:#fdf7f9; --ink:#2e181f; --muted:#785a68;
+    --gold:#9e6f7d; --teal:#822c4e; --aqua:#f0d8e2;
+    --line:#e8d0d8; --silver:#d1b3bf; --silver2:#b58e9e;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:rtl}
+  .jf{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:ltr;unicode-bidi:isolate}
+  .arab-lg{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,serif;direction:rtl;display:block;font-size:26px;line-height:1.9;color:var(--grass3);text-align:center;margin:8px 0 4px}
+  .skybg{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#eaf1fb 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:var(--aqua);top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:var(--silver);top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:var(--sky3);bottom:-140px;left:18%}
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--grass2);font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:var(--grass3);letter-spacing:.4px;text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:var(--muted);font-weight:600}
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:0 3px 10px rgba(0,0,0,.08)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;margin-bottom:22px;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--grass2);font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#eff5fc;border:1.4px solid var(--line);border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,var(--grass1),var(--grass2));box-shadow:0 2px 0 var(--grass3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--grass3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#f1f4f8;border:1.4px dashed var(--silver2);border-radius:13px;padding:10px 13px;font-size:12.5px;color:#2b3440;line-height:1.55}
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;margin-bottom:22px;box-shadow:0 4px 16px rgba(0,0,0,.08);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;box-shadow:0 2px 0 var(--grass3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+  h2 .mascot{flex:none;margin-left:auto;display:block}
+  .deko{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:14px 0 0}
+  .deko svg{display:block}
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes floatBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    @keyframes softGlow{0%,100%{filter:drop-shadow(0 0 3px rgba(200,220,255,.6))}50%{filter:drop-shadow(0 0 8px rgba(200,220,255,.95))}}
+    @keyframes gentleSway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+    @keyframes drift{from{transform:translateX(0)}to{transform:translateX(26px)}}
+    @keyframes twinkle{0%,100%{opacity:.35}50%{opacity:1}}
+    @keyframes g14bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+    @keyframes g14drift{0%{transform:translateX(-9px)}100%{transform:translateX(9px)}}
+    @keyframes g14twinkle{0%,100%{opacity:.4}50%{opacity:1}}
+    @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+    @keyframes cardEntrance{0%{opacity:0;transform:translateY(14px) scale(.98)}100%{opacity:1;transform:none}}
+    h2 .mascot,.deko svg{animation:g14bob 2.6s ease-in-out infinite}
+    .deko svg:nth-child(2){animation-delay:.45s}
+    .deko svg:nth-child(3){animation-delay:.9s}
+    .anim-drift{animation:g14drift 8s ease-in-out infinite alternate}
+    .anim-twinkle{animation:g14twinkle 2.2s ease-in-out infinite}
+    .anim-bob{animation:floatBob 3.2s ease-in-out infinite}
+    .anim-glow{animation:softGlow 2.8s ease-in-out infinite}
+    .anim-sway{animation:gentleSway 4s ease-in-out infinite;transform-origin:center bottom}
+    .anim-drift26{animation:drift 9s ease-in-out infinite alternate}
+    .anim-twinkle2{animation:g14twinkle 2.4s ease-in-out infinite}
+  }
+  @media print{
+    h2 .mascot,.deko svg,.anim-drift,.anim-twinkle,.anim-bob,.anim-glow,.anim-sway,.anim-drift26,.anim-twinkle2{animation:none !important}
+  }
+  .nota{border-left:5px solid var(--silver2);background:#f1f4f8;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol,.nota ul{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#2b3440}
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(135deg,#eff5fc,#f1f4f8);border:1.5px solid var(--line);border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#dbe6f4;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .qcard{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+  .qtop{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+  .qn{flex:none;width:28px;height:28px;border-radius:9px;background:var(--grass2);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 0 var(--grass3)}
+  .qt{font-size:14px;font-weight:700;color:var(--ink);line-height:1.45}
+  .opts{display:flex;flex-direction:column;gap:8px}
+  .opt{text-align:left;border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;background:#fff;cursor:pointer;font-size:13.5px;color:var(--ink);transition:all .2s}
+  .opt:hover:not(:disabled){background:#f3f7fb;border-color:var(--grass1)}
+  .opt.ok{border-color:#3cb371;background:#e8f5ee;color:#145a32}
+  .opt.bad{border-color:#e06c75;background:#fcebed;color:#7a1f26}
+  .opt.dim{opacity:.55}
+  .fb{display:none;align-items:flex-start;gap:10px;margin-top:10px;padding:10px 12px;border-radius:12px;background:#e8f5ee;border:1.5px solid #b5e0c5}
+  .fb.wrong{background:#fcebed;border-color:#e8b5b5}
+  .fb.show{display:flex}
+  .ff{flex:none;width:44px;height:44px}
+  .fb .txt{font-size:13px;line-height:1.5;color:#2b3440}
+  .result{display:none;background:linear-gradient(135deg,#e8f5ee,#d4edda);border:2px solid #3cb371;border-radius:18px;padding:16px;text-align:center}
+  .result.show{display:block}
+  .stars{font-size:26px;color:#f4c430;letter-spacing:4px;margin:6px 0}
+  .card{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px}
+  .card table{width:100%;border-collapse:collapse;font-size:12.5px}
+  .card th{text-align:left;padding:8px 10px;background:var(--grass2);color:#fff;font-weight:700}
+  .card td{padding:8px 10px;border-bottom:1px solid var(--line)}
+  .card tr.on td{background:#f1f8f5}
+  .card .c{text-align:center}
+  footer{text-align:center;font-size:11.5px;color:var(--muted);margin-top:30px}
+  @media print{body{background:#fff} section{box-shadow:none;margin-bottom:14px} .opt.ok{border-color:#3cb371;background:#e8f5ee} .fb{display:flex} .result{display:block}}
+  @media print{@page{size:A4 portrait;margin:12mm}}
+</style>
+</head>
+<body>
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="wrap">
+
+<div class="hero">
+<svg viewBox="0 0 940 300" xmlns="http://www.w3.org/2000/svg"><rect width="940" height="300" fill="#f2e0e6"/><ellipse cx="470" cy="260" rx="420" ry="30" fill="#f2e0e6" opacity=".6"/><g class="anim-bob"><rect x="340" y="110" width="260" height="100" rx="16" fill="#fff" stroke="#999" stroke-width="2"/><text x="470" y="155" text-anchor="middle" font-size="14" fill="#333" font-family="Segoe UI,Trebuchet MS,sans-serif">Sirah: Sifat Fatanah Nabi Muhammad </text><text x="470" y="180" text-anchor="middle" font-size="12" fill="#555">Merumus I&#x27;tibar Keunggulan Sifat Fatanah Nabi</text></g><circle cx="120" cy="70" r="22" fill="#fff" opacity=".85" class="anim-glow"/><circle cx="820" cy="100" r="16" fill="#fff" opacity=".6" class="anim-glow" style="animation-delay:.7s"/></svg>
+<div class="hero-txt">
+<div class="kick">Bahan PdP &middot; Pendidikan Islam &middot; Tahun 4</div>
+<h1>Sirah: Sifat Fatanah Nabi Muhammad SAW</h1>
+<div class="sub">Merumus I&#x27;tibar Keunggulan Sifat Fatanah Nabi Muhammad SAW</div>
+</div>
+</div>
+
+<div class="strip">
+<div class="chip"><div class="lbl">Bidang</div><div class="val">Sirah</div></div>
+<div class="chip"><div class="lbl">SK</div><div class="val">5.2</div></div>
+<div class="chip"><div class="lbl">SP</div><div class="val">5.2.1 - 5.2.5</div></div>
+<div class="chip"><div class="lbl">Unit</div><div class="val">18/26</div></div>
+</div>
+
+<div class="toc">
+<div class="ttl">Kandungan Bahan PdP</div>
+<div class="grid"><div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">Visual ringkasan topik utama</div></div></div><div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">Rangka topik secara minda</div></div></div><div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">Nota penting untuk rujukan</div></div></div><div class="it"><div class="n">4</div><div><div class="t">Diagram</div><div class="d">Rajah penjelasan</div></div></div><div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan + jawapan</div></div></div><div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Senarai SK & SP</div></div></div></div>
+<div class="note"><b>Nota:</b> Bahan ini merangkumi 6 komponen utama untuk membantu guru dan murid menguasai <b>SK 5.2</b> dalam pembelajaran Pendidikan Islam Tahun 4.</div>
+</div>
+
+<section>
+<h2><span class="num">1</span> Infografik <span class="mascot">&#128640;</span></h2>
+<div class="hint">Ringkasan visual topik utama</div>
+<svg class="art"><svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg"><rect width="900" height="300" rx="18" fill="var(--aqua)" stroke="var(--line)" stroke-width="1.5"/><g><rect x="30" y="30" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="54" font-size="12" fill="var(--grass2)" font-weight="700">Fatanah</text><text x="860" y="54" text-anchor="end" font-size="12" fill="var(--ink)">Cerdik, bijaksana, arif, dan berfikiran jauh</text></g><g><rect x="30" y="74" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="98" font-size="12" fill="var(--grass2)" font-weight="700">Kisah Penyebaran Najis</text><text x="860" y="98" text-anchor="end" font-size="12" fill="var(--ink)">Nabi SAW bijak membersihkan najis tanpa menyinggung perasaan</text></g><g><rect x="30" y="118" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="142" font-size="12" fill="var(--grass2)" font-weight="700">Kisah Letak Tangan</text><text x="860" y="142" text-anchor="end" font-size="12" fill="var(--ink)">Nabi SAW bijak menasihati tentera dengan hikmah</text></g><g><rect x="30" y="162" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="186" font-size="12" fill="var(--grass2)" font-weight="700">Kehidupan Seharian</text><text x="860" y="186" text-anchor="end" font-size="12" fill="var(--ink)">Menyelesaikan masalah dengan tenang dan rasional</text></g><g><rect x="30" y="206" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="230" font-size="12" fill="var(--grass2)" font-weight="700">Tauladan</text><text x="860" y="230" text-anchor="end" font-size="12" fill="var(--ink)">Berpikiran jauh, tidak tergesa-gesa, mencari jalan terbaik</text></g></svg></svg>
+</section>
+
+<section>
+<h2><span class="num">2</span> Peta Minda <span class="mascot">&#128640;</span></h2>
+<div class="hint">Rangka topik secara minda</div>
+<svg class="art"><svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg"><rect width="900" height="340" rx="18" fill="var(--sky2)" stroke="var(--line)" stroke-width="1.5"/><circle cx="450" cy="170" r="52" fill="#fff" stroke="var(--grass2)" stroke-width="2.5"/><text x="450" y="175" text-anchor="middle" font-size="12" fill="var(--grass3)" font-weight="700">Fatanah</text><line x1="450.0" y1="120.0" x2="450.0" y2="78.0" stroke="var(--grass1)" stroke-width="2"/><rect x="384.0" y="20.0" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="450.0" y="45.0" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Cerdik</text><line x1="489.0915741234015" y1="138.82550990706332" x2="521.9284963870587" y2="112.63893822899652" stroke="var(--grass1)" stroke-width="2"/><rect x="485.6380927208438" y="68.94632575836465" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="551.6380927208438" y="93.94632575836465" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Bijaksana</text><line x1="498.74639560909117" y1="181.12604669781572" x2="539.6933679207278" y2="190.47192592398093" stroke="var(--grass1)" stroke-width="2"/><rect x="510.7406285836371" y="178.92772141432087" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="576.7406285836371" y="203.92772141432087" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Arif</text><line x1="471.6941869558779" y1="215.04844339512096" x2="489.9173039988153" y2="252.88913584702257" stroke="var(--grass1)" stroke-width="2"/><rect x="440.40488608528256" y="267.1259528273145" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="506.40488608528256" y="292.1259528273145" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Berfikiran Jauh</text><line x1="428.3058130441221" y1="215.04844339512096" x2="410.0826960011847" y2="252.88913584702257" stroke="var(--grass1)" stroke-width="2"/><rect x="327.59511391471744" y="267.1259528273145" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="393.59511391471744" y="292.1259528273145" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Tenang</text><line x1="401.25360439090883" y1="181.12604669781572" x2="360.3066320792722" y2="190.47192592398096" stroke="var(--grass1)" stroke-width="2"/><rect x="257.2593714163629" y="178.9277214143209" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="323.2593714163629" y="203.9277214143209" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Rasional</text><line x1="410.9084258765985" y1="138.82550990706332" x2="378.0715036129413" y2="112.63893822899654" stroke="var(--grass1)" stroke-width="2"/><rect x="282.3619072791561" y="68.94632575836467" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="348.3619072791561" y="93.94632575836467" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Hikmah</text></svg></svg>
+</section>
+
+<section>
+<h2><span class="num">3</span> Nota Ringkas <span class="mascot">&#128640;</span></h2>
+<div class="hint">Nota penting untuk rujukan</div>
+<div class="nota"><ul><li><b>Fatanah</b> bermaksud cerdik, bijaksana, arif, dan berfikiran jauh dalam menyelesaikan sesuatu perkara.</li><li><b>Kisah penyebaran najis:</b> Apabila seorang Badui kencing di dalam masjid, para sahabat marah. Nabi SAW menyuruh mereka tenang, kemudian baginda sendiri membersihkan najis itu tanpa menyinggung perasaan Badui tersebut.</li><li><b>Kisah letak tangan:</b> Semasa Perang Khandaq, Nabi SAW bijak menasihati para sahabat supaya letak tangan di tempat yang betul semasa membina parit pertahanan.</li><li><b>Dalam kehidupan:</b> Sifat fatanah ditunjukkan melalui kebijaksanaan menyelesaikan masalah, tidak tergesa-gesa, dan mencari jalan terbaik yang tidak menyakiti hati orang lain.</li><li>Dalil firman Allah Surah al-Ahzab 33:21:<br><span class="arab">لَّقَدْ كَانَ لَكُمْ فِى رَسُولِ ٱللَّهِ أُسْوَةٌ حَسَنَةٌۭ لِّمَن كَانَ يَرْجُوا۟ ٱللَّهَ وَٱلْيَوْمَ ٱلْءَاخِرَ وَذَكَرَ ٱللَّهَ كَثِيرًۭا</span></li></ul></div>
+</section>
+
+<section>
+<h2><span class="num">4</span> Diagram <span class="mascot">&#128640;</span></h2>
+<div class="hint">Rajah penjelasan</div>
+<svg class="art"><svg viewBox="0 0 900 370" xmlns="http://www.w3.org/2000/svg"><rect width="900" height="370" rx="18" fill="var(--sky2)" stroke="var(--line)" stroke-width="1.5"/><text x="450" y="28" text-anchor="middle" font-size="13" fill="var(--grass3)" font-weight="700">Pokok Sifat Fatanah</text><rect x="360" y="55" width="180" height="30" rx="8" fill="var(--grass2)"/><text x="450" y="75" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Ciri Fatanah</text><line x1="450" y1="85" x2="165" y2="103" stroke="var(--grass1)" stroke-width="1.5"/><rect x="74" y="103" width="182" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="165" y="120" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Cerdik</text><line x1="450" y1="85" x2="355" y2="103" stroke="var(--grass1)" stroke-width="1.5"/><rect x="264" y="103" width="182" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="355" y="120" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Bijaksana</text><line x1="450" y1="85" x2="545" y2="103" stroke="var(--grass1)" stroke-width="1.5"/><rect x="454" y="103" width="182" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="545" y="120" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Arif</text><line x1="450" y1="85" x2="735" y2="103" stroke="var(--grass1)" stroke-width="1.5"/><rect x="644" y="103" width="182" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="735" y="120" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Berfikiran Jauh</text><rect x="360" y="141" width="180" height="30" rx="8" fill="var(--grass2)"/><text x="450" y="161" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Kisah</text><line x1="450" y1="171" x2="197" y2="189" stroke="var(--grass1)" stroke-width="1.5"/><rect x="75" y="189" width="245" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="197" y="206" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Penyebaran Najis</text><line x1="450" y1="171" x2="450" y2="189" stroke="var(--grass1)" stroke-width="1.5"/><rect x="328" y="189" width="245" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="450" y="206" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Letak Tangan</text><line x1="450" y1="171" x2="703" y2="189" stroke="var(--grass1)" stroke-width="1.5"/><rect x="581" y="189" width="245" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="703" y="206" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Solat Isyak</text><rect x="360" y="227" width="180" height="30" rx="8" fill="var(--grass2)"/><text x="450" y="247" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Tauladan</text><line x1="450" y1="257" x2="165" y2="275" stroke="var(--grass1)" stroke-width="1.5"/><rect x="74" y="275" width="182" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="165" y="292" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Tenang</text><line x1="450" y1="257" x2="355" y2="275" stroke="var(--grass1)" stroke-width="1.5"/><rect x="264" y="275" width="182" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="355" y="292" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Rasional</text><line x1="450" y1="257" x2="545" y2="275" stroke="var(--grass1)" stroke-width="1.5"/><rect x="454" y="275" width="182" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="545" y="292" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Hikmah</text><line x1="450" y1="257" x2="735" y2="275" stroke="var(--grass1)" stroke-width="1.5"/><rect x="644" y="275" width="182" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="735" y="292" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Tidak Menyakiti</text></svg></svg>
+</section>
+
+<section id="quiz">
+<h2><span class="num">5</span> Kuiz Interaktif <span class="mascot">&#128640;</span></h2>
+<div class="hint">10 soalan — jawapan terdedah apabila cetak</div>
+<div class="scorebar">
+<div class="sc">Skor: <span id="sc">0</span> / <span id="done">0</span></div>
+<div class="bar"><i id="bar"></i></div>
+<button onclick="resetQuiz()" style="border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:6px 12px;font-size:12px;cursor:pointer">Ulang Kuiz</button>
+</div>
+<div class="qcard" data-ans="1" data-exp="Fatanah bermaksud cerdik, bijaksana, arif, dan berfikiran jauh."><div class="qtop"><div class="qn">1</div><div class="qt">Apakah maksud sifat fatanah?</div></div><div class="opts"><button class="opt">A. Kuat</button><button class="opt">B. Cerdik, bijaksana, arif</button><button class="opt">C. Pemurah</button><button class="opt">D. Berani</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Nabi SAW membersihkan najis dengan tenang tanpa menyinggung perasaan Badui tersebut."><div class="qtop"><div class="qn">2</div><div class="qt">Dalam kisah penyebaran najis, Nabi SAW...</div></div><div class="opts"><button class="opt">A. Memarahi Badui itu</button><button class="opt">B. Membersihkan najis dengan tenang</button><button class="opt">C. Mengusir Badui itu</button><button class="opt">D. Membiarkan saja</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Nabi SAW bijak menasihati sahabat supaya letak tangan di tempat yang betul."><div class="qtop"><div class="qn">3</div><div class="qt">Kisah &#x27;letak tangan&#x27; menunjukkan Nabi SAW...</div></div><div class="opts"><button class="opt">A. Pemarah</button><button class="opt">B. Bijak menasihati sahabat</button><button class="opt">C. Tidak peduli</button><button class="opt">D. Pemalas</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Fatanah melibatkan pemikiran jauh dan rasional dalam menyelesaikan masalah."><div class="qtop"><div class="qn">4</div><div class="qt">Sifat fatanah melibatkan pemikiran yang...</div></div><div class="opts"><button class="opt">A. Tergesa-gesa</button><button class="opt">B. Jauh dan rasional</button><button class="opt">C. Pendek</button><button class="opt">D. Emosi</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Kita harus menyelesaikan masalah dengan hikmah dan tenang seperti Nabi SAW."><div class="qtop"><div class="qn">5</div><div class="qt">Tauladan fatanah dalam kehidupan seharian ialah...</div></div><div class="opts"><button class="opt">A. Marah-marah</button><button class="opt">B. Menyelesaikan masalah dengan hikmah</button><button class="opt">C. Mengelak tanggungjawab</button><button class="opt">D. Bekerja sendirian</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="&#x27;Arif&#x27; bermaksud pandai, berilmu luas, dan bijak membuat keputusan."><div class="qtop"><div class="qn">6</div><div class="qt">Apakah yang dimaksudkan dengan &#x27;arif&#x27;?</div></div><div class="opts"><button class="opt">A. Takut</button><button class="opt">B. Pandai, berilmu luas</button><button class="opt">C. Malas</button><button class="opt">D. Bising</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Nabi SAW sentiasa menyelesaikan masalah dengan cara yang tidak menyakiti hati orang lain."><div class="qtop"><div class="qn">7</div><div class="qt">Nabi SAW menyelesaikan masalah tanpa...</div></div><div class="opts"><button class="opt">A. Bersungguh-sungguh</button><button class="opt">B. Menyakiti hati orang lain</button><button class="opt">C. Berdiskusi</button><button class="opt">D. Bersabar</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Sifat fatanah sesuai diamalkan dalam semua aktiviti termasuk belajar dan bekerja."><div class="qtop"><div class="qn">8</div><div class="qt">Sifat fatanah sesuai diamalkan semasa...</div></div><div class="opts"><button class="opt">A. Bermain sahaja</button><button class="opt">B. Belajar dan bekerja</button><button class="opt">C. Tidur</button><button class="opt">D. Makan</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Surah al-Ahzab 33:21 menyatakan Nabi SAW adalah contoh teladan yang baik."><div class="qtop"><div class="qn">9</div><div class="qt">Surah manakah yang menyatakan Nabi SAW sebagai contoh teladan?</div></div><div class="opts"><button class="opt">A. Surah al-Fatihah</button><button class="opt">B. Surah al-Ahzab 33:21</button><button class="opt">C. Surah al-Ikhlas</button><button class="opt">D. Surah al-Baqarah</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="1" data-exp="Mengamalkan fatanah bermaksud berfikiran jauh dan bertindak bijak dalam setiap situasi."><div class="qtop"><div class="qn">10</div><div class="qt">Mengamalkan sifat fatanah bermaksud...</div></div><div class="opts"><button class="opt">A. Tidak peduli orang lain</button><button class="opt">B. Berfikiran jauh dan bertindak bijak</button><button class="opt">C. Menipu</button><button class="opt">D. Mudah putus asa</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="result" id="result">
+<div style="font-size:15px;font-weight:800;color:var(--grass3)">Keputusan</div>
+<div class="stars" id="stars"></div>
+<div id="rscore" style="font-size:20px;font-weight:800;color:var(--grass2);margin:4px 0"></div>
+<div id="rmsg" style="font-size:13px;color:#2b3440;margin-top:6px"></div>
+</div>
+</section>
+
+<section>
+<h2><span class="num">6</span> Lampiran: Senarai SK &amp; SP <span class="mascot">&#128640;</span></h2>
+<div class="hint">Standard Kandungan & Standard Pembelajaran Tahun 4</div>
+<div class="card" style="margin-bottom:14px">
+<h3 style="margin:0 0 10px;font-size:13px;color:var(--grass3)">SK 5.2 — Merumus i&#x27;tibar keunggulan sifat fatanah Nabi Muhammad SAW secara beradab dan istiqamah.</h3>
+<ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.7"><li>5.2.1 Menyatakan maksud sifat fatanah Nabi Muhammad SAW.</li><li>5.2.2 Menjelaskan keunggulan Nabi Muhammad SAW melalui kisah kehidupan seharian.</li><li>5.2.3 Mengaplikasikan tauladan Nabi Muhammad SAW yang bersifat fatanah dalam kehidupan seharian.</li><li>5.2.4 Merumus tauladan Nabi Muhammad SAW yang bersifat fatanah.</li><li>5.2.5 Menghayati tauladan dalam setiap tindakan secara beradab dan istiqamah.</li></ol>
+</div>
+<div class="card">
+<table>
+<thead><tr><th class="c">Bil</th><th>Bidang</th><th class="c">SK</th><th>Standard Kandungan</th><th class="c">Status</th></tr></thead>
+<tbody><tr><td class="c">1</td><td>al-Quran</td><td class="c">1.1</td><td>Tilawah: Membaca surah at-Takathur</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">2</td><td>al-Quran</td><td class="c">1.2</td><td>Tilawah: Membaca surah al-Qari&#x27;ah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">3</td><td>al-Quran</td><td class="c">1.3</td><td>Hafazan: Menghafaz surah at-Takathur</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">4</td><td>al-Quran</td><td class="c">1.4</td><td>Hafazan: Menghafaz surah al-Qari&#x27;ah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">5</td><td>al-Quran</td><td class="c">1.5</td><td>Kefahaman: Memahami maksud surah al-Ikhlas</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">6</td><td>al-Quran</td><td class="c">1.6</td><td>Tajwid: Membaca ayat mengandungi mim sakinah &amp; tanwin</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">7</td><td>al-Quran</td><td class="c">1.7</td><td>Tajwid: Membaca ayat mengandungi qalqalah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">8</td><td>al-Quran</td><td class="c">1.8</td><td>Tajwid: Mengenal pasti &amp; membaca ayat mengandungi tanda waqaf</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">9</td><td>Hadis</td><td class="c">2.1</td><td>Hadis: Memuliakan tetamu</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">10</td><td>Akidah</td><td class="c">3.1</td><td>Mengenal nama-nama Allah: al-&#x27;Azim &amp; al-Hamid</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">11</td><td>Akidah</td><td class="c">3.2</td><td>Beriman kepada rasul-rasul Allah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">12</td><td>Akidah</td><td class="c">3.3</td><td>Mempertahankan akidah daripada unsur kufur</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">13</td><td>Akidah</td><td class="c">3.4</td><td>Mempertahankan akidah daripada unsur nifak</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">14</td><td>Ibadah</td><td class="c">4.1</td><td>Bersuci daripada najis</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">15</td><td>Ibadah</td><td class="c">4.2</td><td>Azan dan iqamah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">16</td><td>Ibadah</td><td class="c">4.3</td><td>Puasa Ramadan</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">17</td><td>Sirah</td><td class="c">5.1</td><td>Perjanjian Aqabah</td><td class="c">&#9675;</td></tr>
+<tr class="on"><td class="c">18</td><td>Sirah</td><td class="c">5.2</td><td>Sifat fatanah Rasulullah SAW</td><td class="c" style="color:#7a2a4a">&#9679;</td></tr>
+<tr><td class="c">19</td><td>Sirah</td><td class="c">5.3</td><td>Keperibadian Rasulullah SAW dalam berdakwah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">20</td><td>Adab</td><td class="c">6.1</td><td>Adab berpakaian</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">21</td><td>Adab</td><td class="c">6.2</td><td>Adab beriadah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">22</td><td>Adab</td><td class="c">6.3</td><td>Adab berjiran</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">23</td><td>Adab</td><td class="c">6.4</td><td>Adab terhadap guru</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">24</td><td>Jawi</td><td class="c">7.1</td><td>Menulis huruf Jawi: huruf hamzah</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">25</td><td>Jawi</td><td class="c">7.2</td><td>Menulis perkataan Jawi: perkataan tradisi</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">26</td><td>Jawi</td><td class="c">7.3</td><td>Menulis perkataan Jawi: pinjaman bahasa Inggeris</td><td class="c">&#9675;</td></tr></tbody>
+</table>
+<p class="note" style="margin-top:12px;background:#f1f4f8;border:1.4px dashed var(--silver2);border-radius:13px;padding:10px 13px;font-size:12.5px;color:#2b3440;line-height:1.55">Nota: <span style="color:var(--grass2)">&#9679;</span> = diliputi dalam bahan PdP ini (SK 5.2). <span>&#9675;</span> = SK lain dalam Tahun 4. Senarai disusun mengikut DSKP Pendidikan Islam Tahun 4, KSSR Semakan 2017.</p>
+</div>
+</section>
+
+<footer>
+Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 4 (BPK, KPM) &amp; Buku Teks Pendidikan Islam Tahun 4 SK. Teks ayat al-Quran disahkan daripada mushaf Uthmani melalui api.alquran.cloud.
+</footer>
+</div>
+
+<svg style="position:absolute;width:0;height:0" aria-hidden="true">
+<defs>
+<symbol id="faceYay" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#3cb371"/><circle cx="14" cy="17" r="2.5" fill="#fff"/><circle cx="30" cy="17" r="2.5" fill="#fff"/><path d="M13 28q9 8 18 0" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="faceOops" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#e06c75"/><circle cx="14" cy="17" r="2.5" fill="#fff"/><circle cx="30" cy="17" r="2.5" fill="#fff"/><path d="M14 31q8-6 16 0" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></symbol>
+</defs>
+</svg>
+
+<script>
+(function(){
+var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+var scEl = document.getElementById('sc');
+var doneEl = document.getElementById('done');
+var barEl = document.getElementById('bar');
+var resultEl = document.getElementById('result');
+var total = cards.length;
+function refresh(){
+var score=0,answered=0;
+cards.forEach(function(c){ if(c.dataset.state==='correct'){score++;answered++;} else if(c.dataset.state==='wrong'){answered++;} });
+scEl.textContent=score; doneEl.textContent=answered; barEl.style.width=(answered/total*100)+'%';
+if(answered===total) showResult(score);
+}
+function showResult(score){
+resultEl.classList.add('show');
+document.getElementById('rscore').textContent=score+' / '+total;
+document.getElementById('stars').textContent=score>=9?'★★★★★':score>=7?'★★★★☆':score>=5?'★★★☆☆':'★★☆☆☆';
+document.getElementById('rmsg').textContent="Syabas! Kamu benar-benar menguasai topik ini.";
+}
+cards.forEach(function(card){
+var opts=Array.prototype.slice.call(card.querySelectorAll('.opt'));
+var fb=card.querySelector('.fb');
+var face=fb.querySelector('use');
+var txt=fb.querySelector('.txt');
+var ans=parseInt(card.dataset.ans,10);
+var exp=card.dataset.exp;
+opts.forEach(function(btn,i){
+btn.addEventListener('click',function(){
+if(card.dataset.state) return;
+var ok=(i===ans);
+card.dataset.state=ok?'correct':'wrong';
+card.classList.add('done');
+opts.forEach(function(b,j){
+b.disabled=true;
+if(j===ans) b.classList.add('ok');
+else if(j===i) b.classList.add('bad');
+else b.classList.add('dim');
+});
+face.setAttribute('href',ok?'#faceYay':'#faceOops');
+txt.innerHTML=(ok?'<b>Betul!</b> ':'<b>Belum tepat.</b> Jawapan yang betul ialah <b>'+String.fromCharCode(65+ans)+'</b>. ')+exp;
+fb.classList.add('show');
+if(!ok) fb.classList.add('wrong');
+refresh();
+});
+});
+});
+window.resetQuiz=function(){
+cards.forEach(function(c){
+delete c.dataset.state; c.classList.remove('done');
+var fb=c.querySelector('.fb'); fb.classList.remove('show','wrong');
+c.querySelectorAll('.opt').forEach(function(b){ b.disabled=false; b.classList.remove('ok','bad','dim'); });
+});
+resultEl.classList.remove('show'); refresh();
+window.scrollTo({top:document.getElementById('quiz').offsetTop-20,behavior:'smooth'});
+};
+window.addEventListener('beforeprint',function(){
+cards.forEach(function(c){
+var ans=parseInt(c.dataset.ans,10);
+c.querySelectorAll('.opt').forEach(function(b,j){ if(j===ans) b.classList.add('ok'); });
+var fb=c.querySelector('.fb');
+fb.querySelector('.txt').innerHTML='<b>Jawapan: '+String.fromCharCode(65+ans)+'</b>. '+c.dataset.exp;
+fb.classList.add('show');
+});
+});
+})();
+</script>
+</body>
+</html>

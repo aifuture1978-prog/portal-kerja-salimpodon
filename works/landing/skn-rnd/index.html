@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKN Sabah · Pangkalan Pengetahuan R&amp;D — Grounding Data untuk SaaS / PaaS / MaaS &amp; Agentic Orchestration</title>
+<meta name="description" content="Dapatan kajian mendalam portal rasmi Pejabat Setiausaha Kerajaan Negeri Sabah (skn.sabah.gov.my): visi, misi, moto, keperluan, inventori 336 aplikasi, analisis jurang, seni bina agentic orchestration dan katalog penawaran SaaS/PaaS/MaaS.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ============================ TOP BAR ============================ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brandmark">
+      <div class="crest">SKN</div>
+      <div>
+        <b>Pangkalan Pengetahuan R&amp;D · SKN Sabah</b>
+        <span>Grounding data → SaaS / PaaS / MaaS / Agentic Orchestration</span>
+      </div>
+    </div>
+    <nav class="topnav" id="topnav">
+      <a href="#ringkasan">Ringkasan</a>
+      <a href="#profil">Profil</a>
+      <a href="#struktur">Struktur</a>
+      <a href="#inventori">Inventori</a>
+      <a href="#trend">Trend</a>
+      <a href="#integriti">Integriti</a>
+      <a href="#teknikal">Teknikal</a>
+      <a href="#jurang">Jurang</a>
+      <a href="#keperluan">Keperluan</a>
+      <a href="#tawaran">Penawaran</a>
+      <a href="#agentic">Agentic</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#risiko">Risiko</a>
+      <a href="#lampiran">Lampiran</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<div class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Dokumen R&amp;D · Dalaman · Versi 1.0 · 28 September 2026</span>
+    <h1>Kajian Mendalam Portal Rasmi Setiausaha Kerajaan Negeri Sabah</h1>
+    <p class="lede">
+      Satu himpunan <b>grounding data</b> yang diekstrak terus daripada <code>https://skn.sabah.gov.my/</code>
+      merentasi 58 halaman portal, di samping rujukan luaran yang berkaitan. Dokumen ini menjadi asas
+      kepada reka bentuk perkhidmatan perisian, <b>orchestration agentic</b>, dan keperluan
+      <b>SaaS / PaaS / MaaS</b> untuk ekosistem digital Kerajaan Negeri Sabah.
+    </p>
+    <div class="hero-meta">
+      <span>Sumber utama: skn.sabah.gov.my</span>
+      <span>58 halaman dirayap</span>
+      <span>332 nama aplikasi diekstrak</span>
+      <span>Snapshot portal: 31 Ogos 2026</span>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><b>336</b><span>Aplikasi direkodkan</span><em>Senarai Aplikasi Kerajaan Negeri</em></div>
+      <div class="kpi"><b>1.14 jt</b><span>Jumlah pelawat portal</span><em>Statistik pelawat kumulatif</em></div>
+      <div class="kpi"><b>11</b><span>Kementerian negeri</span><em>Pasca penjenamaan semula 2026</em></div>
+      <div class="kpi"><b>79</b><span>Ahli Dewan Undangan Negeri</span><em>73 dipilih + 6 dilantik</em></div>
+      <div class="kpi"><b>138 / 62</b><span>Aplikasi G2G / G2C</span><em>G2E 38 · G2B 13</em></div>
+      <div class="kpi"><b>PHP 7.4</b><span>Platform asas (EOL)</span><em>Risiko keselamatan tertinggi</em></div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ============================ 1. RINGKASAN ============================ -->
+<section id="ringkasan">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">01</div>
+      <div>
+        <h2>Ringkasan Eksekutif</h2>
+        <p>Gambaran menyeluruh tentang entiti, kematangan digital semasa, jurang kritikal, dan hala tuju
+        perkhidmatan perisian yang boleh ditawarkan.</p>
+      </div>
+    </div>
+
+    <div class="note info">
+      <b>Apa entiti ini?</b>
+      <b>Pejabat Setiausaha Kerajaan Negeri Sabah (PSKN)</b> ialah sekretariat tertinggi perkhidmatan awam negeri —
+      urusetia kepada <b>Setiausaha Kerajaan Negeri (SKN)</b>, jawatan tertinggi dalam Perkhidmatan Awam Negeri Sabah
+      yang diwujudkan di bawah <b>Perkara 11(1) Perlembagaan Negeri Sabah</b>. PSKN berfungsi sebagai pusat
+      penyelarasan, pemantauan dan penyediaan dasar untuk seluruh jentera kerajaan negeri — menjadikannya
+      <b>pelanggan anchor</b> yang paling strategik untuk sebarang platform SaaS/PaaS/MaaS peringkat negeri.
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <h3>Kedudukan semasa (apa yang sudah lengkap)</h3>
+        <ul class="clean tick">
+          <li>Portal korporat matang dengan identiti yang jelas: <b>Visi, Misi, Motto 5A</b> dan latar belakang institusi sejak 1881.</li>
+          <li><b>Inventori aplikasi berpusat</b> — 336 sistem dengan metadata tahun, agensi, bidang, platform dan status.</li>
+          <li><b>Dashboard analitik</b> trend pembangunan aplikasi 2020–2025 berserta 5 strategi pemerkasaan yang diisytiharkan sendiri.</li>
+          <li><b>Repositori dasar &amp; pekeliling</b> — Dasar Negara, Dasar Kementerian, 47 pekeliling SKN, RepoData statistik.</li>
+          <li><b>Saluran aduan berbilang agensi</b> (jalan raya, elektrik, air, pembentungan, penyampaian, rasuah).</li>
+          <li><b>Ekosistem aplikasi dalaman "i-family"</b> yang luas: iMeet, iRespon, iTerima, iHemah, iTrack, iDocs, iSchedule, iCars, iFuel, iMove, iVisit, iAttend, iBook, iClean, iMenara, iContact, iAkses, iPortfolio.</li>
+          <li><b>Inisiatif AI telah bermula</b> — <b>Bayu AI</b> (agen AI PSKN) dan tema Amanat 2026: <i>"Beyond Digitalisation: Building an AI-Enabled Public Service"</i>.</li>
+          <li><b>Dasar integriti bertulis</b> — Polisi Integriti &amp; Antirasuah dengan 6 pelan tindakan, direktori CeIO, i-Adu, i-DO (OACP).</li>
+          <li>Modul kesejahteraan staf berprivasi: DASS-21, MBTI, Big Five (ujian tidak direkod).</li>
+          <li>Dokumen perundangan portal lengkap: Penafian, Dasar Privasi, Syarat &amp; Terma, Hak Cipta.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Jurang kritikal (apa yang masih diperlukan)</h3>
+        <ul class="clean cross">
+          <li><b>Platform usang</b> — Joomla 3 + PHP 7.4.33 (tamat sokongan November 2022): tiada patch keselamatan.</li>
+          <li><b>Tiada lapisan API / integration bus</b> — 336 aplikasi beroperasi dalam silo; tiada API gateway berpusat.</li>
+          <li><b>Identiti tidak bersepadu</b> — SAA, Portal SSO, SM2, apps.sabah.gov.my, eprestasi, erawatan berasingan.</li>
+          <li><b>Tiada tadbir urus data</b> — tiada data catalogue, master data management mahupun klasifikasi data awam.</li>
+          <li><b>Tiada pemerhatian (observability) terpusat</b> — notis gangguan talian telefon disiarkan secara manual.</li>
+          <li><b>Super App belum wujud</b> — Strategi 1 yang diisytiharkan sendiri masih belum dilaksanakan.</li>
+          <li><b>G2B sangat lemah (13 aplikasi)</b> — pelesenan bersepadu, pelaburan dan fasilitasi perdagangan belum diperkasa.</li>
+          <li><b>Tiada pengurusan kitar hayat aplikasi</b> — tiada metrik penggunaan untuk "menutup aplikasi kurang digunakan" (Strategi 5).</li>
+          <li><b>Tiada tadbir urus AI</b> — Bayu AI terhad kepada webchat; tiada RAG korporat, guardrail, atau audit trail.</li>
+          <li><b>Kebolehcapaian &amp; i18n tidak diisytiharkan</b> — terjemahan bergantung pada tetapan peranti pengguna.</li>
+          <li><b>Tiada status SLA / DR awam</b> — ketiadaan status page atau pengisytiharan RTO/RPO.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note warn" style="margin-top:.9rem">
+      <b>Pemerhatian paling bernilai untuk pembinaan produk</b>
+      Kerajaan Negeri Sabah telah <b>mendiagnosis masalahnya sendiri secara bertulis</b> di halaman
+      <i>Dashboard Aplikasi Negeri Sabah</i> — termasuk sasaran Super App, audit berkala, keselamatan siber,
+      latihan AI, dan analitik untuk menutup aplikasi kurang digunakan. Ini bermakna mana-mana cadangan
+      SaaS/PaaS/MaaS <b>tidak perlu menjual masalah</b> — hanya perlu menunjukkan bagaimana produk memenuhi
+      lima strategi yang <b>sudah diisytiharkan secara rasmi</b>.
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 2. PROFIL ============================ -->
+<section id="profil" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">02</div>
+      <div>
+        <h2>Profil Korporat · Visi, Misi, Moto &amp; Identiti</h2>
+        <p>Identiti rasmi organisasi — asas kepada sebarang reka bentuk produk yang selaras dengan
+        hala tuju kepimpinan.</p>
+      </div>
+    </div>
+
+    <div class="vmv">
+      <div class="card visi">
+        <h3>Visi</h3>
+        <div class="quote">“Menyampaikan Perkhidmatan dengan Cemerlang”</div>
+        <p class="small">Visi Pejabat Setiausaha Kerajaan Negeri (PSKN).</p>
+      </div>
+      <div class="card misi">
+        <h3>Misi</h3>
+        <p><i>Merancakkan pembangunan untuk kesejahteraan rakyat dengan melakukan transformasi perkhidmatan
+        awam negeri yang berimpak tinggi melalui:</i></p>
+        <ol style="font-size:.875rem;color:var(--ink-2)">
+          <li><b>Pendigitalan kerajaan</b> berlandaskan konsep <b>5A</b>;</li>
+          <li><b>Regenerasi Perkhidmatan Awam Sabah</b> (Regeneration of Sabah Civil Service); dan</li>
+          <li><b>Pengistitusian budaya integriti, tadbir urus dan antirasuah.</b></li>
+        </ol>
+      </div>
+      <div class="card motto">
+        <h3>Motto · 5A</h3>
+        <div class="quote" style="background:var(--gold-soft);color:#7a5510">
+          5A — Accessible by Anyone at Anytime, Anywhere and by using Any Device
+        </div>
+        <p class="small">Perkhidmatan kerajaan kepada semua rakyat dan pemegang taruh dapat disalurkan di mana
+        jua mereka berada dan boleh diakses menggunakan pelbagai peranti secara atas talian.</p>
+      </div>
+    </div>
+
+    <div class="note ok" style="margin-top:.9rem">
+      <b>Bagaimana moto 5A diterjemahkan kepada keperluan produk</b>
+      <code>Anyone</code> = pelbagai persona (rakyat, penjawat awam, korporat, pelawat luar) → perlukan RBAC + SSO;
+      <code>Anytime</code> = ketersediaan 24×7 → SLA 99.9% + DR;
+      <code>Anywhere</code> = capaian geo/luar bandar → PWA, mod luar talian, reka bentuk jalur lebar rendah;
+      <code>Any Device</code> = responsif + aplikasi mudah alih + kebolehcapaian WCAG.
+      Moto ini secara praktikalnya ialah <b>spesifikasi bukan fungsian</b> yang telah sedia wujud.
+    </div>
+
+    <div class="grid g2" style="margin-top:1rem">
+      <div class="card">
+        <h3>Kepimpinan semasa — SKN Ke-11</h3>
+        <table>
+          <tbody>
+            <tr><th style="width:32%">Nama</th><td><b>YB Datuk Zainudin bin Aman</b></td></tr>
+            <tr><th>Dilantik</th><td>29 Jun 2026 (SKN Ke-11)</td></tr>
+            <tr><th>Lahir</th><td>11 Jun 1974, Sandakan, Sabah</td></tr>
+            <tr><th>Pengalaman</th><td>Lebih 28 tahun dalam perkhidmatan Kerajaan Negeri Sabah</td></tr>
+            <tr><th>Kerjaya</th><td>Majlis Perbandaran Sandakan (1998) → Jabatan Ketua Menteri (2004) → Ketua Jabatan JPSM → Setiausaha Tetap KSTI → Ketua Pengarah Perkhidmatan Awam Negeri Sabah (2023) → SKN</td></tr>
+            <tr><th>Akademik</th><td>Sarjana <i>Training &amp; Performance Management</i>, University of Leicester (UK);<br>Sarjana Muda Ilmu Wahyu dan Warisan, UIAM</td></tr>
+            <tr><th>Fokus</th><td>Tadbir urus cekap &amp; berintegriti; transformasi melalui pendigitalan, inovasi &amp; penyampaian berkualiti</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Sejarah Penyandang Jawatan SKN</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>#</th><th>Penyandang</th><th>Tempoh</th></tr></thead>
+            <tbody>
+              <tr><td>11</td><td><b>YB Datuk Zainudin bin Aman</b></td><td>29 Jun 2026 – kini</td></tr>
+              <tr><td>10</td><td>YB Datuk Seri Panglima Sr. Haji Safar bin Untong, JP</td><td>04 Nov 2019 – 28 Jun 2026</td></tr>
+              <tr><td>9</td><td>YB Datuk Seri Panglima Hashim Paijan</td><td>09 Jul 2018 – 01 Nov 2019</td></tr>
+              <tr><td>8</td><td>YB Tan Sri Sukarti bin Wakiman</td><td>03 Jul 2007 – 08 Jul 2018</td></tr>
+              <tr><td>7</td><td>YB Datuk K.Y. Mustapha</td><td>Mei 2000 – 02 Jul 2007</td></tr>
+              <tr><td>6</td><td>YB Tan Sri Datu Haji Khalil Haji Jamalul</td><td>1993 – 2003</td></tr>
+              <tr><td>5</td><td>YB Tan Sri (Datuk) Simon Sipaun</td><td>1988 – 1993</td></tr>
+              <tr><td>4</td><td>YB Tan Sri Hamid Egoh</td><td>1968 – 1975</td></tr>
+              <tr><td>3</td><td>YB Tan Sri Richard Lind</td><td>1964 – 1968</td></tr>
+              <tr><td>2</td><td>YB Datuk John bin Dusing <span class="tag gr">anak watan pertama</span></td><td>1964 – 1968</td></tr>
+              <tr><td>1</td><td>Robert Noel Turner, CMG <span class="tag">bekas Chief Secretary, North Borneo 1956–1963</span></td><td>1963 – 1964</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g3" style="margin-top:.85rem">
+      <div class="card tight">
+        <h4>Motto mengikut penyandang (amalan korporat)</h4>
+        <ul class="clean">
+          <li><b>SKN Ke-10</b> — <i>5A: Accessible by Anyone at Anytime, Anywhere and by using Any Devices</i></li>
+          <li><b>SKN Ke-9</b> — <i>Pantas Kehadapan (Fast Forward)</i></li>
+          <li><b>SKN Ke-8</b> — <i>Back To Basic</i></li>
+        </ul>
+        <p class="small" style="margin-top:.5rem">Implikasi: setiap pertukaran kepimpinan membawa moto baharu →
+        produk perlu <b>neutral terhadap jenama</b> dan mudah dikonfigurasi semula.</p>
+      </div>
+      <div class="card tight">
+        <h4>Maklumat perhubungan rasmi</h4>
+        <p style="margin-bottom:.4rem">Pejabat Setiausaha Kerajaan Negeri Sabah<br>
+        Aras 28, Blok A, Menara Kinabalu,<br>88400 Kota Kinabalu, Sabah, Malaysia</p>
+        <ul class="clean">
+          <li>Talian: 088-369900 · 088-369901</li>
+          <li>Faksimili: 088-211016</li>
+          <li>E-mel: pejabatskn.jkm@sabah.gov.my</li>
+          <li>BIGONS: admin.uins@sabah.gov.my · 088-369263 / 088-214134</li>
+          <li>Pegawai Pendigitalan: Encik Afendy bin Suraip</li>
+        </ul>
+      </div>
+      <div class="card tight">
+        <h4>Slogan negeri &amp; agenda</h4>
+        <p><b>SABAH MAJU JAYA</b> — agenda pembangunan negeri yang menekankan inovasi, pembangunan modal insan
+        dan kecemerlangan tadbir urus.</p>
+        <p class="small">Semua naratif produk wajar diikat kepada SMJ, kerana ia merupakan kerangka rujukan
+        yang digunakan dalam setiap amanat dan belanjawan negeri.</p>
+        <p class="small"><b>Amanat 2026:</b> <i>“Beyond Digitalisation: Building an AI-Enabled Public Service”</i></p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:.85rem">
+      <h3>Latar Belakang Institusi</h3>
+      <p>Institusi Setiausaha Kerajaan Negeri wujud seawal <b>1956</b> — sebelum pembentukan Malaysia — melalui
+      pentadbiran Borneo Utara di bawah <b>Syarikat Berpiagam Borneo Utara (1881–1942)</b>. Pejabat ini merupakan
+      pusat latihan pegawai kadet dan pernah mengawal Pejabat Tanah, Jabatan Buruh, JKR, Jabatan Hutan,
+      Jabatan Keretapi, Pejabat Ukur, Jabatan Perubatan, Jabatan Perbendaharaan, Pejabat Pos dan Pejabat Cetak.
+      Pada akhir 1963 semua jabatan berkenaan dipindahkan ke kementerian masing-masing dan SKN merangkap
+      Setiausaha Tetap kepada Jabatan Ketua Menteri.</p>
+      <p><b>Akronim:</b> PSKN. <b>Fungsi teras:</b> mengurus tadbir pentadbiran kerajaan negeri melalui
+      penyelarasan, pemantauan dan penyediaan dasar dari semasa ke semasa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 3. STRUKTUR ============================ -->
+<section id="struktur">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">03</div>
+      <div>
+        <h2>Struktur Kerajaan &amp; Organisasi</h2>
+        <p>Siapa pemegang taruh, siapa pemilik proses, dan di mana kuasa keputusan berada — penting untuk
+        pemetaan pelanggan (multi-tenant) dan reka bentuk tadbir urus data.</p>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <h3>Kerangka Perlembagaan Negeri</h3>
+        <ul class="clean">
+          <li>Kerajaan negeri mempunyai <b>dua cabang</b>: eksekutif dan perundangan. Sabah <b>tiada cabang kehakiman</b> kerana federalisasi sistem mahkamah di Malaysia.</li>
+          <li>Mahkamah Syariah dan Mahkamah Anak Negeri berada di bawah <b>cabang eksekutif negeri</b>.</li>
+          <li><b>Tuan Yang di-Pertua Negeri</b> ialah ketua negeri, dilantik oleh YDP Agong atas nasihat Ketua Menteri, tempoh 4 tahun. Penyandang semasa: <b>Tun Datuk Seri Panglima (Dr.) Musa Haji Aman</b> (2025 – kini).</li>
+          <li>Sabah tidak mempunyai raja atau sultan; TYT ialah ahli Majlis Raja-Raja tetapi <b>tidak boleh mengundi</b> untuk memilih YDP Agong.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Dewan Undangan Negeri</h3>
+        <ul class="clean">
+          <li><b>79 ADUN</b> sehingga penggal ke-16: <b>73 dipilih</b> melalui pilihan raya dan <b>6 dilantik</b> (Fasal 14(1)(e) Perlembagaan Negeri Sabah).</li>
+          <li>Sistem Westminster: Ketua Menteri dilantik berdasarkan sokongan majoriti; parti terbesar bukan kerajaan menjadi pembangkang rasmi.</li>
+          <li>Speaker boleh dilantik daripada kalangan ADUN <b>atau orang luar</b> (warganegara, ≥21 tahun, tiada keaiban undang-undang). Speaker bukan ADUN <b>tidak boleh mengundi</b>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin:1.15rem 0 .6rem">11 Kementerian Negeri (penjenamaan semula · Belanjawan Sabah 2026, 12 Disember 2025)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Kementerian / Jabatan</th><th>Perubahan jenama</th><th>Portal</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><b>Jabatan Ketua Menteri</b></td><td>—</td><td class="mono">jkm.sabah.gov.my</td></tr>
+          <tr><td>2</td><td><b>Kementerian Kewangan</b></td><td>—</td><td class="mono">mof.sabah.gov.my</td></tr>
+          <tr><td>3</td><td>Kementerian Kerja Raya dan Utiliti</td><td><span class="tag g">dinamakan semula</span> daripada Kementerian Kerja Raya</td><td class="mono">kkrs.sabah.gov.my</td></tr>
+          <tr><td>4</td><td>Kementerian Wanita, Kesihatan dan Kesejahteraan Rakyat</td><td><span class="tag g">dinamakan semula</span> daripada Pembangunan Masyarakat &amp; Kesejahteraan Rakyat</td><td class="mono">kwkkr.sabah.gov.my</td></tr>
+          <tr><td>5</td><td>Kementerian Perindustrian, Keusahawanan dan Pengangkutan</td><td><span class="tag g">dinamakan semula</span> daripada Pembangunan Perindustrian &amp; Keusahawanan</td><td class="mono">mid.sabah.gov.my</td></tr>
+          <tr><td>6</td><td>Kementerian Pendidikan, Sains, Teknologi dan Inovasi</td><td><span class="tag g">dinamakan semula</span> daripada Sains, Teknologi &amp; Inovasi</td><td class="mono">kpsti.sabah.gov.my</td></tr>
+          <tr><td>7</td><td>Kementerian Pembangunan Belia, Kemajuan Sukan dan Ekonomi Kreatif</td><td><span class="tag g">dinamakan semula</span> daripada Belia dan Sukan</td><td class="mono">kbs.sabah.gov.my</td></tr>
+          <tr><td>8</td><td>Kementerian Pembangunan Luar Bandar</td><td>—</td><td class="mono">kplb.sabah.gov.my</td></tr>
+          <tr><td>9</td><td>Kementerian Kerajaan Tempatan dan Perumahan</td><td>—</td><td class="mono">mlgh.sabah.gov.my</td></tr>
+          <tr><td>10</td><td>Kementerian Pertanian, Perikanan dan Industri Makanan</td><td>—</td><td class="mono">maffi.sabah.gov.my</td></tr>
+          <tr><td>11</td><td>Kementerian Pelancongan, Kebudayaan dan Alam Sekitar</td><td>—</td><td class="mono">kepkas.sabah.gov.my</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small" style="color:var(--ink-3);margin-top:.5rem">
+      <b>Implikasi produk:</b> penjenamaan semula baru sahaja berlaku (Dis 2025) → semua metadata agensi dalam
+      mana-mana platform <b>mesti diurus sebagai data rujukan dinamik</b>, bukan nilai kekal (hard-coded).
+    </p>
+
+    <div class="grid g2" style="margin-top:1rem">
+      <div class="card">
+        <h3>Entiti di bawah PSKN (Jabatan, Bahagian &amp; Unit)</h3>
+        <p class="small">Senarai sokongan yang dinyatakan di halaman Latar Belakang / Struktur Kerajaan Sabah:</p>
+        <div>
+          <span class="tag b">Pejabat Ketua Menteri</span>
+          <span class="tag b">Pejabat Pembantu-Pembantu Menteri</span>
+          <span class="tag b">Pejabat Setiausaha Kerajaan Negeri</span>
+          <span class="tag b">Timbalan SKN (Pentadbiran)</span>
+          <span class="tag b">Timbalan SKN (Pembangunan)</span>
+          <span class="tag b">Timbalan SKN (Tugas-Tugas Khas)</span>
+          <span class="tag b">Pejabat Hasil Bumi</span>
+          <span class="tag b">Pejabat Hal Ehwal Dalam Negeri &amp; Penyelidikan</span>
+          <span class="tag b">Bahagian Istiadat dan Protokol</span>
+          <span class="tag b">Pejabat Perhubungan Negeri Sabah (KL)</span>
+          <span class="tag b">Pejabat Media dan Komunikasi</span>
+          <span class="tag b">Bahagian Pengurusan dan Kewangan</span>
+          <span class="tag b">Bahagian Kabinet dan Dasar</span>
+          <span class="tag b">Unit Pemimpin Pembangunan Masyarakat</span>
+          <span class="tag b">Unit Perancang Ekonomi Negeri</span>
+          <span class="tag b">Jabatan Peguam Besar Negeri</span>
+          <span class="tag b">Jabatan Perkhidmatan Awam Negeri</span>
+          <span class="tag b">Jabatan Perhutanan Sabah</span>
+          <span class="tag b">Jabatan Tanah dan Ukur</span>
+          <span class="tag b">Jabatan Cetak Kerajaan</span>
+          <span class="tag b">Jabatan Arkib Negeri Sabah</span>
+          <span class="tag b">Pusat Biodiversiti Sabah</span>
+          <span class="tag b">Sekretariat Sabah Maju Jaya (SSMJ)</span>
+          <span class="tag b">Institut Kerjasama Kerajaan dan Rakyat (IKRAR)</span>
+          <span class="tag t">Bahagian Integriti dan Governans Negeri Sabah (BIGONS)</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Baris kepimpinan PSKN &amp; BIGONS</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Nama</th><th>Jawatan</th></tr></thead>
+            <tbody>
+              <tr><td>YB Datuk Zainudin bin Aman</td><td>Setiausaha Kerajaan Negeri</td></tr>
+              <tr><td>Puan Samsakiah binti Jamil</td><td>Ketua Penolong Setiausaha · <b>Ketua Bahagian BIGONS</b></td></tr>
+              <tr><td>Encik Imran bin Jagong @ Osman</td><td>Pegawai Khas kepada SKN</td></tr>
+              <tr><td>Encik Afendy bin Suraip</td><td>Penolong Setiausaha · <b>Pegawai Pendigitalan</b></td></tr>
+              <tr><td>Encik Tommy Nickler Horin</td><td>Penolong Ketua Unit Pentadbiran &amp; Sumber Manusia</td></tr>
+              <tr><td>Encik Jamri bin Ag. Damit</td><td>Ketua Unit Pengurusan Tatatertib (BIGONS)</td></tr>
+              <tr><td>Encik Mohd Asril bin Sharil</td><td>Ketua Unit Tadbir Urus &amp; Pengukuhan Integriti</td></tr>
+              <tr><td>Puan Andrea Abidin Madingkir</td><td>Ketua Unit Pematuhan, Pengesanan &amp; Pengesahan</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small" style="margin-top:.5rem">
+          <b>Pintu masuk komersial:</b> Pegawai Pendigitalan (Encik Afendy bin Suraip) ialah pihak yang
+          dinamakan secara rasmi sebagai penyelaras penyenaraian aplikasi kerajaan negeri — titik hubungan
+          semula jadi untuk sebarang cadangan platform.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 4. INVENTORI ============================ -->
+<section id="inventori" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">04</div>
+      <div>
+        <h2>Inventori Sistem, Aplikasi &amp; Dashboard</h2>
+        <p>Himpunan penuh aset digital yang wujud hari ini — asas kepada analisis jurang, rasionalisasi
+        (penutupan sistem pendua) dan reka bentuk integrasi.</p>
+      </div>
+    </div>
+
+    <div class="note info">
+      <b>Skala ekosistem</b>
+      Portal merekodkan <b>336 aplikasi</b> dalam <i>Senarai Aplikasi Kerajaan Negeri</i> (34 halaman, 10 rekod/muka).
+      Sebanyak <b>331 nama unik</b> berjaya diekstrak secara automatik untuk pangkalan pengetahuan ini.
+      Setiap rekod membawa metadata: <b>Tahun · Aplikasi · Kementerian/Jabatan · Nama Agensi · Platform · Pautan · Status Sistem · Bidang</b>.
+    </div>
+
+    <h3 style="margin:1.1rem 0 .5rem">Kategori pengguna (analisis rasmi portal)</h3>
+    <div class="card">
+      <div class="bars">
+        <div class="bar-row"><span>G2G — Government-to-Government</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">138</span></div>
+        <div class="bar-row"><span>G2C — Government-to-Citizen</span><div class="bar-track"><div class="bar-fill" style="width:44.9%"></div></div><span class="bar-val">62</span></div>
+        <div class="bar-row"><span>G2E — Government-to-Employee</span><div class="bar-track"><div class="bar-fill" style="width:27.5%"></div></div><span class="bar-val">38</span></div>
+        <div class="bar-row"><span>G2B — Government-to-Business</span><div class="bar-track"><div class="bar-fill gold" style="width:9.4%"></div></div><span class="bar-val">13</span></div>
+        <div class="bar-row"><span>Kategori gabungan (G2C&amp;G2B, G2G&amp;G2C, G2G&amp;G2E)</span><div class="bar-track"><div class="bar-fill red" style="width:6%"></div></div><span class="bar-val">kecil</span></div>
+      </div>
+      <p class="small" style="margin-top:.7rem">
+        <b>Bacaan strategik:</b> G2G dominan (138) menunjukkan kematangan automasi dalaman; G2C (62) sederhana;
+        <b>G2B hanya 13</b> — portal sendiri menyatakan ini "ruang pertumbuhan strategik bagi pembangunan ekonomi negeri"
+        melalui pelesenan bersepadu, platform pelaburan digital dan fasilitasi perdagangan.
+        <b>G2B ialah lubang pasaran terbesar untuk penawaran SaaS.</b>
+      </p>
+    </div>
+
+    <h3 style="margin:1.1rem 0 .5rem">Senarai penuh 331 nama aplikasi (boleh dicari &amp; ditapis)</h3>
+    <div class="inv-toolbar">
+      <input id="appSearch" type="search" placeholder="Cari nama aplikasi — contoh: iAdu, tanah, lesen, e-Tender, DASS…">
+      <select id="appFilter">
+        <option value="">Semua kategori anggaran</option>
+        <option value="pskn">Aplikasi dalaman PSKN (i-family / Smart Office)</option>
+        <option value="tanah">Tanah &amp; Pemetaan</option>
+        <option value="lesen">Pelesenan &amp; Permit</option>
+        <option value="kewangan">Kewangan &amp; Perakaunan</option>
+        <option value="hr">Sumber Manusia &amp; Latihan</option>
+        <option value="aduan">Aduan &amp; Integriti</option>
+        <option value="pertanian">Pertanian, Perikanan &amp; Hutan</option>
+        <option value="pengangkutan">Pengangkutan &amp; Logistik</option>
+        <option value="kesihatan">Kesihatan &amp; Kebajikan</option>
+        <option value="pelancongan">Pelancongan &amp; Kebudayaan</option>
+        <option value="pendidikan">Pendidikan</option>
+        <option value="alam">Alam Sekitar</option>
+        <option value="covid">COVID-19</option>
+        <option value="lain">Lain-lain</option>
+      </select>
+      <span class="tag" id="appShown">—</span>
+    </div>
+    <div class="chips" id="appList"></div>
+    <p class="small" style="color:var(--ink-3);margin-top:.5rem">
+      Nota: pengkategorian di atas ialah <b>anggaran berasaskan kata kunci</b> untuk tujuan R&amp;D.
+      Portal menyediakan 33 bidang rasmi: Aduan, Alam Sekitar, COVID-19, Infrastruktur, Integriti, Kebajikan,
+      Keusahawanan, Kewangan, Kursus dan Latihan, Pelancongan, Pelesenan, Pemetaan, Pendidikan, Pengangkutan,
+      Penguatkuasaan, Pengurusan Aset, Pengurusan Tiket, Pentadbiran, Perikanan, Perkhidmatan Data,
+      Perkhidmatan Digital, Perkhidmatan Teknikal, Permit, Pertanian, Perumahan, Sosial, Sukan, Sumber Manusia,
+      Tanah, Ternakan, Undang-Undang, e-Dagang, e-Tiket. Status rasmi: <b>Digunakan</b> / <b>Sedang Dibangunkan</b>.
+    </p>
+
+    <h3 style="margin:1.15rem 0 .5rem">Aplikasi dalaman PSKN — keluarga "i-" (milik langsung pelanggan anchor)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Sistem</th><th>Fungsi</th><th>Nota reka bentuk semula</th></tr></thead>
+        <tbody>
+          <tr><td><b>iMeet</b></td><td>Janji temu atas talian bersama SKN / Pembantu Setiausaha</td><td>Bahagian A (penjadualan), B (pelawat), C (keputusan). Jenis kunjungan: Kunjungan Hormat, Taklimat, Lawatan, Mesyuarat, Perbincangan, Undangan, Majlis Rasmi. 3 hari bekerja (tempatan) / 1 minggu (luar negeri); pengesahan ≤2 hari.</td></tr>
+          <tr><td><b>iRespon</b></td><td>Maklum balas berstruktur</td><td>Kategori: Agensi Negeri / Persekutuan / Luar Negara / Swasta / Orang Awam. Jenis: Cadangan Penambahbaikan, Kandungan Portal, Janji Temu, Pengecualian Pekeliling, Hal Ehwal Pejabat, Lain-lain. Lampiran ≤1MB, PDF/PNG/JPEG, maksimum 2 fail.</td></tr>
+          <tr><td><b>iTerima</b></td><td>Pengisytiharan penerimaan hadiah / sumbangan</td><td>Ambang pelaporan: &gt;¼ emolumen bulanan <b>atau</b> &gt;RM500 (mana lebih rendah) → wajib lapor kepada Pihak Berkuasa Tatatertib. Rujukan: Pekeliling Perkhidmatan Awam Negeri Sabah Bil. 3/2003; Seksyen 9 &amp; 10 Akta Pencegahan Rasuah 1997; Seksyen 161/162/165 Kanun Keseksaan. 14 jenis hadiah.</td></tr>
+          <tr><td><b>iHemah</b></td><td>Pengecualian Pekeliling Perbelanjaan Berhemah (JKM Bil. 1/2016)</td><td>Semakan status guna 4 angka terakhir no. rujukan + kod keselamatan. Kelulusan rasmi masih melalui surat/e-mel berasingan → peluang automasi e-tandatangan.</td></tr>
+          <tr><td><b>iTrack</b></td><td>Pengurusan &amp; pengesanan surat rasmi</td><td>Peluang penggabungan dengan iDocs menjadi satu platform rekod korporat.</td></tr>
+          <tr><td><b>iDocs</b></td><td>Repositori digital fail terperingkat</td><td>Menuntut klasifikasi keselamatan + DLP + audit trail yang ketat.</td></tr>
+          <tr><td><b>iSchedule</b></td><td>Penjadualan YB SKN</td><td>Boleh dijadikan sumber kebenaran (source of truth) untuk orkestrasi kalendar seluruh negeri.</td></tr>
+          <tr><td><b>iCars / iFuel / iMove</b></td><td>Aset kenderaan · rekod bahan api · pergerakan kenderaan</td><td>Satu domain "Fleet" — sesuai digabung menjadi modul PaaS tunggal dengan telematik.</td></tr>
+          <tr><td><b>iVisit / iAttend / iBook / iClean / iMenara</b></td><td>Pelawat · kehadiran majlis · tempahan ameniti · rating bilik rehat · pengurusan bangunan</td><td>Domain "Fasiliti Menara Kinabalu" — sesuai untuk IoT + papan pemuka bangunan pintar.</td></tr>
+          <tr><td><b>iContact / iPortfolio / iAkses / iCertified / iFail</b></td><td>Direktori digital · portfolio · akses · pensijilan · fail</td><td>Boleh disatukan di bawah perkhidmatan identiti &amp; profil korporat.</td></tr>
+          <tr><td><b>Smart Office</b></td><td>Sistem pengurusan pejabat digital (Android)</td><td><b>Versi 1.10.0, 87 MB APK</b>, penarafan 4.6 — diedarkan melalui My App Store dalaman (bukan Play Store). Model pengedaran MDM enterprise.</td></tr>
+          <tr><td><b>Bayu AI</b></td><td>AI Agent Pejabat SKN</td><td>Dibina atas <b>Botpress Webchat v2.3</b>; turut memacu "Kurator Kandungan AI" (senarai main audio) dan "Petikan Hari Ini". Titik permulaan semula jadi untuk MaaS.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin:1.15rem 0 .5rem">Aplikasi interaktif awam</h3>
+    <div class="grid g4">
+      <div class="card tight"><h4>DASS-21</h4><p class="small">Saringan minda sihat (kemurungan, kebimbangan, tekanan) berasaskan 7 hari terakhir. <b>Sistem tidak merekod ujian</b> untuk melindungi privasi — contoh reka bentuk privacy-by-design yang baik.</p></div>
+      <div class="card tight"><h4>MBTI</h4><p class="small">Ujian personaliti Myers-Briggs Type Indicator.</p></div>
+      <div class="card tight"><h4>Big Five (OCEAN)</h4><p class="small">Ujian personaliti lima faktor besar.</p></div>
+      <div class="card tight"><h4>My App Store</h4><p class="small">Katalog aplikasi mudah alih rasmi: Smart Office, iMove, JTUWMA Pro, MyJANS, Aduan Jalanraya Sabah, JTU Pay. Tapisan: Terkini / Popular / Beta / Dalaman.</p></div>
+    </div>
+
+    <h3 style="margin:1.15rem 0 .5rem">Dashboard agensi &amp; pautan luaran</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Dashboard / Sistem</th><th>Hos</th><th>Peranan</th></tr></thead>
+        <tbody>
+          <tr><td>Sabah Maju Jaya</td><td class="mono">mbj.sabah.gov.my</td><td>Pemantauan agenda pembangunan negeri</td></tr>
+          <tr><td>Jabatan Tanah dan Ukur</td><td class="mono">jtu.sabah.gov.my/dashboard</td><td>Tanah &amp; ukur</td></tr>
+          <tr><td>Kementerian Sains, Teknologi &amp; Inovasi</td><td class="mono">datastudio.google.com</td><td>Looker Studio embed</td></tr>
+          <tr><td>Kementerian Belia &amp; Sukan</td><td class="mono">lookerstudio.google.com</td><td>Looker Studio embed</td></tr>
+          <tr><td>Youth Management System</td><td class="mono">ekbss.sabah.gov.my</td><td>Belia</td></tr>
+          <tr><td>Pelan Antirasuah Organisasi (OACP)</td><td class="mono">i-do.sabah.gov.my/dashboardKhas</td><td>Integriti</td></tr>
+          <tr><td>Dashboard Aduan</td><td class="mono">i-adu.sabah.gov.my/aduan-uins/dashboard</td><td>Aduan penyampaian perkhidmatan</td></tr>
+          <tr><td>Portal Aduan Rasuah SPRM</td><td class="mono">portaladuan.sprm.gov.my</td><td>Antirasuah (persekutuan)</td></tr>
+          <tr><td>Sabah Roads Call Centre</td><td class="mono">sabahroads.com · 088-266600</td><td>Aduan jalan raya berturap</td></tr>
+          <tr><td>Sabah Road E-Map · Bridge &amp; Culvert Inventory</td><td class="mono">arcgis.com / glob.maps.arcgis.com</td><td>GIS aset jalan &amp; jambatan</td></tr>
+          <tr><td>Sabah Electricity Sdn. Bhd.</td><td class="mono">mysesb.com.my · 088-515000 / 15454</td><td>Aduan bekalan elektrik</td></tr>
+          <tr><td>Jabatan Air Negeri Sabah</td><td class="mono">water.sabah.gov.my · +60-88-326888</td><td>Aduan bekalan air</td></tr>
+          <tr><td>Jabatan Perkhidmatan Pembentungan Sabah</td><td class="mono">jpp.sabah.gov.my · 1-800-88-7995</td><td>Pembentungan (Enakmen 2017)</td></tr>
+          <tr><td>Power BI embed</td><td class="mono">app.powerbi.com</td><td>Laporan korporat</td></tr>
+          <tr><td>Pusat arahan COVID-19 (warisan)</td><td class="mono">command.sabah.gov.my</td><td>Masih dipaut dari portal — peninggalan 2020–2022</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 5. TREND ============================ -->
+<section id="trend">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">05</div>
+      <div>
+        <h2>Analisis Trend Pembangunan Aplikasi 2020–2025</h2>
+        <p>Data kuantitatif yang diisytiharkan sendiri oleh Kerajaan Negeri — berguna untuk saiz pasaran,
+        unjuran pertumbuhan dan justifikasi pelaburan platform.</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tahun</th><th class="num">Bilangan aplikasi</th><th class="num">Pertumbuhan tahunan</th><th>Fasa</th></tr></thead>
+        <tbody>
+          <tr><td>2020</td><td class="num">106</td><td class="num">—</td><td>Asas</td></tr>
+          <tr><td>2021</td><td class="num">144</td><td class="num">+35.8%</td><td>Pertumbuhan</td></tr>
+          <tr><td>2022</td><td class="num">233</td><td class="num"><b>+61.8%</b></td><td><span class="pill ok">Fasa expansion terbesar</span></td></tr>
+          <tr><td>2023</td><td class="num">283</td><td class="num">+21.5%</td><td>Pemantapan</td></tr>
+          <tr><td>2024</td><td class="num">290</td><td class="num">+2.5%</td><td><span class="pill part">Pemantapan &amp; penyelenggaraan</span></td></tr>
+          <tr><td>2025 <span class="tag">unjuran</span></td><td class="num">295–305 <i>(sederhana)</i><br>&gt;320 <i>(agresif)</i></td><td class="num">+2–5% atau lebih</td><td>Bergantung dasar &amp; pembiayaan</td></tr>
+          <tr><td><b>Semasa (portal)</b></td><td class="num"><b>336</b></td><td class="num">—</td><td><span class="pill na">Rekod langsung</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid g2" style="margin-top:1rem">
+      <div class="card">
+        <h3>Faktor pemacu pertumbuhan (mengikut analisis portal)</h3>
+        <ul class="clean">
+          <li>Dasar kerajaan negeri mempercepat transformasi digital.</li>
+          <li>Kesedaran rakyat terhadap kemudahan perkhidmatan dalam talian.</li>
+          <li>Perkembangan infrastruktur ICT yang lebih kukuh.</li>
+          <li>Kestabilan pentadbiran yang konsisten.</li>
+          <li>Lonjakan 2022 dikaitkan dengan sistem baharu pasca pandemik COVID-19 dan perluasan capaian luar bandar.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Kesan sampingan yang diakui portal</h3>
+        <ul class="clean cross">
+          <li>Semakin banyak aplikasi → semakin besar keperluan <b>keselamatan siber</b>.</li>
+          <li>Keperluan sistem <b>penyelenggaraan yang konsisten</b>.</li>
+          <li>Keperluan <b>mekanisme audit keberkesanan aplikasi</b> agar kekal relevan.</li>
+        </ul>
+        <p class="small" style="margin-top:.5rem">Ini ialah pengakuan rasmi bahawa kos operasi 336 aplikasi
+        kini mengatasi nilai tambahnya — justifikasi paling kukuh untuk platform pengurusan kitar hayat aplikasi (ALM).</p>
+      </div>
+    </div>
+
+    <h3 style="margin:1.15rem 0 .5rem">5 Strategi Pemerkasaan Pengurusan Aplikasi Kerajaan (diisytiharkan rasmi)</h3>
+    <div class="grid g2">
+      <div class="card tight"><h4>01 · Pembangunan “Super App”</h4><p class="small">Satu portal atau super app bersepadu bagi mengurangkan pertindihan fungsi antara aplikasi serta memudahkan akses perkhidmatan.</p><span class="tag b">Belum dilaksanakan</span></div>
+      <div class="card tight"><h4>02 · Audit &amp; Pemantauan Keberkesanan</h4><p class="small">Audit berkala serta pemantauan prestasi bagi memastikan keberkesanan, nilai tambah dan kesesuaian penggunaan sistem.</p><span class="tag g">Sebahagian (inventori wujud)</span></div>
+      <div class="card tight"><h4>03 · Keselamatan Siber &amp; Perlindungan Data</h4><p class="small">Memperkukuh tahap keselamatan siber dan perlindungan data bagi menjamin integriti, kerahsiaan dan kebolehpercayaan sistem.</p><span class="tag r">Jurang besar (PHP 7.4 EOL)</span></div>
+      <div class="card tight"><h4>04 · Latihan Kemahiran Digital Berterusan</h4><p class="small">Latihan berterusan kepada penjawat awam; perkukuh kemahiran digital rakyat khususnya teknologi terkini seperti AI.</p><span class="tag g">Sebahagian (Amanat 2026)</span></div>
+      <div class="card tight"><h4>05 · Analitik Data &amp; Urus Tadbir Aplikasi</h4><p class="small">Kenal pasti aplikasi bernilai tinggi dan <b>tutup aplikasi kurang digunakan</b>; tingkatkan kecekapan kos, sumber dan pengalaman pengguna.</p><span class="tag r">Tiada metrik penggunaan</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 6. INTEGRITI ============================ -->
+<section id="integriti" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">06</div>
+      <div>
+        <h2>Integriti, Governans &amp; Antirasuah (BIGONS)</h2>
+        <p>Salah satu daripada tiga tonggak Misi PSKN. Domain ini kaya dengan peraturan bertulis yang
+        sangat sesuai untuk automasi dan ejen AI berasaskan pengetahuan (RAG).</p>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <h3>Polisi Integriti &amp; Antirasuah — 6 Pelan Tindakan</h3>
+        <ol style="font-size:.875rem;color:var(--ink-2)">
+          <li>Tidak melibatkan diri dalam sebarang bentuk jenayah rasuah, salah guna kuasa atau penyelewengan, secara langsung atau tidak.</li>
+          <li><b>Menolak</b> segala bentuk tawaran rasuah dan melaporkan kepada <b>SPRM</b> dengan segera.</li>
+          <li>Menutup ruang dan peluang yang terdedah kepada amalan rasuah dalam semua urusan.</li>
+          <li>Memupuk amalan integriti dan membudayakan nilai antirasuah dalam pelaksanaan tugas.</li>
+          <li>Bertindak tegas terhadap pihak yang melanggar undang-undang atau mengugat integriti dan imej jabatan.</li>
+          <li>Bekerjasama sepenuhnya dengan mana-mana pihak dalam memerangi jenayah rasuah, salah guna kuasa atau penyelewengan.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Aset &amp; perkhidmatan BIGONS</h3>
+        <div>
+          <span class="tag t">Inisiatif Governans, Integriti &amp; Antirasuah (GIA)</span>
+          <span class="tag t">Koleksi Hebahan Integriti</span>
+          <span class="tag t">i-Adu — sistem aduan</span>
+          <span class="tag t">RDINS — Repositori Dasar Integriti Negeri Sabah</span>
+          <span class="tag t">CeIO — Pegawai Integriti Bertauliah</span>
+          <span class="tag t">Pangkalan Data Pesalah Rasuah</span>
+          <span class="tag t">Data Individu Dikehendaki SPRM</span>
+          <span class="tag t">SPRM</span>
+          <span class="tag t">MACA — Akademi Pencegahan Rasuah Malaysia</span>
+          <span class="tag t">PINTAR — Pelan Integriti &amp; Antirasuah</span>
+          <span class="tag t">OACP / i-DO</span>
+          <span class="tag t">Minggu Integriti Kementerian (MIK)</span>
+        </div>
+        <p class="small" style="margin-top:.6rem">
+          BIGONS beroperasi di <b>Aras 8, Blok A, Menara Kinabalu</b> dengan tiga unit operasi:
+          Pengurusan Tatatertib · Tadbir Urus &amp; Pengukuhan Integriti · Pematuhan, Pengesanan &amp; Pengesahan.
+        </p>
+      </div>
+    </div>
+
+    <div class="note warn" style="margin-top:.9rem">
+      <b>Peluang produk yang paling matang</b>
+      Kandungan integriti Sabah adalah <b>sangat terstruktur dan berasaskan peraturan</b>: ambang RM500 / ¼ emolumen,
+      14 jenis hadiah, 6 pelan tindakan, rujukan Akta &amp; Kanun Keseksaan. Ini menjadikannya calon terbaik untuk
+      <b>pilot pertama</b> bagi <i>Policy RAG Agent</i> dan <i>Integrity Compliance Agent</i> — risiko rendah,
+      nilai demonstrasi tinggi, dan pemilik prosesnya sudah dikenal pasti.
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 7. TEKNIKAL ============================ -->
+<section id="teknikal">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">07</div>
+      <div>
+        <h2>Penilaian Teknikal Seni Bina Semasa</h2>
+        <p>Dapatan daripada analisis respons HTTP, meta tag dan aset halaman — asas kepada penilaian risiko
+        dan pelan migrasi.</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Lapisan</th><th>Dapatan</th><th>Status</th><th>Implikasi</th></tr></thead>
+        <tbody>
+          <tr><td>CMS</td><td><b>Joomla 3</b> (<code>&lt;html class="j3"&gt;</code>) + tema <b>T4 / JA Blockk</b></td><td><span class="pill no">EOL</span></td><td>Tiada patch keselamatan; migrasi ke Joomla 5 atau headless wajib.</td></tr>
+          <tr><td>Bahasa pelayan</td><td><b>PHP 7.4.33</b></td><td><span class="pill no">EOL Nov 2022</span></td><td>Risiko tertinggi — pematuhan audit keselamatan tidak dapat dipenuhi.</td></tr>
+          <tr><td>Pembina borang</td><td><b>Fabrik</b> (komponen Joomla) — digunakan oleh iMeet, iTerima, iRespon</td><td><span class="pill part">Usang</span></td><td>Boragn kompleks bersyarat; gantikan dengan form engine moden + API.</td></tr>
+          <tr><td>Pustaka klien</td><td>MooTools + jQuery, Bootstrap bundle, Font Awesome 4.6, RequireJS</td><td><span class="pill part">Campuran</span></td><td>Beban halaman berat (317 KB HTML laman utama); perlu rasionalisasi.</td></tr>
+          <tr><td>Sembang AI</td><td><b>Botpress Webchat v2.3</b> (konfigurasi di <code>files.bpcontent.cloud</code>)</td><td><span class="pill part">Peringkat awal</span></td><td>Pihak ketiga, tiada RAG korporat; data keluar daripada kawalan negeri.</td></tr>
+          <tr><td>Papan pemuka</td><td>Google <b>Looker Studio / Data Studio</b> (15+ embed), <b>ArcGIS</b>, <b>Power BI</b></td><td><span class="pill na">Pihak ketiga</span></td><td>Tiada lapisan data sendiri; bergantung pada embed luaran.</td></tr>
+          <tr><td>Identiti</td><td>SAA — Single Application Authentication, Portal SSO, SM2, apps.sabah.gov.my, eprestasi, erawatan, esoca</td><td><span class="pill part">Berpecah</span></td><td>Tiada IdP tunggal → pengalaman pengguna terputus, audit sukar.</td></tr>
+          <tr><td>Hos / WAF</td><td><b>Sabah Net</b> (WAF aktif; blok dengan mesej "This Web Page is Blocked")</td><td><span class="pill ok">Ada</span></td><td>WAF bersedia mengehadkan automasi — rayapan perlu beretika &amp; berperingkat.</td></tr>
+          <tr><td>Header keselamatan</td><td>HSTS (max-age 15552000), CSP <code>upgrade-insecure-requests</code>, X-Frame-Options SAMEORIGIN, X-XSS-Protection, X-Content-Type-Options nosniff, Referrer-Policy</td><td><span class="pill ok">Baik</span></td><td>Asas keselamatan pengangkutan sudah betul; kelemahan pada lapisan aplikasi.</td></tr>
+          <tr><td>Cache</td><td><code>Cache-Control: no-store, no-cache, must-revalidate</code></td><td><span class="pill part">Konservatif</span></td><td>Tiada CDN/edge caching → beban pelayan tinggi pada trafik puncak.</td></tr>
+          <tr><td>Intranet G2E</td><td><code>sww.jpkn.sabah.gov.my</code> (18 sistem, sebahagian masih <b>HTTP</b>), <code>apps.sabah.gov.my</code>, <code>appjpan.sabah.gov.my</code></td><td><span class="pill no">Bercampur HTTP/HTTPS</span></td><td>Kredensial &amp; data peribadi berisiko pada laluan tidak disulitkan.</td></tr>
+          <tr><td>Repositori awam</td><td>Warta Kerajaan (sabah.gov.my/gazette), eCircular, Digital Library, Flip Book, Pekeliling (47 rekod)</td><td><span class="pill ok">Baik</span></td><td>Sedia untuk diindeks menjadi korpus RAG dasar.</td></tr>
+          <tr><td>Agensi ICT negeri</td><td><b>JPKN → JTDI</b> (Jabatan Teknologi Digital dan Inovasi Negeri Sabah), penjenamaan semula <b>09 April 2026</b></td><td><span class="pill ok">Baharu</span></td><td>Rakan pelaksana utama; portal Digital Sabah (eLesen, ePP, BizSabah, VEP) ialah aset sedia ada yang boleh disambung.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid g3" style="margin-top:.9rem">
+      <div class="card tight">
+        <h4>Statistik pelawat portal (31 Ogos 2026)</h4>
+        <ul class="clean">
+          <li>Hari ini: <b>974</b></li><li>Kelmarin: <b>808</b></li>
+          <li>Minggu ini: <b>974</b></li><li>Bulan ini: <b>25,792</b></li>
+          <li>Keseluruhan: <b>1,140,012</b></li>
+        </ul>
+        <p class="small">Trafik puncak bulanan ~26k → justifikasi untuk edge caching &amp; penskalaan automatik.</p>
+      </div>
+      <div class="card tight">
+        <h4>Penunjuk makro dipaparkan di portal</h4>
+        <p class="small">Kadar pengangguran 3.0% (Mei 2026) · Penduduk 34.4 juta (2026) · IHP 137.1 (Jun 2026) ·
+        Imbangan perdagangan RM14.9b (Jun 2026) · KDNK RM437.7b (ST1 2026) / RM445.1b anggaran awal (ST2 2026).</p>
+        <p class="small">Menunjukkan selera terhadap papan pemuka data — peluang untuk <b>Data Analyst Agent</b>.</p>
+      </div>
+      <div class="card tight">
+        <h4>Kandungan "Akses Pantas" (iKnow)</h4>
+        <p class="small">Enam domain: Kesihatan &amp; Keselamatan · Pelancongan Alam · Pendidikan &amp; Kerjaya ·
+        Infrastruktur · Perniagaan &amp; Pelaburan · Sosial &amp; Kebajikan.</p>
+        <p class="small">Struktur ini boleh dijadikan <b>taksonomi perkhidmatan rakyat</b> untuk Super App.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 8. JURANG ============================ -->
+<section id="jurang" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">08</div>
+      <div>
+        <h2>Analisis Jurang Terperinci</h2>
+        <p>Penilaian domain demi domain: apa yang sudah lengkap, apa yang separuh jalan, dan apa yang
+        masih diperlukan — dipetakan terus kepada peluang produk.</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="min-width:150px">Domain</th><th>Sudah lengkap</th><th>Sebahagian / lemah</th><th>Masih diperlukan</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Identiti korporat &amp; kandungan</b></td>
+            <td>Visi/Misi/Motto 5A, latar belakang 1881–kini, sejarah 11 penyandang, biografi SKN, direktori penuh, amanat &amp; perutusan, jurnal aktiviti</td>
+            <td>Kad ucapan digital; koleksi amanat berhalaman</td>
+            <td>Carian teks penuh merentas semua repositori; arkib berindeks</td>
+            <td><span class="pill ok">Lengkap</span></td>
+          </tr>
+          <tr>
+            <td><b>Inventori aplikasi</b></td>
+            <td>336 aplikasi dengan tahun, agensi, bidang, platform, status</td>
+            <td>Pautan disorokkan untuk sistem sensitif (wajar)</td>
+            <td>Metrik penggunaan sebenar; kos setiap aplikasi; skor nilai; keputusan "tutup/simpan"</td>
+            <td><span class="pill part">Sederhana</span></td>
+          </tr>
+          <tr>
+            <td><b>Integrasi &amp; API</b></td>
+            <td>—</td>
+            <td>SAA &amp; Portal SSO wujud</td>
+            <td>API Gateway, event bus, katalog API, reka bentuk kontrak, ESB</td>
+            <td><span class="pill no">Kritikal</span></td>
+          </tr>
+          <tr>
+            <td><b>Identiti &amp; akses</b></td>
+            <td>—</td>
+            <td>SAA, SSO, SM2, apps.sabah.gov.my berasingan</td>
+            <td>IdP tunggal, MFA, RBAC/ABAC, Zero Trust, kitaran hidup akaun</td>
+            <td><span class="pill no">Kritikal</span></td>
+          </tr>
+          <tr>
+            <td><b>Data &amp; analitik</b></td>
+            <td>PADANS; RepoData; dashboard Looker/ArcGIS/Power BI</td>
+            <td>Dashboard embed pihak ketiga</td>
+            <td>Data lakehouse, katalog data, MDM, kualiti data, salasilah (lineage)</td>
+            <td><span class="pill no">Kritikal</span></td>
+          </tr>
+          <tr>
+            <td><b>Platform &amp; keselamatan</b></td>
+            <td>Header keselamatan asas; WAF Sabah Net</td>
+            <td>Pengesanan pencerobohan tidak diketahui</td>
+            <td>Migrasi PHP 7.4/Joomla 3, DevSecOps, pengurusan patch, ujian penembusan, SIEM</td>
+            <td><span class="pill no">Kritikal</span></td>
+          </tr>
+          <tr>
+            <td><b>Pemerhatian &amp; operasi</b></td>
+            <td>—</td>
+            <td>Notis gangguan talian secara manual</td>
+            <td>Status page awam, SLA/RTO/RPO, log terpusat, makluman, ITSM</td>
+            <td><span class="pill no">Kritikal</span></td>
+          </tr>
+          <tr>
+            <td><b>Pengalaman rakyat (G2C)</b></td>
+            <td>62 aplikasi; i-Adu; saluran aduan 6 kategori; iMeet</td>
+            <td>Tiada super app</td>
+            <td>Super App / portal tunggal, penjejakan status hujung ke hujung, notifikasi proaktif</td>
+            <td><span class="pill part">Sederhana</span></td>
+          </tr>
+          <tr>
+            <td><b>Perniagaan (G2B)</b></td>
+            <td>13 aplikasi; Digital Sabah (eLesen, ePP, BizSabah, VEP)</td>
+            <td>—</td>
+            <td>Pelesenan bersepadu, platform pelaburan, fasilitasi perdagangan, e-perolehan bersatu</td>
+            <td><span class="pill no">Lubang pasaran</span></td>
+          </tr>
+          <tr>
+            <td><b>Penjawat awam (G2E)</b></td>
+            <td>38 aplikasi; webmail, cuti, slip gaji, prestasi, latihan INSAN, eRawatan; Smart Office</td>
+            <td>Sebahagian intranet masih HTTP</td>
+            <td>Profil kakitangan 360°, laluan kerjaya &amp; pembelajaran, pergerakan kakitangan (kini "tiada kebenaran")</td>
+            <td><span class="pill part">Sederhana</span></td>
+          </tr>
+          <tr>
+            <td><b>Integriti &amp; antirasuah</b></td>
+            <td>Polisi 6 pelan tindakan; iTerima; i-Adu; i-DO OACP; CeIO; RDINS</td>
+            <td>Pengesahan manual melalui surat/e-mel</td>
+            <td>Pengesanan anomali berasaskan data, pemantauan pematuhan automatik, pelaporan OACP masa nyata</td>
+            <td><span class="pill ok">Kukuh</span></td>
+          </tr>
+          <tr>
+            <td><b>AI &amp; agen</b></td>
+            <td>Bayu AI (Botpress), Kurator Kandungan AI, Amanat 2026 berteraskan AI</td>
+            <td>Tiada RAG korporat; tiada guardrail</td>
+            <td>Platform AI negeri, RAG dasar/pekeliling, tadbir urus AI, orkestrasi berbilang ejen, jejak audit</td>
+            <td><span class="pill no">Hijau (greenfield)</span></td>
+          </tr>
+          <tr>
+            <td><b>Dasar &amp; pekeliling</b></td>
+            <td>Dasar Negara (12), Dasar Kementerian (13), 47 pekeliling SKN, RepoData (10)</td>
+            <td>Senarai + pautan sahaja</td>
+            <td>Carian teks penuh, perbandingan versi, pengekstrakan klausa automatik</td>
+            <td><span class="pill part">Sederhana</span></td>
+          </tr>
+          <tr>
+            <td><b>Kebolehcapaian &amp; bahasa</b></td>
+            <td>Susun atur responsif; pilihan bahasa (terjemahan automatik)</td>
+            <td>Tiada pengisytiharan WCAG</td>
+            <td>Pematuhan WCAG 2.2 AA, sokongan BM/EN/Kadazan-Dusun/Cina, reka bentuk jalur lebar rendah</td>
+            <td><span class="pill no">Kritikal</span></td>
+          </tr>
+          <tr>
+            <td><b>Tadbir urus &amp; pematuhan</b></td>
+            <td>Penafian, Dasar Privasi, Syarat &amp; Terma, Hak Cipta</td>
+            <td>Dasar privasi umum (tiada rujukan PDPA 2010 secara tersurat)</td>
+            <td>Pematuhan PDPA 2010, klasifikasi data, pengekalan &amp; pelupusan, privasi mengikut reka bentuk</td>
+            <td><span class="pill part">Sederhana</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 9. KEPERLUAN ============================ -->
+<section id="keperluan">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">09</div>
+      <div>
+        <h2>Keperluan (Requirements)</h2>
+        <p>Spesifikasi yang digariskan terus daripada Visi/Misi/Motto 5A, strategi portal, dan jurang yang
+        dikenal pasti.</p>
+      </div>
+    </div>
+
+    <div class="grid g3">
+      <div class="card">
+        <h3>Fungsian — teras platform</h3>
+        <ul class="clean">
+          <li><b>API Gateway &amp; Integration Bus</b> — REST/GraphQL, kadar had, katalog API, pengurusan kitaran hidup API.</li>
+          <li><b>Identity Platform</b> — IdP tunggal, SSO, MFA, RBAC/ABAC, peruntukan &amp; nyahperuntukan akaun.</li>
+          <li><b>Data Lakehouse</b> — ingest, katalog, salasilah, kualiti, kawalan akses berasaskan klasifikasi.</li>
+          <li><b>Workflow &amp; Orchestration Engine</b> — enjin proses untuk kelulusan, aduan, janji temu, perolehan.</li>
+          <li><b>Notification Hub</b> — e-mel, SMS, WhatsApp, push; templat berbilang bahasa; keutamaan pengguna.</li>
+          <li><b>Document &amp; Records Management</b> — repositori terperingkat, e-tandatangan, pengekalan, audit.</li>
+          <li><b>App Registry &amp; ALM</b> — inventori langsung, telemetri penggunaan, skor nilai, aliran penutupan sistem.</li>
+          <li><b>Executive Command Centre</b> — papan pemuka untuk SKN, Kabinet dan Ketua Jabatan.</li>
+          <li><b>Citizen 360 / Officer 360</b> — pandangan bersepadu merentas 336 aplikasi.</li>
+          <li><b>Audit Trail</b> yang tidak boleh diubah untuk semua tindakan berprivilege.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Bukan fungsian (daripada Motto 5A)</h3>
+        <ul class="clean">
+          <li><b>Ketersediaan</b> ≥ 99.9% untuk perkhidmatan awam kritikal; 99.5% untuk dalaman.</li>
+          <li><b>RTO ≤ 4 jam · RPO ≤ 15 minit</b> untuk sistem Tier-1; BCDR berbilang zon.</li>
+          <li><b>Kebolehskalaan</b> — autoscaling; diuji pada 3× trafik puncak bulanan (~78k/bulan).</li>
+          <li><b>Prestasi</b> — masa muat &lt;2.5s pada 3G; saiz halaman turun daripada ~317 KB.</li>
+          <li><b>Kebolehcapaian</b> — WCAG 2.2 AA; navigasi papan kekunci; kontras ≥4.5:1.</li>
+          <li><b>Responsif peranti</b> — telefon, tablet, desktop, kios; PWA dengan mod luar talian.</li>
+          <li><b>Penyulitan</b> — TLS 1.3 dalam pengangkutan; AES-256 semasa rehat; pengurusan kunci berpusat.</li>
+          <li><b>Pemerhatian</b> — log berpusat, metrik, surihan (tracing), makluman, status page awam.</li>
+          <li><b>Berbilang penyewa (multi-tenancy)</b> — pengasingan data mengikut kementerian/jabatan/agensi.</li>
+          <li><b>Kedaulatan data</b> — pengehosan dalam Malaysia; klasifikasi Terbuka / Dalaman / Sulit / Terperingkat.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Pematuhan &amp; tadbir urus</h3>
+        <ul class="clean">
+          <li><b>Akta Perlindungan Data Peribadi 2010</b> (PDPA) — notis, persetujuan, hak akses, pemindahan rentas sempadan.</li>
+          <li><b>Arahan Keselamatan ICT Kerajaan</b> (MAMPU) &amp; Dasar Keselamatan Siber Negara (NACP).</li>
+          <li><b>ISO/IEC 27001</b> untuk ISMS; ISO/IEC 27017/27018 untuk awan.</li>
+          <li><b>MyGovCloud / MyDIGITAL / Pelan Strategik Pendigitalan Sektor Awam</b>.</li>
+          <li><b>Pekeliling Am &amp; Arahan Perbendaharaan</b> — perolehan, pembayaran (SabahPay, eResit, S3P).</li>
+          <li><b>Akta Pencegahan Rasuah 1997</b> &amp; Kanun Keseksaan (seksyen 161/162/165) bagi modul integriti.</li>
+          <li><b>Tadbir urus AI</b> — ketelusan, kebolehjelasan, pengawasan manusia, pengurusan berat sebelah, jejak audit model.</li>
+          <li><b>Pengurusan rekod</b> — Akta Arkib Negara; pengekalan &amp; pelupusan mengikut jadual.</li>
+          <li><b>Kebolehcapaian</b> — piawaian WCAG &amp; garis panduan 1Gov.</li>
+          <li><b>Pengauditan</b> — log kekal, tidak boleh diubah, boleh dieksport untuk audit dalaman &amp; Jabatan Audit Negara.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note crit" style="margin-top:.9rem">
+      <b>Kekangan yang mesti dihormati semasa mereka bentuk</b>
+      WAF Sabah Net secara aktif menyekat permintaan automatik (mesej <i>"This Web Page is Blocked"</i>).
+      Sebarang penyegerakan data mestilah <b>berlesen, berjadual, dan dihadkan kadarnya</b> — atau lebih baik,
+      dilaksanakan melalui <b>perjanjian pertukaran data rasmi (API/ETL)</b> dengan JTDI dan PSKN
+      dan bukannya merayap secara langsung.
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 10. PENAWARAN ============================ -->
+<section id="tawaran" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">10</div>
+      <div>
+        <h2>Katalog Penawaran — SaaS · PaaS · MaaS</h2>
+        <p>Apa yang boleh ditawarkan kepada PSKN / Kerajaan Negeri Sabah, dipetakan kepada jurang yang
+        telah dikenal pasti dan strategi rasmi negeri.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom:.5rem"><span class="tag b">SaaS</span> Perisian sedia guna, berasaskan langganan</h3>
+    <div class="tbl-wrap" style="margin-bottom:1.1rem">
+      <table>
+        <thead><tr><th>Produk</th><th>Menutup jurang</th><th>Pengguna</th><th>Kematangan pasaran</th></tr></thead>
+        <tbody>
+          <tr><td><b>GovApp Registry &amp; Lifecycle</b></td><td>Strategi 2 &amp; 5 — audit berkala + tutup aplikasi kurang digunakan</td><td>Pegawai Pendigitalan, JTDI</td><td><span class="pill ok">Tinggi — data sudah ada</span></td></tr>
+          <tr><td><b>Unified Feedback &amp; Complaint Hub</b> (i-Adu+)</td><td>6 saluran aduan berasingan; tiada penjejakan hujung ke hujung</td><td>BIGONS, rakyat, agensi</td><td><span class="pill ok">Tinggi</span></td></tr>
+          <tr><td><b>Integrity &amp; Gift Declaration Suite</b></td><td>iTerima manual; pengesahan melalui surat</td><td>BIGONS, semua penjawat awam</td><td><span class="pill ok">Tinggi</span></td></tr>
+          <tr><td><b>Meeting, Visit &amp; Protocol Management</b> (iMeet+)</td><td>Protokol KAPS/KLTL/dron yang kompleks tetapi manual</td><td>PSKN, Pegawai Khas</td><td><span class="pill ok">Tinggi</span></td></tr>
+          <tr><td><b>Policy &amp; Circular Repository</b> dengan carian penuh</td><td>72 dokumen dasar/pekeliling tanpa carian teks</td><td>Semua agensi</td><td><span class="pill part">Sederhana</span></td></tr>
+          <tr><td><b>Staff Wellbeing &amp; Psychometric Suite</b></td><td>DASS-21 / MBTI / Big Five berdiri sendiri</td><td>JPANS, HR</td><td><span class="pill part">Sederhana</span></td></tr>
+          <tr><td><b>Executive Command Centre</b></td><td>Papan pemuka berselerak merentas Looker/ArcGIS/Power BI</td><td>SKN, Kabinet</td><td><span class="pill ok">Tinggi</span></td></tr>
+          <tr><td><b>G2B Licensing &amp; Investment Platform</b></td><td>G2B hanya 13 aplikasi — lubang pasaran terbesar</td><td>Perniagaan, pelabur, PBT</td><td><span class="pill part">Sederhana</span></td></tr>
+          <tr><td><b>ITSM &amp; Service Desk</b></td><td>Tiada status page, tiada SLA awam</td><td>JTDI, PSKN</td><td><span class="pill ok">Tinggi</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-bottom:.5rem"><span class="tag t">PaaS</span> Platform asas untuk pembangunan &amp; integrasi</h3>
+    <div class="tbl-wrap" style="margin-bottom:1.1rem">
+      <table>
+        <thead><tr><th>Platform</th><th>Menutup jurang</th><th>Catatan pelaksanaan</th></tr></thead>
+        <tbody>
+          <tr><td><b>API Gateway &amp; Integration Bus</b></td><td>336 aplikasi dalam silo</td><td>Mula dengan 10 API bernilai tinggi (aduan, janji temu, direktori, dasar, kakitangan)</td></tr>
+          <tr><td><b>Identity &amp; Access Platform</b></td><td>SAA / SSO / SM2 berpecah</td><td>Sambung ke direktori sedia ada; gulung keluar MFA secara berperingkat</td></tr>
+          <tr><td><b>Data Lakehouse &amp; Analytics</b></td><td>Tiada katalog data / MDM</td><td>Mula dengan domain aduan + aplikasi + integriti</td></tr>
+          <tr><td><b>Workflow &amp; Orchestration Engine</b></td><td>Kelulusan manual</td><td>Modelkan semula aliran iHemah &amp; iTerima sebagai proses rujukan</td></tr>
+          <tr><td><b>Notification Hub</b></td><td>Notis gangguan manual</td><td>WhatsApp Business + e-mel + SMS; keutamaan mengikut bahasa</td></tr>
+          <tr><td><b>Document &amp; Records Platform</b></td><td>iDocs / iTrack berasingan</td><td>Klasifikasi keselamatan + DLP + e-tandatangan</td></tr>
+          <tr><td><b>AI / LLM Platform</b></td><td>Tiada RAG korporat</td><td>Vektor store + penghalaan model + guardrail + jejak audit</td></tr>
+          <tr><td><b>Container &amp; DevSecOps</b></td><td>PHP 7.4 / Joomla 3 EOL</td><td>Laluan migrasi berperingkat: strangler-fig, bukan big-bang</td></tr>
+          <tr><td><b>Mobile App Distribution (MDM)</b></td><td>My App Store dalaman</td><td>Smart Office 87 MB APK menunjukkan keperluan pengedaran enterprise</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-bottom:.5rem"><span class="tag p">MaaS</span> Model sebagai perkhidmatan</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Model / keupayaan</th><th>Kegunaan</th><th>Korpus atau isyarat latihan</th></tr></thead>
+        <tbody>
+          <tr><td><b>Bayu AI 2.0 — LLM + RAG</b></td><td>Pembantu perbualan untuk rakyat &amp; penjawat awam</td><td>72 dasar/pekeliling, 336 penerangan aplikasi, FAQ, direktori</td></tr>
+          <tr><td><b>OCR / ICR + Klasifikasi Dokumen (BM)</b></td><td>Warta, pekeliling, borang, surat rasmi</td><td>Repositori Warta &amp; eCircular, 47 pekeliling</td></tr>
+          <tr><td><b>Pertuturan-ke-Teks &amp; Terjemahan</b></td><td>BM ↔ EN ↔ Kadazan-Dusun ↔ Cina; saluran suara luar bandar</td><td>Kandungan portal sedia ada; keperluan i18n yang diisytiharkan</td></tr>
+          <tr><td><b>Pengelas &amp; Penghala Aduan</b></td><td>Triaj automatik ke 6 saluran aduan</td><td>Taksonomi aduan sedia ada (jalan, elektrik, air, pembentungan, penyampaian, rasuah)</td></tr>
+          <tr><td><b>Pengesanan Anomali Integriti</b></td><td>Pengesahan iTerima, risiko rasuah, OACP</td><td>Ambang RM500 / ¼ emolumen; 14 jenis hadiah; 6 pelan tindakan</td></tr>
+          <tr><td><b>Analitik Ramalan</b></td><td>Banjir, aset jalan, kutipan hasil, pelancongan</td><td>Dashboard ArcGIS (jalan/jambatan), RepoData, penunjuk makro</td></tr>
+          <tr><td><b>Enjin Syor Pembelajaran</b></td><td>Latihan penjawat awam (INSAN, SiLK, JPSM)</td><td>Sistem latihan sedia ada; 38 aplikasi G2E</td></tr>
+          <tr><td><b>Runtime Orkestrasi Agen</b></td><td>Mengorkestrakan berbilang ejen dengan pengawasan manusia</td><td>Lihat seksyen 11</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 11. AGENTIC ============================ -->
+<section id="agentic">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">11</div>
+      <div>
+        <h2>Seni Bina Orkestrasi Agentic</h2>
+        <p>Cadangan rujukan seni bina untuk lapisan ejen — selaras dengan tema Amanat 2026
+        <i>“Beyond Digitalisation: Building an AI-Enabled Public Service”</i>.</p>
+      </div>
+    </div>
+
+    <div class="diagram">
+      <svg viewBox="0 0 1180 720" role="img" aria-label="Rajah seni bina orkestrasi agentic untuk Kerajaan Negeri Sabah">
+        <defs>
+          <linearGradient id="gBrand" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#0b3d62"/><stop offset="100%" stop-color="#12756b"/>
+          </linearGradient>
+          <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#c8912a"/><stop offset="100%" stop-color="#b57d12"/>
+          </linearGradient>
+          <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+            <path d="M0,0 L7,3 L0,6 z" fill="#8fa3b5"/>
+          </marker>
+        </defs>
+        <style>
+          .bx{fill:#ffffff;stroke:#cfd9e2;rx:8}
+          .tt{font:600 13px 'Segoe UI',Arial,sans-serif;fill:#12212e}
+          .st{font:11px 'Segoe UI',Arial,sans-serif;fill:#6b7c8d}
+          .hd{font:600 11px 'Segoe UI',Arial,sans-serif;fill:#ffffff;letter-spacing:.06em}
+          .lb{font:11px 'Segoe UI',Arial,sans-serif;fill:#3d4f60}
+        </style>
+
+        <!-- L1 Experience -->
+        <rect x="24" y="18" width="1132" height="72" rx="10" fill="#e7f0f7" stroke="#c3dcec"/>
+        <rect x="34" y="26" width="150" height="22" rx="6" fill="#0b3d62"/><text class="hd" x="46" y="41">L1 · EXPERIENCE</text>
+        <g>
+          <rect class="bx" x="196" y="34" width="150" height="42"/><text class="tt" x="271" y="56" text-anchor="middle">Portal / Super App</text><text class="st" x="271" y="70" text-anchor="middle">skn.sabah.gov.my</text>
+          <rect class="bx" x="356" y="34" width="130" height="42"/><text class="tt" x="421" y="56" text-anchor="middle">WhatsApp</text><text class="st" x="421" y="70" text-anchor="middle">Bayu AI</text>
+          <rect class="bx" x="496" y="34" width="130" height="42"/><text class="tt" x="561" y="56" text-anchor="middle">Suara / Telefon</text><text class="st" x="561" y="70" text-anchor="middle">088-369900</text>
+          <rect class="bx" x="636" y="34" width="130" height="42"/><text class="tt" x="701" y="56" text-anchor="middle">Kiosk / Kaunter</text><text class="st" x="701" y="70" text-anchor="middle">Aras 28</text>
+          <rect class="bx" x="776" y="34" width="150" height="42"/><text class="tt" x="851" y="56" text-anchor="middle">My App Store</text><text class="st" x="851" y="70" text-anchor="middle">Smart Office</text>
+          <rect class="bx" x="936" y="34" width="200" height="42"/><text class="tt" x="1036" y="56" text-anchor="middle">Portal Agensi</text><text class="st" x="1036" y="70" text-anchor="middle">JTDI · Digital Sabah · 11 Kementerian</text>
+        </g>
+        <path d="M590 90 L590 112" stroke="#8fa3b5" stroke-width="1.5" marker-end="url(#ar)"/>
+
+        <!-- L2 Orchestrator -->
+        <rect x="24" y="116" width="1132" height="118" rx="10" fill="#fdf3dd" stroke="#f0dcb0"/>
+        <rect x="34" y="124" width="196" height="22" rx="6" fill="#b57d12"/><text class="hd" x="46" y="139">L2 · AGENTIC ORCHESTRATOR</text>
+        <g>
+          <rect class="bx" x="246" y="132" width="150" height="88"/><text class="tt" x="321" y="154" text-anchor="middle">Planner</text>
+            <text class="st" x="256" y="170">• mengurai niat</text><text class="st" x="256" y="184">• memecah tugasan</text>
+            <text class="st" x="256" y="198">• menjana pelan</text><text class="st" x="256" y="212">• menilai semula</text>
+          <rect class="bx" x="406" y="132" width="150" height="88"/><text class="tt" x="481" y="154" text-anchor="middle">Router</text>
+            <text class="st" x="416" y="170">• padanan ejen</text><text class="st" x="416" y="184">• laluan sandaran</text>
+            <text class="st" x="416" y="198">• penghalaan model</text><text class="st" x="416" y="212">• kawalan kos</text>
+          <rect class="bx" x="566" y="132" width="150" height="88"/><text class="tt" x="641" y="154" text-anchor="middle">Policy Engine</text>
+            <text class="st" x="576" y="170">• guardrail</text><text class="st" x="576" y="184">• klasifikasi data</text>
+            <text class="st" x="576" y="198">• eskalasi manusia</text><text class="st" x="576" y="212">• PDPA</text>
+          <rect class="bx" x="726" y="132" width="150" height="88"/><text class="tt" x="801" y="154" text-anchor="middle">Memory</text>
+            <text class="st" x="736" y="170">• kerja / episodik</text><text class="st" x="736" y="184">• semantik (vektor)</text>
+            <text class="st" x="736" y="198">• profil pengguna</text><text class="st" x="736" y="212">• sebut harga sumber</text>
+          <rect class="bx" x="886" y="132" width="130" height="88"/><text class="tt" x="951" y="154" text-anchor="middle">Tool Registry</text>
+            <text class="st" x="896" y="170">• skema alat</text><text class="st" x="896" y="184">• kebenaran</text>
+            <text class="st" x="896" y="198">• versi</text><text class="st" x="896" y="212">• kebolehlihatan</text>
+          <rect class="bx" x="1026" y="132" width="110" height="88"/><text class="tt" x="1081" y="154" text-anchor="middle">Evaluator</text>
+            <text class="st" x="1036" y="170">• ketepatan</text><text class="st" x="1036" y="184">• keselamatan</text>
+            <text class="st" x="1036" y="198">• jejak audit</text>
+        </g>
+        <path d="M590 234 L590 256" stroke="#8fa3b5" stroke-width="1.5" marker-end="url(#ar)"/>
+
+        <!-- L3 Agents -->
+        <rect x="24" y="260" width="1132" height="150" rx="10" fill="#e2f2f0" stroke="#bfe0da"/>
+        <rect x="34" y="268" width="150" height="22" rx="6" fill="#12756b"/><text class="hd" x="46" y="283">L3 · AGENT ROSTER</text>
+        <g>
+          <rect class="bx" x="196" y="290" width="130" height="52"/><text class="tt" x="261" y="312" text-anchor="middle">Bayu Concierge</text><text class="st" x="261" y="328" text-anchor="middle">Q&amp;A · navigasi</text>
+          <rect class="bx" x="336" y="290" width="130" height="52"/><text class="tt" x="401" y="312" text-anchor="middle">Aduan Triage</text><text class="st" x="401" y="328" text-anchor="middle">6 saluran · SLA</text>
+          <rect class="bx" x="476" y="290" width="130" height="52"/><text class="tt" x="541" y="312" text-anchor="middle">Janji Temu</text><text class="st" x="541" y="328" text-anchor="middle">iMeet · protokol</text>
+          <rect class="bx" x="616" y="290" width="130" height="52"/><text class="tt" x="681" y="312" text-anchor="middle">Integriti</text><text class="st" x="681" y="328" text-anchor="middle">iTerima · OACP</text>
+          <rect class="bx" x="756" y="290" width="130" height="52"/><text class="tt" x="821" y="312" text-anchor="middle">Dokumen</text><text class="st" x="821" y="328" text-anchor="middle">OCR · klasifikasi</text>
+          <rect class="bx" x="896" y="290" width="130" height="52"/><text class="tt" x="961" y="312" text-anchor="middle">Dasar RAG</text><text class="st" x="961" y="328" text-anchor="middle">pekeliling · Warta</text>
+          <rect class="bx" x="1036" y="290" width="100" height="52"/><text class="tt" x="1086" y="312" text-anchor="middle">HR Wellbeing</text><text class="st" x="1086" y="328" text-anchor="middle">DASS · MBTI</text>
+        </g>
+        <g>
+          <rect class="bx" x="196" y="352" width="130" height="48"/><text class="tt" x="261" y="372" text-anchor="middle">Data Analyst</text><text class="st" x="261" y="388" text-anchor="middle">NL → SQL lakehouse</text>
+          <rect class="bx" x="336" y="352" width="130" height="48"/><text class="tt" x="401" y="372" text-anchor="middle">Ops / SRE</text><text class="st" x="401" y="388" text-anchor="middle">insiden · SLA</text>
+          <rect class="bx" x="476" y="352" width="130" height="48"/><text class="tt" x="541" y="372" text-anchor="middle">Perolehan</text><text class="st" x="541" y="388" text-anchor="middle">sebut harga · tender</text>
+          <rect class="bx" x="616" y="352" width="130" height="48"/><text class="tt" x="681" y="372" text-anchor="middle">Fasiliti Menara</text><text class="st" x="681" y="388" text-anchor="middle">iBook · iClean · KAPS</text>
+          <rect class="bx" x="756" y="352" width="130" height="48"/><text class="tt" x="821" y="372" text-anchor="middle">Fleet</text><text class="st" x="821" y="388" text-anchor="middle">iCars · iFuel · iMove</text>
+          <rect class="bx" x="896" y="352" width="130" height="48"/><text class="tt" x="961" y="372" text-anchor="middle">Kandungan</text><text class="st" x="961" y="388" text-anchor="middle">amanat · jurnal</text>
+          <rect class="bx" x="1036" y="352" width="100" height="48"/><text class="tt" x="1086" y="372" text-anchor="middle">Penterjemah</text><text class="st" x="1086" y="388" text-anchor="middle">BM · EN · KD</text>
+        </g>
+        <path d="M590 410 L590 432" stroke="#8fa3b5" stroke-width="1.5" marker-end="url(#ar)"/>
+
+        <!-- L4 Tools -->
+        <rect x="24" y="436" width="1132" height="66" rx="10" fill="#efe9f8" stroke="#d8cbe9"/>
+        <rect x="34" y="444" width="180" height="22" rx="6" fill="#5b3a8e"/><text class="hd" x="46" y="459">L4 · TOOLS &amp; CONNECTORS</text>
+        <g>
+          <rect class="bx" x="226" y="452" width="118" height="38"/><text class="tt" x="285" y="475" text-anchor="middle">REST / GraphQL</text>
+          <rect class="bx" x="354" y="452" width="118" height="38"/><text class="tt" x="413" y="475" text-anchor="middle">RPA / Legacy</text>
+          <rect class="bx" x="482" y="452" width="118" height="38"/><text class="tt" x="541" y="475" text-anchor="middle">E-mel / SMS / WA</text>
+          <rect class="bx" x="610" y="452" width="118" height="38"/><text class="tt" x="669" y="475" text-anchor="middle">GIS (ArcGIS)</text>
+          <rect class="bx" x="738" y="452" width="118" height="38"/><text class="tt" x="797" y="475" text-anchor="middle">SabahPay</text>
+          <rect class="bx" x="866" y="452" width="118" height="38"/><text class="tt" x="925" y="475" text-anchor="middle">E-tandatangan</text>
+          <rect class="bx" x="994" y="452" width="132" height="38"/><text class="tt" x="1060" y="475" text-anchor="middle">Sistem 336 aplikasi</text>
+        </g>
+        <path d="M590 502 L590 524" stroke="#8fa3b5" stroke-width="1.5" marker-end="url(#ar)"/>
+
+        <!-- L5 Platform services -->
+        <rect x="24" y="528" width="1132" height="66" rx="10" fill="#eef2f6" stroke="#cfd9e2"/>
+        <rect x="34" y="536" width="196" height="22" rx="6" fill="#3d4f60"/><text class="hd" x="46" y="551">L5 · PLATFORM SERVICES (PaaS)</text>
+        <g>
+          <rect class="bx" x="240" y="544" width="110" height="38"/><text class="tt" x="295" y="567" text-anchor="middle">IdP / SSO</text>
+          <rect class="bx" x="360" y="544" width="110" height="38"/><text class="tt" x="415" y="567" text-anchor="middle">API Gateway</text>
+          <rect class="bx" x="480" y="544" width="110" height="38"/><text class="tt" x="535" y="567" text-anchor="middle">Event Bus</text>
+          <rect class="bx" x="600" y="544" width="110" height="38"/><text class="tt" x="655" y="567" text-anchor="middle">Lakehouse</text>
+          <rect class="bx" x="720" y="544" width="110" height="38"/><text class="tt" x="775" y="567" text-anchor="middle">Vector Store</text>
+          <rect class="bx" x="840" y="544" width="110" height="38"/><text class="tt" x="895" y="567" text-anchor="middle">Vault / KMS</text>
+          <rect class="bx" x="960" y="544" width="166" height="38"/><text class="tt" x="1043" y="567" text-anchor="middle">Observability &amp; Audit</text>
+        </g>
+        <path d="M590 594 L590 616" stroke="#8fa3b5" stroke-width="1.5" marker-end="url(#ar)"/>
+
+        <!-- L6 Governance -->
+        <rect x="24" y="620" width="1132" height="72" rx="10" fill="#fdecea" stroke="#f3c9c4"/>
+        <rect x="34" y="628" width="230" height="22" rx="6" fill="#b3261e"/><text class="hd" x="46" y="643">L6 · GOVERNANCE, RISK &amp; COMPLIANCE</text>
+        <g>
+          <rect class="bx" x="276" y="638" width="122" height="42"/><text class="tt" x="337" y="663" text-anchor="middle">Etika &amp; Guardrail AI</text>
+          <rect class="bx" x="408" y="638" width="122" height="42"/><text class="tt" x="469" y="663" text-anchor="middle">PDPA 2010</text>
+          <rect class="bx" x="540" y="638" width="122" height="42"/><text class="tt" x="601" y="663" text-anchor="middle">Klasifikasi Data</text>
+          <rect class="bx" x="672" y="638" width="122" height="42"/><text class="tt" x="733" y="663" text-anchor="middle">Jejak Audit Kekal</text>
+          <rect class="bx" x="804" y="638" width="122" height="42"/><text class="tt" x="865" y="663" text-anchor="middle">Human-in-the-Loop</text>
+          <rect class="bx" x="936" y="638" width="190" height="42"/><text class="tt" x="1031" y="663" text-anchor="middle">ISO 27001 · NACP · MAMPU</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="grid g2" style="margin-top:1rem">
+      <div class="card">
+        <h3>Prinsip reka bentuk orkestrasi</h3>
+        <ul class="clean">
+          <li><b>Ejen sempit, alatan luas.</b> Setiap ejen mempunyai satu tanggungjawab yang jelas dan diukur — elakkan ejen raksasa.</li>
+          <li><b>Terbuka secara lalai.</b> Semua keputusan berimpak tinggi (kewangan, tatatertib, pendedahan data) melalui <b>eskalasi manusia</b>.</li>
+          <li><b>Berasaskan rujukan.</b> Setiap jawapan mesti memetik sumber (pekeliling, dasar, rekod sistem) supaya boleh diaudit.</li>
+          <li><b>Kebolehpastian peranti &amp; bahasa.</b> Selaras dengan Motto 5A — output mesti sama baik pada telefon bimbit dan desktop, dalam BM dan EN.</li>
+          <li><b>Boleh diperhatikan.</b> Setiap larian ejen menghasilkan surihan (trace) lengkap: input, alat yang dipanggil, versi model, kos, keputusan.</li>
+          <li><b>Rendah lebar jalur.</b> Reka bentuk untuk kawasan luar bandar Sabah: muatan ringkas, degradasi anggun, sokongan luar talian.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Cadangan urutan pelancaran ejen</h3>
+        <ol style="font-size:.875rem;color:var(--ink-2)">
+          <li><b>Bayu Concierge (RAG)</b> — perluasan Bayu AI sedia ada; korpus = portal + FAQ + direktori. Risiko terendah.</li>
+          <li><b>Dasar RAG Agent</b> — 72 dasar &amp; pekeliling; nilai segera kepada semua 11 kementerian.</li>
+          <li><b>Aduan Triage Agent</b> — penghalaan 6 saluran; metrik SLA yang boleh ditunjukkan dengan jelas.</li>
+          <li><b>Integriti Agent</b> — panduan iTerima &amp; ambang RM500; pemilik proses sudah dikenali (BIGONS).</li>
+          <li><b>Janji Temu / Protokol Agent</b> — automasi semakan KAPS, KLTL, dron, jammer yang kini ditulis dalam prosa panjang.</li>
+          <li><b>Data Analyst Agent</b> — setelah lakehouse tersedia; NL→SQL untuk papan pemuka eksekutif.</li>
+          <li><b>Ops / SRE Agent</b> — setelah pemerhatian terpusat wujud.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 12. ROADMAP ============================ -->
+<section id="roadmap" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">12</div>
+      <div>
+        <h2>Pelan Hala Tuju Pelaksanaan</h2>
+        <p>Pendekatan berperingkat — setiap fasa menghasilkan nilai yang boleh ditunjukkan sambil menutup
+        jurang kritikal secara beransur.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="when">Fasa 0 · 0–3 bulan · Asas &amp; Penemuan</div>
+        <h4>Audit, tadbir urus dan kemenangan segera</h4>
+        <p>Audit penuh 336 aplikasi (nilai, kos, penggunaan, risiko). Ujian penembusan portal + pelan migrasi PHP 7.4.
+        Tubuhkan Majlis Tadbir Urus Data &amp; AI. Tetapkan klasifikasi data. Laksanakan pemerhatian asas
+        (log + status page). <b>Hasil:</b> laporan rasionalisasi aplikasi &amp; pelan migrasi yang diluluskan.</p>
+      </div>
+      <div class="tl-item">
+        <div class="when">Fasa 1 · 3–9 bulan · Platform asas</div>
+        <h4>Identiti, API, pengehosan &amp; pemerhatian</h4>
+        <p>Gulung keluar IdP/SSO + MFA merentas aplikasi utama. API Gateway fasa 1 dengan 10 API bernilai tinggi.
+        Migrasi keluar daripada PHP 7.4 / Joomla 3 secara <i>strangler-fig</i>. SIEM + status page + ITSM.
+        <b>Hasil:</b> satu identiti, satu pintu API, tiada lagi platform EOL.</p>
+      </div>
+      <div class="tl-item">
+        <div class="when">Fasa 2 · 9–18 bulan · Data &amp; pengalaman</div>
+        <h4>Lakehouse, App Registry dan Super App beta</h4>
+        <p>Data lakehouse dengan katalog &amp; salasilah, bermula dengan domain aduan, aplikasi dan integriti.
+        App Registry dengan telemetri penggunaan &amp; skor nilai (memenuhi Strategi 2 &amp; 5).
+        Notification Hub. <b>Super App beta</b> untuk 6 domain iKnow. <b>Hasil:</b> Strategi 1, 2, 5 terlaksana.</p>
+      </div>
+      <div class="tl-item">
+        <div class="when">Fasa 3 · 18–30 bulan · Platform AI &amp; agentic</div>
+        <h4>Bayu 2.0, RAG korporat &amp; orkestrasi ejen (pilot)</h4>
+        <p>Platform AI negeri: vektor store, penghalaan model, guardrail, jejak audit. Bayu 2.0 dengan RAG ke atas
+        dasar/pekeliling/FAQ. <b>Pilot 3 ejen</b> — Concierge, Dasar RAG, Aduan Triage — dengan pengawasan manusia penuh.
+        <b>Hasil:</b> Amanat 2026 "AI-Enabled Public Service" mula direalisasikan.</p>
+      </div>
+      <div class="tl-item">
+        <div class="when">Fasa 4 · 30–48 bulan · Skala &amp; ekosistem</div>
+        <h4>10+ ejen, marketplace MaaS &amp; pemerkasaan G2B</h4>
+        <p>Skala ke 10+ ejen merentas integriti, fasiliti, fleet, perolehan, HR dan operasi. Buka
+        <b>MaaS marketplace</b> untuk agensi membina ejen sendiri (self-service dengan guardrail).
+        Percepat G2B: pelesenan bersepadu, platform pelaburan, fasilitasi perdagangan.
+        <b>Hasil:</b> Kerajaan Negeri Sabah sebagai negeri peneraju pendigitalan sektor awam.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 13. RISIKO ============================ -->
+<section id="risiko">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">13</div>
+      <div>
+        <h2>Risiko &amp; Mitigasi</h2>
+        <p>Risiko yang dijangka berdasarkan dapatan teknikal, organisasi dan persekitaran dasar semasa.</p>
+      </div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Kategori</th><th>Risiko</th><th>Tahap</th><th>Mitigasi</th></tr></thead>
+        <tbody>
+          <tr><td>Teknikal</td><td>PHP 7.4.33 &amp; Joomla 3 tamat sokongan — tiada patch keselamatan</td><td><span class="pill no">Tinggi</span></td><td>Migrasi berperingkat secara strangler-fig; WAF + maya-patch sementara; keutamaan mengikut pendedahan awam</td></tr>
+          <tr><td>Teknikal</td><td>336 aplikasi bersilo; hutang integrasi yang besar</td><td><span class="pill no">Tinggi</span></td><td>API Gateway + katalog API; mula dengan 10 API bernilai tinggi; terima penyesuai legacy buat sementara</td></tr>
+          <tr><td>Keselamatan</td><td>Sebahagian intranet G2E masih menggunakan HTTP</td><td><span class="pill no">Tinggi</span></td><td>Penguatkuasaan HTTPS penuh + HSTS; audit kuki sesi; segmen rangkaian</td></tr>
+          <tr><td>Data</td><td>Pematuhan PDPA; data peribadi penjawat awam &amp; rakyat; tiada klasifikasi</td><td><span class="pill no">Tinggi</span></td><td>Klasifikasi data 4 peringkat; DLP; enkripsi semasa rehat; pengekalan &amp; pelupusan; DPIA bagi setiap sistem</td></tr>
+          <tr><td>Operasi</td><td>Tiada status page / SLA awam; notis gangguan secara manual</td><td><span class="pill part">Sederhana</span></td><td>Status page awam; SLA/RTO/RPO diisytiharkan; ITSM + makluman automatik</td></tr>
+          <tr><td>Organisasi</td><td>Rintangan perubahan; kemahiran digital tidak sekata merentas 11 kementerian</td><td><span class="pill part">Sederhana</span></td><td>Juruterbang (champion) digital di setiap agensi; latihan berterusan (Strategi 4); reka bentuk berpusatkan pengguna</td></tr>
+          <tr><td>Politik / Dasar</td><td>Pertukaran kepimpinan membawa moto &amp; penjenamaan semula baharu</td><td><span class="pill part">Sederhana</span></td><td>Produk neutral jenama; metadata agensi sebagai data rujukan dinamik; konfigurasi berasaskan dasar</td></tr>
+          <tr><td>Kewangan</td><td>Kos OPEX berterusan 336 aplikasi; kekangan perolehan</td><td><span class="pill part">Sederhana</span></td><td>Rasionalisasi berasaskan data (Strategi 5); model langganan berperingkat; penjimatan terukur dipaparkan</td></tr>
+          <tr><td>AI</td><td>Halusinasi, berat sebelah, kebocoran data melalui model pihak ketiga</td><td><span class="pill no">Tinggi</span></td><td>RAG wajib dengan petikan sumber; guardrail; pengawasan manusia; penyahkenalan; pengehosan model dalam negara</td></tr>
+          <tr><td>Vendor</td><td>Penguncian (lock-in) dengan pembekal awan atau model tertentu</td><td><span class="pill part">Sederhana</span></td><td>Seni bina terbuka; lapisan abstraksi model; kontrak boleh alih; standard terbuka (OpenAPI, OTel)</td></tr>
+          <tr><td>Akses</td><td>WAF Sabah Net menyekat automasi; rayapan tidak boleh dijadikan mekanisme penyegerakan</td><td><span class="pill part">Sederhana</span></td><td>Perjanjian pertukaran data rasmi (API/ETL) dengan JTDI &amp; PSKN; had kadar; tingkap penyegerakan berjadual</td></tr>
+          <tr><td>Kandungan</td><td>Sebahagian halaman portal memaparkan "Kandungan Sedang Dikemaskini" atau "tiada kebenaran"</td><td><span class="pill na">Rendah</span></td><td>Pemilik kandungan yang jelas; SLA kandungan; senarai semak sebelum terbit</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 14. LAMPIRAN ============================ -->
+<section id="lampiran" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">14</div>
+      <div>
+        <h2>Lampiran · Peta Sumber &amp; Metodologi</h2>
+        <p>Senarai rujukan, struktur portal yang dirayap, dan asal-usul setiap dapatan dalam dokumen ini.</p>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <h3>Struktur portal (58 halaman dirayap)</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Seksyen</th><th>Halaman</th></tr></thead>
+            <tbody>
+              <tr><td><b>Setiausaha Kerajaan Negeri</b></td><td>Biografi · 100 Hari Kepimpinan · Kad Ucapan Digital · Koleksi Amanat · Sejarah Penyandang (3 sub) · Perutusan &amp; Teks Ucapan · Jurnal</td></tr>
+              <tr><td><b>Korporat</b></td><td>Struktur Kerajaan Sabah · Latar Belakang · Visi Misi Motto · Struktur Organisasi · Direktori</td></tr>
+              <tr><td><b>BIGONS</b></td><td>Gedung Informasi · Profil Bahagian · Profil Integriti · Direktori Integriti · Polisi Integriti &amp; Antirasuah · Inisiatif GIA · Direktori CeIO</td></tr>
+              <tr><td><b>Sumber</b></td><td>Dashboard Aplikasi · Senarai Aplikasi · Digital Library · Dasar Negara · Laporan Data &amp; Statistik · Flip Book · Carian Sumber · Pekeliling · Dasar Kementerian</td></tr>
+              <tr><td><b>Media</b></td><td>Pemakluman Terkini · Hebahan Integriti · Arkib</td></tr>
+              <tr><td><b>Aplikasi</b></td><td>My App Store · DASS-21 · MBTI · Big Five · Semakan iHemah · iTerima · Kalendar</td></tr>
+              <tr><td><b>Hubungi</b></td><td>iMeet Janji Temu · Semakan Janji Temu · Direktori · Soalan Lazim · iRespon</td></tr>
+              <tr><td><b>iKnow</b></td><td>Kesihatan &amp; Keselamatan · Pelancongan Alam · Pendidikan &amp; Kerjaya · Infrastruktur · Perniagaan · Sosial &amp; Kebajikan</td></tr>
+              <tr><td><b>Perundangan</b></td><td>Penafian · Dasar Privasi · Syarat &amp; Terma · Hak Cipta · Peta Laman</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Rujukan luaran &amp; hos berkaitan</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Hos / Entiti</th><th>Peranan</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">sabah.gov.my · malaysia.gov.my</td><td>Portal induk negeri &amp; persekutuan</td></tr>
+              <tr><td class="mono">jtdi.sabah.gov.my</td><td>Jabatan Teknologi Digital dan Inovasi (bekas JPKN, April 2026) — rakan ICT negeri</td></tr>
+              <tr><td class="mono">digitalsabah.gov.my</td><td>Portal Digital Sabah: eLesen, ePP, BizSabah, VEP</td></tr>
+              <tr><td class="mono">i-adu.sabah.gov.my</td><td>Sistem aduan rasmi negeri</td></tr>
+              <tr><td class="mono">i-do.sabah.gov.my</td><td>Pelan Antirasuah Organisasi (OACP)</td></tr>
+              <tr><td class="mono">apps.sabah.gov.my</td><td>Hos aplikasi G2E (smapan, eleave, epergerakan, semakanbayaran)</td></tr>
+              <tr><td class="mono">eprestasi · erawatan · esoca.sabah.gov.my</td><td>Prestasi, rawatan, kebajikan penjawat awam</td></tr>
+              <tr><td class="mono">egjpkn.sabah.gov.my</td><td>e-GJPKN (contoh: /spkjm, /eKelulusanBLM)</td></tr>
+              <tr><td class="mono">sww.jpkn.sabah.gov.my</td><td>Intranet warisan — 18 sistem, sebahagian HTTP</td></tr>
+              <tr><td class="mono">appjpan.sabah.gov.my</td><td>INSAN-ITS, eKompentensi</td></tr>
+              <tr><td class="mono">portaladuan.sprm.gov.my</td><td>Aduan rasuah (persekutuan)</td></tr>
+              <tr><td class="mono">facebook.com/sknoffice · linkedin.com/company/sknsabah</td><td>Saluran media sosial rasmi</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:.9rem">
+      <h3>Metodologi &amp; had kajian</h3>
+      <div class="grid g3">
+        <div>
+          <h4>Kaedah</h4>
+          <ul class="clean">
+            <li>Rayapan berperingkat 58 laluan dalam domain <code>skn.sabah.gov.my</code> (6 benang, had kadar, pengenalan diri).</li>
+            <li>Pengekstrakan teks daripada HTML dengan penurasan krom laman (nav/footer/modal).</li>
+            <li>Analisis respons HTTP &amp; meta tag untuk penentuan timbunan teknologi.</li>
+            <li>Pengekstrakan senarai 331 nama aplikasi daripada penapis halaman Senarai Aplikasi.</li>
+            <li>Rujukan silang luaran: JTDI, Digital Sabah, artikel Amanat 2026.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Had yang diakui</h4>
+          <ul class="clean cross">
+            <li>Metadata per-record aplikasi (agensi/status/platform bagi setiap satu daripada 336) tidak diekstrak sepenuhnya — hanya senarai nama.</li>
+            <li>Sebahagian kandungan dimuat secara dinamik (tab, akordion) dan mungkin tidak terangkum dalam teks.</li>
+            <li>Beberapa modul memaparkan "Kandungan Sedang Dikemaskini" atau memerlukan kebenaran (contoh: Pergerakan Kakitangan).</li>
+            <li>Pengkategorian aplikasi dalam laman ini ialah anggaran kata kunci, bukan taksonomi rasmi portal.</li>
+            <li>Snapshot diambil pada 28 September 2026; data portal merekodkan kemaskini terakhir 31 Ogos 2026.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Artifak yang dihasilkan</h4>
+          <ul class="clean tick">
+            <li><code>data/raw/</code> — 58 HTML mentah + 58 teks telah dibersihkan</li>
+            <li><code>data/main/</code> — 58 ekstrak kandungan utama (Markdown)</li>
+            <li><code>data/raw/_index.json</code> — indeks URL, status, tajuk, saiz</li>
+            <li><code>assets/js/apps-data.js</code> — 331 nama aplikasi sedia dicari</li>
+            <li><code>scrape.py</code> · <code>extract_main.py</code> — boleh diulang untuk snapshot akan datang</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Kembali ke atas">↑</button>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Pangkalan Pengetahuan R&amp;D · SKN Sabah</h4>
+        <p>Dihasilkan daripada kajian mendalam portal rasmi Pejabat Setiausaha Kerajaan Negeri Sabah
+        (<a href="https://skn.sabah.gov.my/" target="_blank" rel="noopener">skn.sabah.gov.my</a>) pada 28 September 2026.</p>
+        <p>Dokumen ini bertujuan sebagai asas perancangan dalaman untuk pembangunan perkhidmatan perisian,
+        orkestrasi agentic dan keperluan SaaS / PaaS / MaaS.</p>
+      </div>
+      <div>
+        <h4>Navigasi pantas</h4>
+        <p>
+          <a href="#ringkasan">Ringkasan</a> · <a href="#profil">Visi Misi Moto</a> ·
+          <a href="#inventori">Inventori Aplikasi</a> · <a href="#jurang">Analisis Jurang</a> ·
+          <a href="#tawaran">Katalog Penawaran</a> · <a href="#agentic">Seni Bina Agentic</a> ·
+          <a href="#roadmap">Roadmap</a>
+        </p>
+      </div>
+      <div>
+        <h4>Nota penggunaan</h4>
+        <p>Kandungan asal portal adalah hak cipta Kerajaan Negeri Sabah. Petikan digunakan bagi tujuan
+        kajian, analisis dan perancangan dalaman. Data hendaklah disahkan semula sebelum digunakan
+        untuk sebarang keputusan rasmi.</p>
+      </div>
+    </div>
+    <div class="legal">
+      Snapshot: 28 September 2026 · Portal dikemaskini 31 Ogos 2026 · 58 halaman · 331 nama aplikasi ·
+      Versi dokumen 1.0
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/apps-data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>al-Quran (Hafazan): Surah at-Takathur &mdash; Pendidikan Islam Tahun 4</title>
+<style>
+  :root{
+    --sky1:#e0ece8; --sky2:#f0f6f3; --sky3:#e8f0ed;
+    --grass1:#a0c8bc; --grass2:#1a4a3e; --grass3:#0e2a22;
+    --paper:#f5faf8; --ink:#1a2422; --muted:#6a7a72;
+    --gold:#8a6a2a; --teal:#6a4e1a; --aqua:#dce8e4;
+    --line:#d8e8e0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);
+    font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:rtl}
+  .jf{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:ltr;unicode-bidi:isolate}
+
+  .skybg{position:fixed;inset:0;z-index:-1;
+    background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#eaf2ee 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:#dce8e4;top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:#dcd4b8;top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:#e8f0ed;bottom:-140px;left:18%}
+
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(74,50,56,.16)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;
+    background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#1a4a3e;font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:#0e2a22;letter-spacing:.4px;
+    text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:#6a7a72;font-weight:600}
+
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;
+    box-shadow:0 3px 10px rgba(74,50,56,.07)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(74,50,56,.07)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--grass2);font-weight:800;
+    display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#f0f6f3;border:1.4px solid var(--line);
+    border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(140deg,var(--grass1),var(--grass2));box-shadow:0 2px 0 var(--grass3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--grass3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#fdf6ec;border:1.4px dashed var(--gold);border-radius:13px;
+    padding:10px 13px;font-size:12.5px;color:#2e2208;line-height:1.55}
+  .toc .note b{color:#2e2208}
+
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(74,50,56,.07);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;
+    display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;
+    box-shadow:0 2px 0 var(--grass3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+  h2 .mascot{flex:none;margin-left:auto;display:block}
+  .deko{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:14px 0 0}
+  .deko svg{display:block}
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes floatBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    @keyframes softGlow{0%,100%{filter:drop-shadow(0 0 3px rgba(255,230,176,.5))}50%{filter:drop-shadow(0 0 8px rgba(255,230,176,.8))}}
+    @keyframes gentleSway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+    @keyframes drift{from{transform:translateX(0)}to{transform:translateX(26px)}}
+    @keyframes twinkle{0%,100%{opacity:.35}50%{opacity:1}}
+    @keyframes cardEntrance{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+    @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+    @keyframes t4bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+    @keyframes t4drift{0%{transform:translateX(-9px)}100%{transform:translateX(9px)}}
+    @keyframes t4twinkle{0%,100%{opacity:.4}50%{opacity:1}}
+    h2 .mascot,.deko svg{animation:t4bob 2.6s ease-in-out infinite}
+    .deko svg:nth-child(2){animation-delay:.45s}
+    .deko svg:nth-child(3){animation-delay:.9s}
+    .anim-drift{animation:t4drift 8s ease-in-out infinite alternate}
+    .anim-twinkle{animation:t4twinkle 2.2s ease-in-out infinite}
+    .anim-bob{animation:floatBob 3.2s ease-in-out infinite}
+    .anim-glow{animation:softGlow 2.8s ease-in-out infinite}
+    .anim-sway{animation:gentleSway 4s ease-in-out infinite;transform-origin:center bottom}
+    .anim-drift26{animation:drift 9s ease-in-out infinite alternate}
+    .anim-twinkle2{animation:twinkle 2.4s ease-in-out infinite}
+    section{animation:cardEntrance .55s ease both}
+    .shimmer{background-image:linear-gradient(90deg,#fdf6ec 0%,#f5e6c8 45%,#fdf6ec 90%);
+      background-size:200% 100%;animation:shimmer 4s linear infinite}
+  }
+  @media print{
+    h2 .mascot,.deko svg,.anim-drift,.anim-twinkle,.anim-bob,.anim-glow,.anim-sway,.anim-drift26,.anim-twinkle2,
+    .shimmer,section{animation:none !important}
+  }
+
+
+  .nota{border-left:5px solid var(--gold);background:#fdf6ec;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol, .nota ul{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#2e2208}
+  .nota li:last-child{margin-bottom:0}
+
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:linear-gradient(135deg,#f0f6f3,#fdf6ec);border:1.5px solid var(--line);
+    border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#dce8e4;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;
+    background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .scorebar .hint2{font-size:12px;color:var(--muted);font-weight:600}
+
+  .qcard{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:13px;
+    background:#f5faf8;transition:box-shadow .25s}
+  .qcard.done{box-shadow:0 3px 12px rgba(26,74,62,.18)}
+  .qhead{display:flex;gap:9px;align-items:flex-start;margin-bottom:11px}
+  .qn{background:var(--teal);color:#fff;min-width:26px;height:26px;border-radius:8px;display:inline-flex;
+    align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+  .qtext{font-weight:700;font-size:14.5px}
+  .opts{display:grid;grid-template-columns:1fr;gap:7px}
+  @media(min-width:640px){.opts{grid-template-columns:1fr 1fr 1fr}}
+  .opt{font-family:inherit;text-align:left;font-size:13.5px;font-weight:600;cursor:pointer;
+    background:#e8f0ed;border:2px solid #d8e8e0;border-radius:11px;padding:9px 12px;color:var(--ink);
+    transition:transform .12s,background .2s,border-color .2s;display:flex;gap:7px;align-items:flex-start;
+    width:100%}
+  .opt:hover:not(:disabled){transform:translateY(-2px);background:#fff;border-color:var(--teal)}
+  .opt:disabled{cursor:default}
+  .opt .k{font-weight:800;color:var(--teal);flex:none}
+  .opt.ok{background:#dce8e4;border-color:var(--grass2);color:#0e2a22}
+  .opt.ok .k{color:var(--grass3)}
+  .opt.bad{background:#e9efe8;border-color:#2e7a66;color:#1a4a3e}
+  .opt.bad .k{color:#061410}
+  .opt.dim{opacity:.45}
+
+  .fb{display:none;margin-top:11px;border-radius:12px;padding:10px 13px;font-size:13.5px;
+    background:#f0f6f3;border:1.5px dashed var(--grass2);align-items:flex-start;gap:11px}
+  .fb.show{display:flex}
+  .fb.wrong{background:#e8f0ed;border-color:#2e7a66}
+  .fb .face{flex:none;width:52px;height:52px}
+  .fb .txt b{color:var(--grass3)}
+  .fb.wrong .txt b{color:#061410}
+
+  .result{display:none;text-align:center;padding:20px;border-radius:18px;margin-top:6px;
+    background:linear-gradient(135deg,#f0f6f3,#fdf6ec);border:2px solid var(--grass1)}
+  .result.show{display:block}
+  .result .big{font-size:30px;font-weight:800;color:var(--grass3);margin:6px 0}
+  .result .msg{font-size:14.5px;font-weight:600;margin-bottom:12px}
+  .stars{font-size:22px;letter-spacing:3px;margin-bottom:6px}
+  button.act{font-family:inherit;font-size:13.5px;font-weight:700;border-radius:11px;padding:10px 18px;
+    border:2px solid var(--grass2);background:#fff;color:var(--grass3);cursor:pointer;transition:background .2s}
+  button.act:hover{background:var(--grass1);color:#fff}
+  button.act.solid{background:var(--grass2);color:#fff}
+  button.act.solid:hover{background:var(--grass3)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f0f6f3;color:var(--grass3);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  td.c{text-align:center;white-space:nowrap;font-weight:700;color:var(--grass2)}
+  tr:nth-child(even) td{background:#f0f6f3}
+  tr.on td{background:#fdf6ec;font-weight:700}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-top:4px}
+
+  @media print{
+    .hint{display:none}
+    .qcard .opts{pointer-events:none}
+    .qcard .ans{display:block !important}
+    body{background:#fff}
+    .skybg,.blob{display:none}
+    .wrap{max-width:100%;padding:0}
+    .scorebar{display:none}
+    section{box-shadow:none;page-break-inside:avoid;padding:14px 16px}
+    .toc{box-shadow:none;page-break-inside:avoid;break-inside:avoid}
+    h2,.hint{page-break-after:avoid;break-after:avoid}
+    table{font-size:11.6px}
+    th,td{padding:3.5px 8px}
+    .qcard{page-break-inside:avoid;padding:10px 13px;margin-bottom:8px}
+    .qhead .qtext{font-size:13px}
+    .opt{padding:6px 9px;font-size:11.5px;transform:none !important}
+    .fb{margin-top:7px;padding:7px 10px;font-size:11.5px}
+    .fb .face{width:40px;height:40px}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4 portrait;margin:12mm}
+
+</style>
+</head>
+<body>
+
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<!-- ===== Watak kartun (statik) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <g id="adam">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <rect x="57" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <ellipse cx="46" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l7 44 h-56 z" fill="#7fc4b8" stroke="#6a4e1a" stroke-width="2"/>
+    <path d="M36 82 q-13 13 -9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 82 q13 13 9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M39 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="46.5" r="1.9" fill="#fff"/><circle cx="68" cy="46.5" r="1.9" fill="#fff"/>
+    <path d="M55 56 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M49 63 q6 6.5 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="nur">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="43" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <rect x="58" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <ellipse cx="48" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="63" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <path d="M33 78 q22-11 44 0 l12 46 h-68 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <path d="M36 84 q-13 12 -10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 84 q13 12 10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="51.5" r="1.9" fill="#fff"/><circle cx="67" cy="51.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="faceYay">
+    <circle cx="30" cy="30" r="26" fill="#dce8e4" stroke="#1a4a3e" stroke-width="2.5"/>
+    <ellipse cx="22" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="25.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="25.4" r="1.3" fill="#fff"/>
+    <path d="M20 38 q10 9 20 0" stroke="#0e2a22" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="14" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <ellipse cx="46" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <path d="M30 2 l3 5 5 1 -4 4 1 5 -5-3 -5 3 1-5 -4-4 5-1 z" fill="#8a6a2a"/>
+  </g>
+
+  <g id="faceOops">
+    <circle cx="30" cy="30" r="26" fill="#e8f0ed" stroke="#2e7a66" stroke-width="2.5"/>
+    <ellipse cx="22" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="26.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="26.4" r="1.3" fill="#fff"/>
+    <path d="M15 21 q7-5 13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M45 21 q-7-5 -13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M21 41 q9-7 18 0" stroke="#061410" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+    <ellipse cx="47" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+  </g>
+
+  <!-- Burung kecil -->
+  <g id="burung">
+    <path d="M6 16 q-8-7 -5-13 q6 4 8 9 z" fill="#7ab6d8" stroke="#4a8cb0" stroke-width="1.2" stroke-linejoin="round"/>
+    <ellipse cx="20" cy="19" rx="13" ry="10" fill="#8ec6e6" stroke="#4a8cb0" stroke-width="1.4"/>
+    <circle cx="31" cy="12" r="8" fill="#9fd2ec" stroke="#4a8cb0" stroke-width="1.4"/>
+    <path d="M38 11 l7 3 -7 3 z" fill="#e8a94a"/>
+    <circle cx="32" cy="10.5" r="1.8" fill="#2f3b45"/>
+    <path d="M15 26 q5 3 10 0" stroke="#4a8cb0" stroke-width="1.2" fill="none" opacity=".6"/>
+  </g>
+
+  <!-- Awan -->
+  <g id="awan">
+    <g fill="#ffffff">
+      <circle cx="20" cy="27" r="13"/><circle cx="39" cy="19" r="17"/>
+      <circle cx="59" cy="26" r="14"/><rect x="20" y="25" width="39" height="14" rx="7"/>
+    </g>
+    <path d="M8 33 q11 8 31 8 q20 0 31-8" stroke="#dfe8f4" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Pokok besar -->
+  <g id="pokokBesar">
+    <ellipse cx="60" cy="148" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M54 148 v-54 h12 v54 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <path d="M60 106 q-16-6 -22-20" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M60 114 q16-8 22-22" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.4">
+      <ellipse cx="60" cy="50" rx="40" ry="30"/>
+      <ellipse cx="30" cy="70" rx="26" ry="21"/>
+      <ellipse cx="90" cy="70" rx="26" ry="21"/>
+      <ellipse cx="60" cy="86" rx="34" ry="20"/>
+    </g>
+    <g fill="#a9d383" opacity=".7">
+      <ellipse cx="46" cy="42" rx="18" ry="12"/><ellipse cx="82" cy="58" rx="13" ry="9"/>
+    </g>
+  </g>
+
+  <!-- Almari buku -->
+  <g id="almari">
+    <rect x="0" y="0" width="104" height="150" rx="7" fill="#b98a5a" stroke="#8a6544" stroke-width="2"/>
+    <rect x="7" y="7" width="90" height="60" rx="3" fill="#f2ece0" stroke="#8a6544" stroke-width="1.4"/>
+    <rect x="7" y="75" width="90" height="60" rx="3" fill="#f2ece0" stroke="#8a6544" stroke-width="1.4"/>
+    <rect x="13" y="22" width="10" height="45" rx="2" fill="#c9707f"/>
+    <rect x="25" y="28" width="9" height="39" rx="2" fill="#5b7fa8"/>
+    <rect x="36" y="18" width="11" height="49" rx="2" fill="#8a6a2a"/>
+    <rect x="49" y="30" width="9" height="37" rx="2" fill="#4e9a7e"/>
+    <rect x="60" y="24" width="10" height="43" rx="2" fill="#7fc4b8"/>
+    <rect x="72" y="32" width="8" height="35" rx="2" fill="#b5722c"/>
+    <rect x="82" y="20" width="11" height="47" rx="2" fill="#8a5fc0"/>
+    <rect x="13" y="90" width="11" height="45" rx="2" fill="#4e9a7e"/>
+    <rect x="26" y="96" width="9" height="39" rx="2" fill="#8a6a2a"/>
+    <rect x="37" y="86" width="10" height="49" rx="2" fill="#5b7fa8"/>
+    <rect x="49" y="98" width="9" height="37" rx="2" fill="#c9707f"/>
+    <rect x="60" y="92" width="11" height="43" rx="2" fill="#b5722c"/>
+    <rect x="73" y="100" width="8" height="35" rx="2" fill="#7fc4b8"/>
+    <rect x="83" y="88" width="10" height="47" rx="2" fill="#8a5fc0"/>
+  </g>
+
+  <!-- Rehal dengan al-Quran terbuka -->
+  <g id="rehal">
+    <ellipse cx="40" cy="56" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M10 54 L34 24" stroke="#a87f5c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M70 54 L46 24" stroke="#a87f5c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M15 44 L65 44" stroke="#8a6544" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M6 24 L40 12 L74 24 L74 29 L40 17 L6 29 Z" fill="#fdf6ec" stroke="#cbb99a" stroke-width="1.5"/>
+    <path d="M40 12 v5" stroke="#cbb99a" stroke-width="1.5"/>
+    <g stroke="#cbb99a" stroke-width="1" opacity=".8">
+      <path d="M13 24 h19"/><path d="M13 28 h19"/><path d="M48 24 h19"/><path d="M48 28 h19"/>
+    </g>
+    <path d="M6 24 q-4 6 2 8" stroke="#8a6a2a" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Lampu meja -->
+  <g id="lampuMeja">
+    <ellipse cx="26" cy="72" rx="20" ry="4" fill="#000" opacity=".08"/>
+    <rect x="18" y="60" width="16" height="12" rx="3" fill="#6b4f3a" stroke="#4a3610" stroke-width="1.4"/>
+    <rect x="20" y="30" width="12" height="32" rx="3" fill="#6b4f3a" stroke="#4a3610" stroke-width="1.4"/>
+    <path d="M10 30 q16-16 32 0 l-4 6 h-24 z" fill="#8a6a2a" stroke="#4a3610" stroke-width="1.6"/>
+    <ellipse cx="26" cy="34" rx="10" ry="8" fill="#ffe9a8"/>
+    <path d="M26 26 v-8" stroke="#8a6a2a" stroke-width="1.6"/>
+    <circle cx="26" cy="16" r="3" fill="#8a6a2a"/>
+  </g>
+
+  <!-- Mushaf tertutup -->
+  <g id="mushaf">
+    <ellipse cx="42" cy="68" rx="34" ry="5" fill="#000" opacity=".08"/>
+    <rect x="12" y="18" width="70" height="48" rx="4" fill="#f6f1e4" stroke="#cbb99a" stroke-width="1.4"/>
+    <g stroke="#ddd0b6" stroke-width="1.1">
+      <path d="M14 28 h66"/><path d="M14 38 h66"/><path d="M14 48 h66"/><path d="M14 58 h66"/>
+    </g>
+    <rect x="4" y="10" width="72" height="48" rx="4" fill="#1a4a3e" stroke="#0e2a22" stroke-width="2"/>
+    <rect x="9" y="15" width="62" height="38" rx="3" fill="#2e7a66" stroke="#0e2a22" stroke-width="1"/>
+    <path d="M5 15 q-3.5 19 0 38" fill="none" stroke="#0e2a22" stroke-width="3.4" stroke-linecap="round"/>
+    <rect x="15" y="20" width="50" height="28" rx="2.5" fill="none" stroke="#e0b04a" stroke-width="1.2"/>
+    <g fill="#e0b04a">
+      <path d="M40 25 l3.2 6.4 -3.2 6.4 -3.2-6.4 z"/>
+      <circle cx="40" cy="23.4" r="1.9"/>
+      <g stroke="#e0b04a" stroke-width="1.2" stroke-linecap="round">
+        <path d="M22 30 h7 M51 30 h7 M22 38 h7 M51 38 h7"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bulan sabit & bintang -->
+  <g id="bintangBulan">
+    <path d="M24 4 a17 17 0 1 0 15 21 a13.2 13.2 0 1 1 -15-21 z" fill="#e8b44a"/>
+    <path d="M37 5 L39.8 13.6 L48 16.4 L39.8 19.2 L37 28 L34.2 19.2 L26 16.4 L34.2 13.6 Z" fill="#e8b44a"/>
+  </g>
+
+  <!-- Kilauan bintang -->
+  <g id="bintang">
+    <path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="#e8b44a"/>
+  </g>
+
+  <!-- Kepala Adam (mascot kecil) -->
+  <g id="kepalaAdam">
+    <ellipse cx="35" cy="37" rx="26" ry="28" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M9 37 a26 28 0 0 1 52 0 q-8-18 -26-18 q-18 0 -26 18 z" fill="#5a3b28"/>
+    <path d="M21 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M39 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="26" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <ellipse cx="44" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <circle cx="27.8" cy="37.6" r="1.7" fill="#fff"/><circle cx="45.8" cy="37.6" r="1.7" fill="#fff"/>
+    <path d="M35 47 q-3 4 1 5" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M29 54 q6 6 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="17" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="53" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Adam duduk membaca al-Quran -->
+  <g id="adamBaca">
+    <ellipse cx="55" cy="154" rx="35" ry="6" fill="#000" opacity=".08"/>
+    <path d="M20 152 q0-32 35-32 q35 0 35 32 z" fill="#5b7fa8" stroke="#3f5f85" stroke-width="2"/>
+    <ellipse cx="42" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="68" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <path d="M32 80 q23-11 46 0 l10 44 h-66 z" fill="#5b7fa8" stroke="#3f5f85" stroke-width="2"/>
+    <path d="M34 118 q21 9 42 0 l4 12 h-50 z" fill="#7fc4b8" stroke="#3f5f85" stroke-width="1.4"/>
+    <path d="M38 90 q-6 24 4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M72 90 q6 24 -4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="32" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="61" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <path d="M24 124 L55 114 L86 124 L86 132 L55 122 L24 132 Z" fill="#fdf6ec" stroke="#cbb99a" stroke-width="1.5"/>
+    <path d="M55 114 v8" stroke="#cbb99a" stroke-width="1.5"/>
+    <g stroke="#cbb99a" stroke-width="1" opacity=".85">
+      <path d="M31 124 h18"/><path d="M31 128 h18"/><path d="M61 124 h18"/><path d="M61 128 h18"/>
+    </g>
+    <ellipse cx="55" cy="54" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M31 54 a24 26 0 0 1 48 0 q-7-17 -24-17 q-17 0 -24 17 z" fill="#5a3b28"/>
+    <path d="M40 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="53.5" r="1.9" fill="#fff"/><circle cx="67" cy="53.5" r="1.9" fill="#fff"/>
+    <path d="M55 62 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 69 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Nur duduk membaca mushaf -->
+  <g id="nurBaca">
+    <ellipse cx="55" cy="152" rx="32" ry="6" fill="#000" opacity=".08"/>
+    <path d="M22 96 q33-14 66 0 q6 30 0 56 h-66 q-6-26 0-56 z" fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <path d="M34 104 q-13 12 -11 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M76 104 q13 12 11 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.8"/>
+    <path d="M31 44 q24-9 48 0 q-4-24 -24-24 q-20 0 -24 24 z" fill="#f2b8c6"/>
+    <path d="M43 46 q6-4 11 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M56 46 q6-4 11 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M47 60 q8 6 16 0" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="56" rx="5" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="56" rx="5" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+    <path d="M28 118 q27-9 54 0 v18 q-27-8 -54 0 z" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M55 121 v15" stroke="#cbb99a" stroke-width="1.3"/>
+    <g stroke="#cfc7b0" stroke-width="1.1"><path d="M34 124 h16"/><path d="M34 130 h16"/><path d="M60 124 h16"/><path d="M60 130 h16"/></g>
+    <path d="M28 128 q-11 2 -13 12 q9 3 13-6 z" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <path d="M82 128 q11 2 13 12 q-9 3 -13-6 z" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+  </g>
+
+  <!-- Kucing tidur -->
+  <g id="kucingTidur">
+    <ellipse cx="33" cy="36" rx="30" ry="4" fill="#000" opacity=".07"/>
+    <path d="M6 34 q-2-22 27-22 q29 0 27 22 z" fill="#f4d8a8" stroke="#c9a86b" stroke-width="1.6"/>
+    <path d="M52 32 q14-4 12-16" stroke="#c9a86b" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M12 14 l-3-11 11 6 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M32 14 l3-11 -11 6 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M13 24 q6-5 12 0" stroke="#4a3b2f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M31 24 q6-5 12 0" stroke="#4a3b2f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M22 31 q5 4 10 0" stroke="#a8794f" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="30" rx="4" ry="2.4" fill="#e88ba0" opacity=".4"/>
+    <ellipse cx="43" cy="30" rx="4" ry="2.4" fill="#e88ba0" opacity=".4"/>
+  </g>
+
+  <!-- Semak kecil -->
+  <g id="semak">
+    <ellipse cx="34" cy="44" rx="30" ry="4" fill="#000" opacity=".06"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.3">
+      <circle cx="18" cy="32" r="15"/><circle cx="38" cy="24" r="18"/><circle cx="56" cy="33" r="14"/>
+    </g>
+    <g fill="#a9d383" opacity=".65">
+      <circle cx="30" cy="20" r="7"/><circle cx="52" cy="28" r="5"/>
+    </g>
+  </g>
+
+  <!-- Bintang prestasi (pingat) -->
+  <g id="bintangPrestasi">
+    <path d="M30 4 l6 15 16 1 -12 11 4 16 -14-8 -14 8 4-16 -12-11 16-1 z"
+          fill="#e0b04a" stroke="#a87a1c" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M30 12 l3.6 9 9.6 .6 -7.2 6.6 2.4 9.6 -8.4-4.8 -8.4 4.8 2.4-9.6 -7.2-6.6 9.6-.6 z"
+          fill="#f6dfa0" opacity=".75"/>
+    <path d="M22 48 l-7 20 15-9 15 9 -7-20 z" fill="#6a4e1a" stroke="#4a3610" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M30 4 v-4" stroke="#a87a1c" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Pokok ilmu: dahan dengan buah bintang -->
+  <g id="pokokIlmu">
+    <ellipse cx="65" cy="152" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M58 152 v-56 h14 v56 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <path d="M65 110 q-18-8 -24-24" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M65 118 q18-10 24-26" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.4">
+      <ellipse cx="65" cy="52" rx="42" ry="32"/>
+      <ellipse cx="32" cy="72" rx="26" ry="21"/>
+      <ellipse cx="98" cy="72" rx="26" ry="21"/>
+      <ellipse cx="65" cy="88" rx="36" ry="21"/>
+    </g>
+    <g fill="#a9d383" opacity=".7">
+      <ellipse cx="50" cy="44" rx="19" ry="13"/><ellipse cx="88" cy="60" rx="14" ry="9"/>
+    </g>
+    <g fill="#e0b04a" stroke="#a87a1c" stroke-width="1.2">
+      <path d="M40 30 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+      <path d="M86 40 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+      <path d="M64 68 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+    </g>
+  </g>
+
+  <!-- Tasbih (untaian tasbih) -->
+  <g id="tasbih">
+    <g fill="none" stroke="#a87a1c" stroke-width="1.6">
+      <path d="M6 12 a26 26 0 1 0 52 0 a26 26 0 1 0 -52 0"/>
+    </g>
+    <g fill="#8a6a2a">
+      <circle cx="6" cy="12" r="3.4"/><circle cx="14" cy="6" r="3.4"/><circle cx="24" cy="4" r="3.4"/>
+      <circle cx="34" cy="4" r="3.4"/><circle cx="44" cy="6" r="3.4"/><circle cx="52" cy="12" r="3.4"/>
+      <circle cx="58" cy="20" r="3.4"/><circle cx="60" cy="30" r="3.4"/><circle cx="58" cy="40" r="3.4"/>
+      <circle cx="52" cy="48" r="3.4"/><circle cx="44" cy="54" r="3.4"/><circle cx="34" cy="56" r="3.4"/>
+      <circle cx="24" cy="56" r="3.4"/><circle cx="14" cy="54" r="3.4"/><circle cx="6" cy="48" r="3.4"/>
+      <circle cx="0" cy="40" r="3.4"/>
+    </g>
+    <path d="M2 32 h-2 v10 h4 z" fill="#e0b04a"/>
+  </g>
+
+</defs>
+</svg>
+
+<div class="wrap">
+
+<!-- ===== HERO (Tahun 4 Unit 3) — malam di sudut hafazan: dua kanak-kanak menghafaz dengan rehal, mushaf, tasbih, bulan & bintang di luar tingkap ===== -->
+  <div class="hero">
+    <svg viewBox="0 0 940 300" role="img" aria-label="Ilustrasi: dua kanak-kanak menghafaz al-Quran di sudut bacaan pada waktu malam dengan rehal, mushaf, tasbih, bulan sabit dan bintang di luar tingkap">
+      <defs>
+        <linearGradient id="h3t4sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#e0ece8"/>
+          <stop offset="45%" stop-color="#e8f0ed"/>
+          <stop offset="100%" stop-color="#f0f6f3"/>
+        </linearGradient>
+        <linearGradient id="h3t4gnd" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#a0c8bc"/>
+          <stop offset="100%" stop-color="#1a4a3e"/>
+        </linearGradient>
+        <linearGradient id="h3t4night" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#2b4a68"/>
+          <stop offset="100%" stop-color="#4a6f8c"/>
+        </linearGradient>
+        <radialGradient id="h3t4lamp">
+          <stop offset="0%" stop-color="#ffe9a8" stop-opacity="0.75"/>
+          <stop offset="100%" stop-color="#ffe9a8" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="h3t4glow">
+          <stop offset="0%" stop-color="#8a6a2a" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#8a6a2a" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <rect width="940" height="300" fill="url(#h3t4sky)"/>
+
+      <!-- tingkap malam: bulan sabit & bintang -->
+      <rect x="560" y="30" width="320" height="150" rx="10" fill="#1a4a3e" stroke="#0e2a22" stroke-width="2.5"/>
+      <rect x="565" y="35" width="310" height="140" rx="6" fill="url(#h3t4night)"/>
+      <rect x="715" y="35" width="6" height="140" fill="#0e2a22" opacity="0.45"/>
+      <rect x="565" y="102" width="310" height="6" fill="#0e2a22" opacity="0.45"/>
+      <g transform="translate(590,48)" class="anim-glow"><use href="#bintangBulan"/></g>
+      <g class="anim-twinkle2" opacity="0.9"><use href="#bintang" transform="translate(690,58) scale(0.34)"/></g>
+      <g class="anim-twinkle2" opacity="0.7"><use href="#bintang" transform="translate(760,86) scale(0.26)"/></g>
+      <g class="anim-twinkle2" opacity="0.8"><use href="#bintang" transform="translate(830,60) scale(0.3)"/></g>
+      <g class="anim-twinkle2" opacity="0.6"><use href="#bintang" transform="translate(636,120) scale(0.22)"/></g>
+      <!-- bukit jauh -->
+      <path d="M565 140 Q640 118 715 132 Q790 112 875 138 L875 175 L565 175 Z" fill="#1a4a3e" opacity="0.55"/>
+
+      <!-- lantai -->
+      <path d="M0,235 Q240,225 480,232 T940,228 L940,300 L0,300 Z" fill="url(#h3t4gnd)"/>
+      <ellipse cx="380" cy="248" rx="260" ry="18" fill="#1a4a3e" opacity="0.18"/>
+
+      <!-- rak buku -->
+      <g transform="translate(120,60) scale(0.72)"><use href="#almari"/></g>
+
+      <!-- cahaya lampu -->
+      <ellipse cx="430" cy="160" rx="120" ry="70" fill="url(#h3t4lamp)"/>
+      <circle cx="880" cy="50" r="40" fill="url(#h3t4glow)"/>
+
+      <!-- meja + rehal + dua kanak-kanak menghafaz -->
+      <g transform="translate(250,155)">
+        <rect x="0" y="72" width="330" height="14" rx="4" fill="#c49a63" stroke="#8a6544" stroke-width="1.6"/>
+        <rect x="10" y="86" width="10" height="42" rx="3" fill="#a8825c" stroke="#8a6544" stroke-width="1.2"/>
+        <rect x="310" y="86" width="10" height="42" rx="3" fill="#a8825c" stroke="#8a6544" stroke-width="1.2"/>
+        <g transform="translate(70,-4) scale(1.05)"><use href="#rehal"/></g>
+        <g transform="translate(120,10) scale(0.95)"><use href="#adamBaca"/></g>
+        <g transform="translate(212,10) scale(0.95)"><use href="#nurBaca"/></g>
+        <g transform="translate(300,-8) scale(0.9)" class="anim-glow"><use href="#lampuMeja"/></g>
+      </g>
+
+      <!-- mushaf tertutup atas meja & tasbih -->
+      <g transform="translate(120,196) scale(0.72)"><use href="#mushaf"/></g>
+      <g transform="translate(600,196) scale(0.62)" class="anim-sway"><use href="#tasbih"/></g>
+
+      <!-- pokok & semak hiasan -->
+      <g transform="translate(60,120) scale(0.55)"><use href="#pokokIlmu"/></g>
+      <g transform="translate(830,150) scale(0.6)"><use href="#semak"/></g>
+
+      <!-- burung pagi -->
+      <g class="anim-bob" transform="translate(470,60) scale(0.5)"><use href="#burung"/></g>
+
+      <!-- kaligrafi hiasan -->
+      <g opacity="0.14" fill="#1a4a3e">
+        <text x="350" y="52" class="jf" font-family="Scheherazade New, serif" font-size="34" font-style="italic" text-anchor="middle">التكاثر</text>
+        <text x="700" y="220" class="jf" font-family="Scheherazade New, serif" font-size="26" font-style="italic" text-anchor="middle" opacity="0.8">احفظ</text>
+      </g>
+
+      <!-- kilauan -->
+      <g class="anim-twinkle2" opacity="0.8"><use href="#bintang" transform="translate(180,90) scale(0.35)"/></g>
+      <g class="anim-twinkle2" opacity="0.6"><use href="#bintang" transform="translate(520,70) scale(0.25)"/></g>
+      <g class="anim-twinkle2" opacity="0.7"><use href="#bintang" transform="translate(860,170) scale(0.3)"/></g>
+    </svg>
+    <div class="hero-txt">
+      <div class="kick">Pendidikan Islam &bull; Tahun 4 &bull; Bidang al-Quran</div>
+      <h1>Hafazan Surah at-Takathur</h1>
+      <div class="sub">Hafazan &bull; 2 Standard Pembelajaran &bull; Menghafaz dan mengamalkan dengan betul dan bertajwid</div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="chip"><div class="lbl">Bidang</div><div class="val">al-Quran (Hafazan)</div></div>
+    <div class="chip"><div class="lbl">Standard Kandungan (SK)</div><div class="val">Membaca dan <b>menghafaz</b> serta mengamalkan Surah at-Takathur dengan betul dan bertajwid dalam solat dan kehidupan harian secara beradab dan istiqamah</div></div>
+    <div class="chip"><div class="lbl">Standard Pembelajaran (SP)</div><div class="val">1.3.1 &ndash; 1.3.2</div></div>
+    <div class="chip"><div class="lbl">Sumber</div><div class="val">DSKP PI T4 (SK 1.3) &bull; Buku Teks PI T4 SK &bull; RPT T4</div></div>
+  </div>
+
+  <div class="toc">
+    <div class="ttl">Kandungan &amp; Panduan Penggunaan</div>
+    <div class="grid">
+      <div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">Fakta surah, 8 ayat lengkap dengan maksud, persamaan &amp; perbezaan ayat, cip nilai murni</div></div></div>
+      <div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">5 cabang: Maksud, Dalil, Contoh/Amalan, Nilai Murni, Iktibar</div></div></div>
+      <div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">10 poin ringkasan untuk rujukan pantas</div></div></div>
+      <div class="it"><div class="n">4</div><div><div class="t">Diagram Alir</div><div class="d">4 langkah teknik menghafaz: perhati &rarr; teliti &rarr; hafaz &rarr; tasmik</div></div></div>
+      <div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan dengan maklum balas segera</div></div></div>
+      <div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Senarai 26 Standard Kandungan PI Tahun 4</div></div></div>
+    </div>
+    <div class="note"><b>Cara guna:</b> Buka fail ini dalam pelayar web. Dengarkan bacaan guru, ikut 4 langkah menghafaz, kemudian tasmik. Pada kuiz, klik pilihan jawapan untuk maklum balas segera dan skor automatik. Tekan butang <b>Cetak / Simpan PDF</b> untuk versi kertas &mdash; semua jawapan akan dipaparkan secara automatik supaya boleh dijadikan lembaran kerja.</div>
+  </div>
+
+<!-- ===== 1. INFOGRAFIK ===== -->
+<section id="infografik">
+  <h2><span class="num">1</span> Infografik &mdash; Surah at-Takathur<svg class="mascot" width="34" height="21" viewBox="0 0 66 40" aria-hidden="true"><use href="#kepalaAdam"/></svg></h2>
+  <p class="hint">Teks Uthmani disahkan melalui alquran.cloud (surah 102). Hafazan dibahagi dua: ayat 1&ndash;4 (SP 1.3.1) dan ayat 5&ndash;8 (SP 1.3.2).</p>
+  <svg class="art" viewBox="0 0 820 1470" xmlns="http://www.w3.org/2000/svg" aria-label="Infografik Surah at-Takathur: fakta, 8 ayat, persamaan perbezaan, nilai murni">
+    <defs>
+      <linearGradient id="gT4hd" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a4a3e"/><stop offset="100%" stop-color="#0e2a22"/>
+      </linearGradient>
+      <linearGradient id="gT4card" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#dce8e4"/><stop offset="100%" stop-color="#f5faf8"/>
+      </linearGradient>
+      <linearGradient id="gT4gold" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fdf6ec"/><stop offset="100%" stop-color="#f5e6c8"/>
+      </linearGradient>
+    </defs>
+    <rect width="820" height="1470" fill="#f5faf8"/>
+
+    <!-- tajuk -->
+    <rect x="0" y="0" width="820" height="56" fill="url(#gT4hd)"/>
+    <text x="410" y="30" font-family="Trebuchet MS,Segoe UI,Arial" font-size="19" font-weight="700" fill="#f5faf8" text-anchor="middle">SURAH AT-TAKATHUR &#65372; سورة التكاثر</text>
+    <text x="410" y="48" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#dce8e4" text-anchor="middle">Surah ke-102 &bull; 8 ayat &bull; Makkiyyah &bull; Juzuk 30 (Juzuk &lsquo;Amma)</text>
+
+    <!-- panel definisi -->
+    <rect x="20" y="70" width="780" height="58" rx="10" fill="url(#gT4gold)" stroke="#8a6a2a" stroke-width="1.4"/>
+    <text x="410" y="94" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="700" fill="#2e2208" text-anchor="middle">MAKSUD NAMA: at-Takathur ertinya <tspan class="jf" font-family="Scheherazade New,serif" font-size="18">التكاثر</tspan> &mdash; berlumba-lumba bermegah-megah dengan harta, anak dan kedudukan.</text>
+    <text x="410" y="116" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#4a3b2f" text-anchor="middle">Tema utama: peringatan agar manusia tidak dilalaikan oleh kemewahan dunia sehingga lupa mati dan akhirat.</text>
+
+    <!-- 4 kad fakta -->
+    <rect x="20" y="142" width="184" height="112" rx="12" fill="url(#gT4card)" stroke="#1a4a3e" stroke-width="1.5"/>
+    <rect x="20" y="142" width="184" height="7" rx="3.5" fill="#1a4a3e"/>
+    <text x="112" y="176" font-family="Trebuchet MS,Segoe UI,Arial" font-size="30" font-weight="800" fill="#0e2a22" text-anchor="middle">102</text>
+    <text x="112" y="198" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#1a4a3e" text-anchor="middle">Surah ke-102</text>
+    <text x="112" y="216" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">dalam susunan mushaf</text>
+    <text x="112" y="240" class="jf" font-family="Scheherazade New,serif" font-size="20" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate" text-anchor="middle">التكاثر</text>
+
+    <rect x="218" y="142" width="184" height="112" rx="12" fill="url(#gT4card)" stroke="#2e7a66" stroke-width="1.5"/>
+    <rect x="218" y="142" width="184" height="7" rx="3.5" fill="#2e7a66"/>
+    <text x="310" y="176" font-family="Trebuchet MS,Segoe UI,Arial" font-size="30" font-weight="800" fill="#0e2a22" text-anchor="middle">8</text>
+    <text x="310" y="198" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#2e7a66" text-anchor="middle">Bilangan ayat</text>
+    <text x="310" y="216" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">1&ndash;4 dan 5&ndash;8 (RPT)</text>
+    <text x="310" y="240" class="jf" font-family="Scheherazade New,serif" font-size="20" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate" text-anchor="middle">٨ آيات</text>
+
+    <rect x="416" y="142" width="184" height="112" rx="12" fill="url(#gT4card)" stroke="#8a6a2a" stroke-width="1.5"/>
+    <rect x="416" y="142" width="184" height="7" rx="3.5" fill="#8a6a2a"/>
+    <text x="508" y="176" font-family="Trebuchet MS,Segoe UI,Arial" font-size="21" font-weight="800" fill="#0e2a22" text-anchor="middle">Makkiyyah</text>
+    <text x="508" y="198" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#8a6a2a" text-anchor="middle">Tempat turun</text>
+    <text x="508" y="216" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">di Mekah, sebelum Hijrah</text>
+    <text x="508" y="240" class="jf" font-family="Scheherazade New,serif" font-size="20" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate" text-anchor="middle">مكية</text>
+
+    <rect x="614" y="142" width="184" height="112" rx="12" fill="url(#gT4card)" stroke="#4e9a7e" stroke-width="1.5"/>
+    <rect x="614" y="142" width="184" height="7" rx="3.5" fill="#4e9a7e"/>
+    <text x="706" y="176" font-family="Trebuchet MS,Segoe UI,Arial" font-size="30" font-weight="800" fill="#0e2a22" text-anchor="middle">30</text>
+    <text x="706" y="198" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#4e9a7e" text-anchor="middle">Juzuk &lsquo;Amma</text>
+    <text x="706" y="216" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="middle">hafazan ringkas &amp; kerap</text>
+    <text x="706" y="240" class="jf" font-family="Scheherazade New,serif" font-size="20" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate" text-anchor="middle">جزء عم</text>
+
+    <!-- PANEL A: ayat 1-4 -->
+    <rect x="20" y="268" width="780" height="322" rx="12" fill="#ffffff" stroke="#d8e8e0" stroke-width="1.4"/>
+    <rect x="20" y="268" width="12" height="322" rx="6" fill="#1a4a3e"/>
+    <text x="46" y="294" font-family="Trebuchet MS,Segoe UI,Arial" font-size="15" font-weight="800" fill="#0e2a22">BAHAGIAN 1 &mdash; AYAT 1&#8211;4 &nbsp;&lsaquo;SP 1.3.1&rang;</text>
+    <text x="774" y="294" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="end">peringatan: kelalaian &amp; mati</text>
+
+    <!-- ayat 1 -->
+    <rect x="44" y="306" width="732" height="62" rx="10" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="72" cy="337" r="15" fill="#1a4a3e"/>
+    <text x="72" y="343" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#fdf6ec" text-anchor="middle">1</text>
+    <text x="410" y="338" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="29" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</text>
+    <text x="410" y="358" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#6a7a72" text-anchor="middle">Bermegah-megah telah melalaikan kamu,</text>
+
+    <!-- ayat 2 -->
+    <rect x="44" y="374" width="732" height="62" rx="10" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="72" cy="405" r="15" fill="#2e7a66"/>
+    <text x="72" y="411" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#fdf6ec" text-anchor="middle">2</text>
+    <text x="410" y="406" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="29" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ</text>
+    <text x="410" y="426" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#6a7a72" text-anchor="middle">sehingga kamu masuk ke dalam kubur.</text>
+
+    <!-- ayat 3 -->
+    <rect x="44" y="442" width="732" height="62" rx="10" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="72" cy="473" r="15" fill="#8a6a2a"/>
+    <text x="72" y="479" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#fdf6ec" text-anchor="middle">3</text>
+    <text x="410" y="474" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="29" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">كَلَّا سَوْفَ تَعْلَمُونَ</text>
+    <text x="410" y="494" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#6a7a72" text-anchor="middle">Jangan begitu! Kamu akan mengetahui (akibatnya),</text>
+
+    <!-- ayat 4 -->
+    <rect x="44" y="510" width="732" height="62" rx="10" fill="#f5faf8" stroke="#e4eee9" stroke-width="1"/>
+    <circle cx="72" cy="541" r="15" fill="#b5722c"/>
+    <text x="72" y="547" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#fdf6ec" text-anchor="middle">4</text>
+    <text x="410" y="542" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="29" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ</text>
+    <text x="410" y="562" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#6a7a72" text-anchor="middle">kemudian jangan begitu! Kamu akan mengetahui (akibatnya).</text>
+
+    <!-- PANEL B: ayat 5-8 -->
+    <rect x="20" y="604" width="780" height="322" rx="12" fill="#ffffff" stroke="#d8e8e0" stroke-width="1.4"/>
+    <rect x="20" y="604" width="12" height="322" rx="6" fill="#8a6a2a"/>
+    <text x="46" y="630" font-family="Trebuchet MS,Segoe UI,Arial" font-size="15" font-weight="800" fill="#0e2a22">BAHAGIAN 2 &mdash; AYAT 5&#8211;8 &nbsp;&lsaquo;SP 1.3.2&rang;</text>
+    <text x="774" y="630" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" text-anchor="end">peringatan: hisab &amp; nikmat</text>
+
+    <!-- ayat 5 -->
+    <rect x="44" y="642" width="732" height="62" rx="10" fill="#fdf6ec" stroke="#efe3cb" stroke-width="1"/>
+    <circle cx="72" cy="673" r="15" fill="#4e9a7e"/>
+    <text x="72" y="679" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#fdf6ec" text-anchor="middle">5</text>
+    <text x="410" y="674" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="29" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">كَلَّا لَوْ تَعْلَمُونَ عِلْمَ ٱلْيَقِينِ</text>
+    <text x="410" y="694" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#6a7a72" text-anchor="middle">Jangan begitu! Jika kamu mengetahui dengan pengetahuan yang yakin,</text>
+
+    <!-- ayat 6 -->
+    <rect x="44" y="710" width="732" height="62" rx="10" fill="#fdf6ec" stroke="#efe3cb" stroke-width="1"/>
+    <circle cx="72" cy="741" r="15" fill="#5b7fa8"/>
+    <text x="72" y="747" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#fdf6ec" text-anchor="middle">6</text>
+    <text x="410" y="742" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="29" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">لَتَرَوُنَّ ٱلْجَحِيمَ</text>
+    <text x="410" y="762" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#6a7a72" text-anchor="middle">kamu pasti akan melihat neraka Jahim,</text>
+
+    <!-- ayat 7 -->
+    <rect x="44" y="778" width="732" height="62" rx="10" fill="#fdf6ec" stroke="#efe3cb" stroke-width="1"/>
+    <circle cx="72" cy="809" r="15" fill="#c9707f"/>
+    <text x="72" y="815" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#fdf6ec" text-anchor="middle">7</text>
+    <text x="410" y="810" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="29" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">ثُمَّ لَتَرَوُنَّهَا عَيْنَ ٱلْيَقِينِ</text>
+    <text x="410" y="830" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#6a7a72" text-anchor="middle">kemudian kamu pasti melihatnya dengan &lsquo;ainul yakin,</text>
+
+    <!-- ayat 8 -->
+    <rect x="44" y="846" width="732" height="62" rx="10" fill="#fdf6ec" stroke="#efe3cb" stroke-width="1"/>
+    <circle cx="72" cy="877" r="15" fill="#8a5fc0"/>
+    <text x="72" y="883" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#fdf6ec" text-anchor="middle">8</text>
+    <text x="410" y="878" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="29" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">ثُمَّ لَتُسْـَٔلُنَّ يَوْمَئِذٍ عَنِ ٱلنَّعِيمِ</text>
+    <text x="410" y="898" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#6a7a72" text-anchor="middle">kemudian kamu pasti ditanya pada hari itu tentang nikmat.</text>
+
+    <!-- PANEL: persamaan & perbezaan ayat -->
+    <rect x="20" y="940" width="780" height="248" rx="12" fill="#ffffff" stroke="#d8e8e0" stroke-width="1.4"/>
+    <rect x="20" y="940" width="12" height="248" rx="6" fill="#2e7a66"/>
+    <text x="46" y="968" font-family="Trebuchet MS,Segoe UI,Arial" font-size="15" font-weight="800" fill="#0e2a22">PERSAMAAN &amp; PERBEZAAN AYAT &mdash; kunci mudah menghafaz</text>
+
+    <rect x="44" y="982" width="356" height="186" rx="10" fill="#f0f6f3" stroke="#d8e8e0" stroke-width="1"/>
+    <text x="64" y="1004" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#1a4a3e">PERSAMAAN</text>
+    <text x="64" y="1026" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Ayat 3 &amp; 4 hampir serupa: <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">كَلَّا سَوْفَ تَعْلَمُونَ</tspan></text>
+    <text x="64" y="1046" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Perkataan <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">كَلَّا</tspan> pada ayat 3, 4 dan 5</text>
+    <text x="64" y="1066" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Perkataan <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">تَعْلَمُونَ</tspan> pada ayat 3, 4 dan 5</text>
+    <text x="64" y="1086" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Ayat 6 &amp; 7 bermula dengan <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">لَتَرَوُنَّ</tspan></text>
+    <text x="64" y="1106" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Ayat 2 &amp; 8 sama panjang &mdash; tiga perkataan</text>
+    <text x="64" y="1128" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Hujung ayat berima <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">ـُونَ &#1604; ـِيرَ &#1604; ـِينِ</tspan></text>
+    <text x="64" y="1152" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" font-style="italic">Rima akhir memudahkan ingatan beruntai.</text>
+
+    <rect x="420" y="982" width="356" height="186" rx="10" fill="#fdf6ec" stroke="#efe3cb" stroke-width="1"/>
+    <text x="440" y="1004" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#8a6a2a">PERBEZAAN</text>
+    <text x="440" y="1026" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Ayat 4 TAMBAH <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">ثُمَّ</tspan> di awal (ayat 3 tiada)</text>
+    <text x="440" y="1046" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Ayat 5 ganti <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">سَوْفَ</tspan> jadi <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">لَوْ</tspan></text>
+    <text x="440" y="1066" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Ayat 5 TAMBAH <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">عِلْمَ ٱلْيَقِينِ</tspan></text>
+    <text x="440" y="1086" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Ayat 7 TAMBAH <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">ثُمَّ</tspan> dan <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">هَا</tspan></text>
+    <text x="440" y="1106" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Ayat 6 <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">ٱلْجَحِيمَ</tspan> &#8594; ayat 7 <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">عَيْنَ ٱلْيَقِينِ</tspan></text>
+    <text x="440" y="1128" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Ayat 8 TAMBAH <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">لَتُسْـَٔلُنَّ يَوْمَئِذٍ</tspan></text>
+    <text x="440" y="1152" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" font-style="italic">Beza satu perkataan sahaja &mdash; perhati betul-betul.</text>
+
+    <!-- ilustrasi menghafaz -->
+    <g transform="translate(24,1168) scale(0.34)" class="anim-bob"><use href="#adamBaca"/></g>
+    <g transform="translate(96,1168) scale(0.34)" class="anim-bob"><use href="#nurBaca"/></g>
+    <g transform="translate(700,1148) scale(0.5)" class="anim-sway"><use href="#tasbih"/></g>
+
+    <!-- cip nilai murni -->
+    <rect x="20" y="1208" width="780" height="96" rx="12" fill="url(#gT4gold)" stroke="#8a6a2a" stroke-width="1.4"/>
+    <text x="410" y="1230" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#2e2208" text-anchor="middle">NILAI MURNI YANG DIBINA MELALUI HAFAZAN SURAH AT-TAKATHUR</text>
+    <g font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.2" font-weight="700" text-anchor="middle">
+      <rect x="36" y="1240" width="118" height="40" rx="20" fill="#1a4a3e"/><text x="95" y="1265" fill="#fdf6ec">Istiqamah</text>
+      <rect x="164" y="1240" width="118" height="40" rx="20" fill="#2e7a66"/><text x="223" y="1265" fill="#fdf6ec">Tawaduk</text>
+      <rect x="292" y="1240" width="118" height="40" rx="20" fill="#8a6a2a"/><text x="351" y="1265" fill="#fdf6ec">Bersyukur</text>
+      <rect x="420" y="1240" width="118" height="40" rx="20" fill="#4e9a7e"/><text x="479" y="1265" fill="#fdf6ec">Ingat Akhirat</text>
+      <rect x="548" y="1240" width="118" height="40" rx="20" fill="#b5722c"/><text x="607" y="1265" fill="#fdf6ec">Amanah</text>
+      <rect x="676" y="1240" width="110" height="40" rx="20" fill="#5b7fa8"/><text x="731" y="1265" fill="#fdf6ec">Rajin Usaha</text>
+    </g>
+
+    <!-- nota tajwid -->
+    <rect x="20" y="1318" width="780" height="104" rx="12" fill="#f0f6f3" stroke="#d8e8e0" stroke-width="1.4"/>
+    <text x="44" y="1342" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" font-weight="800" fill="#1a4a3e">FOKUS TAJWID SEMASA MENGHAFAZ</text>
+    <text x="44" y="1362" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Mad tabi&lsquo;i (2 harakat): <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">أَلْهَىٰ &#1604; سَوْفَ &#1604; يَوْمَئِذٍ &#1604; كَلَّا &#1604; ٱلْمَقَابِرَ</tspan></text>
+    <text x="44" y="1380" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Ghunnah (dengung 2 harakat) pada sabdu: <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">ثُمَّ &#1604; لَتَرَوُنَّ &#1604; لَتُسْـَٔلُنَّ</tspan></text>
+    <text x="44" y="1398" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Lam syamsiyyah (idgham, lam tidak dibunyikan): <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">ٱلتَّكَاثُرُ &#1604; ٱلنَّعِيمِ</tspan> &#160; &#8226; Lam qamariyyah (izhar, jelas): <tspan class="jf" font-family="Scheherazade New,serif" font-size="15">ٱلْمَقَابِرَ &#1604; ٱلْجَحِيمِ &#1604; ٱلْيَقِينِ</tspan></text>
+    <text x="44" y="1414" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6a7a72" font-style="italic">Baca perlahan, jelas makhraj, dan ulang sehingga lancar sebelum berpindah ke ayat berikutnya.</text>
+
+    <text x="410" y="1452" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6a7a72" text-anchor="middle">Teks Uthmani: api.alquran.cloud &mdash; Surah 102 (at-Takathur). Sumber kurikulum: DSKP PI Tahun 4, SK 1.3.</text>
+  </svg>
+</section>
+
+<!-- ===== 2. PETA MINDA ===== -->
+<section id="peta-minda">
+  <h2><span class="num">2</span> Peta Minda<svg class="mascot" width="40" height="25" viewBox="0 0 66 40" aria-hidden="true"><use href="#burung"/></svg></h2>
+  <p class="hint">Gunakan peta ini untuk mengingat kembali isi surah: apa maksudnya, apa dalilnya, bagaimana diamalkan, nilai apa dibina, dan iktibar apa diambil.</p>
+  <svg class="art" viewBox="0 0 820 800" xmlns="http://www.w3.org/2000/svg" aria-label="Peta Minda Hafazan Surah at-Takathur">
+    <defs>
+      <linearGradient id="gT4pmhd" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a4a3e"/><stop offset="100%" stop-color="#0e2a22"/>
+      </linearGradient>
+      <linearGradient id="gT4pmct" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2e7a66"/><stop offset="100%" stop-color="#0e2a22"/>
+      </linearGradient>
+      <linearGradient id="gT4pmc" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#dce8e4"/><stop offset="100%" stop-color="#f5faf8"/>
+      </linearGradient>
+      <linearGradient id="gT4pmg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fdf6ec"/><stop offset="100%" stop-color="#f5e6c8"/>
+      </linearGradient>
+    </defs>
+    <rect width="820" height="800" fill="#f5faf8"/>
+
+    <rect x="0" y="0" width="820" height="50" fill="url(#gT4pmhd)"/>
+    <text x="410" y="32" font-family="Trebuchet MS,Segoe UI,Arial" font-size="18" font-weight="700" fill="#f5faf8" text-anchor="middle">PETA MINDA: HAFAZAN SURAH AT-TAKATHUR</text>
+
+    <!-- nod tengah -->
+    <ellipse cx="410" cy="132" rx="168" ry="52" fill="url(#gT4pmct)" stroke="#0e2a22" stroke-width="2"/>
+    <text x="410" y="124" font-family="Trebuchet MS,Segoe UI,Arial" font-size="17" font-weight="800" fill="#fdf6ec" text-anchor="middle">HAFAZAN</text>
+    <text x="410" y="144" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="700" fill="#dce8e4" text-anchor="middle">SURAH AT-TAKATHUR (102)</text>
+    <text x="410" y="162" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#a0c8bc" text-anchor="middle">8 ayat &bull; Makkiyyah &bull; SP 1.3.1 &amp; 1.3.2</text>
+
+    <!-- cabang -->
+    <path d="M268 164 Q180 230 122 314" stroke="#1a4a3e" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M340 180 Q300 250 268 320" stroke="#2e7a66" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M410 184 L410 330" stroke="#8a6a2a" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M480 180 Q520 250 552 320" stroke="#4e9a7e" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M552 164 Q640 230 698 314" stroke="#b5722c" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+
+    <!-- 1 MAKSUD -->
+    <rect x="24" y="314" width="200" height="188" rx="14" fill="url(#gT4pmc)" stroke="#1a4a3e" stroke-width="1.8"/>
+    <rect x="24" y="314" width="200" height="8" rx="4" fill="#1a4a3e"/>
+    <text x="124" y="344" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#1a4a3e" text-anchor="middle">1. MAKSUD</text>
+    <text x="124" y="366" class="jf" font-family="Scheherazade New,serif" font-size="22" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">التكاثر</text>
+    <text x="44" y="390" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Bermegah-megah &amp; berlumba</text>
+    <text x="44" y="408" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Harta, anak, kedudukan</text>
+    <text x="44" y="426" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Melalaikan sehingga mati</text>
+    <text x="44" y="444" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Setiap nikmat akan ditanya</text>
+    <text x="44" y="462" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Neraka Jahim bagi yang lalai</text>
+    <text x="44" y="484" class="jf" font-family="Scheherazade New,serif" font-size="17" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</text>
+
+    <!-- 2 DALIL -->
+    <rect x="240" y="320" width="200" height="182" rx="14" fill="url(#gT4pmg)" stroke="#8a6a2a" stroke-width="1.8"/>
+    <rect x="240" y="320" width="200" height="8" rx="4" fill="#2e7a66"/>
+    <text x="340" y="350" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#8a6a2a" text-anchor="middle">2. DALIL</text>
+    <text x="340" y="374" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10" fill="#6a7a72" text-anchor="middle">Surah al-Qamar 54:17</text>
+    <text x="340" y="404" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,serif" font-size="23" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">وَلَقَدْ يَسَّرْنَا</text>
+    <text x="340" y="430" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,serif" font-size="23" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">ٱلْقُرْءَانَ لِلذِّكْرِ</text>
+    <text x="340" y="456" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,serif" font-size="23" fill="#0e2a22" direction="ltr" unicode-bidi="isolate" text-anchor="middle">فَهَلْ مِن مُّدَّكِرٍۢ</text>
+    <text x="340" y="482" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208" text-anchor="middle">&#8226; Allah memudahkan al-Quran</text>
+    <text x="340" y="496" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208" text-anchor="middle">untuk diingati &mdash; jadi yakinlah!</text>
+
+    <!-- 3 CONTOH / AMALAN -->
+    <rect x="310" y="560" width="200" height="200" rx="14" fill="url(#gT4pmc)" stroke="#8a6a2a" stroke-width="1.8"/>
+    <rect x="310" y="560" width="200" height="8" rx="4" fill="#8a6a2a"/>
+    <text x="410" y="590" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#8a6a2a" text-anchor="middle">3. CONTOH / AMALAN</text>
+    <text x="330" y="614" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Solat fardu &mdash; rakaat 1 / 2</text>
+    <text x="330" y="632" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Solat sunat: rawatib, dhuha,</text>
+    <text x="330" y="648" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#160;&#160; witir, tahajud</text>
+    <text x="330" y="668" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Bacaan sebelum tidur</text>
+    <text x="330" y="686" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Selepas solat &amp; majlis ilmu</text>
+    <text x="330" y="704" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Tasmik kepada guru/ibu bapa</text>
+    <text x="330" y="722" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#8226; Ulang setiap hari secara</text>
+    <text x="330" y="738" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#4a3b2f">&#160;&#160; beradab &amp; istiqamah</text>
+    <g transform="translate(360,742) scale(0.2)" class="anim-bob"><use href="#adamBaca"/></g>
+
+    <!-- 4 NILAI MURNI -->
+    <rect x="24" y="528" width="268" height="232" rx="14" fill="url(#gT4pmc)" stroke="#2e7a66" stroke-width="1.8"/>
+    <rect x="24" y="528" width="268" height="8" rx="4" fill="#4e9a7e"/>
+    <text x="158" y="558" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#2e7a66" text-anchor="middle">4. NILAI MURNI</text>
+    <g font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" font-weight="700" text-anchor="middle" fill="#fdf6ec">
+      <rect x="44" y="572" width="108" height="34" rx="17" fill="#1a4a3e"/><text x="98" y="594" fill="#fdf6ec">Istiqamah</text>
+      <rect x="164" y="572" width="108" height="34" rx="17" fill="#2e7a66"/><text x="218" y="594" fill="#fdf6ec">Tawaduk</text>
+      <rect x="44" y="614" width="108" height="34" rx="17" fill="#8a6a2a"/><text x="98" y="636" fill="#fdf6ec">Bersyukur</text>
+      <rect x="164" y="614" width="108" height="34" rx="17" fill="#4e9a7e"/><text x="218" y="636" fill="#fdf6ec">Ingat Akhirat</text>
+      <rect x="44" y="656" width="108" height="34" rx="17" fill="#b5722c"/><text x="98" y="678" fill="#fdf6ec">Amanah</text>
+      <rect x="164" y="656" width="108" height="34" rx="17" fill="#5b7fa8"/><text x="218" y="678" fill="#fdf6ec">Rajin Usaha</text>
+    </g>
+    <text x="158" y="716" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#6a7a72" text-anchor="middle">Nilai diamalkan semasa menghafaz</text>
+    <text x="158" y="732" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.4" fill="#6a7a72" text-anchor="middle">dan dalam kehidupan harian.</text>
+    <text x="158" y="750" class="jf" font-family="Scheherazade New,serif" font-size="17" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate" text-anchor="middle">الاستقامة والتواضع</text>
+
+    <!-- 5 IKTIBAR -->
+    <rect x="528" y="560" width="268" height="200" rx="14" fill="url(#gT4pmg)" stroke="#b5722c" stroke-width="1.8"/>
+    <rect x="528" y="560" width="268" height="8" rx="4" fill="#b5722c"/>
+    <text x="662" y="590" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#8a6a2a" text-anchor="middle">5. IKTIBAR</text>
+    <text x="548" y="614" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#8226; Harta &amp; anak bukan ukuran kejayaan</text>
+    <text x="548" y="632" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#8226; Mati boleh datang bila-bila masa</text>
+    <text x="548" y="650" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#8226; Nikmat dunia akan dihisab</text>
+    <text x="548" y="668" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#8226; Sediakan bekalan amal untuk</text>
+    <text x="548" y="684" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#160;&#160; akhirat selagi hidup</text>
+    <text x="548" y="702" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#8226; Menghafaz al-Quran itu mudah</text>
+    <text x="548" y="718" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.6" fill="#2e2208">&#160;&#160; jika diulang dengan istiqamah</text>
+    <g transform="translate(596,724) scale(0.2)" class="anim-bob"><use href="#nurBaca"/></g>
+    <g transform="translate(700,716) scale(0.4)" class="anim-glow"><use href="#bintangPrestasi"/></g>
+
+    <!-- cabang bawah -->
+    <path d="M340 502 Q300 530 300 556" stroke="#8a6a2a" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M300 512 Q180 530 158 524" stroke="#2e7a66" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M470 512 Q600 530 662 556" stroke="#b5722c" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+
+    <text x="410" y="788" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6a7a72" text-anchor="middle">Fokus utama SK 1.3: membaca dan menghafaz Surah at-Takathur dengan betul dan bertajwid, lalu mengamalkannya dalam solat dan kehidupan harian.</text>
+  </svg>
+</section>
+
+<!-- ===== 3. NOTA RINGKAS ===== -->
+<section id="nota">
+  <h2><span class="num">3</span> Nota Ringkas &mdash; 10 Perkara<svg class="mascot" width="40" height="25" viewBox="0 0 66 40" aria-hidden="true"><use href="#kucingTidur"/></svg></h2>
+  <p class="hint">Baca sebelum menghafaz dan ulang selepas tasmik. Nota ini merangkumi kedua-dua SP 1.3.1 dan SP 1.3.2.</p>
+  <div class="nota">
+    <ol>
+      <li><b>Pengenalan surah.</b> Surah <b>at-Takathur</b> ialah surah ke-<b>102</b>, terdiri daripada <b>8 ayat</b>, diturunkan di <b>Mekah (Makkiyyah)</b>, dan termasuk dalam <b>Juzuk 30 (Juzuk &lsquo;Amma)</b>.</li>
+      <li><b>Maksud nama.</b> <span class="jf">التكاثر</span> (at-Takathur) ertinya <b>berlumba-lumba bermegah-megah</b> dengan harta, bilangan anak, pengikut dan kedudukan sehingga melalaikan diri daripada mengingati Allah.</li>
+      <li><b>Ayat 1&ndash;4.</b> <span class="jf">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ &#183; حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ &#183; كَلَّا سَوْفَ تَعْلَمُونَ &#183; ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ</span> &mdash; manusia dilalaikan hingga ke liang lahad, lalu diberi amaran keras.</li>
+      <li><b>Ayat 5&ndash;8.</b> <span class="jf">كَلَّا لَوْ تَعْلَمُونَ عِلْمَ ٱلْيَقِينِ &#183; لَتَرَوُنَّ ٱلْجَحِيمَ &#183; ثُمَّ لَتَرَوُنَّهَا عَيْنَ ٱلْيَقِينِ &#183; ثُمَّ لَتُسْـَٔلُنَّ يَوْمَئِذٍ عَنِ ٱلنَّعِيمِ</span> &mdash; neraka pasti dilihat dan setiap nikmat pasti ditanya.</li>
+      <li><b>Kunci persamaan ayat.</b> Perkataan <span class="jf">كَلَّا</span> dan <span class="jf">تَعْلَمُونَ</span> muncul pada ayat 3, 4 dan 5; ayat 6 dan 7 bermula dengan <span class="jf">لَتَرَوُنَّ</span>; hujung ayat berima &mdash; ini memudahkan hafalan beruntai.</li>
+      <li><b>Kunci perbezaan ayat.</b> Ayat 4 dan 7 ditambah <span class="jf">ثُمَّ</span> di awal; ayat 5 menukar <span class="jf">سَوْفَ</span> kepada <span class="jf">لَوْ</span> serta menambah <span class="jf">عِلْمَ ٱلْيَقِينِ</span>; ayat 6 <span class="jf">ٱلْجَحِيمَ</span> manakala ayat 7 <span class="jf">عَيْنَ ٱلْيَقِينِ</span>.</li>
+      <li><b>Teknik menghafaz (4 langkah).</b> <b>Perhati dan baca</b> &rarr; <b>baca dengan teliti</b> &rarr; <b>baca dan hafaz</b> &rarr; <b>tasmik hafalan</b>. Ulang setiap langkah sehingga benar-benar lancar.</li>
+      <li><b>Dalil kemudahan menghafaz.</b> Firman Allah dalam Surah <b>al-Qamar 54:17</b>: <span class="arab">وَلَقَدْ يَسَّرْنَا ٱلْقُرْءَانَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍۢ</span> &mdash; &ldquo;Sesungguhnya Kami telah memudahkan al-Quran untuk diingati, maka adakah orang yang mahu mengambil peringatan?&rdquo;</li>
+      <li><b>Amalkan dalam solat dan harian.</b> Bacalah surah ini pada <b>solat fardu</b> dan <b>solat sunat</b> (rawatib, dhuha, witir, tahajud), serta <b>sebelum tidur</b> secara <b>beradab dan istiqamah</b>.</li>
+      <li><b>Iktibar dan nilai.</b> Harta dan anak bukan ukuran kejayaan; sediakan bekalan akhirat. Nilai yang dibina: <b>istiqamah, tawaduk, bersyukur, ingat akhirat, amanah dan rajin berusaha</b>.</li>
+    </ol>
+  </div>
+  <div class="deko">
+    <svg width="70" height="46" viewBox="0 0 66 40" aria-hidden="true"><use href="#semak"/></svg>
+    <svg width="70" height="46" viewBox="0 0 104 150" aria-hidden="true"><use href="#mushaf"/></svg>
+    <svg width="70" height="46" viewBox="0 0 66 40" aria-hidden="true"><use href="#burung"/></svg>
+  </div>
+</section>
+
+<!-- ===== 4. DIAGRAM ALIR ===== -->
+<section id="diagram">
+  <h2><span class="num">4</span> Diagram Alir &mdash; 4 Langkah Menghafaz<svg class="mascot" width="40" height="25" viewBox="0 0 60 60" aria-hidden="true"><use href="#bintangPrestasi"/></svg></h2>
+  <p class="hint">Ikut langkah mengikut urutan. Jangan beralih ke ayat seterusnya sebelum langkah ke-4 selesai.</p>
+  <svg class="art" viewBox="0 0 820 640" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram alir 4 langkah teknik menghafaz Surah at-Takathur">
+    <defs>
+      <linearGradient id="gT4alhd" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a4a3e"/><stop offset="100%" stop-color="#0e2a22"/>
+      </linearGradient>
+      <linearGradient id="gT4al1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#dce8e4"/><stop offset="100%" stop-color="#f5faf8"/>
+      </linearGradient>
+      <linearGradient id="gT4alg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fdf6ec"/><stop offset="100%" stop-color="#f5e6c8"/>
+      </linearGradient>
+    </defs>
+    <rect width="820" height="640" fill="#f5faf8"/>
+
+    <rect x="0" y="0" width="820" height="50" fill="url(#gT4alhd)"/>
+    <text x="410" y="32" font-family="Trebuchet MS,Segoe UI,Arial" font-size="18" font-weight="700" fill="#f5faf8" text-anchor="middle">ALIRAN TEKNIK MENGHAFAZ SURAH AT-TAKATHUR</text>
+
+    <!-- MULA -->
+    <rect x="24" y="76" width="172" height="44" rx="22" fill="#0e2a22"/>
+    <text x="110" y="104" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#fdf6ec" text-anchor="middle">MULA: Niat &amp; wuduk</text>
+
+    <!-- anak panah 1 -->
+    <path d="M110 120 L110 146" stroke="#1a4a3e" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M102 140 L110 150 L118 140" stroke="#1a4a3e" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- LANGKAH 1 -->
+    <rect x="24" y="152" width="172" height="200" rx="14" fill="url(#gT4al1)" stroke="#1a4a3e" stroke-width="1.8"/>
+    <rect x="24" y="152" width="172" height="8" rx="4" fill="#1a4a3e"/>
+    <circle cx="56" cy="188" r="16" fill="#1a4a3e"/>
+    <text x="56" y="194" font-family="Trebuchet MS,Segoe UI,Arial" font-size="15" font-weight="800" fill="#fdf6ec" text-anchor="middle">1</text>
+    <text x="110" y="228" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#0e2a22" text-anchor="middle">PERHATI</text>
+    <text x="110" y="246" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#0e2a22" text-anchor="middle">DAN BACA</text>
+    <text x="44" y="272" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f">&#8226; Dengar bacaan guru</text>
+    <text x="44" y="290" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f">&#8226; Lihat ayat dalam mushaf</text>
+    <text x="44" y="308" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f">&#8226; Perhati harakat &amp; tajwid</text>
+    <text x="44" y="326" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f">&#8226; Ikut perlahan-lahan</text>
+    <g transform="translate(52,326) scale(0.24)" class="anim-bob"><use href="#adamBaca"/></g>
+
+    <!-- anak panah 1->2 -->
+    <path d="M196 252 L214 252" stroke="#1a4a3e" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M208 244 L218 252 L208 260" stroke="#1a4a3e" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- LANGKAH 2 -->
+    <rect x="222" y="152" width="172" height="200" rx="14" fill="url(#gT4al1)" stroke="#2e7a66" stroke-width="1.8"/>
+    <rect x="222" y="152" width="172" height="8" rx="4" fill="#2e7a66"/>
+    <circle cx="254" cy="188" r="16" fill="#2e7a66"/>
+    <text x="254" y="194" font-family="Trebuchet MS,Segoe UI,Arial" font-size="15" font-weight="800" fill="#fdf6ec" text-anchor="middle">2</text>
+    <text x="308" y="228" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#0e2a22" text-anchor="middle">BACA DENGAN</text>
+    <text x="308" y="246" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#0e2a22" text-anchor="middle">TELITI</text>
+    <text x="242" y="272" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f">&#8226; Baca potongan ayat</text>
+    <text x="242" y="290" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f">&#8226; Betulkan makhraj &amp; sifat</text>
+    <text x="242" y="308" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f">&#8226; Ulang 5&ndash;10 kali</text>
+    <text x="242" y="326" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f">&#8226; Pastikan betul &amp; bertajwid</text>
+    <g transform="translate(250,326) scale(0.24)" class="anim-bob"><use href="#nurBaca"/></g>
+
+    <!-- anak panah 2->3 -->
+    <path d="M394 252 L412 252" stroke="#8a6a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M406 244 L416 252 L406 260" stroke="#8a6a2a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- LANGKAH 3 -->
+    <rect x="420" y="152" width="172" height="200" rx="14" fill="url(#gT4alg)" stroke="#8a6a2a" stroke-width="1.8"/>
+    <rect x="420" y="152" width="172" height="8" rx="4" fill="#8a6a2a"/>
+    <circle cx="452" cy="188" r="16" fill="#8a6a2a"/>
+    <text x="452" y="194" font-family="Trebuchet MS,Segoe UI,Arial" font-size="15" font-weight="800" fill="#fdf6ec" text-anchor="middle">3</text>
+    <text x="506" y="228" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#2e2208" text-anchor="middle">BACA</text>
+    <text x="506" y="246" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#2e2208" text-anchor="middle">DAN HAFAZ</text>
+    <text x="440" y="272" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#2e2208">&#8226; Ulang tanpa melihat mushaf</text>
+    <text x="440" y="290" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#2e2208">&#8226; Sambung ayat 1 ke 2, 3, 4</text>
+    <text x="440" y="308" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#2e2208">&#8226; Beza &amp; sama ayat dihafaz</text>
+    <text x="440" y="326" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#2e2208">&#8226; Ulang pagi &amp; petang</text>
+    <g transform="translate(448,326) scale(0.34)" class="anim-sway"><use href="#tasbih"/></g>
+
+    <!-- anak panah 3->4 -->
+    <path d="M592 252 L610 252" stroke="#4e9a7e" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M604 244 L614 252 L604 260" stroke="#4e9a7e" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- LANGKAH 4 -->
+    <rect x="618" y="152" width="178" height="200" rx="14" fill="url(#gT4al1)" stroke="#4e9a7e" stroke-width="1.8"/>
+    <rect x="618" y="152" width="178" height="8" rx="4" fill="#4e9a7e"/>
+    <circle cx="650" cy="188" r="16" fill="#4e9a7e"/>
+    <text x="650" y="194" font-family="Trebuchet MS,Segoe UI,Arial" font-size="15" font-weight="800" fill="#fdf6ec" text-anchor="middle">4</text>
+    <text x="707" y="228" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#0e2a22" text-anchor="middle">TASMIK</text>
+    <text x="707" y="246" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#0e2a22" text-anchor="middle">HAFALAN</text>
+    <text x="638" y="272" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f">&#8226; Bacakan kepada guru</text>
+    <text x="638" y="290" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f">&#8226; Terima pembetulan segera</text>
+    <text x="638" y="308" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f">&#8226; Catat kemajuan &amp; ulang</text>
+    <text x="638" y="326" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#4a3b2f">&#8226; Beradab &amp; istiqamah</text>
+    <g transform="translate(646,326) scale(0.24)" class="anim-bob"><use href="#adam"/></g>
+
+    <!-- TAMAT band -->
+    <rect x="24" y="374" width="772" height="70" rx="14" fill="url(#gT4alg)" stroke="#8a6a2a" stroke-width="1.6"/>
+    <path d="M707 352 L707 370" stroke="#4e9a7e" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M699 364 L707 374 L715 364" stroke="#4e9a7e" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="410" y="404" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#2e2208" text-anchor="middle">SELESAI DIHAFAZ &mdash; AMALKAN SETIAP HARI</text>
+    <text x="410" y="426" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#4a3b2f" text-anchor="middle">Solat fardu &bull; solat sunat (rawatib, dhuha, witir, tahajud) &bull; bacaan sebelum tidur &bull; selepas solat &amp; majlis ilmu</text>
+
+    <!-- ulang semula arrow -->
+    <path d="M796 300 Q812 300 812 318 Q812 336 796 336" stroke="#b5722c" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-dasharray="6 5"/>
+    <path d="M788 330 L797 338 L806 330" stroke="#b5722c" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="806" y="356" font-family="Trebuchet MS,Segoe UI,Arial" font-size="9.5" font-weight="700" fill="#8a6a2a" text-anchor="middle">ulang</text>
+
+    <!-- petua panel -->
+    <rect x="24" y="458" width="772" height="158" rx="14" fill="#ffffff" stroke="#d8e8e0" stroke-width="1.4"/>
+    <rect x="24" y="458" width="12" height="158" rx="6" fill="#2e7a66"/>
+    <text x="50" y="486" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#0e2a22">PETUA MENGHAFAZ &amp; PEMBELAJARAN BERKESAN</text>
+    <text x="50" y="510" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Hafaz mengikut potongan ayat, bukan sekali gus &mdash; ayat 1&ndash;4 dahulu (SP 1.3.1), kemudian ayat 5&ndash;8 (SP 1.3.2).</text>
+    <text x="50" y="530" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Gunakan <b>rima akhir</b> ayat sebagai pengait ingatan: <span class="jf">ـُونَ</span> (ayat 3, 4) &bull; <span class="jf">ـِيرَ</span> (ayat 2) &bull; <span class="jf">ـِينِ</span> (ayat 5, 7).</text>
+    <text x="50" y="550" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Bandingkan ayat yang <b>hampir sama</b> (3 &amp; 4; 6 &amp; 7) supaya tidak tertukar semasa tasmik.</text>
+    <text x="50" y="570" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Dengar bacaan daripada rakaman telefon bimbit atau guru, kemudian ulang kuat-kuat secara berulang (tih&ndash;tubi).</text>
+    <text x="50" y="590" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.8" fill="#4a3b2f">&#8226; Jadikan bacaan dalam <b>solat</b> sebagai ulang hafaz &mdash; sekali hafaz, kekal hingga tua.</text>
+    <text x="410" y="610" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,serif" font-size="20" fill="#8a6a2a" direction="ltr" unicode-bidi="isolate" text-anchor="middle">وَلَقَدْ يَسَّرْنَا ٱلْقُرْءَانَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍۢ</text>
+
+    <!-- ilustrasi bawah -->
+    <g transform="translate(60,478) scale(0.34)" class="anim-bob"><use href="#pokokIlmu"/></g>
+    <g transform="translate(736,470) scale(0.42)" class="anim-glow"><use href="#bintangPrestasi"/></g>
+  </svg>
+</section>
+
+<!-- ===== 5. KUIZ INTERAKTIF ===== -->
+  <section id="quiz">
+    <h2><span class="num">5</span> Kuiz Interaktif &mdash; 10 Soalan<svg class="mascot" width="40" height="25" viewBox="0 0 66 40" aria-hidden="true"><use href="#kucingTidur"/></svg></h2>
+    <p class="hint">Klik pilihan jawapan. Maklum balas dan skor diberikan serta-merta.</p>
+
+    <div class="scorebar">
+      <span class="sc">Skor: <span id="sc">0</span> / 10</span>
+      <span class="bar"><i id="bar"></i></span>
+      <span class="hint2">Dijawab: <span id="done">0</span>/10</span>
+    </div>
+
+    <div class="qlist">
+
+      <div class="qcard" data-ans="1" data-exp="Surah at-Takathur terdiri daripada <b>8 ayat</b>. RPT Tahun 4 membahagikan hafazan kepada ayat 1&ndash;4 (SP 1.3.1) dan ayat 5&ndash;8 (SP 1.3.2).">
+        <div class="qhead"><span class="qn">1</span><span class="qtext">Berapakah <b>bilangan ayat</b> Surah at-Takathur?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>6 ayat</span></button>
+          <button class="opt"><span class="k">B</span><span><b>8 ayat</b></span></button>
+          <button class="opt"><span class="k">C</span><span>10 ayat</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Surah at-Takathur ialah <b>surah ke-102</b> dalam susunan mushaf al-Quran, dan termasuk dalam Juzuk 30 (Juzuk &lsquo;Amma).">
+        <div class="qhead"><span class="qn">2</span><span class="qtext">Surah at-Takathur ialah surah yang ke berapa dalam al-Quran?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Surah ke-100</span></button>
+          <button class="opt"><span class="k">B</span><span>Surah ke-101</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Surah ke-102</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Surah at-Takathur diturunkan di Mekah sebelum Hijrah, maka ia dinamakan <b>Makkiyyah</b>. Surah Makkiyyah biasanya pendek, berima dan menekankan akidah serta akhirat.">
+        <div class="qhead"><span class="qn">3</span><span class="qtext">Surah at-Takathur diturunkan di Mekah. Apakah statusnya?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Makkiyyah</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Madaniyyah</span></button>
+          <button class="opt"><span class="k">C</span><span>Makkiyyah dan Madaniyyah</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Perkataan <span class='jf'>التكاثر</span> (at-Takathur) ertinya <b>berlumba-lumba bermegah-megah</b> dengan harta, anak, pengikut dan kedudukan sehingga melalaikan daripada mengingati Allah.">
+        <div class="qhead"><span class="qn">4</span><span class="qtext">Apakah <b>maksud</b> perkataan at-Takathur?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Bersedih dan menyesal</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Berlumba-lumba bermegah-megah</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Beramal soleh dan bersabar</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Ayat 4 bermula dengan <span class='jf'>ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ</span> &mdash; ditambah perkataan <b>ثُمَّ</b> di awal berbanding ayat 3 yang hanya <span class='jf'>كَلَّا سَوْفَ تَعْلَمُونَ</span>.">
+        <div class="qhead"><span class="qn">5</span><span class="qtext">Apakah <b>perbezaan</b> antara ayat 3 dan ayat 4?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Ayat 4 ditambah perkataan &ldquo;ثُمَّ&rdquo; di awalnya</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Ayat 3 lebih panjang daripada ayat 4</span></button>
+          <button class="opt"><span class="k">C</span><span>Kedua-duanya sama sahaja</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Perkataan <span class='jf'>كَلَّا</span> (jangan begitu) muncul pada <b>ayat 3, 4 dan 5</b>. Mengenali perkataan yang berulang memudahkan hafalan beruntai.">
+        <div class="qhead"><span class="qn">6</span><span class="qtext">Perkataan <span class="jf">كَلَّا</span> terdapat pada ayat yang manakah?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Ayat 1 dan 2 sahaja</span></button>
+          <button class="opt"><span class="k">B</span><span>Ayat 6 dan 7 sahaja</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Ayat 3, 4 dan 5</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Langkah ke-3 teknik menghafaz ialah <b>baca dan hafaz</b> &mdash; mengulang bacaan tanpa melihat mushaf sehingga benar-benar ingat, sebelum langkah ke-4 iaitu tasmik.">
+        <div class="qhead"><span class="qn">7</span><span class="qtext">Apakah <b>langkah ke-3</b> dalam teknik menghafaz?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Perhati dan baca</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Baca dan hafaz</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Tasmik hafalan</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="<b>Tasmik</b> ialah memperdengarkan bacaan atau hafalan kepada guru (atau ibu bapa) untuk <b>disemak dan dibetulkan</b>. Ia langkah terakhir sebelum berpindah ke ayat baharu.">
+        <div class="qhead"><span class="qn">8</span><span class="qtext">Apakah yang dimaksudkan dengan <b>tasmik</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Memperdengarkan hafalan kepada guru untuk disemak</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Membaca dengan suara yang kuat</span></button>
+          <button class="opt"><span class="k">C</span><span>Menyalin ayat al-Quran ke dalam buku</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Dalil kemudahan menghafaz al-Quran ialah firman Allah dalam <b>Surah al-Qamar 54:17</b>: <span class='arab'>وَلَقَدْ يَسَّرْنَا ٱلْقُرْءَانَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍۢ</span>.">
+        <div class="qhead"><span class="qn">9</span><span class="qtext">Di manakah <b>dalil</b> bahawa Allah memudahkan al-Quran untuk dihafaz?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Surah al-Fatihah 1:5</span></button>
+          <button class="opt"><span class="k">B</span><span>Surah al-Ikhlas 112:1</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Surah al-Qamar 54:17</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="SP 1.3.2 menuntut murid <b>mengamalkan bacaan Surah at-Takathur dalam solat dan kehidupan harian secara beradab dan istiqamah</b> &mdash; iaitu dalam solat fardu, solat sunat dan bacaan sebelum tidur.">
+        <div class="qhead"><span class="qn">10</span><span class="qtext">Bagaimanakah cara <b>mengamalkan</b> Surah at-Takathur selepas menghafaznya?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Cukup menghafaz sahaja, tidak perlu diamalkan</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Membacanya dalam solat fardu, solat sunat dan sebelum tidur secara istiqamah</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Membacanya hanya pada hari Jumaat</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+    </div>
+
+    <div class="result" id="result">
+      <svg viewBox="0 0 220 170" style="width:200px;height:auto;margin:0 auto 4px;display:block">
+        <g transform="translate(24,4) scale(.95)"><use href="#adamBaca"/></g>
+        <g transform="translate(116,4) scale(.95)"><use href="#nurBaca"/></g>
+      </svg>
+      <div class="stars" id="stars"></div>
+      <div class="big" id="rscore"></div>
+      <div class="msg" id="rmsg"></div>
+      <button class="act solid" onclick="resetQuiz()">Cuba Lagi</button>
+      <button class="act" onclick="window.print()">Cetak / Simpan PDF</button>
+    </div>
+  </section>
+
+<!-- ===== LAMPIRAN ===== -->
+<section id="lampiran">
+  <h2>Lampiran: Senarai 26 Standard Kandungan Pendidikan Islam Tahun 4</h2>
+  <p class="hint">KSSR Semakan 2017. Baris berwarna emas ialah unit yang dibina dalam bahan PdP ini.</p>
+  <table>
+    <thead><tr><th style="width:15%">Bidang</th><th style="width:7%">SK</th><th>Standard Kandungan (ringkasan)</th><th class="c" style="width:6%">&#10003;</th></tr></thead>
+    <tbody>
+      <tr><td>al-Quran</td><td>1.1</td><td>Tilawah: membaca dan mengamalkan Surah at-Takathur dengan betul dan bertajwid</td><td class="c">&#9675;</td></tr>
+      <tr><td>al-Quran</td><td>1.2</td><td>Tilawah: membaca dan mengamalkan Surah al-Qari&lsquo;ah dengan betul dan bertajwid</td><td class="c">&#9675;</td></tr>
+      <tr class="on"><td>al-Quran</td><td>1.3</td><td><b>Hafazan: membaca dan menghafaz serta mengamalkan Surah at-Takathur dengan betul dan bertajwid dalam solat dan kehidupan harian secara beradab dan istiqamah</b> &mdash; unit ini &check;</td><td class="c" style="color:#1a4a3e">&#9679;</td></tr>
+      <tr><td>al-Quran</td><td>1.4</td><td>Hafazan: membaca dan menghafaz serta mengamalkan Surah al-Qari&lsquo;ah dengan betul dan bertajwid</td><td class="c">&#9675;</td></tr>
+      <tr><td>al-Quran</td><td>1.5</td><td>Kefahaman: menganalisis, mengamal dan menghayati Surah al-Ikhlas</td><td class="c">&#9675;</td></tr>
+      <tr><td>al-Quran</td><td>1.6</td><td>Tajwid: hukum mim sakinah dan tanwin</td><td class="c">&#9675;</td></tr>
+      <tr><td>al-Quran</td><td>1.7</td><td>Tajwid: hukum qalqalah</td><td class="c">&#9675;</td></tr>
+      <tr><td>al-Quran</td><td>1.8</td><td>Tajwid: tanda waqaf</td><td class="c">&#9675;</td></tr>
+      <tr><td>Hadis</td><td>2.1</td><td>Hadis: memuliakan tetamu</td><td class="c">&#9675;</td></tr>
+      <tr><td>Akidah</td><td>3.1</td><td>Nama-nama Allah: al-&lsquo;Azim dan al-Hamid</td><td class="c">&#9675;</td></tr>
+      <tr><td>Akidah</td><td>3.2</td><td>Beriman kepada rasul</td><td class="c">&#9675;</td></tr>
+      <tr><td>Akidah</td><td>3.3</td><td>Mempertahankan akidah daripada unsur kufur</td><td class="c">&#9675;</td></tr>
+      <tr><td>Akidah</td><td>3.4</td><td>Mempertahankan akidah daripada unsur nifak</td><td class="c">&#9675;</td></tr>
+      <tr><td>Ibadah</td><td>4.1</td><td>Bersuci daripada najis</td><td class="c">&#9675;</td></tr>
+      <tr><td>Ibadah</td><td>4.2</td><td>Azan dan iqamah</td><td class="c">&#9675;</td></tr>
+      <tr><td>Ibadah</td><td>4.3</td><td>Puasa Ramadan</td><td class="c">&#9675;</td></tr>
+      <tr><td>Sirah</td><td>5.1</td><td>Perjanjian &lsquo;Aqabah</td><td class="c">&#9675;</td></tr>
+      <tr><td>Sirah</td><td>5.2</td><td>Sifat fatanah Nabi Muhammad SAW</td><td class="c">&#9675;</td></tr>
+      <tr><td>Sirah</td><td>5.3</td><td>Keperibadian Nabi Muhammad SAW semasa berdakwah</td><td class="c">&#9675;</td></tr>
+      <tr><td>Adab</td><td>6.1</td><td>Adab berpakaian</td><td class="c">&#9675;</td></tr>
+      <tr><td>Adab</td><td>6.2</td><td>Adab beriadah</td><td class="c">&#9675;</td></tr>
+      <tr><td>Adab</td><td>6.3</td><td>Adab berjiran</td><td class="c">&#9675;</td></tr>
+      <tr><td>Adab</td><td>6.4</td><td>Adab terhadap guru</td><td class="c">&#9675;</td></tr>
+      <tr><td>Jawi</td><td>7.1</td><td>Jawi: huruf hamzah</td><td class="c">&#9675;</td></tr>
+      <tr><td>Jawi</td><td>7.2</td><td>Jawi: perkataan tradisi</td><td class="c">&#9675;</td></tr>
+      <tr><td>Jawi</td><td>7.3</td><td>Jawi: kata pinjaman bahasa Inggeris</td><td class="c">&#9675;</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:12px;background:#fdf6ec;border:1.4px dashed var(--gold);border-radius:13px;padding:10px 13px;font-size:12.5px;color:#2e2208;line-height:1.55">Nota: SK <b>1.3 (Hafazan Surah at-Takathur)</b> ditandakan <span style="color:#1a4a3e">&#9679;</span> kerana diliputi dalam bahan PdP ini. <span style="color:#6a7a72">&#9675;</span> = belum dibina.</p>
+</section>
+
+<footer>
+    Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 4 (BPK, KPM), RPT Tahun 4, dan Buku Teks Pendidikan Islam Tahun 4 SK. Teks Uthmani Surah at-Takathur (102) dan al-Qamar 54:17 disahkan melalui api.alquran.cloud.
+  </footer>
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+  var scEl = document.getElementById('sc');
+  var doneEl = document.getElementById('done');
+  var barEl = document.getElementById('bar');
+  var resultEl = document.getElementById('result');
+  var total = cards.length;
+
+  function refresh(){
+    var score = 0, answered = 0;
+    cards.forEach(function(c){
+      if(c.dataset.state === 'correct'){ score++; answered++; }
+      else if(c.dataset.state === 'wrong'){ answered++; }
+    });
+    scEl.textContent = score;
+    doneEl.textContent = answered;
+    barEl.style.width = (answered/total*100) + '%';
+    if(answered === total) showResult(score);
+  }
+
+  function showResult(score){
+    resultEl.classList.add('show');
+    document.getElementById('rscore').textContent = score + ' / ' + total;
+    document.getElementById('stars').textContent =
+      score >= 9 ? '\u2605\u2605\u2605\u2605\u2605' : score >= 7 ? '\u2605\u2605\u2605\u2605\u2606' : score >= 5 ? '\u2605\u2605\u2605\u2606\u2606' : '\u2605\u2605\u2606\u2606\u2606';
+    document.getElementById('rmsg').textContent =
+      score === 10 ? 'Syabas! Hafazan Surah at-Takathur kamu benar-benar mantap.'
+      : score >= 8 ? 'Bagus sekali! Teruskan istiqamah menghafaz.'
+      : score >= 6 ? 'Bagus! Ulangi nota ringkas sekali lagi untuk lebih mantap.'
+      : score >= 4 ? 'Jangan putus asa \u2014 baca semula 8 ayat surah ini setiap hari.'
+      : 'Mari ulang bersama-sama. Baca nota ringkas, dengar bacaan guru, kemudian cuba lagi.';
+    resultEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  cards.forEach(function(card){
+    var opts = Array.prototype.slice.call(card.querySelectorAll('.opt'));
+    var fb = card.querySelector('.fb');
+    var face = fb.querySelector('use');
+    var txt = fb.querySelector('.txt');
+    var ans = parseInt(card.dataset.ans, 10);
+    var exp = card.dataset.exp;
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(card.dataset.state) return;
+        var ok = (i === ans);
+        card.dataset.state = ok ? 'correct' : 'wrong';
+        card.classList.add('done');
+
+        opts.forEach(function(b, j){
+          b.disabled = true;
+          if(j === ans){ b.classList.add('ok'); }
+          else if(j === i){ b.classList.add('bad'); }
+          else { b.classList.add('dim'); }
+        });
+
+        face.setAttribute('href', ok ? '#faceYay' : '#faceOops');
+        txt.innerHTML = (ok ? '<b>Betul!</b> ' : '<b>Belum tepat.</b> Jawapan yang betul ialah <b>' +
+                        String.fromCharCode(65+ans) + '</b>. ') + exp;
+        fb.classList.add('show');
+        if(!ok) fb.classList.add('wrong');
+
+        refresh();
+      });
+    });
+  });
+
+  window.resetQuiz = function(){
+    cards.forEach(function(c){
+      delete c.dataset.state;
+      c.classList.remove('done');
+      var fb = c.querySelector('.fb');
+      fb.classList.remove('show','wrong');
+      c.querySelectorAll('.opt').forEach(function(b){
+        b.disabled = false;
+        b.classList.remove('ok','bad','dim');
+      });
+    });
+    resultEl.classList.remove('show');
+    refresh();
+    window.scrollTo({top: document.getElementById('quiz').offsetTop - 20, behavior:'smooth'});
+  };
+
+  window.addEventListener('beforeprint', function(){
+    cards.forEach(function(c){
+      var ans = parseInt(c.dataset.ans,10);
+      c.querySelectorAll('.opt').forEach(function(b,j){
+        if(j === ans) b.classList.add('ok');
+      });
+      if(!c.querySelector('.fb').classList.contains('show')){
+        var fb = c.querySelector('.fb');
+        fb.querySelector('.txt').innerHTML = '<b>Jawapan: ' + String.fromCharCode(65+ans) + '</b>. ' + c.dataset.exp;
+        fb.classList.add('show');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

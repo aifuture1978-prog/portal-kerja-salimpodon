@@ -1,0 +1,12 @@
+{
+  "name": "ai-playground-kanak-kanak",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AI Playground Kanak-Kanak - platform web interaktif edukasi untuk kanak-kanak 5-8 tahun (PWA, tanpa build step).",
+  "scripts": {
+    "start": "python -m http.server 5178",
+    "serve": "npx --yes serve -l 5178 .",
+    "check": "node --check assets/js/core.js && node --check assets/js/engine.js && node --check assets/js/ui.js && node --check assets/js/games-a.js && node --check assets/js/games-b.js && node --check assets/js/main.js"
+  }
+}

@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Platform Workflow Kajian Tindakan — Pemandu Agentic</title>
+<style>
+:root{
+  --ink:#1b1e25; --ink2:#3d4350; --muted:#6b7280; --faint:#9aa1ad;
+  --bg:#f5f7fa; --card:#ffffff; --line:#e4e8ee; --line2:#eef1f6;
+  --gold:#8a6620; --gold-d:#6d5019; --gold-soft:#fdf6e7; --gold-line:#e6d3a3;
+  --teal:#0d7f72; --teal-soft:#e4f6f3; --teal-line:#a9ded6;
+  --blue:#1f6fd0; --blue-soft:#eaf2fd; --blue-line:#b7d3f3;
+  --plum:#7239a0; --plum-soft:#f4ecfb; --plum-line:#d6bff0;
+  --rose:#c03f74; --rose-soft:#fdeef4; --rose-line:#f3bcd3;
+  --green:#157f45; --green-soft:#e7f6ed; --green-line:#a9dcbe;
+  --amber:#b26a00; --amber-soft:#fff3e0; --amber-line:#f0cf9a;
+  --mono:'JetBrains Mono','Cascadia Mono',Consolas,monospace;
+  --serif:Georgia,'Times New Roman',serif;
+  --sh:0 1px 2px rgba(27,30,37,.05),0 8px 24px rgba(27,30,37,.06);
+  --sh2:0 2px 6px rgba(27,30,37,.07),0 18px 44px rgba(27,30,37,.10);
+  --r:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.62;
+  -webkit-font-smoothing:antialiased; font-size:15px;
+}
+h1,h2,h3,h4{margin:0;line-height:1.25;letter-spacing:-.2px}
+p{margin:0}
+a{color:var(--blue)}
+button{font:inherit;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+
+/* ============ TOPBAR ============ */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.topbar .row{display:flex;align-items:center;gap:14px;padding:11px 20px;max-width:1140px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.brand .em{
+  width:38px;height:38px;flex:none;border-radius:12px;display:grid;place-items:center;
+  background:linear-gradient(140deg,#0b1533,#1d4a7a);color:#ffd97a;font-size:19px;
+  box-shadow:0 4px 12px rgba(11,21,51,.28);
+}
+.brand .tt{min-width:0}
+.brand .tt b{display:block;font-size:14.5px;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand .tt span{display:block;font-size:11.5px;color:var(--muted);font-weight:600}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.mini-prog{display:flex;align-items:center;gap:9px;padding:5px 12px 5px 6px;border:1px solid var(--line);
+  border-radius:999px;background:#fff}
+.mini-prog .lbl{font-size:11.5px;font-weight:800;color:var(--muted);letter-spacing:.3px}
+.mini-prog .val{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--gold-d)}
+
+/* ============ TABS ============ */
+.tabs{position:sticky;top:61px;z-index:55;background:rgba(255,255,255,.94);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.tabs .row{display:flex;gap:4px;padding:7px 20px;max-width:1140px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+.tabs .row::-webkit-scrollbar{display:none}
+.tab{
+  flex:none;border:1px solid transparent;background:transparent;border-radius:11px;
+  padding:8px 14px;font-size:13.5px;font-weight:700;color:var(--ink2);
+  display:flex;align-items:center;gap:7px;transition:all .14s ease;white-space:nowrap;
+}
+.tab:hover{background:var(--line2)}
+.tab.on{background:var(--ink);color:#fff;border-color:var(--ink);box-shadow:0 3px 10px rgba(27,30,37,.2)}
+.tab .n{font-family:var(--mono);font-size:11px;opacity:.6}
+
+/* ============ HERO ============ */
+.hero{
+  background:linear-gradient(150deg,#0b1533 0%,#16305c 52%,#1d4a7a 100%);
+  color:#eef3ff;padding:44px 0 38px;position:relative;overflow:hidden;
+}
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(560px 240px at 10% 6%,rgba(247,193,75,.20),transparent 70%),
+             radial-gradient(480px 220px at 90% 94%,rgba(58,214,192,.16),transparent 70%);}
+.hero .inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:7px;background:rgba(247,193,75,.16);
+  border:1px solid rgba(247,193,75,.45);color:#ffd97a;font-size:11.5px;font-weight:800;
+  letter-spacing:.6px;padding:5px 13px;border-radius:99px;text-transform:uppercase}
+.hero h1{font-size:clamp(25px,4.2vw,37px);margin:15px 0 9px;font-weight:800}
+.hero h1 .hl{color:#ffd97a}
+.hero p.lead{margin:0;max-width:660px;font-size:14.5px;color:#c3d3ee}
+.hero .chips{margin-top:18px;display:flex;flex-wrap:wrap;gap:7px}
+.hero .chips span{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);
+  border-radius:99px;padding:5px 12px;font-size:12px;font-weight:700;color:#dfe9ff}
+.ring-box{text-align:center;flex:none}
+.ring-box .cap{margin-top:9px;font-size:11.5px;font-weight:800;letter-spacing:.6px;color:#9fb6dd;text-transform:uppercase}
+
+/* ============ GENERIC ============ */
+main{padding:30px 0 90px}
+.view{display:none}
+.view.on{display:block;animation:fade .28s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.sec-head{display:flex;align-items:flex-start;gap:14px;margin:0 0 16px}
+.sec-head .ic{width:46px;height:46px;flex:none;border-radius:14px;display:grid;place-items:center;
+  font-size:22px;background:#fff;border:1px solid var(--line);box-shadow:var(--sh)}
+.sec-head .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);font-weight:700}
+.sec-head h2{font-family:var(--serif);font-size:26px;margin:1px 0 4px}
+.sec-head p{font-size:13.5px;color:var(--muted);max-width:82ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;box-shadow:var(--sh)}
+.card + .card{margin-top:16px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(228px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(172px,1fr))}
+.mt{margin-top:16px}.mt2{margin-top:26px}
+.hint{font-size:12.5px;color:var(--muted)}
+.note{border-left:4px solid var(--gold);background:var(--gold-soft);border-radius:0 13px 13px 0;
+  padding:13px 17px;font-size:13px;color:#5c4410;margin-top:14px}
+.note.teal{border-left-color:var(--teal);background:var(--teal-soft);color:#0a4b44}
+.note.blue{border-left-color:var(--blue);background:var(--blue-soft);color:#123a6b}
+.note.rose{border-left-color:var(--rose);background:var(--rose-soft);color:#6d1f42}
+.note b{color:inherit}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fff;
+  border-radius:11px;padding:9px 15px;font-size:13px;font-weight:700;color:var(--ink2);
+  transition:all .14s ease;text-decoration:none}
+.btn:hover{border-color:var(--faint);transform:translateY(-1px);box-shadow:var(--sh)}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.primary:hover{background:#000}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn.gold:hover{background:var(--gold-d)}
+.btn.teal{background:var(--teal);border-color:var(--teal);color:#fff}
+.btn.sm{padding:6px 11px;font-size:12px;border-radius:9px}
+.btn.ghost{background:transparent;border-color:var(--line)}
+.btn.danger{color:var(--rose);border-color:var(--rose-line);background:var(--rose-soft)}
+
+/* ============ FORM ============ */
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:12px;font-weight:800;color:var(--ink2);letter-spacing:.2px}
+.field .req{color:var(--rose)}
+input[type=text],input[type=number],input[type=date],select,textarea{
+  width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:13.5px;
+  background:#fff;transition:border-color .14s ease,box-shadow .14s ease}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold-line);
+  box-shadow:0 0 0 3px rgba(138,102,32,.12)}
+textarea{resize:vertical;min-height:74px;line-height:1.55}
+.chk{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;cursor:pointer}
+.chk input{margin-top:4px;flex:none;width:16px;height:16px;accent-color:var(--gold)}
+
+/* ============ MODEL CARDS ============ */
+.model{
+  border:1.5px solid var(--line);border-radius:15px;padding:17px 18px;background:#fff;
+  cursor:pointer;transition:all .16s ease;position:relative;overflow:hidden;text-align:left;
+}
+.model::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--faint);opacity:.35}
+.model:hover{transform:translateY(-3px);box-shadow:var(--sh2)}
+.model.on{border-color:var(--gold);box-shadow:0 0 0 3px rgba(138,102,32,.13),var(--sh2)}
+.model.on::before{background:var(--gold);opacity:1}
+.model .mh{display:flex;align-items:center;gap:11px;margin-bottom:8px}
+.model .mi{width:38px;height:38px;flex:none;border-radius:11px;display:grid;place-items:center;font-size:19px;
+  background:var(--gold-soft);border:1px solid var(--gold-line)}
+.model h4{font-size:14.5px;font-weight:800}
+.model .yr{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:700}
+.model .tagline{font-size:12.5px;color:var(--ink2);margin-bottom:9px}
+.model .flow{display:flex;flex-wrap:wrap;gap:4px}
+.model .flow i{font-style:normal;font-size:10.5px;font-weight:800;padding:3px 7px;border-radius:6px;
+  background:var(--line2);color:var(--ink2);letter-spacing:.1px}
+.model .badge{position:absolute;top:12px;right:13px;font-size:10px;font-weight:800;letter-spacing:.5px;
+  color:var(--green);background:var(--green-soft);border:1px solid var(--green-line);border-radius:999px;padding:3px 9px}
+
+/* ============ STEPS ============ */
+.phase{border:1px solid var(--line);border-radius:15px;background:#fff;margin-bottom:12px;overflow:hidden;
+  transition:box-shadow .16s ease}
+.phase.done{border-color:var(--green-line)}
+.phase-head{display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:pointer;user-select:none}
+.phase-head:hover{background:var(--line2)}
+.phase-num{width:34px;height:34px;flex:none;border-radius:10px;display:grid;place-items:center;
+  font-family:var(--mono);font-size:13px;font-weight:800;background:var(--ink);color:#fff}
+.phase.done .phase-num{background:var(--green)}
+.phase-head .pt{flex:1;min-width:0}
+.phase-head h4{font-size:14.5px;font-weight:800}
+.phase-head .pd{font-size:12px;color:var(--muted);margin-top:2px}
+.phase-head .caret{flex:none;color:var(--faint);transition:transform .2s ease;font-size:13px}
+.phase.open .caret{transform:rotate(90deg)}
+.phase-body{display:none;padding:0 18px 18px;border-top:1px solid var(--line2)}
+.phase.open .phase-body{display:block}
+.phase-body .ask{background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;
+  padding:11px 14px;font-size:12.5px;color:#123a6b;margin:14px 0}
+.phase-body .ask b{display:block;font-size:11px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:3px;opacity:.8}
+.tasks{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:2px}
+.tasks li{display:flex;gap:11px;align-items:flex-start;padding:9px 10px;border-radius:10px;font-size:13.5px;
+  transition:background .12s ease}
+.tasks li:hover{background:var(--line2)}
+.tasks li input{margin-top:4px;flex:none;width:16px;height:16px;accent-color:var(--green)}
+.tasks li.ok span{text-decoration:line-through;color:var(--faint)}
+.bar{height:8px;border-radius:999px;background:var(--line2);overflow:hidden}
+.bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),#c99a3c);border-radius:999px;
+  transition:width .35s ease}
+
+/* ============ STATS ============ */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(142px,1fr));gap:12px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 14px;text-align:center}
+.stat .v{font-size:25px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .l{font-size:10.5px;font-weight:800;color:var(--muted);margin-top:5px;letter-spacing:.35px;text-transform:uppercase}
+.stat.g .v{color:var(--green)}.stat.b .v{color:var(--blue)}.stat.p .v{color:var(--plum)}
+.stat.a .v{color:var(--amber)}.stat.r .v{color:var(--rose)}
+
+/* ============ TABLE ============ */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:13px;background:#fff}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line2);vertical-align:middle}
+th{background:#fafbfd;font-weight:800;font-size:11.5px;color:var(--ink2);letter-spacing:.3px;
+  text-transform:uppercase;white-space:nowrap;position:sticky;top:0}
+tr:last-child td{border-bottom:none}
+td input,td select{border:1px solid transparent;background:transparent;border-radius:8px;padding:5px 7px;font-size:13px;width:100%}
+td input:hover,td select:hover{border-color:var(--line)}
+td input:focus,td select:focus{background:#fff}
+.num{font-variant-numeric:tabular-nums;font-weight:700;text-align:right}
+.pill{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:999px;letter-spacing:.2px}
+.p-g{background:var(--green-soft);color:var(--green);border:1px solid var(--green-line)}
+.p-b{background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-line)}
+.p-a{background:var(--amber-soft);color:var(--amber);border:1px solid var(--amber-line)}
+.p-r{background:var(--rose-soft);color:var(--rose);border:1px solid var(--rose-line)}
+.p-n{background:var(--line2);color:var(--muted);border:1px solid var(--line)}
+
+/* ============ AGENT PANEL ============ */
+.agent{border:1px solid var(--gold-line);border-radius:16px;background:linear-gradient(170deg,#fffdf7,#fff);
+  box-shadow:var(--sh);overflow:hidden}
+.agent-head{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--gold-line);
+  background:linear-gradient(120deg,rgba(138,102,32,.08),rgba(138,102,32,.02))}
+.agent-head .av{width:38px;height:38px;flex:none;border-radius:12px;display:grid;place-items:center;
+  background:linear-gradient(140deg,#0b1533,#1d4a7a);color:#ffd97a;font-size:18px}
+.agent-head b{font-size:14px}
+.agent-head .st{font-size:11.5px;color:var(--green);font-weight:700;display:flex;align-items:center;gap:5px}
+.agent-head .st::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 3px rgba(21,127,69,.18);animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+.agent-body{padding:18px;max-height:520px;overflow-y:auto}
+.msg{display:flex;gap:11px;margin-bottom:14px}
+.msg .bub{border-radius:13px;padding:11px 14px;font-size:13.5px;max-width:88%}
+.msg.bot .bub{background:#fff;border:1px solid var(--line)}
+.msg.me{flex-direction:row-reverse}
+.msg.me .bub{background:var(--ink);color:#fff}
+.msg .mini{width:28px;height:28px;flex:none;border-radius:9px;display:grid;place-items:center;font-size:14px}
+.msg.bot .mini{background:var(--gold-soft);border:1px solid var(--gold-line)}
+.msg.me .mini{background:var(--line2)}
+.msg .bub ul{margin:7px 0 0;padding-left:18px}
+.msg .bub li{margin-bottom:4px}
+.qchips{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+.qchip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font-size:12.5px;
+  font-weight:700;color:var(--ink2);transition:all .14s ease}
+.qchip:hover{border-color:var(--gold);background:var(--gold-soft);color:var(--gold-d)}
+.agent-foot{display:flex;gap:9px;padding:13px 18px;border-top:1px solid var(--line);background:#fff}
+.agent-foot input{flex:1}
+
+/* ============ CHART ============ */
+.chart{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.chart h4{font-size:13px;font-weight:800;margin-bottom:4px}
+.chart .sub{font-size:11.5px;color:var(--muted);margin-bottom:12px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:11.5px;font-weight:700;color:var(--ink2)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+
+/* ============ KITARAN ============ */
+.cyc{display:flex;align-items:center;gap:0;overflow-x:auto;padding:8px 2px 14px}
+.cyc .node{flex:none;text-align:center;min-width:104px}
+.cyc .dot{width:46px;height:46px;margin:0 auto 8px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--mono);font-size:13px;font-weight:800;background:#fff;border:2px solid var(--line);
+  color:var(--muted);transition:all .2s ease}
+.cyc .node.aktif .dot{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 0 0 5px rgba(31,111,208,.15)}
+.cyc .node.siap .dot{background:var(--green);border-color:var(--green);color:#fff}
+.cyc .node b{display:block;font-size:12px;font-weight:800}
+.cyc .node span{display:block;font-size:10.5px;color:var(--muted);margin-top:2px}
+.cyc .link{flex:1;min-width:20px;height:3px;background:var(--line);border-radius:2px;margin-top:-32px}
+.cyc .link.on{background:var(--green)}
+
+/* ============ REPORT ============ */
+#laporan-out{font-family:var(--serif);font-size:14.5px;line-height:1.75;color:var(--ink)}
+#laporan-out h3{font-family:var(--serif);font-size:17px;margin:22px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--line)}
+#laporan-out h3:first-child{margin-top:0}
+#laporan-out p{margin:0 0 9px}
+#laporan-out table{font-family:'Segoe UI',sans-serif;font-size:12.5px;margin:10px 0}
+
+/* ============ TOAST ============ */
+#toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,90px);z-index:200;
+  background:var(--ink);color:#fff;padding:12px 20px;border-radius:12px;font-size:13.5px;font-weight:700;
+  box-shadow:var(--sh2);transition:transform .3s cubic-bezier(.2,.9,.3,1.3);opacity:0}
+#toast.on{transform:translate(-50%,0);opacity:1}
+
+/* ============ FOOTER ============ */
+footer{margin-top:56px;padding:26px 0;border-top:1px solid var(--line);text-align:center;
+  font-size:12px;color:var(--muted);line-height:1.85}
+footer b{color:var(--ink2)}
+
+@media print{
+  .topbar,.tabs,.hero,.agent,.btn,footer,#toast{display:none!important}
+  body{background:#fff}
+  .card{box-shadow:none;border-color:#ccc;break-inside:avoid}
+  .view{display:none!important}
+  .view.on{display:block!important}
+}
+@media(max-width:820px){
+  .hero .inner{grid-template-columns:1fr;gap:22px}
+  .ring-box{justify-self:start}
+  .brand .tt span{display:none}
+  .mini-prog .lbl{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= TOPBAR ================= -->
+<header class="topbar">
+  <div class="row">
+    <div class="brand">
+      <div class="em">🧭</div>
+      <div class="tt">
+        <b>Platform Workflow Kajian Tindakan</b>
+        <span>Pemandu agentic · 5 model metodologi · SK. Salimpodon Darat</span>
+      </div>
+    </div>
+    <div class="tb-right">
+      <div class="mini-prog">
+        <svg width="30" height="30" viewBox="0 0 36 36" aria-hidden="true">
+          <circle cx="18" cy="18" r="15" fill="none" stroke="#eef1f6" stroke-width="5"/>
+          <circle id="mini-ring" cx="18" cy="18" r="15" fill="none" stroke="#8a6620" stroke-width="5"
+                  stroke-linecap="round" transform="rotate(-90 18 18)"
+                  stroke-dasharray="94.2" stroke-dashoffset="94.2"/>
+        </svg>
+        <span class="lbl">KEMAJUAN</span>
+        <span class="val" id="mini-pct">0%</span>
+      </div>
+      <button class="btn sm" id="btn-simpan">💾 Simpan</button>
+      <button class="btn sm" id="btn-eksport">⬇️ Eksport</button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= TABS ================= -->
+<nav class="tabs" role="tablist">
+  <div class="row">
+    <button class="tab on" data-view="panduan"><span>🧭</span>Panduan &amp; Kaedah</button>
+    <button class="tab" data-view="instrumen"><span>🧾</span>Penjana Instrumen</button>
+    <button class="tab" data-view="data"><span>📊</span>Data &amp; Analisis</button>
+    <button class="tab" data-view="kitaran"><span>🔁</span>Pemantau Kitaran</button>
+    <button class="tab" data-view="laporan"><span>📄</span>Pembina Laporan</button>
+    <button class="tab" data-view="pembantu"><span>🤖</span>Pembantu Pintar</button>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+  <!-- ================= VIEW: PANDUAN ================= -->
+  <section class="view on" id="view-panduan">
+
+    <div class="hero" style="border-radius:20px;margin-bottom:26px">
+      <div class="inner" style="padding:0 26px">
+        <div>
+          <span class="kicker">📌 Pemandu Agentic · Kajian Tindakan</span>
+          <h1>Satu platform untuk <span class="hl">menjalankan</span><br>Kajian Tindakan dari awal hingga laporan</h1>
+          <p class="lead">
+            Platform ini memandu anda melalui setiap fasa Kajian Tindakan — memilih model metodologi,
+            membina instrumen, menganalisis data, memantau kitaran, dan menjana rangka laporan.
+            Semua data disimpan dalam pelayar anda sendiri.
+          </p>
+          <div class="chips">
+            <span>🔁 5 Model: Lewin · Kemmis &amp; McTaggart · Stringer · Elliott · Somekh</span>
+            <span>🧾 Penjana instrumen</span>
+            <span>📊 Analisis data automatik</span>
+          </div>
+        </div>
+        <div class="ring-box">
+          <svg width="132" height="132" viewBox="0 0 36 36" aria-hidden="true">
+            <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="3.4"/>
+            <circle id="hero-ring" cx="18" cy="18" r="15" fill="none" stroke="#ffd97a" stroke-width="3.4"
+                    stroke-linecap="round" transform="rotate(-90 18 18)"
+                    stroke-dasharray="94.2" stroke-dashoffset="94.2"/>
+            <text id="hero-ring-t" x="18" y="18.6" text-anchor="middle" fill="#eef3ff"
+                  font-size="8.4" font-weight="800" font-family="monospace">0%</text>
+          </svg>
+          <div class="cap">Kemajuan Projek</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. MAKLUMAT PROJEK -->
+    <div class="sec-head">
+      <div class="ic">📝</div>
+      <div>
+        <div class="kick">Langkah 0</div>
+        <h2>Maklumat Projek</h2>
+        <p>Isi butiran asas kajian anda. Maklumat ini digunakan dalam semua instrumen, analisis dan laporan.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="grid g2">
+        <div class="field"><label>Tajuk Kajian <span class="req">*</span></label>
+          <input type="text" id="p-tajuk" placeholder="cth. Kelemahan Bacaan Iqra' Murid Tahun 6"></div>
+        <div class="field"><label>Nama Penyelidik / Guru <span class="req">*</span></label>
+          <input type="text" id="p-guru" placeholder="cth. Cikgu Aiman"></div>
+        <div class="field"><label>Sekolah</label>
+          <input type="text" id="p-sekolah" placeholder="cth. SK. Salimpodon Darat"></div>
+        <div class="field"><label>Kelas / Kumpulan Sasaran</label>
+          <input type="text" id="p-kelas" placeholder="cth. Tahun 6 Arif (9 murid)"></div>
+        <div class="field"><label>Mata Pelajaran / Bidang</label>
+          <input type="text" id="p-subjek" placeholder="cth. Pendidikan Islam — Bacaan Iqra'"></div>
+        <div class="field"><label>Tempoh Kajian</label>
+          <div style="display:flex;gap:8px">
+            <input type="date" id="p-mula"><input type="date" id="p-akhir">
+          </div>
+        </div>
+      </div>
+      <div class="field mt"><label>Pernyataan Masalah / Fokus Kajian</label>
+        <textarea id="p-masalah" placeholder="Nyatakan masalah yang hendak dikaji, dengan bukti awal (data baseline, pemerhatian, rekod)."></textarea></div>
+      <div class="field mt"><label>Objektif Kajian</label>
+        <textarea id="p-objektif" placeholder="cth. 1) Meningkatkan peratus murid yang menguasai bacaan Iqra' 3. 2) ..."></textarea></div>
+      <div class="mt" style="display:flex;gap:9px;flex-wrap:wrap">
+        <button class="btn gold" id="btn-contoh">📥 Muat Contoh Projek (Iqra' Tahun 6)</button>
+        <button class="btn ghost" id="btn-kosong">🗑️ Kosongkan Semua</button>
+      </div>
+    </div>
+
+    <!-- 2. PILIH MODEL -->
+    <div class="sec-head mt2">
+      <div class="ic">🔁</div>
+      <div>
+        <div class="kick">Langkah 1</div>
+        <h2>Pilih Model Kajian Tindakan</h2>
+        <p>Setiap model melalui urutan teras yang sama — <b>kenal pasti masalah → kumpul data → analisis →
+        rancang → laksana → nilai &amp; refleksi</b> — tetapi menekankan aspek berbeza. Pilih satu sebagai kerangka utama.</p>
+      </div>
+    </div>
+    <div class="grid g3" id="model-grid"></div>
+    <div class="note" id="model-nota"></div>
+
+    <!-- 3. PEMANDU FASA -->
+    <div class="sec-head mt2">
+      <div class="ic">🪜</div>
+      <div>
+        <div class="kick">Langkah 2</div>
+        <h2>Pemandu Fasa — Kerangka <span id="fasa-model-nama">Kemmis &amp; McTaggart</span></h2>
+        <p>Tandakan tugasan selesai semasa anda bergerak melalui kitaran. Kemajuan dikemas kini secara automatik
+        dan digunakan oleh Pembantu Pintar untuk mencadangkan langkah seterusnya.</p>
+      </div>
+    </div>
+    <div class="card" style="padding:18px 20px">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:6px">
+            <span>KEMAJUAN KESELURUHAN</span><span id="prog-txt">0 / 0 tugasan</span>
+          </div>
+          <div class="bar"><i id="prog-bar" style="width:0%"></i></div>
+        </div>
+        <button class="btn sm" id="btn-buka-semua">↕️ Buka semua fasa</button>
+      </div>
+    </div>
+    <div class="mt" id="fasa-list"></div>
+
+  </section>
+
+  <!-- ================= VIEW: INSTRUMEN ================= -->
+  <section class="view" id="view-instrumen">
+    <div class="sec-head">
+      <div class="ic">🧾</div>
+      <div>
+        <div class="kick">Alat 03</div>
+        <h2>Penjana Instrumen Kajian</h2>
+        <p>Jana instrumen penyelidikan yang sedia cetak — soal selidik, senarai semak pemerhatian,
+        ujian pra/pasca, protokol temu bual dan borang analisis dokumen.</p>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <h3 style="font-size:15px;margin-bottom:14px">⚙️ Tetapan Instrumen</h3>
+        <div class="field"><label>Jenis Instrumen</label>
+          <select id="i-jenis">
+            <option value="soalselidik">📋 Soal Selidik Murid</option>
+            <option value="pemerhatian">👁️ Senarai Semak Pemerhatian</option>
+            <option value="ujian">📝 Ujian Pra / Pasca</option>
+            <option value="temubual">🎤 Protokol Temu Bual Guru</option>
+            <option value="dokumen">📁 Borang Analisis Dokumen</option>
+          </select></div>
+        <div class="field mt"><label>Bilangan Item</label>
+          <input type="number" id="i-bil" value="10" min="3" max="30"></div>
+        <div class="field mt"><label>Skala / Format Jawapan</label>
+          <select id="i-skala">
+            <option value="likert4">Likert 4 mata (Sangat Tidak Setuju → Sangat Setuju)</option>
+            <option value="likert5">Likert 5 mata</option>
+            <option value="ya">Ya / Tidak</option>
+            <option value="skor">Skor 0–10</option>
+            <option value="kualitatif">Kualitatif (ruang ulasan)</option>
+          </select></div>
+        <div class="field mt"><label>Fokus / Aspek Diukur</label>
+          <input type="text" id="i-fokus" placeholder="cth. minat membaca, penguasaan huruf, keyakinan diri"></div>
+        <div class="mt" style="display:flex;gap:9px;flex-wrap:wrap">
+          <button class="btn gold" id="btn-jana">⚡ Jana Instrumen</button>
+          <button class="btn" id="btn-cetak-instrumen">🖨️ Cetak / Simpan PDF</button>
+        </div>
+        <div class="note blue">
+          <b>Tip triangulasi:</b> gunakan sekurang-kurangnya <b>tiga</b> jenis instrumen berbeza
+          (cth. ujian + pemerhatian + temu bual) supaya dapatan kajian lebih sah dan boleh dipercayai.
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:15px;margin-bottom:14px">📚 Instrumen Tersimpan <span class="hint" id="i-kira">(0)</span></h3>
+        <div id="i-senarai"><p class="hint">Belum ada instrumen dijana. Pilih jenis di sebelah kiri dan tekan <b>Jana Instrumen</b>.</p></div>
+      </div>
+    </div>
+
+    <div class="card mt" id="i-pratonton-card" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap">
+        <h3 style="font-size:15px" id="i-pratonton-tajuk">Pratonton Instrumen</h3>
+        <div style="display:flex;gap:8px">
+          <button class="btn sm" id="btn-buka-tab">↗️ Buka tab baharu</button>
+          <button class="btn sm gold" id="btn-muat-turun">⬇️ Muat turun .html</button>
+        </div>
+      </div>
+      <div id="i-pratonton"></div>
+    </div>
+  </section>
+
+  <!-- ================= VIEW: DATA ================= -->
+  <section class="view" id="view-data">
+    <div class="sec-head">
+      <div class="ic">📊</div>
+      <div>
+        <div class="kick">Alat 04</div>
+        <h2>Data &amp; Analisis</h2>
+        <p>Masukkan data murid, analisis secara automatik (min, gred, peningkatan) dan lihat carta perbandingan
+        pra/pasca serta matriks triangulasi.</p>
+      </div>
+    </div>
+
+    <div class="stats" id="data-stats"></div>
+
+    <div class="card mt">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+        <h3 style="font-size:15px">👥 Data Murid / Peserta</h3>
+        <div style="display:flex;gap:8px">
+          <button class="btn sm" id="btn-tambah-murid">➕ Tambah Baris</button>
+          <button class="btn sm ghost" id="btn-tampal">📋 Tampal dari Excel</button>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <table id="tbl-murid">
+          <thead><tr>
+            <th style="width:34px">#</th><th>Nama</th><th style="width:130px">Tahap / Gred Pra</th>
+            <th style="width:96px">Skor Pra</th><th style="width:96px">Skor Pasca</th>
+            <th style="width:92px">Perubahan</th><th style="width:104px">Status</th><th style="width:44px"></th>
+          </tr></thead>
+          <tbody id="tb-murid"></tbody>
+        </table>
+      </div>
+      <div class="hint mt">Skor dinilai 0–100. <b>Tahap/Gred</b> ialah label bebas (cth. <i>Iqra' 3</i>, <i>Gred C</i>, <i>Aras Sederhana</i>).</div>
+    </div>
+
+    <div class="grid g2 mt">
+      <div class="chart">
+        <h4>Perbandingan Pra vs Pasca</h4>
+        <div class="sub">Skor setiap peserta sebelum dan selepas intervensi</div>
+        <div id="chart-bars"></div>
+        <div class="legend">
+          <span><i style="background:#b7d3f3"></i>Pra</span>
+          <span><i style="background:#1f6fd0"></i>Pasca</span>
+          <span><i style="background:#157f45"></i>Peningkatan</span>
+        </div>
+      </div>
+      <div class="chart">
+        <h4>Taburan Tahap Awal</h4>
+        <div class="sub">Bilangan peserta mengikut tahap/gred sebelum intervensi</div>
+        <div id="chart-tabur"></div>
+        <div class="legend"><span><i style="background:#8a6620"></i>Bilangan peserta</span></div>
+      </div>
+    </div>
+
+    <div class="card mt">
+      <h3 style="font-size:15px;margin-bottom:6px">🔺 Matriks Triangulasi</h3>
+      <p class="hint" style="margin-bottom:14px">Bandingkan dapatan daripada tiga sumber berbeza. Persetujuan antara sumber menguatkan kesahihan dapatan.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th style="width:180px">Instrumen / Sumber</th><th>Dapatan Utama</th><th style="width:150px">Menyokong Hipotesis?</th></tr></thead>
+          <tbody id="tb-tri"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VIEW: KITARAN ================= -->
+  <section class="view" id="view-kitaran">
+    <div class="sec-head">
+      <div class="ic">🔁</div>
+      <div>
+        <div class="kick">Alat 05</div>
+        <h2>Pemantau Kitaran</h2>
+        <p>Jejak perjalanan setiap kitaran Kajian Tindakan — daripada Fasa 0 (persediaan) hingga fasa akhir.
+        Klik status untuk menukarnya.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="cyc" id="cyc-line"></div>
+      <div class="note" id="cyc-nota"></div>
+    </div>
+
+    <div class="card mt">
+      <h3 style="font-size:15px;margin-bottom:14px">📅 Jadual Pelaksanaan</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr>
+            <th style="width:96px">Fasa</th><th style="width:190px">Nama Fasa</th>
+            <th style="width:140px">Tarikh Mula</th><th style="width:140px">Tarikh Tamat</th>
+            <th style="width:118px">Status</th><th>Catatan / Bukti</th>
+          </tr></thead>
+          <tbody id="tb-kitaran"></tbody>
+        </table>
+      </div>
+      <div class="mt" style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn sm" id="btn-tambah-kitaran">➕ Tambah Kitaran</button>
+        <button class="btn sm ghost" id="btn-reset-kitaran">🔄 Set Semula kepada Lalai</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VIEW: LAPORAN ================= -->
+  <section class="view" id="view-laporan">
+    <div class="sec-head">
+      <div class="ic">📄</div>
+      <div>
+        <div class="kick">Alat 06</div>
+        <h2>Pembina Laporan</h2>
+        <p>Rangka laporan Kajian Tindakan dijana secara automatik daripada semua maklumat yang telah anda masukkan.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;gap:9px;flex-wrap:wrap;align-items:center">
+        <button class="btn gold" id="btn-jana-laporan">⚡ Jana Laporan</button>
+        <button class="btn" id="btn-cetak-laporan">🖨️ Cetak / Simpan PDF</button>
+        <button class="btn" id="btn-md">⬇️ Muat turun Markdown</button>
+        <button class="btn" id="btn-html">⬇️ Muat turun HTML</button>
+        <span class="hint" id="lap-status" style="margin-left:auto"></span>
+      </div>
+      <div class="note">
+        <b>Nota:</b> laporan yang dijana ialah <b>rangka kerja lengkap</b> — semua tajuk, jadual data dan dapatan
+        analisis telah diisi, tetapi perenggan perbincangan masih perlu anda perhalusi dengan suara sendiri.
+      </div>
+    </div>
+
+    <div class="card mt"><div id="laporan-out"><p class="hint">Tekan <b>Jana Laporan</b> untuk melihat rangka laporan anda.</p></div></div>
+  </section>
+
+  <!-- ================= VIEW: PEMBANTU ================= -->
+  <section class="view" id="view-pembantu">
+    <div class="sec-head">
+      <div class="ic">🤖</div>
+      <div>
+        <div class="kick">Alat 07</div>
+        <h2>Pembantu Pintar</h2>
+        <p>Ejen pembantu membaca keadaan projek anda dan mencadangkan langkah seterusnya, memberi panduan
+        metodologi, dan membantu menyelesaikan masalah biasa dalam Kajian Tindakan.</p>
+      </div>
+    </div>
+
+    <div class="agent">
+      <div class="agent-head">
+        <div class="av">🤖</div>
+        <div style="flex:1">
+          <b>Pembantu Kajian Tindakan</b>
+          <div class="st">Sedia membantu · membaca keadaan projek anda</div>
+        </div>
+      </div>
+      <div class="agent-body" id="agent-body"></div>
+      <div class="agent-foot">
+        <input type="text" id="agent-in" placeholder="Tanya apa-apa tentang kajian tindakan anda…">
+        <button class="btn primary" id="agent-send">Hantar</button>
+      </div>
+    </div>
+
+    <div class="card mt">
+      <h3 style="font-size:14px;margin-bottom:10px">💡 Soalan Lazim</h3>
+      <div class="qchips" id="agent-chips"></div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>Platform Workflow Kajian Tindakan — Pemandu Agentic</b><br>
+    SK. Salimpodon Darat · 5 model metodologi: Lewin · Kemmis &amp; McTaggart · Stringer · Elliott · Somekh<br>
+    Data disimpan dalam pelayar anda sendiri · Berfungsi luar talian
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+/* ==========================================================================
+   PLATFORM WORKFLOW KAJIAN TINDAKAN — enjin aplikasi
+   ========================================================================== */
+(function(){
+"use strict";
+
+/* ---------- 1. MODEL METODOLOGI ---------- */
+var MODELS = {
+  lewin:{
+    nama:"Lewin", tahun:"1946", ico:"🌀",
+    tagline:"Kitaran ringkas dan praktikal — model asal kajian tindakan. Paling mudah difahami untuk kajian kali pertama.",
+    fasa:["Kenal pasti idea umum","Kaji fakta & kumpul data","Rancang tindakan","Laksanakan tindakan","Nilai hasil","Refleksi & ulang kitaran"],
+    nota:"<b>Model Lewin (1946)</b> ialah asas kepada hampir semua model Kajian Tindakan kemudian. Ia menekankan satu kitaran ringkas yang berulang: <b>rancang → bertindak → perhati → refleksi</b>. Paling sesuai apabila anda mahu memulakan kajian kecil yang cepat dan jelas.",
+    rujukan:"Lewin, K. (1946). Action research and minority problems. <i>Journal of Social Issues</i>, 2(4), 34–46."
+  },
+  kemmis:{
+    nama:"Kemmis & McTaggart", tahun:"1988", ico:"🔁",
+    tagline:"Kitaran berulang yang sistematik. Model paling banyak digunakan dalam kajian tindakan pendidikan Malaysia.",
+    fasa:["Merefleksi — kenal pasti fokus","Merancang tindakan","Bertindak & memerhati","Menganalisis data kitaran","Merefleksi semula","Kitaran seterusnya"],
+    nota:"<b>Model Kemmis &amp; McTaggart (1988)</b> ialah kerangka yang paling kerap digunakan dalam sistem pendidikan Malaysia. Ia menekankan <b>kitaran berulang</b> — setiap kitaran memperbaiki pelan sebelumnya — dan menekankan <b>refleksi</b> pada setiap peringkat. Sesuai untuk intervensi kemahiran asas yang memerlukan pengukuran berulang.",
+    rujukan:"Kemmis, S. &amp; McTaggart, R. (1988). <i>The Action Research Planner</i>. Deakin University Press."
+  },
+  stringer:{
+    nama:"Stringer", tahun:"2014", ico:"👁️",
+    tagline:"Look → Think → Act. Menekankan pemerhatian, pemikiran dan tindakan yang berterusan.",
+    fasa:["Look — kumpul maklumat","Think — tafsir & analisis","Act — laksana tindakan","Look semula — perhati kesan","Think semula — nilai dapatan","Act semula — perbaiki"],
+    nota:"<b>Model Stringer</b> menggunakan tiga langkah mudah: <b>Look</b> (mengumpul maklumat dan membina gambaran), <b>Think</b> (menganalisis dan mentafsir), dan <b>Act</b> (melaksanakan tindakan). Kitaran ini berulang. Sangat berguna apabila anda bekerja secara <b>kolaboratif</b> dengan rakan guru.",
+    rujukan:"Stringer, E. T. (2014). <i>Action Research</i> (4th ed.). SAGE Publications."
+  },
+  elliott:{
+    nama:"Elliott", tahun:"1991", ico:"🪜",
+    tagline:"Model berlapis yang menekankan pengumpulan data untuk mengesan perubahan.",
+    fasa:["Idea umum & penerokaan","Membina pelan umum","Membangun langkah tindakan","Laksana & pantau","Semak & jelaskan","Ulang kitaran"],
+    nota:"<b>Model Elliott (1991)</b> bersifat <b>berlapis</b> — setiap peringkat boleh melahirkan kitaran kecilnya sendiri. Ia sangat menekankan <b>pengumpulan data untuk mengesan perubahan</b>, sesuai apabila anda mahu bukti kuantitatif yang kukuh untuk setiap langkah.",
+    rujukan:"Elliott, J. (1991). <i>Action Research for Educational Change</i>. Open University Press."
+  },
+  somekh:{
+    nama:"Somekh", tahun:"1989", ico:"🔍",
+    tagline:"Menekankan analisis data dan pembentukan hipotesis sebelum tindakan.",
+    fasa:["Kenal pasti masalah & fokus","Kumpul data","Analisis data & hipotesis","Rancang pelan tindakan","Laksanakan tindakan","Nilai & refleksi"],
+    nota:"<b>Model Somekh (1989)</b> menekankan <b>analisis data dan pembentukan hipotesis</b> sebelum sebarang tindakan diambil. Paling sesuai untuk kajian yang memerlukan justifikasi kukuh sebelum intervensi dilaksanakan — contohnya apabila anda perlu meyakinkan pentadbir sekolah.",
+    rujukan:"Somekh, B. (1989). Action research and collaborative school development. Dalam <i>Rethinking Teacher Education</i>."
+  }
+};
+
+/* ---------- 2. TUGASAN SETIAP FASA ---------- */
+var TUGAS = [
+  [ "Nyatakan masalah dalam satu ayat yang jelas dan boleh diukur",
+    "Kumpulkan bukti awal (data baseline, rekod, pemerhatian)",
+    "Tentukan kumpulan sasaran dan bilangan peserta",
+    "Semak literatur atau amalan terbaik yang berkaitan" ],
+  [ "Tentukan instrumen yang akan digunakan (sekurang-kurangnya 3)",
+    "Kumpulkan data pra-intervensi (ujian pra / soal selidik awal)",
+    "Analisis data baseline dan kenal pasti pola",
+    "Tetapkan kriteria kejayaan yang boleh diukur" ],
+  [ "Reka bentuk intervensi atau aktiviti penambahbaikan",
+    "Sediakan bahan, media dan jadual pelaksanaan",
+    "Tetapkan peranan anda dan rakan kolaborator",
+    "Rancang cara anda akan mengumpul data semasa tindakan" ],
+  [ "Laksanakan intervensi mengikut pelan",
+    "Catat pemerhatian dalam jurnal refleksi setiap sesi",
+    "Kumpulkan data semasa (senarai semak, rekod murid)",
+    "Dokumentasikan bukti (foto, hasil kerja murid, rekod skor)" ],
+  [ "Jalankan ujian pasca atau pengukuran akhir",
+    "Bandingkan data pra dan pasca secara kuantitatif",
+    "Analisis data kualitatif (temu bual, pemerhatian, jurnal)",
+    "Triangulasi dapatan daripada pelbagai sumber" ],
+  [ "Refleksi — apa yang berkesan dan apa yang tidak",
+    "Kenal pasti penambahbaikan untuk kitaran seterusnya",
+    "Tulis laporan dan kongsikan dapatan",
+    "Rancang kitaran baharu atau peluasan amalan" ]
+];
+
+/* ---------- 3. PANDUAN MODEL PER FASA ---------- */
+var SOALAN = [
+  "Adakah masalah anda boleh diukur? Jika tidak, tukar kepada bentuk yang boleh diukur.",
+  "Instrumen yang pelbagai menguatkan dapatan. Rancang sekurang-kurangnya tiga jenis.",
+  "Intervensi yang ringkas tetapi konsisten biasanya lebih berkesan daripada yang besar tetapi tidak teratur.",
+  "Rekodkan pemerhatian SEGERA selepas setiap sesi — ingatan cepat kabur.",
+  "Bandingkan bukan sahaja skor, tetapi juga tingkah laku dan sikap peserta.",
+  "Refleksi yang jujur lebih berharga daripada laporan yang kelihatan sempurna."
+];
+
+/* ---------- 4. KEADAAN ---------- */
+var LALAI = {
+  projek:{tajuk:"",guru:"",sekolah:"",kelas:"",subjek:"",mula:"",akhir:"",masalah:"",objektif:""},
+  kaedah:"kemmis",
+  langkah:{},
+  murid:[],
+  kitaran:[],
+  triangulasi:[],
+  instrumen:[],
+  terbuka:{}
+};
+var S = JSON.parse(JSON.stringify(LALAI));
+var KUNCI = "kajianTindakan.v1";
+
+function muat(){
+  try{
+    var raw = localStorage.getItem(KUNCI);
+    if(raw){
+      var d = JSON.parse(raw);
+      S = Object.assign(JSON.parse(JSON.stringify(LALAI)), d);
+      S.projek = Object.assign(JSON.parse(JSON.stringify(LALAI.projek)), d.projek||{});
+    }
+  }catch(e){ console.warn("gagal memuat",e); }
+}
+function simpan(disenyap){
+  try{ localStorage.setItem(KUNCI, JSON.stringify(S)); }catch(e){}
+  if(!disenyap) toast("✅ Disimpan dalam pelayar");
+}
+
+/* ---------- 5. UTILITI ---------- */
+function $(s,r){ return (r||document).querySelector(s); }
+function $$(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function toast(m){
+  var t = $("#toast"); t.textContent = m; t.classList.add("on");
+  clearTimeout(toast._t); toast._t = setTimeout(function(){ t.classList.remove("on"); },2200);
+}
+function muatTurun(nama, teks, jenis){
+  var b = new Blob([teks], {type:(jenis||"text/plain")+";charset=utf-8"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(b); a.download = nama;
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },400);
+}
+function tarikhKini(){ var d=new Date(); return d.toISOString().slice(0,10); }
+
+/* ---------- 6. MODEL UI ---------- */
+function lukisModel(){
+  var g = $("#model-grid"); g.innerHTML = "";
+  Object.keys(MODELS).forEach(function(k){
+    var m = MODELS[k];
+    var b = document.createElement("button");
+    b.className = "model" + (S.kaedah===k ? " on" : "");
+    b.type = "button";
+    b.innerHTML =
+      (S.kaedah===k ? '<span class="badge">DIPILIH</span>' : '') +
+      '<div class="mh"><div class="mi">'+m.ico+'</div><div><h4>'+esc(m.nama)+'</h4>'+
+      '<div class="yr">'+m.tahun+'</div></div></div>' +
+      '<div class="tagline">'+esc(m.tagline)+'</div>' +
+      '<div class="flow">'+m.fasa.map(function(f){return '<i>'+esc(f)+'</i>';}).join("")+'</div>';
+    b.addEventListener("click", function(){
+      S.kaedah = k; simpan(true); lukisModel(); lukisFasa(); lukisKitaran(); agentSapa();
+    });
+    g.appendChild(b);
+  });
+  var m = MODELS[S.kaedah];
+  $("#model-nota").innerHTML = m.nota + '<div style="margin-top:8px;font-size:12px;opacity:.85">📚 '+m.rujukan+'</div>';
+  $("#fasa-model-nama").textContent = m.nama + " (" + m.tahun + ")";
+}
+
+/* ---------- 7. FASA ---------- */
+function kunciLangkah(i,j){ return S.kaedah + ":" + i + ":" + j; }
+function bilanganTugasan(){ return TUGAS.reduce(function(a,t){return a+t.length;},0); }
+function bilanganSiap(){
+  var n=0; TUGAS.forEach(function(t,i){ t.forEach(function(_,j){ if(S.langkah[kunciLangkah(i,j)]) n++; }); });
+  return n;
+}
+function peratus(){
+  var t = bilanganTugasan(); if(!t) return 0;
+  return Math.round(bilanganSiap()/t*100);
+}
+function lukisFasa(){
+  var m = MODELS[S.kaedah], box = $("#fasa-list"); box.innerHTML = "";
+  m.fasa.forEach(function(nama, i){
+    var t = TUGAS[i] || [];
+    var siap = t.filter(function(_,j){ return S.langkah[kunciLangkah(i,j)]; }).length;
+    var penuh = t.length && siap===t.length;
+    var div = document.createElement("div");
+    div.className = "phase" + (penuh?" done":"") + ((S.terbuka[i]||i===0)?" open":"");
+    div.innerHTML =
+      '<div class="phase-head">'+
+        '<div class="phase-num">'+(penuh?"✓":("F"+(i+1)))+'</div>'+
+        '<div class="pt"><h4>Fasa '+(i+1)+' — '+esc(nama)+'</h4>'+
+        '<div class="pd">'+siap+' daripada '+t.length+' tugasan selesai</div></div>'+
+        '<div class="caret">▶</div>'+
+      '</div>'+
+      '<div class="phase-body">'+
+        '<div class="ask"><b>Panduan ejen</b>'+esc(SOALAN[i]||"")+'</div>'+
+        '<ul class="tasks">'+ t.map(function(x,j){
+          var id = kunciLangkah(i,j), ok = !!S.langkah[id];
+          return '<li class="'+(ok?"ok":"")+'"><input type="checkbox" data-i="'+i+'" data-j="'+j+'"'+
+                 (ok?" checked":"")+'><span>'+esc(x)+'</span></li>';
+        }).join("") + '</ul>'+
+      '</div>';
+    $(".phase-head", div).addEventListener("click", function(){
+      div.classList.toggle("open"); S.terbuka[i] = div.classList.contains("open"); simpan(true);
+    });
+    $$('input[type=checkbox]', div).forEach(function(c){
+      c.addEventListener("change", function(){
+        S.langkah[kunciLangkah(+c.dataset.i, +c.dataset.j)] = c.checked;
+        simpan(true); lukisFasa(); kemasKemajuan();
+      });
+    });
+    box.appendChild(div);
+  });
+  kemasKemajuan();
+}
+function kemasKemajuan(){
+  var p = peratus();
+  $("#prog-bar").style.width = p+"%";
+  $("#prog-txt").textContent = bilanganSiap()+" / "+bilanganTugasan()+" tugasan";
+  $("#mini-pct").textContent = p+"%";
+  var C = 2*Math.PI*15;
+  var off = C - (C*p/100);
+  var r1 = $("#mini-ring"), r2 = $("#hero-ring");
+  if(r1) r1.setAttribute("stroke-dashoffset", off.toFixed(1));
+  if(r2) r2.setAttribute("stroke-dashoffset", off.toFixed(1));
+  var t = $("#hero-ring-t"); if(t) t.textContent = p+"%";
+}
+
+/* ---------- 8. MURID ---------- */
+function gredOf(s){
+  s = +s; if(isNaN(s)) return null;
+  if(s>=80) return {l:"Cemerlang",c:"p-g"};
+  if(s>=65) return {l:"Baik",c:"p-b"};
+  if(s>=50) return {l:"Sederhana",c:"p-a"};
+  return {l:"Perlu Bantuan",c:"p-r"};
+}
+function lukisMurid(){
+  var tb = $("#tb-murid"); tb.innerHTML = "";
+  if(!S.murid.length){
+    tb.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:22px">'+
+      'Belum ada data. Tekan <b>Tambah Baris</b> atau muat <b>Contoh Projek</b> di tab Panduan.</td></tr>';
+  }
+  S.murid.forEach(function(m,i){
+    var pra = m.pra===""||m.pra==null ? null : +m.pra;
+    var pas = m.pasca===""||m.pasca==null ? null : +m.pasca;
+    var beza = (pra!=null && pas!=null) ? (pas-pra) : null;
+    var st = pas==null ? {l:"Belum dinilai",c:"p-n"} : gredOf(pas);
+    var tr = document.createElement("tr");
+    tr.innerHTML =
+      '<td class="num">'+(i+1)+'</td>'+
+      '<td><input type="text" data-f="nama" data-i="'+i+'" value="'+esc(m.nama||"")+'" placeholder="Nama murid"></td>'+
+      '<td><input type="text" data-f="tahap" data-i="'+i+'" value="'+esc(m.tahap||"")+'" placeholder="cth. Iqra\' 3"></td>'+
+      '<td><input type="number" data-f="pra" data-i="'+i+'" value="'+(m.pra==null?"":esc(m.pra))+'" min="0" max="100"></td>'+
+      '<td><input type="number" data-f="pasca" data-i="'+i+'" value="'+(m.pasca==null?"":esc(m.pasca))+'" min="0" max="100"></td>'+
+      '<td class="num" style="color:'+(beza==null?"var(--faint)":(beza>=0?"var(--green)":"var(--rose)"))+'">'+
+        (beza==null?"—":(beza>0?"+":"")+beza)+'</td>'+
+      '<td><span class="pill '+st.c+'">'+st.l+'</span></td>'+
+      '<td><button class="btn sm danger" data-del="'+i+'" title="Buang">✕</button></td>';
+    tb.appendChild(tr);
+  });
+  $$("input",tb).forEach(function(inp){
+    inp.addEventListener("input", function(){
+      var i=+inp.dataset.i, f=inp.dataset.f;
+      S.murid[i][f] = (f==="pra"||f==="pasca") ? (inp.value===""?"":+inp.value) : inp.value;
+      simpan(true);
+      if(f==="pra"||f==="pasca"){
+        var tr = inp.closest("tr");
+        var pra = S.murid[i].pra, pas = S.murid[i].pasca;
+        var beza = (pra!==""&&pra!=null&&pas!==""&&pas!=null) ? (pas-pra) : null;
+        var c = tr.children[5]; c.textContent = beza==null?"—":(beza>0?"+":"")+beza;
+        c.style.color = beza==null?"var(--faint)":(beza>=0?"var(--green)":"var(--rose)");
+        var st = pas===""||pas==null ? {l:"Belum dinilai",c:"p-n"} : gredOf(pas);
+        tr.children[6].innerHTML = '<span class="pill '+st.c+'">'+st.l+'</span>';
+      }
+      kemasData();
+    });
+  });
+  $$("[data-del]",tb).forEach(function(b){
+    b.addEventListener("click", function(){
+      S.murid.splice(+b.dataset.del,1); simpan(true); lukisMurid(); kemasData();
+    });
+  });
+  kemasData();
+}
+function statistik(){
+  var pra=[],pas=[];
+  S.murid.forEach(function(m){
+    if(m.pra!==""&&m.pra!=null) pra.push(+m.pra);
+    if(m.pasca!==""&&m.pasca!=null) pas.push(+m.pasca);
+  });
+  var min = function(a){ return a.length ? a.reduce(function(x,y){return x+y;},0)/a.length : 0; };
+  var mp = min(pra), ms = min(pas);
+  var lulusPra = pra.filter(function(x){return x>=50;}).length;
+  var lulusPas = pas.filter(function(x){return x>=50;}).length;
+  return {
+    n:S.murid.length, nPra:pra.length, nPas:pas.length,
+    minPra:mp, minPas:ms, gain: pas.length&&pra.length ? ms-mp : 0,
+    lulusPra:pra.length?Math.round(lulusPra/pra.length*100):0,
+    lulusPas:pas.length?Math.round(lulusPas/pas.length*100):0
+  };
+}
+function kemasData(){
+  var s = statistik();
+  var g = s.minPra?((s.minPas-s.minPra)/s.minPra*100):0;
+  $("#data-stats").innerHTML =
+    jubin(s.n, "Peserta", "") +
+    jubin(s.nPra? s.minPra.toFixed(1):"—", "Min Skor Pra", "b") +
+    jubin(s.nPas? s.minPas.toFixed(1):"—", "Min Skor Pasca", "b") +
+    jubin((s.gain>0?"+":"")+s.gain.toFixed(1), "Peningkatan Min", s.gain>=0?"g":"r") +
+    jubin(s.lulusPra+"%", "Lulus Pra (≥50)", "a") +
+    jubin(s.lulusPas+"%", "Lulus Pasca (≥50)", "g");
+  lukisCarta();
+}
+function jubin(v,l,c){
+  return '<div class="stat '+(c||"")+'"><div class="v">'+esc(v)+'</div><div class="l">'+esc(l)+'</div></div>';
+}
+function lukisCarta(){
+  var box = $("#chart-bars");
+  var data = S.murid.filter(function(m){ return m.pra!==""&&m.pra!=null; });
+  if(!data.length){ box.innerHTML = '<p class="hint">Masukkan skor pra untuk melihat carta.</p>'; }
+  else{
+    var W=520,H=Math.max(160, data.length*30+30), L=86, R=44;
+    var bw = W-L-R;
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto" role="img">';
+    data.forEach(function(m,i){
+      var y = 14+i*30;
+      var pra = +m.pra||0, pas = (m.pasca===""||m.pasca==null)?null:+m.pasca;
+      svg += '<text x="'+(L-8)+'" y="'+(y+13)+'" text-anchor="end" font-size="11" fill="#6b7280">'+
+             esc((m.nama||("Murid "+(i+1))).slice(0,14))+'</text>';
+      svg += '<rect x="'+L+'" y="'+y+'" width="'+Math.max(1,pra/100*bw)+'" height="11" rx="3" fill="#b7d3f3"/>';
+      if(pas!=null){
+        svg += '<rect x="'+L+'" y="'+(y+13)+'" width="'+Math.max(1,pas/100*bw)+'" height="11" rx="3" fill="#1f6fd0"/>';
+      }
+      svg += '<text x="'+(L+bw+6)+'" y="'+(y+13)+'" font-size="10.5" font-weight="700" fill="#3d4350">'+pra+
+             (pas!=null?' → '+pas:'')+'</text>';
+    });
+    svg += '</svg>';
+    box.innerHTML = svg;
+  }
+  /* taburan */
+  var tb = $("#chart-tabur");
+  var kira = {};
+  S.murid.forEach(function(m){
+    var k = (m.tahap||"").trim() || (m.pra!==""&&m.pra!=null ? ("Skor "+m.pra) : null);
+    if(k) kira[k] = (kira[k]||0)+1;
+  });
+  var keys = Object.keys(kira);
+  if(!keys.length){ tb.innerHTML = '<p class="hint">Masukkan tahap/gred untuk melihat taburan.</p>'; return; }
+  keys.sort();
+  var mx = Math.max.apply(null, keys.map(function(k){return kira[k];}));
+  var W2=520, H2=keys.length*34+24, L2=104, bw2=W2-L2-52;
+  var s2 = '<svg viewBox="0 0 '+W2+' '+H2+'" style="width:100%;height:auto" role="img">';
+  keys.forEach(function(k,i){
+    var y=12+i*34, v=kira[k];
+    s2 += '<text x="'+(L2-8)+'" y="'+(y+15)+'" text-anchor="end" font-size="11.5" fill="#6b7280">'+esc(k.slice(0,16))+'</text>';
+    s2 += '<rect x="'+L2+'" y="'+y+'" width="'+Math.max(2, v/mx*bw2)+'" height="19" rx="5" fill="#8a6620" opacity=".85"/>';
+    s2 += '<text x="'+(L2+Math.max(2,v/mx*bw2)+7)+'" y="'+(y+14)+'" font-size="11.5" font-weight="800" fill="#6d5019">'+v+'</text>';
+  });
+  s2 += '</svg>';
+  tb.innerHTML = s2;
+}
+
+/* ---------- 9. TRIANGULASI ---------- */
+function lukisTri(){
+  var tb = $("#tb-tri"); tb.innerHTML="";
+  S.triangulasi.forEach(function(t,i){
+    var tr = document.createElement("tr");
+    tr.innerHTML =
+      '<td><input type="text" data-tf="sumber" data-i="'+i+'" value="'+esc(t.sumber||"")+'" placeholder="cth. Ujian pra/pasca"></td>'+
+      '<td><input type="text" data-tf="dapatan" data-i="'+i+'" value="'+esc(t.dapatan||"")+'" placeholder="Dapatan utama"></td>'+
+      '<td><select data-tf="sokong" data-i="'+i+'">'+
+        ["Ya","Sebahagian","Tidak"].map(function(o){
+          return '<option'+(t.sokong===o?" selected":"")+'>'+o+'</option>'; }).join("")+
+      '</select></td>';
+    tb.appendChild(tr);
+  });
+  var tr2 = document.createElement("tr");
+  tr2.innerHTML = '<td colspan="3" style="text-align:center;padding:11px">'+
+    '<button class="btn sm" id="btn-tambah-tri">➕ Tambah Sumber Triangulasi</button></td>';
+  tb.appendChild(tr2);
+  $$("[data-tf]",tb).forEach(function(el){
+    el.addEventListener("change", function(){
+      S.triangulasi[+el.dataset.i][el.dataset.tf] = el.value; simpan(true);
+    });
+  });
+  var b=$("#btn-tambah-tri");
+  if(b) b.addEventListener("click", function(){
+    S.triangulasi.push({sumber:"",dapatan:"",sokong:"Ya"}); simpan(true); lukisTri();
+  });
+}
+
+/* ---------- 10. KITARAN ---------- */
+function kitaranLalai(){
+  return [
+    {id:"F0", nama:"Persediaan & baseline", mula:"", tamat:"", status:"Belum", catatan:""},
+    {id:"K1", nama:"Kitaran 1 — tindakan", mula:"", tamat:"", status:"Belum", catatan:""},
+    {id:"K2", nama:"Kitaran 2 — penambahbaikan", mula:"", tamat:"", status:"Belum", catatan:""},
+    {id:"F5", nama:"Penilaian & laporan", mula:"", tamat:"", status:"Belum", catatan:""}
+  ];
+}
+var STATUS = ["Belum","Sedang Berjalan","Selesai"];
+function warnaStatus(s){
+  return s==="Selesai" ? "p-g" : s==="Sedang Berjalan" ? "p-a" : "p-n";
+}
+function lukisKitaran(){
+  if(!S.kitaran.length) S.kitaran = kitaranLalai();
+  /* garis masa */
+  var c = $("#cyc-line"); c.innerHTML="";
+  S.kitaran.forEach(function(k,i){
+    if(i) c.insertAdjacentHTML("beforeend", '<div class="link '+(k.status==="Selesai"?"on":"")+'"></div>');
+    var cls = k.status==="Selesai" ? "siap" : (k.status==="Sedang Berjalan" ? "aktif" : "");
+    c.insertAdjacentHTML("beforeend",
+      '<div class="node '+cls+'"><div class="dot">'+esc(k.id)+'</div>'+
+      '<b>'+esc(k.id)+'</b><span>'+esc(k.nama.split("—")[0].trim().slice(0,18))+'</span></div>');
+  });
+  /* nota */
+  var siap = S.kitaran.filter(function(k){return k.status==="Selesai";}).length;
+  var akt = S.kitaran.filter(function(k){return k.status==="Sedang Berjalan";}).length;
+  $("#cyc-nota").innerHTML = "<b>Status semasa:</b> "+siap+" daripada "+S.kitaran.length+
+    " fasa selesai"+(akt?", "+akt+" sedang berjalan":"")+
+    ". <b>"+esc(MODELS[S.kaedah].nama)+"</b> menekankan kitaran berulang — pastikan setiap kitaran melalui "+
+    "<i>rancang → bertindak → perhati → refleksi</i> sebelum beralih ke kitaran seterusnya.";
+  /* jadual */
+  var tb = $("#tb-kitaran"); tb.innerHTML="";
+  S.kitaran.forEach(function(k,i){
+    var tr = document.createElement("tr");
+    tr.innerHTML =
+      '<td><b>'+esc(k.id)+'</b></td>'+
+      '<td><input type="text" data-kf="nama" data-i="'+i+'" value="'+esc(k.nama)+'"></td>'+
+      '<td><input type="date" data-kf="mula" data-i="'+i+'" value="'+esc(k.mula||"")+'"></td>'+
+      '<td><input type="date" data-kf="tamat" data-i="'+i+'" value="'+esc(k.tamat||"")+'"></td>'+
+      '<td><select data-kf="status" data-i="'+i+'">'+STATUS.map(function(s){
+        return '<option'+(k.status===s?" selected":"")+'>'+s+'</option>'; }).join("")+'</select></td>'+
+      '<td><input type="text" data-kf="catatan" data-i="'+i+'" value="'+esc(k.catatan||"")+'" placeholder="Bukti / nota"></td>';
+    tb.appendChild(tr);
+  });
+  $$("[data-kf]",tb).forEach(function(el){
+    el.addEventListener("change", function(){
+      S.kitaran[+el.dataset.i][el.dataset.kf] = el.value; simpan(true); lukisKitaran();
+    });
+  });
+}
+
+/* ---------- 11. INSTRUMEN ---------- */
+function skalaOpt(){
+  var v = $("#i-skala").value;
+  if(v==="likert4") return ["Sangat Tidak Setuju","Tidak Setuju","Setuju","Sangat Setuju"];
+  if(v==="likert5") return ["Sangat Tidak Setuju","Tidak Setuju","Kurang Pasti","Setuju","Sangat Setuju"];
+  if(v==="ya") return ["Ya","Tidak"];
+  if(v==="skor") return null;
+  return null;
+}
+function janaItem(n, fokus){
+  var asas = [
+    "Saya faham apa yang diajar dalam sesi ini.",
+    "Saya berasa seronok semasa menjalankan aktiviti ini.",
+    "Saya boleh melakukannya tanpa bantuan guru.",
+    "Aktiviti ini membantu saya memperbaiki kelemahan saya.",
+    "Saya berasa yakin untuk mencuba soalan yang lebih susah.",
+    "Saya suka cara aktiviti ini dijalankan.",
+    "Saya mahu aktiviti seperti ini dijalankan lagi.",
+    "Saya dapat menumpukan perhatian sepanjang aktiviti.",
+    "Saya faham arahan yang diberikan oleh guru.",
+    "Kemajuan saya dalam " + (fokus||"bidang ini") + " bertambah baik."
+  ];
+  var out=[];
+  for(var i=0;i<n;i++) out.push(asas[i % asas.length] + (i>=asas.length ? " ("+Math.floor(i/asas.length+1)+")" : ""));
+  return out;
+}
+function binaInstrumen(){
+  var jenis = $("#i-jenis").value;
+  var n = Math.max(3, Math.min(30, +$("#i-bil").value||10));
+  var fokus = $("#i-fokus").value || S.projek.subjek || "bidang kajian";
+  var p = S.projek;
+  var kepala =
+    '<div style="border:1px solid #e4e8ee;border-radius:12px;padding:16px 18px;margin-bottom:16px;background:#fafbfd">'+
+      '<div style="font-size:11px;font-weight:800;letter-spacing:.6px;color:#8a6620;text-transform:uppercase">Instrumen Kajian Tindakan</div>'+
+      '<div style="font-size:17px;font-weight:800;margin:5px 0 3px">'+esc(p.tajuk||"Tajuk kajian belum diisi")+'</div>'+
+      '<div style="font-size:12.5px;color:#6b7280">'+
+        esc(p.sekolah||"Sekolah")+' · '+esc(p.kelas||"Kelas")+' · Penyelidik: '+esc(p.guru||"—")+
+        (p.mula?' · '+esc(p.mula):'')+
+      '</div>'+
+    '</div>';
+  var html = "", tajuk = "";
+
+  if(jenis==="soalselidik"){
+    tajuk = "Soal Selidik Murid";
+    var opts = skalaOpt();
+    html = kepala +
+      '<p style="font-size:13px;color:#3d4350;margin-bottom:14px"><b>Arahan:</b> Tandakan (✓) pilihan yang paling menggambarkan perasaan anda bagi setiap pernyataan. Tiada jawapan betul atau salah.</p>'+
+      '<table style="width:100%;border-collapse:collapse;font-size:12.5px">'+
+      '<thead><tr><th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8">Bil</th>'+
+      '<th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8">Pernyataan</th>'+
+      (opts?opts.map(function(o){return '<th style="padding:8px;border:1px solid #d9dee7;background:#f2f4f8;font-size:11px">'+esc(o)+'</th>';}).join("")
+           :'<th style="padding:8px;border:1px solid #d9dee7;background:#f2f4f8">Skor (0–10)</th>')+
+      '</tr></thead><tbody>'+
+      janaItem(n,fokus).map(function(t,i){
+        return '<tr><td style="padding:8px;border:1px solid #d9dee7;text-align:center">'+(i+1)+'</td>'+
+          '<td style="padding:8px;border:1px solid #d9dee7">'+esc(t)+'</td>'+
+          (opts?opts.map(function(){return '<td style="padding:8px;border:1px solid #d9dee7;text-align:center">☐</td>';}).join("")
+               :'<td style="padding:8px;border:1px solid #d9dee7"></td>')+'</tr>';
+      }).join("")+'</tbody></table>'+
+      '<p style="font-size:12px;color:#6b7280;margin-top:12px">Jumlah skor maksimum: <b>'+(opts?n*opts.length:n*10)+'</b> mata.</p>';
+  }
+  else if(jenis==="pemerhatian"){
+    tajuk = "Senarai Semak Pemerhatian";
+    html = kepala +
+      '<p style="font-size:13px;color:#3d4350;margin-bottom:14px"><b>Untuk guru:</b> Tandakan tahap pemerhatian bagi setiap aspek semasa sesi berlangsung.</p>'+
+      '<table style="width:100%;border-collapse:collapse;font-size:12.5px">'+
+      '<thead><tr><th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8">Bil</th>'+
+      '<th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8">Aspek Diperhati</th>'+
+      '<th style="padding:8px;border:1px solid #d9dee7;background:#f2f4f8;font-size:11px">Tidak Ada</th>'+
+      '<th style="padding:8px;border:1px solid #d9dee7;background:#f2f4f8;font-size:11px">Sebahagian</th>'+
+      '<th style="padding:8px;border:1px solid #d9dee7;background:#f2f4f8;font-size:11px">Konsisten</th>'+
+      '<th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8">Catatan</th></tr></thead><tbody>'+
+      janaItem(n,fokus).map(function(t,i){
+        return '<tr><td style="padding:8px;border:1px solid #d9dee7;text-align:center">'+(i+1)+'</td>'+
+          '<td style="padding:8px;border:1px solid #d9dee7">'+esc(t.replace("Saya ","Murid "))+'</td>'+
+          '<td style="padding:8px;border:1px solid #d9dee7;text-align:center">☐</td>'+
+          '<td style="padding:8px;border:1px solid #d9dee7;text-align:center">☐</td>'+
+          '<td style="padding:8px;border:1px solid #d9dee7;text-align:center">☐</td>'+
+          '<td style="padding:8px;border:1px solid #d9dee7"></td></tr>';
+      }).join("")+'</tbody></table>'+
+      '<p style="font-size:12px;color:#6b7280;margin-top:12px">Tarikh pemerhatian: ______________ &nbsp;&nbsp; Sesi/Kelas: ______________</p>';
+  }
+  else if(jenis==="ujian"){
+    tajuk = "Ujian Pra / Pasca";
+    html = kepala +
+      '<p style="font-size:13px;color:#3d4350;margin-bottom:10px"><b>Arahan:</b> Jawab semua soalan. Ujian ini digunakan untuk mengukur tahap penguasaan sebelum dan selepas intervensi.</p>'+
+      '<p style="font-size:12.5px;margin-bottom:14px">Nama murid: ______________________________ &nbsp; Kelas: ____________ &nbsp; Tarikh: ____________</p>'+
+      '<table style="width:100%;border-collapse:collapse;font-size:12.5px">'+
+      '<thead><tr><th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8">Bil</th>'+
+      '<th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8">Item / Soalan</th>'+
+      '<th style="padding:8px;border:1px solid #d9dee7;background:#f2f4f8;font-size:11px">Markah</th></tr></thead><tbody>'+
+      Array.from({length:n}).map(function(_,i){
+        return '<tr><td style="padding:9px;border:1px solid #d9dee7;text-align:center">'+(i+1)+'</td>'+
+          '<td style="padding:9px;border:1px solid #d9dee7;height:34px"></td>'+
+          '<td style="padding:9px;border:1px solid #d9dee7"></td></tr>';
+      }).join("")+
+      '<tr><td colspan="2" style="padding:9px;border:1px solid #d9dee7;text-align:right;font-weight:800">JUMLAH</td>'+
+      '<td style="padding:9px;border:1px solid #d9dee7"></td></tr></tbody></table>'+
+      '<p style="font-size:12px;color:#6b7280;margin-top:12px">Peratus: ______% &nbsp; · &nbsp; Gred: ______ &nbsp; · &nbsp; Catatan guru: ______________________________</p>';
+  }
+  else if(jenis==="temubual"){
+    tajuk = "Protokol Temu Bual Guru";
+    var soalan = [
+      "Apakah masalah utama yang anda perhatikan dalam "+fokus+"?",
+      "Bagaimanakah anda biasanya menangani masalah ini sebelum ini?",
+      "Apakah punca yang anda fikirkan menyumbang kepada masalah ini?",
+      "Apakah perubahan yang anda harapkan daripada intervensi ini?",
+      "Apakah halangan yang mungkin dihadapi semasa pelaksanaan?",
+      "Bagaimanakah anda akan mengukur kejayaan intervensi ini?",
+      "Apakah sokongan yang anda perlukan daripada pihak sekolah?",
+      "Adakah terdapat murid yang memerlukan pendekatan berbeza?",
+      "Bagaimana anda akan melibatkan ibu bapa dalam proses ini?",
+      "Apakah rancangan anda selepas kitaran ini tamat?"
+    ];
+    html = kepala +
+      '<p style="font-size:13px;color:#3d4350;margin-bottom:14px"><b>Pengenalan:</b> Terima kasih kerana sudi ditemu bual. Tujuan temu bual ini adalah untuk memahami perspektif anda tentang '+esc(fokus)+'. Tiada jawapan betul atau salah.</p>'+
+      '<table style="width:100%;border-collapse:collapse;font-size:12.5px">'+
+      '<thead><tr><th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8;width:34px">#</th>'+
+      '<th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8">Soalan Panduan</th>'+
+      '<th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8;width:38%">Catatan Jawapan</th></tr></thead><tbody>'+
+      soalan.slice(0, Math.max(5,Math.min(n,soalan.length))).map(function(s,i){
+        return '<tr><td style="padding:9px;border:1px solid #d9dee7;text-align:center">'+(i+1)+'</td>'+
+          '<td style="padding:9px;border:1px solid #d9dee7">'+esc(s)+'</td>'+
+          '<td style="padding:9px;border:1px solid #d9dee7;height:44px"></td></tr>';
+      }).join("")+'</tbody></table>';
+  }
+  else{
+    tajuk = "Borang Analisis Dokumen";
+    html = kepala +
+      '<p style="font-size:13px;color:#3d4350;margin-bottom:14px"><b>Untuk guru:</b> Rekod dokumen yang dianalisis dan dapatan utama.</p>'+
+      '<table style="width:100%;border-collapse:collapse;font-size:12.5px">'+
+      '<thead><tr><th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8;width:34px">#</th>'+
+      '<th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8">Dokumen / Sumber</th>'+
+      '<th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8">Dapatan Berkaitan '+esc(fokus)+'</th>'+
+      '<th style="text-align:left;padding:8px;border:1px solid #d9dee7;background:#f2f4f8;width:120px">Tindakan</th></tr></thead><tbody>'+
+      Array.from({length:n}).map(function(_,i){
+        return '<tr><td style="padding:9px;border:1px solid #d9dee7;text-align:center">'+(i+1)+'</td>'+
+          '<td style="padding:9px;border:1px solid #d9dee7;height:34px"></td>'+
+          '<td style="padding:9px;border:1px solid #d9dee7"></td>'+
+          '<td style="padding:9px;border:1px solid #d9dee7"></td></tr>';
+      }).join("")+'</tbody></table>';
+  }
+  return {tajuk:tajuk, html:html, jenis:jenis, bil:n};
+}
+function lukisInstrumen(){
+  $("#i-kira").textContent = "(" + S.instrumen.length + ")";
+  var box = $("#i-senarai");
+  if(!S.instrumen.length){
+    box.innerHTML = '<p class="hint">Belum ada instrumen dijana. Pilih jenis di sebelah kiri dan tekan <b>Jana Instrumen</b>.</p>';
+    return;
+  }
+  box.innerHTML = S.instrumen.map(function(it,i){
+    return '<div style="display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px dashed var(--line)">'+
+      '<span style="font-size:19px">🧾</span>'+
+      '<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:800">'+esc(it.tajuk)+'</div>'+
+      '<div class="hint">'+it.bil+' item · '+esc(it.masa)+'</div></div>'+
+      '<button class="btn sm" data-lihat="'+i+'">Lihat</button>'+
+      '<button class="btn sm danger" data-buang="'+i+'">✕</button></div>';
+  }).join("");
+  $$("[data-lihat]",box).forEach(function(b){
+    b.addEventListener("click", function(){ paparInstrumen(+b.dataset.lihat); });
+  });
+  $$("[data-buang]",box).forEach(function(b){
+    b.addEventListener("click", function(){
+      S.instrumen.splice(+b.dataset.buang,1); simpan(true); lukisInstrumen();
+    });
+  });
+}
+var instrSemasa = null;
+function paparInstrumen(i){
+  var it = S.instrumen[i]; if(!it) return;
+  instrSemasa = it;
+  $("#i-pratonton-tajuk").textContent = it.tajuk;
+  $("#i-pratonton").innerHTML = it.html;
+  $("#i-pratonton-card").style.display = "";
+  $("#i-pratonton-card").scrollIntoView({behavior:"smooth", block:"start"});
+}
+function rangkaInstrumen(it){
+  return '<!DOCTYPE html><html lang="ms"><head><meta charset="utf-8">'+
+    '<title>'+esc(it.tajuk)+'</title><style>'+
+    'body{font-family:"Segoe UI",Arial,sans-serif;max-width:820px;margin:30px auto;padding:0 22px;color:#1b1e25;line-height:1.6}'+
+    'table{width:100%;border-collapse:collapse}th,td{vertical-align:top}'+
+    '@media print{body{margin:0}}'+
+    '</style></head><body>'+it.html+
+    '<p style="margin-top:30px;font-size:11.5px;color:#9aa1ad;text-align:center">'+
+    'Dijana oleh Platform Workflow Kajian Tindakan · '+esc(new Date().toLocaleDateString("ms-MY"))+'</p>'+
+    '</body></html>';
+}
+
+/* ---------- 12. LAPORAN ---------- */
+function binaLaporan(){
+  var p = S.projek, m = MODELS[S.kaedah], st = statistik();
+  var siapFasa = S.kitaran.filter(function(k){return k.status==="Selesai";}).map(function(k){return k.id;}).join(", ")||"—";
+  var H = [];
+  H.push('<h3>1.0 Pengenalan</h3>');
+  H.push('<p><b>Tajuk kajian:</b> '+esc(p.tajuk||"[Tajuk kajian belum diisi]")+'</p>');
+  H.push('<p>Kajian tindakan ini dijalankan di <b>'+esc(p.sekolah||"[Sekolah]")+'</b> oleh <b>'+esc(p.guru||"[Penyelidik]")+
+    '</b> dengan kumpulan sasaran <b>'+esc(p.kelas||"[Kelas]")+'</b>'+
+    (p.mula?' bermula '+esc(p.mula)+(p.akhir?' hingga '+esc(p.akhir):''):'')+'.</p>');
+  if(p.masalah) H.push('<p><b>Pernyataan masalah:</b> '+esc(p.masalah)+'</p>');
+
+  H.push('<h3>2.0 Objektif Kajian</h3>');
+  H.push('<p>'+esc(p.objektif||"[Objektif kajian belum diisi]").replace(/\n/g,"<br>")+'</p>');
+
+  H.push('<h3>3.0 Kerangka Metodologi</h3>');
+  H.push('<p>Kajian ini menggunakan <b>Model '+esc(m.nama)+' ('+m.tahun+')</b> sebagai kerangka utama. '+
+    esc(m.tagline)+'</p>');
+  H.push('<p>Fasa pelaksanaan:</p><table><thead><tr><th>Fasa</th><th>Nama Fasa</th><th>Status</th></tr></thead><tbody>'+
+    m.fasa.map(function(f,i){
+      var k = S.kitaran[i] || {};
+      return '<tr><td>F'+(i+1)+'</td><td>'+esc(f)+'</td><td>'+esc(k.status||"Belum")+'</td></tr>';
+    }).join("")+'</tbody></table>');
+  H.push('<p style="font-size:12.5px;color:#6b7280">Rujukan: '+m.rujukan+'</p>');
+
+  H.push('<h3>4.0 Data dan Analisis</h3>');
+  H.push('<p>Seramai <b>'+st.n+'</b> peserta terlibat. '+
+    (st.nPra&&st.nPas ? 'Min skor meningkat daripada <b>'+st.minPra.toFixed(1)+'</b> (pra) kepada <b>'+
+      st.minPas.toFixed(1)+'</b> (pasca), iaitu peningkatan <b>'+(st.gain>0?"+":"")+st.gain.toFixed(1)+'</b> mata. '+
+      'Peratus peserta yang lulus (≥50) meningkat daripada <b>'+st.lulusPra+'%</b> kepada <b>'+st.lulusPas+'%</b>.'
+      : '[Data pasca belum lengkap — lengkapkan di tab Data &amp; Analisis.]')+'</p>');
+  if(S.murid.length){
+    H.push('<table><thead><tr><th>#</th><th>Nama</th><th>Tahap</th><th>Pra</th><th>Pasca</th><th>Perubahan</th></tr></thead><tbody>'+
+      S.murid.map(function(x,i){
+        var pra=x.pra, pas=x.pasca;
+        var beza=(pra!==""&&pra!=null&&pas!==""&&pas!=null)?(pas-pra):null;
+        return '<tr><td>'+(i+1)+'</td><td>'+esc(x.nama||"")+'</td><td>'+esc(x.tahap||"")+'</td><td>'+
+          (pra===""||pra==null?"—":pra)+'</td><td>'+(pas===""||pas==null?"—":pas)+'</td><td>'+
+          (beza==null?"—":(beza>0?"+":"")+beza)+'</td></tr>';
+      }).join("")+'</tbody></table>');
+  }
+
+  H.push('<h3>5.0 Triangulasi Dapatan</h3>');
+  if(S.triangulasi.length && S.triangulasi.some(function(t){return t.sumber||t.dapatan;})){
+    H.push('<table><thead><tr><th>Instrumen / Sumber</th><th>Dapatan Utama</th><th>Menyokong?</th></tr></thead><tbody>'+
+      S.triangulasi.map(function(t){
+        return '<tr><td>'+esc(t.sumber||"")+'</td><td>'+esc(t.dapatan||"")+'</td><td>'+esc(t.sokong||"")+'</td></tr>';
+      }).join("")+'</tbody></table>');
+  } else H.push('<p>[Tiada data triangulasi dimasukkan.]</p>');
+
+  H.push('<h3>6.0 Pelaksanaan Kitaran</h3>');
+  H.push('<p>Fasa yang telah selesai: <b>'+esc(siapFasa)+'</b>.</p>');
+  H.push('<table><thead><tr><th>Fasa</th><th>Nama</th><th>Mula</th><th>Tamat</th><th>Status</th><th>Catatan</th></tr></thead><tbody>'+
+    S.kitaran.map(function(k){
+      return '<tr><td>'+esc(k.id)+'</td><td>'+esc(k.nama)+'</td><td>'+esc(k.mula||"—")+'</td><td>'+
+        esc(k.tamat||"—")+'</td><td>'+esc(k.status)+'</td><td>'+esc(k.catatan||"")+'</td></tr>';
+    }).join("")+'</tbody></table>');
+
+  H.push('<h3>7.0 Refleksi dan Cadangan</h3>');
+  H.push('<p><i>[Perhalusi bahagian ini dengan suara anda sendiri — nyatakan apa yang berkesan, apa yang tidak, '+
+    'dan penambahbaikan untuk kitaran seterusnya.]</i></p>');
+
+  H.push('<h3>8.0 Kesimpulan</h3>');
+  H.push('<p><i>[Ringkaskan dapatan utama dan implikasi kepada amalan pengajaran anda.]</i></p>');
+
+  H.push('<h3>9.0 Rujukan</h3>');
+  H.push('<p>'+m.rujukan+'</p>');
+  H.push('<p>Goloi, D. (2021). <i>Slide Pembudayaan Kajian Tindakan untuk Jurulatih Utama</i>. Bahagian Perancangan dan Penyelidikan Dasar Pendidikan, Kementerian Pendidikan Malaysia.</p>');
+
+  return H.join("\n");
+}
+function laporanMD(){
+  var tmp = document.createElement("div");
+  tmp.innerHTML = binaLaporan();
+  var out = "# " + (S.projek.tajuk||"Laporan Kajian Tindakan") + "\n\n";
+  $$("h3, p, table", tmp).forEach(function(el){
+    if(el.tagName==="H3") out += "\n## " + el.textContent + "\n\n";
+    else if(el.tagName==="P") out += el.textContent.trim() + "\n\n";
+    else if(el.tagName==="TABLE"){
+      $$("tr",el).forEach(function(tr,i){
+        var cells = $$("th,td",tr).map(function(c){ return c.textContent.trim(); });
+        out += "| " + cells.join(" | ") + " |\n";
+        if(!i) out += "|" + cells.map(function(){return "---";}).join("|") + "|\n";
+      });
+      out += "\n";
+    }
+  });
+  return out;
+}
+
+/* ---------- 13. PEMBANTU PINTAR ---------- */
+function agentBalas(teks){
+  var s = teks.toLowerCase();
+  var p = S.projek;
+  if(/^(hai|hi|hello|salam|assalam)/.test(s))
+    return "Waalaikumussalam! Saya pembantu Kajian Tindakan anda. Saya boleh bantu anda memilih model, merancang instrumen, menganalisis data, atau mencadangkan langkah seterusnya. Apa yang anda mahu lakukan dahulu?";
+  if(/model|kaedah|metodologi|lewin|kemmis|stringer|elliott|somekh/.test(s)){
+    var senarai = Object.keys(MODELS).map(function(k){
+      var m = MODELS[k];
+      return "<li><b>"+m.nama+" ("+m.tahun+")</b> — "+m.tagline+"</li>";
+    }).join("");
+    return "Terdapat <b>5 model</b> dalam platform ini:<ul>"+senarai+"</ul>Untuk kajian pertama, saya cadangkan <b>Kemmis &amp; McTaggart</b> (paling biasa digunakan di Malaysia) atau <b>Lewin</b> (paling ringkas). Buka tab <b>Panduan &amp; Kaedah</b> untuk memilih.";
+  }
+  if(/instrumen|soal selidik|pemerhatian|ujian|temu bual|borang/.test(s))
+    return "Gunakan tab <b>Penjana Instrumen</b>. Pilih jenis instrumen, tetapkan bilangan item dan fokus, kemudian tekan <b>Jana Instrumen</b>. Anda boleh jana sehingga 5 jenis berbeza — saya cadangkan sekurang-kurangnya <b>3 jenis</b> untuk triangulasi yang kukuh.";
+  if(/analisis|data|min|skor|peningkatan|statistik/.test(s)){
+    var st = statistik();
+    if(!st.n) return "Masukkan data murid di tab <b>Data &amp; Analisis</b> dahulu. Tekan <b>Tambah Baris</b> atau muat <b>Contoh Projek</b>. Selepas itu saya boleh kira min, peratusan lulus dan peningkatan secara automatik.";
+    return "Berdasarkan data anda: <b>"+st.n+" peserta</b>. Min pra <b>"+(st.nPra?st.minPra.toFixed(1):"—")+
+      "</b> → min pasca <b>"+(st.nPas?st.minPas.toFixed(1):"—")+"</b> (peningkatan <b>"+
+      (st.gain>0?"+":"")+st.gain.toFixed(1)+"</b> mata). Peratus lulus (≥50) naik daripada <b>"+
+      st.lulusPra+"%</b> kepada <b>"+st.lulusPas+"%</b>.";
+  }
+  if(/laporan|tulis|report|kesimpulan/.test(s))
+    return "Buka tab <b>Pembina Laporan</b> dan tekan <b>Jana Laporan</b>. Semua tajuk, jadual data dan dapatan analisis akan diisi secara automatik. Anda kemudian boleh muat turun sebagai Markdown atau HTML, atau cetak sebagai PDF.";
+  if(/baseline|awal|pra/.test(s))
+    return "Data baseline ialah pengukuran <b>sebelum</b> intervensi. Ia penting kerana tanpa baseline, anda tidak boleh membuktikan perubahan. Kumpulkan sekurang-kurangnya satu ukuran kuantitatif (ujian/skor) dan satu kualitatif (pemerhatian/temu bual).";
+  if(/refleksi|reflect/.test(s))
+    return "Refleksi ialah jantung Kajian Tindakan. Selepas setiap sesi, tanya diri anda tiga soalan: <b>(1)</b> Apa yang berkesan? <b>(2)</b> Apa yang tidak berkesan dan mengapa? <b>(3)</b> Apa yang akan saya ubah pada sesi seterusnya? Rekodkan dalam jurnal refleksi — ia menjadi bukti penting dalam laporan.";
+  if(/triangulasi/.test(s))
+    return "Triangulasi bermaksud menggunakan <b>beberapa sumber data</b> untuk menyokong satu dapatan. Contohnya: skor ujian meningkat <i>dan</i> pemerhatian guru menunjukkan murid lebih yakin <i>dan</i> murid sendiri melaporkan minat bertambah. Apabila tiga sumber bersetuju, dapatan anda jauh lebih kukuh. Isi matriks di tab <b>Data &amp; Analisis</b>.";
+  if(/kitaran|cycle|fasa/.test(s))
+    return "Kajian Tindakan berjalan dalam <b>kitaran</b>, bukan garis lurus. Setiap kitaran: rancang → bertindak → perhati → refleksi. Selepas refleksi, anda merancang kitaran baharu yang diperbaiki. Jejak setiap kitaran di tab <b>Pemantau Kitaran</b>.";
+  if(/etika|kebenaran|izin|privasi/.test(s))
+    return "Etika kajian tindakan: <b>(1)</b> dapatkan kebenaran pentadbir sekolah; <b>(2)</b> dapatkan kebenaran ibu bapa untuk murid bawah umur; <b>(3)</b> kekalkan kerahsiaan nama murid (gunakan kod atau nama samaran dalam laporan); <b>(4)</b> pastikan penyertaan tidak menjejaskan pembelajaran murid.";
+  if(/masalah|susah|tak tahu|buntu/.test(s))
+    return "Jangan risau — ini biasa. Cuba pecahkan masalah kepada tiga soalan: <b>(1)</b> Apa sebenarnya yang saya lihat berlaku? <b>(2)</b> Apa buktinya? <b>(3)</b> Apa satu perubahan kecil yang boleh saya cuba minggu ini? Fokus pada satu perubahan kecil dahulu — kajian tindakan yang kecil tetapi selesai lebih bernilai daripada yang besar tetapi tidak siap.";
+  return "Saya boleh bantu dengan: <b>model metodologi</b>, <b>instrumen</b>, <b>analisis data</b>, <b>triangulasi</b>, <b>etika</b>, <b>refleksi</b>, <b>kitaran</b>, dan <b>penulisan laporan</b>. Cuba taip salah satu kata kunci itu, atau klik soalan lazim di bawah.";
+}
+function tambahMsg(siapa, html){
+  var b = $("#agent-body");
+  var d = document.createElement("div");
+  d.className = "msg " + (siapa==="me"?"me":"bot");
+  d.innerHTML = '<div class="mini">'+(siapa==="me"?"🧑‍🏫":"🤖")+'</div><div class="bub">'+html+'</div>';
+  b.appendChild(d); b.scrollTop = b.scrollHeight;
+}
+function agentSapa(){
+  var p = S.projek, m = MODELS[S.kaedah];
+  var pct = peratus();
+  var msg = "Selamat datang ke <b>Platform Workflow Kajian Tindakan</b>.<br><br>";
+  if(!p.tajuk){
+    msg += "Saya perasan anda belum mengisi <b>tajuk kajian</b>. Cadangan pertama saya: mulakan di tab "+
+      "<b>Panduan &amp; Kaedah</b>, isi maklumat projek, atau tekan <b>Muat Contoh Projek</b> untuk melihat "+
+      "bagaimana kajian yang lengkap kelihatan.<br><br>";
+  } else {
+    msg += "Projek anda: <b>"+esc(p.tajuk)+"</b>"+(p.sekolah?" · "+esc(p.sekolah):"")+".<br>";
+    msg += "Model dipilih: <b>"+m.nama+" ("+m.tahun+")</b> · Kemajuan: <b>"+pct+"%</b>.<br><br>";
+  }
+  msg += "Saya sentiasa membaca keadaan projek anda. Apa yang anda mahu lakukan seterusnya?";
+  tambahMsg("bot", msg);
+}
+function cadanganSeterusnya(){
+  var p = S.projek, st = statistik();
+  var pct = peratus();
+  if(!p.tajuk) return "Isi <b>tajuk kajian</b> dan <b>pernyataan masalah</b> di tab Panduan &amp; Kaedah. Ini asas kepada segala-galanya.";
+  if(!S.murid.length) return "Masukkan <b>data baseline murid</b> di tab Data &amp; Analisis. Tanpa baseline, perubahan tidak boleh dibuktikan.";
+  if(!S.instrumen.length) return "Jana sekurang-kurangnya <b>3 instrumen</b> berbeza di tab Penjana Instrumen untuk triangulasi yang kukuh.";
+  if(!S.triangulasi.length || !S.triangulasi.some(function(t){return t.dapatan;})) return "Isi <b>matriks triangulasi</b> di tab Data &amp; Analisis — bandingkan dapatan daripada sumber berbeza.";
+  if(pct < 100) return "Anda telah selesai <b>"+pct+"%</b> tugasan. Teruskan menandakan tugasan di tab Panduan &amp; Kaedah — fokus pada fasa yang belum selesai.";
+  if(!st.nPas) return "Semua tugasan fasa selesai! Sekarang jalankan <b>pengukuran pasca</b> dan masukkan skor di tab Data &amp; Analisis.";
+  return "Kajian anda hampir lengkap. Jana <b>rangka laporan</b> di tab Pembina Laporan, kemudian perhalusi bahagian Refleksi dengan suara anda sendiri.";
+}
+function agentChips(){
+  var q = ["Bagaimana memilih model?","Apa itu triangulasi?","Cadangkan langkah seterusnya","Bagaimana menulis refleksi?",
+           "Isu etika kajian tindakan","Bagaimana menganalisis data?","Bagaimana menulis laporan?"];
+  $("#agent-chips").innerHTML = q.map(function(x){
+    return '<button class="qchip" data-q="'+esc(x)+'">'+esc(x)+'</button>'; }).join("");
+  $$("[data-q]").forEach(function(b){
+    b.addEventListener("click", function(){
+      tambahMsg("me", esc(b.dataset.q));
+      var t = b.dataset.q;
+      if(/langkah seterusnya/.test(t)) tambahMsg("bot", "<b>Cadangan seterusnya untuk projek anda:</b><br>"+cadanganSeterusnya());
+      else tambahMsg("bot", agentBalas(t));
+    });
+  });
+}
+
+/* ---------- 14. TAB ---------- */
+function tukarTab(v){
+  $$(".tab").forEach(function(b){ b.classList.toggle("on", b.dataset.view===v); });
+  $$(".view").forEach(function(s){ s.classList.toggle("on", s.id==="view-"+v); });
+  window.scrollTo({top:0, behavior:"smooth"});
+  if(v==="data"){ lukisMurid(); lukisTri(); }
+  if(v==="kitaran") lukisKitaran();
+  if(v==="instrumen") lukisInstrumen();
+}
+
+/* ---------- 15. CONTOH PROJEK ---------- */
+function muatContoh(){
+  S.projek = {
+    tajuk:"Kelemahan Bacaan Iqra' Murid Tahun 6 Arif",
+    guru:"Guru Penyelidik",
+    sekolah:"SK. Salimpodon Darat, Pitas",
+    kelas:"Tahun 6 Arif (9 murid)",
+    subjek:"Pendidikan Islam — Bacaan Iqra'",
+    mula:"2026-01-06", akhir:"2026-11-27",
+    masalah:"Analisis data baseline 9 murid Tahun 6 Arif menunjukkan 6 daripada 9 murid (66.7%) masih berada pada tahap Iqra' 1 hingga 3, dan tiada seorang pun murid yang telah mula membaca al-Quran. Taburan tahap: Iqra' 1 = 0, Iqra' 2 = 2, Iqra' 3 = 4, Iqra' 4 = 0, Iqra' 5 = 0, Iqra' 6 = 3. Ini menunjukkan jurang penguasaan bacaan yang besar sebelum murid memasuki sekolah menengah.",
+    objektif:"1) Meningkatkan peratus murid Tahun 6 Arif yang menguasai bacaan Iqra' 3 daripada 66.7% kepada sekurang-kurangnya 90%.\n2) Meningkatkan bilangan murid yang boleh mula membaca al-Quran daripada 0 kepada sekurang-kurangnya 3 murid.\n3) Meningkatkan minat dan keyakinan murid terhadap bacaan Iqra' melalui pendekatan gamifikasi."
+  };
+  S.kaedah = "kemmis";
+  S.langkah = {};
+  [0,1,2].forEach(function(i){ TUGAS[i].forEach(function(_,j){ S.langkah[kunciLangkah(i,j)] = true; }); });
+  S.langkah[kunciLangkah(3,0)] = true;
+  S.murid = [
+    {nama:"Murid 1", tahap:"Iqra' 3", pra:45, pasca:""},
+    {nama:"Murid 2", tahap:"Iqra' 3", pra:42, pasca:""},
+    {nama:"Murid 3", tahap:"Iqra' 3", pra:38, pasca:""},
+    {nama:"Murid 4", tahap:"Iqra' 3", pra:47, pasca:""},
+    {nama:"Murid 5", tahap:"Iqra' 2", pra:28, pasca:""},
+    {nama:"Murid 6", tahap:"Iqra' 2", pra:31, pasca:""},
+    {nama:"Murid 7", tahap:"Iqra' 6", pra:72, pasca:""},
+    {nama:"Murid 8", tahap:"Iqra' 6", pra:68, pasca:""},
+    {nama:"Murid 9", tahap:"Iqra' 6", pra:75, pasca:""}
+  ];
+  S.triangulasi = [
+    {sumber:"Ujian pra / pasca bacaan", dapatan:"", sokong:"Ya"},
+    {sumber:"Senarai semak pemerhatian guru", dapatan:"", sokong:"Ya"},
+    {sumber:"Temu bual murid", dapatan:"", sokong:"Ya"}
+  ];
+  S.kitaran = [
+    {id:"F0", nama:"Persediaan & baseline", mula:"2026-01-06", tamat:"2026-01-31", status:"Selesai", catatan:"Data baseline 9 murid dikumpul."},
+    {id:"K1", nama:"Kitaran 1 — tindakan", mula:"2026-02-03", tamat:"2026-05-29", status:"Sedang Berjalan", catatan:"Intervensi gamifikasi bermula."},
+    {id:"K2", nama:"Kitaran 2 — penambahbaikan", mula:"", tamat:"", status:"Belum", catatan:""},
+    {id:"F5", nama:"Penilaian & laporan", mula:"", tamat:"", status:"Belum", catatan:""}
+  ];
+  S.instrumen = []; S.terbuka = {0:true};
+  simpan(true);
+  isiBorang(); lukisModel(); lukisFasa(); lukisMurid(); lukisTri(); lukisKitaran(); lukisInstrumen();
+  toast("📥 Contoh projek Iqra' Tahun 6 dimuatkan");
+}
+function isiBorang(){
+  var p = S.projek;
+  $("#p-tajuk").value=p.tajuk||""; $("#p-guru").value=p.guru||""; $("#p-sekolah").value=p.sekolah||"";
+  $("#p-kelas").value=p.kelas||""; $("#p-subjek").value=p.subjek||""; $("#p-mula").value=p.mula||"";
+  $("#p-akhir").value=p.akhir||""; $("#p-masalah").value=p.masalah||""; $("#p-objektif").value=p.objektif||"";
+}
+
+/* ---------- 16. IKATAN ---------- */
+function ikat(){
+  $$(".tab").forEach(function(b){ b.addEventListener("click", function(){ tukarTab(b.dataset.view); }); });
+
+  [["p-tajuk","tajuk"],["p-guru","guru"],["p-sekolah","sekolah"],["p-kelas","kelas"],
+   ["p-subjek","subjek"],["p-mula","mula"],["p-akhir","akhir"],["p-masalah","masalah"],["p-objektif","objektif"]]
+  .forEach(function(pr){
+    var el = $("#"+pr[0]);
+    el.addEventListener("input", function(){ S.projek[pr[1]] = el.value; simpan(true); });
+  });
+
+  $("#btn-contoh").addEventListener("click", muatContoh);
+  $("#btn-kosong").addEventListener("click", function(){
+    if(!confirm("Kosongkan SEMUA data projek? Tindakan ini tidak boleh dibatalkan.")) return;
+    S = JSON.parse(JSON.stringify(LALAI)); simpan(true);
+    isiBorang(); lukisModel(); lukisFasa(); lukisMurid(); lukisTri(); lukisKitaran(); lukisInstrumen();
+    $("#laporan-out").innerHTML = '<p class="hint">Tekan <b>Jana Laporan</b> untuk melihat rangka laporan anda.</p>';
+    toast("🗑️ Semua data dikosongkan");
+  });
+  $("#btn-buka-semua").addEventListener("click", function(){
+    var buka = $$(".phase.open").length < $$(".phase").length;
+    $$(".phase").forEach(function(p,i){ p.classList.toggle("open", buka); S.terbuka[i]=buka; });
+    simpan(true);
+  });
+  $("#btn-simpan").addEventListener("click", function(){ simpan(); });
+  $("#btn-eksport").addEventListener("click", function(){
+    muatTurun("kajian-tindakan-"+(tarikhKini())+".json", JSON.stringify(S,null,2), "application/json");
+    toast("⬇️ Data dieksport");
+  });
+
+  /* instrumen */
+  $("#btn-jana").addEventListener("click", function(){
+    var it = binaInstrumen();
+    it.masa = new Date().toLocaleString("ms-MY");
+    S.instrumen.push(it); simpan(true); lukisInstrumen();
+    paparInstrumen(S.instrumen.length-1);
+    toast("⚡ "+it.tajuk+" dijana");
+  });
+  $("#btn-cetak-instrumen").addEventListener("click", function(){
+    if(!instrSemasa){ toast("⚠️ Jana instrumen dahulu"); return; }
+    var w = window.open("", "_blank");
+    if(!w){ toast("⚠️ Benarkan tetingkap timbul"); return; }
+    w.document.write(rangkaInstrumen(instrSemasa)); w.document.close();
+    setTimeout(function(){ w.print(); }, 400);
+  });
+  $("#btn-buka-tab").addEventListener("click", function(){
+    if(!instrSemasa){ toast("⚠️ Jana instrumen dahulu"); return; }
+    var b = new Blob([rangkaInstrumen(instrSemasa)], {type:"text/html;charset=utf-8"});
+    window.open(URL.createObjectURL(b), "_blank");
+  });
+  $("#btn-muat-turun").addEventListener("click", function(){
+    if(!instrSemasa){ toast("⚠️ Jana instrumen dahulu"); return; }
+    muatTurun("instrumen-"+(instrSemasa.jenis)+"-"+tarikhKini()+".html", rangkaInstrumen(instrSemasa), "text/html");
+    toast("⬇️ Instrumen dimuat turun");
+  });
+
+  /* data */
+  $("#btn-tambah-murid").addEventListener("click", function(){
+    S.murid.push({nama:"", tahap:"", pra:"", pasca:""}); simpan(true); lukisMurid();
+  });
+  $("#btn-tampal").addEventListener("click", function(){
+    var t = prompt("Tampal data dari Excel (satu baris = satu murid, dipisah dengan TAB atau koma).\nFormat: Nama, Tahap, Skor Pra, Skor Pasca");
+    if(!t) return;
+    var n=0;
+    t.split(/\r?\n/).forEach(function(l){
+      l = l.trim(); if(!l) return;
+      var c = l.split(/\t|,/).map(function(x){ return x.trim(); });
+      if(!c[0]) return;
+      S.murid.push({nama:c[0], tahap:c[1]||"", pra:(c[2]===""||c[2]==null?"":+c[2]), pasca:(c[3]===""||c[3]==null?"":+c[3])});
+      n++;
+    });
+    simpan(true); lukisMurid(); toast("📋 "+n+" baris ditambah");
+  });
+
+  /* kitaran */
+  $("#btn-tambah-kitaran").addEventListener("click", function(){
+    var n = S.kitaran.length;
+    S.kitaran.push({id:"F"+n, nama:"Kitaran tambahan", mula:"", tamat:"", status:"Belum", catatan:""});
+    simpan(true); lukisKitaran();
+  });
+  $("#btn-reset-kitaran").addEventListener("click", function(){
+    S.kitaran = kitaranLalai(); simpan(true); lukisKitaran(); toast("🔄 Kitaran diset semula");
+  });
+
+  /* laporan */
+  $("#btn-jana-laporan").addEventListener("click", function(){
+    $("#laporan-out").innerHTML = binaLaporan();
+    $("#lap-status").textContent = "Dijana " + new Date().toLocaleString("ms-MY");
+    toast("⚡ Laporan dijana");
+  });
+  $("#btn-cetak-laporan").addEventListener("click", function(){
+    if(!$("#laporan-out").innerHTML.trim() || $("#laporan-out").querySelector(".hint")){
+      $("#laporan-out").innerHTML = binaLaporan();
+    }
+    window.print();
+  });
+  $("#btn-md").addEventListener("click", function(){
+    muatTurun("laporan-kajian-tindakan-"+tarikhKini()+".md", laporanMD(), "text/markdown");
+    toast("⬇️ Markdown dimuat turun");
+  });
+  $("#btn-html").addEventListener("click", function(){
+    var html = '<!DOCTYPE html><html lang="ms"><head><meta charset="utf-8"><title>'+
+      esc(S.projek.tajuk||"Laporan Kajian Tindakan")+'</title><style>'+
+      'body{font-family:Georgia,serif;max-width:840px;margin:34px auto;padding:0 24px;color:#1b1e25;line-height:1.75}'+
+      'h3{font-size:17px;border-bottom:1px solid #e4e8ee;padding-bottom:5px;margin:22px 0 8px}'+
+      'table{width:100%;border-collapse:collapse;font-size:12.5px;font-family:"Segoe UI",sans-serif;margin:10px 0}'+
+      'th,td{border:1px solid #d9dee7;padding:7px 9px;text-align:left}th{background:#f2f4f8}'+
+      '</style></head><body><h2 style="font-family:Georgia,serif">'+esc(S.projek.tajuk||"Laporan Kajian Tindakan")+'</h2>'+
+      binaLaporan()+'</body></html>';
+    muatTurun("laporan-kajian-tindakan-"+tarikhKini()+".html", html, "text/html");
+    toast("⬇️ HTML dimuat turun");
+  });
+
+  /* pembantu */
+  $("#agent-send").addEventListener("click", hantar);
+  $("#agent-in").addEventListener("keydown", function(e){ if(e.key==="Enter") hantar(); });
+  function hantar(){
+    var v = $("#agent-in").value.trim(); if(!v) return;
+    tambahMsg("me", esc(v)); $("#agent-in").value = "";
+    if(/langkah seterusnya|cadang/i.test(v)) setTimeout(function(){ tambahMsg("bot", "<b>Cadangan seterusnya untuk projek anda:</b><br>"+cadanganSeterusnya()); }, 260);
+    else setTimeout(function(){ tambahMsg("bot", agentBalas(v)); }, 260);
+  }
+}
+
+/* ---------- 17. MULA ---------- */
+function mula(){
+  muat();
+  isiBorang();
+  lukisModel(); lukisFasa(); lukisMurid(); lukisTri(); lukisKitaran(); lukisInstrumen();
+  ikat(); agentChips();
+  agentSapa();
+  setTimeout(function(){
+    if(S.projek.tajuk) tambahMsg("bot", "<b>Cadangan seterusnya:</b><br>"+cadanganSeterusnya());
+  }, 700);
+  window.addEventListener("beforeunload", function(){ simpan(true); });
+}
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", mula);
+else mula();
+
+})();
+</script>
+</body>
+</html>

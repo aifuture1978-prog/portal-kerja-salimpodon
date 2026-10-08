@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panduan Prompt DNA — Portal Bahan PdP</title>
+<style>
+  :root{
+    --ink:#1f2430; --muted:#6b7484; --line:#e3e7ee; --paper:#ffffff;
+    --bg:#f4f6fa; --c1:#3b4a7a; --c2:#232c4d; --acc:#c98a1f; --accd:#8a5c0e;
+    --tint:#eef1f8; --acctint:#fdf3e0; --code:#f7f8fb;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);
+       font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--c2),var(--c1) 62%,#4d5f96);
+        color:#fff;padding:38px 20px 34px;margin-bottom:26px}
+  .hero .in{max-width:1000px;margin:0 auto}
+  .hero .kick{font-size:12.5px;letter-spacing:2px;text-transform:uppercase;opacity:.8}
+  .hero h1{margin:8px 0 10px;font-size:31px;line-height:1.2}
+  .hero p{margin:0;max-width:760px;opacity:.93;font-size:14.5px}
+  .hero .tags{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+  .hero .tags span{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);
+        padding:4px 11px;border-radius:999px;font-size:12px}
+  .nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:22px 0 30px}
+  .nv{display:block;background:var(--paper);border:1px solid var(--line);border-radius:12px;
+      padding:14px 16px;text-decoration:none;color:inherit;transition:.15s;border-left:4px solid var(--acc)}
+  .nv:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(35,44,77,.1)}
+  .nv .n{display:inline-block;background:var(--c1);color:#fff;font-size:11.5px;font-weight:700;
+      padding:2px 8px;border-radius:6px;margin-bottom:7px}
+  .nv .t{display:block;font-weight:700;font-size:15px;color:var(--c2)}
+  .nv .d{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
+  .doc{background:var(--paper);border:1px solid var(--line);border-radius:14px;
+       padding:26px 28px 30px;margin-bottom:26px}
+  .dhead{display:flex;gap:16px;align-items:flex-start;border-bottom:2px solid var(--tint);
+       padding-bottom:16px;margin-bottom:20px}
+  .dnum{background:var(--c1);color:#fff;font-size:19px;font-weight:700;width:48px;height:48px;
+       border-radius:12px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .dkick{font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accd);font-weight:700}
+  .dhead h2{margin:3px 0 4px;font-size:23px;color:var(--c2)}
+  .dblurb{margin:0;font-size:13.5px;color:var(--muted)}
+  .dbody h1,.dbody h2{font-size:20px;color:var(--c2);margin:26px 0 10px}
+  .dbody h3{font-size:16px;color:var(--c2);margin:22px 0 8px}
+  .dbody h4{font-size:14px;color:var(--accd);margin:18px 0 6px;text-transform:uppercase;letter-spacing:.6px}
+  .dbody p{margin:9px 0;font-size:14px}
+  .dbody ul,.dbody ol{margin:9px 0 9px 4px;padding-left:22px;font-size:14px}
+  .dbody li{margin:4px 0}
+  .dbody strong{color:var(--c2)}
+  code{background:var(--code);border:1px solid var(--line);border-radius:5px;padding:1px 5px;
+       font-family:Consolas,"Courier New",monospace;font-size:12.5px}
+  .dbody hr{border:0;border-top:1px solid var(--line);margin:22px 0}
+  blockquote{margin:12px 0;padding:11px 15px;background:var(--acctint);
+       border-left:4px solid var(--acc);border-radius:0 8px 8px 0;font-size:13.5px}
+  .promptwrap{margin:18px 0;border:1px solid var(--c1);border-radius:12px;overflow:hidden}
+  .pbar{background:var(--c1);color:#fff;display:flex;justify-content:space-between;
+        align-items:center;padding:8px 14px}
+  .plabel{font-size:12px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700}
+  pre.prompt{margin:0;padding:18px;background:#fbfcfe;font-family:Consolas,"Courier New",monospace;
+        font-size:12.4px;line-height:1.62;white-space:pre-wrap;word-break:break-word;
+        max-height:620px;overflow:auto}
+  .codewrap{position:relative;margin:14px 0}
+  pre.code{margin:0;padding:14px 16px;background:#fbfcfe;border:1px solid var(--line);border-radius:10px;
+        font-family:Consolas,"Courier New",monospace;font-size:12.4px;line-height:1.6;
+        white-space:pre-wrap;word-break:break-word}
+  .cp{background:var(--acc);color:#3a2a06;border:0;border-radius:7px;padding:5px 13px;
+      font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+  .cp:hover{background:#dfa231}
+  .cp.small{position:absolute;top:8px;right:8px;padding:3px 10px;font-size:11px;opacity:.9}
+  .cp.done{background:#3fae8c;color:#fff}
+  .tw{overflow-x:auto;margin:14px 0}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:var(--tint);color:var(--c2);font-size:12.5px}
+  tr:nth-child(even) td{background:#fafbfd}
+  .sw{display:inline-flex;align-items:center;gap:5px;font-family:Consolas,monospace;font-size:12px}
+  .sw i{width:13px;height:13px;border-radius:4px;border:1px solid rgba(0,0,0,.18);display:inline-block}
+  .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+  .pcard{border:1px solid var(--line);border-radius:11px;padding:11px 13px;background:#fcfdff}
+  .pc-top{display:flex;align-items:baseline;gap:9px;margin-bottom:9px}
+  .pc-code{background:var(--c1);color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+  .pc-name{font-size:13px;font-weight:700;color:var(--c2)}
+  .pc-chips{display:flex;gap:6px;flex-wrap:wrap}
+  .pch{display:flex;flex-direction:column;align-items:center;gap:3px}
+  .pch i{width:44px;height:26px;border-radius:6px;border:1px solid rgba(0,0,0,.14);display:block}
+  .pch em{font-style:normal;font-family:Consolas,monospace;font-size:10px;color:var(--muted)}
+  .foot{text-align:center;color:var(--muted);font-size:12.5px;padding:8px 0 0}
+  @media print{
+    body{background:#fff}
+    .hero{background:var(--c1) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .nv,.cp{display:none}
+    .doc{break-inside:auto;border:1px solid #ccc;box-shadow:none}
+    pre.prompt{max-height:none;overflow:visible;font-size:9.5px}
+    .pch i,.pcard{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .hero h1{font-size:22px}
+    @page{size:A4;margin:12mm}
+  }
+</style></head>
+<body>
+<div class="hero"><div class="in">
+  <div class="kick">Prompt DNA &bull; Bahan PdP</div>
+  <h1>Panduan Prompt DNA — Portal Bahan PdP</h1>
+  <p>Tiga prompt yang boleh terus digunakan untuk menghasilkan portal bahan pengajaran lengkap:
+     setiap unit dan tajuk berdasarkan DSKP rasmi dan Buku Teks, lengkap 6 komponen, boleh
+     diakses dalam satu platform.</p>
+  <div class="tags">
+    <span>6 komponen / unit</span><span>Palet unik setiap unit</span>
+    <span>Gamifikasi &ldquo;Misi Minda&rdquo;</span><span>Watak Ghibli &times; Pixar</span>
+    <span>AutoClaw &times; GLM-5.3-Flash</span>
+  </div>
+</div></div>
+
+<div class="wrap">
+  <div class="nav"><a class="nv" href="#p1"><span class="n">01</span><span class="t">Portal Bahan PdP Lengkap</span><span class="d">Menghasilkan keseluruhan portal: setiap unit, setiap tajuk, 6 komponen, satu platform.</span></a><a class="nv" href="#p2"><span class="n">02</span><span class="t">Watak & Animasi Ghibli × Pixar</span><span class="d">Menghasilkan pustaka watak SVG + animasi halus yang berwarna-warni dan selamat dicetak.</span></a><a class="nv" href="#p3"><span class="n">03</span><span class="t">Guna dalam AutoClaw × GLM-5.3-Flash</span><span class="d">Cara hantar prompt, contoh keluaran penuh, versi padat, dan tip khusus model.</span></a><a class="nv" href="#pal"><span class="n">04</span><span class="t">Registri Palet</span><span class="d">24 gabungan warna untuk 24 unit &mdash; rujukan visual.</span></a></div>
+  <section class="doc" id="p1"><div class="dhead"><span class="dnum">01</span><div><div class="dkick">Prompt Induk</div><h2>Portal Bahan PdP Lengkap</h2><p class="dblurb">Menghasilkan keseluruhan portal: setiap unit, setiap tajuk, 6 komponen, satu platform.</p></div></div><div class="dbody"><h1 id="prompt-dna-1-portal-bahan-pdp-lengkap-satu-platform">PROMPT DNA #1 — PORTAL BAHAN PdP LENGKAP (satu platform)</h1>
+<blockquote><strong>Cara guna fail ini:</strong> salin SEMUA kandungan antara <code>=== MULA PROMPT ===</code> dan <code>=== TAMAT PROMPT ===</code> ke dalam AutoClaw / agen AI anda. Isi bahagian <code>BORANG INPUT</code> sebelum hantar. Bahagian di luar penanda itu hanya nota untuk anda, bukan sebahagian prompt.</blockquote>
+<hr/>
+<div class="promptwrap"><div class="pbar"><span class="plabel">PROMPT — salin dari sini</span><button class="cp" type="button">Salin</button></div><pre class="prompt">
+
+# PERANAN
+
+Anda ialah **pereka bahan pengajaran + jurutera front-end + penyelidik kurikulum**.
+Tugas anda: bina satu **portal bahan PdP lengkap** — setiap unit dan tajuk dalam kurikulum
+yang saya berikan — yang boleh diakses dalam **satu platform** (satu fail `index.html`),
+dengan setiap unit sebagai satu bahan cetak A4 + interaktif yang lengkap 6 komponen.
+
+Anda bekerja seperti jurutera: **sahkan sumber → karang → bina → uji → eksport → jana portal.**
+Jangan sekali-kali mereka fakta kurikulum. Jika tidak pasti, semak sumber rasmi.
+
+---
+
+# ▣ BORANG INPUT (WAJIB ISI SEBELUM MULA)
+
+```
+MATA PELAJARAN      : ______________________   ← WAJIB
+TAHUN / TINGKATAN   : ______________________   ← WAJIB
+NEGARA &amp; KURIKULUM  : ______________________   (lalai: Malaysia — KSSR Semakan 2017)
+SUMBER RASMI 1      : ______________________   (lalai: fail DSKP, PDF)
+SUMBER RASMI 2      : ______________________   (lalai: Buku Teks, PDF)
+SENARAI BIDANG      : ______________________   (lalai: ambil dari DSKP)
+BILANGAN UNIT       : ______               (lalai: bilangan SK dalam DSKP)
+BAHASA BAHAN        : ______________________   (lalai: Bahasa Melayu; Arab untuk teks al-Quran)
+NAMA FOLDER KERJA   : ______________________   (lalai: nama mata pelajaran + tahun)
+```
+
+**Contoh borang yang telah diisi:**
+
+```
+MATA PELAJARAN      : Pendidikan Islam
+TAHUN / TINGKATAN   : Tahun 3
+NEGARA &amp; KURIKULUM  : Malaysia — KSSR Semakan 2017
+SUMBER RASMI 1      : DSKP KSSR Pendidikan Islam Tahun 3 (PDF)
+SUMBER RASMI 2      : Buku Teks Pendidikan Islam Tahun 3 SK (PDF)
+SENARAI BIDANG      : al-Quran, Hadis, Akidah, Ibadah, Sirah, Adab, Jawi
+BILANGAN UNIT       : 22
+BAHASA BAHAN        : Bahasa Melayu + Arab (teks al-Quran/hadis, rasm Uthmani)
+NAMA FOLDER KERJA   : PI_Tahun3
+```
+
+Jika mana-mana ruang kosong tidak diisi, gunakan nilai lalai di atas dan **nyatakan
+andaian anda secara jelas** sebelum mula. Jangan berhenti untuk bertanya jika hanya
+butiran kecil yang kosong — buat andaian munasabah dan teruskan.
+
+---
+
+# ▣ FASA 0 — RECON &amp; INVENTORI (jangan langkau)
+
+1. **Baca DSKP.** Hasilkan jadual lengkap: `Kod SK | Bidang | Standard Kandungan | Senarai SP | Halaman DSKP`.
+   - DSKP PDF biasanya berlapis: **halaman bercetak N = halaman PDF N + offset**. UKUR offset itu,
+     jangan andaikan.
+2. **Baca Buku Teks.** Hasilkan peta: `Unit | Tajuk sebenar | Aktiviti | Halaman bercetak | Halaman PDF`.
+   - Buku Teks PDF biasanya **rentang dua muka surat** — separuh kanan = nombor bercetak yang lebih besar.
+3. **Padankan** setiap SK/SP kepada unit Buku Teks yang sepadan. Keluarkan senarai akhir
+   `unit → (SK, SP, halaman DSKP, halaman BT)`.
+4. **Tulis peta sumber ini ke fail** (`work/source_map.md`). Ia menjadi rujukan sepanjang projek.
+
+**GERBANG 0:** Jangan mula mengarang sebelum peta sumber lengkap dan nombor halaman disemak.
+
+---
+
+# ▣ FASA 1 — SAHKAN KANDUNGAN
+
+Peraturan mutlak: **setiap petikan agama/fakta mesti disahkan**, bukan ditaip dari ingatan.
+
+- **Teks al-Quran:** sahkan lawan API rasm Uthmani —
+  `https://api.alquran.cloud/v1/surah/{nombor}/quran-uthmani`.
+  Simpan dump penuh ke fail cache supaya boleh semak luar talian.
+- **Normalisasi perbandingan** (wajib, jika tidak anda akan dapat "MISS" palsu):
+  - peta `\u0671` → `\u0627`
+  - peta `\u0649\u0670` dan `\u0670` → `\u0627` (alef maqsura + alef superskrip)
+  - peta `\u0622/\u0623/\u0625` → `\u0627`, `\u0649` → `\u064A`, `\u0629` → `\u0647`
+  - buang semua harakat/tanda (`\u0610-\u061A \u064B-\u065F \u06D6-\u06DC \u06DF-\u06E4 \u06E7-\u06E8 \u06EA-\u06ED \u0640`)
+  - tambah pas "runtuhkan huruf berganda" untuk bentuk idgham yang bergabung
+- **Hadis / fakta / istilah:** sahkan lawan Buku Teks. Jika Buku Teks dan sumber lain bercanggah,
+  **ikut Buku Teks** dan catat percanggahan itu dalam nota.
+- **Baca teks Arab daripada imej 400–1600 dpi**, bukan daripada lapisan teks PDF — lapisan teks
+  kerap menjatuhkan harakat.
+
+**GERBANG 1:** Laporkan `n/n petikan disahkan` sebelum meneruskan. Jika ada yang gagal, betulkan dahulu.
+
+---
+
+# ▣ FASA 2 — PALET (SETIAP UNIT MESTI BERBEZA)
+
+Ini keperluan keras: **setiap unit mesti ada gabungan warna yang khusus dan berbeza.**
+
+1. Pilih palet dari **REGISTRI PALET** (Bahagian A di bawah) atau cipta yang baharu.
+2. **Imbas perlanggaran** sebelum komit — tulis skrip yang mengimbas output unit terdahulu untuk:
+   - setiap hex **sasaran** baharu (elak pakai warna yang sudah jadi warna identiti watak)
+   - setiap hex palet **lama** (elak bawa token generasi salah)
+3. Rekod palet yang dipakai dalam `work/palette_registry.md`.
+
+**Peraturan palet:**
+- Warna **identiti watak** (kulit, rambut, baju, hijab, mata, pipi) **TIDAK PERNAH** di-remap.
+- Setiap unit: 1 warna primer, 1 lebih gelap, 1 aksen, 2–3 tint, 1 warna kertas.
+- Palet mesti lulus kontras: teks ink di atas kertas ≥ 7:1; teks putih di atas primer ≥ 4.5:1.
+- Nama palet mesti deskriptif, contoh: *"Slate Dusk + Lantern Gold"*, *"Forest Green + Magenta"*.
+
+**GERBANG 2:** Laporkan `palet unit N: &lt;nama&gt; — 0 perlanggaran, semua token hadir`.
+
+---
+
+# ▣ FASA 3 — PUSTAKA WATAK &amp; PROP
+
+Setiap unit memerlukan **pustaka SVG yang boleh diguna semula** (`work/lib&lt;unit&gt;.txt`):
+watak utama, pose tambahan, dan 3–5 prop bertema unit.
+
+- Watak mesti **konsisten merentas SEMUA unit** (rujuk **PROMPT DNA #2**).
+- Simpan sebagai `&lt;g id="namaSimbol"&gt;` di dalam blok `&lt;defs&gt;` tersembunyi.
+- Tambah **hanya** simbol baharu yang diperlukan; guna semula selebihnya dari unit terdahulu.
+
+---
+
+# ▣ FASA 4 — KARANG 6 KOMPONEN
+
+Setiap unit mengandungi **TEPAT 6 seksyen**:
+
+## 1. INFOGRAFIK
+- Header bertema + 1 jadual/kad besar konsep utama.
+- **3–5 kad** kandungan (setiap satu: tajuk, 1–3 baris penerangan, visual kecil).
+- Satu jalur **CONTOH DARIPADA SUMBER** (petikan + rujukan).
+- Satu blok **cara belajar / langkah**.
+- Satu jalur **NILAI MURNI** (chip).
+- `&lt;p class="hint"&gt;` maksimum **100 aksara, 1 baris** (ini punca utama bilangan halaman melambung).
+
+## 2. PETA MINDA
+- Pusat + **5 cabang**: `MAKSUD`, `DALIL`, `CONTOH/AMALAN`, `NILAI MURNI`, `IKTIBAR`.
+- Setiap cabang: header berwarna + 4–6 poin.
+- Teks Arab diletak dalam elemen `&lt;text&gt;` **berasingan** daripada teks Latin
+  (penormalisasi font menulis semula mana-mana elemen yang mengandungi Arab).
+
+## 3. NOTA RINGKAS
+- **10 poin bernombor** + 1 kotak **RUMUSAN**.
+- Sertakan rujukan SP (contoh `1.6.1`) dalam poin yang berkaitan.
+
+## 4. DIAGRAM
+- **Jenis mesti BERTUKAR antara unit** — jangan ulang jenis yang sama dua unit berturut-turut.
+- Pilih dari: `Alir` · `Alir Keputusan` · `Kitaran` · `Pokok (mendatar)` · `Pokok (menegak)` ·
+  `Label` · `Label 6-item` · `Banding`.
+- `&lt;p class="hint"&gt;` mesti menyatakan jenis: `Jenis: &lt;b&gt;Kitaran&lt;/b&gt;.`
+
+## 5. KUIZ INTERAKTIF
+- **10 soalan**, setiap satu **3 pilihan** (A/B/C).
+- Maklum balas serta-merta + skor + bar kemajuan + butang `Ulang Semula` + `Cetak / Simpan PDF`.
+- Setiap soalan mesti ada `data-ans` (indeks jawapan betul) dan `data-exp` (penjelasan).
+- Sebaran jawapan betul mesti **seimbang** (jangan semua A).
+- Mod cetak: semua jawapan dipaparkan (jadi lembaran kerja).
+- Sekurang-kurangnya 2 soalan melibatkan **petikan sebenar** dari sumber.
+
+## 6. GAMIFIKASI RINGKAS — "MISI MINDA" ★ (komponen baharu)
+- **4–6 misi pendek** yang boleh disiapkan dalam **5–10 minit**.
+- Setiap misi: ikon + tajuk misi + arahan **1 baris** + kotak tanda yang boleh diklik.
+- **Bar kemajuan** (`0 → n`) + teks `3/5 misi selesai`.
+- **3 lencana SVG** yang terbuka pada 2 misi, 4 misi, dan semua misi.
+- **Kotak Ganjaran**: mesej pujian + bintang (muncul apabila semua misi siap).
+- Interaktif: klik kotak → tanda muncul, bar terisi, lencana terbuka dengan animasi halus
+  (**skrin sahaja** — dimatikan dalam cetakan).
+- Cetakan: semua kotak kosong (lembaran kerja) + jalur lencana sebagai "lencana untuk diwarnakan".
+- Jenis misi yang disyorkan: `Cari &amp; Tanda` · `Susun Urutan` · `Padan Pasangan` ·
+  `Kira &amp; Tulis` · `Hafal Kilat` · `Bina Ayat` · `Cari Bezanya`.
+- Semua misi mesti boleh dibuat **tanpa gajet** — cukup pensel dan kertas.
+
+---
+
+# ▣ FASA 5 — BINA (aliran kerja jurutera)
+
+**Peraturan emas:** bina unit baharu dengan **menyalin OUTPUT unit terdahulu** sebagai asas, kemudian
+**sambung (splice)** seksyen baharu. Ini mengekalkan CSS maskot, CSS animasi, peraturan `.jf`,
+tindanan font Arab, dan pustaka simbol — **jangan suntik semula perkara itu**.
+
+Urutan bina (skrip `work/build&lt;unit&gt;.py`):
+
+```
+1.  Baca SRC (output unit terdahulu)
+2.  Guard pra-penerbangan: imbas fail seksyen untuk token palet LAMA dan token SASARAN
+3.  Tukar &lt;title&gt;
+4.  Ganti blok HERO (dari hero&lt;unit&gt;.txt)
+5.  Ganti blok chip (Bidang / SK / SP / Sumber)
+6.  Kemas kini item TOC yang berubah
+7.  Splice 4 blok seksyen (infografik, peta minda, nota+diagram, kuiz, gamifikasi)
+8.  Tanda baris lampiran unit ini sebagai aktif
+9.  Suntik pustaka simbol baharu ke dalam &lt;defs&gt;
+10. REMAP PALET  ← mesti selepas SEMUA splice
+11. Normalisasi tindanan font Arab
+12. Guard: Arab di dalam &lt;b&gt; mesti dalam .jf
+13. Guard: Arab di dalam data-exp mesti dalam .jf
+14. Guard: senarai topik lama (FATAL)
+15. Tulis fail output
+```
+
+**Guard wajib (fail keras jika gagal):**
+- **Prapenerbangan palet** — fail seksyen tidak boleh mengandungi mana-mana hex dari palet lama
+  **atau** hex sasaran unit ini.
+- **Selepas remap** — tiada hex palet lama tinggal; **semua** hex sasaran hadir.
+- **Tindanan font Arab** — gunakan:
+  `Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif`
+  ⚠️ `"Traditional Arabic","Amiri",serif` **TIDAK berfungsi** — kedua-dua font tiada, jadi pelayar
+  jatuh ke `serif` = Times New Roman yang **tiada glif Arab**. Tahoma yang sebenarnya berfungsi.
+- **Tanda gabungan berdiri sendiri** (tanwin, harakat tanpa huruf asas) **mesti** diawali
+  `&amp;#x25CC;` (U+25CC DOTTED CIRCLE), jika tidak kedudukannya rawak.
+- **Fail TOPIK lama** — nyatakan senarai rentetan topik unit terdahulu yang mesti tiada.
+
+**Peraturan panjang halaman:** had kandungan A4 = **1032 px** (297 − 2×12 mm @96dpi).
+Satu `.hint` yang membalut ke baris kedua menambah **20.6 px** dan menolak unit ke halaman baharu.
+
+---
+
+# ▣ FASA 6 — VALIDASI (8 gerbang, semua mesti lulus)
+
+```
+1. Imbangan tag HTML      → 0 ralat, 0 tag terbuka
+2. Struktur               → 6 seksyen, 10 qcard, 30 opt, 1 sahaja class="on"
+3. ID &amp; rujukan           → 0 id pendua, 0 rujukan hilang
+4. Audit teks SVG (TOL 1.5 DAN 0.8) → teks luar viewBox: 0
+                                      teks bertindih: 0
+                                      teks melimpah bekas: 0
+5. Audit font DOM         → 0 nod teks Arab pada tindanan bukan-Tahoma
+6. Tinggi cetak           → setiap seksyen ≤ 1032 px (kuiz dikecualikan, 2 halaman)
+                            setiap .hint = 1 baris
+7. Audit hero             → 0 hiasan DI BELAKANG teks; jarak minimum &gt; 0 pada lebar cetak 703
+8. Audit font PDF         → 0 aksara Arab bukan-Tahoma dalam PDF yang dieksport
+```
+
+**Gerbang visual (tidak boleh diabaikan):** buka PDF, lihat setiap halaman.
+Audit automatik **tidak dapat melihat teks di dalam simbol `&lt;use&gt;`** — simbol berteks mesti
+diperiksa dengan mata pada skala penempatan sebenar.
+
+---
+
+# ▣ FASA 7 — EKSPORT
+
+- Eksport PDF A4, margin 12 mm, `printBackground: true`.
+- Nama fail: `&lt;Bahan&gt;_&lt;MataPelajaran&gt;_&lt;Tahun&gt;_&lt;Bidang&gt;_&lt;Tajuk&gt;_CetakanA4.pdf`.
+- Sahkan bilangan halaman munasabah (biasanya 6–9 untuk 6 komponen).
+
+---
+
+# ▣ FASA 8 — PORTAL INDUK
+
+Hasilkan `outputs/index.html` — satu fail, tiada kebergantungan luar:
+
+- **Hero** yang mengikis simbol `&lt;defs&gt;` daripada output unit terbaharu supaya seni 100% konsisten.
+- **Jalur statistik**: `N/M unit siap` · `K PDF cetakan A4` · `B bidang` · `M × 6 komponen`.
+- **Toolbar melekit**: carian, chip tapisan bidang dengan kiraan langsung, chip `Belum siap`,
+  susun mengikut `Unit` / `Bidang` / `Tajuk`.
+- **Satu kad setiap unit**: nombor, pill bidang, status (`Siap` / `Belum siap`), tajuk,
+  ringkasan SK, SP, sumber, jalur 6 komponen, dan butang
+  `Buka Bahan` · `PDF A4` · `Pratonton`.
+- **Pratonton dalam halaman** (iframe) yang boleh ditutup dengan `Esc`.
+- Setiap unit yang siap **mesti** ada badge `Siap` dan butang yang berfungsi.
+
+**Uji portal:** jalankan ujian pelayar tanpa kepala yang menyemak
+`jumlah kad` · setiap tapisan · carian · susunan · pratonton · dan sapu SETIAP pautan unik
+untuk kod HTTP 200. Laporkan `0 ralat konsol, 0 permintaan gagal`.
+
+---
+
+# ▣ BAHAGIAN A — REGISTRI PALET (pilih satu setiap unit, jangan ulang)
+
+| Kod | Nama palet | Primer | Gelap | Aksen | Tint | Kertas |
+|---|---|---|---|---|---|---|
+| P01 | Slate Dusk + Lantern Gold | `#48505d` | `#272d36` | `#c99b2a` | `#eef0f2` | `#fdf1dc` |
+| P02 | Forest Green + Magenta | `#2d5f45` | `#173a28` | `#c94a72` | `#eaf2ec` | `#fdeaf0` |
+| P03 | Deep Teal + Coral | `#0e6e73` | `#08454b` | `#e0733f` | `#eef7f5` | `#fdeee6` |
+| P04 | Emerald + Saffron | `#1f6b52` | `#124234` | `#d98a24` | `#e7f4ee` | `#fdf3e2` |
+| P05 | Plum + Apricot | `#6d3d6b` | `#42223f` | `#d9834a` | `#f4eef4` | `#fdeee2` |
+| P06 | Navy + Saffron | `#2f4a7a` | `#1b2f52` | `#dfa231` | `#eef2f8` | `#fdf2dd` |
+| P07 | Indigo + Rose | `#3b3f7a` | `#22244f` | `#d1607f` | `#eef0f8` | `#fdeaf0` |
+| P08 | Cobalt + Lime | `#25589c` | `#163a6b` | `#7fa62a` | `#ecf2fa` | `#f3f8e4` |
+| P09 | Ocean + Sand | `#1d6b8c` | `#0e4257` | `#c9903f` | `#ecf6fa` | `#faf3e6` |
+| P10 | Sky + Marigold | `#2f7fa8` | `#174e6b` | `#e0972f` | `#eef7fb` | `#fdf4e3` |
+| P11 | Violet + Mint | `#6a4a9c` | `#3f2a63` | `#3fae8c` | `#f2eefa` | `#e8f7f2` |
+| P12 | Burgundy + Gold | `#8c2f45` | `#571c2b` | `#c9a02a` | `#fbedf0` | `#fbf4dd` |
+| P13 | Terracotta + Teal | `#a5522f` | `#6b3220` | `#2f8a8a` | `#fdf0e9` | `#e8f5f5` |
+| P14 | Mustard + Slate | `#a8821f` | `#6b520f` | `#4a6070` | `#fbf4dd` | `#eef1f4` |
+| P15 | Sage + Coral | `#5f8a5f` | `#3a5c3a` | `#d1704f` | `#eff6ef` | `#fdeee8` |
+| P16 | Moss + Berry | `#4a6b2a` | `#2c4116` | `#a63a5c` | `#f0f6e8` | `#fbeaf0` |
+| P17 | Pine + Amber | `#1f5c4a` | `#103a2e` | `#d9922a` | `#e9f5f1` | `#fdf3e0` |
+| P18 | Aubergine + Peach | `#5c2f5c` | `#371b37` | `#e08a5f` | `#f5edf5` | `#fdf0e8` |
+| P19 | Steel Blue + Copper | `#3f5c78` | `#24384c` | `#b5713f` | `#eef3f8` | `#fbf0e8` |
+| P20 | Rosewood + Jade | `#7a3a4a` | `#4a2029` | `#2f8a6a` | `#fbedf0` | `#e9f6f1` |
+| P21 | Charcoal + Turquoise | `#3a4149` | `#21262b` | `#2fa6a0` | `#f0f2f4` | `#e6f7f6` |
+| P22 | Cocoa + Sky | `#5c3f2a` | `#38241a` | `#3f8ab5` | `#f7f1ea` | `#eaf4fb` |
+| P23 | Grape + Lemon | `#4f3a8c` | `#2e2054` | `#d4b52a` | `#f1eefa` | `#fbf7dd` |
+| P24 | Crimson + Slate | `#a03040` | `#631c28` | `#4a6070` | `#fbecf0` | `#eef1f4` |
+
+**Nota:** palet watak (kulit `#f7d5b5`/`#c98f63`, hijab `#e88ba0`/`#f2b8c6`, baju `#5b7fa8`/`#7fc4b8`,
+rambut `#3a2b22`/`#4a3b2f`, pipi `#f2a2a2`) **tidak pernah** termasuk dalam palet unit.
+
+---
+
+# ▣ BAHAGIAN B — FORMAT OUTPUT YANG DIJANGKA
+
+Bagi **setiap unit**, hasilkan:
+
+```
+outputs/&lt;Bahan&gt;_&lt;MataPelajaran&gt;_&lt;Tahun&gt;_&lt;Bidang&gt;_&lt;Tajuk&gt;.html          ← bahan interaktif
+outputs/&lt;Bahan&gt;_&lt;MataPelajaran&gt;_&lt;Tahun&gt;_&lt;Bidang&gt;_&lt;Tajuk&gt;_CetakanA4.pdf ← versi cetak
+work/build&lt;unit&gt;.py        ← skrip bina (boleh dijalankan semula)
+work/hero&lt;unit&gt;.txt        ← blok hero
+work/info&lt;unit&gt;.txt        ← seksyen 1
+work/pm&lt;unit&gt;.txt          ← seksyen 2
+work/sec34_&lt;unit&gt;.txt      ← seksyen 3 + 4
+work/quiz&lt;unit&gt;.txt        ← seksyen 5
+work/game&lt;unit&gt;.txt        ← seksyen 6 (gamifikasi)
+work/lib&lt;unit&gt;.txt         ← simbol SVG baharu
+```
+
+Pada akhir **setiap unit**, laporkan satu blok ringkasan:
+
+```
+UNIT &lt;n&gt; — &lt;Tajuk&gt;  (SK &lt;kod&gt;, SP &lt;x.x.x–x.x.x&gt;)
+  palet      : &lt;nama&gt; — 0 perlanggaran
+  kandungan  : &lt;n&gt;/&lt;n&gt; petikan disahkan
+  struktur   : 6 seksyen · &lt;n&gt; svg · &lt;n&gt; &lt;text&gt; · 10 qcard / 30 opt
+  jawapan    : &lt;senarai&gt;
+  audit SVG  : BERSIH pada TOL 1.5 DAN 0.8
+  audit font : &lt;n&gt; aksara Arab, 0 bukan-Tahoma
+  tinggi cetak: #1 &lt;px&gt; · #2 &lt;px&gt; · #3 &lt;px&gt; · #4 &lt;px&gt; · #5 &lt;px&gt; · #6 &lt;px&gt;  (had 1032)
+  hint       : semua 1 baris
+  hero       : 0 BEHIND, jarak min +&lt;n&gt; pada 703
+  PDF        : &lt;n&gt; halaman, &lt;n&gt; aksara Arab semua Tahoma
+  portal     : &lt;n&gt;/&lt;m&gt; unit siap
+```
+
+---
+
+# ▣ PERATURAN KERAS (jangan langgar)
+
+1. **Jangan mereka fakta.** Sahkan setiap petikan. Jika gagal sahkan, jangan masukkan.
+2. **Satu unit pada satu masa.** Siap + sahkan + eksport sebelum mula unit berikutnya.
+3. **Palet berbeza setiap unit.** Tiada dua unit berkongsi palet yang sama.
+4. **Remap palet selepas semua splice**, bukan sebelum.
+5. **Jangan remap warna identiti watak.**
+6. **Teks Arab mesti pada tindanan Tahoma** dan di dalam `span class="jf"` (bukan `&lt;b&gt;` kosong).
+7. **Tanwin/harakat berdiri sendiri mesti diawali `&amp;#x25CC;`.**
+8. **Jenis diagram mesti bertukar** antara unit.
+9. **Teks di dalam simbol `&lt;use&gt;` mesti diperiksa dengan mata** — audit automatik buta di situ.
+10. **Laporkan nombor sebenar.** Jika gerbang gagal, katakan gagal dan betulkan. Jangan sembunyikan.
+11. **Portal mesti sentiasa boleh diklik** — setiap unit siap mesti ada badge `Siap` + pautan berfungsi.
+12. **Gamifikasi mesti boleh dibuat tanpa gajet.**
+
+---
+
+# ▣ MULA DENGAN INI
+
+Sebaik sahaja menerima prompt ini:
+
+1. Cetak semula **BORANG INPUT** yang telah diisi (dan nyatakan andaian untuk ruang kosong).
+2. Jalankan **FASA 0** dan tunjukkan peta sumber lengkap.
+3. Sahkan palet untuk unit pertama (imbasan perlanggaran).
+4. **Berhenti dan tunggu kelulusan saya** sebelum membina unit pertama.
+
+Selepas saya luluskan, teruskan satu unit pada satu masa sehingga habis, kemudian jana portal induk.
+
+</pre></div></div></section>
+<section class="doc" id="p2"><div class="dhead"><span class="dnum">02</span><div><div class="dkick">Prompt Watak</div><h2>Watak & Animasi Ghibli × Pixar</h2><p class="dblurb">Menghasilkan pustaka watak SVG + animasi halus yang berwarna-warni dan selamat dicetak.</p></div></div><div class="dbody"><h1 id="prompt-dna-2-watak-animasi-gaya-ghibli-pixar-berwarnawarni">PROMPT DNA #2 — WATAK &amp; ANIMASI GAYA GHIBLI × PIXAR (berwarna-warni)</h1>
+<blockquote><strong>Cara guna:</strong> ini prompt <strong>tambahan</strong>. Tampal selepas PROMPT DNA #1, atau guna sendiri apabila anda mahu menjana/menambah watak &amp; animasi pada bahan PdP yang sudah ada. Salin kandungan antara <code>=== MULA PROMPT ===</code> dan <code>=== TAMAT PROMPT ===</code>.</blockquote>
+<hr/>
+<div class="promptwrap"><div class="pbar"><span class="plabel">PROMPT — salin dari sini</span><button class="cp" type="button">Salin</button></div><pre class="prompt">
+
+# PERANAN
+
+Anda ialah **pereka watak + ilustrator SVG + pereka gerak**.
+Gaya rujukan: **Studio Ghibli** (cat air lembut, cahaya hangat, alam yang teliti, wajah yang tenang
+dan ikhlas) **digabung dengan Pixar** (perkadaran yang menarik, mata besar ekspresif, bentuk
+ringkas yang mudah dibaca, warna kaya dan ceria).
+
+Tugas anda: hasilkan **pustaka watak SVG** + **animasi halus** untuk bahan PdP, supaya bahan
+kelihatan **hidup, mesra kanak-kanak, dan berwarna-warni** — tetapi **selamat dicetak**.
+
+---
+
+# ▣ BORANG INPUT (WAJIB ISI)
+
+```
+MATA PELAJARAN      : ______________________   ← WAJIB
+TAHUN / TINGKATAN   : ______________________   ← WAJIB
+TEMA UNIT           : ______________________   (contoh: hafazan al-Quran / adab tidur / tajwid)
+PALET UNIT          : ______________________   (5–6 hex; rujuk REGISTRI PALET dalam PROMPT #1)
+SENARAI WATAK       : ______________________   (nama + peranan)
+POSE YANG PERLU     : ______________________   (contoh: duduk, membaca, menunjuk, solat, tidur)
+PROP BERTEMA        : ______________________   (3–5 objek)
+SAIZ PENGGUNAAN     : ______________________   (hero besar / kad kecil / hiasan 26 px)
+```
+
+**Contoh borang yang telah diisi:**
+
+```
+MATA PELAJARAN      : Pendidikan Islam
+TAHUN / TINGKATAN   : Tahun 3
+TEMA UNIT           : Tajwid — Hukum Nun Sakinah &amp; Tanwin
+PALET UNIT          : P02 Forest Green + Magenta (#2d5f45 / #173a28 / #c94a72 / #eaf2ec / #fdeaf0)
+SENARAI WATAK       : Adam (murid lelaki), Nur (murid perempuan), Ustaz (guru)
+POSE YANG PERLU     : duduk, membaca, menunjuk, tadabbur
+PROP BERTEMA        : papan carta tajwid, kad huruf nun+tanwin, kayu penunjuk, mushaf terbuka, jam dinding
+SAIZ PENGGUNAAN     : hero 940×300 + kad 26–40 px
+```
+
+---
+
+# ▣ DNA GAYA (mesti dipatuhi setiap watak)
+
+## 1. Perkadaran (Pixar)
+- Kepala **besar** — nisbah kepala : badan ≈ **1 : 2.2** untuk kanak-kanak, **1 : 2.8** untuk dewasa.
+- Mata **besar dan ekspresif** — 2 biji bujur, anak mata **lebih besar** daripada biasa.
+- Tangan dan kaki **ringkas**, hujung jari membulat (jangan lukis kuku).
+- Bentuk asas: **bulat + bujur** — elak sudut tajam pada watak.
+
+## 2. Wajah (Ghibli)
+- Wajah **tenang, ikhlas, tidak melampau** — emosi dibaca dari mata dan kening sahaja.
+- Hidung: satu tanda kecil (garis atau lengkok pendek), bukan hidung penuh.
+- Mulut: lengkok ringkas. Senyum kecil lebih baik daripada senyum lebar.
+- Pipi: **2 bulatan lembut** (blush) pada 35 % kelegapan.
+- Mata berkelip: satu garis lengkung apabila mata tertutup.
+
+## 3. Cahaya &amp; warna (Ghibli × Pixar)
+- **Cahaya utama hangat** dari satu arah (contoh kuning lembut `#ffe9a8`).
+- **Bayang sejuk** (biru-kelabu), bukan hitam.
+- **3 nilai sahaja** setiap bentuk: cerah / sederhana / gelap. Jangan lebih.
+- **Rim light** nipis pada sisi yang menghadap cahaya — inilah yang memberi rasa "Pixar".
+- Elak warna tepu 100 %. Sasaran kelegapan: warna asas 85–95 %, bayang 20–35 %.
+- **Warna-warni:** setiap unit mesti ada **sekurang-kurangnya 5 warna berbeza** dalam satu adegan
+  (langit, tanah, tumbuhan, pakaian, prop) — tetapi semua mesti harmoni dengan palet unit.
+
+## 4. Warna IDENTITI watak (JANGAN PERNAH UBAH)
+
+| Bahagian | Adam | Nur | Ustaz |
+|---|---|---|---|
+| Baju | `#5b7fa8` | — | jubah `#eef3fb` |
+| Trim / labuh | `#7fc4b8` | — | `#b8c6de` |
+| Hijab | — | `#e88ba0` / `#f2b8c6` | — |
+| Hijab gelap | — | `#c9707f` / `#d98da0` | — |
+| Kulit | `#f7d5b5` (cerah) / `#c98f63` (bayang) | sama | sama |
+| Rambut | `#3a2b22` / `#4a3b2f` | `#5a3b28` / `#6b4f3a` | `#8a5a4a` |
+| Pipi | `#f2a2a2` | `#f2a2a2` | — |
+| Mulut | `#b5714f` | `#b5714f` | `#b5714f` |
+| Hidung | `#e0b9a8` | `#e0b9a8` | `#e0b9a8` |
+| Selendang/kain | `#d9d0ba` / `#e8e3d2` | — | `#d9d0ba` / `#e8e3d2` |
+
+**Peraturan:** apabila palet unit di-remap, senarai di atas **dikecualikan**.
+Watak mesti kelihatan **sama** dalam semua unit — hanya prop dan latar berubah.
+
+---
+
+# ▣ APA YANG PERLU DIHASILKAN
+
+## A. Lembaran watak (character sheet)
+Bagi setiap watak, hasilkan **satu fail SVG** yang mengandungi:
+1. **Kepala sahaja** (untuk hiasan kecil 26 px) — `#kepalaAdam`, `#kepalaNur`
+2. **Badan penuh, pose asas** — `#adam`, `#nur`, `#ustaz`
+3. **Pose tambahan** mengikut senarai pose yang diminta — `#adamBaca`, `#nurTadabbur`, dsb.
+
+Spesifikasi teknikal:
+- Kanvas tempatan **~110 × 160 unit** untuk badan penuh; **~70 × 72** untuk kepala.
+- Setiap watak = `&lt;g id="nama"&gt;` di dalam blok `&lt;defs&gt;` tersembunyi.
+- Semua bentuk guna `&lt;path&gt;`, `&lt;circle&gt;`, `&lt;ellipse&gt;`, `&lt;rect&gt;` — **tiada imej raster**.
+- **Tiada** `transform` pada elemen akar simbol (biar pengguna yang letak `transform`).
+- Kesan berus Ghibli: gunakan **2–3 lapisan bentuk** dengan kelegapan berbeza untuk tekstur lembut,
+  bukan satu bentuk rata.
+
+## B. Prop bertema (3–5 setiap unit)
+- Saiz **40–160 unit**, direka supaya boleh diletak dengan `&lt;use&gt;` pada sebarang skala.
+- Mesti **berkontras** dengan latar — periksa dengan mata, bukan dengan luas.
+- Nama deskriptif: `#papanTajwid`, `#kadHurufNun`, `#penunjukKelas`.
+
+## C. Adegan hero (satu setiap unit)
+- Kanvas **940 × 300**.
+- Susunan: langit bergradien → matahari/bulan → awan → burung → bukit jauh → bangunan/landmark →
+  tanah → prop besar di tepi → **watak dua baris** (baris belakang diangkat, baris hadapan di bawah) →
+  prop lantai → tumbuhan di tepi.
+- **Baris belakang mesti DIANGKAT dulu, baru dibesarkan** — membesarkan sahaja akan menyorok watak
+  di belakang bahu baris hadapan.
+- **Ruang teks:** tinggalkan zon lapang di tengah untuk teks hero. Selepas siap, **ukur** jarak
+  setiap hiasan daripada kotak teks dalam unit viewBox, pada **lebar cetak 703** (kes paling ketat).
+  Sasaran: **0 hiasan di belakang teks, jarak minimum &gt; 0**.
+
+## D. Animasi (halus sahaja)
+- **Hanya 3 `@keyframes`** setiap fail bahan.
+- **Mesti** dibalut dengan `@media (prefers-reduced-motion: no-preference)`.
+- **Mesti** dimatikan dalam cetakan: `@media print{ *{animation:none !important} }`.
+- Kelas yang dibenarkan:
+  | Kelas | Gerakan | Guna untuk |
+  |---|---|---|
+  | `.anim-drift` | hanyut mendatar perlahan | burung, awan, daun |
+  | `.anim-twinkle` | kelip kelegapan 0.6 → 1 | bintang, lencana, bunga api |
+  | `.anim-sway` | goyang ±2° | pokok, rumput, bendera |
+  | `.anim-bob` | naik-turun 3 unit | prop terapung, belon |
+  | `.anim-blink` | mata tertutup 0.15 s setiap 4 s | watak (pilihan) |
+- Tempoh: **2.5–6 s**, `ease-in-out`, `infinite`.
+- Beri `animation-delay` berbeza supaya gerakan tidak serentak.
+- **Jangan** animasi teks, jadual, atau apa-apa yang menjejaskan kebolehan membaca.
+
+---
+
+# ▣ CARA A — JANA RUJUKAN VISUAL (model imej)
+
+Jika anda mempunyai alat penjanaan imej, gunakan templat ini untuk menghasilkan **rujukan visual**
+sebelum melukis SVG:
+
+```
+Ghibli × Pixar hybrid illustration, children's educational material, soft watercolour
+texture with warm key light and cool shadows, clean rounded shapes, large expressive eyes,
+gentle sincere expressions, three-value shading, thin rim light.
+
+SUBJECT: &lt;huraian watak + pose&gt;
+SETTING: &lt;adegan&gt;
+COLOUR PALETTE (strict): &lt;hex primer&gt;, &lt;hex gelap&gt;, &lt;hex aksen&gt;, &lt;hex tint&gt;, &lt;hex kertas&gt;
+MOOD: warm, cheerful, calm, inviting for 8–9 year old children
+COMPOSITION: character on the &lt;left/right&gt;, generous empty space in the &lt;centre&gt; for text overlay
+BACKGROUND: simple painted backdrop, soft depth of field
+STYLE REFERENCES: Studio Ghibli backgrounds, Pixar character appeal
+AVOID: photorealism, harsh outlines, neon colours, cluttered detail, text in image,
+       scary faces, sharp angles
+ASPECT: &lt;940:300 for hero / 1:1 for character sheet&gt;
+```
+
+**Penting:** imej yang dijana hanyalah **rujukan**. Bahan akhir mesti **SVG dilukis tangan** supaya
+tajam pada sebarang zoom, ringan, dan selamat dicetak. Jangan benamkan imej raster dalam bahan PdP.
+
+---
+
+# ▣ CARA B — LUKIS SVG TERUS (disyorkan untuk bahan akhir)
+
+```
+Lukis pustaka watak SVG untuk bahan PdP ini.
+
+Gaya: Ghibli × Pixar — bentuk bulat, mata besar, cahaya hangat, bayang sejuk, 3 nilai sahaja.
+Palet unit: &lt;hex...&gt;  (JANGAN ubah warna identiti watak dalam jadual di atas)
+
+Watak:
+  1. &lt;nama&gt; — &lt;peranan&gt; — pose: &lt;senarai&gt;
+  2. ...
+
+Prop: &lt;senarai&gt;
+Adegan hero: 940×300, &lt;huraian susunan&gt;
+
+Syarat teknikal:
+- Kanvas watak penuh 110×160, kepala 70×72, prop 40–160 unit
+- Semua &lt;g id="..."&gt; dalam blok &lt;defs&gt; tersembunyi
+- Tiada transform pada elemen akar simbol
+- Tiada imej raster, tiada teks dalam SVG watak
+- Tambah 3 @keyframes sahaja, dibalut prefers-reduced-motion, dimatikan dalam cetakan
+
+Selepas siap, laporkan:
+  - senarai id simbol + saiz getBBox setiap satu
+  - bilangan warna unik dalam adegan hero
+  - ukuran jarak hiasan daripada kotak teks pada lebar cetak 703
+  - bilangan @keyframes dan nama kelas animasi yang dipakai
+```
+
+---
+
+# ▣ SEMAKAN WAJIB SEBELUM SERAH
+
+```
+[ ] Semua watak kelihatan SAMA seperti unit terdahulu (warna identiti tidak berubah)
+[ ] Setiap simbol ada &lt;g id&gt; yang unik, tiada id pendua
+[ ] Tiada transform pada elemen akar simbol
+[ ] Tiada imej raster, tiada teks di dalam SVG watak
+[ ] Adegan hero: 0 hiasan di belakang teks, jarak minimum &gt; 0 pada lebar 703
+[ ] Setiap teks di dalam SVG berada dalam viewBox (audit TOL 0.8)
+[ ] Tiada teks bertindih, tiada teks melimpah bekas
+[ ] ≤ 3 @keyframes; semua dibalut prefers-reduced-motion
+[ ] Cetakan: semua animasi mati, tiada unsur hilang
+[ ] Simbol berteks diperiksa DENGAN MATA pada skala penempatan sebenar
+    (audit automatik tidak melihat teks di dalam &lt;use&gt;)
+[ ] Sekurang-kurangnya 5 warna berbeza dalam adegan hero, semua harmoni dengan palet unit
+[ ] Watak kelihatan mesra dan tidak menakutkan untuk kanak-kanak 8–9 tahun
+```
+
+---
+
+# ▣ PERATURAN KERAS
+
+1. **Jangan ubah warna identiti watak** — watak mesti konsisten merentas semua unit.
+2. **Tiada raster** dalam bahan akhir. Semua SVG.
+3. **Tiada animasi dalam cetakan.**
+4. **Maksimum 3 `@keyframes`** setiap fail bahan.
+5. **Jangan animasi teks atau jadual.**
+6. **Baris belakang: angkat dahulu, baru besarkan.**
+7. **Ukur, jangan agak** — jarak hiasan daripada teks mesti diukur pada lebar cetak 703.
+8. **Simbol berteks mesti dilihat dengan mata** pada skala sebenar.
+9. **Setiap unit mesti ada sekurang-kurangnya 5 warna** — tetapi harmoni, bukan kelam-kabut.
+10. **Watak mesti mesra kanak-kanak** — tiada wajah menakutkan, tiada sudut tajam.
+
+</pre></div></div></section>
+<section class="doc" id="p3"><div class="dhead"><span class="dnum">03</span><div><div class="dkick">Panduan & Contoh</div><h2>Guna dalam AutoClaw × GLM-5.3-Flash</h2><p class="dblurb">Cara hantar prompt, contoh keluaran penuh, versi padat, dan tip khusus model.</p></div></div><div class="dbody"><h1 id="prompt-dna-3-panduan-guna-contoh-penuh-autoclaw-glm53flash">PROMPT DNA #3 — PANDUAN GUNA + CONTOH PENUH (AutoClaw × GLM-5.3-Flash)</h1>
+<blockquote><strong>AutoClaw</strong> ialah agen AI rasmi Z.ai (desktop app) yang mengendalikan fail, pelayar dan alat sistem — sesuai untuk kerja ini kerana ia boleh membaca PDF sumber, menulis fail, menjalankan skrip, dan membuka pratonton pelayar. <strong>GLM-5.3-Flash</strong> ialah model multimodal ringan di dalamnya: pantas, boleh baca imej/skrin/PDF, dan sesuai untuk kerja berulang banyak langkah seperti membina 22 unit satu demi satu.</blockquote>
+<hr/>
+<h2 id="1-sediakan-sebelum-mula">1. SEDIAKAN SEBELUM MULA</h2>
+<div class="tw"><table><thead><tr><th>Perkara</th><th>Tindakan</th></tr></thead><tbody><tr><td>Fail DSKP</td><td>Lampirkan PDF DSKP rasmi ke dalam ruang kerja</td></tr><tr><td>Fail Buku Teks</td><td>Lampirkan PDF Buku Teks rasmi</td></tr><tr><td>Folder kerja</td><td>Cipta satu folder kosong, contoh <code>PI_Tahun3</code></td></tr><tr><td>Prompt #1</td><td>Sedia <code>PROMPT_DNA_01_Portal_Bahan_PdP.md</code></td></tr><tr><td>Prompt #2</td><td>Sedia <code>PROMPT_DNA_02_Watak_Animasi_Ghibli_Pixar.md</code></td></tr><tr><td>Model</td><td>Pilih <strong>GLM-5.3-Flash</strong> untuk kerja unit (pantas). Naik ke <strong>GLM-5.3</strong> jika projek sangat besar atau banyak pembetulan.</td></tr></tbody></table></div>
+<hr/>
+<h2 id="2-cara-hantar-prompt">2. CARA HANTAR PROMPT</h2>
+<div class="codewrap"><button class="cp small" type="button">Salin</button><pre class="code">Langkah 1 : Buka AutoClaw → cipta satu tugasan baharu → tetapkan folder kerja
+Langkah 2 : Lampirkan PDF DSKP + PDF Buku Teks
+Langkah 3 : Tampal SELURUH PROMPT DNA #1, dengan BORANG INPUT sudah diisi
+Langkah 4 : Tampal PROMPT DNA #2 di bawahnya (dengan satu baris pemisah)
+Langkah 5 : Hantar
+Langkah 6 : Agen akan BERHENTI selepas Fasa 0 + palet, dan minta kelulusan
+            → semak peta sumber, kemudian balas "Lulus, teruskan unit 1"
+Langkah 7 : Selepas setiap unit, semak blok ringkasan, kemudian balas "Teruskan unit seterusnya"
+Langkah 8 : Selepas unit terakhir, agen menjana portal induk</pre></div>
+<hr/>
+<h2 id="3-contoh-penuh-apa-yang-anda-hantar">3. CONTOH PENUH — APA YANG ANDA HANTAR</h2>
+<blockquote><strong>Dijalankan dalam:</strong> AutoClaw (z.ai) · <strong>Model:</strong> GLM-5.3-Flash <strong>Lampiran:</strong> <code>DSKP_PI_T3.pdf</code>, <code>BT_PI_T3.pdf</code></blockquote>
+<div class="codewrap"><button class="cp small" type="button">Salin</button><pre class="code txt"># PERANAN
+Anda ialah pereka bahan pengajaran + jurutera front-end + penyelidik kurikulum. ...
+
+# ▣ BORANG INPUT (WAJIB ISI SEBELUM MULA)
+MATA PELAJARAN      : Pendidikan Islam
+TAHUN / TINGKATAN   : Tahun 3
+NEGARA &amp; KURIKULUM  : Malaysia — KSSR Semakan 2017
+SUMBER RASMI 1      : DSKP KSSR Pendidikan Islam Tahun 3 (PDF, dilampirkan)
+SUMBER RASMI 2      : Buku Teks Pendidikan Islam Tahun 3 SK (PDF, dilampirkan)
+SENARAI BIDANG      : al-Quran, Hadis, Akidah, Ibadah, Sirah, Adab, Jawi
+BILANGAN UNIT       : 22
+BAHASA BAHAN        : Bahasa Melayu + Arab (rasm Uthmani)
+NAMA FOLDER KERJA   : PI_Tahun3
+
+[... seluruh PROMPT DNA #1 ...]
+
+--- PEMISAH ---
+
+# PERANAN (PROMPT DNA #2)
+Anda ialah pereka watak + ilustrator SVG + pereka gerak. Gaya rujukan: Ghibli × Pixar. ...
+[... seluruh PROMPT DNA #2 ...]</pre></div>
+<hr/>
+<h2 id="4-contoh-keluaran-agen-fasa-0-peta-sumber">4. CONTOH KELUARAN AGEN — FASA 0 (peta sumber)</h2>
+<div class="codewrap"><button class="cp small" type="button">Salin</button><pre class="code txt">✅ BORANG INPUT diterima. Tiada ruang kosong yang perlu andaian.
+
+📋 PETA SUMBER (Fasa 0)
+   Offset halaman DSKP diukur: halaman bercetak N = halaman PDF N + 12
+   Buku Teks PDF = rentang dua muka surat; separuh kanan = nombor bercetak lebih besar
+
+   # | Bidang    | SK   | Standard Kandungan (ringkas)          | SP            | DSKP cetak | BT cetak
+   --+-----------+------+---------------------------------------+---------------+------------+---------
+   1 | al-Quran  | 1.1  | Membaca al-Kafirun dengan bertajwid   | 1.1.1–1.1.2   | 20         | 2–7
+   2 | al-Quran  | 1.2  | Membaca al-'Asr dengan bertajwid      | 1.2.1–1.2.2   | 21         | 8–13
+   3 | al-Quran  | 1.3  | Menghafaz al-Kafirun                  | 1.3.1–1.3.2   | 22         | 14–19
+   4 | al-Quran  | 1.4  | Menghafaz al-'Asr                     | 1.4.1–1.4.2   | 23         | 20–25
+   5 | al-Quran  | 1.5  | Kefahaman al-Fatihah                  | 1.5.1–1.5.5   | 24         | 26–31
+   6 | al-Quran  | 1.6  | Hukum tajwid nun sakinah &amp; tanwin     | 1.6.1–1.6.3   | 25         | 32–35
+   ...
+   22| Jawi      | 7.3  | Imbuhan apitan                        | 7.3.1–7.3.2   | 41         | 92–97
+
+🎨 CADANGAN PALET (unit 1–22)
+   1:P03 2:P09 3:P05 4:P01 5:P06 6:P02 7:P22 8:P11 9:P08 10:P15
+   11:P14 12:P23 13:P17 14:P20 15:P19 16:P07 17:P10 18:P13 19:P12 20:P04
+   21:P16 22:P21
+   Semakan perlanggaran: 0 (tiada hex sasaran sudah jadi warna identiti watak)
+
+🛑 BERHENTI — menunggu kelulusan anda sebelum membina unit 1.</pre></div>
+<hr/>
+<h2 id="5-contoh-keluaran-agen-satu-unit-siap">5. CONTOH KELUARAN AGEN — SATU UNIT SIAP</h2>
+<div class="codewrap"><button class="cp small" type="button">Salin</button><pre class="code txt">UNIT 6 — Hukum Nun Sakinah &amp; Tanwin  (SK 1.6, SP 1.6.1–1.6.3)
+  palet       : Forest Green + Magenta — 0 perlanggaran, 22/22 token hadir
+  kandungan   : 53/53 petikan disahkan (API rasm Uthmani)
+                2 ejaan Buku Teks dibetulkan: فريقا هدا (7:30), كاذبة خاطئة (96:16)
+  struktur    : 6 seksyen · 36 svg · 249 &lt;text&gt; · 10 qcard / 30 opt
+  jawapan     : 1,2,0,2,1,0,1,2,0,2
+  audit SVG   : BERSIH pada TOL 1.5 DAN 0.8
+  audit font  : 555 aksara Arab, 0 pada tindakan bukan-Tahoma
+  tinggi cetak: #1 1018.6 · #2 701.3 · #3 890.3 · #4 799.3 · #5 1145.6 (kuiz, 2 hlm) · #6 758.6
+                had 1032 — semua .hint 1 baris
+  hero        : 0 BEHIND, jarak min +40.3 pada 703
+  PDF         : 8 halaman, 491 aksara Arab semua Tahoma (86 + 405 bold)
+  gamifikasi  : Misi Minda — 5 misi, 3 lencana, bar kemajuan
+  portal      : 20/22 unit siap · 12 PDF · 32 pautan unik (semua 200)
+
+  Fail:
+    outputs/Bahan_PdP_PI_Tahun3_AlQuran_TajwidNunSakinahTanwin.html
+    outputs/Bahan_PdP_PI_Tahun3_AlQuran_TajwidNunSakinahTanwin_CetakanA4.pdf
+
+✅ Unit 6 siap. Teruskan unit 7 (Hadis)?</pre></div>
+<hr/>
+<h2 id="6-versi-padat-1-mesej-jika-mahu-terus-jalan">6. VERSI PADAT (1 MESEJ) — jika mahu terus jalan</h2>
+<p>Model ringan seperti GLM-5.3-Flash kadangkala lebih baik dengan arahan padat. Guna versi ini</p>
+<p>apabila anda sudah biasa dengan aliran kerja:</p>
+<div class="codewrap"><button class="cp small" type="button">Salin</button><pre class="code txt">Bina portal bahan PdP lengkap untuk: [MATA PELAJARAN] [TAHUN], ikut DSKP + Buku Teks
+yang dilampirkan.
+
+Ikut PROMPT DNA #1 dan #2 sepenuhnya. Ringkasnya:
+
+FASA: recon (peta SK/SP + halaman) → sahkan setiap petikan lawan sumber rasmi →
+pilih palet UNIK setiap unit → bina 6 komponen → validasi 8 gerbang → eksport PDF A4 →
+jana portal induk.
+
+6 KOMPONEN setiap unit:
+ 1 Infografik · 2 Peta Minda (5 cabang) · 3 Nota Ringkas (10 poin + rumusan)
+ 4 Diagram (jenis BERTUKAR antara unit) · 5 Kuiz 10 soalan interaktif
+ 6 Gamifikasi "Misi Minda" (4–6 misi + bar kemajuan + 3 lencana)
+
+KERAS:
+- setiap unit palet berbeza; jangan remap warna identiti watak
+- remap palet selepas semua splice
+- Arab pada tindanan Tahoma, dalam span class="jf"; tanwin sendiri diawali &amp;#x25CC;
+- had cetak 1032 px; .hint 1 baris
+- audit SVG TOL 1.5 DAN 0.8; audit font DOM; audit hero; audit font PDF
+- simbol berteks mesti dilihat dengan mata
+- satu unit satu masa; laporkan nombor sebenar; jangan sembunyikan kegagalan
+
+MULA: tunjuk peta sumber + palet untuk unit 1, kemudian BERHENTI minta kelulusan.</pre></div>
+<hr/>
+<h2 id="7-tip-khusus-untuk-glm53flash">7. TIP KHUSUS UNTUK GLM-5.3-FLASH</h2>
+<div class="tw"><table><thead><tr><th>Keadaan</th><th>Apa yang patut dibuat</th></tr></thead><tbody><tr><td>Projek 20+ unit</td><td>Kerjakan <strong>satu unit satu mesej</strong>. Jangan minta semua sekali gus — kualiti jatuh dan konteks habis.</td></tr><tr><td>Skrip bina panjang</td><td>Minta agen <strong>tulis skrip ke fail</strong> (<code>work/build&lt;N&gt;.py</code>) dan jalankan, bukan tampal kod dalam sembang.</td></tr><tr><td>Ralat berulang</td><td>Tampal <strong>keluaran ralat penuh</strong> dan minta agen betulkan punca, bukan gejala.</td></tr><tr><td>Palet tersalah</td><td>Minta agen jalankan <strong>imbasan perlanggaran</strong> dan laporkan hex yang tinggal.</td></tr><tr><td>Bahan nampak pelik</td><td>Minta agen <strong>eksport PDF</strong> dan buka pratonton — jangan percaya audit teks sahaja.</td></tr><tr><td>Konteks hampir habis</td><td>Minta agen tulis <strong>ringkasan keadaan</strong> ke fail memori, kemudian mula sesi baharu dengan ringkasan itu.</td></tr><tr><td>Nombor tidak konsisten</td><td>Minta agen jalankan semula skrip validasi dan <strong>laporkan nombor mentah</strong>.</td></tr></tbody></table></div>
+<hr/>
+<h2 id="8-senarai-semak-akhir-projek">8. SENARAI SEMAK AKHIR PROJEK</h2>
+<div class="codewrap"><button class="cp small" type="button">Salin</button><pre class="code">[ ] Peta sumber lengkap (SK/SP + halaman DSKP + halaman BT) untuk SEMUA unit
+[ ] Setiap petikan disahkan lawan sumber rasmi; percanggahan dicatat
+[ ] Setiap unit ada palet berbeza (0 palet berulang)
+[ ] Setiap unit ada 6 komponen lengkap termasuk gamifikasi
+[ ] Jenis diagram bertukar antara unit
+[ ] Setiap unit lulus 8 gerbang validasi
+[ ] Setiap unit ada PDF cetakan A4
+[ ] Portal: setiap unit siap ada badge "Siap" + pautan berfungsi
+[ ] Portal: setiap pautan unik diuji (HTTP 200)
+[ ] Portal: tapisan, carian dan susunan diuji
+[ ] Semua fail output berada dalam satu folder yang boleh diterbitkan</pre></div></div></section>
+<section class="doc" id="pal"><div class="dhead"><span class="dnum">04</span><div><div class="dkick">Rujukan Visual</div><h2>Registri Palet &mdash; 24 Gabungan</h2><p class="dblurb">Setiap unit mesti guna satu palet yang berbeza. Jadual penuh berada di dalam Prompt #1 (Bahagian A); ini rujukan visual supaya senang pilih.</p></div></div><div class="dbody"><div class="pgrid"><div class="pcard"><div class="pc-top"><span class="pc-code">P01</span><span class="pc-name">Slate Dusk + Lantern Gold</span></div><div class="pc-chips"><span class="pch"><i style="background:#48505d"></i><em>48505d</em></span><span class="pch"><i style="background:#272d36"></i><em>272d36</em></span><span class="pch"><i style="background:#c99b2a"></i><em>c99b2a</em></span><span class="pch"><i style="background:#eef0f2"></i><em>eef0f2</em></span><span class="pch"><i style="background:#fdf1dc"></i><em>fdf1dc</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P02</span><span class="pc-name">Forest Green + Magenta</span></div><div class="pc-chips"><span class="pch"><i style="background:#2d5f45"></i><em>2d5f45</em></span><span class="pch"><i style="background:#173a28"></i><em>173a28</em></span><span class="pch"><i style="background:#c94a72"></i><em>c94a72</em></span><span class="pch"><i style="background:#eaf2ec"></i><em>eaf2ec</em></span><span class="pch"><i style="background:#fdeaf0"></i><em>fdeaf0</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P03</span><span class="pc-name">Deep Teal + Coral</span></div><div class="pc-chips"><span class="pch"><i style="background:#0e6e73"></i><em>0e6e73</em></span><span class="pch"><i style="background:#08454b"></i><em>08454b</em></span><span class="pch"><i style="background:#e0733f"></i><em>e0733f</em></span><span class="pch"><i style="background:#eef7f5"></i><em>eef7f5</em></span><span class="pch"><i style="background:#fdeee6"></i><em>fdeee6</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P04</span><span class="pc-name">Emerald + Saffron</span></div><div class="pc-chips"><span class="pch"><i style="background:#1f6b52"></i><em>1f6b52</em></span><span class="pch"><i style="background:#124234"></i><em>124234</em></span><span class="pch"><i style="background:#d98a24"></i><em>d98a24</em></span><span class="pch"><i style="background:#e7f4ee"></i><em>e7f4ee</em></span><span class="pch"><i style="background:#fdf3e2"></i><em>fdf3e2</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P05</span><span class="pc-name">Plum + Apricot</span></div><div class="pc-chips"><span class="pch"><i style="background:#6d3d6b"></i><em>6d3d6b</em></span><span class="pch"><i style="background:#42223f"></i><em>42223f</em></span><span class="pch"><i style="background:#d9834a"></i><em>d9834a</em></span><span class="pch"><i style="background:#f4eef4"></i><em>f4eef4</em></span><span class="pch"><i style="background:#fdeee2"></i><em>fdeee2</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P06</span><span class="pc-name">Navy + Saffron</span></div><div class="pc-chips"><span class="pch"><i style="background:#2f4a7a"></i><em>2f4a7a</em></span><span class="pch"><i style="background:#1b2f52"></i><em>1b2f52</em></span><span class="pch"><i style="background:#dfa231"></i><em>dfa231</em></span><span class="pch"><i style="background:#eef2f8"></i><em>eef2f8</em></span><span class="pch"><i style="background:#fdf2dd"></i><em>fdf2dd</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P07</span><span class="pc-name">Indigo + Rose</span></div><div class="pc-chips"><span class="pch"><i style="background:#3b3f7a"></i><em>3b3f7a</em></span><span class="pch"><i style="background:#22244f"></i><em>22244f</em></span><span class="pch"><i style="background:#d1607f"></i><em>d1607f</em></span><span class="pch"><i style="background:#eef0f8"></i><em>eef0f8</em></span><span class="pch"><i style="background:#fdeaf0"></i><em>fdeaf0</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P08</span><span class="pc-name">Cobalt + Lime</span></div><div class="pc-chips"><span class="pch"><i style="background:#25589c"></i><em>25589c</em></span><span class="pch"><i style="background:#163a6b"></i><em>163a6b</em></span><span class="pch"><i style="background:#7fa62a"></i><em>7fa62a</em></span><span class="pch"><i style="background:#ecf2fa"></i><em>ecf2fa</em></span><span class="pch"><i style="background:#f3f8e4"></i><em>f3f8e4</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P09</span><span class="pc-name">Ocean + Sand</span></div><div class="pc-chips"><span class="pch"><i style="background:#1d6b8c"></i><em>1d6b8c</em></span><span class="pch"><i style="background:#0e4257"></i><em>0e4257</em></span><span class="pch"><i style="background:#c9903f"></i><em>c9903f</em></span><span class="pch"><i style="background:#ecf6fa"></i><em>ecf6fa</em></span><span class="pch"><i style="background:#faf3e6"></i><em>faf3e6</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P10</span><span class="pc-name">Sky + Marigold</span></div><div class="pc-chips"><span class="pch"><i style="background:#2f7fa8"></i><em>2f7fa8</em></span><span class="pch"><i style="background:#174e6b"></i><em>174e6b</em></span><span class="pch"><i style="background:#e0972f"></i><em>e0972f</em></span><span class="pch"><i style="background:#eef7fb"></i><em>eef7fb</em></span><span class="pch"><i style="background:#fdf4e3"></i><em>fdf4e3</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P11</span><span class="pc-name">Violet + Mint</span></div><div class="pc-chips"><span class="pch"><i style="background:#6a4a9c"></i><em>6a4a9c</em></span><span class="pch"><i style="background:#3f2a63"></i><em>3f2a63</em></span><span class="pch"><i style="background:#3fae8c"></i><em>3fae8c</em></span><span class="pch"><i style="background:#f2eefa"></i><em>f2eefa</em></span><span class="pch"><i style="background:#e8f7f2"></i><em>e8f7f2</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P12</span><span class="pc-name">Burgundy + Gold</span></div><div class="pc-chips"><span class="pch"><i style="background:#8c2f45"></i><em>8c2f45</em></span><span class="pch"><i style="background:#571c2b"></i><em>571c2b</em></span><span class="pch"><i style="background:#c9a02a"></i><em>c9a02a</em></span><span class="pch"><i style="background:#fbedf0"></i><em>fbedf0</em></span><span class="pch"><i style="background:#fbf4dd"></i><em>fbf4dd</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P13</span><span class="pc-name">Terracotta + Teal</span></div><div class="pc-chips"><span class="pch"><i style="background:#a5522f"></i><em>a5522f</em></span><span class="pch"><i style="background:#6b3220"></i><em>6b3220</em></span><span class="pch"><i style="background:#2f8a8a"></i><em>2f8a8a</em></span><span class="pch"><i style="background:#fdf0e9"></i><em>fdf0e9</em></span><span class="pch"><i style="background:#e8f5f5"></i><em>e8f5f5</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P14</span><span class="pc-name">Mustard + Slate</span></div><div class="pc-chips"><span class="pch"><i style="background:#a8821f"></i><em>a8821f</em></span><span class="pch"><i style="background:#6b520f"></i><em>6b520f</em></span><span class="pch"><i style="background:#4a6070"></i><em>4a6070</em></span><span class="pch"><i style="background:#fbf4dd"></i><em>fbf4dd</em></span><span class="pch"><i style="background:#eef1f4"></i><em>eef1f4</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P15</span><span class="pc-name">Sage + Coral</span></div><div class="pc-chips"><span class="pch"><i style="background:#5f8a5f"></i><em>5f8a5f</em></span><span class="pch"><i style="background:#3a5c3a"></i><em>3a5c3a</em></span><span class="pch"><i style="background:#d1704f"></i><em>d1704f</em></span><span class="pch"><i style="background:#eff6ef"></i><em>eff6ef</em></span><span class="pch"><i style="background:#fdeee8"></i><em>fdeee8</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P16</span><span class="pc-name">Moss + Berry</span></div><div class="pc-chips"><span class="pch"><i style="background:#4a6b2a"></i><em>4a6b2a</em></span><span class="pch"><i style="background:#2c4116"></i><em>2c4116</em></span><span class="pch"><i style="background:#a63a5c"></i><em>a63a5c</em></span><span class="pch"><i style="background:#f0f6e8"></i><em>f0f6e8</em></span><span class="pch"><i style="background:#fbeaf0"></i><em>fbeaf0</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P17</span><span class="pc-name">Pine + Amber</span></div><div class="pc-chips"><span class="pch"><i style="background:#1f5c4a"></i><em>1f5c4a</em></span><span class="pch"><i style="background:#103a2e"></i><em>103a2e</em></span><span class="pch"><i style="background:#d9922a"></i><em>d9922a</em></span><span class="pch"><i style="background:#e9f5f1"></i><em>e9f5f1</em></span><span class="pch"><i style="background:#fdf3e0"></i><em>fdf3e0</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P18</span><span class="pc-name">Aubergine + Peach</span></div><div class="pc-chips"><span class="pch"><i style="background:#5c2f5c"></i><em>5c2f5c</em></span><span class="pch"><i style="background:#371b37"></i><em>371b37</em></span><span class="pch"><i style="background:#e08a5f"></i><em>e08a5f</em></span><span class="pch"><i style="background:#f5edf5"></i><em>f5edf5</em></span><span class="pch"><i style="background:#fdf0e8"></i><em>fdf0e8</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P19</span><span class="pc-name">Steel Blue + Copper</span></div><div class="pc-chips"><span class="pch"><i style="background:#3f5c78"></i><em>3f5c78</em></span><span class="pch"><i style="background:#24384c"></i><em>24384c</em></span><span class="pch"><i style="background:#b5713f"></i><em>b5713f</em></span><span class="pch"><i style="background:#eef3f8"></i><em>eef3f8</em></span><span class="pch"><i style="background:#fbf0e8"></i><em>fbf0e8</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P20</span><span class="pc-name">Rosewood + Jade</span></div><div class="pc-chips"><span class="pch"><i style="background:#7a3a4a"></i><em>7a3a4a</em></span><span class="pch"><i style="background:#4a2029"></i><em>4a2029</em></span><span class="pch"><i style="background:#2f8a6a"></i><em>2f8a6a</em></span><span class="pch"><i style="background:#fbedf0"></i><em>fbedf0</em></span><span class="pch"><i style="background:#e9f6f1"></i><em>e9f6f1</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P21</span><span class="pc-name">Charcoal + Turquoise</span></div><div class="pc-chips"><span class="pch"><i style="background:#3a4149"></i><em>3a4149</em></span><span class="pch"><i style="background:#21262b"></i><em>21262b</em></span><span class="pch"><i style="background:#2fa6a0"></i><em>2fa6a0</em></span><span class="pch"><i style="background:#f0f2f4"></i><em>f0f2f4</em></span><span class="pch"><i style="background:#e6f7f6"></i><em>e6f7f6</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P22</span><span class="pc-name">Cocoa + Sky</span></div><div class="pc-chips"><span class="pch"><i style="background:#5c3f2a"></i><em>5c3f2a</em></span><span class="pch"><i style="background:#38241a"></i><em>38241a</em></span><span class="pch"><i style="background:#3f8ab5"></i><em>3f8ab5</em></span><span class="pch"><i style="background:#f7f1ea"></i><em>f7f1ea</em></span><span class="pch"><i style="background:#eaf4fb"></i><em>eaf4fb</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P23</span><span class="pc-name">Grape + Lemon</span></div><div class="pc-chips"><span class="pch"><i style="background:#4f3a8c"></i><em>4f3a8c</em></span><span class="pch"><i style="background:#2e2054"></i><em>2e2054</em></span><span class="pch"><i style="background:#d4b52a"></i><em>d4b52a</em></span><span class="pch"><i style="background:#f1eefa"></i><em>f1eefa</em></span><span class="pch"><i style="background:#fbf7dd"></i><em>fbf7dd</em></span></div></div><div class="pcard"><div class="pc-top"><span class="pc-code">P24</span><span class="pc-name">Crimson + Slate</span></div><div class="pc-chips"><span class="pch"><i style="background:#a03040"></i><em>a03040</em></span><span class="pch"><i style="background:#631c28"></i><em>631c28</em></span><span class="pch"><i style="background:#4a6070"></i><em>4a6070</em></span><span class="pch"><i style="background:#fbecf0"></i><em>fbecf0</em></span><span class="pch"><i style="background:#eef1f4"></i><em>eef1f4</em></span></div></div></div><blockquote>Warna identiti watak (kulit, rambut, hijab, baju, pipi) <strong>tidak pernah</strong> termasuk dalam palet unit &mdash; ia kekal sama dalam semua unit.</blockquote></div></section>
+  <div class="foot">Dokumen ini dijana automatik daripada tiga fail markdown dalam folder <code>prompt_dna/</code>.</div>
+</div>
+
+<script>
+document.querySelectorAll('.cp').forEach(function(b){
+  b.addEventListener('click', function(){
+    var host = b.closest('.promptwrap, .codewrap');
+    var pre  = host ? host.querySelector('pre') : null;
+    if(!pre) return;
+    var txt = pre.innerText;
+    var done = function(){
+      var old = b.textContent; b.textContent = 'Disalin \u2713'; b.classList.add('done');
+      setTimeout(function(){ b.textContent = old; b.classList.remove('done'); }, 1400);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done, function(){ fallback(txt, done); });
+    } else { fallback(txt, done); }
+  });
+});
+function fallback(txt, done){
+  var ta = document.createElement('textarea');
+  ta.value = txt; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); done(); }catch(e){}
+  document.body.removeChild(ta);
+}
+</script>
+</body></html>

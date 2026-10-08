@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portal Bahan PdP Pendidikan Islam Tahun 5 &mdash; 24 Standard Kandungan</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg1:#eeebf8; --bg2:#faf9fd; --card:#fdfbff; --ink:#272341; --muted:#7c7796;
+  --line:#e4e0f0; --navy:#3f3873; --navy2:#241f4a; --gold:#dfa63c; --steel:#a8a3c8;
+  --shadow-soft:0 4px 14px rgba(36,31,74,.07);
+  --shadow-lift:0 16px 38px rgba(36,31,74,.13);
+  --shadow-card:0 2px 10px rgba(36,31,74,.06);
+}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:linear-gradient(180deg,var(--bg1),var(--bg2) 320px,#f6f2fb);
+  font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;color:var(--ink);line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px 40px}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;border-radius:0 0 26px 26px;overflow:hidden;margin:0 -18px 0;
+  box-shadow:0 12px 36px rgba(36,31,74,.2)}
+.hero svg{width:100%;height:auto;display:block}
+.hero-txt{position:absolute;left:0;right:0;top:0;padding:20px 20px 54px;text-align:center;
+  background:radial-gradient(ellipse at 50% 34%,rgba(255,255,255,.62),rgba(255,255,255,0) 74%)}
+.hero-txt .kick{font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:#332c5c;font-weight:700}
+.hero-txt h1{margin:6px 0 4px;font-size:clamp(24px,4.2vw,44px);line-height:1.08;color:#241f4a;letter-spacing:.4px}
+.hero-txt .sub{font-size:clamp(11px,1.5vw,14px);color:#3b3466;font-weight:600}
+
+/* ---------- STATS ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0 6px}
+.stat{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:14px 16px;
+  text-align:center;box-shadow:var(--shadow-card)}
+.stat b{display:block;font-size:26px;line-height:1.1;color:var(--navy)}
+.stat span{font-size:11.5px;color:var(--muted);font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+.stat.gold b{color:var(--gold)}
+
+/* ---------- BAR ---------- */
+.bar{position:sticky;top:0;z-index:40;background:rgba(250,249,253,.94);backdrop-filter:blur(8px);
+  border:1.5px solid var(--line);border-radius:18px;padding:12px 14px;margin:14px 0 18px;
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;box-shadow:var(--shadow-soft)}
+.search{flex:1 1 240px;min-width:190px;display:flex;align-items:center;gap:8px;background:#fff;
+  border:1.5px solid var(--line);border-radius:14px;padding:9px 13px;
+  box-shadow:inset 0 1px 4px rgba(36,31,74,.07)}
+.search svg{width:16px;height:16px;flex:0 0 auto;fill:var(--muted)}
+.search input{border:0;outline:0;font:inherit;font-size:14px;width:100%;background:transparent;color:var(--ink)}
+.search:focus-within{border-color:var(--navy);box-shadow:inset 0 1px 4px rgba(63,56,115,.12),0 0 0 3px rgba(63,56,115,.08)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;border:1.6px solid var(--line);
+  background:#fff;color:#443e6b;border-radius:999px;padding:6px 13px;transition:.15s}
+.chip i{font-style:normal;opacity:.6;font-size:11px}
+.chip:hover{border-color:var(--c1);color:var(--c1)}
+.chip.on{background:var(--c1);border-color:var(--c1);color:#fff}
+.chip.on i{opacity:.85}
+.chip[data-f="all"]{--c1:var(--navy)}
+.seg{display:flex;border:1.6px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.seg button{font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;border:0;background:transparent;
+  color:#443e6b;padding:8px 13px;transition:.15s}
+.seg button.on{background:var(--navy);color:#fff}
+.ysw{font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;border:1.6px solid var(--line);
+  background:#fff;color:#443e6b;border-radius:12px;padding:8px 13px;text-decoration:none;white-space:nowrap;
+  transition:.15s}
+.ysw:hover{border-color:var(--gold);color:#8a6414;box-shadow:0 2px 8px rgba(223,166,60,.18)}
+
+/* ---------- GRID ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.card{position:relative;background:var(--card);border:1.6px solid var(--line);border-radius:20px;
+  padding:18px 20px 16px;display:flex;flex-direction:column;gap:8px;overflow:hidden;
+  transition:.22s ease;box-shadow:var(--shadow-card)}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--c1)}
+.card::after{content:"";position:absolute;left:0;right:0;top:0;height:70px;
+  background:linear-gradient(180deg,var(--tint),transparent);pointer-events:none;
+  border-radius:20px 20px 0 0;z-index:0}
+.card>*{position:relative;z-index:1}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lift);border-color:var(--c1)}
+.card.dim{display:none}
+.top{display:flex;align-items:center;gap:9px}
+.no{font-size:22px;font-weight:700;color:var(--c1);line-height:1;letter-spacing:.5px}
+.pill{font-size:10.5px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:#fff;
+  background:var(--c1);border-radius:999px;padding:4px 10px}
+.st{margin-left:auto;font-size:10.5px;font-weight:700;border-radius:999px;padding:4px 10px;white-space:nowrap}
+.st.ok{background:#e6f4ec;color:#1f6b52;border:1.3px solid #b8ddc8}
+.st.no{background:#f2f1f7;color:#7d7996;border:1.3px solid #e0dcee}
+.card h3{margin:0;font-size:15.5px;line-height:1.28;color:#241f4a}
+.card h3 b{color:var(--c1)}
+.card .sub{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--c1);opacity:.85}
+.card .sk{margin:0;font-size:12.6px;color:#403a5e}
+.card .sk b{color:#241f4a}
+.card .meta{font-size:11.5px;color:var(--muted)}
+.card .meta b{color:var(--c1)}
+.dot{opacity:.5;margin:0 4px}
+.inside{display:flex;flex-wrap:wrap;gap:5px;margin-top:1px}
+.inside span{font-size:10px;font-weight:700;color:var(--c1);background:var(--tint);
+  border:1.2px solid var(--line);border-radius:7px;padding:3px 8px}
+.acts{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:6px}
+.btn{font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;border-radius:12px;padding:9px 15px;
+  text-decoration:none;display:inline-block;border:1.6px solid transparent;transition:.15s}
+.btn.go{background:var(--c1);color:#fff}
+.btn.go:hover{background:var(--c2);box-shadow:0 3px 10px rgba(36,31,74,.2)}
+.btn.pdf{background:#fff;color:var(--c1);border-color:var(--c1)}
+.btn.pdf:hover{background:var(--tint)}
+.btn.pdf.off{color:#9a96ad;border-color:var(--line);cursor:not-allowed}
+.btn.pv{background:#fff;color:#443e6b;border-color:var(--line)}
+.btn.pv:hover{border-color:var(--gold);color:#8a6414}
+.btn.pending{background:#f2f1f7;color:#7d7996;cursor:default}
+
+/* ---------- KOSONG ---------- */
+.empty{display:none;text-align:center;padding:44px 10px;color:var(--muted);font-weight:700}
+.empty.on{display:block}
+
+/* ---------- PANDUAN + FOOTER ---------- */
+.guide{margin:26px 0 0;background:var(--card);border:1.6px solid var(--line);border-radius:20px;
+  padding:18px 20px;box-shadow:var(--shadow-card)}
+.guide h2{margin:0 0 10px;font-size:16px;color:#241f4a}
+.guide ol{margin:0;padding-left:20px;font-size:13.4px;color:#403a5e}
+.guide li{margin:5px 0}
+.guide .note{margin-top:12px;padding:11px 13px;border-radius:13px;background:#eeebf8;
+  border:1.5px dashed var(--navy);font-size:13px}
+footer{margin:26px 0 0;text-align:center;font-size:11.5px;color:var(--muted);line-height:1.7}
+footer a{color:var(--navy);font-weight:700}
+
+/* ---------- PRATONTON ---------- */
+.viewer{position:fixed;inset:0;z-index:90;background:rgba(20,17,44,.74);display:none;
+  flex-direction:column;padding:14px}
+.viewer.on{display:flex}
+.vtop{display:flex;align-items:center;gap:10px;padding:0 2px 10px}
+.vtop .vt{color:#fff;font-size:14px;font-weight:700;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vtop button,.vtop a{font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;border:0;border-radius:12px;
+  padding:8px 14px;text-decoration:none}
+.vtop .vopen{background:var(--gold);color:#3a2a06}
+.vtop .vclose{background:rgba(255,255,255,.16);color:#fff}
+.viewer iframe{flex:1;width:100%;border:0;border-radius:16px;background:#fff}
+
+/* ---------- ANIMASI GHIBLI 2D PIXAR (skrin sahaja) ---------- */
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(26px)}}
+@keyframes twinkle{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes floatBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes softGlow{0%,100%{filter:drop-shadow(0 0 3px rgba(255,230,176,.5))}50%{filter:drop-shadow(0 0 8px rgba(255,230,176,.8))}}
+@keyframes cardEntrance{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes gentleSway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@media (prefers-reduced-motion:no-preference){
+  .anim-drift{animation:drift 9s ease-in-out infinite alternate}
+  .anim-twinkle{animation:twinkle 4.4s ease-in-out infinite}
+  .anim-float{animation:floatBob 3.6s ease-in-out infinite}
+  .anim-glow{animation:softGlow 3.2s ease-in-out infinite}
+  .anim-sway{animation:gentleSway 5s ease-in-out infinite;transform-origin:bottom center}
+  .anim-shimmer{
+    background:linear-gradient(90deg,transparent 30%,rgba(255,230,176,.45) 50%,transparent 70%);
+    background-size:200% 100%;animation:shimmer 3.5s linear infinite}
+  .card{animation:cardEntrance .5s ease-out backwards}
+  .card:hover{transform:translateY(-5px) scale(1.012)}
+}
+@media (prefers-reduced-motion:reduce){
+  .anim-drift,.anim-twinkle,.anim-float,.anim-glow,.anim-sway,.anim-shimmer,.card{animation:none !important}
+}
+
+/* ---------- CETAK ---------- */
+@page{size:A4 portrait;margin:12mm}
+@media print{
+  body{background:#fff}
+  .hero{box-shadow:none;border-radius:0}
+  .bar,.acts,.viewer,.btn,.ysw{display:none !important}
+  .anim-drift,.anim-twinkle,.anim-float,.anim-glow,.anim-sway,.anim-shimmer{animation:none !important}
+  .card{animation:none !important}
+  .grid{grid-template-columns:1fr 1fr;gap:9px}
+  .card{break-inside:avoid;page-break-inside:avoid;border:1.4px solid #d6d1e6;box-shadow:none;
+    transform:none !important;padding:11px 12px 10px;gap:5px}
+  .card:hover{box-shadow:none}
+  .card::after{display:none}
+  .card h3{font-size:12.6px}
+  .card .sk{font-size:10.6px}
+  .card .meta{font-size:9.6px}
+  .inside span{font-size:8.6px;padding:2px 6px}
+  .stats{grid-template-columns:repeat(4,1fr);gap:7px}
+  .stat b{font-size:19px} .stat span{font-size:9px}
+  .guide{break-inside:avoid}
+  a{text-decoration:none;color:inherit}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="kucingTidur">
+    <ellipse cx="33" cy="36" rx="30" ry="4" fill="#000" opacity=".07"/>
+    <path d="M6 34 q-2-22 27-22 q29 0 27 22 z" fill="#f4d8a8" stroke="#c9a86b" stroke-width="1.6"/>
+    <path d="M52 32 q14-4 12-16" stroke="#c9a86b" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M12 14 l-3-11 11 6 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M32 14 l3-11 -11 6 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M13 24 q6-5 12 0" stroke="#4a3b2f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M31 24 q6-5 12 0" stroke="#4a3b2f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M22 31 q5 4 10 0" stroke="#a8794f" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="30" rx="4" ry="2.4" fill="#e88ba0" opacity=".4"/>
+    <ellipse cx="43" cy="30" rx="4" ry="2.4" fill="#e88ba0" opacity=".4"/>
+  </g>
+  <g id="bintangPrestasi">
+    <path d="M30 4 l6 15 16 1 -12 11 4 16 -14-8 -14 8 4-16 -12-11 16-1 z"
+          fill="#e0b04a" stroke="#a87a1c" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M30 12 l3.6 9 9.6 .6 -7.2 6.6 2.4 9.6 -8.4-4.8 -8.4 4.8 2.4-9.6 -7.2-6.6 9.6-.6 z"
+          fill="#f6dfa0" opacity=".75"/>
+    <path d="M22 48 l-7 20 15-9 15 9 -7-20 z" fill="#a87c28" stroke="#7d5c18" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M30 4 v-4" stroke="#a87a1c" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <g id="ustazDuduk">
+    <ellipse cx="60" cy="150" rx="36" ry="6" fill="#000" opacity=".08"/>
+    <path d="M26 104 q34-12 68 0 q8 26 0 46 h-68 q-8-20 0-46 z" fill="#eef3fb" stroke="#b8c6de" stroke-width="2"/>
+    <path d="M60 106 v44" stroke="#b8c6de" stroke-width="1.3" opacity=".6"/>
+    <path d="M30 110 q-12 12 -9 26 q9 3 12-8 z" fill="#eef3fb" stroke="#b8c6de" stroke-width="2"/>
+    <path d="M90 110 q12 12 9 26 q-9 3 -12-8 z" fill="#eef3fb" stroke="#b8c6de" stroke-width="2"/>
+    <path d="M40 118 q12 8 14 22" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M80 118 q-12 8 -14 22" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <ellipse cx="60" cy="46" rx="27" ry="29" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M33 46 a27 29 0 0 1 54 0 q-9-18 -27-18 q-18 0 -27 18 z" fill="#f4f1e6" stroke="#d9d0ba" stroke-width="1.4"/>
+    <path d="M36 62 q24 22 48 0 q-4 24 -24 24 q-20 0 -24-24 z" fill="#e8e3d2" stroke="#c9b596" stroke-width="1.4"/>
+    <path d="M44 40 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M66 40 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="48" cy="48" rx="4.4" ry="5.6" fill="#3a2b22"/>
+    <ellipse cx="72" cy="48" rx="4.4" ry="5.6" fill="#3a2b22"/>
+    <path d="M52 68 q8 6 16 0" stroke="#8a5a4a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M22 130 q38-10 76 0 v18 q-38-8 -76 0 z" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M60 133 v15" stroke="#cbb99a" stroke-width="1.3"/>
+    <g stroke="#cfc7b0" stroke-width="1.1"><path d="M30 136 h22"/><path d="M30 142 h22"/><path d="M68 136 h22"/><path d="M68 142 h22"/></g>
+  </g>
+  <g id="nur">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="43" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <rect x="58" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <ellipse cx="48" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="63" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <path d="M33 78 q22-11 44 0 l12 46 h-68 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <path d="M36 84 q-13 12 -10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 84 q13 12 10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="51.5" r="1.9" fill="#fff"/><circle cx="67" cy="51.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+  <g id="adam">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <rect x="57" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <ellipse cx="46" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l7 44 h-56 z" fill="#7fc4b8" stroke="#a87c28" stroke-width="2"/>
+    <path d="M36 82 q-13 13 -9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 82 q13 13 9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M39 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="46.5" r="1.9" fill="#fff"/><circle cx="68" cy="46.5" r="1.9" fill="#fff"/>
+    <path d="M55 56 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M49 63 q6 6.5 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+  <g id="nurBaca">
+    <ellipse cx="55" cy="152" rx="32" ry="6" fill="#000" opacity=".08"/>
+    <path d="M22 96 q33-14 66 0 q6 30 0 56 h-66 q-6-26 0-56 z" fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <path d="M34 104 q-13 12 -11 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M76 104 q13 12 11 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.8"/>
+    <path d="M31 44 q24-9 48 0 q-4-24 -24-24 q-20 0 -24 24 z" fill="#f2b8c6"/>
+    <path d="M43 46 q6-4 11 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M56 46 q6-4 11 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M47 60 q8 6 16 0" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="56" rx="5" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="56" rx="5" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+    <path d="M28 118 q27-9 54 0 v18 q-27-8 -54 0 z" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M55 121 v15" stroke="#cbb99a" stroke-width="1.3"/>
+    <g stroke="#cfc7b0" stroke-width="1.1"><path d="M34 124 h16"/><path d="M34 130 h16"/><path d="M60 124 h16"/><path d="M60 130 h16"/></g>
+    <path d="M28 128 q-11 2 -13 12 q9 3 13-6 z" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <path d="M82 128 q11 2 13 12 q-9 3 -13-6 z" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+  </g>
+  <g id="adamBaca">
+    <ellipse cx="55" cy="154" rx="35" ry="6" fill="#000" opacity=".08"/>
+    <path d="M20 152 q0-32 35-32 q35 0 35 32 z" fill="#5b7fa8" stroke="#3f5f85" stroke-width="2"/>
+    <ellipse cx="42" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="68" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <path d="M32 80 q23-11 46 0 l10 44 h-66 z" fill="#5b7fa8" stroke="#3f5f85" stroke-width="2"/>
+    <path d="M34 118 q21 9 42 0 l4 12 h-50 z" fill="#7fc4b8" stroke="#3f5f85" stroke-width="1.4"/>
+    <path d="M38 90 q-6 24 4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M72 90 q6 24 -4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="32" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="61" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <!-- al-Quran terbuka di pangkuan -->
+    <path d="M24 124 L55 114 L86 124 L86 132 L55 122 L24 132 Z" fill="#fdf6ec" stroke="#cbb99a" stroke-width="1.5"/>
+    <path d="M55 114 v8" stroke="#cbb99a" stroke-width="1.5"/>
+    <g stroke="#cbb99a" stroke-width="1" opacity=".85">
+      <path d="M31 124 h18"/><path d="M31 128 h18"/><path d="M61 124 h18"/><path d="M61 128 h18"/>
+    </g>
+    <!-- kepala -->
+    <ellipse cx="55" cy="54" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M31 54 a24 26 0 0 1 48 0 q-7-17 -24-17 q-17 0 -24 17 z" fill="#5a3b28"/>
+    <path d="M40 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="53.5" r="1.9" fill="#fff"/><circle cx="67" cy="53.5" r="1.9" fill="#fff"/>
+    <path d="M55 62 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 69 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+  <g id="kadAyat">
+    <rect x="10" y="4" width="64" height="44" rx="4" fill="#fdf4e3" stroke="#a87c28" stroke-width="1.4" transform="rotate(-8 42 26)"/>
+    <rect x="6" y="8" width="64" height="44" rx="4" fill="#fffcf9" stroke="#a87c28" stroke-width="1.4" transform="rotate(3 38 30)"/>
+    <rect x="2" y="12" width="64" height="44" rx="4" fill="#fdf6ec" stroke="#7d5c18" stroke-width="1.6"/>
+    <g stroke="#c0a98c" stroke-width="1.3" stroke-linecap="round">
+      <path d="M12 24 h44"/><path d="M12 32 h44"/><path d="M12 40 h28"/>
+    </g>
+    <circle cx="58" cy="46" r="5" fill="#3f3873"/>
+    <text x="58" y="49" text-anchor="middle" font-family="Trebuchet MS" font-size="7" font-weight="700" fill="#ffffff">1</text>
+  </g>
+  <g id="mushafTerbuka">
+    <ellipse cx="60" cy="104" rx="46" ry="6" fill="#000" opacity=".08"/>
+    <!-- rehal: kaki X + palang -->
+    <path d="M24 102 L58 60" stroke="#8a6544" stroke-width="5" stroke-linecap="round"/>
+    <path d="M96 102 L62 60" stroke="#8a6544" stroke-width="5" stroke-linecap="round"/>
+    <path d="M30 92 h60" stroke="#a87f5c" stroke-width="4.4" stroke-linecap="round"/>
+    <!-- halaman kiri -->
+    <path d="M60 32 Q36 24 12 32 L12 88 Q36 80 60 88 Z" fill="#f6f1e4" stroke="#cbb99a" stroke-width="1.6"/>
+    <!-- halaman kanan -->
+    <path d="M60 32 Q84 24 108 32 L108 88 Q84 80 60 88 Z" fill="#fbf7ea" stroke="#cbb99a" stroke-width="1.6"/>
+    <!-- tulang buku -->
+    <path d="M60 32 V88" stroke="#cbb99a" stroke-width="1.6"/>
+    <!-- baris ayat -->
+    <g stroke="#ddd0b6" stroke-width="1.2">
+      <path d="M20 42 Q38 37 54 41"/><path d="M20 52 Q38 47 54 51"/>
+      <path d="M20 62 Q38 57 54 61"/><path d="M20 72 Q38 67 54 71"/>
+      <path d="M66 41 Q82 37 100 42"/><path d="M66 51 Q82 47 100 52"/>
+      <path d="M66 61 Q82 57 100 62"/><path d="M66 71 Q82 67 100 72"/>
+    </g>
+    <!-- bingkai emas -->
+    <path d="M16 32 Q36 25 58 32 M16 88 Q36 81 58 88" fill="none" stroke="#e0b04a" stroke-width="1.2"/>
+    <path d="M104 32 Q84 25 62 32 M104 88 Q84 81 62 88" fill="none" stroke="#e0b04a" stroke-width="1.2"/>
+    <!-- rosette nombor ayat -->
+    <g fill="#3f3873"><circle cx="50" cy="82" r="4.2"/><circle cx="70" cy="82" r="4.2"/></g>
+    <g fill="#e0b04a"><circle cx="50" cy="82" r="1.7"/><circle cx="70" cy="82" r="1.7"/></g>
+  </g>
+  <g id="bunga">
+    <use href="#bungaSatu" x="0" y="0"/>
+    <use href="#bungaSatu" x="16" y="-5"/>
+    <use href="#bungaSatu" x="31" y="2"/>
+  </g>
+  <g id="bungaSatu">
+    <path d="M0 24 v-13" stroke="#6d9c4a" stroke-width="1.6" stroke-linecap="round"/>
+    <g fill="#f2b8c6" stroke="#d98da0" stroke-width="1">
+      <circle cx="0" cy="4" r="3.6"/><circle cx="-4" cy="8" r="3.6"/>
+      <circle cx="4" cy="8" r="3.6"/><circle cx="0" cy="12" r="3.6"/>
+    </g>
+    <circle cx="0" cy="8" r="2.4" fill="#e8a94a"/>
+  </g>
+  <g id="semak">
+    <ellipse cx="34" cy="44" rx="30" ry="4" fill="#000" opacity=".06"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.3">
+      <circle cx="18" cy="32" r="15"/><circle cx="38" cy="24" r="18"/><circle cx="56" cy="33" r="14"/>
+    </g>
+    <g fill="#a9d383" opacity=".65">
+      <circle cx="30" cy="20" r="7"/><circle cx="52" cy="28" r="5"/>
+    </g>
+  </g>
+  <g id="hamparan">
+    <ellipse cx="100" cy="42" rx="98" ry="40" fill="#ded9ee" stroke="#a8a3c8" stroke-width="2.2"/>
+    <ellipse cx="100" cy="42" rx="82" ry="32" fill="none" stroke="#a8a3c8" stroke-width="1.4"/>
+    <ellipse cx="100" cy="42" rx="58" ry="22" fill="none" stroke="#a8a3c8" stroke-width="1.2" opacity=".8"/>
+    <g fill="#3f3873" opacity=".35">
+      <circle cx="100" cy="42" r="5"/>
+    </g>
+    <g stroke="#b5722c" stroke-width="1.8" opacity=".75" fill="none">
+      <path d="M18 42 h22"/><path d="M160 42 h22"/>
+    </g>
+  </g>
+  <g id="papanQadr">
+    <rect x="0" y="0" width="156" height="116" rx="9" fill="#f8f6fc" stroke="#3f3873" stroke-width="2.4"/>
+    <rect x="0" y="0" width="156" height="26" rx="9" fill="#3f3873"/>
+    <rect x="0" y="17" width="156" height="9" fill="#3f3873"/>
+    <text x="78" y="18" text-anchor="middle" font-family="Trebuchet MS, Segoe UI, sans-serif" font-size="11.5" font-weight="800" fill="#ffffff" letter-spacing="1.8">AL-QADR</text>
+    <rect x="10" y="32" width="136" height="12" rx="4" fill="#fdf4e3"/>
+    <rect x="14" y="35" width="24" height="6" rx="3" fill="#dfa63c"/>
+    <rect x="42" y="35.5" width="100" height="5" rx="2.5" fill="#3f3873" opacity=".28"/>
+    <rect x="10" y="47" width="136" height="12" rx="4" fill="#ded9ee"/>
+    <rect x="14" y="50" width="24" height="6" rx="3" fill="#5f5794"/>
+    <rect x="42" y="50.5" width="100" height="5" rx="2.5" fill="#3f3873" opacity=".28"/>
+    <rect x="10" y="62" width="136" height="12" rx="4" fill="#fdf4e3"/>
+    <rect x="14" y="65" width="24" height="6" rx="3" fill="#dfa63c"/>
+    <rect x="42" y="65.5" width="100" height="5" rx="2.5" fill="#3f3873" opacity=".28"/>
+    <rect x="10" y="77" width="136" height="12" rx="4" fill="#ded9ee"/>
+    <rect x="14" y="80" width="24" height="6" rx="3" fill="#5f5794"/>
+    <rect x="42" y="80.5" width="100" height="5" rx="2.5" fill="#3f3873" opacity=".28"/>
+    <rect x="10" y="92" width="136" height="12" rx="4" fill="#fdf4e3"/>
+    <rect x="14" y="95" width="24" height="6" rx="3" fill="#dfa63c"/>
+    <rect x="42" y="95.5" width="100" height="5" rx="2.5" fill="#3f3873" opacity=".28"/>
+    <rect x="70" y="116" width="16" height="9" rx="3" fill="#3f3873"/>
+    <path d="M40 124 l-13 25" stroke="#5f5794" stroke-width="5.5" stroke-linecap="round"/>
+    <path d="M116 124 l13 25" stroke="#5f5794" stroke-width="5.5" stroke-linecap="round"/>
+  </g>
+  <g id="lenteraMalam">
+    <path d="M22 0 V9" stroke="#5f5794" stroke-width="2.2" stroke-linecap="round"/>
+    <rect x="12" y="8" width="20" height="6" rx="3" fill="#3f3873"/>
+    <path d="M9 14 H35 L41 54 H3 Z" fill="#fdf4e3" stroke="#dfa63c" stroke-width="2"/>
+    <rect x="13" y="22" width="18" height="26" rx="5" fill="#fff6cf" opacity=".92"/>
+    <rect x="7" y="53" width="30" height="7" rx="3" fill="#3f3873"/>
+    <circle cx="22" cy="57" r="3.4" fill="#dfa63c"/>
+  </g>
+  <g id="khemah">
+    <path d="M6 112 L80 14 L154 112 Z" fill="#fdf4e3"/>
+    <path d="M6 112 L80 14 L80 112 Z" fill="#ded9ee"/>
+    <path d="M80 14 L154 112 L80 112 Z" fill="#f8f6fc"/>
+    <path d="M80 14 L106 112 L54 112 Z" fill="#241f4a" opacity=".20"/>
+    <path d="M80 14 L94 112 L66 112 Z" fill="#dfa63c" opacity=".30"/>
+    <path d="M80 16 L80 4" stroke="#241f4a" stroke-width="2.4" stroke-linecap="round"/>
+    <rect x="70" y="0" width="20" height="9" rx="4" fill="#3f3873"/>
+    <path d="M20 112 L66 26" stroke="#a8a3c8" stroke-width="2" opacity=".65" stroke-linecap="round"/>
+    <path d="M42 112 L72 56" stroke="#a8a3c8" stroke-width="2" opacity=".65" stroke-linecap="round"/>
+    <rect x="0" y="109" width="14" height="5" rx="2.5" fill="#5f5794"/>
+    <rect x="146" y="109" width="14" height="5" rx="2.5" fill="#5f5794"/>
+  </g>
+  <g id="masjid">
+    <ellipse cx="110" cy="188" rx="98" ry="7" fill="#000" opacity=".07"/>
+    <!-- menara kiri -->
+    <rect x="18" y="78" width="21" height="110" fill="#fdf6ec" stroke="#a8a3c8" stroke-width="2"/>
+    <path d="M18 78 q10.5-18 21 0 z" fill="#5f5794" stroke="#241f4a" stroke-width="1.6"/>
+    <rect x="22" y="98" width="13" height="7" rx="2.5" fill="#a87c28"/>
+    <circle cx="28.5" cy="71" r="3.2" fill="#dfa63c"/>
+    <!-- menara kanan -->
+    <rect x="181" y="78" width="21" height="110" fill="#fdf6ec" stroke="#a8a3c8" stroke-width="2"/>
+    <path d="M181 78 q10.5-18 21 0 z" fill="#5f5794" stroke="#241f4a" stroke-width="1.6"/>
+    <rect x="185" y="98" width="13" height="7" rx="2.5" fill="#a87c28"/>
+    <circle cx="191.5" cy="71" r="3.2" fill="#dfa63c"/>
+    <!-- badan masjid -->
+    <rect x="46" y="100" width="128" height="88" fill="#fdf6ec" stroke="#a8a3c8" stroke-width="2"/>
+    <!-- kubah bawang -->
+    <path d="M44 102 C44 62 76 44 110 28 C144 44 176 62 176 102 Z"
+          fill="#5f5794" stroke="#241f4a" stroke-width="2"/>
+    <path d="M110 28 C144 44 176 62 176 102 L150 102 C150 74 132 54 110 42 Z"
+          fill="#3f3873" opacity=".5"/>
+    <!-- bulan & bintang di puncak -->
+    <path d="M110 28 v-13" stroke="#dfa63c" stroke-width="2.4"/>
+    <path d="M103 9 a7.4 7.4 0 1 0 9 8.4 a5.9 5.9 0 1 1 -9-8.4 z" fill="#dfa63c"/>
+    <!-- pintu gerbang -->
+    <path d="M88 188 v-40 q22-27 44 0 v40 z" fill="#a87c28" stroke="#7d5c18" stroke-width="1.8"/>
+    <path d="M110 148 v40" stroke="#7d5c18" stroke-width="1.2" opacity=".55"/>
+    <!-- tingkap melengkung -->
+    <path d="M58 158 v-20 q10-13 20 0 v20 z" fill="#a8a3c8" stroke="#5f5794" stroke-width="1.4"/>
+    <path d="M142 158 v-20 q10-13 20 0 v20 z" fill="#a8a3c8" stroke="#5f5794" stroke-width="1.4"/>
+    <!-- jalur hiasan -->
+    <path d="M46 116 h128" stroke="#dfa63c" stroke-width="2" opacity=".55"/>
+  </g>
+  <g id="pokokIlmu">
+    <ellipse cx="65" cy="152" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M58 152 v-56 h14 v56 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <path d="M65 110 q-18-8 -24-24" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M65 118 q18-10 24-26" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.4">
+      <ellipse cx="65" cy="52" rx="42" ry="32"/>
+      <ellipse cx="32" cy="72" rx="26" ry="21"/>
+      <ellipse cx="98" cy="72" rx="26" ry="21"/>
+      <ellipse cx="65" cy="88" rx="36" ry="21"/>
+    </g>
+    <g fill="#a9d383" opacity=".7">
+      <ellipse cx="50" cy="44" rx="19" ry="13"/><ellipse cx="88" cy="60" rx="14" ry="9"/>
+    </g>
+    <g fill="#e0b04a" stroke="#a87a1c" stroke-width="1.2">
+      <path d="M40 30 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+      <path d="M86 40 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+      <path d="M64 68 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+    </g>
+  </g>
+  <g id="burung">
+    <path d="M6 16 q-8-7 -5-13 q6 4 8 9 z" fill="#7ab6d8" stroke="#4a8cb0" stroke-width="1.2" stroke-linejoin="round"/>
+    <ellipse cx="20" cy="19" rx="13" ry="10" fill="#8ec6e6" stroke="#4a8cb0" stroke-width="1.4"/>
+    <circle cx="31" cy="12" r="8" fill="#9fd2ec" stroke="#4a8cb0" stroke-width="1.4"/>
+    <path d="M38 11 l7 3 -7 3 z" fill="#e8a94a"/>
+    <circle cx="32" cy="10.5" r="1.8" fill="#2f3b45"/>
+    <path d="M15 26 q5 3 10 0" stroke="#4a8cb0" stroke-width="1.2" fill="none" opacity=".6"/>
+  </g>
+  <g id="awan">
+    <g fill="#ffffff">
+      <circle cx="20" cy="27" r="13"/><circle cx="39" cy="19" r="17"/>
+      <circle cx="59" cy="26" r="14"/><rect x="20" y="25" width="39" height="14" rx="7"/>
+    </g>
+    <path d="M8 33 q11 8 31 8 q20 0 31-8" stroke="#dfe8f4" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  </g>
+  <g id="bintang">
+    <path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="#e8b44a"/>
+  </g>
+  <g id="bintangBulan">
+    <path d="M24 4 a17 17 0 1 0 15 21 a13.2 13.2 0 1 1 -15-21 z" fill="#e8b44a"/>
+    <path d="M37 5 L39.8 13.6 L48 16.4 L39.8 19.2 L37 28 L34.2 19.2 L26 16.4 L34.2 13.6 Z" fill="#e8b44a"/>
+  </g>
+</defs></svg>
+
+<div class="wrap">
+  <div class="hero">
+    <svg viewBox="0 0 940 300" role="img" aria-label="Perkarangan sekolah waktu malam: bulan sabit dan bintang di langit, khemah dan lentera, bangunan sekolah, murid duduk membaca al-Quran dalam bulatan bersama ustaz, papan carta dan pokok ilmu, gaya Ghibli">
+      <defs>
+        <linearGradient id="hpsky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2f2a5e"/><stop offset=".38" stop-color="#514681"/>
+          <stop offset=".66" stop-color="#836e9c"/><stop offset=".86" stop-color="#c1988c"/>
+          <stop offset="1" stop-color="#e8cfa8"/>
+        </linearGradient>
+        <linearGradient id="hpgnd" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#544e7c"/><stop offset="1" stop-color="#241f42"/>
+        </linearGradient>
+        <radialGradient id="hpmoon" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#fff3c9" stop-opacity=".8"/>
+          <stop offset="1" stop-color="#fff3c9" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="hpwarm" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#ffd98a" stop-opacity=".5"/>
+          <stop offset="1" stop-color="#ffd98a" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <rect x="0" y="0" width="940" height="196" fill="url(#hpsky)"/>
+      <circle cx="866" cy="54" r="80" fill="url(#hpmoon)"/>
+      <ellipse cx="470" cy="188" rx="330" ry="42" fill="url(#hpwarm)"/>
+
+      <!-- bintang: hanya di kiri (x<190) dan kanan (x>750) jalur teks -->
+      <g fill="#fff6cf">
+        <circle cx="74" cy="30" r="1.7" opacity=".9"/>
+        <circle cx="140" cy="86" r="1.3" opacity=".7"/>
+        <circle cx="58" cy="132" r="1.1" opacity=".55"/>
+        <circle cx="802" cy="126" r="1.4" opacity=".7"/>
+        <circle cx="880" cy="140" r="1.2" opacity=".6"/>
+        <circle cx="916" cy="96" r="1.3" opacity=".65"/>
+      </g>
+      <g class="anim-twinkle anim-glow">
+        <g transform="translate(118,52) scale(.40)"><use href="#bintang"/></g>
+        <g transform="translate(806,26) scale(.38)"><use href="#bintang"/></g>
+        <g transform="translate(60,160) scale(.32)"><use href="#bintang"/></g>
+      </g>
+
+      <!-- bulan sabit (kanan atas, x>750) -->
+      <g transform="translate(830,22) scale(.78)"><use href="#bintangBulan"/></g>
+
+      <!-- awan malam rendah + burung (y>110) -->
+      <g opacity=".55">
+        <g transform="translate(96,138) scale(.62)"><use href="#awan"/></g>
+        <g transform="translate(660,132) scale(.50)"><use href="#awan"/></g>
+      </g>
+      <g class="anim-drift"><g transform="translate(232,146) scale(.50)"><use href="#burung"/></g></g>
+      <g class="anim-drift" style="animation-delay:.5s"><g transform="translate(292,138) scale(.38)"><use href="#burung"/></g></g>
+
+      <!-- pokok ilmu: hiasan tinggi di KIRI (x<190) -->
+      <g class="anim-sway" transform="translate(24,34) scale(.66)"><use href="#pokokIlmu"/></g>
+      <!-- masjid: hiasan tinggi di KANAN (x>750) -->
+      <g transform="translate(768,44) scale(.52)"><use href="#masjid"/></g>
+
+      <!-- bukit jauh (jalur penuh, y>150) -->
+      <path d="M0 190 L86 162 L182 184 L268 156 L360 182 L470 160 L566 186 L668 158 L760 184 L852 164 L940 188 L940 196 L0 196 Z" fill="#453f6c" opacity=".9"/>
+
+      <!-- bangunan sekolah (siluet, y 130-178) -->
+      <g opacity=".9">
+        <rect x="304" y="134" width="332" height="44" rx="4" fill="#38325e"/>
+        <rect x="304" y="126" width="332" height="10" rx="4" fill="#2a2549"/>
+        <g fill="#ffd98a" opacity=".6">
+          <rect x="320" y="144" width="17" height="15" rx="2"/>
+          <rect x="350" y="144" width="17" height="15" rx="2"/>
+          <rect x="406" y="144" width="17" height="15" rx="2"/>
+          <rect x="462" y="144" width="17" height="15" rx="2"/>
+          <rect x="518" y="144" width="17" height="15" rx="2"/>
+          <rect x="574" y="144" width="17" height="15" rx="2"/>
+          <rect x="604" y="144" width="17" height="15" rx="2"/>
+        </g>
+        <rect x="456" y="110" width="12" height="24" rx="3" fill="#2a2549"/>
+        <rect x="448" y="104" width="28" height="8" rx="3" fill="#2a2549"/>
+      </g>
+
+      <!-- tanah -->
+      <path d="M0 190 Q235 178 470 190 Q705 202 940 188 L940 300 L0 300 Z" fill="url(#hpgnd)"/>
+      <path d="M0 190 Q235 178 470 190 Q705 202 940 188" fill="none" stroke="#6f6896" stroke-width="2" opacity=".5"/>
+
+      <!-- khemah kiri & kanan (y 148-210) -->
+      <g transform="translate(148,150) scale(.52)"><use href="#khemah"/></g>
+      <g transform="translate(700,150) scale(.52)"><use href="#khemah"/></g>
+
+      <!-- lentera bercahaya (y 128-168) -->
+      <g class="anim-twinkle anim-glow" style="animation-delay:.3s" transform="translate(252,128) scale(.62)"><use href="#lenteraMalam"/></g>
+      <g class="anim-twinkle anim-glow" style="animation-delay:.7s" transform="translate(646,128) scale(.62)"><use href="#lenteraMalam"/></g>
+
+      <!-- papan carta di atas tanah (kiri) -->
+      <g transform="translate(56,206) scale(.58)"><use href="#papanQadr"/></g>
+
+      <!-- hamparan & bulatan murid -->
+      <g transform="translate(316,196) scale(.94)"><use href="#hamparan"/></g>
+      <g class="anim-float" style="animation-delay:.2s" transform="translate(352,166) scale(.46)"><use href="#nur"/></g>
+      <g class="anim-float" transform="translate(414,148) scale(.50)"><use href="#ustazDuduk"/></g>
+      <g class="anim-float" style="animation-delay:.4s" transform="translate(478,166) scale(.46)"><use href="#adam"/></g>
+      <g class="anim-float" style="animation-delay:.6s" transform="translate(330,200) scale(.52)"><use href="#adamBaca"/></g>
+      <g class="anim-float" style="animation-delay:.8s" transform="translate(400,202) scale(.52)"><use href="#nurBaca"/></g>
+      <g class="anim-float" style="animation-delay:1s" transform="translate(468,200) scale(.52)"><use href="#nur"/></g>
+
+      <!-- prop di atas tanah -->
+      <g transform="translate(122,250) scale(.56)"><use href="#mushafTerbuka"/></g>
+      <g transform="translate(556,238) scale(.74)"><use href="#kadAyat"/></g>
+      <g transform="translate(862,196) scale(.62)"><use href="#bintangPrestasi"/></g>
+      <g class="anim-sway" style="animation-delay:.5s" transform="translate(276,198) scale(.70)"><use href="#semak"/></g>
+      <g transform="translate(52,258) scale(.66)"><use href="#bunga"/></g>
+      <g transform="translate(898,260) scale(.68)"><use href="#bunga"/></g>
+    </svg>
+    <div class="hero-txt">
+      <div class="kick">KSSR Semakan 2017 &bull; Pendidikan Islam &bull; Tahun 5</div>
+      <h1>Portal Bahan PdP</h1>
+      <div class="sub">24 Standard Kandungan &bull; al-Quran &middot; Hadis &middot; Akidah &middot; Ibadah &middot; Sirah &middot; Adab &middot; Jawi</div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>23<span style="font-size:15px;color:#7c7796">/24</span></b><span>Unit Siap</span></div>
+    <div class="stat gold"><b>13</b><span>PDF Cetakan A4</span></div>
+    <div class="stat"><b>7</b><span>Bidang</span></div>
+    <div class="stat"><b>5&ndash;6</b><span>Komponen / Unit</span></div>
+  </div>
+
+  <div class="bar">
+    <label class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 105.3 14l4.9 4.9 1.4-1.4-4.9-4.9A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
+      <input id="q" type="search" placeholder="Cari tajuk, SK, SP atau bidang&hellip;" autocomplete="off">
+    </label>
+    <div class="chips">
+      <button class="chip on" type="button" data-f="all">Semua <i>24</i></button>
+      <button class="chip" type="button" data-f="quran" style="--c1:#2f4a7a">al-Quran <i>6</i></button>
+      <button class="chip" type="button" data-f="hadis" style="--c1:#1f6b52">Hadis <i>1</i></button>
+      <button class="chip" type="button" data-f="akidah" style="--c1:#5b4b9c">Akidah <i>4</i></button>
+      <button class="chip" type="button" data-f="ibadah" style="--c1:#0e6e73">Ibadah <i>4</i></button>
+      <button class="chip" type="button" data-f="sirah" style="--c1:#8c3b4a">Sirah <i>3</i></button>
+      <button class="chip" type="button" data-f="adab" style="--c1:#6b8438">Adab <i>4</i></button>
+      <button class="chip" type="button" data-f="jawi" style="--c1:#b9713c">Jawi <i>2</i></button>
+      <button class="chip" type="button" data-f="__pending" style="--c1:#7d7996">Belum siap <i>2</i></button>
+    </div>
+    <div class="seg">
+      <button type="button" class="on" data-s="no">Susun: Unit</button>
+      <button type="button" data-s="bidang">Bidang</button>
+    </div>
+    <a class="ysw" href="../index.html">Tahun 3 &rarr;</a>
+  </div>
+
+  <div class="grid" id="grid">
+      <article class="card" data-no="1" data-bidang="quran" data-siap="1"
+        data-key="al-Quran (Tilawah) Surah al-Qadr — Membaca dengan Betul dan Bertajwid Membaca dan mengamalkan Surah al-Qadr dengan betul dan bertajwid 1.1.1 - 1.1.2 DSKP ms. 19   BT ms. 2-5"
+        style="--c1:#2f4a7a;--c2:#1b2f52;--tint:#eef2f8">
+        <div class="top">
+          <span class="no">01</span>
+          <span class="pill">al-Quran</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Surah al-Qadr &mdash; Membaca dengan Betul dan Bertajwid</h3>
+        <div class="sub">al-Quran (Tilawah)</div>
+        <p class="sk">Membaca dan mengamalkan <b>Surah al-Qadr</b> dengan betul dan bertajwid</p>
+        <div class="meta"><b>SP</b> 1.1.1 &ndash; 1.1.2 <span class="dot">&bull;</span> DSKP ms. 19 &bull; BT ms. 2&ndash;5</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Gamifikasi</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAlQadr.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAlQadr.html" target="_blank" rel="noopener">Buka Bahan</a><a class="btn pdf" href="Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAlQadr_CetakanA4.pdf" target="_blank" rel="noopener">PDF A4</a><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAlQadr.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="2" data-bidang="quran" data-siap="1"
+        data-key="al-Quran (Tilawah) Surah at-Tin — Membaca dengan Betul dan Bertajwid Membaca dan mengamalkan Surah at-Tin dengan betul dan bertajwid 1.2.1 - 1.2.2 DSKP ms. 20   BT ms. 6-11"
+        style="--c1:#2f4a7a;--c2:#1b2f52;--tint:#eef2f8">
+        <div class="top">
+          <span class="no">02</span>
+          <span class="pill">al-Quran</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Surah at-Tin &mdash; Membaca dengan Betul dan Bertajwid</h3>
+        <div class="sub">al-Quran (Tilawah)</div>
+        <p class="sk">Membaca dan mengamalkan <b>Surah at-Tin</b> dengan betul dan bertajwid</p>
+        <div class="meta"><b>SP</b> 1.2.1 &ndash; 1.2.2 <span class="dot">&bull;</span> DSKP ms. 20 &bull; BT ms. 6&ndash;11</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Gamifikasi</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAtTin.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAtTin.html" target="_blank" rel="noopener">Buka Bahan</a><a class="btn pdf" href="Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAtTin_CetakanA4.pdf" target="_blank" rel="noopener">PDF A4</a><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_AlQuran_TilawahSurahAtTin.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="3" data-bidang="quran" data-siap="1"
+        data-key="al-Quran (Hafazan) Surah al-Qadr — Menghafaz dan Mengamalkan Menghafaz dan mengamalkan Surah al-Qadr dengan betul dan bertajwid dalam solat dan kehidupan harian 1.3.1 - 1.3.2 DSKP ms. 21   BT ms. 12-15"
+        style="--c1:#2f4a7a;--c2:#1b2f52;--tint:#eef2f8">
+        <div class="top">
+          <span class="no">03</span>
+          <span class="pill">al-Quran</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Surah al-Qadr &mdash; Menghafaz dan Mengamalkan</h3>
+        <div class="sub">al-Quran (Hafazan)</div>
+        <p class="sk">Menghafaz dan mengamalkan <b>Surah al-Qadr</b> dengan betul dan bertajwid dalam solat dan kehidupan harian</p>
+        <div class="meta"><b>SP</b> 1.3.1 &ndash; 1.3.2 <span class="dot">&bull;</span> DSKP ms. 21 &bull; BT ms. 12&ndash;15</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAlQadr.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAlQadr.html" target="_blank" rel="noopener">Buka Bahan</a><a class="btn pdf" href="Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAlQadr_CetakanA4.pdf" target="_blank" rel="noopener">PDF A4</a><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAlQadr.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="4" data-bidang="quran" data-siap="1"
+        data-key="al-Quran (Hafazan) Surah at-Tin — Menghafaz dan Mengamalkan Menghafaz dan mengamalkan Surah at-Tin dengan betul dan bertajwid dalam solat dan kehidupan harian 1.4.1 - 1.4.2 DSKP ms. 22   BT ms. 16-21"
+        style="--c1:#2f4a7a;--c2:#1b2f52;--tint:#eef2f8">
+        <div class="top">
+          <span class="no">04</span>
+          <span class="pill">al-Quran</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Surah at-Tin &mdash; Menghafaz dan Mengamalkan</h3>
+        <div class="sub">al-Quran (Hafazan)</div>
+        <p class="sk">Menghafaz dan mengamalkan <b>Surah at-Tin</b> dengan betul dan bertajwid dalam solat dan kehidupan harian</p>
+        <div class="meta"><b>SP</b> 1.4.1 &ndash; 1.4.2 <span class="dot">&bull;</span> DSKP ms. 22 &bull; BT ms. 16&ndash;21</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAtTin.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAtTin.html" target="_blank" rel="noopener">Buka Bahan</a><a class="btn pdf" href="Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAtTin_CetakanA4.pdf" target="_blank" rel="noopener">PDF A4</a><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_AlQuran_HafazanSurahAtTin.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="5" data-bidang="quran" data-siap="1"
+        data-key="al-Quran (Kefahaman) Surah al-‘Asr — Merumus, Mengamal dan Menghayati Merumus, mengamal dan menghayati Surah al-‘Asr 1.5.1 - 1.5.4 DSKP ms. 23   BT ms. 22-27"
+        style="--c1:#2f4a7a;--c2:#1b2f52;--tint:#eef2f8">
+        <div class="top">
+          <span class="no">05</span>
+          <span class="pill">al-Quran</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Surah al-&lsquo;Asr &mdash; Merumus, Mengamal dan Menghayati</h3>
+        <div class="sub">al-Quran (Kefahaman)</div>
+        <p class="sk">Merumus, mengamal dan menghayati <b>Surah al-&lsquo;Asr</b></p>
+        <div class="meta"><b>SP</b> 1.5.1 &ndash; 1.5.4 <span class="dot">&bull;</span> DSKP ms. 23 &bull; BT ms. 22&ndash;27</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_AlQuran_KefahamanSurahAlAsr.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_AlQuran_KefahamanSurahAlAsr.html" target="_blank" rel="noopener">Buka Bahan</a><a class="btn pdf" href="Bahan_PdP_PI_Tahun5_AlQuran_KefahamanSurahAlAsr_CetakanA4.pdf" target="_blank" rel="noopener">PDF A4</a><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_AlQuran_KefahamanSurahAlAsr.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="6" data-bidang="quran" data-siap="1"
+        data-key="al-Quran (Tajwid) Hukum Mad — Silah Qasirah, Badal, 'Iwad, Tamkin dan Tabi'i Hukum mad: mad silah qasirah, mad badal, mad 'iwad, mad tamkin dan mad tabi'i 1.6.1 - 1.6.4 DSKP ms. 24-25   BT ms. 28-36"
+        style="--c1:#2f4a7a;--c2:#1b2f52;--tint:#eef2f8">
+        <div class="top">
+          <span class="no">06</span>
+          <span class="pill">al-Quran</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Hukum Mad &mdash; Silah Qasirah, Badal, &lsquo;Iwad, Tamkin dan Tabi&rsquo;i</h3>
+        <div class="sub">al-Quran (Tajwid)</div>
+        <p class="sk">Hukum <b>mad</b>: mad silah qasirah, mad badal, mad &lsquo;iwad, mad tamkin dan mad tabi&rsquo;i</p>
+        <div class="meta"><b>SP</b> 1.6.1 &ndash; 1.6.4 <span class="dot">&bull;</span> DSKP ms. 24&ndash;25 &bull; BT ms. 28&ndash;36</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts"><a class="btn go" href="Bahan_PdP_PI_Tahun5_AlQuran_HukumMad.html">Buka Bahan</a><span class="btn pdf off">PDF A4</span><button class="btn pv" data-p="Bahan_PdP_PI_Tahun5_AlQuran_HukumMad.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="7" data-bidang="hadis" data-siap="1"
+        data-key="Hadis Mentaati Pemimpin — Merumus dan Menghayati Hadis Merumus dan menghayati hadis mentaati pemimpin serta mengamalkan tuntutannya 2.1.1 - 2.1.5 DSKP ms. 26   BT ms. 38-44"
+        style="--c1:#1f6b52;--c2:#0f3d2f;--tint:#eaf5ef">
+        <div class="top">
+          <span class="no">07</span>
+          <span class="pill">Hadis</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Mentaati Pemimpin &mdash; Merumus dan Menghayati Hadis</h3>
+        <div class="sub">Hadis</div>
+        <p class="sk">Merumus dan menghayati <b>hadis mentaati pemimpin</b> serta mengamalkan tuntutannya</p>
+        <div class="meta"><b>SP</b> 2.1.1 &ndash; 2.1.5 <span class="dot">&bull;</span> DSKP ms. 26 &bull; BT ms. 38&ndash;44</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_Hadis_MentaatiPemimpin.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Hadis_MentaatiPemimpin.html" target="_blank" rel="noopener">Buka Bahan</a><a class="btn pdf" href="Bahan_PdP_PI_Tahun5_Hadis_MentaatiPemimpin_CetakanA4.pdf" target="_blank" rel="noopener">PDF A4</a><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_Hadis_MentaatiPemimpin.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="8" data-bidang="akidah" data-siap="1"
+        data-key="Akidah Nama Allah al-Malik dan al-Hasib Meyakini konsep nama Allah al-Malik dan al-Hasib 3.1.1 - 3.1.4 DSKP ms. 27   BT ms. 66-79"
+        style="--c1:#5b4b9c;--c2:#332a5c;--tint:#f0eefa">
+        <div class="top">
+          <span class="no">08</span>
+          <span class="pill">Akidah</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Nama Allah al-Malik dan al-Hasib</h3>
+        <div class="sub">Akidah</div>
+        <p class="sk">Meyakini konsep nama Allah <b>al-Malik dan al-Hasib</b></p>
+        <div class="meta"><b>SP</b> 3.1.1 &ndash; 3.1.4 <span class="dot">&bull;</span> DSKP ms. 27 &bull; BT ms. 66&ndash;79</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_Akidah_NamaAllahAlMalikAlHasib.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Akidah_NamaAllahAlMalikAlHasib.html" target="_blank" rel="noopener">Buka Bahan</a><a class="btn pdf" href="Bahan_PdP_PI_Tahun5_Akidah_NamaAllahAlMalikAlHasib_CetakanA4.pdf" target="_blank" rel="noopener">PDF A4</a><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_Akidah_NamaAllahAlMalikAlHasib.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="9" data-bidang="akidah" data-siap="1"
+        data-key="Akidah Beriman kepada Hari Akhirat Meyakini konsep beriman kepada hari akhirat 3.2.1 - 3.2.5 DSKP ms. 28   BT ms. 80-87"
+        style="--c1:#5b4b9c;--c2:#332a5c;--tint:#f0eefa">
+        <div class="top">
+          <span class="no">09</span>
+          <span class="pill">Akidah</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Beriman kepada Hari Akhirat</h3>
+        <div class="sub">Akidah</div>
+        <p class="sk">Meyakini konsep <b>beriman kepada hari akhirat</b></p>
+        <div class="meta"><b>SP</b> 3.2.1 &ndash; 3.2.5 <span class="dot">&bull;</span> DSKP ms. 28 &bull; BT ms. 80&ndash;87</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_Akidah_BerimanHariAkhirat.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Akidah_BerimanHariAkhirat.html" target="_blank" rel="noopener">Buka Bahan</a><a class="btn pdf" href="Bahan_PdP_PI_Tahun5_Akidah_BerimanHariAkhirat_CetakanA4.pdf" target="_blank" rel="noopener">PDF A4</a><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_Akidah_BerimanHariAkhirat.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="10" data-bidang="akidah" data-siap="1"
+        data-key="Akidah Mempertahankan Akidah daripada Syirik Merumus kepentingan mempertahankan akidah daripada syirik 3.3.1 - 3.3.5 DSKP ms. 29   BT ms. 88-93"
+        style="--c1:#5b4b9c;--c2:#332a5c;--tint:#f0eefa">
+        <div class="top">
+          <span class="no">10</span>
+          <span class="pill">Akidah</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Mempertahankan Akidah daripada Syirik</h3>
+        <div class="sub">Akidah</div>
+        <p class="sk">Merumus kepentingan mempertahankan akidah daripada <b>syirik</b></p>
+        <div class="meta"><b>SP</b> 3.3.1 &ndash; 3.3.5 <span class="dot">&bull;</span> DSKP ms. 29 &bull; BT ms. 88&ndash;93</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSyirik.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSyirik.html" target="_blank" rel="noopener">Buka Bahan</a><a class="btn pdf" href="Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSyirik_CetakanA4.pdf" target="_blank" rel="noopener">PDF A4</a><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSyirik.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="11" data-bidang="akidah" data-siap="1"
+        data-key="Akidah Mempertahankan Akidah daripada Sihir Merumus kepentingan mempertahankan akidah daripada sihir 3.4.1 - 3.4.5 DSKP ms. 30   BT ms. 94-100"
+        style="--c1:#5b4b9c;--c2:#332a5c;--tint:#f0eefa">
+        <div class="top">
+          <span class="no">11</span>
+          <span class="pill">Akidah</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Mempertahankan Akidah daripada Sihir</h3>
+        <div class="sub">Akidah</div>
+        <p class="sk">Merumus kepentingan mempertahankan akidah daripada <b>sihir</b></p>
+        <div class="meta"><b>SP</b> 3.4.1 &ndash; 3.4.5 <span class="dot">&bull;</span> DSKP ms. 30 &bull; BT ms. 94&ndash;100</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSihir.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSihir.html" target="_blank" rel="noopener">Buka Bahan</a><a class="btn pdf" href="Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSihir_CetakanA4.pdf" target="_blank" rel="noopener">PDF A4</a><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_Akidah_MempertahankanAqidahSihir.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="12" data-bidang="ibadah" data-siap="1"
+        data-key="Ibadah Tayammum Merumus dan mengamalkan konsep tayammum dengan betul 4.1.1 - 4.1.5 DSKP ms. 31   BT ms. 101-109"
+        style="--c1:#0e6e73;--c2:#07454a;--tint:#e8f4f4">
+        <div class="top">
+          <span class="no">12</span>
+          <span class="pill">Ibadah</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Tayammum</h3>
+        <div class="sub">Ibadah</div>
+        <p class="sk">Merumus dan mengamalkan konsep <b>tayammum</b> dengan betul</p>
+        <div class="meta"><b>SP</b> 4.1.1 &ndash; 4.1.5 <span class="dot">&bull;</span> DSKP ms. 31 &bull; BT ms. 101&ndash;109</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_Ibadah_Tayammum.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Ibadah_Tayammum.html" target="_blank" rel="noopener">Buka Bahan</a><a class="btn pdf" href="Bahan_PdP_PI_Tahun5_Ibadah_Tayammum_CetakanA4.pdf" target="_blank" rel="noopener">PDF A4</a><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_Ibadah_Tayammum.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="13" data-bidang="ibadah" data-siap="1"
+        data-key="Ibadah Solat Berjemaah Merumus konsep solat berjemaah serta menghayatinya 4.2.1 - 4.2.5 DSKP ms. 32   BT ms. 110-117"
+        style="--c1:#0e6e73;--c2:#07454a;--tint:#e8f4f4">
+        <div class="top">
+          <span class="no">13</span>
+          <span class="pill">Ibadah</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Solat Berjemaah</h3>
+        <div class="sub">Ibadah</div>
+        <p class="sk">Merumus konsep <b>solat berjemaah</b> serta menghayatinya</p>
+        <div class="meta"><b>SP</b> 4.2.1 &ndash; 4.2.5 <span class="dot">&bull;</span> DSKP ms. 32 &bull; BT ms. 110&ndash;117</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_Ibadah_SolatBerjemaah.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Ibadah_SolatBerjemaah.html" target="_blank" rel="noopener">Buka Bahan</a><a class="btn pdf" href="Bahan_PdP_PI_Tahun5_Ibadah_SolatBerjemaah_CetakanA4.pdf" target="_blank" rel="noopener">PDF A4</a><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_Ibadah_SolatBerjemaah.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="14" data-bidang="ibadah" data-siap="1"
+        data-key="Ibadah Solat Jumaat Merumus konsep solat Jumaat serta menghayatinya 4.3.1 - 4.3.5 DSKP ms. 33   BT ms. 118-125"
+        style="--c1:#0e6e73;--c2:#07454a;--tint:#e8f4f4">
+        <div class="top">
+          <span class="no">14</span>
+          <span class="pill">Ibadah</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Solat Jumaat</h3>
+        <div class="sub">Ibadah</div>
+        <p class="sk">Merumus konsep <b>solat Jumaat</b> serta menghayatinya</p>
+        <div class="meta"><b>SP</b> 4.3.1 &ndash; 4.3.5 <span class="dot">&bull;</span> DSKP ms. 33 &bull; BT ms. 118&ndash;125</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_Ibadah_SolatJumaat.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Ibadah_SolatJumaat.html" target="_blank" rel="noopener">Buka Bahan</a><a class="btn pdf" href="Bahan_PdP_PI_Tahun5_Ibadah_SolatJumaat_CetakanA4.pdf" target="_blank" rel="noopener">PDF A4</a><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_Ibadah_SolatJumaat.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="15" data-bidang="ibadah" data-siap="1"
+        data-key="Ibadah Solat Sunat Dua Hari Raya Merumus konsep solat sunat dua hari raya serta menghayatinya 4.4.1 - 4.4.5 DSKP ms. 34   BT ms. 126-132"
+        style="--c1:#0e6e73;--c2:#07454a;--tint:#e8f4f4">
+        <div class="top">
+          <span class="no">15</span>
+          <span class="pill">Ibadah</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Solat Sunat Dua Hari Raya</h3>
+        <div class="sub">Ibadah</div>
+        <p class="sk">Merumus konsep <b>solat sunat dua hari raya</b> serta menghayatinya</p>
+        <div class="meta"><b>SP</b> 4.4.1 &ndash; 4.4.5 <span class="dot">&bull;</span> DSKP ms. 34 &bull; BT ms. 126&ndash;132</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_Ibadah_SolatSunatDuaHariRaya.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Ibadah_SolatSunatDuaHariRaya.html" target="_blank" rel="noopener">Buka Bahan</a><span class="btn pdf off">PDF A4</span><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_Ibadah_SolatSunatDuaHariRaya.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="16" data-bidang="sirah" data-siap="1"
+        data-key="Sirah Hijrah Rasulullah ke Madinah Merumus i‘tibar peristiwa hijrah Rasulullah ke Madinah 5.1.1 - 5.1.6 DSKP ms. 35   BT ms. 134-141"
+        style="--c1:#8c3b4a;--c2:#52202b;--tint:#fbeeef">
+        <div class="top">
+          <span class="no">16</span>
+          <span class="pill">Sirah</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Hijrah Rasulullah ke Madinah</h3>
+        <div class="sub">Sirah</div>
+        <p class="sk">Merumus i&lsquo;tibar peristiwa <b>hijrah Rasulullah ke Madinah</b></p>
+        <div class="meta"><b>SP</b> 5.1.1 &ndash; 5.1.6 <span class="dot">&bull;</span> DSKP ms. 35 &bull; BT ms. 134&ndash;141</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_Sirah_HijrahRasulullahMadinah.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Sirah_HijrahRasulullahMadinah.html" target="_blank" rel="noopener">Buka Bahan</a><span class="btn pdf off">PDF A4</span><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_Sirah_HijrahRasulullahMadinah.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="17" data-bidang="sirah" data-siap="1"
+        data-key="Sirah Keunggulan Sifat Itqan Nabi Muhammad SAW Merumus i‘tibar keunggulan sifat itqan Nabi Muhammad SAW 5.2.1 - 5.2.5 DSKP ms. 36   BT ms. 142-149"
+        style="--c1:#8c3b4a;--c2:#52202b;--tint:#fbeeef">
+        <div class="top">
+          <span class="no">17</span>
+          <span class="pill">Sirah</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Keunggulan Sifat Itqan Nabi Muhammad SAW</h3>
+        <div class="sub">Sirah</div>
+        <p class="sk">Merumus i&lsquo;tibar keunggulan <b>sifat itqan</b> Nabi Muhammad SAW</p>
+        <div class="meta"><b>SP</b> 5.2.1 &ndash; 5.2.5 <span class="dot">&bull;</span> DSKP ms. 36 &bull; BT ms. 142&ndash;149</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_Sirah_SifatItqanNabi.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Sirah_SifatItqanNabi.html" target="_blank" rel="noopener">Buka Bahan</a><span class="btn pdf off">PDF A4</span><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_Sirah_SifatItqanNabi.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="18" data-bidang="sirah" data-siap="1"
+        data-key="Sirah Keperibadian Nabi Muhammad SAW sebagai Pemimpin Meneladani keperibadian Nabi Muhammad SAW sebagai pemimpin 5.3.1 - 5.3.5 DSKP ms. 37   BT ms. 150-158"
+        style="--c1:#8c3b4a;--c2:#52202b;--tint:#fbeeef">
+        <div class="top">
+          <span class="no">18</span>
+          <span class="pill">Sirah</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Keperibadian Nabi Muhammad SAW sebagai Pemimpin</h3>
+        <div class="sub">Sirah</div>
+        <p class="sk">Meneladani keperibadian Nabi Muhammad SAW sebagai <b>pemimpin</b></p>
+        <div class="meta"><b>SP</b> 5.3.1 &ndash; 5.3.5 <span class="dot">&bull;</span> DSKP ms. 37 &bull; BT ms. 150&ndash;158</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts" data-file="Bahan_PdP_PI_Tahun5_Sirah_KeperibadianNabiPemimpin.html"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Sirah_KeperibadianNabiPemimpin.html" target="_blank" rel="noopener">Buka Bahan</a><span class="btn pdf off">PDF A4</span><button class="btn pv" type="button" data-file="Bahan_PdP_PI_Tahun5_Sirah_KeperibadianNabiPemimpin.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="19" data-bidang="adab" data-siap="1"
+        data-key="Adab Adab Menaiki Kenderaan Merumus konsep adab menaiki kenderaan 6.1.1 - 6.1.6 DSKP ms. 38   BT ms. 160-165"
+        style="--c1:#6b8438;--c2:#3d4d1e;--tint:#f2f5e8">
+        <div class="top">
+          <span class="no">19</span>
+          <span class="pill">Adab</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Adab Menaiki Kenderaan</h3>
+        <div class="sub">Adab</div>
+        <p class="sk">Merumus konsep <b>adab menaiki kenderaan</b></p>
+        <div class="meta"><b>SP</b> 6.1.1 &ndash; 6.1.6 <span class="dot">&bull;</span> DSKP ms. 38 &bull; BT ms. 160&ndash;165</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Adab_AdabMenaikiKenderaan.html">Buka Bahan</a><span class="btn pdf off">PDF A4</span><button class="btn pv" data-p="Bahan_PdP_PI_Tahun5_Adab_AdabMenaikiKenderaan.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="20" data-bidang="adab" data-siap="1"
+        data-key="Adab Adab Jual Beli Merumus konsep adab jual beli yang menepati syarak 6.2.1 - 6.2.5 DSKP ms. 39   BT ms. 166-173"
+        style="--c1:#6b8438;--c2:#3d4d1e;--tint:#f2f5e8">
+        <div class="top">
+          <span class="no">20</span>
+          <span class="pill">Adab</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Adab Jual Beli</h3>
+        <div class="sub">Adab</div>
+        <p class="sk">Merumus konsep <b>adab jual beli</b> yang menepati syarak</p>
+        <div class="meta"><b>SP</b> 6.2.1 &ndash; 6.2.5 <span class="dot">&bull;</span> DSKP ms. 39 &bull; BT ms. 166&ndash;173</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Adab_AdabJualBeli.html">Buka Bahan</a><span class="btn pdf off">PDF A4</span><button class="btn pv" data-p="Bahan_PdP_PI_Tahun5_Adab_AdabJualBeli.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="21" data-bidang="adab" data-siap="1"
+        data-key="Adab Adab Berkomunikasi Merumus konsep adab berkomunikasi yang menepati syarak 6.3.1 - 6.3.5 DSKP ms. 40   BT ms. 174-179"
+        style="--c1:#6b8438;--c2:#3d4d1e;--tint:#f2f5e8">
+        <div class="top">
+          <span class="no">21</span>
+          <span class="pill">Adab</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Adab Berkomunikasi</h3>
+        <div class="sub">Adab</div>
+        <p class="sk">Merumus konsep <b>adab berkomunikasi</b> yang menepati syarak</p>
+        <div class="meta"><b>SP</b> 6.3.1 &ndash; 6.3.5 <span class="dot">&bull;</span> DSKP ms. 40 &bull; BT ms. 174&ndash;179</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Adab_AdabBerkomunikasi.html">Buka Bahan</a><span class="btn pdf off">PDF A4</span><button class="btn pv" data-p="Bahan_PdP_PI_Tahun5_Adab_AdabBerkomunikasi.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="22" data-bidang="adab" data-siap="1"
+        data-key="Adab Adab terhadap Alam Sekitar Merumus adab terhadap alam sekitar yang menepati syarak 6.4.1 - 6.4.5 DSKP ms. 41   BT ms. 180-186"
+        style="--c1:#6b8438;--c2:#3d4d1e;--tint:#f2f5e8">
+        <div class="top">
+          <span class="no">22</span>
+          <span class="pill">Adab</span>
+          <span class="st ok">Siap</span>
+        </div>
+        <h3>Adab terhadap Alam Sekitar</h3>
+        <div class="sub">Adab</div>
+        <p class="sk">Merumus <b>adab terhadap alam sekitar</b> yang menepati syarak</p>
+        <div class="meta"><b>SP</b> 6.4.1 &ndash; 6.4.5 <span class="dot">&bull;</span> DSKP ms. 41 &bull; BT ms. 180&ndash;186</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts"><a class="btn go" href="Bahan_PdP_PI_Tahun5_Adab_AdabAlamSekitar.html">Buka Bahan</a><span class="btn pdf off">PDF A4</span><button class="btn pv" data-p="Bahan_PdP_PI_Tahun5_Adab_AdabAlamSekitar.html">Pratonton</button></div>
+      </article>
+      <article class="card" data-no="23" data-bidang="jawi" data-siap="0"
+        data-key="Jawi Membaca, Membina dan Menulis Pelbagai Jenis Teks Membaca, membina dan menulis pelbagai jenis teks berdasarkan tema 7.1.1 - 7.1.4 DSKP ms. 42-43   BT ms. 46-57"
+        style="--c1:#b9713c;--c2:#6d3f1c;--tint:#fdf0e6">
+        <div class="top">
+          <span class="no">23</span>
+          <span class="pill">Jawi</span>
+          <span class="st no">Belum siap</span>
+        </div>
+        <h3>Membaca, Membina dan Menulis Pelbagai Jenis Teks</h3>
+        <div class="sub">Jawi</div>
+        <p class="sk">Membaca, membina dan menulis pelbagai jenis <b>teks</b> berdasarkan tema</p>
+        <div class="meta"><b>SP</b> 7.1.1 &ndash; 7.1.4 <span class="dot">&bull;</span> DSKP ms. 42&ndash;43 &bull; BT ms. 46&ndash;57</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts"><span class="btn pending">Akan disiapkan</span></div>
+      </article>
+      <article class="card" data-no="24" data-bidang="jawi" data-siap="0"
+        data-key="Jawi Mengenal dan Menulis Khat Naskh Mengenal dan menulis khat naskh dengan betul 7.2.1 - 7.2.6 DSKP ms. 43-44   BT ms. 58-64"
+        style="--c1:#b9713c;--c2:#6d3f1c;--tint:#fdf0e6">
+        <div class="top">
+          <span class="no">24</span>
+          <span class="pill">Jawi</span>
+          <span class="st no">Belum siap</span>
+        </div>
+        <h3>Mengenal dan Menulis Khat Naskh</h3>
+        <div class="sub">Jawi</div>
+        <p class="sk">Mengenal dan menulis <b>khat naskh</b> dengan betul</p>
+        <div class="meta"><b>SP</b> 7.2.1 &ndash; 7.2.6 <span class="dot">&bull;</span> DSKP ms. 43&ndash;44 &bull; BT ms. 58&ndash;64</div>
+        <div class="inside">
+          <span>Infografik</span><span>Peta Minda</span><span>Nota Ringkas</span><span>Diagram</span><span>Kuiz 10 Soalan</span>
+        </div>
+        <div class="acts"><span class="btn pending">Akan disiapkan</span></div>
+      </article>
+  </div>
+  <div class="empty" id="empty">Tiada unit sepadan dengan carian anda.</div>
+
+  <div class="guide">
+    <h2>Cara guna portal ini</h2>
+    <ol>
+      <li><b>Pilih unit</b> mengikut susunan 01 &rarr; 24 (ikut urutan Standard Kandungan dalam DSKP, ms. 19&ndash;44).</li>
+      <li><b>Buka Bahan</b> &mdash; membuka fail interaktif dalam tab baharu. Kuiz berfungsi: klik jawapan untuk maklum balas segera dan skor automatik.</li>
+      <li><b>PDF A4</b> &mdash; versi sedia cetak (semua jawapan kuiz dipaparkan sebagai lembaran kerja). Unit bertanda <i>PDF &mdash;</i> belum dijana.</li>
+      <li><b>Pratonton</b> &mdash; melihat bahan terus di dalam portal tanpa keluar halaman.</li>
+      <li><b>Carian &amp; tapisan</b> &mdash; taip tajuk atau SK, atau tapis mengikut bidang. Butang <b>Bidang</b> menyusun semula kad mengikut kumpulan bidang.</li>
+      <li><b>Cetak portal</b> (Ctrl/Cmd + P) untuk mendapatkan senarai semak 24 unit dalam 3&ndash;4 halaman A4.</li>
+    </ol>
+    <div class="note"><b>Setiap unit mengandungi 5 komponen:</b> Infografik &bull; Peta Minda (5 cabang) &bull; Nota Ringkas (10 poin + rumusan) &bull; Diagram &bull; Set Kuiz 10 soalan interaktif.<br>
+    <b>Unit 1&ndash;2 sahaja</b> turut menyertakan komponen ke-6, <b>Gamifikasi Misi Minda</b> (6 misi + 3 lencana + kotak ganjaran). Komponen ini dibuang mulai Unit 3 atas permintaan.</div>
+  </div>
+
+  <footer>
+    Portal Bahan PdP &mdash; Pendidikan Islam Tahun 5 &bull; KSSR Semakan 2017<br>
+    Sumber: DSKP Pendidikan Islam Tahun 5 (BPK, 2019) &amp; Buku Teks Pendidikan Islam Tahun 5 (SK), KPM.<br>
+    <span style="opacity:.75">Bahagian al-Quran dan Hadis dipetik daripada al-Quran &amp; hadis; rujuk guru untuk talaqqi dan tasmik.</span><br>
+    <span style="opacity:.85">Portal lain: <a href="../index.html">Pendidikan Islam Tahun 3</a> &bull; <a href="../tahun4/index.html">Pendidikan Islam Tahun 4</a> &bull; <a href="../sains_t3/index.html">Sains Tahun 3</a> &bull; <a href="../maths_t3/index.html">Matematik Tahun 3</a></span>
+  </footer>
+</div>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Pratonton bahan">
+  <div class="vtop">
+    <span class="vt" id="vt">Pratonton</span>
+    <a class="vopen" id="vopen" href="#" target="_blank" rel="noopener">Buka tab baharu</a>
+    <button class="vclose" type="button" id="vclose">Tutup &times;</button>
+  </div>
+  <iframe id="vframe" title="Pratonton bahan PdP" src="about:blank"></iframe>
+</div>
+
+<script>
+(function(){
+  var grid   = document.getElementById('grid');
+  var cards  = [].slice.call(grid.querySelectorAll('.card'));
+  /* card entrance stagger: animation-delay based on data-no */
+  cards.forEach(function(c){ var n=+c.dataset.no||1; c.style.animationDelay=((n-1)*0.04)+'s'; });
+  var q      = document.getElementById('q');
+  var empty  = document.getElementById('empty');
+  var chips  = [].slice.call(document.querySelectorAll('.chip'));
+  var segs   = [].slice.call(document.querySelectorAll('.seg button'));
+  var filter = 'all', sort = 'no';
+
+  function norm(s){ return (s||'').toLowerCase(); }
+
+  function apply(){
+    var term = norm(q.value.trim());
+    var shown = 0;
+    cards.forEach(function(c){
+      var okF;
+      if (filter === 'all') okF = true;
+      else if (filter === '__pending') okF = c.dataset.siap === '0';
+      else okF = c.dataset.bidang === filter;
+      var okQ = !term || norm(c.dataset.key).indexOf(term) !== -1;
+      var ok = okF && okQ;
+      c.classList.toggle('dim', !ok);
+      if (ok) shown++;
+    });
+    empty.classList.toggle('on', shown === 0);
+  }
+
+  function resort(){
+    var arr = cards.slice().sort(function(a,b){
+      if (sort === 'bidang'){
+        var k = a.dataset.bidang.localeCompare(b.dataset.bidang);
+        if (k) return k;
+      }
+      return (+a.dataset.no) - (+b.dataset.no);
+    });
+    arr.forEach(function(c){ grid.appendChild(c); });
+  }
+
+  q.addEventListener('input', apply);
+  chips.forEach(function(ch){
+    ch.addEventListener('click', function(){
+      chips.forEach(function(x){ x.classList.remove('on'); });
+      ch.classList.add('on');
+      filter = ch.dataset.f;
+      apply();
+    });
+  });
+  segs.forEach(function(b){
+    b.addEventListener('click', function(){
+      segs.forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      sort = b.dataset.s;
+      resort();
+    });
+  });
+
+  /* ---- pratonton ---- */
+  var viewer = document.getElementById('viewer');
+  var vframe = document.getElementById('vframe');
+  var vopen  = document.getElementById('vopen');
+  var vt     = document.getElementById('vt');
+  function close(){ viewer.classList.remove('on'); vframe.src = 'about:blank'; document.body.style.overflow = ''; }
+  document.querySelectorAll('.btn.pv').forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.dataset.file || b.dataset.p;
+      vframe.src = f;
+      vopen.href = f;
+      vt.textContent = b.closest('.card').querySelector('h3').textContent;
+      viewer.classList.add('on');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  document.getElementById('vclose').addEventListener('click', close);
+  viewer.addEventListener('click', function(e){ if (e.target === viewer) close(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+
+  apply();
+})();
+</script>
+</body>
+</html>

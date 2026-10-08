@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akidah: Mempertahankan Akidah daripada Nifak &mdash; Pendidikan Islam Tahun 4</title>
+<style>
+  :root{
+    /* Palet: ungu kelabu tegas + perisai emas */
+    --sky1:#e8e6f2; --sky2:#f4f2fa; --sky3:#efeaf7;
+    --grass1:#8b7fc4; --grass2:#5b4b9c; --grass3:#332a5c;
+    --paper:#faf9fd; --ink:#241f38; --muted:#6b6480;
+    --gold:#c9a227; --teal:#6b5aa8; --aqua:#e3def2;
+    --line:#ddd7ee;
+    --silver:#a8a0bd; --silver2:#7a7190;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);
+    font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:rtl}
+  .jf{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:ltr;unicode-bidi:isolate}
+  .arab-lg{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,serif;direction:rtl;display:block;
+    font-size:26px;line-height:1.9;color:#332a5c;text-align:center;margin:8px 0 4px}
+  .hadis{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,serif;direction:rtl;display:block;
+    font-size:23px;line-height:2;color:#332a5c;text-align:center;margin:8px 0 4px;padding:0 6px}
+
+  .skybg{position:fixed;inset:0;z-index:-1;
+    background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#f0eefa 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:#e3def2;top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:#e0d8c2;top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:#efeaf7;bottom:-140px;left:18%}
+
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(51,42,92,.2)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;
+    background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#5b4b9c;font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:#332a5c;letter-spacing:.4px;
+    text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:#6b6480;font-weight:600}
+
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;
+    box-shadow:0 3px 10px rgba(51,42,92,.09)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(51,42,92,.09)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--grass2);font-weight:800;
+    display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#f2eefa;border:1.4px solid var(--line);
+    border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(140deg,var(--grass1),var(--grass2));box-shadow:0 2px 0 var(--grass3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--grass3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#f7f2e4;border:1.4px dashed var(--gold);border-radius:13px;
+    padding:10px 13px;font-size:12.5px;color:#3a2f10;line-height:1.55}
+  .toc .note b{color:#3a2f10}
+
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(51,42,92,.09);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;
+    display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;
+    box-shadow:0 2px 0 var(--grass3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+  h2 .mascot{flex:none;margin-left:auto;display:block}
+  .deko{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:14px 0 0}
+  .deko svg{display:block}
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes floatBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    @keyframes softGlow{0%,100%{filter:drop-shadow(0 0 3px rgba(240,216,148,.6))}50%{filter:drop-shadow(0 0 9px rgba(240,216,148,.95))}}
+    @keyframes gentleSway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+    @keyframes drift{from{transform:translateX(0)}to{transform:translateX(26px)}}
+    @keyframes twinkle{0%,100%{opacity:.35}50%{opacity:1}}
+    @keyframes g14bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+    @keyframes g14drift{0%{transform:translateX(-9px)}100%{transform:translateX(9px)}}
+    @keyframes g14twinkle{0%,100%{opacity:.4}50%{opacity:1}}
+    @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+    @keyframes cardEntrance{0%{opacity:0;transform:translateY(14px) scale(.98)}100%{opacity:1;transform:none}}
+    h2 .mascot,.deko svg{animation:g14bob 2.6s ease-in-out infinite}
+    .deko svg:nth-child(2){animation-delay:.45s}
+    .deko svg:nth-child(3){animation-delay:.9s}
+    .anim-drift{animation:g14drift 8s ease-in-out infinite alternate}
+    .anim-twinkle{animation:g14twinkle 2.2s ease-in-out infinite}
+    .anim-bob{animation:floatBob 3.2s ease-in-out infinite}
+    .anim-glow{animation:softGlow 2.8s ease-in-out infinite}
+    .anim-sway{animation:gentleSway 4s ease-in-out infinite;transform-origin:center bottom}
+    .anim-drift26{animation:drift 9s ease-in-out infinite alternate}
+    .anim-twinkle2{animation:g14twinkle 2.4s ease-in-out infinite}
+  }
+  @media print{
+    h2 .mascot,.deko svg,.anim-drift,.anim-twinkle,.anim-bob,.anim-glow,.anim-sway,.anim-drift26,.anim-twinkle2{animation:none !important}
+  }
+
+
+  .nota{border-left:5px solid var(--silver2);background:#f2eefa;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol, .nota ul{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#332a5c}
+  .nota li:last-child{margin-bottom:0}
+
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:linear-gradient(135deg,#f2eefa,#f7f2e4);border:1.5px solid var(--line);
+    border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#e3def2;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;
+    background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .scorebar .hint2{font-size:12px;color:var(--muted);font-weight:600}
+
+  .qcard{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:13px;
+    background:#faf9fd;transition:box-shadow .25s}
+  .qcard.done{box-shadow:0 3px 12px rgba(91,75,156,.2)}
+  .qhead{display:flex;gap:9px;align-items:flex-start;margin-bottom:11px}
+  .qn{background:var(--teal);color:#fff;min-width:26px;height:26px;border-radius:8px;display:inline-flex;
+    align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+  .qtext{font-weight:700;font-size:14.5px}
+  .opts{display:grid;grid-template-columns:1fr;gap:7px}
+  @media(min-width:640px){.opts{grid-template-columns:1fr 1fr 1fr}}
+  .opt{font-family:inherit;text-align:left;font-size:13.5px;font-weight:600;cursor:pointer;
+    background:#efeaf7;border:2px solid #ddd7ee;border-radius:11px;padding:9px 12px;color:var(--ink);
+    transition:transform .12s,background .2s,border-color .2s;display:flex;gap:7px;align-items:flex-start}
+  .opt:hover:not(:disabled){transform:translateY(-2px);background:#fff;border-color:var(--teal)}
+  .opt:disabled{cursor:default}
+  .opt .k{font-weight:800;color:var(--teal);flex:none}
+  .opt.ok{background:#e3def2;border-color:var(--grass2);color:#332a5c}
+  .opt.ok .k{color:var(--grass3)}
+  .opt.bad{background:#e8e3f2;border-color:#8b7fc4;color:#5b4b9c}
+  .opt.bad .k{color:#241a44}
+  .opt.dim{opacity:.45}
+
+  .fb{display:none;margin-top:11px;border-radius:12px;padding:10px 13px;font-size:13.5px;
+    background:#f2eefa;border:1.5px dashed var(--grass2);align-items:flex-start;gap:11px}
+  .fb.show{display:flex}
+  .fb.wrong{background:#efeaf7;border-color:#8b7fc4}
+  .fb .face{flex:none;width:52px;height:52px}
+  .fb .txt b{color:var(--grass3)}
+  .fb.wrong .txt b{color:#241a44}
+
+  .result{display:none;text-align:center;padding:20px;border-radius:18px;margin-top:6px;
+    background:linear-gradient(135deg,#f2eefa,#f7f2e4);border:2px solid var(--grass1)}
+  .result.show{display:block}
+  .result .big{font-size:30px;font-weight:800;color:var(--grass3);margin:6px 0}
+  .result .msg{font-size:14.5px;font-weight:600;margin-bottom:12px}
+  .stars{font-size:22px;letter-spacing:3px;margin-bottom:6px}
+  button.act{font-family:inherit;font-size:13.5px;font-weight:700;border-radius:11px;padding:10px 18px;
+    border:2px solid var(--grass2);background:#fff;color:var(--grass3);cursor:pointer;transition:background .2s}
+  button.act:hover{background:var(--grass1);color:#fff}
+  button.act.solid{background:var(--grass2);color:#fff}
+  button.act.solid:hover{background:var(--grass3)}
+
+  .card{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f2eefa;color:var(--grass3);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  td.c{text-align:center;white-space:nowrap;font-weight:700;color:var(--grass2)}
+  tr:nth-child(even) td{background:#f2eefa}
+  tr.on td{background:#f7f2e4;font-weight:700}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-top:4px}
+
+  @media print{
+    .hint{display:none}
+    .qcard .opts{pointer-events:none}
+    .qcard .ans{display:block !important}
+    body{background:#fff}
+    .skybg,.blob{display:none}
+    .wrap{max-width:100%;padding:0}
+    .scorebar{display:none}
+    section{box-shadow:none;page-break-inside:avoid;padding:14px 16px}
+    .toc{box-shadow:none;page-break-inside:avoid;break-inside:avoid}
+    h2,.hint{page-break-after:avoid;break-after:avoid}
+    table{font-size:11.6px}
+    th,td{padding:3.5px 8px}
+    .qcard{page-break-inside:avoid;padding:10px 13px;margin-bottom:8px}
+    .qhead .qtext{font-size:13px}
+    .opt{padding:6px 9px;font-size:11.5px;transform:none !important}
+    .fb{margin-top:7px;padding:7px 10px;font-size:11.5px}
+    .fb .face{width:40px;height:40px}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4 portrait;margin:12mm}
+
+</style>
+</head>
+<body>
+
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<!-- ===== Watak kartun (statik) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <g id="adam">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <rect x="57" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <ellipse cx="46" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l7 44 h-56 z" fill="#8b7fc4" stroke="#5b4b9c" stroke-width="2"/>
+    <path d="M36 82 q-13 13 -9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 82 q13 13 9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M39 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="46.5" r="1.9" fill="#fff"/><circle cx="68" cy="46.5" r="1.9" fill="#fff"/>
+    <path d="M55 56 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M49 63 q6 6.5 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="nur">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="43" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <rect x="58" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <ellipse cx="48" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="63" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <path d="M33 78 q22-11 44 0 l12 46 h-68 z" fill="#c3bce0" stroke="#5b4b9c" stroke-width="2"/>
+    <path d="M36 84 q-13 12 -10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 84 q13 12 10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#a8a0bd" stroke="#7a7190" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="51.5" r="1.9" fill="#fff"/><circle cx="67" cy="51.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="faceYay">
+    <circle cx="30" cy="30" r="26" fill="#e3def2" stroke="#5b4b9c" stroke-width="2.5"/>
+    <ellipse cx="22" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="25.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="25.4" r="1.3" fill="#fff"/>
+    <path d="M20 38 q10 9 20 0" stroke="#332a5c" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="14" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <ellipse cx="46" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <path d="M30 2 l3 5 5 1 -4 4 1 5 -5-3 -5 3 1-5 -4-4 5-1 z" fill="#c9a227"/>
+  </g>
+
+  <g id="faceOops">
+    <circle cx="30" cy="30" r="26" fill="#efeaf7" stroke="#8b7fc4" stroke-width="2.5"/>
+    <ellipse cx="22" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="26.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="26.4" r="1.3" fill="#fff"/>
+    <path d="M15 21 q7-5 13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M45 21 q-7-5 -13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M21 41 q9-7 18 0" stroke="#241a44" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+    <ellipse cx="47" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+  </g>
+
+  <!-- Burung kecil -->
+  <g id="burung">
+    <path d="M6 16 q-8-7 -5-13 q6 4 8 9 z" fill="#9db8d8" stroke="#5f83a8" stroke-width="1.2" stroke-linejoin="round"/>
+    <ellipse cx="20" cy="19" rx="13" ry="10" fill="#b3cbe4" stroke="#5f83a8" stroke-width="1.4"/>
+    <circle cx="31" cy="12" r="8" fill="#c3d8ec" stroke="#5f83a8" stroke-width="1.4"/>
+    <path d="M38 11 l7 3 -7 3 z" fill="#e8a94a"/>
+    <circle cx="32" cy="10.5" r="1.8" fill="#2f3b45"/>
+    <path d="M15 26 q5 3 10 0" stroke="#5f83a8" stroke-width="1.2" fill="none" opacity=".6"/>
+  </g>
+
+  <!-- Awan -->
+  <g id="awan">
+    <g fill="#ffffff">
+      <circle cx="20" cy="27" r="13"/><circle cx="39" cy="19" r="17"/>
+      <circle cx="59" cy="26" r="14"/><rect x="20" y="25" width="39" height="14" rx="7"/>
+    </g>
+    <path d="M8 33 q11 8 31 8 q20 0 31-8" stroke="#e6e0f4" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Pokok besar -->
+  <g id="pokokBesar">
+    <ellipse cx="60" cy="148" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M54 148 v-54 h12 v54 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <path d="M60 106 q-16-6 -22-20" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M60 114 q16-8 22-22" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.4">
+      <ellipse cx="60" cy="50" rx="40" ry="30"/>
+      <ellipse cx="30" cy="70" rx="26" ry="21"/>
+      <ellipse cx="90" cy="70" rx="26" ry="21"/>
+      <ellipse cx="60" cy="86" rx="34" ry="20"/>
+    </g>
+    <g fill="#a9d383" opacity=".7">
+      <ellipse cx="46" cy="42" rx="18" ry="12"/><ellipse cx="82" cy="58" rx="13" ry="9"/>
+    </g>
+  </g>
+
+  <!-- Masjid: kubah bawang, 2 menara, pintu gerbang -->
+  <g id="masjid">
+    <ellipse cx="110" cy="188" rx="98" ry="7" fill="#000" opacity=".07"/>
+    <rect x="18" y="78" width="21" height="110" fill="#fdf6ec" stroke="#cbc2e2" stroke-width="2"/>
+    <path d="M18 78 q10.5-18 21 0 z" fill="#5b4b9c" stroke="#332a5c" stroke-width="1.6"/>
+    <rect x="22" y="98" width="13" height="7" rx="2.5" fill="#8a6a2a"/>
+    <circle cx="28.5" cy="71" r="3.2" fill="#c9a227"/>
+    <rect x="181" y="78" width="21" height="110" fill="#fdf6ec" stroke="#cbc2e2" stroke-width="2"/>
+    <path d="M181 78 q10.5-18 21 0 z" fill="#5b4b9c" stroke="#332a5c" stroke-width="1.6"/>
+    <rect x="185" y="98" width="13" height="7" rx="2.5" fill="#8a6a2a"/>
+    <circle cx="191.5" cy="71" r="3.2" fill="#c9a227"/>
+    <rect x="46" y="100" width="128" height="88" fill="#fdf6ec" stroke="#cbc2e2" stroke-width="2"/>
+    <path d="M44 102 C44 62 76 44 110 28 C144 44 176 62 176 102 Z"
+          fill="#5b4b9c" stroke="#332a5c" stroke-width="2"/>
+    <path d="M110 28 C144 44 176 62 176 102 L150 102 C150 74 132 54 110 42 Z"
+          fill="#332a5c" opacity=".45"/>
+    <path d="M110 28 v-13" stroke="#c9a227" stroke-width="2.4"/>
+    <path d="M103 9 a7.4 7.4 0 1 0 9 8.4 a5.9 5.9 0 1 1 -9-8.4 z" fill="#c9a227"/>
+    <path d="M88 188 v-40 q22-27 44 0 v40 z" fill="#8a6a2a" stroke="#5e4a12" stroke-width="1.8"/>
+    <path d="M110 148 v40" stroke="#5e4a12" stroke-width="1.2" opacity=".55"/>
+    <path d="M58 158 v-20 q10-13 20 0 v20 z" fill="#cbc2e2" stroke="#5b4b9c" stroke-width="1.4"/>
+    <path d="M142 158 v-20 q10-13 20 0 v20 z" fill="#cbc2e2" stroke="#5b4b9c" stroke-width="1.4"/>
+    <path d="M46 116 h128" stroke="#c9a227" stroke-width="2" opacity=".55"/>
+  </g>
+
+  <!-- Ustaz / guru -->
+  <g id="ustaz">
+    <ellipse cx="55" cy="156" rx="32" ry="6" fill="#000" opacity=".08"/>
+    <path d="M28 78 q27-13 54 0 l14 78 h-82 z" fill="#f2eefa" stroke="#a8a0bd" stroke-width="2"/>
+    <path d="M55 80 v76" stroke="#a8a0bd" stroke-width="1.3" opacity=".65"/>
+    <ellipse cx="45" cy="156" rx="11" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="65" cy="156" rx="11" ry="5.5" fill="#6b4f3a"/>
+    <path d="M30 86 q-9 14 -4 30 q9 3 13 -8 z" fill="#f2eefa" stroke="#a8a0bd" stroke-width="2"/>
+    <path d="M80 86 q9 14 4 30 q-9 3 -13 -8 z" fill="#f2eefa" stroke="#a8a0bd" stroke-width="2"/>
+    <path d="M37 94 q12 8 14 24" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M73 94 q-12 8 -14 24" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="38" y="116" width="34" height="24" rx="3" fill="#5b4b9c" stroke="#332a5c" stroke-width="1.6"/>
+    <rect x="41" y="119" width="28" height="18" rx="2" fill="#fdf6ec"/>
+    <rect x="50" y="70" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="54" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="54" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="50" rx="27" ry="29" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M28 50 a27 29 0 0 1 54 0 q-8-18 -27-18 q-19 0 -27 18 z" fill="#4a3526"/>
+    <path d="M33 64 q22 22 44 0 q-3 24 -22 24 q-19 0 -22-24 z" fill="#5a3b28"/>
+    <path d="M29 44 q26-24 52 0 q1 5 -3 5 h-46 q-4 0 -3 -5 z" fill="#5b4b9c" stroke="#332a5c" stroke-width="1.8"/>
+    <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="55" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="55" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="52.5" r="1.9" fill="#fff"/><circle cx="67" cy="52.5" r="1.9" fill="#fff"/>
+    <path d="M55 62 q-3 3.6 1 4.6" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Rehal dengan al-Quran terbuka -->
+  <g id="rehal">
+    <ellipse cx="40" cy="56" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M10 54 L34 24" stroke="#a87f5c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M70 54 L46 24" stroke="#a87f5c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M15 44 L65 44" stroke="#8a6544" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M6 24 L40 12 L74 24 L74 29 L40 17 L6 29 Z" fill="#fdf6ec" stroke="#cbb99a" stroke-width="1.5"/>
+    <path d="M40 12 v5" stroke="#cbb99a" stroke-width="1.5"/>
+    <g stroke="#cbb99a" stroke-width="1" opacity=".8">
+      <path d="M13 24 h19"/><path d="M13 28 h19"/><path d="M48 24 h19"/><path d="M48 28 h19"/>
+    </g>
+    <path d="M6 24 q-4 6 2 8" stroke="#c9a227" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Mushaf tertutup -->
+  <g id="mushaf">
+    <ellipse cx="42" cy="68" rx="34" ry="5" fill="#000" opacity=".08"/>
+    <rect x="12" y="18" width="70" height="48" rx="4" fill="#f6f1e4" stroke="#cbb99a" stroke-width="1.4"/>
+    <g stroke="#ddd0b6" stroke-width="1.1">
+      <path d="M14 28 h66"/><path d="M14 38 h66"/><path d="M14 48 h66"/><path d="M14 58 h66"/>
+    </g>
+    <rect x="4" y="10" width="72" height="48" rx="4" fill="#5b4b9c" stroke="#332a5c" stroke-width="2"/>
+    <rect x="9" y="15" width="62" height="38" rx="3" fill="#6b5aa8" stroke="#332a5c" stroke-width="1"/>
+    <path d="M5 15 q-3.5 19 0 38" fill="none" stroke="#332a5c" stroke-width="3.4" stroke-linecap="round"/>
+    <rect x="15" y="20" width="50" height="28" rx="2.5" fill="none" stroke="#e8d79a" stroke-width="1.2"/>
+    <g fill="#e8d79a">
+      <path d="M40 25 l3.2 6.4 -3.2 6.4 -3.2-6.4 z"/>
+      <circle cx="40" cy="23.4" r="1.9"/>
+      <g stroke="#e8d79a" stroke-width="1.2" stroke-linecap="round">
+        <path d="M22 30 h7 M51 30 h7 M22 38 h7 M51 38 h7"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- PERISAI EMAS (lambang perlindungan akidah) -->
+  <g id="perisai">
+    <path d="M30 3 L55 11 V40 Q55 61 30 71 Q5 61 5 40 V11 Z" fill="#c9a227" stroke="#8a6a2a" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M30 9 L49 15 V40 Q49 55 30 65 Q11 55 11 40 V15 Z" fill="#f0d894" stroke="#c9a227" stroke-width="1.6"/>
+    <path d="M30 18 L41 22 V38 Q41 48 30 54 Q19 48 19 38 V22 Z" fill="#5b4b9c" stroke="#332a5c" stroke-width="1.5"/>
+    <path d="M35 26 a8.4 8.4 0 1 0 5 6.4 a6.6 6.6 0 1 1 -5-6.4 z" fill="#f0d894"/>
+    <path d="M33 30 l1.6 4 4.2 1.4 -3.4 2.8 1.1 4.2 -3.5-2.6 -3.5 2.6 1.1-4.2 -3.4-2.8 4.2-1.4 z" fill="#f0d894"/>
+  </g>
+
+  <!-- TOPENG DUA WAJAH (zahir berbeza batin = nifak) -->
+  <g id="topeng">
+    <ellipse cx="40" cy="40" rx="36" ry="40" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 2 V78" stroke="#7a7190" stroke-width="2.2" stroke-dasharray="5 4"/>
+    <!-- sebelah kiri: zahir, senyum -->
+    <path d="M14 28 q6-6 12 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M15 38 q5-5 10 0" stroke="#3a2b22" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M13 52 q13 11 25 0" stroke="#b5714f" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="12" cy="46" rx="6" ry="3.6" fill="#f2a2a2" opacity=".55"/>
+    <!-- sebelah kanan: batin, masam -->
+    <path d="M54 24 q7 4 10 10" stroke="#4a3b2f" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="55" cy="40" rx="5" ry="5" fill="#3a2b22"/>
+    <path d="M52 60 q13-11 25 0" stroke="#7a4a3a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="68" cy="46" rx="6" ry="3.6" fill="#f2a2a2" opacity=".35"/>
+  </g>
+
+  <!-- HATI (ikhlas) -->
+  <g id="hati">
+    <path d="M30 54 C6 36 2 20 12 12 C20 5 28 9 30 16 C32 9 40 5 48 12 C58 20 54 36 30 54 Z"
+          fill="#e88ba0" stroke="#c9707f" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M20 22 q5-8 12-3" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".7"/>
+  </g>
+
+  <!-- Bintang kilauan -->
+  <g id="bintang">
+    <path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="#c9a227"/>
+  </g>
+
+  <!-- Semak kecil -->
+  <g id="semak">
+    <ellipse cx="34" cy="44" rx="30" ry="4" fill="#000" opacity=".06"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.3">
+      <circle cx="18" cy="32" r="15"/><circle cx="38" cy="24" r="18"/><circle cx="56" cy="33" r="14"/>
+    </g>
+    <g fill="#a9d383" opacity=".65">
+      <circle cx="30" cy="20" r="7"/><circle cx="52" cy="28" r="5"/>
+    </g>
+  </g>
+
+  <!-- Kucing tidur (maskot) -->
+  <g id="kucingTidur">
+    <ellipse cx="33" cy="36" rx="30" ry="4" fill="#000" opacity=".07"/>
+    <path d="M6 34 q-2-22 27-22 q29 0 27 22 z" fill="#f4d8a8" stroke="#c9a86b" stroke-width="1.6"/>
+    <path d="M52 32 q14-4 12-16" stroke="#c9a86b" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M12 14 l-3-11 11 6 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M32 14 l3-11 -11 6 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M13 24 q6-5 12 0" stroke="#4a3b2f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M31 24 q6-5 12 0" stroke="#4a3b2f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M22 31 q5 4 10 0" stroke="#a8794f" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="30" rx="4" ry="2.4" fill="#e88ba0" opacity=".4"/>
+    <ellipse cx="43" cy="30" rx="4" ry="2.4" fill="#e88ba0" opacity=".4"/>
+  </g>
+
+  <!-- Kepala Adam (maskot kecil) -->
+  <g id="kepalaAdam">
+    <ellipse cx="35" cy="37" rx="26" ry="28" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M9 37 a26 28 0 0 1 52 0 q-8-18 -26-18 q-18 0 -26 18 z" fill="#5a3b28"/>
+    <path d="M21 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M39 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="26" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <ellipse cx="44" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <circle cx="27.8" cy="37.6" r="1.7" fill="#fff"/><circle cx="45.8" cy="37.6" r="1.7" fill="#fff"/>
+    <path d="M35 47 q-3 4 1 5" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M29 54 q6 6 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="17" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="53" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Kepala Nur (maskot kecil) -->
+  <g id="kepalaNur">
+    <ellipse cx="35" cy="37" rx="26" ry="28" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M12 37 q0-33 23-33 q23 0 23 33 q0 30 -9 42 q-5-19 -14-19 q-9 0 -14 19 q-9-12 -9-42 z"
+          fill="#a8a0bd" stroke="#7a7190" stroke-width="1.8"/>
+    <path d="M20 26 q24-9 48 0 q-4-24 -24-24 q-20 0 -24 24 z" fill="#a8a0bd"/>
+    <path d="M25 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M40 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="29" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <ellipse cx="47" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <circle cx="30.8" cy="37.6" r="1.7" fill="#fff"/><circle cx="48.8" cy="37.6" r="1.7" fill="#fff"/>
+    <path d="M32 51 q8 6 16 0" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="19" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="55" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Bintang prestasi (pingat) -->
+  <g id="bintangPrestasi">
+    <path d="M30 4 l6 15 16 1 -12 11 4 16 -14-8 -14 8 4-16 -12-11 16-1 z"
+          fill="#c9a227" stroke="#8a6a2a" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M30 12 l3.6 9 9.6 .6 -7.2 6.6 2.4 9.6 -8.4-4.8 -8.4 4.8 2.4-9.6 -7.2-6.6 9.6-.6 z"
+          fill="#f7efd4" opacity=".9"/>
+    <path d="M22 48 l-7 20 15-9 15 9 -7-20 z" fill="#5b4b9c" stroke="#332a5c" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M30 4 v-4" stroke="#8a6a2a" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+</defs>
+</svg>
+
+<div class="wrap">
+
+<!-- ===== HERO ===== -->
+  <div class="hero">
+    <svg viewBox="0 0 940 300" role="img" aria-label="Ilustrasi: guru bersama dua orang murid di hadapan masjid dengan perisai emas sebagai lambang perlindungan akidah">
+      <defs>
+        <linearGradient id="hsky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#e8e6f2"/>
+          <stop offset="45%" stop-color="#efeaf7"/>
+          <stop offset="100%" stop-color="#f4f2fa"/>
+        </linearGradient>
+        <linearGradient id="hgnd" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#8b7fc4"/>
+          <stop offset="100%" stop-color="#5b4b9c"/>
+        </linearGradient>
+        <radialGradient id="hglow">
+          <stop offset="0%" stop-color="#f0d894" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#f0d894" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <rect width="940" height="300" fill="url(#hsky)"/>
+
+      <!-- awan & burung -->
+      <g class="anim-drift26" transform="translate(60,42) scale(0.55)"><use href="#awan"/></g>
+      <g class="anim-drift26" transform="translate(430,30) scale(0.42)"><use href="#awan" opacity="0.85"/></g>
+      <g class="anim-bob" transform="translate(300,48) scale(0.45)"><use href="#burung"/></g>
+      <g class="anim-bob" transform="translate(360,36) scale(0.32)"><use href="#burung"/></g>
+
+      <!-- masjid latar -->
+      <g transform="translate(600,62) scale(0.78)"><use href="#masjid"/></g>
+
+      <!-- lantai -->
+      <path d="M0,238 Q240,228 480,234 T940,230 L940,300 L0,300 Z" fill="url(#hgnd)"/>
+      <ellipse cx="420" cy="250" rx="280" ry="18" fill="#332a5c" opacity="0.18"/>
+
+      <!-- cahaya perisai -->
+      <ellipse cx="190" cy="150" rx="130" ry="90" fill="url(#hglow)"/>
+
+      <!-- perisai emas besar -->
+      <g transform="translate(148,88) scale(1.55)" class="anim-glow"><use href="#perisai"/></g>
+
+      <!-- guru + dua murid -->
+      <g transform="translate(300,88) scale(0.95)"><use href="#ustaz"/></g>
+      <g transform="translate(410,140) scale(0.72)"><use href="#adam"/></g>
+      <g transform="translate(482,140) scale(0.72)"><use href="#nur"/></g>
+
+      <!-- rehal & mushaf -->
+      <g transform="translate(560,196) scale(0.5)"><use href="#rehal"/></g>
+      <g transform="translate(78,180) scale(0.55)"><use href="#mushaf"/></g>
+      <g transform="translate(880,176) scale(0.6)"><use href="#semak"/></g>
+
+      <!-- hiasan kaligrafi -->
+      <g opacity="0.14" fill="#332a5c">
+        <text x="700" y="60" class="jf" font-family="Scheherazade New, serif" font-size="26" font-style="italic"
+              text-anchor="middle" direction="ltr" unicode-bidi="isolate">إِنَّ ٱلْمُنَٰفِقِينَ</text>
+        <text x="300" y="238" class="jf" font-family="Scheherazade New, serif" font-size="22" font-style="italic"
+              text-anchor="middle" opacity="0.8" direction="ltr" unicode-bidi="isolate">نفاق</text>
+      </g>
+
+      <!-- kilauan -->
+      <g class="anim-twinkle2" opacity="0.8"><use href="#bintang" transform="translate(120,60) scale(0.4)"/></g>
+      <g class="anim-twinkle2" opacity="0.65"><use href="#bintang" transform="translate(250,232) scale(0.3)"/></g>
+      <g class="anim-twinkle2" opacity="0.7"><use href="#bintang" transform="translate(830,80) scale(0.35)"/></g>
+    </svg>
+    <div class="hero-txt">
+      <div class="kick">Pendidikan Islam &bull; Tahun 4 &bull; Bidang Akidah</div>
+      <h1>Mempertahankan Akidah daripada Nifak</h1>
+      <div class="sub">Akidah &bull; SK 3.4 &bull; 6 Standard Pembelajaran &bull; Beradab dan istiqamah</div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="chip"><div class="lbl">Bidang</div><div class="val">Akidah</div></div>
+    <div class="chip"><div class="lbl">Standard Kandungan</div><div class="val">Merumus kepentingan mempertahankan akidah daripada <b>nifak</b> secara beradab dan istiqamah</div></div>
+    <div class="chip"><div class="lbl">Standard Pembelajaran</div><div class="val">3.4.1 &ndash; 3.4.6</div></div>
+    <div class="chip"><div class="lbl">Sumber</div><div class="val">DSKP PI T4 (KSSR Semakan 2017) &bull; Buku Teks PI T4 SK &bull; al-Quran &amp; Hadis</div></div>
+  </div>
+
+  <div class="toc">
+    <div class="ttl">Kandungan &amp; Panduan Penggunaan</div>
+    <div class="grid">
+      <div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">Maksud nifak, hukum, dua bahagian dan tanda-tanda nifak</div></div></div>
+      <div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">Maksud, dalil, contoh/amalan, nilai murni, iktibar</div></div></div>
+      <div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">10 poin ringkasan untuk rujukan pantas</div></div></div>
+      <div class="it"><div class="n">4</div><div><div class="t">Diagram Alir</div><div class="d">Langkah menjauhi nifak + 2 jadual perbandingan</div></div></div>
+      <div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan dengan maklum balas segera</div></div></div>
+      <div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Senarai 26 Standard Kandungan PI Tahun 4</div></div></div>
+    </div>
+    <div class="note"><b>Cara guna:</b> Buka fail ini dalam pelayar web. Pada kuiz, klik pilihan jawapan untuk maklum balas segera dan skor automatik. Tekan butang <b>Cetak / Simpan PDF</b> untuk versi kertas &mdash; semua jawapan dipaparkan secara automatik. Teks ayat al-Quran disahkan daripada mushaf Uthmani (api.alquran.cloud); terjemahan daripada Tafsir Pimpinan Ar-Rahman (Basmeih).</div>
+  </div>
+
+<!-- ===== 1. INFOGRAFIK ===== -->
+<section id="infografik">
+  <h2><span class="num">1</span> Infografik &mdash; Kenali Nifak<svg class="mascot" width="44" height="28" viewBox="0 0 66 40" aria-hidden="true"><use href="#kucingTidur"/></svg></h2>
+  <p class="hint">Nifak berbahaya kerana zahirnya kelihatan Islam, tetapi batinnya mengingkari &mdash; berbeza dengan kufur yang dilakukan secara nyata.</p>
+  <svg class="art" viewBox="0 0 820 720" xmlns="http://www.w3.org/2000/svg" aria-label="Infografik maksud, hukum, bahagian dan tanda nifak">
+    <defs>
+      <linearGradient id="gt" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#5b4b9c"/><stop offset="100%" stop-color="#332a5c"/>
+      </linearGradient>
+      <linearGradient id="gc1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e3def2"/><stop offset="100%" stop-color="#faf9fd"/>
+      </linearGradient>
+      <linearGradient id="gc2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#efeaf7"/><stop offset="100%" stop-color="#ffffff"/>
+      </linearGradient>
+      <linearGradient id="gs" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f7f2e4"/><stop offset="100%" stop-color="#eddfb8"/>
+      </linearGradient>
+    </defs>
+    <rect width="820" height="720" fill="#faf9fd"/>
+
+    <!-- tajuk -->
+    <rect x="0" y="0" width="820" height="56" fill="url(#gt)"/>
+    <text x="410" y="34" font-family="Trebuchet MS,Segoe UI,Arial" font-size="20" font-weight="700" fill="#faf9fd" text-anchor="middle">MEMPERTAHANKAN AKIDAH DARIPADA NIFAK</text>
+    <text x="410" y="50" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#cbc2e2" text-anchor="middle">Nifak = zahir beriman, batin mengingkari &bull; Hukum: HARAM &bull; SK 3.4 Tahun 4</text>
+
+    <!-- panel definisi -->
+    <rect x="20" y="68" width="780" height="66" rx="10" fill="url(#gs)" stroke="#c9a227" stroke-width="1.4"/>
+    <text x="410" y="92" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13.5" font-weight="800" fill="#3a2f10" text-anchor="middle">DEFINISI: Nifak ialah menampakkan keislaman dan keimanan pada zahir, sedangkan hati mengingkarinya.</text>
+    <text x="410" y="112" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" fill="#4a3f16" text-anchor="middle">Bezanya dengan kufur: kufur dilakukan secara nyata dan terang-terangan, manakala nifak disembunyikan di sebalik pengakuan iman.</text>
+    <text x="410" y="128" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#332a5c" text-anchor="middle">Maksud nifak &mdash; SP 3.4.1</text>
+
+    <!-- KAD 1: Maksud / Zahir vs Batin -->
+    <rect x="20" y="150" width="380" height="196" rx="12" fill="url(#gc1)" stroke="#ddd7ee" stroke-width="1.4"/>
+    <rect x="20" y="150" width="12" height="196" rx="6" fill="#5b4b9c"/>
+    <text x="44" y="180" font-family="Trebuchet MS,Segoe UI,Arial" font-size="16" font-weight="800" fill="#332a5c">1. ZAHIR LAIN, BATIN LAIN</text>
+    <text x="44" y="200" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#241f38">Mulut mengaku beriman, mengerjakan solat,</text>
+    <text x="44" y="218" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" fill="#241f38">tetapi hati tidak membenarkannya.</text>
+    <text x="44" y="240" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="700" fill="#5b4b9c">Ibarat memakai topeng di hadapan manusia.</text>
+    <g transform="translate(56,252) scale(0.62)"><use href="#topeng"/></g>
+    <text x="200" y="300" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6b6480">KIRI: wajah yang ditunjukkan</text>
+    <text x="200" y="318" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6b6480">KANAN: isi hati yang disembunyikan</text>
+    <g transform="translate(330,238) scale(0.42)" class="anim-bob"><use href="#adam"/></g>
+
+    <!-- KAD 2: Hukum -->
+    <rect x="420" y="150" width="380" height="196" rx="12" fill="url(#gc1)" stroke="#ddd7ee" stroke-width="1.4"/>
+    <rect x="420" y="150" width="12" height="196" rx="6" fill="#c9a227"/>
+    <text x="444" y="180" font-family="Trebuchet MS,Segoe UI,Arial" font-size="16" font-weight="800" fill="#332a5c">2. HUKUM NIFAK: HARAM</text>
+    <text x="444" y="200" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#8a6a2a">Nifak I&lsquo;tiqadi (keyakinan)</text>
+    <text x="444" y="218" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#241f38">Dosa besar &mdash; MENGELUARKAN daripada Islam.</text>
+    <text x="444" y="240" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#8a6a2a">Nifak &lsquo;Amali (perbuatan)</text>
+    <text x="444" y="258" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#241f38">Dosa besar &mdash; TIDAK mengeluarkan daripada Islam.</text>
+    <text x="444" y="282" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#6b6480">Kedua-duanya wajib dijauhi oleh setiap muslim.</text>
+    <text x="444" y="300" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6b6480">Hukum &mdash; SP 3.4.2</text>
+    <g transform="translate(730,238) scale(0.42)" class="anim-bob"><use href="#nur"/></g>
+
+    <!-- KAD 3: Bahagian nifak -->
+    <rect x="20" y="362" width="380" height="196" rx="12" fill="url(#gc2)" stroke="#ddd7ee" stroke-width="1.4"/>
+    <rect x="20" y="362" width="12" height="196" rx="6" fill="#8b7fc4"/>
+    <text x="44" y="392" font-family="Trebuchet MS,Segoe UI,Arial" font-size="16" font-weight="800" fill="#332a5c">3. DUA BAHAGIAN NIFAK</text>
+    <text x="44" y="414" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#5b4b9c">I&lsquo;TIQADI &mdash; nifak besar</text>
+    <text x="44" y="432" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#241f38">Berpunca dari akidah &amp; keyakinan hati.</text>
+    <text x="44" y="454" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#5b4b9c">&lsquo;AMALI &mdash; nifak kecil</text>
+    <text x="44" y="472" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#241f38">Berpunca dari perbuatan &amp; akhlak harian.</text>
+    <text x="44" y="496" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#6b6480">Punca: lalai beribadah, cinta dunia, riak&rsquo;,</text>
+    <text x="44" y="514" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#6b6480">bergaul dengan orang yang mengingkari Allah.</text>
+    <text x="44" y="536" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6b6480">Bahagian &amp; punca &mdash; SP 3.4.3</text>
+    <g transform="translate(330,450) scale(0.42)" class="anim-bob"><use href="#ustaz"/></g>
+
+    <!-- KAD 4: Tanda-tanda -->
+    <rect x="420" y="362" width="380" height="196" rx="12" fill="url(#gc2)" stroke="#ddd7ee" stroke-width="1.4"/>
+    <rect x="420" y="362" width="12" height="196" rx="6" fill="#7a7190"/>
+    <text x="444" y="392" font-family="Trebuchet MS,Segoe UI,Arial" font-size="16" font-weight="800" fill="#332a5c">4. TANDA-TANDA NIFAK</text>
+    <text x="444" y="414" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#241f38">1. Apabila bercakap &mdash; dia berbohong</text>
+    <text x="444" y="434" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#241f38">2. Apabila berjanji &mdash; dia memungkiri</text>
+    <text x="444" y="454" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#241f38">3. Apabila diberi amanah &mdash; dia mengkhianati</text>
+    <text x="444" y="476" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="700" fill="#7a7190">Tambahan riwayat Muslim:</text>
+    <text x="444" y="494" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#241f38">4. Apabila bertengkar &mdash; dia mencaci</text>
+    <text x="444" y="518" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="15" fill="#332a5c" direction="ltr" unicode-bidi="isolate">آيَةُ ٱلْمُنَٰفِقِ ثَلَٰثٌ</text>
+    <text x="444" y="540" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6b6480">Hadis Riwayat al-Bukhari &amp; Muslim</text>
+    <g transform="translate(730,450) scale(0.42)" class="anim-bob"><use href="#nur"/></g>
+
+    <!-- cip nilai murni -->
+    <text x="410" y="588" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#332a5c" text-anchor="middle">NILAI MURNI YANG DIAMALKAN</text>
+    <g>
+      <rect x="30" y="598" width="178" height="46" rx="23" fill="#5b4b9c"/>
+      <text x="119" y="627" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#faf9fd" text-anchor="middle">IKHLAS</text>
+      <rect x="222" y="598" width="178" height="46" rx="23" fill="#6b5aa8"/>
+      <text x="311" y="627" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#faf9fd" text-anchor="middle">AMANAH</text>
+      <rect x="414" y="598" width="178" height="46" rx="23" fill="#8b7fc4"/>
+      <text x="503" y="627" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#faf9fd" text-anchor="middle">BERKATA BENAR</text>
+      <rect x="606" y="598" width="178" height="46" rx="23" fill="#c9a227"/>
+      <text x="695" y="627" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#332a5c" text-anchor="middle">ISTIQAMAH</text>
+    </g>
+    <g transform="translate(388,656) scale(0.55)" class="anim-bob"><use href="#perisai"/></g>
+
+    <text x="410" y="694" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6b6480" text-anchor="middle">Tema: perisai emas = pelindung akidah. Sumber: DSKP Pendidikan Islam Tahun 4 (SK 3.4) &bull; Buku Teks PI T4 &bull; al-Quran &amp; Hadis.</text>
+  </svg>
+  <div class="deko">
+    <svg width="60" height="72" viewBox="0 0 60 74" aria-hidden="true"><use href="#perisai"/></svg>
+    <svg width="70" height="80" viewBox="0 0 80 80" aria-hidden="true"><use href="#topeng"/></svg>
+    <svg width="60" height="60" viewBox="0 0 60 60" aria-hidden="true"><use href="#hati"/></svg>
+  </div>
+</section>
+
+<!-- ===== 2. PETA MINDA ===== -->
+<section id="peta-minda">
+  <h2><span class="num">2</span> Peta Minda &mdash; Mempertahankan Akidah daripada Nifak</h2>
+  <p class="hint">Lima cabang utama: maksud, dalil, contoh dan amalan, nilai murni, serta iktibar.</p>
+  <svg class="art" viewBox="0 0 820 780" xmlns="http://www.w3.org/2000/svg" aria-label="Peta Minda Mempertahankan Akidah daripada Nifak">
+    <defs>
+      <linearGradient id="gpm" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#5b4b9c"/><stop offset="100%" stop-color="#332a5c"/>
+      </linearGradient>
+      <linearGradient id="gpc" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e3def2"/><stop offset="100%" stop-color="#faf9fd"/>
+      </linearGradient>
+    </defs>
+    <rect width="820" height="780" fill="#faf9fd"/>
+
+    <rect x="0" y="0" width="820" height="50" fill="url(#gpm)"/>
+    <text x="410" y="32" font-family="Trebuchet MS,Segoe UI,Arial" font-size="18" font-weight="700" fill="#faf9fd" text-anchor="middle">PETA MINDA: MEMPERTAHANKAN AKIDAH DARIPADA NIFAK</text>
+
+    <!-- node tengah -->
+    <ellipse cx="410" cy="118" rx="132" ry="48" fill="url(#gpm)" stroke="#332a5c" stroke-width="2"/>
+    <text x="410" y="114" font-family="Trebuchet MS,Segoe UI,Arial" font-size="18" font-weight="800" fill="#faf9fd" text-anchor="middle">NIFAK</text>
+    <text x="410" y="136" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="15" fill="#cbc2e2" text-anchor="middle" direction="ltr" unicode-bidi="isolate">نفاق &bull; زاهر إسلام، باطن كافر</text>
+
+    <!-- cabang -->
+    <path d="M330 158 Q200 220 92 296" stroke="#5b4b9c" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M370 160 Q300 230 251 296" stroke="#6b5aa8" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M410 166 L410 296" stroke="#8b7fc4" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M450 160 Q520 230 569 296" stroke="#c9a227" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M490 158 Q620 220 725 296" stroke="#7a7190" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+
+    <!-- 1 MAKSUD -->
+    <rect x="20" y="300" width="144" height="158" rx="12" fill="url(#gpc)" stroke="#5b4b9c" stroke-width="1.6"/>
+    <text x="92" y="326" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#5b4b9c" text-anchor="middle">MAKSUD</text>
+    <text x="92" y="346" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">Menampakkan Islam</text>
+    <text x="92" y="362" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">&amp; iman pada zahir,</text>
+    <text x="92" y="378" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">sedangkan batin</text>
+    <text x="92" y="394" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">mengingkarinya.</text>
+    <text x="92" y="416" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="18" fill="#332a5c" text-anchor="middle" direction="ltr" unicode-bidi="isolate">نفاق</text>
+    <text x="92" y="440" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10" weight="700" font-weight="700" fill="#5b4b9c" text-anchor="middle">SP 3.4.1</text>
+
+    <!-- 2 DALIL -->
+    <rect x="179" y="300" width="144" height="158" rx="12" fill="url(#gpc)" stroke="#6b5aa8" stroke-width="1.6"/>
+    <text x="251" y="326" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#6b5aa8" text-anchor="middle">DALIL</text>
+    <text x="251" y="346" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">an-Nisa&rsquo; 4:145</text>
+    <text x="251" y="378" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="14" fill="#332a5c" text-anchor="middle" direction="ltr" unicode-bidi="isolate">إِنَّ ٱلْمُنَٰفِقِينَ</text>
+    <text x="251" y="396" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="14" fill="#332a5c" text-anchor="middle" direction="ltr" unicode-bidi="isolate">فِى ٱلدَّرْكِ ٱلْأَسْفَلِ</text>
+    <text x="251" y="414" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="14" fill="#332a5c" text-anchor="middle" direction="ltr" unicode-bidi="isolate">مِنَ ٱلنَّارِ</text>
+    <text x="251" y="438" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10" font-weight="700" fill="#6b5aa8" text-anchor="middle">Hadis Bukhari &amp; Muslim</text>
+
+    <!-- 3 CONTOH & AMALAN -->
+    <rect x="338" y="300" width="144" height="158" rx="12" fill="url(#gpc)" stroke="#8b7fc4" stroke-width="1.6"/>
+    <text x="410" y="326" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#8b7fc4" text-anchor="middle">CONTOH &amp; AMALAN</text>
+    <text x="410" y="346" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">Berbohong</text>
+    <text x="410" y="362" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">Mungkir janji</text>
+    <text x="410" y="378" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">Khianat amanah</text>
+    <text x="410" y="394" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">Mencaci ketika bertengkar</text>
+    <text x="410" y="414" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" font-weight="700" fill="#8b7fc4" text-anchor="middle">Tindakan: ikhlas, tepati</text>
+    <text x="410" y="430" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" font-weight="700" fill="#8b7fc4" text-anchor="middle">janji, jaga amanah</text>
+    <text x="410" y="448" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10" fill="#6b6480" text-anchor="middle">SP 3.4.3 &ndash; 3.4.5</text>
+
+    <!-- 4 NILAI MURNI -->
+    <rect x="497" y="300" width="144" height="158" rx="12" fill="url(#gpc)" stroke="#c9a227" stroke-width="1.6"/>
+    <text x="569" y="326" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#8a6a2a" text-anchor="middle">NILAI MURNI</text>
+    <text x="569" y="348" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">&bull; Ikhlas</text>
+    <text x="569" y="366" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">&bull; Amanah</text>
+    <text x="569" y="384" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">&bull; Berkata benar</text>
+    <text x="569" y="402" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">&bull; Menepati janji</text>
+    <text x="569" y="420" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">&bull; Beradab &amp; istiqamah</text>
+    <text x="569" y="446" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10" fill="#6b6480" text-anchor="middle">SP 3.4.6</text>
+
+    <!-- 5 IKTIBAR -->
+    <rect x="656" y="300" width="144" height="158" rx="12" fill="url(#gpc)" stroke="#7a7190" stroke-width="1.6"/>
+    <text x="728" y="326" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#7a7190" text-anchor="middle">IKTIBAR</text>
+    <text x="728" y="348" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">Nifak memusnahkan</text>
+    <text x="728" y="364" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">kepercayaan &amp;</text>
+    <text x="728" y="380" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">meruntuhkan ukhuwah.</text>
+    <text x="728" y="402" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6b6480" text-anchor="middle">Balasan: neraka</text>
+    <text x="728" y="418" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6b6480" text-anchor="middle">tingkat paling bawah.</text>
+    <text x="728" y="442" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" font-weight="700" fill="#7a7190" text-anchor="middle">&rarr; jauhi selamanya</text>
+
+    <!-- barisan dalil -->
+    <text x="410" y="494" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#332a5c" text-anchor="middle">DALIL NAQLI &amp; HADIS</text>
+    <rect x="20" y="504" width="380" height="58" rx="10" fill="#e3def2" stroke="#5b4b9c" stroke-width="1.2"/>
+    <text x="210" y="526" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="18" fill="#332a5c" text-anchor="middle" direction="ltr" unicode-bidi="isolate">إِنَّ ٱلْمُنَٰفِقِينَ فِى ٱلدَّرْكِ ٱلْأَسْفَلِ مِنَ ٱلنَّارِ</text>
+    <text x="210" y="548" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6b6480" text-anchor="middle">an-Nisa&rsquo; (4): 145 &mdash; &ldquo;Sesungguhnya orang munafik di tingkatan neraka yang paling bawah&rdquo;</text>
+    <rect x="420" y="504" width="380" height="58" rx="10" fill="#f7f2e4" stroke="#c9a227" stroke-width="1.2"/>
+    <text x="610" y="526" class="jf" font-family="Scheherazade New,Traditional Arabic,Amiri,Tahoma,serif" font-size="17" fill="#332a5c" text-anchor="middle" direction="ltr" unicode-bidi="isolate">آيَةُ ٱلْمُنَٰفِقِ ثَلَٰثٌ</text>
+    <text x="610" y="548" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#6b6480" text-anchor="middle">Hadis Riwayat al-Bukhari &amp; Muslim &mdash; tiga tanda orang munafik</text>
+
+    <!-- ilustrasi -->
+    <g transform="translate(120,592) scale(0.34)"><use href="#perisai"/></g>
+    <g transform="translate(300,592) scale(0.3)"><use href="#ustaz"/></g>
+    <g transform="translate(480,592) scale(0.3)"><use href="#adam"/></g>
+    <g transform="translate(650,592) scale(0.3)"><use href="#nur"/></g>
+
+    <!-- kesimpulan -->
+    <rect x="20" y="700" width="780" height="58" rx="10" fill="#5b4b9c"/>
+    <text x="410" y="728" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="700" fill="#faf9fd" text-anchor="middle">KESIMPULAN: Selaraskan zahir dan batin &mdash; jaga lisan, tepati janji, pikul amanah &mdash; itulah perisai akidah.</text>
+    <text x="410" y="746" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#cbc2e2" text-anchor="middle">Sumber: DSKP Pendidikan Islam Tahun 4 (SK 3.4) &bull; Buku Teks PI T4 &bull; KSSR Semakan 2017</text>
+  </svg>
+</section>
+
+<!-- ===== 3. NOTA RINGKAS ===== -->
+<section id="nota-ringkas">
+  <h2><span class="num">3</span> Nota Ringkas &mdash; 10 Perkara Utama</h2>
+  <div class="nota">
+    <ol>
+      <li><b>Maksud nifak:</b> menampakkan keislaman dan keimanan pada <b>zahir</b>, sedangkan <b>batin</b> mengingkari Allah dan Rasul. Bezanya dengan kufur: kufur dilakukan secara nyata, nifak disembunyikan di sebalik pengakuan iman.</li>
+      <li><b>Hukum nifak:</b> <b>haram</b>. Ia dosa besar yang membinasakan amal dan menjejaskan akidah.</li>
+      <li><b>Nifak I&lsquo;tiqadi (besar):</b> nifak dalam <b>keyakinan</b> &mdash; mengaku beriman dengan lidah tetapi hati mendustakan Allah, malaikat, kitab, rasul, hari akhirat dan qada&rsquo; qadar. Hukumnya: <b>mengeluarkan daripada Islam</b>.</li>
+      <li><b>Nifak &lsquo;Amali (kecil):</b> nifak dalam <b>perbuatan</b> &mdash; berbohong, memungkiri janji, mengkhianati amanah dan mencaci ketika bertengkar. Hukumnya: <b>dosa besar tetapi tidak mengeluarkan daripada Islam</b>.</li>
+      <li><b>Punca nifak:</b> lalai beribadah, cinta dunia dan pangkat, riak&rsquo; dan ujub, serta bergaul rapat dengan orang yang mengingkari Allah.</li>
+      <li><b>Dalil naqli:</b> Surah an-Nisa&rsquo; (4): 145 &mdash; <span class="arab">إِنَّ ٱلْمُنَٰفِقِينَ فِى ٱلدَّرْكِ ٱلْأَسْفَلِ مِنَ ٱلنَّارِ وَلَن تَجِدَ لَهُمْ نَصِيرًا</span> &mdash; &ldquo;Sesungguhnya orang-orang munafik itu ditempatkan pada tingkatan yang terkebawah sekali dari (lapisan-lapisan dalam) neraka.&rdquo;</li>
+      <li><b>Hadis tanda munafik (Riwayat al-Bukhari dan Muslim):</b> <span class="arab">آيَةُ ٱلْمُنَٰفِقِ ثَلَٰثٌ: إِذَا حَدَّثَ كَذَبَ، وَإِذَا وَعَدَ أَخْلَفَ، وَإِذَا اؤْتُمِنَ خَانَ</span> &mdash; &ldquo;Tanda orang munafik ada tiga: apabila bercakap dia berbohong, apabila berjanji dia memungkiri, dan apabila diberi amanah dia mengkhianati.&rdquo;</li>
+      <li><b>Tambahan riwayat Muslim:</b> <span class="arab">وَإِذَا خَاصَمَ فَجَرَ</span> &mdash; &ldquo;dan apabila bertengkar dia mencaci (melampaui batas).&rdquo;</li>
+      <li><b>Kesan nifak:</b> hilang kepercayaan masyarakat, rosak hubungan ukhuwah, amal ibadah tidak diterima, dan balasan azab yang amat berat di akhirat.</li>
+      <li><b>Tindakan menjauhi nifak:</b> memantapkan <b>ikhlas</b> kerana Allah, menepati janji, menjaga amanah, berkata benar, memperbanyak <b>doa dan istighfar</b>, serta memilih <b>rakan yang soleh</b> &mdash; diamalkan secara <b>beradab dan istiqamah</b>.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== 4. DIAGRAM ALIR ===== -->
+<section id="diagram">
+  <h2><span class="num">4</span> Diagram Alir &mdash; Langkah Menjauhi Nifak<svg class="mascot" width="37" height="26" viewBox="0 0 46 32" aria-hidden="true"><use href="#burung"/></svg></h2>
+  <p class="hint">Ikuti empat langkah ini sebagai perisai akidah: kenal tanda &rarr; sedar kesan &rarr; ambil tindakan &rarr; amalkan secara istiqamah.</p>
+  <svg class="art" viewBox="0 0 820 560" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram alir langkah menjauhi nifak">
+    <defs>
+      <linearGradient id="gdt" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#5b4b9c"/><stop offset="100%" stop-color="#332a5c"/>
+      </linearGradient>
+      <linearGradient id="gdn1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e3def2"/><stop offset="100%" stop-color="#faf9fd"/>
+      </linearGradient>
+      <linearGradient id="gdn2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f7f2e4"/><stop offset="100%" stop-color="#faf9fd"/>
+      </linearGradient>
+      <marker id="pana" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+        <path d="M0 0 L8 4 L0 8 z" fill="#7a7190"/>
+      </marker>
+    </defs>
+    <rect width="820" height="560" fill="#faf9fd"/>
+
+    <rect x="0" y="0" width="820" height="50" fill="url(#gdt)"/>
+    <text x="410" y="32" font-family="Trebuchet MS,Segoe UI,Arial" font-size="18" font-weight="700" fill="#faf9fd" text-anchor="middle">ALIRAN PERISAI AKIDAH: MENJAUHI NIFAK</text>
+
+    <!-- permulaan -->
+    <rect x="320" y="64" width="180" height="42" rx="21" fill="#332a5c"/>
+    <text x="410" y="90" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#faf9fd" text-anchor="middle">MULAI DENGAN IKHLAS</text>
+    <path d="M410 106 V132" stroke="#7a7190" stroke-width="3" marker-end="url(#pana)"/>
+
+    <!-- LANGKAH 1 -->
+    <rect x="20" y="136" width="180" height="140" rx="14" fill="url(#gdn1)" stroke="#5b4b9c" stroke-width="1.8"/>
+    <circle cx="50" cy="164" r="15" fill="#5b4b9c"/>
+    <text x="50" y="170" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#faf9fd" text-anchor="middle">1</text>
+    <text x="110" y="170" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#5b4b9c" text-anchor="middle">KENAL PASTI</text>
+    <text x="110" y="188" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#5b4b9c" text-anchor="middle">TANDA-TANDA</text>
+    <text x="110" y="212" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">• bercakap berbohong</text>
+    <text x="110" y="230" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">• janji dimungkiri</text>
+    <text x="110" y="248" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">• amanah dikhianati</text>
+    <text x="110" y="266" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">• bertengkar mencaci</text>
+    <path d="M200 206 H232" stroke="#7a7190" stroke-width="3" marker-end="url(#pana)"/>
+
+    <!-- LANGKAH 2 -->
+    <rect x="236" y="136" width="180" height="140" rx="14" fill="url(#gdn1)" stroke="#6b5aa8" stroke-width="1.8"/>
+    <circle cx="266" cy="164" r="15" fill="#6b5aa8"/>
+    <text x="266" y="170" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#faf9fd" text-anchor="middle">2</text>
+    <text x="326" y="170" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#6b5aa8" text-anchor="middle">SEDARI</text>
+    <text x="326" y="188" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#6b5aa8" text-anchor="middle">KESANNYA</text>
+    <text x="326" y="212" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">• hilang kepercayaan</text>
+    <text x="326" y="230" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">• ukhuwah rosak</text>
+    <text x="326" y="248" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">• amal tertolak</text>
+    <text x="326" y="266" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">• azab neraka</text>
+    <path d="M416 206 H448" stroke="#7a7190" stroke-width="3" marker-end="url(#pana)"/>
+
+    <!-- LANGKAH 3 -->
+    <rect x="452" y="136" width="180" height="140" rx="14" fill="url(#gdn1)" stroke="#8b7fc4" stroke-width="1.8"/>
+    <circle cx="482" cy="164" r="15" fill="#8b7fc4"/>
+    <text x="482" y="170" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#faf9fd" text-anchor="middle">3</text>
+    <text x="542" y="170" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#5b4b9c" text-anchor="middle">AMBIL</text>
+    <text x="542" y="188" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" font-weight="800" fill="#5b4b9c" text-anchor="middle">TINDAKAN</text>
+    <text x="542" y="212" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">• mantapkan ikhlas</text>
+    <text x="542" y="230" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">• tepati janji</text>
+    <text x="542" y="248" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">• jaga amanah</text>
+    <text x="542" y="266" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">• doa &amp; istighfar</text>
+    <path d="M632 206 H664" stroke="#7a7190" stroke-width="3" marker-end="url(#pana)"/>
+
+    <!-- LANGKAH 4 -->
+    <rect x="668" y="136" width="132" height="140" rx="14" fill="url(#gdn2)" stroke="#c9a227" stroke-width="1.8"/>
+    <circle cx="698" cy="164" r="15" fill="#c9a227"/>
+    <text x="698" y="170" font-family="Trebuchet MS,Segoe UI,Arial" font-size="14" font-weight="800" fill="#332a5c" text-anchor="middle">4</text>
+    <text x="734" y="170" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" font-weight="800" fill="#8a6a2a" text-anchor="middle">AMALKAN</text>
+    <text x="734" y="188" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" font-weight="800" fill="#8a6a2a" text-anchor="middle">BERADAB</text>
+    <text x="734" y="206" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" font-weight="800" fill="#8a6a2a" text-anchor="middle">&amp; ISTIQAMAH</text>
+    <text x="734" y="230" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">setiap hari,</text>
+    <text x="734" y="248" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">tidak berputus</text>
+    <text x="734" y="266" font-family="Trebuchet MS,Segoe UI,Arial" font-size="10.5" fill="#241f38" text-anchor="middle">asa</text>
+
+    <!-- perisai penutup -->
+    <path d="M410 276 V330" stroke="#7a7190" stroke-width="3" marker-end="url(#pana)"/>
+    <g transform="translate(352,336) scale(1.15)" class="anim-glow"><use href="#perisai"/></g>
+    <text x="470" y="352" font-family="Trebuchet MS,Segoe UI,Arial" font-size="13" font-weight="800" fill="#332a5c">HASIL: AKIDAH TERPELIHARA</text>
+    <text x="470" y="372" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#6b6480">Zahir dan batin selari &mdash; dihormati, dipercayai, diberkati.</text>
+    <text x="470" y="392" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#6b6480">Rakan soleh membantu kita kekal istiqamah.</text>
+
+    <!-- hati ikhlas -->
+    <g transform="translate(300,374) scale(0.55)" class="anim-bob"><use href="#hati"/></g>
+
+    <!-- baris nota -->
+    <rect x="20" y="424" width="780" height="60" rx="10" fill="#f7f2e4" stroke="#c9a227" stroke-width="1.3"/>
+    <text x="410" y="450" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12.5" font-weight="700" fill="#3a2f10" text-anchor="middle">Doa perlindungan: &ldquo;Ya Allah, jauhkanlah aku daripada sifat nifak, dan tetapkanlah hatiku di atas iman dan amal soleh.&rdquo;</text>
+    <text x="410" y="470" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11.5" fill="#4a3f16" text-anchor="middle">Amalkan doa dan istighfar setiap hari &mdash; itulah sebahagian tindakan menjauhi nifak (SP 3.4.5).</text>
+
+    <!-- perbandingan ringkas dalam svg -->
+    <rect x="20" y="496" width="380" height="52" rx="10" fill="#e3def2" stroke="#5b4b9c" stroke-width="1.2"/>
+    <text x="210" y="518" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#332a5c" text-anchor="middle">MUSLIM SEBENAR</text>
+    <text x="210" y="538" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6b6480" text-anchor="middle">Zahir = batin &bull; benar &bull; tepati janji &bull; amanah</text>
+    <rect x="420" y="496" width="380" height="52" rx="10" fill="#efeaf7" stroke="#7a7190" stroke-width="1.2"/>
+    <text x="610" y="518" font-family="Trebuchet MS,Segoe UI,Arial" font-size="12" font-weight="800" fill="#332a5c" text-anchor="middle">MUNAFIK</text>
+    <text x="610" y="538" font-family="Trebuchet MS,Segoe UI,Arial" font-size="11" fill="#6b6480" text-anchor="middle">Zahir &ne; batin &bull; bohong &bull; mungkir &bull; khianat</text>
+  </svg>
+
+  <h3 style="font-size:14px;letter-spacing:1px;color:#332a5c;text-transform:uppercase;margin:18px 0 8px">Jadual 1 &mdash; Perbandingan Dua Bahagian Nifak</h3>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>Aspek</th><th>Nifak I&lsquo;tiqadi (Besar)</th><th>Nifak &lsquo;Amali (Kecil)</th></tr>
+      </thead>
+      <tbody>
+        <tr class="on">
+          <td><b>Punca</b></td>
+          <td>Keyakinan dan akidah dalam hati</td>
+          <td>Perbuatan dan akhlak harian</td>
+        </tr>
+        <tr>
+          <td><b>Contoh</b></td>
+          <td>Mengaku beriman dengan lidah tetapi hati mendustakan Allah, rasul dan hari akhirat</td>
+          <td>Berbohong, memungkiri janji, mengkhianati amanah, mencaci ketika bertengkar</td>
+        </tr>
+        <tr class="on">
+          <td><b>Hukum</b></td>
+          <td>Dosa besar &mdash; <b>mengeluarkan daripada Islam</b></td>
+          <td>Dosa besar &mdash; <b>tidak mengeluarkan daripada Islam</b></td>
+        </tr>
+        <tr>
+          <td><b>Kesan</b></td>
+          <td>Terbatal seluruh amal; kekal dalam neraka jika tidak bertaubat</td>
+          <td>Amal terjejas, hilang kepercayaan; masih berpeluang bertaubat</td>
+        </tr>
+        <tr class="on">
+          <td><b>Cara jauhi</b></td>
+          <td>Memantapkan akidah, ilmu tauhid dan keyakinan kepada Allah</td>
+          <td>Memantapkan ikhlas, menepati janji, menjaga amanah, berkata benar</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:14px;letter-spacing:1px;color:#332a5c;text-transform:uppercase;margin:18px 0 8px">Jadual 2 &mdash; Ciri Kehidupan Muslim Sebenar berbanding Munafik</h3>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>Aspek Kehidupan</th><th>Muslim Sebenar</th><th>Munafik</th></tr>
+      </thead>
+      <tbody>
+        <tr class="on"><td><b>Percakapan</b></td><td>Berkata benar dan menjaga lisan</td><td>Berbohong dan mereka-reka cerita</td></tr>
+        <tr><td><b>Janji</b></td><td>Menepati janji yang dibuat</td><td>Memungkiri janji</td></tr>
+        <tr class="on"><td><b>Amanah</b></td><td>Menjaga amanah dengan penuh tanggungjawab</td><td>Mengkhianati amanah</td></tr>
+        <tr><td><b>Bertengkar</b></td><td>Beradab, menahan diri dan mencari penyelesaian</td><td>Mencaci dan melampaui batas</td></tr>
+        <tr class="on"><td><b>Ibadah</b></td><td>Ikhlas semata-mata kerana Allah</td><td>Riak&rsquo; &mdash; mahu dipuji dan dilihat manusia</td></tr>
+        <tr><td><b>Zahir &amp; batin</b></td><td>Selari &mdash; apa yang dilahirkan sama dengan isi hati</td><td>Berbeza &mdash; berpura-pura di hadapan manusia</td></tr>
+        <tr class="on"><td><b>Solat &amp; ibadah</b></td><td>Kehadiran tetap dan khusyuk</td><td>Malas dan melengahkan, hanya bila dilihat</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:14px;letter-spacing:1px;color:#332a5c;text-transform:uppercase;margin:18px 0 8px">Dalil &amp; Hadis &mdash; Teks Penuh</h3>
+  <div class="nota">
+    <ul>
+      <li><b>Dalil naqli &mdash; Surah an-Nisa&rsquo; (4): 145</b><span class="arab-lg">إِنَّ ٱلْمُنَٰفِقِينَ فِى ٱلدَّرْكِ ٱلْأَسْفَلِ مِنَ ٱلنَّارِ وَلَن تَجِدَ لَهُمْ نَصِيرًا</span><span style="display:block;text-align:center;font-size:12.5px;color:#6b6480">&ldquo;Sesungguhnya orang-orang munafik itu ditempatkan pada tingkatan yang terkebawah sekali dari (lapisan-lapisan dalam) neraka. Dan engkau tidak sekali-kali akan mendapat sesiapa pun yang boleh menolong mereka.&rdquo;</span></li>
+      <li><b>Surah al-Baqarah (2): 8 &mdash; ciri orang munafik</b><span class="arab-lg">وَمِنَ ٱلنَّاسِ مَن يَقُولُ ءَامَنَّا بِٱللَّهِ وَبِٱلْيَوْمِ ٱلْءَاخِرِ وَمَا هُم بِمُؤْمِنِينَ</span><span style="display:block;text-align:center;font-size:12.5px;color:#6b6480">&ldquo;Dan di antara manusia ada yang berkata: &lsquo;Kami telah beriman kepada Allah dan kepada hari akhirat&rsquo;; padahal mereka sebenarnya tidak beriman.&rdquo;</span></li>
+      <li><b>Surah al-Munafiqun (63): 1 &mdash; pengakuan yang dusta</b><span class="arab-lg">إِذَا جَآءَكَ ٱلْمُنَٰفِقُونَ قَالُوا۟ نَشْهَدُ إِنَّكَ لَرَسُولُ ٱللَّهِ ۗ وَٱللَّهُ يَعْلَمُ إِنَّكَ لَرَسُولُهُۥ وَٱللَّهُ يَشْهَدُ إِنَّ ٱلْمُنَٰفِقِينَ لَكَٰذِبُونَ</span><span style="display:block;text-align:center;font-size:12.5px;color:#6b6480">&ldquo;Apabila orang-orang munafik datang kepadamu, mereka berkata: &lsquo;Kami mengakui bahawa engkau sebenar-benarnya Rasul Allah&rsquo; &hellip; dan Allah menyaksikan bahawa pengakuan mereka adalah dusta.&rdquo;</span></li>
+      <li><b>Hadis &mdash; Riwayat al-Bukhari dan Muslim</b><span class="hadis">آيَةُ ٱلْمُنَٰفِقِ ثَلَٰثٌ: إِذَا حَدَّثَ كَذَبَ، وَإِذَا وَعَدَ أَخْلَفَ، وَإِذَا اؤْتُمِنَ خَانَ</span><span style="display:block;text-align:center;font-size:12.5px;color:#6b6480">&ldquo;Tanda orang munafik ada tiga: apabila bercakap dia berbohong, apabila berjanji dia memungkiri, dan apabila diberi amanah dia mengkhianati.&rdquo;</span></li>
+      <li><b>Tambahan &mdash; Riwayat Muslim</b><span class="hadis">وَإِذَا خَاصَمَ فَجَرَ</span><span style="display:block;text-align:center;font-size:12.5px;color:#6b6480">&ldquo;Dan apabila bertengkar dia mencaci (melampaui batas).&rdquo;</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 5. KUIZ INTERAKTIF ===== -->
+  <section id="quiz">
+    <h2><span class="num">5</span> Kuiz Interaktif &mdash; 10 Soalan<svg class="mascot" width="40" height="25" viewBox="0 0 66 40" aria-hidden="true"><use href="#kucingTidur"/></svg></h2>
+    <p class="hint">Klik pilihan jawapan. Maklum balas dan skor diberikan serta-merta.</p>
+
+    <div class="scorebar">
+      <span class="sc">Skor: <span id="sc">0</span> / 10</span>
+      <span class="bar"><i id="bar"></i></span>
+      <span class="hint2">Dijawab: <span id="done">0</span>/10</span>
+    </div>
+
+    <div class="qlist">
+
+      <div class="qcard" data-ans="1" data-exp="Nifak ialah <b>menampakkan keislaman dan keimanan pada zahir, sedangkan batin mengingkarinya</b>. Ia berbeza dengan kufur yang dilakukan secara nyata dan terang-terangan.">
+        <div class="qhead"><span class="qn">1</span><span class="qtext">Apakah <b>maksud nifak</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Mengingkari Allah secara terang-terangan</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Zahir menampakkan Islam, sedangkan batin mengingkari</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Meninggalkan solat dengan sengaja</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Hukum nifak ialah <b>haram</b>. Ia dosa besar: nifak i&lsquo;tiqadi mengeluarkan daripada Islam, manakala nifak &lsquo;amali tidak mengeluarkan daripada Islam tetapi tetap berdosa besar.">
+        <div class="qhead"><span class="qn">2</span><span class="qtext">Apakah <b>hukum</b> nifak?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Harus</span></button>
+          <button class="opt"><span class="k">B</span><span>Makruh</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Haram</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Nifak <b>i&lsquo;tiqadi</b> ialah nifak dalam <b>keyakinan</b> — mengaku beriman dengan lidah tetapi hati mendustakan Allah. Ia <b>mengeluarkan seseorang daripada Islam</b>.">
+        <div class="qhead"><span class="qn">3</span><span class="qtext">Bahagian nifak yang manakah <b>mengeluarkan seseorang daripada Islam</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Nifak i&lsquo;tiqadi (nifak besar)</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Nifak &lsquo;amali (nifak kecil)</span></button>
+          <button class="opt"><span class="k">C</span><span>Kedua-duanya</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Nifak <b>&lsquo;amali</b> ialah nifak dalam <b>perbuatan</b> — berbohong, memungkiri janji, mengkhianati amanah. Ia <b>dosa besar tetapi tidak mengeluarkan daripada Islam</b>.">
+        <div class="qhead"><span class="qn">4</span><span class="qtext">Apakah hukum <b>nifak &lsquo;amali</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Mengeluarkan daripada Islam</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Dosa besar, tetapi tidak mengeluarkan daripada Islam</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Tidak berdosa</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Surah <b>an-Nisa&rsquo; (4): 145</b> menegaskan: <span class='arab'>إِنَّ ٱلْمُنَٰفِقِينَ فِى ٱلدَّرْكِ ٱلْأَسْفَلِ مِنَ ٱلنَّارِ</span> — orang munafik ditempatkan pada tingkatan neraka yang paling bawah.">
+        <div class="qhead"><span class="qn">5</span><span class="qtext">Ayat manakah menjadi <b>dalil naqli</b> tentang balasan orang munafik?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b><span class="arab">إِنَّ ٱلْمُنَٰفِقِينَ فِى ٱلدَّرْكِ ٱلْأَسْفَلِ مِنَ ٱلنَّارِ</span> &mdash; an-Nisa&rsquo; 4:145</b></span></button>
+          <button class="opt"><span class="k">B</span><span><span class="arab">قُلْ هُوَ ٱللَّهُ أَحَدٌ</span> &mdash; al-Ikhlas 112:1</span></button>
+          <button class="opt"><span class="k">C</span><span><span class="arab">ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ</span> &mdash; al-Fatihah 1:2</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Hadis Riwayat al-Bukhari dan Muslim: &ldquo;Tanda orang munafik ada tiga: apabila <b>bercakap berbohong</b>, apabila <b>berjanji memungkiri</b>, dan apabila <b>diberi amanah mengkhianati</b>.&rdquo;">
+        <div class="qhead"><span class="qn">6</span><span class="qtext">Apakah <b>tiga tanda</b> orang munafik menurut hadis Riwayat al-Bukhari dan Muslim?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Makan banyak, tidur lama, banyak bercakap</span></button>
+          <button class="opt"><span class="k">B</span><span>Marah cepat, kedekut, suka bergaduh</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Berbohong, memungkiri janji, mengkhianati amanah</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Riwayat <b>Muslim</b> menambah tanda keempat: <span class='arab'>وَإِذَا خَاصَمَ فَجَرَ</span> — &ldquo;dan apabila <b>bertengkar dia mencaci</b> (melampaui batas)&rdquo;.">
+        <div class="qhead"><span class="qn">7</span><span class="qtext">Apakah <b>tanda tambahan</b> orang munafik dalam riwayat Muslim?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Apabila makan dia tidak membaca basmalah</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Apabila bertengkar dia mencaci</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Apabila solat dia tergesa-gesa</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Perbezaan utama: <b>kufur</b> dilakukan secara nyata dan terang-terangan, manakala <b>nifak</b> disembunyikan di sebalik pengakuan iman — zahirnya Islam, batinnya mengingkari.">
+        <div class="qhead"><span class="qn">8</span><span class="qtext">Apakah <b>perbezaan utama</b> antara nifak dengan kufur?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Kufur lebih ringan dosanya daripada nifak</span></button>
+          <button class="opt"><span class="k">B</span><span>Nifak hanya berlaku ketika solat</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Kufur dilakukan secara nyata; nifak disembunyikan di sebalik pengakuan iman</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Berpura-pura soleh supaya dipuji manusia ialah sifat <b>riak&rsquo;</b> dan ciri munafik — ia bukan tindakan menjauhi nifak. Tindakan yang betul: ikhlas, menepati janji, menjaga amanah, berkata benar, doa &amp; istighfar, memilih rakan soleh.">
+        <div class="qhead"><span class="qn">9</span><span class="qtext">Antara berikut, yang manakah <b>BUKAN</b> tindakan menjauhi nifak?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Menepati janji dan menjaga amanah</span></button>
+          <button class="opt"><span class="k">B</span><span>Memilih rakan yang soleh dan memperbanyak istighfar</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Berpura-pura soleh supaya dipuji manusia</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="SP 3.4.6 menuntut kita mengelakkan perbuatan nifak dalam kehidupan secara <b>beradab dan istiqamah</b> — dilakukan setiap hari dengan hati yang ikhlas, bukan hanya apabila dilihat orang.">
+        <div class="qhead"><span class="qn">10</span><span class="qtext">Bagaimanakah sikap yang dituntut dalam mengelakkan perbuatan nifak dalam kehidupan?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Beradab dan istiqamah setiap hari</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Berbuat baik hanya apabila dilihat guru</span></button>
+          <button class="opt"><span class="k">C</span><span>Menjaga akhlak hanya di dalam masjid</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+    </div>
+
+    <div class="result" id="result">
+      <svg viewBox="0 0 220 170" style="width:200px;height:auto;margin:0 auto 4px;display:block">
+        <g transform="translate(24,4) scale(.95)"><use href="#adam"/></g>
+        <g transform="translate(116,4) scale(.95)"><use href="#nur"/></g>
+      </svg>
+      <div class="stars" id="stars"></div>
+      <div class="big" id="rscore"></div>
+      <div class="msg" id="rmsg"></div>
+      <button class="act solid" onclick="resetQuiz()">Cuba Lagi</button>
+      <button class="act" onclick="window.print()">Cetak / Simpan PDF</button>
+    </div>
+  </section>
+
+<!-- ===== LAMPIRAN ===== -->
+<section id="lampiran">
+  <h2>Lampiran: 26 Standard Kandungan Pendidikan Islam Tahun 4</h2>
+  <p class="hint">Senarai penuh SK Tahun 4 (KSSR Semakan 2017). SK 3.4 ialah unit yang diliputi dalam bahan ini.</p>
+  <div class="card">
+    <table>
+      <thead><tr><th class="c">Bil</th><th>Bidang</th><th class="c">SK</th><th>Standard Kandungan</th><th class="c">Status</th></tr></thead>
+      <tbody>
+        <tr><td class="c">1</td><td>al-Quran</td><td class="c">1.1</td><td>Tilawah: Membaca surah at-Takathur dengan betul dan bertajwid</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">2</td><td>al-Quran</td><td class="c">1.2</td><td>Tilawah: Membaca surah al-Qari&lsquo;ah dengan betul dan bertajwid</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">3</td><td>al-Quran</td><td class="c">1.3</td><td>Hafazan: Menghafaz surah at-Takathur</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">4</td><td>al-Quran</td><td class="c">1.4</td><td>Hafazan: Menghafaz surah al-Qari&lsquo;ah</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">5</td><td>al-Quran</td><td class="c">1.5</td><td>Kefahaman: Memahami maksud surah al-Ikhlas</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">6</td><td>al-Quran</td><td class="c">1.6</td><td>Tajwid: Membaca ayat yang mengandungi bacaan mim sakinah dan tanwin</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">7</td><td>al-Quran</td><td class="c">1.7</td><td>Tajwid: Membaca ayat yang mengandungi bacaan qalqalah</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">8</td><td>al-Quran</td><td class="c">1.8</td><td>Tajwid: Mengenal pasti dan membaca ayat yang mengandungi tanda waqaf</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">9</td><td>Hadis</td><td class="c">2.1</td><td>Hadis: Memahami dan mengamalkan hadis memuliakan tetamu</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">10</td><td>Akidah</td><td class="c">3.1</td><td>Mengenal nama-nama Allah: al-&lsquo;Azim dan al-Hamid</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">11</td><td>Akidah</td><td class="c">3.2</td><td>Beriman kepada rasul-rasul Allah</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">12</td><td>Akidah</td><td class="c">3.3</td><td>Mempertahankan akidah daripada kufur</td><td class="c">&#9675;</td></tr>
+        <tr class="on"><td class="c">13</td><td>Akidah</td><td class="c">3.4</td><td>Mempertahankan akidah daripada <b>nifak</b> secara beradab dan istiqamah</td><td class="c" style="color:#5b4b9c">&#9679;</td></tr>
+        <tr><td class="c">14</td><td>Ibadah</td><td class="c">4.1</td><td>Bersuci daripada najis</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">15</td><td>Ibadah</td><td class="c">4.2</td><td>Azan dan iqamah</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">16</td><td>Ibadah</td><td class="c">4.3</td><td>Puasa Ramadan</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">17</td><td>Sirah</td><td class="c">5.1</td><td>Perjanjian Aqabah</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">18</td><td>Sirah</td><td class="c">5.2</td><td>Sifat fatanah Rasulullah SAW</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">19</td><td>Sirah</td><td class="c">5.3</td><td>Keperibadian Rasulullah SAW dalam berdakwah</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">20</td><td>Adab</td><td class="c">6.1</td><td>Adab berpakaian</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">21</td><td>Adab</td><td class="c">6.2</td><td>Adab beriadah</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">22</td><td>Adab</td><td class="c">6.3</td><td>Adab berjiran</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">23</td><td>Adab</td><td class="c">6.4</td><td>Adab terhadap guru</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">24</td><td>Jawi</td><td class="c">7.1</td><td>Menulis huruf Jawi: huruf hamzah</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">25</td><td>Jawi</td><td class="c">7.2</td><td>Menulis perkataan Jawi: perkataan tradisi</td><td class="c">&#9675;</td></tr>
+        <tr><td class="c">26</td><td>Jawi</td><td class="c">7.3</td><td>Menulis perkataan Jawi: pinjaman bahasa Inggeris</td><td class="c">&#9675;</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:12px;background:#f7f2e4;border:1.4px dashed var(--gold);border-radius:13px;padding:10px 13px;font-size:12.5px;color:#3a2f10;line-height:1.55">Nota: <span style="color:#5b4b9c">&#9679;</span> = diliputi dalam bahan PdP ini (SK 3.4 &mdash; Mempertahankan Akidah daripada Nifak). <span>&#9675;</span> = SK lain dalam Tahun 4. Senarai disusun mengikut DSKP Pendidikan Islam Tahun 4, KSSR Semakan 2017.</p>
+  </div>
+</section>
+
+<footer>
+    Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 4 (BPK, KPM) &amp; Buku Teks Pendidikan Islam Tahun 4 SK. Teks ayat al-Quran disahkan daripada mushaf Uthmani (api.alquran.cloud); terjemahan daripada Tafsir Pimpinan Ar-Rahman (Basmeih).
+  </footer>
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+  var scEl = document.getElementById('sc');
+  var doneEl = document.getElementById('done');
+  var barEl = document.getElementById('bar');
+  var resultEl = document.getElementById('result');
+  var total = cards.length;
+
+  function refresh(){
+    var score = 0, answered = 0;
+    cards.forEach(function(c){
+      if(c.dataset.state === 'correct'){ score++; answered++; }
+      else if(c.dataset.state === 'wrong'){ answered++; }
+    });
+    scEl.textContent = score;
+    doneEl.textContent = answered;
+    barEl.style.width = (answered/total*100) + '%';
+    if(answered === total) showResult(score);
+  }
+
+  function showResult(score){
+    resultEl.classList.add('show');
+    document.getElementById('rscore').textContent = score + ' / ' + total;
+    document.getElementById('stars').textContent =
+      score >= 9 ? '\u2605\u2605\u2605\u2605\u2605' : score >= 7 ? '\u2605\u2605\u2605\u2605\u2606' : score >= 5 ? '\u2605\u2605\u2605\u2606\u2606' : '\u2605\u2605\u2606\u2606\u2606';
+    document.getElementById('rmsg').textContent =
+      score === 10 ? 'Syabas! Akidah kamu benar-benar terpelihara.'
+      : score >= 8 ? 'Bagus sekali! Teruskan beramal dengan ikhlas.'
+      : score >= 6 ? 'Bagus! Ulangi nota sekali lagi untuk lebih mantap.'
+      : score >= 4 ? 'Jangan putus asa \u2014 baca semula nota ringkas di atas.'
+      : 'Mari ulang bersama-sama. Baca nota ringkas, kemudian cuba lagi.';
+    resultEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  cards.forEach(function(card){
+    var opts = Array.prototype.slice.call(card.querySelectorAll('.opt'));
+    var fb = card.querySelector('.fb');
+    var face = fb.querySelector('use');
+    var txt = fb.querySelector('.txt');
+    var ans = parseInt(card.dataset.ans, 10);
+    var exp = card.dataset.exp;
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(card.dataset.state) return;
+        var ok = (i === ans);
+        card.dataset.state = ok ? 'correct' : 'wrong';
+        card.classList.add('done');
+
+        opts.forEach(function(b, j){
+          b.disabled = true;
+          if(j === ans){ b.classList.add('ok'); }
+          else if(j === i){ b.classList.add('bad'); }
+          else { b.classList.add('dim'); }
+        });
+
+        face.setAttribute('href', ok ? '#faceYay' : '#faceOops');
+        txt.innerHTML = (ok ? '<b>Betul!</b> ' : '<b>Belum tepat.</b> Jawapan yang betul ialah <b>' +
+                        String.fromCharCode(65+ans) + '</b>. ') + exp;
+        fb.classList.add('show');
+        if(!ok) fb.classList.add('wrong');
+
+        refresh();
+      });
+    });
+  });
+
+  window.resetQuiz = function(){
+    cards.forEach(function(c){
+      delete c.dataset.state;
+      c.classList.remove('done');
+      var fb = c.querySelector('.fb');
+      fb.classList.remove('show','wrong');
+      c.querySelectorAll('.opt').forEach(function(b){
+        b.disabled = false;
+        b.classList.remove('ok','bad','dim');
+      });
+    });
+    resultEl.classList.remove('show');
+    refresh();
+    window.scrollTo({top: document.getElementById('quiz').offsetTop - 20, behavior:'smooth'});
+  };
+
+  window.addEventListener('beforeprint', function(){
+    cards.forEach(function(c){
+      var ans = parseInt(c.dataset.ans,10);
+      c.querySelectorAll('.opt').forEach(function(b,j){
+        if(j === ans) b.classList.add('ok');
+      });
+      if(!c.querySelector('.fb').classList.contains('show')){
+        var fb = c.querySelector('.fb');
+        fb.querySelector('.txt').innerHTML = '<b>Jawapan: ' + String.fromCharCode(65+ans) + '</b>. ' + c.dataset.exp;
+        fb.classList.add('show');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/dokumen/
+
+Sitemap: https://skbongkolpitas.edu.my/sitemap.xml

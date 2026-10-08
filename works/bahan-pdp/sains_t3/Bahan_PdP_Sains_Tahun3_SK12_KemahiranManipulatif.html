@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kemahiran Manipulatif &mdash; Sains Tahun 3</title>
+<style>
+  :root{
+    --sky1:#e0f0f8; --sky2:#f0f8fc; --sky3:#e8f4fa;
+    --grass1:#6fa8d4; --grass2:#2c5e8c; --grass3:#1a3d5e;
+    --paper:#f7fbfd; --ink:#182430; --muted:#5a6f7d;
+    --gold:#6f8f9e; --teal:#2c5e82; --aqua:#d8eaf4;
+    --line:#d0e0ec; --silver:#b3cddb; --silver2:#8eaeb8;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,serif;direction:rtl}
+  .jf{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,serif;direction:ltr;unicode-bidi:isolate}
+  .skybg{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#eaf1fb 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:var(--aqua);top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:var(--silver);top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:var(--sky3);bottom:-140px;left:18%}
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--grass2);font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:var(--grass3);letter-spacing:.4px;text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:var(--muted);font-weight:600}
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:0 3px 10px rgba(0,0,0,.08)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;margin-bottom:22px;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--grass2);font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#eff5fc;border:1.4px solid var(--line);border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,var(--grass1),var(--grass2));box-shadow:0 2px 0 var(--grass3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--grass3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#f1f4f8;border:1.4px dashed var(--silver2);border-radius:13px;padding:10px 13px;font-size:12.5px;color:#2b3440;line-height:1.55}
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;margin-bottom:22px;box-shadow:0 4px 16px rgba(0,0,0,.08);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;box-shadow:0 2px 0 var(--grass3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+  h2 .mascot{flex:none;margin-left:auto;display:block}
+  .deko{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:14px 0 0}
+  .deko svg{display:block}
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes floatBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    @keyframes softGlow{0%,100%{filter:drop-shadow(0 0 3px rgba(200,220,255,.6))}50%{filter:drop-shadow(0 0 8px rgba(200,220,255,.95))}}
+    @keyframes gentleSway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+    @keyframes drift{from{transform:translateX(0)}to{transform:translateX(26px)}}
+    @keyframes twinkle{0%,100%{opacity:.35}50%{opacity:1}}
+    @keyframes g14bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+    @keyframes g14drift{0%{transform:translateX(-9px)}100%{transform:translateX(9px)}}
+    @keyframes g14twinkle{0%,100%{opacity:.4}50%{opacity:1}}
+    @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+    @keyframes cardEntrance{0%{opacity:0;transform:translateY(14px) scale(.98)}100%{opacity:1;transform:none}}
+    h2 .mascot,.deko svg{animation:g14bob 2.6s ease-in-out infinite}
+    .deko svg:nth-child(2){animation-delay:.45s}
+    .deko svg:nth-child(3){animation-delay:.9s}
+    .anim-drift{animation:g14drift 8s ease-in-out infinite alternate}
+    .anim-twinkle{animation:g14twinkle 2.2s ease-in-out infinite}
+    .anim-bob{animation:floatBob 3.2s ease-in-out infinite}
+    .anim-glow{animation:softGlow 2.8s ease-in-out infinite}
+    .anim-sway{animation:gentleSway 4s ease-in-out infinite;transform-origin:center bottom}
+  }
+  @media print{
+    h2 .mascot,.deko svg,.anim-drift,.anim-twinkle,.anim-bob,.anim-glow,.anim-sway{animation:none !important}
+  }
+  .nota{border-left:5px solid var(--silver2);background:#f1f4f8;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol,.nota ul{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#2b3440}
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(135deg,#eff5fc,#f1f4f8);border:1.5px solid var(--line);border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#dbe6f4;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .qcard{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+  .qtop{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+  .qn{flex:none;width:28px;height:28px;border-radius:9px;background:var(--grass2);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 0 var(--grass3)}
+  .qt{font-size:14px;font-weight:700;color:var(--ink);line-height:1.45}
+  .opts{display:flex;flex-direction:column;gap:8px}
+  .opt{text-align:left;border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;background:#fff;cursor:pointer;font-size:13.5px;color:var(--ink);transition:all .2s}
+  .opt:hover:not(:disabled){background:#f3f7fb;border-color:var(--grass1)}
+  .opt.ok{border-color:#3cb371;background:#e8f5ee;color:#145a32}
+  .opt.bad{border-color:#e06c75;background:#fcebed;color:#7a1f26}
+  .opt.dim{opacity:.55}
+  .fb{display:none;align-items:flex-start;gap:10px;margin-top:10px;padding:10px 12px;border-radius:12px;background:#e8f5ee;border:1.5px solid #b5e0c5}
+  .fb.wrong{background:#fcebed;border-color:#e8b5b5}
+  .fb.show{display:flex}
+  .ff{flex:none;width:44px;height:44px}
+  .fb .txt{font-size:13px;line-height:1.5;color:#2b3440}
+  .result{display:none;background:linear-gradient(135deg,#e8f5ee,#d4edda);border:2px solid #3cb371;border-radius:18px;padding:16px;text-align:center}
+  .result.show{display:block}
+  .stars{font-size:26px;color:#f4c430;letter-spacing:4px;margin:6px 0}
+  .card{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px}
+  .card table{width:100%;border-collapse:collapse;font-size:12.5px}
+  .card th{text-align:left;padding:8px 10px;background:var(--grass2);color:#fff;font-weight:700}
+  .card td{padding:8px 10px;border-bottom:1px solid var(--line)}
+  .card tr.on td{background:#f1f8f5}
+  .card .c{text-align:center}
+  footer{text-align:center;font-size:11.5px;color:var(--muted);margin-top:30px}
+  @media print{body{background:#fff} section{box-shadow:none;margin-bottom:14px} .opt.ok{border-color:#3cb371;background:#e8f5ee} .fb{display:flex} .result{display:block}}
+  @media print{@page{size:A4 portrait;margin:12mm}}
+
+  /* Character animations */
+  .char-bob { animation: charBob 3.2s ease-in-out infinite; transform-origin: center bottom; }
+  @keyframes charBob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .sparkle { animation: sparkleTwinkle 2.2s ease-in-out infinite; transform-origin: center; }
+  @keyframes sparkleTwinkle { 0%,100%{opacity:.3;transform:scale(.8)} 50%{opacity:1;transform:scale(1.15)} }
+  .bubble { animation: bubbleRise 2.8s ease-in-out infinite; }
+  @keyframes bubbleRise { 0%{transform:translateY(0);opacity:.5} 100%{transform:translateY(-30px);opacity:0} }
+  .gear-spin { animation: gearSpin 5s linear infinite; transform-origin: center; }
+  @keyframes gearSpin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+  .antenna-glow { animation: antennaGlow 1.6s ease-in-out infinite; }
+  @keyframes antennaGlow { 0%,100%{opacity:.6} 50%{opacity:1} }
+
+  /* Floating emoji decorations */
+  .floaters { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .floater { position:absolute; opacity:.25; animation: floaterDrift linear infinite; }
+  @keyframes floaterDrift { from{transform:translateY(110vh) rotate(0)} to{transform:translateY(-20vh) rotate(360deg)} }
+
+  /* Emoji pulse in headings */
+  .emoji-pulse { display:inline-block; animation: emojiPulse 2.2s ease-in-out infinite; }
+  @keyframes emojiPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }
+
+  /* Footer character */
+  .footer-char { text-align:center; padding:24px 10px 10px; }
+  .footer-char .big-emoji { font-size:48px; display:inline-block; animation: footerBounce 2.5s ease-in-out infinite; filter:drop-shadow(0 4px 8px rgba(0,0,0,.12)); }
+  @keyframes footerBounce { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-8px) rotate(5deg)} }
+  .footer-char .msg { font-size:13px; color:var(--muted); margin-top:8px; font-weight:600; }
+
+  /* Shimmer bar */
+  .shimmer-bar { height:3px; background:linear-gradient(90deg,transparent,var(--grass1),var(--gold),var(--grass1),transparent); background-size:200% 100%; animation:shimmerMove 3s linear infinite; border-radius:2px; }
+  @keyframes shimmerMove { from{background-position:200% 0} to{background-position:-200% 0} }
+
+  /* Twinkle stars */
+  .twinkle-star { position:fixed; font-size:14px; opacity:.3; animation: twinkleAnim 2s ease-in-out infinite; pointer-events:none; z-index:0; }
+  @keyframes twinkleAnim { 0%,100%{opacity:.15;transform:scale(.8)} 50%{opacity:.5;transform:scale(1.3)} }
+
+  /* Background dots */
+  .bg-dots { position:fixed; inset:0; pointer-events:none; z-index:-2; opacity:.035; background-image:radial-gradient(circle,var(--grass2) 1.5px,transparent 1.5px); background-size:28px 28px; }
+
+  /* Enhanced hover */
+  .chip { transition:.2s; }
+  .chip:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.1); }
+  .toc .it { transition:.15s; }
+  .toc .it:hover { transform:translateX(5px); border-color:var(--grass1); }
+
+  @media print { .char-bob,.sparkle,.bubble,.gear-spin,.antenna-glow,.floaters,.floater,.footer-char,.shimmer-bar,.twinkle-star,.bg-dots,.emoji-pulse { animation:none!important } .floater,.floaters,.twinkle-star,.bg-dots { display:none } }
+  @media (prefers-reduced-motion:reduce) { .char-bob,.sparkle,.bubble,.gear-spin,.antenna-glow,.floater,.emoji-pulse,.footerBounce,.twinkleAnim { animation:none!important } }
+
+</style>
+</head>
+<body>
+<div class="shimmer-bar"></div>
+<div class="bg-dots"></div>
+<div class="floater" style="left:6%;font-size:10px;animation-duration:7.0s;animation-delay:0.0s">&#10024;</div>
+<div class="floater" style="left:18%;font-size:13px;animation-duration:9.5s;animation-delay:0.9s">&#128161;</div>
+<div class="floater" style="left:32%;font-size:11px;animation-duration:12.0s;animation-delay:1.8s">&#128300;</div>
+<div class="floater" style="left:48%;font-size:12px;animation-duration:14.5s;animation-delay:2.7s">&#9733;</div>
+<div class="floater" style="left:62%;font-size:14px;animation-duration:7.0s;animation-delay:3.6s">&#128294;</div>
+<div class="floater" style="left:76%;font-size:10px;animation-duration:9.5s;animation-delay:4.5s">&#11088;</div>
+<div class="floater" style="left:88%;font-size:13px;animation-duration:12.0s;animation-delay:0.40000000000000036s">&#10024;</div>
+<div class="twinkle-star" style="left:5%;top:8%;animation-delay:0s">&#128161;</div>
+<div class="twinkle-star" style="left:95%;top:15%;animation-delay:0.5s">&#128300;</div>
+<div class="twinkle-star" style="left:3%;top:40%;animation-delay:1s">&#128161;</div>
+<div class="twinkle-star" style="left:97%;top:35%;animation-delay:1.5s">&#10024;</div>
+<div class="twinkle-star" style="left:8%;top:70%;animation-delay:0s">&#10024;</div>
+<div class="twinkle-star" style="left:92%;top:65%;animation-delay:0.3s">&#128161;</div>
+<div class="twinkle-star" style="left:15%;top:95%;animation-delay:0.8s">&#128300;</div>
+<div class="twinkle-star" style="left:85%;top:90%;animation-delay:1.2s">&#128161;</div>
+<div class="twinkle-star" style="left:50%;top:5%;animation-delay:1.5s">&#128161;</div>
+<div class="twinkle-star" style="left:50%;top:98%;animation-delay:0.6s">&#128294;</div>
+
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="wrap">
+
+<div class="hero">
+<svg viewBox="0 0 940 300" xmlns="http://www.w3.org/2000/svg"><rect width="940" height="300" fill="#e0f0f8"/><ellipse cx="470" cy="260" rx="420" ry="30" fill="#d8eaf4" opacity=".5"/><g class="anim-bob"><rect x="340" y="110" width="260" height="100" rx="16" fill="#fff" stroke="#2c5e8c" stroke-width="2.5"/><text x="470" y="150" text-anchor="middle" font-size="14" fill="#2c5e8c" font-family="Segoe UI,Trebuchet MS,sans-serif">Kemahiran Manipulatif</text><text x="470" y="180" text-anchor="middle" font-size="12" fill="#1a3d5e">Menggunakan peralatan, bahan dan spesimen den</text></g><circle cx="120" cy="70" r="22" fill="#fff" opacity=".85" class="anim-glow"/><circle cx="820" cy="100" r="16" fill="#fff" opacity=".6" class="anim-glow" style="animation-delay:.7s"/><g transform="translate(740,20)" class="char-bob">
+  <ellipse cx="80" cy="210" rx="32" ry="40" fill="#4a90a4" opacity=".85"/>
+  <circle cx="80" cy="145" r="36" fill="#f5d0a9"/>
+  <path d="M46 132 Q52 96 80 93 Q108 96 114 132 Q110 104 80 99 Q54 104 46 132" fill="#3d2817"/>
+  <ellipse cx="66" cy="141" rx="9" ry="11" fill="#fff"/><ellipse cx="94" cy="141" rx="9" ry="11" fill="#fff"/>
+  <ellipse cx="68" cy="141" rx="4.5" ry="6.5" fill="#2c5e82"/><ellipse cx="96" cy="141" rx="4.5" ry="6.5" fill="#2c5e82"/>
+  <circle cx="69" cy="139" r="2" fill="#fff"/><circle cx="97" cy="139" r="2" fill="#fff"/>
+  <ellipse cx="56" cy="156" rx="6" ry="3.5" fill="#e8a090" opacity=".5"/>
+  <ellipse cx="104" cy="156" rx="6" ry="3.5" fill="#e8a090" opacity=".5"/>
+  <path d="M70 160 Q80 169 90 160" fill="none" stroke="#c07860" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="112" cy="172" r="12" fill="none" stroke="#ffd54f" stroke-width="3.5"/>
+  <line x1="121" y1="181" x2="130" y2="192" stroke="#ffd54f" stroke-width="3.5" stroke-linecap="round"/>
+  <g class="sparkle"><path d="M126 118 L128 123 L133 125 L128 127 L126 132 L124 127 L119 125 L124 123 Z" fill="#ffd54f"/></g>
+  <g class="sparkle" style="animation-delay:.6s"><path d="M38 108 L40 113 L45 115 L40 117 L38 122 L36 117 L31 115 L36 113 Z" fill="#90caf9"/></g>
+</g></svg>
+<div class="hero-txt">
+<div class="kick">Bahan PdP &middot; Sains &middot; Tahun 3</div>
+<h1>Kemahiran Manipulatif</h1>
+<div class="sub">Menggunakan peralatan, bahan dan spesimen dengan betul</div>
+</div>
+</div>
+
+<div class="strip">
+<div class="chip"><div class="lbl">Bidang</div><div class="val">Inkuiri Dalam Sains</div></div>
+<div class="chip"><div class="lbl">SK</div><div class="val">1.2</div></div>
+<div class="chip"><div class="lbl">SP</div><div class="val">1.2.1 - 1.2.5</div></div>
+<div class="chip"><div class="lbl">Unit</div><div class="val">2/13</div></div>
+</div>
+
+<div class="toc">
+<div class="ttl">Kandungan Bahan PdP</div>
+<div class="grid"><div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">Visual ringkasan</div></div></div><div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">Rangka topik</div></div></div><div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">Nota penting</div></div></div><div class="it"><div class="n">4</div><div><div class="t">Diagram</div><div class="d">Rajah penjelasan</div></div></div><div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan + jawapan</div></div></div><div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Senarai SK & SP</div></div></div></div>
+<div class="note"><b>Nota:</b> Bahan ini merangkumi 6 komponen utama untuk membantu guru dan murid menguasai <b>SK 1.2</b> dalam pembelajaran Sains Tahun 3.</div>
+</div>
+
+<section>
+<h2><span class="num">1</span> <span class="emoji-pulse">&#128202;</span> Infografik <span class="mascot">&#128300;</span></h2>
+<div class="hint">Ringkasan visual topik utama</div>
+<svg class="art"><svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg"><rect width="900" height="300" rx="18" fill="var(--aqua)" stroke="var(--line)" stroke-width="1.5"/><g><rect x="30" y="30" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="54" font-size="12" fill="var(--grass2)" font-weight="700">Mengenal pasti</text><text x="860" y="54" text-anchor="end" font-size="12" fill="var(--ink)">Kenal pasti alat dan bahan yang sesuai</text></g><g><rect x="30" y="74" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="98" font-size="12" fill="var(--grass2)" font-weight="700">Menggunakan</text><text x="860" y="98" text-anchor="end" font-size="12" fill="var(--ink)">Gunakan peralatan dengan betul</text></g><g><rect x="30" y="118" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="142" font-size="12" fill="var(--grass2)" font-weight="700">Mengendalikan</text><text x="860" y="142" text-anchor="end" font-size="12" fill="var(--ink)">Jaga spesimen dengan cermat</text></g><g><rect x="30" y="162" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="186" font-size="12" fill="var(--grass2)" font-weight="700">Melakar</text><text x="860" y="186" text-anchor="end" font-size="12" fill="var(--ink)">Lakar dengan tepat dan berskala</text></g><g><rect x="30" y="206" width="840" height="36" rx="10" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><text x="45" y="230" font-size="12" fill="var(--grass2)" font-weight="700">Membersih</text><text x="860" y="230" text-anchor="end" font-size="12" fill="var(--ink)">Bersih dan simpan alat selepas guna</text></g></svg></svg>
+</section>
+
+<section>
+<h2><span class="num">2</span> <span class="emoji-pulse">&#127919;</span> Peta Minda <span class="mascot">&#128300;</span></h2>
+<div class="hint">Rangka topik secara minda</div>
+<svg class="art"><svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg"><rect width="900" height="340" rx="18" fill="var(--sky2)" stroke="var(--line)" stroke-width="1.5"/><circle cx="450" cy="170" r="52" fill="#fff" stroke="var(--grass2)" stroke-width="2.5"/><text x="450" y="175" text-anchor="middle" font-size="12" fill="var(--grass3)" font-weight="700">Manipulatif</text><line x1="450.0" y1="120.0" x2="450.0" y2="78.0" stroke="var(--grass1)" stroke-width="2"/><rect x="384.0" y="20.0" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="450.0" y="45.0" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Kenal Pasti</text><line x1="497.5528258147577" y1="154.54915028125262" x2="537.4971994991541" y2="141.57043651750485" stroke="var(--grass1)" stroke-width="2"/><rect x="507.6373471183699" y="109.82779073125684" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="573.6373471183699" y="134.82779073125684" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Gunakan Betul</text><line x1="479.38926261462365" y1="210.45084971874738" x2="504.07624321090753" y2="244.42956348249518" stroke="var(--grass1)" stroke-width="2"/><rect x="460.4120827980215" y="255.1722092687432" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="526.4120827980215" y="280.1722092687432" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Jaga Spesimen</text><line x1="420.61073738537635" y1="210.45084971874738" x2="395.92375678909247" y2="244.42956348249518" stroke="var(--grass1)" stroke-width="2"/><rect x="307.5879172019785" y="255.1722092687432" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="373.5879172019785" y="280.1722092687432" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Lakar Tepat</text><line x1="402.4471741852423" y1="154.54915028125265" x2="362.50280050084586" y2="141.57043651750487" stroke="var(--grass1)" stroke-width="2"/><rect x="260.36265288163" y="109.82779073125687" width="132" height="40" rx="10" fill="#fff" stroke="var(--grass1)" stroke-width="1.8"/><text x="326.36265288163" y="134.82779073125687" text-anchor="middle" font-size="11" fill="var(--grass3)" font-weight="700">Bersih &amp; Simpan</text></svg></svg>
+</section>
+
+<section>
+<h2><span class="num">3</span> <span class="emoji-pulse">&#128221;</span> Nota Ringkas <span class="mascot">&#128300;</span></h2>
+<div class="hint">Nota penting untuk rujukan</div>
+<div class="nota"><ul><li><b>Kemahiran Manipulatif</b> melibatkan penggunaan tangan dan peralatan untuk menjalankan aktiviti sains.</li><li>Murid perlu mengenal pasti peralatan yang sesuai sebelum aktiviti.</li><li>Pengendalian spesimen mestilah cermat supaya tidak rosak.</li><li>Lakaran hendaklah tepat, berskala dan dilabel dengan betul.</li><li>Kebersihan dan penyimpanan alat adalah tanggungjawab murid.</li></ul></div>
+</section>
+
+<section>
+<h2><span class="num">4</span> <span class="emoji-pulse">&#128200;</span> Diagram <span class="mascot">&#128300;</span></h2>
+<div class="hint">Rajah penjelasan</div>
+<svg class="art"><svg viewBox="0 0 900 190" xmlns="http://www.w3.org/2000/svg"><rect width="900" height="190" rx="18" fill="var(--sky2)" stroke="var(--line)" stroke-width="1.5"/><text x="450" y="28" text-anchor="middle" font-size="13" fill="var(--grass3)" font-weight="700">Kemahiran Manipulatif</text><rect x="360" y="55" width="180" height="30" rx="8" fill="var(--grass2)"/><text x="450" y="75" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Kemahiran Manipulatif</text><line x1="450" y1="85" x2="165" y2="103" stroke="var(--grass1)" stroke-width="1.5"/><rect x="74" y="103" width="182" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="165" y="120" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Kenal Pasti</text><line x1="450" y1="85" x2="355" y2="103" stroke="var(--grass1)" stroke-width="1.5"/><rect x="264" y="103" width="182" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="355" y="120" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Gunakan Betul</text><line x1="450" y1="85" x2="545" y2="103" stroke="var(--grass1)" stroke-width="1.5"/><rect x="454" y="103" width="182" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="545" y="120" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Jaga Spesimen</text><line x1="450" y1="85" x2="735" y2="103" stroke="var(--grass1)" stroke-width="1.5"/><rect x="644" y="103" width="182" height="26" rx="6" fill="#fff" stroke="var(--grass1)" stroke-width="1.4"/><text x="735" y="120" text-anchor="middle" font-size="10" fill="var(--grass3)" font-weight="600">Lakar Tepat</text></svg></svg>
+</section>
+
+<section id="quiz">
+<h2><span class="num">5</span> <span class="emoji-pulse">&#127919;</span> Kuiz Interaktif <span class="mascot">&#128300;</span></h2>
+<div class="hint">5 soalan — jawapan terdedah apabila cetak</div>
+<div class="scorebar">
+<div class="sc">Skor: <span id="sc">0</span> / <span id="done">0</span></div>
+<div class="bar"><i id="bar"></i></div>
+<button onclick="resetQuiz()" style="border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:6px 12px;font-size:12px;cursor:pointer">Ulang Kuiz</button>
+</div>
+<div class="qcard" data-ans="0" data-exp="Kemahiran manipulatif melibatkan penggunaan peralatan dan bahan sains."><div class="qtop"><div class="qn">1</div><div class="qt">Apakah kemahiran manipulatif?</div></div><div class="opts"><button class="opt">A. Kemahiran menggunakan peralatan</button><button class="opt">B. Kemahiran membaca</button><button class="opt">C. Kemahiran mengira</button><button class="opt">D. Kemahiran melukis</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="0" data-exp="Mengenal pasti peralatan dan bahan yang diperlukan adalah langkah persediaan."><div class="qtop"><div class="qn">2</div><div class="qt">Sebelum aktiviti, murid perlu...</div></div><div class="opts"><button class="opt">A. Mengenal pasti alat dan bahan</button><button class="opt">B. Terus mula eksperimen</button><button class="opt">C. Tidak bersedia</button><button class="opt">D. Mengelakkan alat</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="0" data-exp="Spesimen perlu diendalikan dengan cermat supaya tidak rosak."><div class="qtop"><div class="qn">3</div><div class="qt">Spesimen perlu diendalikan dengan...</div></div><div class="opts"><button class="opt">A. Cermat</button><button class="opt">B. Kasar</button><button class="opt">C. Tidak peduli</button><button class="opt">D. Dibuang</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="0" data-exp="Lakaran sains mestilah tepat, berskala dan dilabel dengan betul."><div class="qtop"><div class="qn">4</div><div class="qt">Lakaran dalam sains hendaklah...</div></div><div class="opts"><button class="opt">A. Tepat dan dilabel</button><button class="opt">B. Tidak berskala</button><button class="opt">C. Abstrak</button><button class="opt">D. Tidak perlu label</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="qcard" data-ans="0" data-exp="Membersih dan menyimpan peralatan dengan betul adalah tanggungjawab."><div class="qtop"><div class="qn">5</div><div class="qt">Selepas menggunakan alat, murid perlu...</div></div><div class="opts"><button class="opt">A. Membersih dan menyimpan</button><button class="opt">B. Tinggalkan sahaja</button><button class="opt">C. Rosakkan</button><button class="opt">D. Jual alat</button></div><div class="fb"><svg class="ff" width="44" height="44"><use href="#faceOops"/></svg><div class="txt"></div></div></div>
+<div class="result" id="result">
+<div style="font-size:15px;font-weight:800;color:var(--grass3)">Keputusan</div>
+<div class="stars" id="stars"></div>
+<div id="rscore" style="font-size:20px;font-weight:800;color:var(--grass2);margin:4px 0"></div>
+<div id="rmsg" style="font-size:13px;color:#2b3440;margin-top:6px"></div>
+</div>
+</section>
+
+<section>
+<h2><span class="num">6</span> <span class="emoji-pulse">&#128203;</span> Lampiran: Senarai SK &amp; SP <span class="mascot">&#128300;</span></h2>
+<div class="hint">Standard Kandungan & Standard Pembelajaran Tahun 3</div>
+<div class="card" style="margin-bottom:14px">
+<h3 style="margin:0 0 10px;font-size:13px;color:var(--grass3)">SK 1.2 — Kemahiran Manipulatif</h3>
+<ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.7"><li>1.2.1 Mengenal pasti peralatan, bahan sains dan spesimen yang diperlukan.</li><li>1.2.2 Menggunakan dan mengendalikan peralatan dan bahan sains dengan betul.</li><li>1.2.3 Mengendalikan spesimen dengan betul dan cermat.</li><li>1.2.4 Melakar spesimen, peralatan dan bahan sains dengan betul.</li><li>1.2.5 Membersihkan dan menyimpan peralatan dengan betul.</li></ol>
+</div>
+<div class="card">
+<table>
+<thead><tr><th class="c">Bil</th><th>Bidang</th><th class="c">SK</th><th>Standard Kandungan</th><th class="c">Status</th></tr></thead>
+<tbody><tr><td class="c">1</td><td>Inkuiri</td><td class="c">1.1</td><td>Kemahiran Proses Sains</td><td class="c">&#9675;</td></tr>
+<tr class="on"><td class="c">2</td><td>Inkuiri</td><td class="c">1.2</td><td>Kemahiran Manipulatif</td><td class="c" style="color:#2c5e8c">&#9679;</td></tr>
+<tr><td class="c">3</td><td>Inkuiri</td><td class="c">2.1</td><td>Peraturan Bilik Sains</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">4</td><td>Hayat</td><td class="c">3.1</td><td>Gigi</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">5</td><td>Hayat</td><td class="c">3.2</td><td>Kelas Makanan</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">6</td><td>Hayat</td><td class="c">3.3</td><td>Pencernaan</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">7</td><td>Hayat</td><td class="c">4.1</td><td>Tabiat Pemakanan Haiwan</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">8</td><td>Hayat</td><td class="c">5.1</td><td>Pembiakan Tumbuhan</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">9</td><td>Fizikal</td><td class="c">6.1</td><td>Pengukuran Luas dan Isi Padu</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">10</td><td>Fizikal</td><td class="c">7.1</td><td>Ketumpatan</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">11</td><td>Bahan</td><td class="c">8.1</td><td>Asid dan Alkali</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">12</td><td>Bumi</td><td class="c">9.1</td><td>Sistem Suria</td><td class="c">&#9675;</td></tr>
+<tr><td class="c">13</td><td>Teknologi</td><td class="c">10.1</td><td>Takal</td><td class="c">&#9675;</td></tr></tbody>
+</table>
+<p class="note" style="margin-top:12px;background:#f1f4f8;border:1.4px dashed var(--silver2);border-radius:13px;padding:10px 13px;font-size:12.5px;color:#2b3440;line-height:1.55">Nota: <span style="color:var(--grass2)">&#9679;</span> = diliputi dalam bahan PdP ini (SK 1.2). <span>&#9675;</span> = SK lain dalam Tahun 3. Senarai disusun mengikut DSKP Sains Tahun 3, KSSR Semakan 2017.</p>
+</div>
+</section>
+
+<footer>
+Dijana daripada DSKP KSSR Semakan 2017 Sains Tahun 3 (BPK, KPM) &amp; Buku Teks Sains Tahun 3 SK.
+</footer>
+</div>
+
+<svg style="position:absolute;width:0;height:0" aria-hidden="true">
+<defs>
+<symbol id="faceYay" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#3cb371"/><circle cx="14" cy="17" r="2.5" fill="#fff"/><circle cx="30" cy="17" r="2.5" fill="#fff"/><path d="M13 28q9 8 18 0" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="faceOops" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#e06c75"/><circle cx="14" cy="17" r="2.5" fill="#fff"/><circle cx="30" cy="17" r="2.5" fill="#fff"/><path d="M14 31q8-6 16 0" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></symbol>
+</defs>
+</svg>
+
+<script>
+(function(){
+var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+var scEl = document.getElementById('sc');
+var doneEl = document.getElementById('done');
+var barEl = document.getElementById('bar');
+var resultEl = document.getElementById('result');
+var total = cards.length;
+function refresh(){
+var score=0,answered=0;
+cards.forEach(function(c){ if(c.dataset.state==='correct'){score++;answered++;} else if(c.dataset.state==='wrong'){answered++;} });
+scEl.textContent=score; doneEl.textContent=answered; barEl.style.width=(answered/total*100)+'%';
+if(answered===total) showResult(score);
+}
+function showResult(score){
+resultEl.classList.add('show');
+document.getElementById('rscore').textContent=score+' / '+total;
+document.getElementById('stars').textContent=score>=9?'★★★★★':score>=7?'★★★★☆':score>=5?'★★★☆☆':'★★☆☆☆';
+document.getElementById('rmsg').textContent="Cemerlang! Kamu benar-benar menguasai topik ini.";
+}
+cards.forEach(function(card){
+var opts=Array.prototype.slice.call(card.querySelectorAll('.opt'));
+var fb=card.querySelector('.fb');
+var face=fb.querySelector('use');
+var txt=fb.querySelector('.txt');
+var ans=parseInt(card.dataset.ans,10);
+var exp=card.dataset.exp;
+opts.forEach(function(btn,i){
+btn.addEventListener('click',function(){
+if(card.dataset.state) return;
+var ok=(i===ans);
+card.dataset.state=ok?'correct':'wrong';
+card.classList.add('done');
+opts.forEach(function(b,j){
+b.disabled=true;
+if(j===ans) b.classList.add('ok');
+else if(j===i) b.classList.add('bad');
+else b.classList.add('dim');
+});
+face.setAttribute('href',ok?'#faceYay':'#faceOops');
+txt.innerHTML=(ok?'<b>Betul!</b> ':'<b>Belum tepat.</b> Jawapan yang betul ialah <b>'+String.fromCharCode(65+ans)+'</b>. ')+exp;
+fb.classList.add('show');
+if(!ok) fb.classList.add('wrong');
+refresh();
+});
+});
+});
+window.resetQuiz=function(){
+cards.forEach(function(c){
+delete c.dataset.state; c.classList.remove('done');
+var fb=c.querySelector('.fb'); fb.classList.remove('show','wrong');
+c.querySelectorAll('.opt').forEach(function(b){ b.disabled=false; b.classList.remove('ok','bad','dim'); });
+});
+resultEl.classList.remove('show'); refresh();
+window.scrollTo({top:document.getElementById('quiz').offsetTop-20,behavior:'smooth'});
+};
+window.addEventListener('beforeprint',function(){
+cards.forEach(function(c){
+var ans=parseInt(c.dataset.ans,10);
+c.querySelectorAll('.opt').forEach(function(b,j){ if(j===ans) b.classList.add('ok'); });
+var fb=c.querySelector('.fb');
+fb.querySelector('.txt').innerHTML='<b>Jawapan: '+String.fromCharCode(65+ans)+'</b>. '+c.dataset.exp;
+fb.classList.add('show');
+});
+});
+})();
+</script>
+<div class="footer-char">
+  <span class="big-emoji">&#129299;</span>
+  <div class="msg">&#127775; Teruskan usaha! Setiap usaha membawa kejayaan! &#127775;</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Bahan PdP &mdash; Sains Tahun 3</title>
+<style>
+  :root{--sky1:#e8f4fa;--sky2:#f5fafd;--sky3:#eef6fb;--grass1:#5a8fa8;--grass2:#1f4a5e;--grass3:#0f2e3d;--paper:#f7fbfd;--ink:#182430;--muted:#5a6f7d;--gold:#6f8f9e;--teal:#2c5e82;--aqua:#d8eaf4;--line:#d0e0ec;--silver:#b3cddb;--silver2:#8eaeb8;--radius:20px;--shadow:0 8px 28px rgba(0,0,0,.10);}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 35%,var(--sky3) 70%,#eaf1fb 100%);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;min-height:100vh;overflow-x:hidden}
+  .blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.45;z-index:-1;pointer-events:none}
+  .b1{width:440px;height:440px;background:var(--aqua);top:-100px;left:-100px}
+  .b2{width:380px;height:380px;background:var(--silver);top:30%;right:-120px}
+  .b3{width:480px;height:480px;background:var(--sky3);bottom:-160px;left:20%}
+  .wrap{max-width:1100px;margin:0 auto;padding:22px 18px 80px}
+  header{text-align:center;padding:30px 10px 10px}
+  header h1{font-size:clamp(26px,5vw,38px);margin:0 0 6px;color:var(--grass3);letter-spacing:-.5px}
+  header p{margin:0;color:var(--muted);font-size:15px}
+  .stats{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:18px 0 10px}
+  .st{background:linear-gradient(180deg,#fff 0%,var(--sky2) 100%);border:1.5px solid var(--line);border-radius:14px;padding:12px 18px;min-width:120px;text-align:center;box-shadow:var(--shadow)}
+  .st b{display:block;font-size:22px;color:var(--grass2)}
+  .st span{font-size:12px;color:var(--muted)}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin:16px 0 8px}
+  .controls input{padding:10px 14px;border-radius:12px;border:1.5px solid var(--line);background:#fff;width:260px;max-width:92vw;font-size:14px;outline:none}
+  .controls input:focus{border-color:var(--grass1);box-shadow:0 0 0 3px rgba(111,168,212,.18)}
+  .chip{padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:#fff;cursor:pointer;font-size:13px;color:var(--muted);transition:.18s}
+  .chip:hover,.chip.on{background:var(--grass2);color:#fff;border-color:var(--grass2)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:18px}
+  .card{background:linear-gradient(180deg,#fff 0%,var(--sky2) 100%);border:1.5px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.14)}
+  .rib{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;color:#fff;font-size:12px}
+  .ribb{font-weight:700}
+  .ribn{opacity:.85}
+  .card-body{padding:16px 16px 18px;flex:1;display:flex;flex-direction:column}
+  .mascot{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  .card h3{margin:0 0 6px;font-size:17px;color:var(--grass3)}
+  .sub{margin:0 0 10px;font-size:13px;color:var(--muted);line-height:1.5}
+  .meta{margin-top:auto;padding-top:8px}
+  .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+  .badge.ok{background:#d6f5e0;color:#0b4a2e}
+  .badge.wip{background:#fff3d6;color:#5c3a0b}
+  .acts{display:flex;gap:8px;margin-top:10px}
+  .btn{flex:1;padding:9px 0;border-radius:10px;border:1.5px solid var(--line);background:#fff;color:var(--grass2);font-size:13px;font-weight:700;text-align:center;text-decoration:none;cursor:pointer;transition:.18s}
+  .btn:hover{background:var(--grass2);color:#fff;border-color:var(--grass2)}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .preview{background:var(--sky2)}
+  footer{text-align:center;padding:30px 10px 50px;color:var(--muted);font-size:13px}
+  .modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.55);align-items:center;justify-content:center;padding:16px}
+  .modal.on{display:flex}
+  .mcontent{background:#fff;border-radius:18px;width:100%;max-width:900px;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden}
+  .mheader{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1.5px solid var(--line)}
+  .mheader h4{margin:0;font-size:15px;color:var(--grass3)}
+  .mclose{background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer}
+  .mframe{flex:1;border:none;width:100%;height:70vh}
+  @media print{body{background:#fff} .blob{display:none} .controls,.preview,.modal{display:none!important}}
+  /* Portal character & enhanced animations */
+  .portal-char { width:110px; height:110px; margin:0 auto 10px; animation: portalCharBob 3.5s ease-in-out infinite; }
+  @keyframes portalCharBob { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-10px) rotate(2deg)} }
+  .sparkle { animation: sparkleTwinkle 2s ease-in-out infinite; transform-origin: center; }
+  @keyframes sparkleTwinkle { 0%,100%{opacity:.3;transform:scale(.8)} 50%{opacity:1;transform:scale(1.2)} }
+  .floaters { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .floater { position:absolute; opacity:.25; animation: floaterDrift linear infinite; }
+  @keyframes floaterDrift { from{transform:translateY(110vh) rotate(0)} to{transform:translateY(-20vh) rotate(360deg)} }
+  .card:nth-child(1){animation-delay:.0s} .card:nth-child(2){animation-delay:.08s} .card:nth-child(3){animation-delay:.16s}
+  .card:nth-child(4){animation-delay:.24s} .card:nth-child(5){animation-delay:.32s} .card:nth-child(6){animation-delay:.40s}
+  .card:nth-child(7){animation-delay:.48s} .card:nth-child(8){animation-delay:.56s} .card:nth-child(9){animation-delay:.64s}
+  .card:nth-child(10){animation-delay:.72s} .card:nth-child(11){animation-delay:.80s} .card:nth-child(12){animation-delay:.88s}
+  .card:nth-child(13){animation-delay:.96s}
+  /* Ultra portal decorations */
+  .shimmer-bar { height:3px; background:linear-gradient(90deg,transparent,var(--grass1),var(--gold),var(--grass1),transparent); background-size:200% 100%; animation:shimmerMove 3s linear infinite; border-radius:2px; }
+  @keyframes shimmerMove { from{background-position:200% 0} to{background-position:-200% 0} }
+  .status-bar { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:14px 0 10px; }
+  .status-pill { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:linear-gradient(135deg,var(--sky2),#fff); border:1.5px solid var(--line); font-size:12px; color:var(--grass2); font-weight:700; box-shadow:0 2px 8px rgba(0,0,0,.06); animation: pillPop .5s ease both; }
+  @keyframes pillPop { from{opacity:0;transform:scale(.8)} to{opacity:1;transform:scale(1)} }
+  .status-pill:nth-child(1){animation-delay:.0s} .status-pill:nth-child(2){animation-delay:.1s} .status-pill:nth-child(3){animation-delay:.2s} .status-pill:nth-child(4){animation-delay:.3s}
+  .twinkle-star { position:fixed; font-size:14px; opacity:.3; animation: twinkleAnim 2s ease-in-out infinite; pointer-events:none; z-index:0; }
+  @keyframes twinkleAnim { 0%,100%{opacity:.15;transform:scale(.8)} 50%{opacity:.5;transform:scale(1.3)} }
+  .footer-char { text-align:center; padding:24px 10px 10px; }
+  .footer-char .big-emoji { font-size:48px; display:inline-block; animation: footerBounce 2.5s ease-in-out infinite; filter:drop-shadow(0 4px 8px rgba(0,0,0,.12)); }
+  @keyframes footerBounce { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-8px) rotate(5deg)} }
+  .footer-char .msg { font-size:13px; color:var(--muted); margin-top:8px; font-weight:600; }
+  .sec-divider { display:flex; align-items:center; gap:12px; margin:18px 0; }
+  .sec-divider .line { flex:1; height:2px; background:linear-gradient(90deg,var(--line),var(--grass1),var(--line)); border-radius:1px; }
+  .sec-divider .emoji { font-size:20px; animation: emojiSpin 4s ease-in-out infinite; }
+  @keyframes emojiSpin { 0%,100%{transform:rotate(0) scale(1)} 50%{transform:rotate(10deg) scale(1.15)} }
+  .bg-dots { position:fixed; inset:0; pointer-events:none; z-index:-2; opacity:.035; background-image:radial-gradient(circle,var(--grass2) 1.5px,transparent 1.5px); background-size:28px 28px; }
+
+  @media print{ .floaters,.floater,.portal-char,.sparkle,.shimmer-bar,.status-bar,.twinkle-star,.footer-char,.bg-dots{display:none!important} }
+  @media (prefers-reduced-motion:reduce){ .shimmer-bar,.sparkle,.char-bob,.floater,.portal-char,.emojiSpin,.footerBounce,.twinkleAnim{animation:none!important} }
+  @media (prefers-reduced-motion:no-preference){
+    @keyframes floatBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    @keyframes softGlow{0%,100%{opacity:.55}50%{opacity:.9}}
+    @keyframes gentleSway{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
+    @keyframes cardEntrance{from{opacity:0;transform:translateY(22px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .card{animation:cardEntrance .65s ease both}
+    .mascot{animation:floatBob 3.2s ease-in-out infinite}
+  }
+</style>
+</head>
+<body>
+<div class="bg-dots"></div>
+<div class="shimmer-bar"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="twinkle-star" style="left:5%;top:8%;animation-delay:0s">&#10024;</div>
+<div class="twinkle-star" style="left:95%;top:12%;animation-delay:.5s">&#11088;</div>
+<div class="twinkle-star" style="left:8%;top:45%;animation-delay:1s">&#9733;</div>
+<div class="twinkle-star" style="left:92%;top:50%;animation-delay:1.5s">&#127775;</div>
+<div class="twinkle-star" style="left:15%;top:85%;animation-delay:.3s">&#9889;</div>
+<div class="twinkle-star" style="left:88%;top:80%;animation-delay:.8s">&#128161;</div>
+<div class="twinkle-star" style="left:50%;top:3%;animation-delay:1.2s">&#127793;</div>
+<div class="twinkle-star" style="left:48%;top:95%;animation-delay:.6s">&#128300;</div>
+<div class="floaters">
+  <div class="floater" style="left:6%;font-size:14px;animation-duration:9s;animation-delay:0s">&#10024;</div>
+  <div class="floater" style="left:18%;font-size:11px;animation-duration:11s;animation-delay:1.2s">&#128300;</div>
+  <div class="floater" style="left:32%;font-size:13px;animation-duration:10s;animation-delay:2.5s">&#9733;</div>
+  <div class="floater" style="left:48%;font-size:12px;animation-duration:8s;animation-delay:0.8s">&#127793;</div>
+  <div class="floater" style="left:62%;font-size:14px;animation-duration:12s;animation-delay:3s">&#9889;</div>
+  <div class="floater" style="left:76%;font-size:10px;animation-duration:9s;animation-delay:1.8s">&#127775;</div>
+  <div class="floater" style="left:88%;font-size:13px;animation-duration:10s;animation-delay:4s">&#128161;</div>
+  <div class="floater" style="left:12%;font-size:12px;animation-duration:11s;animation-delay:5s">&#127807;</div>
+  <div class="floater" style="left:55%;font-size:11px;animation-duration:13s;animation-delay:2s">&#11088;</div>
+</div>
+<div class="wrap">
+  <div class="status-bar">
+    <span class="status-pill">&#128300; Sains Tahun 3</span>
+    <span class="status-pill">&#127775; KSSR Semakan 2017</span>
+    <span class="status-pill">&#128218; 13 Standard Kandungan</span>
+    <span class="status-pill">&#9989; Semua Siap</span>
+  </div>
+  <header>
+    <div class="portal-char">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- Cute Ghibli-Pixar style scientist kid mascot for portal -->
+        <circle cx="60" cy="60" r="55" fill="var(--aqua)" opacity=".6"/>
+        <circle cx="60" cy="60" r="45" fill="#fff" opacity=".9"/>
+        <!-- Body -->
+        <ellipse cx="60" cy="105" rx="22" ry="18" fill="#5a8fa8" opacity=".85"/>
+        <!-- Head -->
+        <circle cx="60" cy="52" r="28" fill="#f5d0a9"/>
+        <ellipse cx="60" cy="57" rx="23" ry="20" fill="#f8dcc0"/>
+        <!-- Hair -->
+        <path d="M34 42 Q40 18 60 16 Q80 18 86 42 Q82 22 60 19 Q42 22 34 42" fill="#3d2817"/>
+        <circle cx="42" cy="28" r="6" fill="#3d2817"/><circle cx="78" cy="28" r="6" fill="#3d2817"/>
+        <!-- Eyes -->
+        <ellipse cx="50" cy="50" rx="7" ry="9" fill="#fff"/><ellipse cx="70" cy="50" rx="7" ry="9" fill="#fff"/>
+        <ellipse cx="51" cy="50" rx="3.5" ry="5" fill="#1f4a5e"/><ellipse cx="71" cy="50" rx="3.5" ry="5" fill="#1f4a5e"/>
+        <circle cx="52" cy="48.5" r="1.5" fill="#fff"/><circle cx="72" cy="48.5" r="1.5" fill="#fff"/>
+        <!-- Blush -->
+        <ellipse cx="43" cy="60" rx="5" ry="3" fill="#e8a090" opacity=".5"/>
+        <ellipse cx="77" cy="60" rx="5" ry="3" fill="#e8a090" opacity=".5"/>
+        <!-- Smile -->
+        <path d="M52 64 Q60 71 68 64" fill="none" stroke="#c07860" stroke-width="2" stroke-linecap="round"/>
+        <!-- Magnifying glass -->
+        <circle cx="88" cy="72" r="10" fill="none" stroke="#ffd54f" stroke-width="3"/>
+        <line x1="95" y1="79" x2="102" y2="88" stroke="#ffd54f" stroke-width="3" stroke-linecap="round"/>
+        <!-- Sparkles -->
+        <g class="sparkle"><path d="M100 30 L102 35 L107 37 L102 39 L100 44 L98 39 L93 37 L98 35 Z" fill="#ffd54f"/></g>
+        <g class="sparkle" style="animation-delay:.7s"><path d="M22 38 L24 43 L29 45 L24 47 L22 52 L20 47 L15 45 L20 43 Z" fill="#90caf9"/></g>
+      </svg>
+    </div>
+    <h1>&#127759; Portal Bahan PdP Sains Tahun 3</h1>
+    <p>KSSR Semakan 2017 &middot; 13 Standard Kandungan &middot; Ghibli-Pixar Style</p>
+    <div class="stats">
+      <div class="st"><b>&#128218; 13</b><span>Standard Kandungan</span></div>
+      <div class="st"><b>&#9989; 13</b><span>Sudah Siap</span></div>
+      <div class="st"><b>&#127775; 0</b><span>Belum Siap</span></div>
+    </div>
+    <div class="sec-divider"><div class="line"></div><span class="emoji">&#127891;</span><div class="line"></div></div>
+  </header>
+  <div class="controls">
+    <input type="search" id="search" placeholder="Cari tajuk unit..." autocomplete="off">
+    <button class="chip on" data-filter="all">Semua</button>
+    <button class="chip" data-filter="inkuiri">Inkuiri</button>
+    <button class="chip" data-filter="hayat">Hayat</button>
+    <button class="chip" data-filter="fizikal">Fizikal</button>
+    <button class="chip" data-filter="bahan">Bahan</button>
+    <button class="chip" data-filter="bumi">Bumi</button>
+    <button class="chip" data-filter="teknologi">Teknologi</button>
+  </div>
+  <div class="sec-divider"><div class="line"></div><span class="emoji">&#128218;</span><div class="line"></div></div>
+  <div class="grid" id="grid">
+    <article class="card" data-no="1" data-bidang="inkuiri" data-siap="1" data-key="kemahiran proses sains">
+  <div class="rib" style="background:linear-gradient(90deg,#2c5e8c,#1a3d5e)">
+    <span class="ribb">Inkuiri Dalam Sains</span>
+    <span class="ribn">SK 1.1</span>
+  </div>
+  <div class="card-body">
+    <div class="mascot" style="background:#e0f0f8">&#128300;</div>
+    <h3>Kemahiran Proses Sains</h3>
+    <p class="sub">Memerhati, Mengelas, Mengukur, Inferens, Meramal, Berkomunikasi</p>
+    <div class="meta">
+      <span class="badge ok">Siap</span>
+    </div>
+    <div class="acts"><a class="btn" href="Bahan_PdP_Sains_Tahun3_SK11_KemahiranProsesSains.html" target="_blank">Buka Bahan</a><button class="btn preview" data-p="Bahan_PdP_Sains_Tahun3_SK11_KemahiranProsesSains.html">Pratonton</button></div>
+  </div>
+</article>
+<article class="card" data-no="2" data-bidang="inkuiri" data-siap="1" data-key="kemahiran manipulatif">
+  <div class="rib" style="background:linear-gradient(90deg,#2c5e8c,#1a3d5e)">
+    <span class="ribb">Inkuiri Dalam Sains</span>
+    <span class="ribn">SK 1.2</span>
+  </div>
+  <div class="card-body">
+    <div class="mascot" style="background:#e0f0f8">&#128300;</div>
+    <h3>Kemahiran Manipulatif</h3>
+    <p class="sub">Menggunakan peralatan, bahan dan spesimen dengan betul</p>
+    <div class="meta">
+      <span class="badge ok">Siap</span>
+    </div>
+    <div class="acts"><a class="btn" href="Bahan_PdP_Sains_Tahun3_SK12_KemahiranManipulatif.html" target="_blank">Buka Bahan</a><button class="btn preview" data-p="Bahan_PdP_Sains_Tahun3_SK12_KemahiranManipulatif.html">Pratonton</button></div>
+  </div>
+</article>
+<article class="card" data-no="3" data-bidang="inkuiri" data-siap="1" data-key="peraturan bilik sains">
+  <div class="rib" style="background:linear-gradient(90deg,#2c5e8c,#1a3d5e)">
+    <span class="ribb">Inkuiri Dalam Sains</span>
+    <span class="ribn">SK 2.1</span>
+  </div>
+  <div class="card-body">
+    <div class="mascot" style="background:#e0f0f8">&#128300;</div>
+    <h3>Peraturan Bilik Sains</h3>
+    <p class="sub">Mematuhi peraturan demi keselamatan dan kebersihan</p>
+    <div class="meta">
+      <span class="badge ok">Siap</span>
+    </div>
+    <div class="acts"><a class="btn" href="Bahan_PdP_Sains_Tahun3_SK21_PeraturanBilikSains.html" target="_blank">Buka Bahan</a><button class="btn preview" data-p="Bahan_PdP_Sains_Tahun3_SK21_PeraturanBilikSains.html">Pratonton</button></div>
+  </div>
+</article>
+<article class="card" data-no="4" data-bidang="hayat" data-siap="1" data-key="gigi">
+  <div class="rib" style="background:linear-gradient(90deg,#1f6b4a,#0b4a2e)">
+    <span class="ribb">Sains Hayat</span>
+    <span class="ribn">SK 3.1</span>
+  </div>
+  <div class="card-body">
+    <div class="mascot" style="background:#e0f5e8">&#127793;</div>
+    <h3>Gigi</h3>
+    <p class="sub">Jenis, struktur dan penjagaan gigi</p>
+    <div class="meta">
+      <span class="badge ok">Siap</span>
+    </div>
+    <div class="acts"><a class="btn" href="Bahan_PdP_Sains_Tahun3_SK31_Gigi.html" target="_blank">Buka Bahan</a><button class="btn preview" data-p="Bahan_PdP_Sains_Tahun3_SK31_Gigi.html">Pratonton</button></div>
+  </div>
+</article>
+<article class="card" data-no="5" data-bidang="hayat" data-siap="1" data-key="kelas makanan">
+  <div class="rib" style="background:linear-gradient(90deg,#1f6b4a,#0b4a2e)">
+    <span class="ribb">Sains Hayat</span>
+    <span class="ribn">SK 3.2</span>
+  </div>
+  <div class="card-body">
+    <div class="mascot" style="background:#e0f5e8">&#127793;</div>
+    <h3>Kelas Makanan</h3>
+    <p class="sub">Kelas makanan dan piramid makanan</p>
+    <div class="meta">
+      <span class="badge ok">Siap</span>
+    </div>
+    <div class="acts"><a class="btn" href="Bahan_PdP_Sains_Tahun3_SK32_KelasMakanan.html" target="_blank">Buka Bahan</a><button class="btn preview" data-p="Bahan_PdP_Sains_Tahun3_SK32_KelasMakanan.html">Pratonton</button></div>
+  </div>
+</article>
+<article class="card" data-no="6" data-bidang="hayat" data-siap="1" data-key="pencernaan">
+  <div class="rib" style="background:linear-gradient(90deg,#1f6b4a,#0b4a2e)">
+    <span class="ribb">Sains Hayat</span>
+    <span class="ribn">SK 3.3</span>
+  </div>
+  <div class="card-body">
+    <div class="mascot" style="background:#e0f5e8">&#127793;</div>
+    <h3>Pencernaan</h3>
+    <p class="sub">Proses pencernaan makanan dalam badan</p>
+    <div class="meta">
+      <span class="badge ok">Siap</span>
+    </div>
+    <div class="acts"><a class="btn" href="Bahan_PdP_Sains_Tahun3_SK33_Pencernaan.html" target="_blank">Buka Bahan</a><button class="btn preview" data-p="Bahan_PdP_Sains_Tahun3_SK33_Pencernaan.html">Pratonton</button></div>
+  </div>
+</article>
+<article class="card" data-no="7" data-bidang="hayat" data-siap="1" data-key="tabiat pemakanan haiwan">
+  <div class="rib" style="background:linear-gradient(90deg,#1f6b4a,#0b4a2e)">
+    <span class="ribb">Sains Hayat</span>
+    <span class="ribn">SK 4.1</span>
+  </div>
+  <div class="card-body">
+    <div class="mascot" style="background:#e0f5e8">&#127793;</div>
+    <h3>Tabiat Pemakanan Haiwan</h3>
+    <p class="sub">Mengelas haiwan mengikut tabiat pemakanan</p>
+    <div class="meta">
+      <span class="badge ok">Siap</span>
+    </div>
+    <div class="acts"><a class="btn" href="Bahan_PdP_Sains_Tahun3_SK41_TabiatPemakananHaiwan.html" target="_blank">Buka Bahan</a><button class="btn preview" data-p="Bahan_PdP_Sains_Tahun3_SK41_TabiatPemakananHaiwan.html">Pratonton</button></div>
+  </div>
+</article>
+<article class="card" data-no="8" data-bidang="hayat" data-siap="1" data-key="pembiakan tumbuhan">
+  <div class="rib" style="background:linear-gradient(90deg,#1f6b4a,#0b4a2e)">
+    <span class="ribb">Sains Hayat</span>
+    <span class="ribn">SK 5.1</span>
+  </div>
+  <div class="card-body">
+    <div class="mascot" style="background:#e0f5e8">&#127793;</div>
+    <h3>Pembiakan Tumbuhan</h3>
+    <p class="sub">Cara tumbuhan membiak dan kepentingannya</p>
+    <div class="meta">
+      <span class="badge ok">Siap</span>
+    </div>
+    <div class="acts"><a class="btn" href="Bahan_PdP_Sains_Tahun3_SK51_PembiakanTumbuhan.html" target="_blank">Buka Bahan</a><button class="btn preview" data-p="Bahan_PdP_Sains_Tahun3_SK51_PembiakanTumbuhan.html">Pratonton</button></div>
+  </div>
+</article>
+<article class="card" data-no="9" data-bidang="fizikal" data-siap="1" data-key="pengukuran luas dan isi padu">
+  <div class="rib" style="background:linear-gradient(90deg,#8c5e1a,#5c3a0b)">
+    <span class="ribb">Sains Fizikal</span>
+    <span class="ribn">SK 6.1</span>
+  </div>
+  <div class="card-body">
+    <div class="mascot" style="background:#f5e8d6">&#128267;</div>
+    <h3>Pengukuran Luas dan Isi Padu</h3>
+    <p class="sub">Mengukur luas dan isi padu menggunakan unit yang sesuai</p>
+    <div class="meta">
+      <span class="badge ok">Siap</span>
+    </div>
+    <div class="acts"><a class="btn" href="Bahan_PdP_Sains_Tahun3_SK61_PengukuranLuasdanIsiPadu.html" target="_blank">Buka Bahan</a><button class="btn preview" data-p="Bahan_PdP_Sains_Tahun3_SK61_PengukuranLuasdanIsiPadu.html">Pratonton</button></div>
+  </div>
+</article>
+<article class="card" data-no="10" data-bidang="fizikal" data-siap="1" data-key="ketumpatan">
+  <div class="rib" style="background:linear-gradient(90deg,#8c5e1a,#5c3a0b)">
+    <span class="ribb">Sains Fizikal</span>
+    <span class="ribn">SK 7.1</span>
+  </div>
+  <div class="card-body">
+    <div class="mascot" style="background:#f5e8d6">&#128267;</div>
+    <h3>Ketumpatan</h3>
+    <p class="sub">Objek atau bahan yang timbul atau tenggelam</p>
+    <div class="meta">
+      <span class="badge ok">Siap</span>
+    </div>
+    <div class="acts"><a class="btn" href="Bahan_PdP_Sains_Tahun3_SK71_Ketumpatan.html" target="_blank">Buka Bahan</a><button class="btn preview" data-p="Bahan_PdP_Sains_Tahun3_SK71_Ketumpatan.html">Pratonton</button></div>
+  </div>
+</article>
+<article class="card" data-no="11" data-bidang="bahan" data-siap="1" data-key="asid dan alkali">
+  <div class="rib" style="background:linear-gradient(90deg,#7a2a4a,#581a30)">
+    <span class="ribb">Sains Bahan</span>
+    <span class="ribn">SK 8.1</span>
+  </div>
+  <div class="card-body">
+    <div class="mascot" style="background:#f2e0e6">&#129514;</div>
+    <h3>Asid dan Alkali</h3>
+    <p class="sub">Menguji bahan berasid, beralkali dan neutral</p>
+    <div class="meta">
+      <span class="badge ok">Siap</span>
+    </div>
+    <div class="acts"><a class="btn" href="Bahan_PdP_Sains_Tahun3_SK81_AsiddanAlkali.html" target="_blank">Buka Bahan</a><button class="btn preview" data-p="Bahan_PdP_Sains_Tahun3_SK81_AsiddanAlkali.html">Pratonton</button></div>
+  </div>
+</article>
+<article class="card" data-no="12" data-bidang="bumi" data-siap="1" data-key="sistem suria">
+  <div class="rib" style="background:linear-gradient(90deg,#1f2e7a,#0b1858)">
+    <span class="ribb">Bumi &amp; Angkasa</span>
+    <span class="ribn">SK 9.1</span>
+  </div>
+  <div class="card-body">
+    <div class="mascot" style="background:#e0e4f0">&#127759;</div>
+    <h3>Sistem Suria</h3>
+    <p class="sub">Ahli Sistem Suria dan ciri-ciri planet</p>
+    <div class="meta">
+      <span class="badge ok">Siap</span>
+    </div>
+    <div class="acts"><a class="btn" href="Bahan_PdP_Sains_Tahun3_SK91_SistemSuria.html" target="_blank">Buka Bahan</a><button class="btn preview" data-p="Bahan_PdP_Sains_Tahun3_SK91_SistemSuria.html">Pratonton</button></div>
+  </div>
+</article>
+<article class="card" data-no="13" data-bidang="teknologi" data-siap="1" data-key="takal">
+  <div class="rib" style="background:linear-gradient(90deg,#1f5a6b,#124050)">
+    <span class="ribb">Teknologi &amp; Kehidupan Lestari</span>
+    <span class="ribn">SK 10.1</span>
+  </div>
+  <div class="card-body">
+    <div class="mascot" style="background:#e6f0f5">&#9881;</div>
+    <h3>Takal</h3>
+    <p class="sub">Mesin ringkas yang memudahkan kerja</p>
+    <div class="meta">
+      <span class="badge ok">Siap</span>
+    </div>
+    <div class="acts"><a class="btn" href="Bahan_PdP_Sains_Tahun3_SK101_Takal.html" target="_blank">Buka Bahan</a><button class="btn preview" data-p="Bahan_PdP_Sains_Tahun3_SK101_Takal.html">Pratonton</button></div>
+  </div>
+</article>
+  </div>
+  <div class="footer-char">
+    <span class="big-emoji">&#129299;</span>
+    <div class="msg">&#127775; Teruskan usaha! Setiap usaha membawa kejayaan! &#127775;</div>
+  </div>
+  <div class="sec-divider"><div class="line"></div><span class="emoji">&#128300;</span><div class="line"></div></div>
+  <footer>
+    <p>Disediakan mengikut DSKP KSSR Sains Tahun 3 (Semakan 2017)</p>
+    <p style="margin-top:6px"><a href="../index.html" style="color:var(--grass2);text-decoration:none;font-weight:700">&#8592; &#127891; Pendidikan Islam Tahun 3</a> &nbsp;|&nbsp; <a href="../tahun4/index.html" style="color:var(--grass2);text-decoration:none;font-weight:700">&#127891; Pendidikan Islam Tahun 4</a> &nbsp;|&nbsp; <a href="../tahun5/index.html" style="color:var(--grass2);text-decoration:none;font-weight:700">&#127891; Pendidikan Islam Tahun 5</a> &nbsp;|&nbsp; <a href="../maths_t3/index.html" style="color:var(--grass2);text-decoration:none;font-weight:700">&#128290; Matematik Tahun 3</a></p>
+  </footer>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mcontent">
+    <div class="mheader"><h4 id="mtitle">Pratonton</h4><button class="mclose" id="mclose">&times;</button></div>
+    <iframe class="mframe" id="mframe"></iframe>
+  </div>
+</div>
+
+<script>
+(function(){
+  var grid=document.getElementById('grid');
+  var cards=Array.from(grid.querySelectorAll('.card'));
+  var search=document.getElementById('search');
+  var chips=document.querySelectorAll('.chip');
+  var modal=document.getElementById('modal');
+  var mframe=document.getElementById('mframe');
+  var mtitle=document.getElementById('mtitle');
+  var mclose=document.getElementById('mclose');
+
+  function filter(){
+    var q=(search.value||'').toLowerCase().trim();
+    var active=document.querySelector('.chip.on');
+    var f=active?active.dataset.filter:'all';
+    cards.forEach(function(c){
+      var show=true;
+      if(f!=='all' && c.dataset.bidang!==f) show=false;
+      if(q && !c.dataset.key.includes(q) && !c.querySelector('h3').textContent.toLowerCase().includes(q)) show=false;
+      c.style.display=show?'':'none';
+    });
+  }
+
+  search.addEventListener('input',filter);
+  chips.forEach(function(b){ b.addEventListener('click',function(){ chips.forEach(function(x){x.classList.remove('on')}); b.classList.add('on'); filter(); }); });
+
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.preview');
+    if(!b) return;
+    var p=b.dataset.p;
+    mframe.src=p;
+    mtitle.textContent='Pratonton: '+p.replace(/_/g,' ').replace('.html','');
+    modal.classList.add('on');
+  });
+  mclose.addEventListener('click',function(){ modal.classList.remove('on'); mframe.src=''; });
+  modal.addEventListener('click',function(e){ if(e.target===modal){ modal.classList.remove('on'); mframe.src=''; } });
+})();
+</script>
+</body>
+</html>

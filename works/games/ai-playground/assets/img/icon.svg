@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="AI Playground Kanak-Kanak">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7BD389"/>
+      <stop offset="1" stop-color="#4FAE60"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="150" cy="120" r="34" fill="#FFD34E"/>
+  <ellipse cx="390" cy="110" rx="62" ry="30" fill="#FFFFFF" opacity=".92"/>
+  <ellipse cx="356" cy="104" rx="40" ry="26" fill="#FFFFFF" opacity=".92"/>
+  <circle cx="256" cy="268" r="150" fill="#FFA552"/>
+  <circle cx="256" cy="252" r="140" fill="#FFA552" stroke="#E08530" stroke-width="10"/>
+  <path d="M150 176 L182 92 L236 160 Z" fill="#FFA552" stroke="#E08530" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M362 176 L330 92 L276 160 Z" fill="#FFA552" stroke="#E08530" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M170 168 L188 118 L222 158 Z" fill="#FFD6DE"/>
+  <path d="M342 168 L324 118 L290 158 Z" fill="#FFD6DE"/>
+  <ellipse cx="256" cy="300" rx="80" ry="62" fill="#FFF3E2"/>
+  <ellipse cx="212" cy="240" rx="30" ry="34" fill="#FFFFFF"/>
+  <ellipse cx="300" cy="240" rx="30" ry="34" fill="#FFFFFF"/>
+  <circle cx="214" cy="244" r="19" fill="#3A2A22"/>
+  <circle cx="302" cy="244" r="19" fill="#3A2A22"/>
+  <circle cx="221" cy="236" r="7" fill="#FFFFFF"/>
+  <circle cx="309" cy="236" r="7" fill="#FFFFFF"/>
+  <ellipse cx="256" cy="288" rx="19" ry="14" fill="#3A2A22"/>
+  <path d="M232 314 Q256 340 280 314 Z" fill="#3A2A22"/>
+  <path d="M240 322 Q256 334 272 322 Z" fill="#FF8FA8"/>
+  <circle cx="176" cy="278" r="20" fill="#FFB3C7" opacity=".6"/>
+  <circle cx="336" cy="278" r="20" fill="#FFB3C7" opacity=".6"/>
+  <path d="M410 300 l14 32 32 14 -32 14 -14 32 -14 -32 -32 -14 32 -14z" fill="#FFD34E"/>
+</svg>

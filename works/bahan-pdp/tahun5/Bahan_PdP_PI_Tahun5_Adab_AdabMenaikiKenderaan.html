@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adab Menaiki Kenderaan &mdash; Adab | Pendidikan Islam Tahun 5</title>
+<style>
+  :root{
+    --sky1:#e0ecf0; --sky2:#f0f6f8; --sky3:#e8f0f4;
+    --grass1:#a0c4d8; --grass2:#1a3a5a; --grass3:#0e2438;
+    --paper:#f5fafd; --ink:#1a2228; --muted:#6a7a82;
+    --gold:#3a7ab0; --teal:#1a4a7a; --aqua:#dce8f0;
+    --line:#d0dce4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);
+    font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:rtl}
+  .jf{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:ltr;unicode-bidi:isolate}
+
+  .skybg{position:fixed;inset:0;z-index:-1;
+    background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#e4eef4 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:#d4e6ee;top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:#c0d8e8;top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:#e8f0f4;bottom:-140px;left:18%}
+
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(26,58,90,.16)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;
+    background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#1a3a5a;font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:#0e2438;letter-spacing:.4px;
+    text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:#6a7a82;font-weight:600}
+
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;
+    box-shadow:0 3px 10px rgba(26,58,90,.07)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(26,58,90,.07)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--grass2);font-weight:800;
+    display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#f0f6f8;border:1.4px solid var(--line);
+    border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(140deg,var(--grass1),var(--grass2));box-shadow:0 2px 0 var(--grass3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--grass3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#eaf2f8;border:1.4px dashed var(--gold);border-radius:13px;
+    padding:10px 13px;font-size:12.5px;color:#0e2438;line-height:1.55}
+  .toc .note b{color:#0e2438}
+
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(26,58,90,.07);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;
+    display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;
+    box-shadow:0 2px 0 var(--grass3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+  h2 .mascot{flex:none;margin-left:auto;display:block}
+  .deko{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:14px 0 0}
+  .deko svg{display:block}
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes g14bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+    @keyframes g14drift{0%{transform:translateX(-9px)}100%{transform:translateX(9px)}}
+    @keyframes g14twinkle{0%,100%{opacity:.4}50%{opacity:1}}
+    @keyframes floatBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    @keyframes softGlow{0%,100%{opacity:.55}50%{opacity:1}}
+    @keyframes gentleSway{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
+    h2 .mascot,.deko svg{animation:g14bob 2.6s ease-in-out infinite}
+    .deko svg:nth-child(2){animation-delay:.45s}
+    .deko svg:nth-child(3){animation-delay:.9s}
+    .anim-drift{animation:g14drift 8s ease-in-out infinite alternate}
+    .anim-twinkle{animation:g14twinkle 2.2s ease-in-out infinite}
+    .anim-float{animation:floatBob 3.5s ease-in-out infinite}
+    .anim-glow{animation:softGlow 3s ease-in-out infinite}
+    .anim-sway{animation:gentleSway 4s ease-in-out infinite;transform-origin:bottom center}
+  }
+  @media print{
+    h2 .mascot,.deko svg,.anim-drift,.anim-twinkle,.anim-float,.anim-glow,.anim-sway{animation:none !important}
+  }
+
+  .nota{border-left:5px solid var(--gold);background:#eaf2f8;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#0e2438}
+  .nota li:last-child{margin-bottom:0}
+  .card ul{margin:0;padding-left:20px}
+  .card li{margin-bottom:9px;font-size:14.5px;line-height:1.6}
+  .card li b{color:var(--grass3)}
+
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:linear-gradient(135deg,#eaf2f8,#dce8f0);border:1.5px solid var(--line);
+    border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#d0dce4;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;
+    background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .scorebar .hint2{font-size:12px;color:var(--muted);font-weight:600}
+
+  .qcard{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:13px;
+    background:#f0f6f8;transition:box-shadow .25s}
+  .qcard.done{box-shadow:0 3px 12px rgba(58,122,176,.18)}
+  .qhead{display:flex;gap:9px;align-items:flex-start;margin-bottom:11px}
+  .qn{background:var(--teal);color:#fff;min-width:26px;height:26px;border-radius:8px;display:inline-flex;
+    align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+  .qtext{font-weight:700;font-size:14.5px}
+  .opts{display:grid;grid-template-columns:1fr;gap:7px}
+  @media(min-width:640px){.opts{grid-template-columns:1fr 1fr 1fr}}
+  .opt{font-family:inherit;text-align:left;font-size:13.5px;font-weight:600;cursor:pointer;
+    background:#e8f0f4;border:2px solid #d0dce4;border-radius:11px;padding:9px 12px;color:var(--ink);
+    transition:transform .12s,background .2s,border-color .2s;display:flex;gap:7px;align-items:flex-start}
+  .opt:hover:not(:disabled){transform:translateY(-2px);background:#fff;border-color:var(--teal)}
+  .opt:disabled{cursor:default}
+  .opt .k{font-weight:800;color:var(--teal);flex:none}
+  .opt.ok{background:#dce8f0;border-color:var(--grass2);color:#0e2438}
+  .opt.ok .k{color:var(--grass3)}
+  .opt.bad{background:#d0dce4;border-color:#3a7ab0;color:#1a3a5a}
+  .opt.bad .k{color:#0e2438}
+  .opt.dim{opacity:.45}
+
+  .fb{display:none;margin-top:11px;border-radius:12px;padding:10px 13px;font-size:13.5px;
+    background:#eaf2f8;border:1.5px dashed var(--grass2);align-items:flex-start;gap:11px}
+  .fb.show{display:flex}
+  .fb.wrong{background:#dce8f0;border-color:#3a7ab0}
+  .fb .face{flex:none;width:52px;height:52px}
+  .fb .txt b{color:var(--grass3)}
+  .fb.wrong .txt b{color:#0e2438}
+
+  .result{display:none;text-align:center;padding:20px;border-radius:18px;margin-top:6px;
+    background:linear-gradient(135deg,#eaf2f8,#dce8f0);border:2px solid var(--grass1)}
+  .result.show{display:block}
+  .result .big{font-size:30px;font-weight:800;color:var(--grass3);margin:6px 0}
+  .result .msg{font-size:14.5px;font-weight:600;margin-bottom:12px}
+  .stars{font-size:22px;letter-spacing:3px;margin-bottom:6px}
+  button.act{font-family:inherit;font-size:13.5px;font-weight:700;border-radius:11px;padding:10px 18px;
+    border:2px solid var(--grass2);background:#fff;color:var(--grass3);cursor:pointer;transition:background .2s}
+  button.act:hover{background:var(--grass1);color:#fff}
+  button.act.solid{background:var(--grass2);color:#fff}
+  button.act.solid:hover{background:var(--grass3)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#eaf2f8;color:var(--grass3);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  td.c{text-align:center;white-space:nowrap;font-weight:700;color:var(--grass2)}
+  tr:nth-child(even) td{background:#eef4f8}
+  tr.on td{background:#eaf2f8;font-weight:700}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-top:4px}
+
+  @media print{
+    body{background:#fff}
+    .skybg,.blob{display:none}
+    .wrap{max-width:100%;padding:0}
+    .scorebar{display:none}
+    section{box-shadow:none;page-break-inside:avoid;padding:14px 16px}
+    .toc{box-shadow:none;page-break-inside:avoid;break-inside:avoid}
+    h2,.hint{page-break-after:avoid;break-after:avoid}
+    #art-info{width:auto;height:1150px;display:block;margin:0 auto}
+    #art-pm{width:auto;height:730px;display:block;margin:0 auto}
+    #art-dia{width:auto;height:430px;display:block;margin:0 auto}
+    table{font-size:11.6px}
+    th,td{padding:3.5px 8px}
+    .qcard{page-break-inside:avoid;padding:10px 13px;margin-bottom:8px}
+    .qhead .qtext{font-size:13px}
+    .opt{padding:6px 9px;font-size:11.5px;transform:none !important}
+    .fb{margin-top:7px;padding:7px 10px;font-size:11.5px}
+    .fb .face{width:40px;height:40px}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4;margin:12mm}
+
+</style>
+</head>
+<body>
+
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<!-- ===== Watak kartun (statik) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <g id="faceYay">
+    <circle cx="30" cy="30" r="26" fill="#dce8f0" stroke="#1a3a5a" stroke-width="2.5"/>
+    <ellipse cx="22" cy="27" rx="3.4" ry="4.6" fill="#1a2228"/>
+    <ellipse cx="38" cy="27" rx="3.4" ry="4.6" fill="#1a2228"/>
+    <circle cx="23.4" cy="25.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="25.4" r="1.3" fill="#fff"/>
+    <path d="M20 38 q10 9 20 0" stroke="#0e2438" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="14" cy="34" rx="4.5" ry="3" fill="#7ab8d8" opacity=".5"/>
+    <ellipse cx="46" cy="34" rx="4.5" ry="3" fill="#7ab8d8" opacity=".5"/>
+    <path d="M30 2 l3 5 5 1 -4 4 1 5 -5-3 -5 3 1-5 -4-4 5-1 z" fill="#3a7ab0"/>
+  </g>
+
+  <g id="faceOops">
+    <circle cx="30" cy="30" r="26" fill="#dce8f0" stroke="#3a7ab0" stroke-width="2.5"/>
+    <ellipse cx="22" cy="28" rx="3.4" ry="4.6" fill="#1a2228"/>
+    <ellipse cx="38" cy="28" rx="3.4" ry="4.6" fill="#1a2228"/>
+    <circle cx="23.4" cy="26.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="26.4" r="1.3" fill="#fff"/>
+    <path d="M15 21 q7-5 13 0" stroke="#1a2228" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M45 21 q-7-5 -13 0" stroke="#1a2228" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M21 41 q9-7 18 0" stroke="#0e2438" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="35" rx="4.5" ry="3" fill="#7ab8d8" opacity=".4"/>
+    <ellipse cx="47" cy="35" rx="4.5" ry="3" fill="#7ab8d8" opacity=".4"/>
+  </g>
+
+  <!-- Kereta Ghibli (rupa sisi) -->
+  <g id="kereta">
+    <ellipse cx="80" cy="78" rx="66" ry="5" fill="#000" opacity=".08"/>
+    <!-- badan kereta -->
+    <path d="M14 58 q6-18 28-22 h44 q16 2 22 18 v14 h-94 z" fill="#5b8ab8" stroke="#1a3a5a" stroke-width="2"/>
+    <!-- bumbung -->
+    <path d="M24 36 q8-14 26-14 h26 q16 2 22 14 h-74 z" fill="#7ab0d8" stroke="#1a3a5a" stroke-width="2"/>
+    <!-- cermin tingkap -->
+    <path d="M30 36 q6-10 20-10 h16 q12 2 16 10 z" fill="#c0e0f0" stroke="#1a3a5a" stroke-width="1.4" opacity=".8"/>
+    <path d="M54 22 v14" stroke="#1a3a5a" stroke-width="1.4"/>
+    <!-- pintu -->
+    <path d="M52 36 v22 M52 36 h-28" stroke="#1a3a5a" stroke-width="1.4" fill="none" opacity=".5"/>
+    <!-- lampu depan -->
+    <ellipse cx="104" cy="54" rx="5" ry="4" fill="#fff6cf" stroke="#8a6a2a" stroke-width="1.2"/>
+    <!-- roda belakang -->
+    <circle cx="34" cy="68" r="11" fill="#1a2228" stroke="#0e2438" stroke-width="2"/>
+    <circle cx="34" cy="68" r="5" fill="#6a7a82"/>
+    <!-- roda depan -->
+    <circle cx="96" cy="68" r="11" fill="#1a2228" stroke="#0e2438" stroke-width="2"/>
+    <circle cx="96" cy="68" r="5" fill="#6a7a82"/>
+    <!-- tali keledar (jalur diagonal di cermin) -->
+    <path d="M58 36 l-6 14" stroke="#3a7ab0" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Bas sekolah Ghibli (rupa sisi) -->
+  <g id="bas">
+    <ellipse cx="90" cy="84" rx="76" ry="5" fill="#000" opacity=".08"/>
+    <!-- badan bas -->
+    <rect x="10" y="30" width="150" height="48" rx="6" fill="#e8a84a" stroke="#8a6a2a" stroke-width="2"/>
+    <!-- bumbung -->
+    <rect x="10" y="26" width="150" height="6" rx="3" fill="#c08a3a" stroke="#8a6a2a" stroke-width="1.4"/>
+    <!-- tingkap -->
+    <rect x="20" y="36" width="22" height="16" rx="2" fill="#c0e0f0" stroke="#1a3a5a" stroke-width="1.2" opacity=".85"/>
+    <rect x="48" y="36" width="22" height="16" rx="2" fill="#c0e0f0" stroke="#1a3a5a" stroke-width="1.2" opacity=".85"/>
+    <rect x="76" y="36" width="22" height="16" rx="2" fill="#c0e0f0" stroke="#1a3a5a" stroke-width="1.2" opacity=".85"/>
+    <rect x="104" y="36" width="22" height="16" rx="2" fill="#c0e0f0" stroke="#1a3a5a" stroke-width="1.2" opacity=".85"/>
+    <rect x="132" y="36" width="22" height="16" rx="2" fill="#c0e0f0" stroke="#1a3a5a" stroke-width="1.2" opacity=".85"/>
+    <!-- pintu -->
+    <rect x="20" y="56" width="22" height="22" rx="2" fill="#d49838" stroke="#8a6a2a" stroke-width="1.4"/>
+    <circle cx="38" cy="68" r="1.8" fill="#8a6a2a"/>
+    <!-- lampu depan -->
+    <ellipse cx="150" cy="64" rx="5" ry="4" fill="#fff6cf" stroke="#8a6a2a" stroke-width="1.2"/>
+    <!-- roda belakang -->
+    <circle cx="38" cy="80" r="10" fill="#1a2228" stroke="#0e2438" stroke-width="2"/>
+    <circle cx="38" cy="80" r="4.5" fill="#6a7a82"/>
+    <!-- roda depan -->
+    <circle cx="132" cy="80" r="10" fill="#1a2228" stroke="#0e2438" stroke-width="2"/>
+    <circle cx="132" cy="80" r="4.5" fill="#6a7a82"/>
+    <!-- jalur hiasan -->
+    <rect x="10" y="52" width="150" height="3" fill="#c08030" opacity=".6"/>
+  </g>
+
+  <!-- Tali keledar (ikon) -->
+  <g id="taliKeledar">
+    <path d="M10 6 q14 8 28 0" stroke="#1a3a5a" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <rect x="8" y="4" width="6" height="5" rx="2" fill="#3a7ab0"/>
+    <rect x="34" y="4" width="6" height="5" rx="2" fill="#3a7ab0"/>
+    <rect x="18" y="8" width="12" height="8" rx="2" fill="#3a7ab0" stroke="#1a3a5a" stroke-width="1.2"/>
+  </g>
+
+  <!-- Pintu kereta (ditutup lembut) -->
+  <g id="pintu">
+    <rect x="4" y="2" width="52" height="60" rx="6" fill="#5b8ab8" stroke="#1a3a5a" stroke-width="2"/>
+    <rect x="10" y="10" width="40" height="24" rx="3" fill="#c0e0f0" stroke="#1a3a5a" stroke-width="1.4" opacity=".8"/>
+    <rect x="22" y="40" width="16" height="6" rx="3" fill="#3a7ab0" stroke="#1a3a5a" stroke-width="1"/>
+    <path d="M4 30 q-4 2 0 6" stroke="#1a3a5a" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Tangan terima kasih (waving) -->
+  <g id="tanganWave">
+    <ellipse cx="30" cy="62" rx="22" ry="4" fill="#000" opacity=".06"/>
+    <rect x="26" y="32" width="8" height="30" rx="4" fill="#5b8ab8"/>
+    <circle cx="30" cy="28" r="14" fill="#5b8ab8"/>
+    <circle cx="22" cy="20" r="5" fill="#5b8ab8"/>
+    <circle cx="30" cy="16" r="5" fill="#5b8ab8"/>
+    <circle cx="38" cy="20" r="5" fill="#5b8ab8"/>
+    <path d="M22 8 q8-4 16 0" stroke="#1a3a5a" stroke-width="1.5" fill="none"/>
+  </g>
+
+  <!-- Tanda semak (checkmark) -->
+  <g id="tandaSemak">
+    <circle cx="26" cy="26" r="24" fill="#dce8f0" stroke="#1a3a5a" stroke-width="2.5"/>
+    <path d="M14 26 l8 8 l16-18" stroke="#1a3a5a" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Pemandu (fokus ke hadapan) -->
+  <g id="pemandu">
+    <ellipse cx="40" cy="76" rx="28" ry="4" fill="#000" opacity=".08"/>
+    <path d="M16 40 q24-12 48 0 v36 h-48 z" fill="#3a7ab0" stroke="#1a3a5a" stroke-width="2"/>
+    <rect x="36" y="26" width="8" height="14" fill="#eec6a6"/>
+    <ellipse cx="40" cy="24" rx="18" ry="20" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M22 24 a18 20 0 0 1 36 0 q-6-14 -18-14 q-12 0 -18 14 z" fill="#4a3526"/>
+    <path d="M30 24 q4-2 8 0" stroke="#3a2b22" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M42 24 q4-2 8 0" stroke="#3a2b22" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="34" cy="30" rx="3.5" ry="4.5" fill="#3a2b22"/>
+    <ellipse cx="46" cy="30" rx="3.5" ry="4.5" fill="#3a2b22"/>
+    <circle cx="35.4" cy="28.4" r="1.4" fill="#fff"/><circle cx="47.4" cy="28.4" r="1.4" fill="#fff"/>
+    <path d="M38 38 q2 3 4 0" stroke="#c98f63" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <rect x="14" y="48" width="6" height="24" rx="3" fill="#5b8ab8" stroke="#1a3a5a" stroke-width="1.4"/>
+    <rect x="60" y="48" width="6" height="24" rx="3" fill="#5b8ab8" stroke="#1a3a5a" stroke-width="1.4"/>
+    <ellipse cx="18" cy="74" rx="8" ry="3.5" fill="#1a2228"/>
+    <ellipse cx="62" cy="74" rx="8" ry="3.5" fill="#1a2228"/>
+  </g>
+
+  <!-- Awan -->
+  <g id="awan">
+    <g fill="#ffffff">
+      <circle cx="20" cy="27" r="13"/><circle cx="39" cy="19" r="17"/>
+      <circle cx="59" cy="26" r="14"/><rect x="20" y="25" width="39" height="14" rx="7"/>
+    </g>
+    <path d="M8 33 q11 8 31 8 q20 0 31-8" stroke="#d4e6ee" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Burung terbang -->
+  <g id="burungTerbang">
+    <path d="M2 12 q6-6 12 0 q6-6 12 0" stroke="#1a3a5a" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M18 12 q6-6 12 0 q6-6 12 0" stroke="#1a3a5a" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Pokok pinus -->
+  <g id="pokokPinus">
+    <ellipse cx="30" cy="84" rx="20" ry="4" fill="#000" opacity=".07"/>
+    <path d="M28 84 v-18 h4 v18 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.4"/>
+    <g fill="#5b9a7a" stroke="#3a7a5a" stroke-width="1.3">
+      <path d="M30 8 L14 38 L46 38 Z"/>
+      <path d="M30 28 L12 54 L48 54 Z"/>
+      <path d="M30 48 L10 74 L50 74 Z"/>
+    </g>
+  </g>
+
+  <!-- Gunung -->
+  <g id="gunung">
+    <path d="M0 80 L30 20 L60 80 Z" fill="#a0c4d8" stroke="#1a3a5a" stroke-width="1.6" opacity=".7"/>
+    <path d="M30 20 L40 34 L30 38 L20 34 Z" fill="#fff" opacity=".8"/>
+    <path d="M50 80 L80 30 L110 80 Z" fill="#8ab4c8" stroke="#1a3a5a" stroke-width="1.6" opacity=".6"/>
+    <path d="M80 30 L88 42 L80 44 L72 42 Z" fill="#fff" opacity=".7"/>
+  </g>
+
+  <!-- Masjid siluet jauh -->
+  <g id="masjidJauh">
+    <path d="M10 48 L10 24 q10-14 20 0 q10-14 20 0 L50 48 Z" fill="#1a3a5a" opacity=".35"/>
+    <rect x="2" y="44" width="56" height="6" fill="#1a3a5a" opacity=".3"/>
+    <path d="M30 24 v-6" stroke="#1a3a5a" stroke-width="1.2" opacity=".4"/>
+    <circle cx="30" cy="16" r="2.5" fill="#1a3a5a" opacity=".4"/>
+  </g>
+
+  <!-- Bintang -->
+  <g id="bintang">
+    <path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="#3a7ab0"/>
+  </g>
+
+  <!-- Kepala kanak-kanak (mascot kecil) -->
+  <g id="kepalaKanak">
+    <ellipse cx="35" cy="37" rx="26" ry="28" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M9 37 a26 28 0 0 1 52 0 q-8-18 -26-18 q-18 0 -26 18 z" fill="#4a3526"/>
+    <path d="M21 30 q5-3 10 0" stroke="#3a2b22" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M39 30 q5-3 10 0" stroke="#3a2b22" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="26" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <ellipse cx="44" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <circle cx="27.8" cy="37.6" r="1.7" fill="#fff"/><circle cx="45.8" cy="37.6" r="1.7" fill="#fff"/>
+    <path d="M35 47 q-3 4 1 5" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M29 54 q6 6 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="17" cy="49" rx="6" ry="3.8" fill="#7ab8d8" opacity=".4"/>
+    <ellipse cx="53" cy="49" rx="6" ry="3.8" fill="#7ab8d8" opacity=".4"/>
+  </g>
+
+  <!-- Kanak-kanak dalam kereta (hubby) -->
+  <g id="kanakKereta">
+    <!-- kepala -->
+    <ellipse cx="30" cy="22" rx="12" ry="13" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.6"/>
+    <path d="M18 22 a12 13 0 0 1 24 0 q-4-10 -12-10 q-8 0 -12 10 z" fill="#4a3526"/>
+    <path d="M23 20 q3-2 6 0" stroke="#3a2b22" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M33 20 q3-2 6 0" stroke="#3a2b22" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="26" cy="24" rx="2.8" ry="3.6" fill="#3a2b22"/>
+    <ellipse cx="35" cy="24" rx="2.8" ry="3.6" fill="#3a2b22"/>
+    <circle cx="27" cy="22.6" r="1.2" fill="#fff"/><circle cx="36" cy="22.6" r="1.2" fill="#fff"/>
+    <path d="M30 30 q-2 2.5 1 3" stroke="#c98f63" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <path d="M26 36 q4 4 8 0" stroke="#b5714f" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <!-- tali keledar -->
+    <path d="M22 32 l-4 10" stroke="#3a7ab0" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M38 32 l4 10" stroke="#3a7ab0" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Sampah tong (tajuk) -->
+  <g id="tongSampah">
+    <ellipse cx="26" cy="50" rx="20" ry="3" fill="#000" opacity=".07"/>
+    <path d="M8 18 q0-6 18-6 q18 0 18 6 l-4 32 h-28 z" fill="#5b8ab8" stroke="#1a3a5a" stroke-width="1.6"/>
+    <rect x="6" y="14" width="40" height="6" rx="3" fill="#3a7ab0" stroke="#1a3a5a" stroke-width="1.4"/>
+    <g stroke="#1a3a5a" stroke-width="1.2" opacity=".4">
+      <path d="M16 24 v26"/><path d="M26 24 v26"/><path d="M36 24 v26"/>
+    </g>
+  </g>
+
+  <!-- Jalur zikir -->
+  <g id="zikirBeads">
+    <ellipse cx="30" cy="50" rx="24" ry="4" fill="#000" opacity=".06"/>
+    <path d="M10 46 q20-20 40 0" stroke="#8a6544" stroke-width="1.4" fill="none"/>
+    <g fill="#c49a63">
+      <circle cx="10" cy="46" r="3"/><circle cx="16" cy="38" r="3"/>
+      <circle cx="22" cy="32" r="3"/><circle cx="30" cy="30" r="3"/>
+      <circle cx="38" cy="32" r="3"/><circle cx="44" cy="38" r="3"/>
+      <circle cx="50" cy="46" r="3"/>
+    </g>
+  </g>
+
+  <!-- Tanda larangan -->
+  <g id="larangan">
+    <circle cx="26" cy="26" r="24" fill="#dce8f0" stroke="#c0564e" stroke-width="3"/>
+    <path d="M12 40 L40 12" stroke="#c0564e" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  </g>
+
+</defs>
+</svg>
+
+<div class="wrap">
+
+<!-- ===== HERO (Tahun 5 Unit 19) — kanak-kanak menaiki kereta melalui pemandangan Ghibli ===== -->
+  <div class="hero">
+    <svg viewBox="0 0 940 300" role="img" aria-label="Ilustrasi: kanak-kanak menaiki kenderaan melalui pemandangan pagi yang indah">
+      <defs>
+        <linearGradient id="h19sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c0e0ec"/>
+          <stop offset="40%" stop-color="#e0ecf0"/>
+          <stop offset="100%" stop-color="#f0f6f8"/>
+        </linearGradient>
+        <linearGradient id="h19gnd" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#8ab8a0"/>
+          <stop offset="100%" stop-color="#5a8a72"/>
+        </linearGradient>
+        <radialGradient id="h19glow">
+          <stop offset="0%" stop-color="#ffd4a0" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#ffd4a0" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="h19beam" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#3a7ab0" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#3a7ab0" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- sky -->
+      <rect width="940" height="300" fill="url(#h19sky)"/>
+      <!-- sun glow -->
+      <circle cx="780" cy="70" r="60" fill="url(#h19glow)"/>
+      <circle cx="780" cy="70" r="28" fill="#ffd4a0" opacity="0.7"/>
+      <!-- distant mountains -->
+      <path d="M0,200 Q120,140 240,170 T480,150 T720,160 T940,180 L940,300 L0,300 Z" fill="#a0c4d8" opacity="0.5"/>
+      <path d="M0,230 Q180,190 360,210 T720,200 T940,220 L940,300 L0,300 Z" fill="#8ab4c8" opacity="0.55"/>
+      <!-- ground -->
+      <path d="M0,240 Q240,225 480,235 T940,228 L940,300 L0,300 Z" fill="url(#h19gnd)"/>
+      <!-- mosque silhouette far-right -->
+      <g transform="translate(780,170) scale(0.35)">
+        <path d="M20,40 C20,18 40,6 60,6 C80,6 100,18 100,40 L100,48 L20,48 Z" fill="#1a3a5a" opacity="0.4"/>
+        <rect x="4" y="28" width="10" height="32" fill="#1a3a5a" opacity="0.4"/>
+        <rect x="106" y="28" width="10" height="32" fill="#1a3a5a" opacity="0.4"/>
+        <rect x="16" y="48" width="88" height="16" fill="#1a3a5a" opacity="0.4"/>
+        <path d="M56,6 v-8" stroke="#1a3a5a" stroke-width="2" opacity="0.4"/>
+        <path d="M53,0 a4,4 0 1,1 6,0 a3,3 0 1,0 -6,0 z" fill="#1a3a5a" opacity="0.4"/>
+      </g>
+      <!-- trees left -->
+      <g transform="translate(40,150) scale(0.55)" class="anim-sway"><use href="#pokokPinus"/></g>
+      <g transform="translate(110,160) scale(0.4)" class="anim-sway"><use href="#pokokPinus"/></g>
+      <!-- trees right -->
+      <g transform="translate(720,155) scale(0.5)" class="anim-sway"><use href="#pokokPinus"/></g>
+      <!-- birds -->
+      <g transform="translate(300,50)" class="anim-drift"><use href="#burungTerbang"/></g>
+      <g transform="translate(400,65) scale(0.8)" class="anim-drift"><use href="#burungTerbang"/></g>
+      <g transform="translate(520,45) scale(0.9)" class="anim-drift"><use href="#burungTerbang"/></g>
+      <!-- clouds -->
+      <g transform="translate(60,30) scale(0.7)" class="anim-drift"><use href="#awan"/></g>
+      <g transform="translate(420,20) scale(0.85)" class="anim-drift"><use href="#awan"/></g>
+      <g transform="translate(650,35) scale(0.6)" class="anim-drift"><use href="#awan"/></g>
+      <!-- beam -->
+      <polygon points="40,80 780,70 940,300 0,300" fill="url(#h19beam)"/>
+      <!-- car with children -->
+      <g transform="translate(340,155)">
+        <!-- shadow -->
+        <ellipse cx="80" cy="80" rx="70" ry="5" fill="#000" opacity=".1"/>
+        <!-- car body -->
+        <path d="M10 56 q6-18 28-22 h60 q16 2 22 18 v16 h-110 z" fill="#5b8ab8" stroke="#1a3a5a" stroke-width="2"/>
+        <!-- roof -->
+        <path d="M22 34 q8-14 26-14 h24 q16 2 22 14 h-72 z" fill="#7ab0d8" stroke="#1a3a5a" stroke-width="2"/>
+        <!-- window -->
+        <path d="M28 34 q6-10 20-10 h12 q12 2 16 10 z" fill="#c0e0f0" stroke="#1a3a5a" stroke-width="1.4" opacity=".85"/>
+        <path d="M50 20 v14" stroke="#1a3a5a" stroke-width="1.4"/>
+        <!-- child 1 (left, happy) -->
+        <g transform="translate(34,22)">
+          <ellipse cx="14" cy="14" rx="11" ry="12" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.6"/>
+          <path d="M4 14 a11 12 0 0 1 20 0 q-3-9 -10-9 q-7 0 -10 9 z" fill="#4a3526"/>
+          <ellipse cx="10" cy="16" rx="2.5" ry="3.2" fill="#3a2b22"/>
+          <ellipse cx="18" cy="16" rx="2.5" ry="3.2" fill="#3a2b22"/>
+          <circle cx="11" cy="15" r="1.1" fill="#fff"/><circle cx="19" cy="15" r="1.1" fill="#fff"/>
+          <path d="M11 22 q3 3 6 0" stroke="#b5714f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <!-- seatbelt -->
+          <path d="M6 18 l-3 10" stroke="#3a7ab0" stroke-width="2.2" stroke-linecap="round"/>
+        </g>
+        <!-- child 2 (right, happy) -->
+        <g transform="translate(60,22)">
+          <ellipse cx="14" cy="14" rx="11" ry="12" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.6"/>
+          <path d="M4 14 a11 12 0 0 1 20 0 q-3-9 -10-9 q-7 0 -10 9 z" fill="#5a3b28"/>
+          <ellipse cx="10" cy="16" rx="2.5" ry="3.2" fill="#3a2b22"/>
+          <ellipse cx="18" cy="16" rx="2.5" ry="3.2" fill="#3a2b22"/>
+          <circle cx="11" cy="15" r="1.1" fill="#fff"/><circle cx="19" cy="15" r="1.1" fill="#fff"/>
+          <path d="M11 22 q3 3 6 0" stroke="#b5714f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <!-- seatbelt -->
+          <path d="M22 18 l3 10" stroke="#3a7ab0" stroke-width="2.2" stroke-linecap="round"/>
+        </g>
+        <!-- headlight -->
+        <ellipse cx="94" cy="52" rx="5" ry="4" fill="#fff6cf" stroke="#8a6a2a" stroke-width="1.2"/>
+        <!-- wheels -->
+        <circle cx="32" cy="66" r="11" fill="#1a2228" stroke="#0e2438" stroke-width="2"/>
+        <circle cx="32" cy="66" r="5" fill="#6a7a82"/>
+        <circle cx="88" cy="66" r="11" fill="#1a2228" stroke="#0e2438" stroke-width="2"/>
+        <circle cx="88" cy="66" r="5" fill="#6a7a82"/>
+      </g>
+      <!-- twinkle stars -->
+      <g transform="translate(180,40)" class="anim-twinkle"><use href="#bintang"/></g>
+      <g transform="translate(600,30) scale(0.7)" class="anim-twinkle"><use href="#bintang"/></g>
+    </svg>
+    <div class="hero-txt">
+      <div class="kick">Pendidikan Islam &bull; Tahun 5 &bull; Bidang Adab</div>
+      <h1>Adab Menaiki Kenderaan</h1>
+      <div class="sub">Adab &bull; 6 Standard Pembelajaran &bull; Selamat &amp; Berakhlak</div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="chip"><div class="lbl">Bidang</div><div class="val">Adab</div></div>
+    <div class="chip"><div class="lbl">Standard Kandungan (SK)</div><div class="val">Mengamalkan <b>adab menaiki kenderaan</b> dengan betul</div></div>
+    <div class="chip"><div class="lbl">Standard Pembelajaran (SP)</div><div class="val">6.1.1 &ndash; 6.1.6</div></div>
+    <div class="chip"><div class="lbl">Sumber</div><div class="val">DSKP PI T5 (ms. 34) &bull; Buku Teks PI T5 SK (ms. 160&ndash;165)</div></div>
+  </div>
+
+  <div class="toc">
+    <div class="ttl">Kandungan &amp; Panduan Penggunaan</div>
+    <div class="grid">
+      <div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">Adab sebelum, ketika &amp; selepas menaiki kenderaan</div></div></div>
+      <div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">Adab, doa &amp; kepentingan keselamatan</div></div></div>
+      <div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">10 poin ringkasan untuk rujukan pantas</div></div></div>
+      <div class="it"><div class="n">4</div><div><div class="t">Diagram Alir Adab</div><div class="d">Doa &rarr; semak &rarr; tali keledar &rarr; tertib &rarr; syukur</div></div></div>
+      <div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan dengan maklum balas segera</div></div></div>
+      <div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Senarai 24 Standard Kandungan PI Tahun 5</div></div></div>
+    </div>
+    <div class="note"><b>Cara guna:</b> Buka fail ini dalam pelayar web. Pada kuiz, klik pilihan jawapan untuk maklum balas segera dan skor automatik. Tekan butang <b>Cetak / Simpan PDF</b> untuk versi kertas &mdash; semua jawapan akan dipaparkan secara automatik supaya boleh dijadikan lembaran kerja.</div>
+  </div>
+
+<!-- ===== 1. INFOGRAFIK ===== -->
+<section id="infografik">
+  <h2><span class="num">1</span> Infografik<svg class="mascot" width="40" height="25" viewBox="0 0 100 80" aria-hidden="true"><use href="#kereta" transform="scale(0.5)"/></svg></h2>
+  <p class="hint">Tiga peringkat adab menaiki kenderaan: sebelum, ketika, dan selepas perjalanan.</p>
+  <div class="art-wrap">
+    <svg id="art-info" viewBox="0 0 820 1150" xmlns="http://www.w3.org/2000/svg" aria-label="Infografik Adab Menaiki Kenderaan">
+      <defs>
+        <linearGradient id="gh19u19" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1a3a5a"/><stop offset="100%" stop-color="#0e2438"/>
+        </linearGradient>
+        <linearGradient id="gd19u19" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#dce8f0"/><stop offset="100%" stop-color="#f5fafd"/>
+        </linearGradient>
+      </defs>
+      <!-- background -->
+      <rect width="820" height="1150" fill="#f5fafd"/>
+
+      <!-- HEAD -->
+      <rect x="0" y="0" width="820" height="80" fill="url(#gh19u19)"/>
+      <text x="410" y="34" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="24" font-weight="700" fill="#f5fafd" text-anchor="middle">ADAB MENAIKI KENDERAAN</text>
+      <text x="410" y="58" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#a0c4d8" text-anchor="middle">SEBELUM &bull; KETIKA &bull; SELEPAS &bull; SK 6.1</text>
+
+      <!-- SECTION 1: SEBELUM -->
+      <rect x="0" y="84" width="820" height="36" fill="#3a7ab0"/>
+      <text x="410" y="108" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">SEBELUM MENAIKI KENDERAAN</text>
+
+      <!-- sebelum card 1: Berdoa -->
+      <rect x="22" y="130" width="252" height="140" rx="10" fill="url(#gd19u19)" stroke="#d0dce4" stroke-width="1.4"/>
+      <g transform="translate(112,146) scale(0.6)"><use href="#zikirBeads"/></g>
+      <text x="148" y="210" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a" text-anchor="middle">1. Berdoa</text>
+      <text x="148" y="232" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">Baca doa sebelum</text>
+      <text x="148" y="248" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">memulakan perjalanan</text>
+      <text x="148" y="264" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#6a7a82" text-anchor="middle">Az-Zukhruf 43:13-14</text>
+
+      <!-- sebelum card 2: Semak kenderaan -->
+      <rect x="284" y="130" width="252" height="140" rx="10" fill="url(#gd19u19)" stroke="#d0dce4" stroke-width="1.4"/>
+      <g transform="translate(374,142) scale(0.55)"><use href="#kereta"/></g>
+      <text x="410" y="210" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a" text-anchor="middle">2. Semak Kenderaan</text>
+      <text x="410" y="232" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">Pastikan tayar, brek,</text>
+      <text x="410" y="248" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">cermin dalam keadaan baik</text>
+
+      <!-- sebelum card 3: Tali keledar -->
+      <rect x="546" y="130" width="252" height="140" rx="10" fill="url(#gd19u19)" stroke="#d0dce4" stroke-width="1.4"/>
+      <g transform="translate(640,150) scale(1.4)"><use href="#taliKeledar"/></g>
+      <text x="672" y="210" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a" text-anchor="middle">3. Pakai Tali Keledar</text>
+      <text x="672" y="232" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">Semak tali keledar</text>
+      <text x="672" y="248" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">sebelum kenderaan bergerak</text>
+
+      <!-- SECTION 2: KETIKA -->
+      <rect x="0" y="284" width="820" height="36" fill="#1a4a7a"/>
+      <text x="410" y="308" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">KETIKA MENAIKI KENDERAAN</text>
+
+      <!-- ketika card 1: Duduk tertib -->
+      <rect x="22" y="330" width="252" height="130" rx="10" fill="url(#gd19u19)" stroke="#d0dce4" stroke-width="1.4"/>
+      <g transform="translate(100,344) scale(0.5)"><use href="#kanakKereta"/></g>
+      <text x="148" y="410" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a" text-anchor="middle">4. Duduk dengan Tertib</text>
+      <text x="148" y="432" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">Tidak melompat-lompat</text>
+
+      <!-- ketika card 2: Patuh arahan -->
+      <rect x="284" y="330" width="252" height="130" rx="10" fill="url(#gd19u19)" stroke="#d0dce4" stroke-width="1.4"/>
+      <g transform="translate(374,340) scale(0.5)"><use href="#pemandu"/></g>
+      <text x="410" y="410" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a" text-anchor="middle">5. Patuh Arahan Pemandu</text>
+      <text x="410" y="432" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">Taat arahan dewasa/pemandu</text>
+
+      <!-- ketika card 3: Tidak ganggu pemandu -->
+      <rect x="546" y="330" width="252" height="130" rx="10" fill="url(#gd19u19)" stroke="#d0dce4" stroke-width="1.4"/>
+      <g transform="translate(630,346) scale(0.5)"><use href="#larangan"/></g>
+      <text x="672" y="410" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a" text-anchor="middle">6. Tidak Ganggu Pemandu</text>
+      <text x="672" y="432" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">Tidak berbunyi/bercakap kuat</text>
+
+      <!-- ketika card 4: Tidak buang sampah -->
+      <rect x="22" y="474" width="252" height="130" rx="10" fill="url(#gd19u19)" stroke="#d0dce4" stroke-width="1.4"/>
+      <g transform="translate(94,484) scale(0.5)"><use href="#tongSampah"/></g>
+      <text x="148" y="554" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a" text-anchor="middle">7. Tidak Buang Sampah</text>
+      <text x="148" y="576" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">Tidak membuang dari tingkap</text>
+
+      <!-- ketika card 5: Tidak menjengket -->
+      <rect x="284" y="474" width="252" height="130" rx="10" fill="url(#gd19u19)" stroke="#d0dce4" stroke-width="1.4"/>
+      <g transform="translate(374,488) scale(0.5)"><use href="#larangan"/></g>
+      <text x="410" y="554" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a" text-anchor="middle">8. Tidak Menjengket</text>
+      <text x="410" y="576" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">Tangan/kepala di dalam tingkap</text>
+
+      <!-- ketika card 6: Berdzikir -->
+      <rect x="546" y="474" width="252" height="130" rx="10" fill="url(#gd19u19)" stroke="#d0dce4" stroke-width="1.4"/>
+      <g transform="translate(636,484) scale(0.55)"><use href="#zikirBeads"/></g>
+      <text x="672" y="554" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a" text-anchor="middle">9. Berdzikir/Baca al-Quran</text>
+      <text x="672" y="576" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">Manfaatkan masa perjalanan</text>
+
+      <!-- SECTION 3: SELEPAS -->
+      <rect x="0" y="618" width="820" height="36" fill="#3a7ab0"/>
+      <text x="410" y="642" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">SELEPAS MENAIKI KENDERAAN</text>
+
+      <!-- selepas card 1: Terima kasih -->
+      <rect x="22" y="664" width="252" height="140" rx="10" fill="url(#gd19u19)" stroke="#d0dce4" stroke-width="1.4"/>
+      <g transform="translate(100,676) scale(0.5)"><use href="#tanganWave"/></g>
+      <text x="148" y="744" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a" text-anchor="middle">10. Ucap Terima Kasih</text>
+      <text x="148" y="766" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">Kepada pemandu / dewasa</text>
+
+      <!-- selepas card 2: Tutup pintu lembut -->
+      <rect x="284" y="664" width="252" height="140" rx="10" fill="url(#gd19u19)" stroke="#d0dce4" stroke-width="1.4"/>
+      <g transform="translate(370,676) scale(0.5)"><use href="#pintu"/></g>
+      <text x="410" y="744" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a" text-anchor="middle">11. Tutup Pintu Lembut</text>
+      <text x="410" y="766" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">Jangan menampar pintu</text>
+
+      <!-- selepas card 3: Bersyukur -->
+      <rect x="546" y="664" width="252" height="140" rx="10" fill="url(#gd19u19)" stroke="#d0dce4" stroke-width="1.4"/>
+      <g transform="translate(640,684) scale(0.6)"><use href="#zikirBeads"/></g>
+      <text x="672" y="744" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a" text-anchor="middle">12. Berdoa Bersyukur</text>
+      <text x="672" y="766" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#1a2228" text-anchor="middle">Bersyukur selamat sampai</text>
+
+      <!-- DOA SECTION -->
+      <rect x="22" y="820" width="776" height="160" rx="12" fill="#eaf2f8" stroke="#3a7ab0" stroke-width="1.8"/>
+      <text x="410" y="850" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="15" font-weight="700" fill="#1a3a5a" text-anchor="middle">DOA SEBELUM MENAIKI KENDERAAN</text>
+      <text x="410" y="888" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="28" fill="#0e2438" text-anchor="middle" direction="rtl">
+        <tspan class="arab">&#x0633;&#x064F;&#x0628;&#x0652;&#x062D;&#x064E;&#x0627;&#x0646;&#x064E; &#x0627;&#x0644;&#x0651;&#x064E;&#x0630;&#x0650;&#x064A; &#x0633;&#x064E;&#x062E;&#x0651;&#x064E;&#x0631;&#x064E; &#x0644;&#x064E;&#x0646;&#x064E;&#x0627; &#x0647;&#x064E;&#x0670;&#x0630;&#x064E;&#x0627; &#x0648;&#x064E;&#x0645;&#x064E;&#x0627; &#x0643;&#x064F;&#x0646;&#x0652;&#x0646;&#x064E;&#x0627; &#x0644;&#x064E;&#x0647;&#x064F; &#x0645;&#x064F;&#x0642;&#x0652;&#x0631;&#x0650;&#x0646;&#x0650;&#x064A;&#x0652;&#x0646;&#x064E;</tspan>
+      </text>
+      <text x="410" y="924" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="28" fill="#0e2438" text-anchor="middle" direction="rtl">
+        <tspan class="arab">&#x0648;&#x064E;&#x0625;&#x0650;&#x0646;&#x0651;&#x064E;&#x0627; &#x0625;&#x0650;&#x0644;&#x064E;&#x0649;&#x0670; &#x0631;&#x064E;&#x0628;&#x0651;&#x0650;&#x0646;&#x064E;&#x0627; &#x0644;&#x064E;&#x0645;&#x064F;&#x0646;&#x0652;&#x0642;&#x064E;&#x0644;&#x0650;&#x0628;&#x064F;&#x0648;&#x0646;&#x064E;</tspan>
+      </text>
+      <text x="410" y="952" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.6" fill="#6a7a82" text-anchor="middle">"Maha Suci (Allah) yang telah memudahkan (kenderaan) ini untuk kita,</text>
+      <text x="410" y="968" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.6" fill="#6a7a82" text-anchor="middle">padahal kita sebelum ini tidak mampu menguasainya. Dan sesungguhnya kita akan kembali kepada Tuhan kita."</text>
+      <text x="410" y="976" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#3a7ab0" text-anchor="middle">(Surah Az-Zukhruf 43:13-14)</text>
+
+      <!-- KEPENTINGAN SECTION -->
+      <rect x="22" y="1000" width="776" height="130" rx="12" fill="#1a3a5a"/>
+      <text x="410" y="1030" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="15" font-weight="700" fill="#f5fafd" text-anchor="middle">KEPENTINGAN MEMATUHI PERATURAN KESELAMATAN</text>
+      <text x="44" y="1060" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#dce8f0">&#9679; Memelihara nyawa (maqasid syariah: hifz al-nafs)</text>
+      <text x="44" y="1082" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#dce8f0">&#9679; Mengelakkan kemalangan &amp; menjaga hak pengguna jalan raya lain</text>
+      <text x="44" y="1104" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="13" fill="#dce8f0">&#9679; Mematuhi undang-undang = ketaatan kepada ulil amri</text>
+      <text x="44" y="1126" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#a0c4d8">Sumber: DSKP KSSR Semakan 2017 &bull; Buku Teks PI T5 ms. 160&ndash;165</text>
+
+    </svg>
+  </div>
+</section>
+
+<!-- ===== 2. PETA MINDA ===== -->
+<section id="peta-minda">
+  <h2><span class="num">2</span> Peta Minda<svg class="mascot" width="40" height="25" viewBox="0 0 100 80" aria-hidden="true"><use href="#awan"/></svg></h2>
+  <p class="hint">Peta minda Adab Menaiki Kenderaan dengan 5 cabang utama.</p>
+  <div class="art-wrap">
+    <svg id="art-pm" viewBox="0 0 820 730" xmlns="http://www.w3.org/2000/svg" aria-label="Peta Minda Adab Menaiki Kenderaan">
+      <defs>
+        <linearGradient id="gh19u19p" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1a3a5a"/><stop offset="100%" stop-color="#0e2438"/>
+        </linearGradient>
+        <linearGradient id="gd19u19p" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#dce8f0"/><stop offset="100%" stop-color="#f5fafd"/>
+        </linearGradient>
+      </defs>
+      <rect width="820" height="730" fill="#f5fafd"/>
+
+      <!-- title -->
+      <rect x="0" y="0" width="820" height="64" rx="0" fill="url(#gh19u19p)"/>
+      <text x="410" y="40" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="22" font-weight="700" fill="#f5fafd" text-anchor="middle">PETA MINDA &#8212; ADAB MENAIKI KENDERAAN</text>
+
+      <!-- centre node -->
+      <rect x="290" y="300" width="240" height="70" rx="12" fill="#1a3a5a" stroke="#0e2438" stroke-width="2"/>
+      <text x="410" y="332" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="16" font-weight="700" fill="#f5fafd" text-anchor="middle">ADAB MENAIKI</text>
+      <text x="410" y="354" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="16" font-weight="700" fill="#f5fafd" text-anchor="middle">KENDERAAN</text>
+
+      <!-- BRANCH 1: SEBELUM (top-left) -->
+      <path d="M290,315 L180,180" stroke="#3a7ab0" stroke-width="2.4" fill="none"/>
+      <rect x="44" y="120" width="220" height="120" rx="10" fill="url(#gd19u19p)" stroke="#d0dce4" stroke-width="1.4"/>
+      <text x="60" y="148" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a">SEBELUM</text>
+      <text x="60" y="172" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Niat perjalanan yang baik</text>
+      <text x="60" y="192" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Berdoa sebelum perjalanan</text>
+      <text x="60" y="212" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Semak kenderaan selamat</text>
+      <text x="60" y="232" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Pakai tali keledar</text>
+
+      <!-- BRANCH 2: KETIKA (top-right) -->
+      <path d="M530,315 L640,180" stroke="#3a7ab0" stroke-width="2.4" fill="none"/>
+      <rect x="556" y="120" width="220" height="120" rx="10" fill="url(#gd19u19p)" stroke="#d0dce4" stroke-width="1.4"/>
+      <text x="572" y="148" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a">KETIKA</text>
+      <text x="572" y="172" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Duduk dengan tertib</text>
+      <text x="572" y="192" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Gunakan tali keledar</text>
+      <text x="572" y="212" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Patuh arahan pemandu</text>
+      <text x="572" y="232" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Tidak ganggu / buang sampah</text>
+
+      <!-- BRANCH 3: SELEPAS (bottom-left) -->
+      <path d="M310,370 L180,480" stroke="#3a7ab0" stroke-width="2.4" fill="none"/>
+      <rect x="44" y="470" width="220" height="110" rx="10" fill="url(#gd19u19p)" stroke="#d0dce4" stroke-width="1.4"/>
+      <text x="60" y="498" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a">SELEPAS</text>
+      <text x="60" y="522" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Ucap terima kasih</text>
+      <text x="60" y="542" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Tutup pintu dengan lembut</text>
+      <text x="60" y="562" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Pastikan tiada barang tertinggal</text>
+
+      <!-- BRANCH 4: DOA (bottom-centre) -->
+      <path d="M410,370 L410,470" stroke="#3a7ab0" stroke-width="2.4" fill="none"/>
+      <rect x="280" y="470" width="260" height="110" rx="10" fill="url(#gd19u19p)" stroke="#d0dce4" stroke-width="1.4"/>
+      <text x="296" y="498" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a">DOA PERJALANAN</text>
+      <text x="410" y="524" font-family="Scheherazade New, Traditional Arabic, Amiri, serif" font-size="16" fill="#0e2438" text-anchor="middle" direction="rtl">
+        <tspan class="arab">&#x0633;&#x064F;&#x0628;&#x0652;&#x062D;&#x064E;&#x0627;&#x0646;&#x064E; &#x0627;&#x0644;&#x0651;&#x064E;&#x0630;&#x0650;&#x064A; &#x0633;&#x064E;&#x062E;&#x0651;&#x064E;&#x0631;&#x064E; &#x0644;&#x064E;&#x0646;&#x064E;&#x0627;</tspan>
+      </text>
+      <text x="410" y="548" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.5" fill="#6a7a82" text-anchor="middle">Az-Zukhruf 43:13-14</text>
+      <text x="410" y="566" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#6a7a82" text-anchor="middle">Baca sebelum &amp; sesudah perjalanan</text>
+
+      <!-- BRANCH 5: KEPENTINGAN (bottom-right) -->
+      <path d="M510,370 L640,480" stroke="#3a7ab0" stroke-width="2.4" fill="none"/>
+      <rect x="556" y="470" width="220" height="110" rx="10" fill="url(#gd19u19p)" stroke="#d0dce4" stroke-width="1.4"/>
+      <text x="572" y="498" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#1a3a5a">KEPENTINGAN</text>
+      <text x="572" y="522" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Memelihara nyawa</text>
+      <text x="572" y="542" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Mengelakkan kemalangan</text>
+      <text x="572" y="562" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12.4" fill="#1a2228">&#9679; Patuh undang-undang = taat ulil amri</text>
+
+      <!-- decorations -->
+      <g transform="translate(20,590) scale(0.3)"><use href="#kereta"/></g>
+      <g transform="translate(680,590) scale(0.3)"><use href="#bas"/></g>
+
+      <!-- footer -->
+      <text x="410" y="710" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="12" fill="#6a7a82" text-anchor="middle">Iktibar: Adab menaiki kenderaan melindungi nyawa dan mengeratkan silaturahim.</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== 3. NOTA RINGKAS ===== -->
+<section id="nota-ringkas">
+  <h2><span class="num">3</span> Nota Ringkas<svg class="mascot" width="40" height="25" viewBox="0 0 60 60" aria-hidden="true"><use href="#tandaSemak"/></svg></h2>
+  <p class="hint">10 poin penting untuk rujukan pantas.</p>
+  <div class="card">
+    <ul>
+      <li><b>Adab sebelum:</b> Berdoa, semak kenderaan selamat, dan pakai tali keledar sebelum bertolak.</li>
+      <li><b>Adab ketika:</b> Duduk dengan tertib, gunakan tali keledar, dan patuh arahan pemandu.</li>
+      <li><b>Adab selepas:</b> Ucap terima kasih, tutup pintu dengan lembut, dan pastikan tiada barang tertinggal.</li>
+      <li><b>Doa:</b> Membaca doa dari Surah Az-Zukhruf 43:13-14 sebelum memulakan perjalanan.</li>
+      <li><b>Tali keledar:</b> Wajib dipakai oleh semua penumpang sebagai langkah keselamatan.</li>
+      <li><b>Tidak mengganggu pemandu:</b> Elakkan berbunyi kuat atau bermain di dalam kenderaan.</li>
+      <li><b>Tidak membuang sampah:</b> Sampah tidak dibuang dari tingkap kenderaan.</li>
+      <li><b>Kepentingan keselamatan:</b> Memelihara nyawa (hifz al-nafs) dan mengelakkan kemalangan.</li>
+      <li><b>Patuh undang-undang:</b> Mematuhi peraturan jalan raya adalah ketaatan kepada ulil amri.</li>
+      <li><b>Nilai:</b> Berdisiplin, bertanggungjawab, menghormati pemandu, dan bersyukur selamat sampai.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 4. DIAGRAM ===== -->
+<section id="diagram">
+  <h2><span class="num">4</span> Diagram Alir Adab Menaiki Kenderaan<svg class="mascot" width="40" height="25" viewBox="0 0 100 80" aria-hidden="true"><use href="#kereta" transform="scale(0.4)"/></svg></h2>
+  <p class="hint">Aliran adab dari mula hingga sampai ke destinasi.</p>
+  <div class="art-wrap">
+    <svg id="art-dia" viewBox="0 0 820 430" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram alir adab menaiki kenderaan">
+      <defs>
+        <linearGradient id="gh19u19d" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1a3a5a"/><stop offset="100%" stop-color="#0e2438"/>
+        </linearGradient>
+        <linearGradient id="gd19u19d" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#dce8f0"/><stop offset="100%" stop-color="#f5fafd"/>
+        </linearGradient>
+        <marker id="ah19" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#1a3a5a"/>
+        </marker>
+      </defs>
+      <rect width="820" height="430" fill="#f5fafd"/>
+
+      <!-- title -->
+      <rect x="0" y="0" width="820" height="50" fill="url(#gh19u19d)"/>
+      <text x="410" y="32" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="18" font-weight="700" fill="#f5fafd" text-anchor="middle">DIAGRAM ALIR ADAB MENAIKI KENDERAAN</text>
+
+      <!-- Step 1: Doa -->
+      <rect x="20" y="70" width="100" height="56" rx="8" fill="url(#gd19u19d)" stroke="#d0dce4" stroke-width="1.4"/>
+      <text x="70" y="95" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="12" font-weight="700" fill="#1a3a5a" text-anchor="middle">DOA</text>
+      <text x="70" y="112" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10.5" fill="#6a7a82" text-anchor="middle">Sebelum bertolak</text>
+
+      <!-- arrow 1 -->
+      <line x1="120" y1="98" x2="146" y2="98" stroke="#3a7ab0" stroke-width="2.4" marker-end="url(#ah19)"/>
+
+      <!-- Step 2: Semak kenderaan -->
+      <rect x="148" y="70" width="100" height="56" rx="8" fill="url(#gd19u19d)" stroke="#d0dce4" stroke-width="1.4"/>
+      <text x="198" y="95" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="12" font-weight="700" fill="#1a3a5a" text-anchor="middle">SEMAK</text>
+      <text x="198" y="112" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10.5" fill="#6a7a82" text-anchor="middle">Tayar, brek, cermin</text>
+
+      <!-- arrow 2 -->
+      <line x1="248" y1="98" x2="274" y2="98" stroke="#3a7ab0" stroke-width="2.4" marker-end="url(#ah19)"/>
+
+      <!-- Step 3: Tali keledar -->
+      <rect x="276" y="70" width="100" height="56" rx="8" fill="url(#gd19u19d)" stroke="#d0dce4" stroke-width="1.4"/>
+      <text x="326" y="95" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="12" font-weight="700" fill="#1a3a5a" text-anchor="middle">TALI KELEDAR</text>
+      <text x="326" y="112" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10.5" fill="#6a7a82" text-anchor="middle">Pakai &amp; semak</text>
+
+      <!-- arrow 3 -->
+      <line x1="376" y1="98" x2="402" y2="98" stroke="#3a7ab0" stroke-width="2.4" marker-end="url(#ah19)"/>
+
+      <!-- Step 4: Duduk tertib -->
+      <rect x="404" y="70" width="100" height="56" rx="8" fill="url(#gd19u19d)" stroke="#d0dce4" stroke-width="1.4"/>
+      <text x="454" y="95" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="12" font-weight="700" fill="#1a3a5a" text-anchor="middle">DUDUK TERTIB</text>
+      <text x="454" y="112" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10.5" fill="#6a7a82" text-anchor="middle">Tidak melompat</text>
+
+      <!-- arrow 4 -->
+      <line x1="504" y1="98" x2="530" y2="98" stroke="#3a7ab0" stroke-width="2.4" marker-end="url(#ah19)"/>
+
+      <!-- Step 5: Patuh pemandu -->
+      <rect x="532" y="70" width="100" height="56" rx="8" fill="url(#gd19u19d)" stroke="#d0dce4" stroke-width="1.4"/>
+      <text x="582" y="95" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="12" font-weight="700" fill="#1a3a5a" text-anchor="middle">PATUH PEMANDU</text>
+      <text x="582" y="112" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10.5" fill="#6a7a82" text-anchor="middle">Tidak ganggu</text>
+
+      <!-- arrow 5 -->
+      <line x1="632" y1="98" x2="658" y2="98" stroke="#3a7ab0" stroke-width="2.4" marker-end="url(#ah19)"/>
+
+      <!-- Step 6: Sampai -->
+      <rect x="660" y="70" width="100" height="56" rx="8" fill="url(#gd19u19d)" stroke="#d0dce4" stroke-width="1.4"/>
+      <text x="710" y="95" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="12" font-weight="700" fill="#1a3a5a" text-anchor="middle">SAMPAI</text>
+      <text x="710" y="112" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="10.5" fill="#6a7a82" text-anchor="middle">Destinasi selamat</text>
+
+      <!-- arrow 6 (downward) -->
+      <path d="M710,126 L710,170" stroke="#3a7ab0" stroke-width="2.4" fill="none" marker-end="url(#ah19)"/>
+
+      <!-- Step 7: Syukur -->
+      <rect x="320" y="172" width="180" height="56" rx="8" fill="#1a3a5a" stroke="#0e2438" stroke-width="2"/>
+      <text x="410" y="197" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="13" font-weight="700" fill="#f5fafd" text-anchor="middle">SYUKUR &amp; TERIMA KASIH</text>
+      <text x="410" y="215" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11" fill="#dce8f0" text-anchor="middle">Bersyukur selamat sampai &amp; ucap terima kasih</text>
+
+      <!-- connecting line from step 6 to step 7 -->
+      <path d="M710,170 Q710,170 410,170" stroke="#3a7ab0" stroke-width="2.4" fill="none" stroke-dasharray="4 4"/>
+
+      <!-- BANNER -->
+      <rect x="20" y="250" width="780" height="50" rx="10" fill="#1a3a5a"/>
+      <text x="410" y="280" font-family="Poppins,Tahoma,Segoe UI,Arial" font-size="14" font-weight="700" fill="#f5fafd" text-anchor="middle">HASIL: Murid mengamalkan adab menaiki kenderaan dengan betul &amp; selamat.</text>
+
+      <!-- footer notes -->
+      <text x="410" y="324" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.4" fill="#6a7a82" text-anchor="middle">Nota: Doa Az-Zukhruf 43:13-14 dibaca sebelum bertolak. Tutup pintu dengan lembut selepas menurun.</text>
+      <text x="410" y="342" font-family="Open Sans,Tahoma,Segoe UI,Arial" font-size="11.4" fill="#6a7a82" text-anchor="middle">Sumber: Buku Teks Pendidikan Islam Tahun 5 (ms. 160&#8211;165) &#8226; DSKP KSSR Semakan 2017</text>
+
+      <!-- decorative car -->
+      <g transform="translate(340,355) scale(0.35)"><use href="#kereta"/></g>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== 5. KUIZ INTERAKTIF ===== -->
+  <section>
+    <h2><span class="num">5</span> Kuiz Interaktif &mdash; 10 Soalan<svg class="mascot" width="40" height="25" viewBox="0 0 100 80" aria-hidden="true"><use href="#kereta" transform="scale(0.4)"/></svg></h2>
+    <p class="hint">Klik pilihan jawapan. Maklum balas dan skor diberikan serta-merta.</p>
+
+    <div class="scorebar">
+      <span class="sc">Skor: <span id="sc">0</span> / 10</span>
+      <span class="bar"><i id="bar"></i></span>
+      <span class="hint2">Dijawab: <span id="done">0</span>/10</span>
+      <button class="act" onclick="resetQuiz()">Ulang Semula</button>
+      <button class="act solid" onclick="window.print()">Cetak / Simpan PDF</button>
+    </div>
+
+    <div id="quiz">
+
+      <div class="qcard" data-ans="2" data-exp="Doa sebelum menaiki kenderaan diambil dari <b>Surah Az-Zukhruf 43:13-14</b> &mdash; <b>&ldquo;Maha Suci (Allah) yang telah memudahkan (kenderaan) ini untuk kita...&rdquo;</b>">
+        <div class="qhead"><span class="qn">1</span><span class="qtext">Doa sebelum menaiki kenderaan diambil dari <b>surah</b> yang mana?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Surah al-Fatihah</span></button>
+          <button class="opt"><span class="k">B</span><span>Surah al-Baqarah</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Surah Az-Zukhruf 43:13-14</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Antara adab <b>sebelum</b> menaiki kenderaan ialah <b>berdoa, semak kenderaan, dan pakai tali keledar</b>.">
+        <div class="qhead"><span class="qn">2</span><span class="qtext">Apakah adab yang diamalkan <b>sebelum</b> menaiki kenderaan?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Berdoa, semak kenderaan, dan pakai tali keledar</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Tidur, makan, dan bermain</span></button>
+          <button class="opt"><span class="k">C</span><span>Bersembunyi di belakang kerusi</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Adab <b>ketika</b> menaiki kenderaan ialah <b>duduk dengan tertib, gunakan tali keledar, dan patuh arahan pemandu</b>.">
+        <div class="qhead"><span class="qn">3</span><span class="qtext">Apakah adab yang diamalkan <b>ketika</b> menaiki kenderaan?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Melompat-lompat di kerusi</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Duduk tertib, pakai tali keledar, patuh arahan pemandu</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Berdiri di pintu kenderaan</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Adab <b>selepas</b> menaiki kenderaan ialah <b>ucap terima kasih, tutup pintu dengan lembut, dan berdoa bersyukur</b> selamat sampai.">
+        <div class="qhead"><span class="qn">4</span><span class="qtext">Apakah adab yang diamalkan <b>selepas</b> menurun dari kenderaan?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Lari cepat tanpa berpusing</span></button>
+          <button class="opt"><span class="k">B</span><span>Tampar pintu dengan kuat</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Ucap terima kasih, tutup pintu lembut, bersyukur</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Tali keledar <b>wajib dipakai</b> oleh semua penumpang sebagai langkah keselamatan untuk memelihara nyawa.">
+        <div class="qhead"><span class="qn">5</span><span class="qtext">Mengapakah <b>tali keledar</b> perlu dipakai semasa menaiki kenderaan?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Untuk keselamatan dan memelihara nyawa</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Untuk hiasan kereta</span></button>
+          <button class="opt"><span class="k">C</span><span>Supaya boleh tidur lena</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Kita <b>tidak boleh membuang sampah dari tingkap</b> kenderaan kerana ia mencemarkan alam sekitar dan boleh membahayakan pengguna jalan lain.">
+        <div class="qhead"><span class="qn">6</span><span class="qtext">Apakah yang <b>tidak boleh dilakukan</b> dari tingkap kenderaan?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Membaca buku</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Membuang sampah dari tingkap</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Berdzikir dalam hati</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Maksud doa Az-Zukhruf 43:13-14: <b>&ldquo;Maha Suci (Allah) yang telah memudahkan (kenderaan) ini untuk kita, padahal kita sebelum ini tidak mampu menguasainya. Dan sesungguhnya kita akan kembali kepada Tuhan kita.&rdquo;</b>">
+        <div class="qhead"><span class="qn">7</span><span class="qtext">Apakah <b>maksud</b> doa &ldquo;Subhanalladzi sakhkhara lana hadza...&rdquo;?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Maha Suci Allah yang memudahkan kenderaan ini untuk kita</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Mohon rezeki yang melimpah</span></button>
+          <button class="opt"><span class="k">C</span><span>Mohon dijauhkan dari musibah</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Mematuhi peraturan keselamatan jalan raya adalah <b>ketaatan kepada ulil amri</b> dan memelihara nyawa (hifz al-nafs) sebagai salah satu maqasid syariah.">
+        <div class="qhead"><span class="qn">8</span><span class="qtext">Mengapakah kita perlu <b>mematuhi peraturan keselamatan jalan raya</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Supaya dapat sampai lebih cepat</span></button>
+          <button class="opt"><span class="k">B</span><span>Untuk mendapatkan pujian pemandu</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Memelihara nyawa dan taat kepada ulil amri</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Kita <b>tidak digalakkan mengganggu pemandu</b> semasa kenderaan bergerak kerana boleh mengganggu tumpuan pemandu dan menyebabkan kemalangan.">
+        <div class="qhead"><span class="qn">9</span><span class="qtext">Mengapakah kita <b>tidak boleh mengganggu pemandu</b> ketika kenderaan bergerak?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Boleh mengganggu tumpuan dan menyebabkan kemalangan</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Pemandu tidak suka bising</span></button>
+          <button class="opt"><span class="k">C</span><span>Kerana pemandu sedang tidur</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Kesimpulan: Adab menaiki kenderaan <b>memelihara nyawa</b>, <b>mengelakkan kemalangan</b>, dan <b>menjaga hak pengguna jalan raya lain</b>.">
+        <div class="qhead"><span class="qn">10</span><span class="qtext">Apakah <b>kepentingan</b> mengamalkan adab menaiki kenderaan?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Mendapatkan diskaun tambang</span></button>
+          <button class="opt"><span class="k">B</span><span>Menunjukkan kemewahan</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Memelihara nyawa dan mengelakkan kemalangan</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+    </div>
+
+    <div class="result" id="result">
+      <svg viewBox="0 0 160 80" style="width:160px;height:auto;margin:0 auto 4px;display:block">
+        <g transform="translate(10,4) scale(0.6)"><use href="#kereta"/></g>
+      </svg>
+      <div class="stars" id="stars"></div>
+      <div class="big" id="rscore"></div>
+      <div class="msg" id="rmsg"></div>
+      <button class="act solid" onclick="resetQuiz()">Cuba Lagi</button>
+      <button class="act" onclick="window.print()">Cetak / Simpan PDF</button>
+    </div>
+  </section>
+
+<!-- ===== LAMPIRAN ===== -->
+<section id="lampiran">
+  <h2>Lampiran: Carta Standard Kandungan &amp; Pembelajaran</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>Bidang</th><th>SK</th><th>Standard Pembelajaran (SP)</th><th class="c">&#10003;</th></tr></thead>
+      <tbody>
+        <tr class="on"><td>Al-Quran</td><td>1.1</td><td>Membaca surah al-Fatihah dan surah-surah daripada Juzuk Amma dengan tartil</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Al-Quran</td><td>1.2</td><td>Memahami maksud surah-surah daripada Juzuk Amma</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Al-Quran</td><td>1.3</td><td>Menghafaz surah-surah daripada Juzuk Amma</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Al-Quran</td><td>1.4</td><td>Menerapkan nilai-nilai murni daripada surah-surah Juzuk Amma</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Al-Quran</td><td>1.5</td><td>Mengaplikasikan tajwid asas semasa membaca al-Quran</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr><td>Al-Quran</td><td>1.6</td><td>Membaca dan memahami hukum mad dalam al-Quran</td><td class="c">&#9679;</td></tr>
+        <tr class="on"><td>Hadis</td><td>2.1</td><td>Memahami dan menghayati hadis-hadis arbain al-Nawawi</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Akidah</td><td>3.1</td><td>Memahami sifat-sifat Allah dan menerapkannya dalam kehidupan</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Akidah</td><td>3.2</td><td>Memahami konsep beriman kepada hari akhirat</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Akidah</td><td>3.3</td><td>Mempertahankan akidah daripada syirik</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Akidah</td><td>3.4</td><td>Mempertahankan akidah daripada sihir</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Ibadah</td><td>4.1</td><td>Merumus dan mengamalkan konsep <b>tayammum</b></td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Ibadah</td><td>4.2</td><td>Merumus dan mengamalkan konsep <b>solat berjemaah</b></td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Ibadah</td><td>4.3</td><td>Merumus dan mengamalkan konsep <b>solat Jumaat</b></td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr><td>Ibadah</td><td>4.4</td><td>Merumus dan mengamalkan konsep solat Sunat Hari Raya</td><td class="c">&#9679;</td></tr>
+        <tr><td>Ibadah</td><td>4.5</td><td>Merumus dan mengamalkan konsep solat Sunat Tasbih</td><td class="c">&#9679;</td></tr>
+        <tr class="on"><td>Sirah</td><td>5.1</td><td>Menghayati pengorbanan para sahabat dalam perjuangan Islam</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Sirah</td><td>5.2</td><td>Menghayati perjuangan Nabi Muhammad SAW di Madinah</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Sirah</td><td>5.3</td><td>Menghayati peristiwa-peristiwa penting dalam sejarah Islam</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr class="on"><td>Adab</td><td>6.1</td><td>Mengamalkan <b>adab menaiki kenderaan</b> dengan betul (unit 19 &check;)</td><td class="c" style="color:#1a3a5a">&#9679;</td></tr>
+        <tr><td>Adab</td><td>6.2</td><td>Mempraktikkan adab terhadap jiran dan masyarakat</td><td class="c">&#9679;</td></tr>
+        <tr><td>Adab</td><td>6.3</td><td>Mempraktikkan adab terhadap alam sekitar</td><td class="c">&#9679;</td></tr>
+        <tr><td>Jawi</td><td>7.1</td><td>Membaca dan menulis perkataan dan ayat dalam tulisan Jawi</td><td class="c">&#9679;</td></tr>
+        <tr><td>Jawi</td><td>7.2</td><td>Membaca dan memahami teks dalam tulisan Jawi</td><td class="c">&#9679;</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:10px;font-size:12px;color:var(--muted)">Nota: SP yang ditandakan <span style="color:#1a3a5a">&#9679;</span> telah diliputi dalam set bahan PdP ini sehingga Unit 19. Unit 6 (Hukum Mad, SK 1.6) sengaja diabaikan atas arahan pengguna.</p>
+  </div>
+</section>
+
+<footer>
+    Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 5 (BPK, 2019) &amp; Buku Teks Pendidikan Islam Tahun 5 SK (KPM).
+  </footer>
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+  var scEl = document.getElementById('sc');
+  var doneEl = document.getElementById('done');
+  var barEl = document.getElementById('bar');
+  var resultEl = document.getElementById('result');
+  var total = cards.length;
+
+  function refresh(){
+    var score = 0, answered = 0;
+    cards.forEach(function(c){
+      if(c.dataset.state === 'correct'){ score++; answered++; }
+      else if(c.dataset.state === 'wrong'){ answered++; }
+    });
+    scEl.textContent = score;
+    doneEl.textContent = answered;
+    barEl.style.width = (answered/total*100) + '%';
+    if(answered === total) showResult(score);
+  }
+
+  function showResult(score){
+    resultEl.classList.add('show');
+    document.getElementById('rscore').textContent = score + ' / ' + total;
+    document.getElementById('stars').textContent =
+      score >= 9 ? '\u2605\u2605\u2605\u2605\u2605' : score >= 7 ? '\u2605\u2605\u2605\u2605\u2606' : score >= 5 ? '\u2605\u2605\u2605\u2606\u2606' : '\u2605\u2605\u2606\u2606\u2606';
+    document.getElementById('rmsg').textContent =
+      score === 10 ? 'Syabas! Kamu benar-benar menguasai tajuk ini.'
+      : score >= 8 ? 'Bagus sekali! Teruskan usaha kamu.'
+      : score >= 6 ? 'Bagus! Ulangi nota sekali lagi untuk lebih mantap.'
+      : score >= 4 ? 'Jangan putus asa \u2014 baca semula nota ringkas di atas.'
+      : 'Mari ulang bersama-sama. Baca nota ringkas, kemudian cuba lagi.';
+    resultEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  cards.forEach(function(card){
+    var opts = Array.prototype.slice.call(card.querySelectorAll('.opt'));
+    var fb = card.querySelector('.fb');
+    var face = fb.querySelector('use');
+    var txt = fb.querySelector('.txt');
+    var ans = parseInt(card.dataset.ans, 10);
+    var exp = card.dataset.exp;
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(card.dataset.state) return;
+        var ok = (i === ans);
+        card.dataset.state = ok ? 'correct' : 'wrong';
+        card.classList.add('done');
+
+        opts.forEach(function(b, j){
+          b.disabled = true;
+          if(j === ans){ b.classList.add('ok'); }
+          else if(j === i){ b.classList.add('bad'); }
+          else { b.classList.add('dim'); }
+        });
+
+        face.setAttribute('href', ok ? '#faceYay' : '#faceOops');
+        txt.innerHTML = (ok ? '<b>Betul!</b> ' : '<b>Belum tepat.</b> Jawapan yang betul ialah <b>' +
+                        String.fromCharCode(65+ans) + '</b>. ') + exp;
+        fb.classList.add('show');
+        if(!ok) fb.classList.add('wrong');
+
+        refresh();
+      });
+    });
+  });
+
+  window.resetQuiz = function(){
+    cards.forEach(function(c){
+      delete c.dataset.state;
+      c.classList.remove('done');
+      var fb = c.querySelector('.fb');
+      fb.classList.remove('show','wrong');
+      c.querySelectorAll('.opt').forEach(function(b){
+        b.disabled = false;
+        b.classList.remove('ok','bad','dim');
+      });
+    });
+    resultEl.classList.remove('show');
+    refresh();
+    window.scrollTo({top: document.getElementById('quiz').offsetTop - 20, behavior:'smooth'});
+  };
+
+  window.addEventListener('beforeprint', function(){
+    cards.forEach(function(c){
+      var ans = parseInt(c.dataset.ans,10);
+      c.querySelectorAll('.opt').forEach(function(b,j){
+        if(j === ans) b.classList.add('ok');
+      });
+      if(!c.querySelector('.fb').classList.contains('show')){
+        var fb = c.querySelector('.fb');
+        fb.querySelector('.txt').innerHTML = '<b>Jawapan: ' + String.fromCharCode(65+ans) + '</b>. ' + c.dataset.exp;
+        fb.classList.add('show');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

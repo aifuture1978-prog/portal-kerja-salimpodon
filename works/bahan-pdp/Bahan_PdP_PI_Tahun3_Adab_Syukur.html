@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syukur &mdash; Bersyukur dengan Segala Nikmat Allah | Pendidikan Islam Tahun 3</title>
+<style>
+  :root{
+    --sky1:#f7e9ec; --sky2:#fdf7f8; --sky3:#fdf0ec;
+    --grass1:#d3a2ab; --grass2:#8c3b4a; --grass3:#5a2330;
+    --paper:#fffcf9; --ink:#3a2b2f; --muted:#8a7a7e;
+    --gold:#c9971f; --teal:#2f7f6f; --aqua:#d9c9a3;
+    --line:#f0dde1;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);
+    font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Traditional Arabic","Amiri",serif;direction:rtl}
+
+  .skybg{position:fixed;inset:0;z-index:-1;
+    background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#e9f0dd 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:#dde8c6;top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:#eaf1de;top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:#f8efd8;bottom:-140px;left:18%}
+
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(74,50,56,.16)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;
+    background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#8c3b4a;font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:#5a2330;letter-spacing:.4px;
+    text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:#8a7a7e;font-weight:600}
+
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;
+    box-shadow:0 3px 10px rgba(74,50,56,.07)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(74,50,56,.07)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--grass2);font-weight:800;
+    display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#fdf7f8;border:1.4px solid var(--line);
+    border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(140deg,var(--grass1),var(--grass2));box-shadow:0 2px 0 var(--grass3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--grass3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#fdf0ec;border:1.4px dashed var(--gold);border-radius:13px;
+    padding:10px 13px;font-size:12.5px;color:#6b5420;line-height:1.55}
+  .toc .note b{color:#8a6a12}
+
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(74,50,56,.07);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;
+    display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;
+    box-shadow:0 2px 0 var(--grass3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+
+  .nota{border-left:5px solid var(--gold);background:#fdf0ec;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#8a6a12}
+  .nota li:last-child{margin-bottom:0}
+
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:linear-gradient(135deg,#fbf0f2,#fdf0ec);border:1.5px solid var(--line);
+    border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#f0dde1;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;
+    background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .scorebar .hint2{font-size:12px;color:var(--muted);font-weight:600}
+
+  .qcard{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:13px;
+    background:#fcfdf8;transition:box-shadow .25s}
+  .qcard.done{box-shadow:0 3px 12px rgba(191,95,87,.18)}
+  .qhead{display:flex;gap:9px;align-items:flex-start;margin-bottom:11px}
+  .qn{background:var(--teal);color:#fff;min-width:26px;height:26px;border-radius:8px;display:inline-flex;
+    align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+  .qtext{font-weight:700;font-size:14.5px}
+  .opts{display:grid;grid-template-columns:1fr;gap:7px}
+  @media(min-width:640px){.opts{grid-template-columns:1fr 1fr 1fr}}
+  .opt{font-family:inherit;text-align:left;font-size:13.5px;font-weight:600;cursor:pointer;
+    background:#f6f9ef;border:2px solid #f0dde1;border-radius:11px;padding:9px 12px;color:var(--ink);
+    transition:transform .12s,background .2s,border-color .2s;display:flex;gap:7px;align-items:flex-start}
+  .opt:hover:not(:disabled){transform:translateY(-2px);background:#fff;border-color:var(--teal)}
+  .opt:disabled{cursor:default}
+  .opt .k{font-weight:800;color:var(--teal);flex:none}
+  .opt.ok{background:#fbdfd7;border-color:var(--grass2);color:#5a2330}
+  .opt.ok .k{color:var(--grass3)}
+  .opt.bad{background:#fbe0e4;border-color:#a95f6d;color:#8c3b4a}
+  .opt.bad .k{color:#b04a60}
+  .opt.dim{opacity:.45}
+
+  .fb{display:none;margin-top:11px;border-radius:12px;padding:10px 13px;font-size:13.5px;
+    background:#fbf0f2;border:1.5px dashed var(--grass2);align-items:flex-start;gap:11px}
+  .fb.show{display:flex}
+  .fb.wrong{background:#f5f9ee;border-color:#a95f6d}
+  .fb .face{flex:none;width:52px;height:52px}
+  .fb .txt b{color:var(--grass3)}
+  .fb.wrong .txt b{color:#6e2c39}
+
+  .result{display:none;text-align:center;padding:20px;border-radius:18px;margin-top:6px;
+    background:linear-gradient(135deg,#fbf0f2,#fdf0ec);border:2px solid var(--grass1)}
+  .result.show{display:block}
+  .result .big{font-size:30px;font-weight:800;color:var(--grass3);margin:6px 0}
+  .result .msg{font-size:14.5px;font-weight:600;margin-bottom:12px}
+  .stars{font-size:22px;letter-spacing:3px;margin-bottom:6px}
+  button.act{font-family:inherit;font-size:13.5px;font-weight:700;border-radius:11px;padding:10px 18px;
+    border:2px solid var(--grass2);background:#fff;color:var(--grass3);cursor:pointer;transition:background .2s}
+  button.act:hover{background:var(--grass1);color:#fff}
+  button.act.solid{background:var(--grass2);color:#fff}
+  button.act.solid:hover{background:var(--grass3)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#fbf0f2;color:var(--grass3);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  td.c{text-align:center;white-space:nowrap;font-weight:700;color:var(--grass2)}
+  tr:nth-child(even) td{background:#fafcf4}
+  tr.on td{background:#fdf0ec;font-weight:700}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-top:4px}
+
+  @media print{
+    body{background:#fff}
+    .skybg,.blob{display:none}
+    .wrap{max-width:100%;padding:0}
+    .scorebar{display:none}
+    section{box-shadow:none;page-break-inside:avoid;padding:14px 16px}
+    .toc{box-shadow:none;page-break-inside:avoid;break-inside:avoid}
+    h2,.hint{page-break-after:avoid;break-after:avoid}
+    #art-info{width:auto;height:923px;display:block;margin:0 auto}
+    .qcard{page-break-inside:avoid;padding:10px 13px;margin-bottom:8px}
+    .qhead .qtext{font-size:13px}
+    .opt{padding:6px 9px;font-size:11.5px;transform:none !important}
+    .fb{margin-top:7px;padding:7px 10px;font-size:11.5px}
+    .fb .face{width:40px;height:40px}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4;margin:12mm}
+</style>
+</head>
+<body>
+
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<!-- ===== Watak kartun (statik) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <g id="adam">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <rect x="57" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <ellipse cx="46" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l7 44 h-56 z" fill="#7fc4b8" stroke="#2f7f6f" stroke-width="2"/>
+    <path d="M36 82 q-13 13 -9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 82 q13 13 9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M39 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="46.5" r="1.9" fill="#fff"/><circle cx="68" cy="46.5" r="1.9" fill="#fff"/>
+    <path d="M55 56 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M49 63 q6 6.5 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="nur">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="43" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <rect x="58" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <ellipse cx="48" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="63" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <path d="M33 78 q22-11 44 0 l12 46 h-68 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <path d="M36 84 q-13 12 -10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 84 q13 12 10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="51.5" r="1.9" fill="#fff"/><circle cx="67" cy="51.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Adam berdiri solat (bersedekap, berkopiah) -->
+  <g id="adamSolat">
+    <ellipse cx="55" cy="157" rx="32" ry="6" fill="#000" opacity=".08"/>
+    <path d="M30 74 q25-12 50 0 l13 84 h-76 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <ellipse cx="46" cy="156" rx="11" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="156" rx="11" ry="5.5" fill="#6b4f3a"/>
+    <path d="M35 80 q-10 12 -6 26 q10 4 14 -6 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <path d="M75 80 q10 12 6 26 q-10 4 -14 -6 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <path d="M40 84 q10 8 12 20" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M70 84 q-10 8 -12 20" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="42" y="104" width="26" height="12" rx="6" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M29 40 q26-24 52 0 q1 5 -3 5 h-46 q-4 0 -3 -5 z" fill="#3f7a45" stroke="#2f5c33" stroke-width="1.8"/>
+    <path d="M39 40 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 40 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="51" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="51" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="48.5" r="1.9" fill="#fff"/><circle cx="68" cy="48.5" r="1.9" fill="#fff"/>
+    <path d="M55 58 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 65 q5.5 5 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="60" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="60" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Adam duduk (tahiyyat) -->
+  <g id="adamDuduk">
+    <ellipse cx="55" cy="154" rx="35" ry="6" fill="#000" opacity=".08"/>
+    <path d="M20 152 q0-32 35-32 q35 0 35 32 z" fill="#e8e3d2" stroke="#cfc7b0" stroke-width="2"/>
+    <ellipse cx="42" cy="152" rx="12" ry="5" fill="#6b4f3a"/>
+    <ellipse cx="68" cy="152" rx="12" ry="5" fill="#6b4f3a"/>
+    <path d="M32 78 q23-11 46 0 l10 46 h-66 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <path d="M38 88 q-6 26 4 42" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M72 88 q6 26 -4 42" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="32" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="61" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="50" y="68" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="52" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="52" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="48" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 48 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M29 42 q26-24 52 0 q1 5 -3 5 h-46 q-4 0 -3 -5 z" fill="#3f7a45" stroke="#2f5c33" stroke-width="1.8"/>
+    <path d="M39 42 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 42 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="53" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="53" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="50.5" r="1.9" fill="#fff"/><circle cx="68" cy="50.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 5 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="62" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="62" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="faceYay">
+    <circle cx="30" cy="30" r="26" fill="#fbdfd7" stroke="#8c3b4a" stroke-width="2.5"/>
+    <ellipse cx="22" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="25.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="25.4" r="1.3" fill="#fff"/>
+    <path d="M20 38 q10 9 20 0" stroke="#5a2330" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="14" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <ellipse cx="46" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <path d="M30 2 l3 5 5 1 -4 4 1 5 -5-3 -5 3 1-5 -4-4 5-1 z" fill="#c9971f"/>
+  </g>
+
+  <g id="faceOops">
+    <circle cx="30" cy="30" r="26" fill="#f5f9ee" stroke="#a95f6d" stroke-width="2.5"/>
+    <ellipse cx="22" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="26.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="26.4" r="1.3" fill="#fff"/>
+    <path d="M15 21 q7-5 13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M45 21 q-7-5 -13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M21 41 q9-7 18 0" stroke="#6e2c39" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+    <ellipse cx="47" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+  </g>
+
+  <!-- Kambing (gembalaan Nabi SAW) -->
+  <g id="kambing">
+    <ellipse cx="42" cy="56" rx="28" ry="4" fill="#000" opacity=".08"/>
+    <path d="M20 30 q22-16 44 0 q4 14 -3 22 h-38 q-7-8 -3-22 z" fill="#f4eee0" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M22 44 q20 5 40 0" stroke="#cbb99a" stroke-width="1.2" fill="none" opacity=".6"/>
+    <path d="M64 26 q10-4 8-12" stroke="#cbb99a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <circle cx="64" cy="26" r="10.5" fill="#f8f3e6" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M58 15 q-7-8 0-13" stroke="#cbb99a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M70 15 q7-8 0-13" stroke="#cbb99a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="67" cy="25" rx="1.9" ry="2.4" fill="#3a2b22"/>
+    <ellipse cx="73" cy="30" rx="2.6" ry="1.8" fill="#e0b9a8"/>
+    <rect x="24" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <rect x="34" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <rect x="50" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <rect x="58" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <path d="M16 30 q-7-6 -3-13" stroke="#cbb99a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  </g>
+</defs>
+</svg>
+
+<div class="wrap">
+
+  <!-- ===== HERO (statik) ===== -->
+  <div class="hero">
+    <svg viewBox="0 0 940 300" role="img" aria-label="Kebun buah yang subur pada waktu pagi, dua murid berdiri di sisi bakul buah sebagai tanda bersyukur atas nikmat Allah, gaya Ghibli">
+      <defs>
+        <linearGradient id="h12sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fce6e6"/><stop offset=".44" stop-color="#fbf0ea"/><stop offset="1" stop-color="#f8f5ec"/>
+        </linearGradient>
+        <linearGradient id="h12gnd" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#cfe0a8"/><stop offset="1" stop-color="#a4c078"/>
+        </linearGradient>
+        <radialGradient id="h12sun" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#fff7dd"/><stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- langit pagi -->
+      <rect x="0" y="0" width="940" height="300" fill="url(#h12sky)"/>
+
+      <!-- matahari -->
+      <circle cx="106" cy="62" r="60" fill="url(#h12sun)"/>
+      <circle cx="106" cy="62" r="27" fill="#ffe9a8" stroke="#e5c469" stroke-width="1.6"/>
+
+      <!-- awan -->
+      <g fill="#ffffff" opacity=".93">
+        <ellipse cx="58" cy="50" rx="33" ry="15"/><ellipse cx="36" cy="56" rx="21" ry="11"/><ellipse cx="80" cy="56" rx="19" ry="10"/>
+        <ellipse cx="866" cy="52" rx="32" ry="14"/><ellipse cx="846" cy="58" rx="20" ry="10"/><ellipse cx="888" cy="58" rx="18" ry="9"/>
+        <g opacity=".82"><ellipse cx="814" cy="126" rx="26" ry="11"/><ellipse cx="798" cy="131" rx="16" ry="8"/><ellipse cx="832" cy="131" rx="15" ry="7"/></g>
+      </g>
+
+      <!-- burung -->
+      <g stroke="#8a7a7e" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".68">
+        <path d="M136 106 q7-7 14 0 q7-7 14 0"/>
+        <path d="M792 90 q6-6 12 0 q6-6 12 0"/>
+        <path d="M864 138 q5-5 10 0 q5-5 10 0"/>
+      </g>
+
+      <!-- bukit jauh -->
+      <path d="M0 214 L0 190 Q120 154 236 184 Q330 208 420 190 Q540 166 660 192 Q780 216 940 184 L940 214 Z" fill="#c8dba2" opacity=".85"/>
+
+      <!-- tanah -->
+      <rect x="0" y="212" width="940" height="88" fill="url(#h12gnd)"/>
+      <path d="M0 212 h940" stroke="#9ab86e" stroke-width="2"/>
+
+      <!-- POKOK BUAH KIRI -->
+      <rect x="98" y="184" width="17" height="42" rx="4" fill="#8a6a4e" stroke="#6b4f3a" stroke-width="1.5"/>
+      <circle cx="106" cy="140" r="52" fill="#7fa356"/>
+      <circle cx="76" cy="152" r="34" fill="#8fb463"/>
+      <circle cx="138" cy="152" r="34" fill="#8fb463"/>
+      <circle cx="106" cy="118" r="36" fill="#9cc272"/>
+      <circle cx="92" cy="124" r="16" fill="#b2d68b" opacity=".55"/>
+      <g stroke="#7a5a3a" stroke-width="1.2">
+        <circle cx="80" cy="132" r="7" fill="#d94f4f"/>
+        <circle cx="128" cy="122" r="7" fill="#e08a2c"/>
+        <circle cx="106" cy="160" r="7" fill="#e0c22c"/>
+        <circle cx="146" cy="158" r="6.5" fill="#d94f4f"/>
+        <circle cx="64" cy="160" r="6.5" fill="#e0c22c"/>
+      </g>
+
+      <!-- POKOK BUAH KANAN -->
+      <rect x="834" y="184" width="17" height="42" rx="4" fill="#8a6a4e" stroke="#6b4f3a" stroke-width="1.5"/>
+      <circle cx="842" cy="138" r="54" fill="#7fa356"/>
+      <circle cx="810" cy="150" r="34" fill="#8fb463"/>
+      <circle cx="874" cy="150" r="34" fill="#8fb463"/>
+      <circle cx="842" cy="114" r="37" fill="#9cc272"/>
+      <circle cx="828" cy="120" r="16" fill="#b2d68b" opacity=".55"/>
+      <g stroke="#7a5a3a" stroke-width="1.2">
+        <circle cx="814" cy="130" r="7" fill="#e08a2c"/>
+        <circle cx="866" cy="120" r="7" fill="#d94f4f"/>
+        <circle cx="842" cy="158" r="7" fill="#e0c22c"/>
+        <circle cx="884" cy="156" r="6.5" fill="#d94f4f"/>
+        <circle cx="800" cy="158" r="6.5" fill="#e0c22c"/>
+      </g>
+
+      <!-- ANAK POKOK BUAH (tengah) -->
+      <rect x="696" y="204" width="9" height="22" rx="3" fill="#8a6a4e" stroke="#6b4f3a" stroke-width="1.3"/>
+      <circle cx="700" cy="196" r="30" fill="#8fb463"/>
+      <circle cx="684" cy="204" r="18" fill="#9cc272"/>
+      <circle cx="716" cy="204" r="18" fill="#9cc272"/>
+      <circle cx="700" cy="186" r="15" fill="#b2d68b" opacity=".5"/>
+      <g stroke="#7a5a3a" stroke-width="1.1">
+        <circle cx="690" cy="196" r="5.5" fill="#d94f4f"/>
+        <circle cx="712" cy="200" r="5.5" fill="#e0c22c"/>
+      </g>
+
+      <!-- DUA MURID BERSYUKUR -->
+      <g transform="translate(372,152) scale(.76)"><use href="#adam"/></g>
+      <g transform="translate(516,156) scale(.74)"><use href="#nur"/></g>
+
+      <!-- BAKUL BUAH -->
+      <path d="M478 234 q20-26 38 0" fill="none" stroke="#8a6a4e" stroke-width="3.2" stroke-linecap="round"/>
+      <circle cx="486" cy="240" r="9" fill="#d94f4f" stroke="#a83838" stroke-width="1.2"/>
+      <circle cx="502" cy="236" r="9" fill="#e08a2c" stroke="#b06a1c" stroke-width="1.2"/>
+      <circle cx="516" cy="242" r="8.5" fill="#e0c22c" stroke="#b09a1c" stroke-width="1.2"/>
+      <circle cx="496" cy="228" r="8" fill="#a9538f" stroke="#833d6c" stroke-width="1.2"/>
+      <path d="M466 244 L522 244 L514 276 Q512 282 506 282 L482 282 Q476 282 474 276 Z" fill="#c9971f" stroke="#96761a" stroke-width="1.6"/>
+      <g stroke="#96761a" stroke-width="1.1" opacity=".7">
+        <path d="M470 256 h48"/><path d="M472 266 h44"/>
+      </g>
+      <path d="M466 244 h56" stroke="#96761a" stroke-width="2.4" stroke-linecap="round"/>
+
+      <!-- rumput dan bunga -->
+      <g stroke="#7fa356" stroke-width="2.2" fill="none" stroke-linecap="round">
+        <path d="M182 244 q4-14 9-18"/><path d="M192 246 q-1-12 3-17"/>
+        <path d="M292 258 q4-14 9-18"/><path d="M302 260 q-1-12 3-17"/>
+        <path d="M624 246 q4-14 9-18"/><path d="M634 248 q-1-12 3-17"/>
+        <path d="M748 262 q4-14 9-18"/><path d="M758 264 q-1-12 3-17"/>
+        <path d="M870 250 q4-14 9-18"/><path d="M880 252 q-1-12 3-17"/>
+      </g>
+      <g>
+        <circle cx="228" cy="262" r="5" fill="#f2a2a2"/><circle cx="228" cy="262" r="1.8" fill="#c9971f"/>
+        <circle cx="330" cy="272" r="5" fill="#d3a2ab"/><circle cx="330" cy="272" r="1.8" fill="#c9971f"/>
+        <circle cx="662" cy="266" r="5" fill="#f2a2a2"/><circle cx="662" cy="266" r="1.8" fill="#c9971f"/>
+        <circle cx="792" cy="276" r="5" fill="#d3a2ab"/><circle cx="792" cy="276" r="1.8" fill="#c9971f"/>
+      </g>
+
+      <!-- rama-rama -->
+      <g opacity=".85">
+        <g transform="translate(150,142)">
+          <path d="M0 0 q-9-9 -2-15 q6-4 8 6 q2-10 8-6 q7 6 -2 15 z" fill="#e0b04a" stroke="#b08a2c" stroke-width="1"/>
+        </g>
+        <g transform="translate(806,148)">
+          <path d="M0 0 q-9-9 -2-15 q6-4 8 6 q2-10 8-6 q7 6 -2 15 z" fill="#d3a2ab" stroke="#a87c85" stroke-width="1"/>
+        </g>
+      </g>
+
+      <!-- kilauan nikmat -->
+      <g fill="#c9971f" opacity=".5">
+        <path d="M152 96 L154.4 103 L161 105.4 L154.4 107.8 L152 115 L149.6 107.8 L143 105.4 L149.6 103 Z"/>
+        <path d="M898 100 L900.5 107 L907 109.5 L900.5 112 L898 119 L895.5 112 L889 109.5 L895.5 107 Z"/>
+        <circle cx="912" cy="76" r="3"/><circle cx="168" cy="72" r="2.6"/>
+      </g>
+    </svg>
+    <div class="hero-txt">
+      <div class="kick">Pendidikan Islam &bull; Tahun 3 &bull; KSSR Semakan 2017</div>
+      <h1>Syukur</h1>
+      <div class="sub">Pengertian &amp; Konsep Syukur &bull; Cara Bersyukur &bull; Kuiz Interaktif</div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="chip"><div class="lbl">Bidang</div><div class="val">Adab</div></div>
+    <div class="chip"><div class="lbl">Standard Kandungan (SK)</div><div class="val">Merumus konsep adab terhadap Allah melalui syukur sebagai bukti ketaatan secara beradab dan istiqamah</div></div>
+    <div class="chip"><div class="lbl">Standard Pembelajaran (SP)</div><div class="val">6.3.1 &ndash; 6.3.5</div></div>
+    <div class="chip"><div class="lbl">Sumber</div><div class="val">DSKP PI T3 (ms. 38) &bull; Buku Teks PI T3 SK (ms. 134&ndash;139)</div></div>
+  </div>
+
+  <div class="toc">
+    <div class="ttl">Kandungan &amp; Panduan Penggunaan</div>
+    <div class="grid">
+      <div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">Pengertian &amp; konsep syukur, cara bersyukur, kepentingan</div></div></div>
+      <div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">Maksud, dalil, amalan, nilai murni, iktibar</div></div></div>
+      <div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">10 poin ringkasan untuk rujukan pantas</div></div></div>
+      <div class="it"><div class="n">4</div><div><div class="t">Diagram Pokok</div><div class="d">Cara bersyukur kepada Allah, manusia &amp; alam sekitar</div></div></div>
+      <div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan dengan maklum balas segera</div></div></div>
+      <div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Senarai 22 Standard Kandungan PI Tahun 3</div></div></div>
+    </div>
+    <div class="note"><b>Cara guna:</b> Buka fail ini dalam pelayar web. Pada kuiz, klik pilihan jawapan untuk maklum balas segera dan skor automatik. Tekan butang <b>Cetak / Simpan PDF</b> untuk versi kertas &mdash; semua jawapan akan dipaparkan secara automatik supaya boleh dijadikan lembaran kerja.</div>
+  </div>
+
+  <!-- ===== 1. INFOGRAFIK ===== -->
+  <section>
+    <h2><span class="num">1</span> Infografik</h2>
+    <p class="hint">Tajuk besar di atas &rarr; pengertian &amp; konsep syukur &rarr; 4 kad fakta &rarr; nilai murni di bawah.</p>
+
+    <svg class="art" id="art-info" viewBox="0 0 820 1246" role="img" aria-label="Infografik adab bersyukur dengan segala nikmat Allah">
+      <defs>
+        <linearGradient id="gh12" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#8c3b4a"/><stop offset="1" stop-color="#5a2330"/>
+        </linearGradient>
+        <linearGradient id="gd12" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#fdf0ec"/><stop offset="1" stop-color="#f8e0e4"/>
+        </linearGradient>
+      </defs>
+
+      <!-- ===== KEPALA ===== -->
+      <rect x="0" y="0" width="820" height="150" rx="16" fill="url(#gh12)"/>
+      <g fill="#ffffff" opacity=".18"><circle cx="70" cy="30" r="26"/><circle cx="750" cy="118" r="30"/></g>
+      <g fill="#fff9e6" opacity=".85">
+        <path d="M150 30 L152.6 38 L160 40.6 L152.6 43.2 L150 51 L147.4 43.2 L140 40.6 L147.4 38 Z"/>
+        <path d="M672 34 L674.2 41 L681 43.2 L674.2 45.4 L672 52 L669.8 45.4 L663 43.2 L669.8 41 Z"/>
+        <circle cx="196" cy="98" r="2.6"/><circle cx="628" cy="112" r="2.2"/><circle cx="100" cy="112" r="2"/>
+      </g>
+      <g transform="translate(28,6) scale(.62)"><use href="#adam"/></g>
+      <g transform="translate(714,6) scale(.62)"><use href="#nur"/></g>
+      <text x="410" y="62" text-anchor="middle" font-family="Trebuchet MS" font-size="27" font-weight="700" fill="#ffffff">SYUKUR</text>
+      <text x="410" y="98" text-anchor="middle" font-family="Trebuchet MS" font-size="19" font-weight="700" fill="#ffffff">BERSYUKUR DENGAN SEGALA NIKMAT ALLAH</text>
+      <rect x="284" y="112" width="252" height="24" rx="12" fill="#ffffff" opacity=".24"/>
+      <text x="410" y="129" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.6">BIDANG ADAB &bull; SK 6.3</text>
+
+      <!-- ===== PENGERTIAN & KONSEP ===== -->
+      <rect x="40" y="168" width="740" height="154" rx="14" fill="url(#gd12)" stroke="#c9971f" stroke-width="1.6"/>
+      <rect x="40" y="168" width="740" height="30" rx="14" fill="#c9971f"/>
+      <rect x="40" y="190" width="740" height="8" fill="#c9971f"/>
+      <text x="410" y="189" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.4">APAKAH SYUKUR ITU?</text>
+
+      <rect x="66" y="210" width="340" height="96" rx="12" fill="#ffffff" stroke="#8c3b4a" stroke-width="1.6"/>
+      <text x="236" y="234" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#5a2330">PENGERTIAN SYUKUR</text>
+      <text x="236" y="260" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">Berterima kasih kepada Allah dengan</text>
+      <text x="236" y="280" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">mengaku segala nikmatNya dalam</text>
+      <text x="236" y="300" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">suasana <tspan font-weight="700">khusyuk</tspan> &mdash; hati, lidah, perbuatan.</text>
+
+      <rect x="414" y="210" width="340" height="96" rx="12" fill="#ffffff" stroke="#2f7f6f" stroke-width="1.6"/>
+      <text x="584" y="234" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#1f5c50">KONSEP SYUKUR</text>
+      <text x="584" y="260" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">Mengungkapkan perasaan kagum kepada</text>
+      <text x="584" y="280" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">Allah melalui lidah, mengakui nikmat</text>
+      <text x="584" y="300" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">dengan hati dan <tspan font-weight="700">memanfaatkannya</tspan>.</text>
+
+      <!-- ===== KAD 1: DALIL NAQLI ===== -->
+      <rect x="40" y="342" width="350" height="340" rx="14" fill="#fffcf9" stroke="#f0dde1" stroke-width="1.6"/>
+      <path d="M40 356 a14 14 0 0 1 14-14 h322 a14 14 0 0 1 14 14 v30 h-350 z" fill="#8c3b4a"/>
+      <circle cx="68" cy="374" r="13" fill="#ffffff"/>
+      <text x="68" y="379" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#8c3b4a">1</text>
+      <text x="90" y="379" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">DALIL NAQLI</text>
+      <text x="215" y="430" text-anchor="middle" font-family="Traditional Arabic, Amiri, serif" font-size="15" fill="#5a2330">وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِنْ شَكَرْتُمْ</text>
+      <text x="215" y="460" text-anchor="middle" font-family="Traditional Arabic, Amiri, serif" font-size="15" fill="#5a2330">لَأَزِيدَنَّكُمْ</text>
+      <text x="215" y="484" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-style="italic" fill="#8a7a7e">Surah Ibrahim, ayat 7</text>
+      <rect x="58" y="496" width="314" height="96" rx="10" fill="#fbf0f2" stroke="#c9971f" stroke-width="1.2"/>
+      <text x="215" y="518" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#8a6a12">MAKSUD</text>
+      <text x="215" y="540" text-anchor="middle" font-family="Trebuchet MS" font-size="11" fill="#3a2b2f">&ldquo;Ingatlah ketika Tuhanmu memberitahu</text>
+      <text x="215" y="558" text-anchor="middle" font-family="Trebuchet MS" font-size="11" fill="#3a2b2f">bahawa jika kamu bersyukur, nescaya Aku</text>
+      <text x="215" y="576" text-anchor="middle" font-family="Trebuchet MS" font-size="11" fill="#3a2b2f">akan tambah nikmatKu kepada kamu.&rdquo;</text>
+      <rect x="58" y="604" width="314" height="64" rx="10" fill="#f5e3e7" stroke="#8c3b4a" stroke-width="1.2"/>
+      <text x="215" y="628" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#5a2330">Bersyukur &rarr; nikmat ditambah</text>
+      <text x="215" y="650" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#5a2330">Allah janjikan ganjaran berlipat ganda.</text>
+
+      <!-- ===== KAD 2: KEPENTINGAN BERSYUKUR ===== -->
+      <rect x="430" y="342" width="350" height="340" rx="14" fill="#fffcf9" stroke="#f0dde1" stroke-width="1.6"/>
+      <path d="M430 356 a14 14 0 0 1 14-14 h322 a14 14 0 0 1 14 14 v30 h-350 z" fill="#2f7f6f"/>
+      <circle cx="458" cy="374" r="13" fill="#ffffff"/>
+      <text x="458" y="379" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#2f7f6f">2</text>
+      <text x="480" y="379" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">KEPENTINGAN BERSYUKUR</text>
+      <text x="448" y="416" font-family="Trebuchet MS" font-size="11.5" fill="#3a2b2f">Sifat syukur mendatangkan banyak kebaikan:</text>
+      <g font-family="Trebuchet MS" font-size="11.5" fill="#3a2b2f">
+        <text x="448" y="444">&#8226; Memberi <tspan font-weight="700">kekuatan dan ketabahan</tspan></text>
+        <text x="448" y="470">&#8226; <tspan font-weight="700">Rajin</tspan> mengerjakan amal soleh</text>
+        <text x="448" y="496">&#8226; <tspan font-weight="700">Tidak lalai</tspan> dengan kemewahan</text>
+        <text x="448" y="522">&#8226; <tspan font-weight="700">Diredhai Allah</tspan> dalam kehidupan</text>
+        <text x="448" y="548">&#8226; <tspan font-weight="700">Dikurniai nikmat</tspan> oleh Allah</text>
+        <text x="448" y="574">&#8226; Bukti <tspan font-weight="700">menghargai nikmat</tspan> Allah</text>
+      </g>
+      <rect x="448" y="590" width="314" height="76" rx="10" fill="#eef7f4" stroke="#2f7f6f" stroke-width="1.2"/>
+      <text x="605" y="616" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#1f5c50">Syukur menjadikan hidup tenang,</text>
+      <text x="605" y="636" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#1f5c50">diberkati dan diredhai Allah SWT.</text>
+      <text x="605" y="656" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" fill="#8a7a7e">Nikmat yang disyukuri akan ditambah.</text>
+
+      <!-- ===== KAD 3: CARA BERSYUKUR - ALLAH ===== -->
+      <rect x="40" y="702" width="350" height="340" rx="14" fill="#fffcf9" stroke="#f0dde1" stroke-width="1.6"/>
+      <path d="M40 716 a14 14 0 0 1 14-14 h322 a14 14 0 0 1 14 14 v30 h-350 z" fill="#8c3b4a"/>
+      <circle cx="68" cy="734" r="13" fill="#ffffff"/>
+      <text x="68" y="739" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#8c3b4a">3</text>
+      <text x="90" y="739" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">CARA BERSYUKUR &mdash; ALLAH</text>
+      <text x="58" y="776" font-family="Trebuchet MS" font-size="12" fill="#3a2b2f">Tanda syukur kepada Allah SWT:</text>
+      <g font-family="Trebuchet MS" font-size="12" fill="#3a2b2f">
+        <text x="58" y="810">&#8226; Menunaikan <tspan font-weight="700">solat fardu</tspan></text>
+        <text x="58" y="842">&#8226; <tspan font-weight="700">Membaca al-Quran</tspan></text>
+        <text x="58" y="874">&#8226; <tspan font-weight="700">Qanaah</tspan> dalam kehidupan</text>
+        <text x="58" y="906">&#8226; Mengucapkan <tspan font-weight="700">Alhamdulillah</tspan></text>
+      </g>
+      <rect x="58" y="928" width="314" height="104" rx="10" fill="#fbf0f2" stroke="#8c3b4a" stroke-width="1.2"/>
+      <text x="215" y="958" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#5a2330">Solat fardu dan al-Quran</text>
+      <text x="215" y="980" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#5a2330">adalah tanda syukur yang</text>
+      <text x="215" y="1002" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#5a2330">paling utama kepada Allah.</text>
+      <text x="215" y="1022" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" fill="#8a7a7e">Qanaah = rasa cukup dengan nikmat Allah.</text>
+
+      <!-- ===== KAD 4: CARA BERSYUKUR - MANUSIA & ALAM ===== -->
+      <rect x="430" y="702" width="350" height="340" rx="14" fill="#fffcf9" stroke="#f0dde1" stroke-width="1.6"/>
+      <path d="M430 716 a14 14 0 0 1 14-14 h322 a14 14 0 0 1 14 14 v30 h-350 z" fill="#2f7f6f"/>
+      <circle cx="458" cy="734" r="13" fill="#ffffff"/>
+      <text x="458" y="739" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#2f7f6f">4</text>
+      <text x="480" y="739" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">CARA BERSYUKUR &mdash; MANUSIA &amp; ALAM</text>
+      <text x="448" y="776" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#1f5c50">TERHADAP MANUSIA</text>
+      <g font-family="Trebuchet MS" font-size="12" fill="#3a2b2f">
+        <text x="448" y="802">&#8226; <tspan font-weight="700">Bersedekah</tspan> dan membantu orang</text>
+        <text x="448" y="828">&#8226; Menghargai orang, tidak berdengki</text>
+      </g>
+      <text x="448" y="864" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#1f5c50">TERHADAP ALAM SEKITAR</text>
+      <g font-family="Trebuchet MS" font-size="12" fill="#3a2b2f">
+        <text x="448" y="890">&#8226; Menjaga kebersihan, <tspan font-weight="700">tidak membazir</tspan></text>
+        <text x="448" y="916">&#8226; Kurangkan pencemaran dan memulihara alam</text>
+      </g>
+      <rect x="448" y="932" width="314" height="100" rx="10" fill="#eef7f4" stroke="#2f7f6f" stroke-width="1.2"/>
+      <text x="605" y="962" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#1f5c50">Bersyukur kepada Allah bermula</text>
+      <text x="605" y="984" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#1f5c50">dengan berbuat baik kepada</text>
+      <text x="605" y="1006" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#1f5c50">manusia dan alam sekitar.</text>
+
+      <!-- ===== NILAI MURNI ===== -->
+      <rect x="40" y="1062" width="740" height="144" rx="14" fill="#fbf0f2" stroke="#8c3b4a" stroke-width="1.6"/>
+      <text x="410" y="1096" text-anchor="middle" font-family="Trebuchet MS" font-size="16" font-weight="700" fill="#5a2330" letter-spacing="2">NILAI MURNI</text>
+      <g font-family="Trebuchet MS" font-size="13.5" font-weight="700" fill="#5a2330">
+        <rect x="85" y="1114" width="100" height="42" rx="21" fill="#fffcf9" stroke="#8c3b4a" stroke-width="1.5"/><text x="135" y="1141" text-anchor="middle">Syukur</text>
+        <rect x="195" y="1114" width="100" height="42" rx="21" fill="#fffcf9" stroke="#8c3b4a" stroke-width="1.5"/><text x="245" y="1141" text-anchor="middle">Ikhlas</text>
+        <rect x="305" y="1114" width="100" height="42" rx="21" fill="#fffcf9" stroke="#8c3b4a" stroke-width="1.5"/><text x="355" y="1141" text-anchor="middle">Qanaah</text>
+        <rect x="415" y="1114" width="100" height="42" rx="21" fill="#fffcf9" stroke="#8c3b4a" stroke-width="1.5"/><text x="465" y="1141" text-anchor="middle">Pemurah</text>
+        <rect x="525" y="1114" width="100" height="42" rx="21" fill="#fffcf9" stroke="#8c3b4a" stroke-width="1.5"/><text x="575" y="1141" text-anchor="middle">Hormat</text>
+        <rect x="635" y="1114" width="100" height="42" rx="21" fill="#fffcf9" stroke="#8c3b4a" stroke-width="1.5"/><text x="685" y="1141" text-anchor="middle">Amanah</text>
+      </g>
+      <text x="410" y="1188" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#5a2330">Syukur &rarr; nikmat ditambah &rarr; hidup diberkati dan diredhai Allah</text>
+    </svg>
+  </section>
+
+  <!-- ===== 2. PETA MINDA ===== -->
+  <section>
+    <h2><span class="num">2</span> Peta Minda</h2>
+    <p class="hint">Teks pusat di tengah &rarr; Maksud, Dalil, Contoh/Amalan, Nilai Murni, Iktibar.</p>
+
+    <svg class="art" viewBox="0 0 820 740" role="img" aria-label="Peta minda adab bersyukur">
+      <g fill="#ffffff" opacity=".55"><circle cx="70" cy="60" r="30"/><circle cx="96" cy="44" r="22"/></g>
+
+      <path d="M302 254 C244 206 196 176 156 166" fill="none" stroke="#c9971f" stroke-width="3"/>
+      <path d="M518 254 C576 206 624 176 664 166" fill="none" stroke="#8c3b4a" stroke-width="3"/>
+      <path d="M518 384 C576 434 624 464 664 474" fill="none" stroke="#8c3b4a" stroke-width="3"/>
+      <path d="M302 384 C244 434 196 464 156 474" fill="none" stroke="#c9971f" stroke-width="3"/>
+      <path d="M410 404 L410 524" fill="none" stroke="#c9971f" stroke-width="3"/>
+
+      <ellipse cx="410" cy="320" rx="172" ry="94" fill="#8c3b4a"/>
+      <ellipse cx="410" cy="320" rx="161" ry="83" fill="none" stroke="#ffffff" stroke-width="1.3" opacity=".45"/>
+      <text x="410" y="312" text-anchor="middle" font-family="Trebuchet MS" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="2">SYUKUR</text>
+      <text x="410" y="348" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#f0dde1" letter-spacing="1.2">ADAB &bull; SK 6.3</text>
+      <text x="410" y="374" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" fill="#f5e3e7">Syukur tanda ketaatan kepada Allah</text>
+
+      <!-- 1 MAKSUD -->
+      <rect x="26" y="88" width="254" height="170" rx="14" fill="#fbf0f2" stroke="#c9971f" stroke-width="1.6"/>
+      <rect x="26" y="88" width="254" height="30" rx="14" fill="#c9971f"/>
+      <rect x="26" y="110" width="254" height="8" fill="#c9971f"/>
+      <text x="153" y="109" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">1 &nbsp;MAKSUD</text>
+      <text x="42" y="142" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f"><tspan font-weight="700">Syukur</tspan> ialah berterima kasih</text>
+      <text x="42" y="162" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">kepada Allah dengan mengaku</text>
+      <text x="42" y="182" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">segala nikmatNya dalam suasana</text>
+      <text x="42" y="208" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f"><tspan font-weight="700">khusyuk</tspan> &mdash; melalui hati,</text>
+      <text x="42" y="228" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">lidah dan perbuatan.</text>
+
+      <!-- 2 DALIL -->
+      <rect x="540" y="88" width="254" height="170" rx="14" fill="#eef7f4" stroke="#8c3b4a" stroke-width="1.6"/>
+      <rect x="540" y="88" width="254" height="30" rx="14" fill="#8c3b4a"/>
+      <rect x="540" y="110" width="254" height="8" fill="#8c3b4a"/>
+      <text x="667" y="109" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">2 &nbsp;DALIL</text>
+      <text x="667" y="140" text-anchor="middle" font-family="Traditional Arabic, Amiri, serif" font-size="15" fill="#5a2330">وَإِذْ تَأَذَّنَ رَبُّكُمْ</text>
+      <text x="667" y="166" text-anchor="middle" font-family="Traditional Arabic, Amiri, serif" font-size="15" fill="#5a2330">لَئِنْ شَكَرْتُمْ لَأَزِيدَنَّكُمْ</text>
+      <text x="667" y="186" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-style="italic" fill="#8a7a7e">Surah Ibrahim, ayat 7</text>
+      <text x="556" y="208" font-family="Trebuchet MS" font-size="11" fill="#3a2b2f">&ldquo;Jika kamu bersyukur, nescaya Aku</text>
+      <text x="556" y="224" font-family="Trebuchet MS" font-size="11" fill="#3a2b2f">akan tambah nikmatKu kepadamu.&rdquo;</text>
+      <text x="556" y="246" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#8a6a12">Syukur menambah nikmat Allah.</text>
+
+      <!-- 3 CONTOH / AMALAN -->
+      <rect x="540" y="428" width="254" height="180" rx="14" fill="#eef7f4" stroke="#8c3b4a" stroke-width="1.6"/>
+      <rect x="540" y="428" width="254" height="30" rx="14" fill="#8c3b4a"/>
+      <rect x="540" y="450" width="254" height="8" fill="#8c3b4a"/>
+      <text x="667" y="449" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">3 &nbsp;CONTOH / AMALAN</text>
+      <text x="556" y="478" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#8a6a12">Cara bersyukur:</text>
+      <text x="556" y="498" font-family="Trebuchet MS" font-size="12" fill="#3a2b2f">&#8226; Solat fardu dan baca al-Quran</text>
+      <text x="556" y="518" font-family="Trebuchet MS" font-size="12" fill="#3a2b2f">&#8226; Bersedekah dan membantu</text>
+      <text x="556" y="538" font-family="Trebuchet MS" font-size="12" fill="#3a2b2f">&#8226; Menjaga kebersihan alam</text>
+      <text x="556" y="566" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#8a6a12">Amalan harian:</text>
+      <text x="556" y="586" font-family="Trebuchet MS" font-size="12" fill="#3a2b2f">&#8226; Ucapkan Alhamdulillah</text>
+      <text x="556" y="606" font-family="Trebuchet MS" font-size="12" fill="#3a2b2f">&#8226; Tidak membazir dan tidak lalai</text>
+
+      <!-- 4 NILAI MURNI -->
+      <rect x="26" y="428" width="254" height="180" rx="14" fill="#fbf0f2" stroke="#c9971f" stroke-width="1.6"/>
+      <rect x="26" y="428" width="254" height="30" rx="14" fill="#c9971f"/>
+      <rect x="26" y="450" width="254" height="8" fill="#c9971f"/>
+      <text x="153" y="449" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">4 &nbsp;NILAI MURNI</text>
+      <text x="42" y="480" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">&#8226; Syukur dan ikhlas</text>
+      <text x="42" y="502" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">&#8226; Qanaah dan pemurah</text>
+      <text x="42" y="524" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">&#8226; Hormat dan amanah</text>
+      <text x="42" y="546" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">&#8226; Sabar dan tabah</text>
+      <text x="42" y="568" font-family="Trebuchet MS" font-size="12.5" fill="#3a2b2f">&#8226; Tidak berbangga diri</text>
+      <text x="42" y="594" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#8a6a12">Nikmat yang disyukuri akan ditambah.</text>
+
+      <!-- 5 IKTIBAR -->
+      <rect x="282" y="530" width="256" height="164" rx="14" fill="#5a2330"/>
+      <text x="410" y="560" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">5 &nbsp;IKTIBAR</text>
+      <text x="410" y="590" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#f0dde1">Kita hendaklah bersyukur dengan</text>
+      <text x="410" y="608" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#f0dde1">segala nikmat Allah supaya nikmat</text>
+      <text x="410" y="626" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#f0dde1">itu ditambah dan hidup kita</text>
+      <text x="410" y="644" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#f0dde1">diberkati serta diredhai Allah.</text>
+      <line x1="310" y1="660" x2="510" y2="660" stroke="#ffffff" stroke-width="1" opacity=".4"/>
+      <text x="410" y="680" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" font-weight="700" fill="#ffe9a8">Syukur, hidup diberkati</text>
+
+      <g transform="translate(52,608) scale(.5)"><use href="#adam"/></g>
+      <g transform="translate(700,608) scale(.5)"><use href="#nur"/></g>
+    </svg>
+  </section>
+
+  <!-- ===== 3. NOTA RINGKAS ===== -->
+  <section>
+    <h2><span class="num">3</span> Nota Ringkas</h2>
+    <p class="hint">Ringkasan isi untuk rujukan pantas murid.</p>
+    <div class="nota">
+      <ol>
+        <li><b>Pengertian syukur (SP 6.3.1).</b> Syukur ialah <b>berterima kasih kepada Allah</b> dengan mengaku segala nikmatNya dalam suasana <b>khusyuk</b> &mdash; melalui <b>hati, lidah dan perbuatan</b>.</li>
+        <li><b>Konsep syukur (SP 6.3.1).</b> <b>Mengungkapkan perasaan kagum</b> kepada Allah melalui lidah, <b>mengakui nikmat Allah</b> dengan hati dan <b>menggunakan segala nikmat</b> itu mengikut kehendakNya.</li>
+        <li><b>Dalil naqli (SP 6.3.2).</b> Allah SWT berfirman: <span class="arab">وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِنْ شَكَرْتُمْ لَأَزِيدَنَّكُمْ</span> &mdash; &ldquo;Ingatlah ketika Tuhanmu memberitahu bahawa demi sesungguhnya, jika kamu bersyukur, nescaya Aku akan tambah nikmatKu kepada kamu.&rdquo; (Surah Ibrahim, ayat 7)</li>
+        <li><b>Cara bersyukur terhadap Allah (SP 6.3.3).</b> Menunaikan <b>solat fardu</b>; <b>membaca al-Quran</b>; bersikap <b>qanaah</b> dalam kehidupan; serta <b>selalu mengucapkan Alhamdulillah</b>.</li>
+        <li><b>Cara bersyukur terhadap manusia.</b> Selalu <b>bersedekah</b>; <b>menghargai orang lain</b>; <b>menghindari perasaan dengki</b>; serta <b>membantu orang yang memerlukan</b>.</li>
+        <li><b>Cara bersyukur terhadap alam sekitar.</b> <b>Menjaga kebersihan</b>; <b>tidak membazir</b>; <b>mengurangkan pencemaran</b>; serta <b>melakukan pemuliharaan</b> alam sekitar.</li>
+        <li><b>Kepentingan mengamalkan sifat syukur (SP 6.3.4).</b> <b>Memberi kekuatan dan ketabahan</b>; <b>rajin mengerjakan amal soleh</b>; <b>tidak lalai dengan kemewahan</b>; <b>diredhai Allah</b> dalam kehidupan; <b>dikurniai nikmat</b> oleh Allah; serta <b>bukti menghargai nikmat Allah</b>.</li>
+        <li><b>Amalan kita (SP 6.3.5).</b> <b>Mengucapkan Alhamdulillah</b> atas setiap nikmat; <b>menjaga nikmat</b> yang dikurniakan; <b>berkongsi nikmat</b> dengan orang lain; serta <b>tidak membazir</b> dan tidak berbangga diri.</li>
+        <li><b>Kisah teladan.</b> <b>Amir</b> selalu mengeluh tentang makanan di rumah. Setelah melihat rakannya yang kekurangan, Amir insaf lalu mengucapkan <b>Alhamdulillah</b> dan bersyukur dengan nikmat yang ada padanya.</li>
+        <li><b>Rumusan.</b> Hendaklah sentiasa mengucapkan <b>Alhamdulillah</b> sebagai bukti <b>mensyukuri nikmat kurniaan Allah</b> supaya nikmat itu <b>ditambah</b> dan hidup kita <b>diberkati</b>.</li>
+      </ol>
+      <p style="margin:14px 0 0;padding:12px 14px;border-radius:12px;background:#fbf0f2;border:1.5px dashed #c9971f;font-size:14px"><b>Rumusan:</b> Syukur mendatangkan <b>keberkatan hidup</b>, <b>menambah nikmat</b> Allah serta melahirkan <b>jiwa yang tenang dan tabah</b>.</p>
+    </div>
+  </section>
+
+  <!-- ===== 4. DIAGRAM POKOK ===== -->
+  <section>
+    <h2><span class="num">4</span> Diagram Pokok &mdash; Cara Bersyukur</h2>
+    <p class="hint">Jenis: <b>Pokok</b>. Akar <b>syukur</b> bercabang tiga cara, lalu menghasilkan kesan.</p>
+
+    <svg class="art" viewBox="0 0 820 760" role="img" aria-label="Diagram pokok cara bersyukur terhadap Allah, manusia dan alam sekitar">
+      <defs>
+        <marker id="ah12" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 Z" fill="#8c3b4a"/>
+        </marker>
+      </defs>
+
+      <rect width="820" height="760" rx="14" fill="#fdf0ec"/>
+      <rect x="40" y="6" width="740" height="44" rx="12" fill="#fbf0f2" stroke="#8c3b4a" stroke-width="1.4"/>
+      <text x="410" y="34" text-anchor="middle" font-family="Trebuchet MS" font-size="15" font-weight="700" fill="#5a2330" letter-spacing="1.4">POKOK SYUKUR &mdash; CARA BERSYUKUR</text>
+
+      <!-- cabang 1: ALLAH -->
+      <rect x="36" y="72" width="232" height="54" rx="12" fill="#8c3b4a"/>
+      <circle cx="64" cy="99" r="13" fill="#ffffff"/>
+      <text x="64" y="104" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#8c3b4a">1</text>
+      <text x="86" y="104" font-family="Trebuchet MS" font-size="13.5" font-weight="700" fill="#ffffff">TERHADAP ALLAH</text>
+
+      <rect x="36" y="140" width="232" height="336" rx="12" fill="#fffcf9" stroke="#f0dde1" stroke-width="1.6"/>
+      <rect x="36" y="140" width="232" height="34" rx="12" fill="#fbf0f2"/>
+      <rect x="36" y="160" width="232" height="14" fill="#fbf0f2"/>
+      <text x="152" y="162" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#5a2330" letter-spacing="1">IBADAH &amp; DOA</text>
+      <g font-family="Trebuchet MS" font-size="11.5" fill="#3a2b2f">
+        <rect x="48" y="186" width="208" height="40" rx="10" fill="#ffffff" stroke="#f0dde1" stroke-width="1.2"/><text x="152" y="211" text-anchor="middle">Menunaikan solat fardu</text>
+        <rect x="48" y="234" width="208" height="40" rx="10" fill="#ffffff" stroke="#f0dde1" stroke-width="1.2"/><text x="152" y="259" text-anchor="middle">Membaca al-Quran</text>
+        <rect x="48" y="282" width="208" height="40" rx="10" fill="#ffffff" stroke="#f0dde1" stroke-width="1.2"/><text x="152" y="307" text-anchor="middle">Qanaah dalam kehidupan</text>
+        <rect x="48" y="330" width="208" height="40" rx="10" fill="#ffffff" stroke="#f0dde1" stroke-width="1.2"/><text x="152" y="355" text-anchor="middle">Mengucapkan Alhamdulillah</text>
+      </g>
+      <rect x="48" y="382" width="208" height="84" rx="10" fill="#fbf0f2" stroke="#8c3b4a" stroke-width="1.2"/>
+      <text x="152" y="408" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#5a2330">Solat dan al-Quran</text>
+      <text x="152" y="430" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#5a2330">tanda syukur yang</text>
+      <text x="152" y="452" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#5a2330">paling utama.</text>
+
+      <!-- cabang 2: MANUSIA -->
+      <rect x="294" y="72" width="232" height="54" rx="12" fill="#2f7f6f"/>
+      <circle cx="322" cy="99" r="13" fill="#ffffff"/>
+      <text x="322" y="104" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#2f7f6f">2</text>
+      <text x="344" y="104" font-family="Trebuchet MS" font-size="13.5" font-weight="700" fill="#ffffff">TERHADAP MANUSIA</text>
+
+      <rect x="294" y="140" width="232" height="336" rx="12" fill="#fffcf9" stroke="#f0dde1" stroke-width="1.6"/>
+      <rect x="294" y="140" width="232" height="34" rx="12" fill="#eef7f4"/>
+      <rect x="294" y="160" width="232" height="14" fill="#eef7f4"/>
+      <text x="410" y="162" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#1f5c50" letter-spacing="1">AKHLAK &amp; SEDEKAH</text>
+      <g font-family="Trebuchet MS" font-size="11.5" fill="#3a2b2f">
+        <rect x="306" y="186" width="208" height="40" rx="10" fill="#ffffff" stroke="#f0dde1" stroke-width="1.2"/><text x="410" y="211" text-anchor="middle">Selalu bersedekah</text>
+        <rect x="306" y="234" width="208" height="40" rx="10" fill="#ffffff" stroke="#f0dde1" stroke-width="1.2"/><text x="410" y="259" text-anchor="middle">Menghargai orang lain</text>
+        <rect x="306" y="282" width="208" height="40" rx="10" fill="#ffffff" stroke="#f0dde1" stroke-width="1.2"/><text x="410" y="307" text-anchor="middle">Menghindari perasaan dengki</text>
+        <rect x="306" y="330" width="208" height="40" rx="10" fill="#ffffff" stroke="#f0dde1" stroke-width="1.2"/><text x="410" y="355" text-anchor="middle">Membantu yang memerlukan</text>
+      </g>
+      <rect x="306" y="382" width="208" height="84" rx="10" fill="#eef7f4" stroke="#2f7f6f" stroke-width="1.2"/>
+      <text x="410" y="408" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#1f5c50">Berbuat baik kepada</text>
+      <text x="410" y="430" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#1f5c50">manusia bukti syukur</text>
+      <text x="410" y="452" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#1f5c50">kepada Allah.</text>
+
+      <!-- cabang 3: ALAM SEKITAR -->
+      <rect x="552" y="72" width="232" height="54" rx="12" fill="#c9971f"/>
+      <circle cx="580" cy="99" r="13" fill="#ffffff"/>
+      <text x="580" y="104" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#c9971f">3</text>
+      <text x="602" y="104" font-family="Trebuchet MS" font-size="13.5" font-weight="700" fill="#ffffff">TERHADAP ALAM SEKITAR</text>
+
+      <rect x="552" y="140" width="232" height="336" rx="12" fill="#fffcf9" stroke="#f0dde1" stroke-width="1.6"/>
+      <rect x="552" y="140" width="232" height="34" rx="12" fill="#fdf0ec"/>
+      <rect x="552" y="160" width="232" height="14" fill="#fdf0ec"/>
+      <text x="668" y="162" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#8a6a12" letter-spacing="1">JAGA &amp; PULIHARA</text>
+      <g font-family="Trebuchet MS" font-size="11.5" fill="#3a2b2f">
+        <rect x="564" y="186" width="208" height="40" rx="10" fill="#ffffff" stroke="#f0dde1" stroke-width="1.2"/><text x="668" y="211" text-anchor="middle">Menjaga kebersihan</text>
+        <rect x="564" y="234" width="208" height="40" rx="10" fill="#ffffff" stroke="#f0dde1" stroke-width="1.2"/><text x="668" y="259" text-anchor="middle">Tidak membazir</text>
+        <rect x="564" y="282" width="208" height="40" rx="10" fill="#ffffff" stroke="#f0dde1" stroke-width="1.2"/><text x="668" y="307" text-anchor="middle">Mengurangkan pencemaran</text>
+        <rect x="564" y="330" width="208" height="40" rx="10" fill="#ffffff" stroke="#f0dde1" stroke-width="1.2"/><text x="668" y="355" text-anchor="middle">Memulihara alam sekitar</text>
+      </g>
+      <rect x="564" y="382" width="208" height="84" rx="10" fill="#fdf0ec" stroke="#c9971f" stroke-width="1.2"/>
+      <text x="668" y="408" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#8a6a12">Menjaga alam tanda</text>
+      <text x="668" y="430" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#8a6a12">syukur kepada</text>
+      <text x="668" y="452" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#8a6a12">Penciptanya.</text>
+
+      <!-- pengumpul ke akar -->
+      <g fill="none" stroke="#c9971f" stroke-width="2.4">
+        <path d="M152 476 V506"/><path d="M410 476 V506"/><path d="M668 476 V506"/>
+        <path d="M152 506 H668"/>
+      </g>
+      <path d="M410 506 V552" fill="none" stroke="#8c3b4a" stroke-width="7" stroke-linecap="round" marker-end="url(#ah12)"/>
+
+      <!-- akar -->
+      <rect x="296" y="558" width="228" height="74" rx="14" fill="#5a2330"/>
+      <text x="410" y="594" text-anchor="middle" font-family="Trebuchet MS" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="2">SYUKUR</text>
+      <text x="410" y="616" text-anchor="middle" font-family="Trebuchet MS" font-size="11" fill="#d3a2ab" letter-spacing="1.2">ADAB &bull; SK 6.3</text>
+
+      <!-- kesan -->
+      <rect x="40" y="656" width="740" height="84" rx="14" fill="#fbf0f2" stroke="#c9971f" stroke-width="1.6"/>
+      <text x="410" y="682" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#8a6a12" letter-spacing="1.2">KESAN SYUKUR</text>
+      <text x="410" y="706" text-anchor="middle" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#5a2330">Nikmat ditambah &bull; hidup diberkati &bull; diredhai Allah &bull; jiwa tenang dan tabah</text>
+      <text x="410" y="726" text-anchor="middle" font-family="Trebuchet MS" font-size="11" fill="#3a2b2f">Hendaklah sentiasa mengucapkan <tspan font-weight="700">Alhamdulillah</tspan> sebagai bukti mensyukuri nikmat kurniaan Allah.</text>
+    </svg>
+  </section>
+
+  <!-- ===== 5. KUIZ INTERAKTIF ===== -->
+  <section>
+    <h2><span class="num">5</span> Kuiz Interaktif &mdash; 10 Soalan</h2>
+    <p class="hint">Klik pilihan jawapan. Maklum balas dan skor diberikan serta-merta.</p>
+
+    <div class="scorebar">
+      <span class="sc">Skor: <span id="sc">0</span> / 10</span>
+      <span class="bar"><i id="bar"></i></span>
+      <span class="hint2">Dijawab: <span id="done">0</span>/10</span>
+      <button class="act" onclick="resetQuiz()">Ulang Semula</button>
+      <button class="act solid" onclick="window.print()">Cetak / Simpan PDF</button>
+    </div>
+
+    <div id="quiz">
+
+      <div class="qcard" data-ans="1" data-exp="Syukur ialah berterima kasih kepada Allah dengan mengaku segala nikmatNya dalam suasana khusyuk.">
+        <div class="qhead"><span class="qn">1</span><span class="qtext">Apakah maksud syukur?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Cara mendapatkan pahala yang banyak</span></button>
+          <button class="opt"><span class="k">B</span><span>Berterima kasih kepada Allah dengan mengaku segala nikmatNya</span></button>
+          <button class="opt"><span class="k">C</span><span>Cara menghafal al-Quran dengan cepat</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Syukur melibatkan hati (mengakui nikmat), lidah (memuji Allah) dan perbuatan (menggunakan nikmat mengikut kehendakNya).">
+        <div class="qhead"><span class="qn">2</span><span class="qtext">Syukur melibatkan tiga perkara, iaitu &hellip;</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Wang, tenaga dan masa</span></button>
+          <button class="opt"><span class="k">B</span><span>Hati, mata dan telinga</span></button>
+          <button class="opt"><span class="k">C</span><span>Hati, lidah dan perbuatan</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Dalil tentang syukur terdapat dalam Surah Ibrahim, ayat 7.">
+        <div class="qhead"><span class="qn">3</span><span class="qtext">Dalil naqli tentang syukur terdapat dalam surah &hellip;</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Surah Ibrahim, ayat 7</span></button>
+          <button class="opt"><span class="k">B</span><span>Surah al-Fatihah, ayat 7</span></button>
+          <button class="opt"><span class="k">C</span><span>Surah al-Ikhlas, ayat 7</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Maksudnya: &ldquo;Jika kamu bersyukur, nescaya Aku akan tambah nikmatKu kepada kamu.&rdquo;">
+        <div class="qhead"><span class="qn">4</span><span class="qtext">Apakah maksud firman Allah <span class="arab">لَئِنْ شَكَرْتُمْ لَأَزِيدَنَّكُمْ</span>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Bersyukurlah kamu kepada manusia</span></button>
+          <button class="opt"><span class="k">B</span><span>Nikmat Allah tidak akan ditambah</span></button>
+          <button class="opt"><span class="k">C</span><span>Jika kamu bersyukur, Aku akan tambah nikmatKu kepadamu</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Antara cara bersyukur terhadap Allah ialah menunaikan solat fardu dan membaca al-Quran.">
+        <div class="qhead"><span class="qn">5</span><span class="qtext">Antara berikut, yang manakah cara bersyukur terhadap Allah?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Membantu orang yang memerlukan</span></button>
+          <button class="opt"><span class="k">B</span><span>Menunaikan solat fardu dan membaca al-Quran</span></button>
+          <button class="opt"><span class="k">C</span><span>Menjaga kebersihan alam sekitar</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Cara bersyukur terhadap manusia ialah bersedekah dan membantu orang yang memerlukan.">
+        <div class="qhead"><span class="qn">6</span><span class="qtext">Bagaimanakah cara bersyukur terhadap manusia?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Bersedekah dan membantu orang yang memerlukan</span></button>
+          <button class="opt"><span class="k">B</span><span>Mengurangkan pencemaran alam</span></button>
+          <button class="opt"><span class="k">C</span><span>Membaca al-Quran setiap hari</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Cara bersyukur terhadap alam sekitar ialah menjaga kebersihan, tidak membazir, mengurangkan pencemaran dan memulihara alam.">
+        <div class="qhead"><span class="qn">7</span><span class="qtext">Bagaimanakah cara bersyukur terhadap alam sekitar?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Menghindari perasaan dengki</span></button>
+          <button class="opt"><span class="k">B</span><span>Selalu mengucapkan Alhamdulillah</span></button>
+          <button class="opt"><span class="k">C</span><span>Menjaga kebersihan dan tidak membazir</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Syukur memberi kekuatan dan ketabahan, menjadikan kita rajin beramal soleh dan tidak lalai dengan kemewahan.">
+        <div class="qhead"><span class="qn">8</span><span class="qtext">Antara berikut, yang manakah kepentingan mengamalkan sifat syukur?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Memberi kekuatan dan ketabahan serta tidak lalai dengan kemewahan</span></button>
+          <button class="opt"><span class="k">B</span><span>Menjadikan kita lebih kaya daripada orang lain</span></button>
+          <button class="opt"><span class="k">C</span><span>Mendapat pujian daripada rakan sekelas</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Apabila menerima nikmat Allah, kita hendaklah mengucapkan Alhamdulillah sebagai tanda syukur.">
+        <div class="qhead"><span class="qn">9</span><span class="qtext">Apakah yang patut kita ucapkan apabila menerima nikmat Allah?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Astaghfirullah</span></button>
+          <button class="opt"><span class="k">B</span><span>Alhamdulillah</span></button>
+          <button class="opt"><span class="k">C</span><span>Subhanallah</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Dalam cerita buku teks, Amir selalu mengeluh tentang makanan di rumah sebelum insaf dan bersyukur.">
+        <div class="qhead"><span class="qn">10</span><span class="qtext">Apakah sikap negatif Amir dalam cerita buku teks?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Selalu menolong rakannya</span></button>
+          <button class="opt"><span class="k">B</span><span>Selalu membaca al-Quran</span></button>
+          <button class="opt"><span class="k">C</span><span>Selalu mengeluh tentang makanan di rumah</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+    </div>
+
+    <div class="result" id="result">
+      <svg viewBox="0 0 220 170" style="width:200px;height:auto;margin:0 auto 4px;display:block">
+        <g transform="translate(24,4) scale(.95)"><use href="#adam"/></g>
+        <g transform="translate(116,4) scale(.95)"><use href="#nur"/></g>
+      </svg>
+      <div class="stars" id="stars"></div>
+      <div class="big" id="rscore"></div>
+      <div class="msg" id="rmsg"></div>
+      <button class="act solid" onclick="resetQuiz()">Cuba Lagi</button>
+      <button class="act" onclick="window.print()">Cetak / Simpan PDF</button>
+    </div>
+  </section>
+
+  <!-- ===== LAMPIRAN ===== -->
+  <section>
+    <h2><span class="num">&#9733;</span> Lampiran &mdash; Senarai SK Pendidikan Islam Tahun 3</h2>
+    <p class="hint">Tajuk yang telah siap ditanda kuning. Sebut nombor untuk menjana set seterusnya.</p>
+    <table>
+      <thead><tr><th style="width:38px">#</th><th>Bidang</th><th>Standard Kandungan (SK)</th></tr></thead>
+      <tbody>
+        <tr><td class="c">1</td><td>al-Quran (Tilawah)</td><td>Membaca dan mengamalkan <b>Surah al-Kafirun</b> dengan betul dan bertajwid</td></tr>
+        <tr><td class="c">2</td><td>al-Quran (Tilawah)</td><td>Membaca dan mengamalkan <b>Surah al-&lsquo;Asr</b> dengan betul dan bertajwid</td></tr>
+        <tr><td class="c">3</td><td>al-Quran (Hafazan)</td><td>Menghafaz dan mengamalkan <b>Surah al-Kafirun</b> dalam solat dan kehidupan harian</td></tr>
+        <tr><td class="c">4</td><td>al-Quran (Hafazan)</td><td>Menghafaz dan mengamalkan <b>Surah al-&lsquo;Asr</b> dalam solat dan kehidupan harian</td></tr>
+        <tr><td class="c">5</td><td>al-Quran (Kefahaman)</td><td>Menganalisis, mengamal dan menghayati <b>Surah al-Fatihah</b></td></tr>
+        <tr><td class="c">6</td><td>al-Quran (Tajwid)</td><td>Hukum <b>nun sakinah dan tanwin</b>: izhar halqi, idgham, iqlab, ikhfa&rsquo; haqiqi</td></tr>
+        <tr><td class="c">7</td><td>Hadis</td><td><b>Yang Muda Dikasihi, Yang Tua Dihormati</b> &nbsp;<span style="color:#8c3b4a;font-weight:700">(set 1 &check;)</span></td></tr>
+        <tr><td class="c">8</td><td>Akidah</td><td><b>Nama Allah al-&lsquo;Alim dan al-Hakim</b> &nbsp;<span style="color:#8c3b4a;font-weight:700">(set 2 &check;)</span></td></tr>
+        <tr><td class="c">9</td><td>Akidah</td><td><b>Beriman kepada kitab</b> &nbsp;<span style="color:#8c3b4a;font-weight:700">(set 3 &check;)</span></td></tr>
+        <tr><td class="c">10</td><td>Ibadah</td><td><b>Bersuci daripada hadas besar</b> (mandi wajib) &nbsp;<span style="color:#8c3b4a;font-weight:700">(set 4 &check;)</span></td></tr>
+        <tr><td class="c">11</td><td>Ibadah</td><td><b>Perkara yang membatalkan solat</b> &amp; solat yang sempurna &nbsp;<span style="color:#8c3b4a;font-weight:700">(set 5 &check;)</span></td></tr>
+        <tr><td class="c">12</td><td>Ibadah</td><td><b>Sunat ab&lsquo;adh</b> dan <b>sunat hai&rsquo;at</b> dalam solat &nbsp;<span style="color:#8c3b4a;font-weight:700">(set 6 &check;)</span></td></tr>
+        <tr><td class="c">13</td><td>Sirah</td><td>Iktibar peristiwa <b>penerimaan wahyu pertama</b> &nbsp;<span style="color:#8c3b4a;font-weight:700">(set 7 &check;)</span></td></tr>
+        <tr><td class="c">14</td><td>Sirah</td><td>Keunggulan sifat Nabi Muhammad SAW (<b>tabligh</b>) &nbsp;<span style="color:#8c3b4a;font-weight:700">(set 8 &check;)</span></td></tr>
+        <tr><td class="c">15</td><td>Sirah</td><td>Meneladani keperibadian Nabi SAW dalam <b>kehidupan bermasyarakat</b> &nbsp;<span style="color:#8c3b4a;font-weight:700">(set 9 &check;)</span></td></tr>
+        <tr><td class="c">16</td><td>Adab</td><td><b>Adab tidur</b> mengikut sunnah (termasuk qailulah) &nbsp;<span style="color:#8c3b4a;font-weight:700">(set 10 &check;)</span></td></tr>
+        <tr><td class="c">17</td><td>Adab</td><td><b>Adab menuntut ilmu</b> (ilmu fardu ain &amp; fardu kifayah) &nbsp;<span style="color:#8c3b4a;font-weight:700">(set 11 &check;)</span></td></tr>
+        <tr class="on"><td class="c">18</td><td>Adab</td><td>Adab terhadap Allah melalui <b>syukur</b> &nbsp;<span style="color:#c9971f;font-weight:700">(set 12 &check;)</span></td></tr>
+        <tr><td class="c">19</td><td>Adab</td><td>Mengikut <b>sunnah Rasulullah</b>: perkataan &amp; perbuatan</td></tr>
+        <tr><td class="c">20</td><td>Jawi</td><td>Membaca &amp; menulis teks &mdash; perkataan ber<b>imbuhan awalan</b></td></tr>
+        <tr><td class="c">21</td><td>Jawi</td><td>Membaca &amp; menulis teks &mdash; perkataan ber<b>imbuhan akhiran</b></td></tr>
+        <tr><td class="c">22</td><td>Jawi</td><td>Membaca &amp; menulis teks &mdash; perkataan ber<b>imbuhan apitan</b></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 3 &amp; Buku Teks Pendidikan Islam Tahun 3 SK (DBP, 2018).
+  </footer>
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+  var scEl = document.getElementById('sc');
+  var doneEl = document.getElementById('done');
+  var barEl = document.getElementById('bar');
+  var resultEl = document.getElementById('result');
+  var total = cards.length;
+
+  function refresh(){
+    var score = 0, answered = 0;
+    cards.forEach(function(c){
+      if(c.dataset.state === 'correct'){ score++; answered++; }
+      else if(c.dataset.state === 'wrong'){ answered++; }
+    });
+    scEl.textContent = score;
+    doneEl.textContent = answered;
+    barEl.style.width = (answered/total*100) + '%';
+    if(answered === total) showResult(score);
+  }
+
+  function showResult(score){
+    resultEl.classList.add('show');
+    document.getElementById('rscore').textContent = score + ' / ' + total;
+    document.getElementById('stars').textContent =
+      score >= 9 ? '★★★★★' : score >= 7 ? '★★★★☆' : score >= 5 ? '★★★☆☆' : '★★☆☆☆';
+    document.getElementById('rmsg').textContent =
+      score === 10 ? 'Syabas! Kamu benar-benar menguasai tajuk ini.'
+      : score >= 8 ? 'Bagus sekali! Teruskan usaha kamu.'
+      : score >= 6 ? 'Bagus! Ulangi nota sekali lagi untuk lebih mantap.'
+      : score >= 4 ? 'Jangan putus asa — baca semula nota ringkas di atas.'
+      : 'Mari ulang bersama-sama. Baca nota ringkas, kemudian cuba lagi.';
+    resultEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  cards.forEach(function(card){
+    var opts = Array.prototype.slice.call(card.querySelectorAll('.opt'));
+    var fb = card.querySelector('.fb');
+    var face = fb.querySelector('use');
+    var txt = fb.querySelector('.txt');
+    var ans = parseInt(card.dataset.ans, 10);
+    var exp = card.dataset.exp;
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(card.dataset.state) return;
+        var ok = (i === ans);
+        card.dataset.state = ok ? 'correct' : 'wrong';
+        card.classList.add('done');
+
+        opts.forEach(function(b, j){
+          b.disabled = true;
+          if(j === ans){ b.classList.add('ok'); }
+          else if(j === i){ b.classList.add('bad'); }
+          else { b.classList.add('dim'); }
+        });
+
+        face.setAttribute('href', ok ? '#faceYay' : '#faceOops');
+        txt.innerHTML = (ok ? '<b>Betul!</b> ' : '<b>Belum tepat.</b> Jawapan yang betul ialah <b>' +
+                        String.fromCharCode(65+ans) + '</b>. ') + exp;
+        fb.classList.add('show');
+        if(!ok) fb.classList.add('wrong');
+
+        refresh();
+      });
+    });
+  });
+
+  window.resetQuiz = function(){
+    cards.forEach(function(c){
+      delete c.dataset.state;
+      c.classList.remove('done');
+      var fb = c.querySelector('.fb');
+      fb.classList.remove('show','wrong');
+      c.querySelectorAll('.opt').forEach(function(b){
+        b.disabled = false;
+        b.classList.remove('ok','bad','dim');
+      });
+    });
+    resultEl.classList.remove('show');
+    refresh();
+    window.scrollTo({top: document.getElementById('quiz').offsetTop - 20, behavior:'smooth'});
+  };
+
+  window.addEventListener('beforeprint', function(){
+    cards.forEach(function(c){
+      var ans = parseInt(c.dataset.ans,10);
+      c.querySelectorAll('.opt').forEach(function(b,j){
+        if(j === ans) b.classList.add('ok');
+      });
+      if(!c.querySelector('.fb').classList.contains('show')){
+        var fb = c.querySelector('.fb');
+        fb.querySelector('.txt').innerHTML = '<b>Jawapan: ' + String.fromCharCode(65+ans) + '</b>. ' + c.dataset.exp;
+        fb.classList.add('show');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

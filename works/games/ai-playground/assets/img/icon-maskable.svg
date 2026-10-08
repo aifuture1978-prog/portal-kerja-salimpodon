@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="AI Playground Kanak-Kanak">
+  <rect width="512" height="512" fill="#7BD389"/>
+  <circle cx="256" cy="272" r="120" fill="#FFA552" stroke="#E08530" stroke-width="9"/>
+  <path d="M172 200 L198 132 L242 186 Z" fill="#FFA552" stroke="#E08530" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M340 200 L314 132 L270 186 Z" fill="#FFA552" stroke="#E08530" stroke-width="9" stroke-linejoin="round"/>
+  <ellipse cx="256" cy="298" rx="64" ry="50" fill="#FFF3E2"/>
+  <ellipse cx="220" cy="252" rx="24" ry="27" fill="#FFFFFF"/>
+  <ellipse cx="292" cy="252" rx="24" ry="27" fill="#FFFFFF"/>
+  <circle cx="222" cy="256" r="15" fill="#3A2A22"/>
+  <circle cx="294" cy="256" r="15" fill="#3A2A22"/>
+  <circle cx="228" cy="249" r="6" fill="#FFFFFF"/>
+  <circle cx="300" cy="249" r="6" fill="#FFFFFF"/>
+  <ellipse cx="256" cy="290" rx="15" ry="11" fill="#3A2A22"/>
+  <path d="M238 310 Q256 330 274 310 Z" fill="#3A2A22"/>
+  <circle cx="192" cy="284" r="16" fill="#FFB3C7" opacity=".6"/>
+  <circle cx="320" cy="284" r="16" fill="#FFB3C7" opacity=".6"/>
+</svg>

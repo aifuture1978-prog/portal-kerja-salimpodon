@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wahyu Teragung &mdash; Peristiwa Penerimaan Wahyu Pertama | Pendidikan Islam Tahun 3</title>
+<style>
+  :root{
+    --sky1:#f2dcbc; --sky2:#fbf5ec; --sky3:#fdf0dd;
+    --grass1:#ddaa72; --grass2:#b9713c; --grass3:#7e4620;
+    --paper:#fffcf6; --ink:#4a3728; --muted:#8a7159;
+    --gold:#d9a02c; --teal:#c07a42; --aqua:#ddaa72;
+    --line:#eedfca;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);
+    font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Traditional Arabic","Amiri",serif;direction:rtl}
+
+  .skybg{position:fixed;inset:0;z-index:-1;
+    background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#f6e8d2 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:#f2dfc2;top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:#f6e6cc;top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:#fbe9bd;bottom:-140px;left:18%}
+
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(74,55,40,.16)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;
+    background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#b9713c;font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:#7e4620;letter-spacing:.4px;
+    text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:#8a6a4a;font-weight:600}
+
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;
+    box-shadow:0 3px 10px rgba(74,55,40,.07)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(74,55,40,.07);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;
+    display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;
+    box-shadow:0 2px 0 var(--grass3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+
+  .nota{border-left:5px solid var(--gold);background:#fdf3dc;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#8a6420}
+  .nota li:last-child{margin-bottom:0}
+
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:linear-gradient(135deg,#fbeee0,#fdf3dc);border:1.5px solid var(--line);
+    border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#eedfca;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;
+    background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .scorebar .hint2{font-size:12px;color:var(--muted);font-weight:600}
+
+  .qcard{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:13px;
+    background:#fffdfa;transition:box-shadow .25s}
+  .qcard.done{box-shadow:0 3px 12px rgba(185,113,60,.18)}
+  .qhead{display:flex;gap:9px;align-items:flex-start;margin-bottom:11px}
+  .qn{background:var(--teal);color:#fff;min-width:26px;height:26px;border-radius:8px;display:inline-flex;
+    align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+  .qtext{font-weight:700;font-size:14.5px}
+  .opts{display:grid;grid-template-columns:1fr;gap:7px}
+  @media(min-width:640px){.opts{grid-template-columns:1fr 1fr 1fr}}
+  .opt{font-family:inherit;text-align:left;font-size:13.5px;font-weight:600;cursor:pointer;
+    background:#f8f4ec;border:2px solid #eedfca;border-radius:11px;padding:9px 12px;color:var(--ink);
+    transition:transform .12s,background .2s,border-color .2s;display:flex;gap:7px;align-items:flex-start}
+  .opt:hover:not(:disabled){transform:translateY(-2px);background:#fff;border-color:var(--teal)}
+  .opt:disabled{cursor:default}
+  .opt .k{font-weight:800;color:var(--teal);flex:none}
+  .opt.ok{background:#fbe8d4;border-color:var(--grass2);color:#7e4620}
+  .opt.ok .k{color:var(--grass3)}
+  .opt.bad{background:#fbe0e4;border-color:#d97b8e;color:#8a3345}
+  .opt.bad .k{color:#b04a60}
+  .opt.dim{opacity:.45}
+
+  .fb{display:none;margin-top:11px;border-radius:12px;padding:10px 13px;font-size:13.5px;
+    background:#fbeee0;border:1.5px dashed var(--grass2);align-items:flex-start;gap:11px}
+  .fb.show{display:flex}
+  .fb.wrong{background:#fdeef1;border-color:#d97b8e}
+  .fb .face{flex:none;width:52px;height:52px}
+  .fb .txt b{color:var(--grass3)}
+  .fb.wrong .txt b{color:#a03550}
+
+  .result{display:none;text-align:center;padding:20px;border-radius:18px;margin-top:6px;
+    background:linear-gradient(135deg,#fbeee0,#fdf3dc);border:2px solid var(--grass1)}
+  .result.show{display:block}
+  .result .big{font-size:30px;font-weight:800;color:var(--grass3);margin:6px 0}
+  .result .msg{font-size:14.5px;font-weight:600;margin-bottom:12px}
+  .stars{font-size:22px;letter-spacing:3px;margin-bottom:6px}
+  button.act{font-family:inherit;font-size:13.5px;font-weight:700;border-radius:11px;padding:10px 18px;
+    border:2px solid var(--grass2);background:#fff;color:var(--grass3);cursor:pointer;transition:background .2s}
+  button.act:hover{background:var(--grass1);color:#fff}
+  button.act.solid{background:var(--grass2);color:#fff}
+  button.act.solid:hover{background:var(--grass3)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#fbeee0;color:var(--grass3);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  td.c{text-align:center;white-space:nowrap;font-weight:700;color:var(--grass2)}
+  tr:nth-child(even) td{background:#fdfaf3}
+  tr.on td{background:#fdf3dc;font-weight:700}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-top:4px}
+
+  @media print{
+    body{background:#fff}
+    .skybg,.blob{display:none}
+    .wrap{max-width:100%;padding:0}
+    .scorebar{display:none}
+    section{box-shadow:none;page-break-inside:avoid}
+    .opt{transform:none !important}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4;margin:12mm}
+</style>
+</head>
+<body>
+
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<!-- ===== Watak kartun (statik) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <g id="adam">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <rect x="57" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <ellipse cx="46" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l7 44 h-56 z" fill="#7fc4b8" stroke="#4f8a80" stroke-width="2"/>
+    <path d="M36 82 q-13 13 -9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 82 q13 13 9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M39 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="46.5" r="1.9" fill="#fff"/><circle cx="68" cy="46.5" r="1.9" fill="#fff"/>
+    <path d="M55 56 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M49 63 q6 6.5 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="nur">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="43" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <rect x="58" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <ellipse cx="48" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="63" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <path d="M33 78 q22-11 44 0 l12 46 h-68 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <path d="M36 84 q-13 12 -10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 84 q13 12 10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="51.5" r="1.9" fill="#fff"/><circle cx="67" cy="51.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Adam berdiri solat (bersedekap, berkopiah) -->
+  <g id="adamSolat">
+    <ellipse cx="55" cy="157" rx="32" ry="6" fill="#000" opacity=".08"/>
+    <path d="M30 74 q25-12 50 0 l13 84 h-76 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <ellipse cx="46" cy="156" rx="11" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="156" rx="11" ry="5.5" fill="#6b4f3a"/>
+    <path d="M35 80 q-10 12 -6 26 q10 4 14 -6 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <path d="M75 80 q10 12 6 26 q-10 4 -14 -6 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <path d="M40 84 q10 8 12 20" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M70 84 q-10 8 -12 20" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="42" y="104" width="26" height="12" rx="6" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M29 40 q26-24 52 0 q1 5 -3 5 h-46 q-4 0 -3 -5 z" fill="#3f7a45" stroke="#2f5c33" stroke-width="1.8"/>
+    <path d="M39 40 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 40 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="51" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="51" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="48.5" r="1.9" fill="#fff"/><circle cx="68" cy="48.5" r="1.9" fill="#fff"/>
+    <path d="M55 58 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 65 q5.5 5 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="60" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="60" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Adam duduk (tahiyyat / antara dua sujud) -->
+  <g id="adamDuduk">
+    <ellipse cx="55" cy="154" rx="35" ry="6" fill="#000" opacity=".08"/>
+    <path d="M20 152 q0-32 35-32 q35 0 35 32 z" fill="#e8e3d2" stroke="#cfc7b0" stroke-width="2"/>
+    <ellipse cx="42" cy="152" rx="12" ry="5" fill="#6b4f3a"/>
+    <ellipse cx="68" cy="152" rx="12" ry="5" fill="#6b4f3a"/>
+    <path d="M32 78 q23-11 46 0 l10 46 h-66 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <path d="M38 88 q-6 26 4 42" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M72 88 q6 26 -4 42" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="32" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="61" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="50" y="68" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="52" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="52" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="48" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 48 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M29 42 q26-24 52 0 q1 5 -3 5 h-46 q-4 0 -3 -5 z" fill="#3f7a45" stroke="#2f5c33" stroke-width="1.8"/>
+    <path d="M39 42 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 42 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="53" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="53" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="50.5" r="1.9" fill="#fff"/><circle cx="68" cy="50.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 5 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="62" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="62" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="faceYay">
+    <circle cx="30" cy="30" r="26" fill="#fbe8d4" stroke="#b9713c" stroke-width="2.5"/>
+    <ellipse cx="22" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="25.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="25.4" r="1.3" fill="#fff"/>
+    <path d="M20 38 q10 9 20 0" stroke="#7e4620" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="14" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <ellipse cx="46" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <path d="M30 2 l3 5 5 1 -4 4 1 5 -5-3 -5 3 1-5 -4-4 5-1 z" fill="#d9a02c"/>
+  </g>
+
+  <g id="faceOops">
+    <circle cx="30" cy="30" r="26" fill="#fdeef1" stroke="#d97b8e" stroke-width="2.5"/>
+    <ellipse cx="22" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="26.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="26.4" r="1.3" fill="#fff"/>
+    <path d="M15 21 q7-5 13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M45 21 q-7-5 -13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M21 41 q9-7 18 0" stroke="#a03550" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+    <ellipse cx="47" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+  </g>
+</defs>
+</svg>
+
+<div class="wrap">
+
+  <!-- ===== HERO (statik) ===== -->
+  <div class="hero">
+    <svg viewBox="0 0 940 300" role="img" aria-label="Bukit Jabal an-Nur dan Gua Hira' pada waktu fajar, gaya Ghibli">
+      <defs>
+        <linearGradient id="hsky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#b7d1e9"/><stop offset=".4" stop-color="#f2d9ae"/><stop offset="1" stop-color="#fdf2de"/>
+        </linearGradient>
+        <linearGradient id="rock1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#bb9270"/><stop offset="1" stop-color="#93704e"/>
+        </linearGradient>
+        <linearGradient id="rock2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#96704c"/><stop offset="1" stop-color="#66492e"/>
+        </linearGradient>
+        <linearGradient id="sand1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f4dcac"/><stop offset="1" stop-color="#e3be83"/>
+        </linearGradient>
+        <linearGradient id="sand2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#eecd94"/><stop offset="1" stop-color="#d4a56a"/>
+        </linearGradient>
+        <radialGradient id="caveglow">
+          <stop offset="0" stop-color="#fff3c4" stop-opacity=".95"/>
+          <stop offset="1" stop-color="#fff3c4" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="soft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="8"/></filter>
+      </defs>
+
+      <rect width="940" height="300" fill="url(#hsky)"/>
+      <circle cx="168" cy="112" r="44" fill="#ffe9a8" opacity=".92"/>
+      <circle cx="168" cy="112" r="84" fill="#ffe9a8" opacity=".22" filter="url(#soft)"/>
+
+      <g fill="#ffffff" opacity=".85">
+        <ellipse cx="646" cy="58" rx="46" ry="18"/><ellipse cx="682" cy="50" rx="30" ry="15"/><ellipse cx="616" cy="52" rx="26" ry="12"/>
+      </g>
+      <g fill="#ffffff" opacity=".7">
+        <ellipse cx="852" cy="104" rx="40" ry="16"/><ellipse cx="886" cy="96" rx="26" ry="13"/>
+      </g>
+
+      <!-- rabung jauh -->
+      <path d="M0 200 L110 172 L200 190 L300 158 L400 184 L560 166 L660 188 L760 164 L860 186 L940 172 v128 H0 z"
+            fill="url(#rock1)" opacity=".5"/>
+
+      <!-- Jabal an-Nur (siluet berbatu) -->
+      <path d="M282 244 L330 200 L352 214 L392 140 L414 156 L470 74 L508 124 L528 112 L562 172 L586 160 L618 216 L646 244 z"
+            fill="url(#rock2)"/>
+      <path d="M470 74 L508 124 L528 112 L562 172 L586 160 L618 216 L646 244 L470 244 z"
+            fill="#4a3320" opacity=".28"/>
+      <path d="M392 140 L414 156 L470 74 L446 108 z" fill="#b28a64" opacity=".3"/>
+      <!-- Gua Hira' -->
+      <ellipse cx="470" cy="142" rx="30" ry="26" fill="#3a2a1a"/>
+      <ellipse cx="470" cy="147" rx="20" ry="17" fill="#f7d98a"/>
+      <ellipse cx="470" cy="148" rx="48" ry="44" fill="url(#caveglow)"/>
+      <path d="M470 62 L556 226 L384 226 z" fill="#fff3c4" opacity=".13"/>
+
+      <!-- bukit pasir -->
+      <path d="M0 236 q150-28 300-6 q160 24 320 0 q160-24 320 6 v64 H0 z" fill="url(#sand1)"/>
+      <path d="M0 264 q180-24 360 0 q180 24 360-4 q110-16 220 4 v36 H0 z" fill="url(#sand2)"/>
+
+      <!-- watak -->
+      <g transform="translate(148,138) scale(.9)"><use href="#adam"/></g>
+      <g transform="translate(252,142) scale(.86)"><use href="#nur"/></g>
+
+      <g fill="#f7d5b5">
+        <circle cx="200" cy="272" r="4"/><circle cx="216" cy="278" r="4"/><circle cx="700" cy="274" r="4"/>
+        <circle cx="716" cy="280" r="4"/><circle cx="380" cy="280" r="4"/>
+      </g>
+    </svg>
+    <div class="hero-txt">
+      <div class="kick">Pendidikan Islam &bull; Tahun 3 &bull; KSSR Semakan 2017</div>
+      <h1>Wahyu Teragung</h1>
+      <div class="sub">Peristiwa Penerimaan Wahyu Pertama &bull; Kuiz Interaktif</div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="chip"><div class="lbl">Bidang</div><div class="val">Sirah</div></div>
+    <div class="chip"><div class="lbl">Standard Kandungan (SK)</div><div class="val">Merumus iktibar daripada peristiwa penerimaan wahyu Nabi Muhammad SAW dan mengamalkannya secara beradab dan istiqamah</div></div>
+    <div class="chip"><div class="lbl">Standard Pembelajaran (SP)</div><div class="val">5.1.1 &ndash; 5.1.5</div></div>
+    <div class="chip"><div class="lbl">Sumber</div><div class="val">DSKP PI T3 (ms. 33) &bull; Buku Teks PI T3 SK (ms. 99&ndash;105)</div></div>
+  </div>
+
+  <!-- ===== 1. INFOGRAFIK ===== -->
+  <section>
+    <h2><span class="num">1</span> Infografik</h2>
+    <p class="hint">Tajuk besar di atas &rarr; maksud wahyu &rarr; 4 kad fakta &rarr; nilai murni di bawah.</p>
+
+    <svg class="art" viewBox="0 0 820 1256" role="img" aria-label="Infografik Wahyu Teragung">
+      <defs>
+        <linearGradient id="gh2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#c07a42"/><stop offset="1" stop-color="#7e4620"/>
+        </linearGradient>
+        <linearGradient id="gd" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#fdf3dc"/><stop offset="1" stop-color="#f8e6c0"/>
+        </linearGradient>
+      </defs>
+
+      <!-- ===== KEPALA ===== -->
+      <rect x="0" y="0" width="820" height="150" rx="16" fill="url(#gh2)"/>
+      <g fill="#ffffff" opacity=".2"><circle cx="70" cy="30" r="26"/><circle cx="750" cy="118" r="30"/></g>
+      <g transform="translate(28,6) scale(.62)"><use href="#adam"/></g>
+      <g transform="translate(714,6) scale(.62)"><use href="#nur"/></g>
+      <text x="410" y="62" text-anchor="middle" font-family="Trebuchet MS" font-size="27" font-weight="700" fill="#ffffff">WAHYU TERAGUNG</text>
+      <text x="410" y="98" text-anchor="middle" font-family="Trebuchet MS" font-size="21" font-weight="700" fill="#ffffff">PENERIMAAN WAHYU PERTAMA</text>
+      <rect x="284" y="112" width="252" height="24" rx="12" fill="#ffffff" opacity=".24"/>
+      <text x="410" y="129" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.6">BIDANG SIRAH &bull; SK 5.1</text>
+
+      <!-- ===== MAKSUD ===== -->
+      <rect x="40" y="168" width="740" height="154" rx="14" fill="url(#gd)" stroke="#d9a02c" stroke-width="1.6"/>
+      <rect x="40" y="168" width="740" height="30" rx="14" fill="#d9a02c"/>
+      <rect x="40" y="190" width="740" height="8" fill="#d9a02c"/>
+      <text x="410" y="189" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.4">APAKAH WAHYU?</text>
+
+      <rect x="66" y="210" width="340" height="96" rx="12" fill="#ffffff" stroke="#b9713c" stroke-width="1.6"/>
+      <text x="236" y="234" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#7e4620">WAHYU</text>
+      <text x="236" y="260" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">Kalam Allah yang disampaikan</text>
+      <text x="236" y="280" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">kepada <tspan font-weight="700">nabi dan rasul</tspan>.</text>
+      <text x="236" y="300" text-anchor="middle" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#8a6420">Wahyu menjadi petunjuk jalan.</text>
+
+      <rect x="414" y="210" width="340" height="96" rx="12" fill="#ffffff" stroke="#d9a02c" stroke-width="1.6"/>
+      <text x="584" y="234" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#7e4620">AL-QURAN</text>
+      <text x="584" y="260" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">Wahyu yang diturunkan kepada</text>
+      <text x="584" y="280" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728"><tspan font-weight="700">Nabi Muhammad SAW</tspan>.</text>
+      <text x="584" y="300" text-anchor="middle" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#8a6420">Kitab panduan umat Islam.</text>
+
+      <!-- ===== KAD 1: PENGERTIAN WAHYU ===== -->
+      <rect x="40" y="342" width="350" height="340" rx="14" fill="#fffcf6" stroke="#eedfca" stroke-width="1.6"/>
+      <path d="M40 356 a14 14 0 0 1 14-14 h322 a14 14 0 0 1 14 14 v30 h-350 z" fill="#b9713c"/>
+      <circle cx="68" cy="374" r="13" fill="#ffffff"/>
+      <text x="68" y="379" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#b9713c">1</text>
+      <text x="90" y="379" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">PENGERTIAN WAHYU</text>
+      <text x="58" y="414" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">Wahyu ialah <tspan font-weight="700">kalam Allah</tspan> yang</text>
+      <text x="58" y="434" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">disampaikan kepada nabi dan rasul.</text>
+      <text x="58" y="468" font-family="Trebuchet MS" font-size="13" fill="#4a3728">&#8226; <tspan font-weight="700">Al-Quran</tspan> ialah wahyu yang</text>
+      <text x="74" y="488" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">diturunkan kepada Nabi Muhammad SAW.</text>
+      <text x="58" y="516" font-family="Trebuchet MS" font-size="13" fill="#4a3728">&#8226; Wahyu menjadi <tspan font-weight="700">petunjuk jalan</tspan></text>
+      <text x="74" y="536" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">kepada seluruh manusia.</text>
+      <text x="58" y="564" font-family="Trebuchet MS" font-size="13" fill="#4a3728">&#8226; Wahyu pertama ialah <tspan font-weight="700">&#8220;اِقْرَأْ&#8221;</tspan></text>
+      <text x="74" y="584" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">yang bermaksud <tspan font-weight="700">&#8220;Bacalah&#8221;</tspan>.</text>
+      <rect x="58" y="606" width="314" height="60" rx="10" fill="#fdf3dc" stroke="#d9a02c" stroke-width="1.3"/>
+      <text x="215" y="632" text-anchor="middle" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#8a6420">Al-Quran ialah kitab panduan</text>
+      <text x="215" y="652" text-anchor="middle" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#8a6420">umat Islam</text>
+
+      <!-- ===== KAD 2: BUKIT JABAL AN-NUR ===== -->
+      <rect x="430" y="342" width="350" height="340" rx="14" fill="#fffcf6" stroke="#eedfca" stroke-width="1.6"/>
+      <path d="M430 356 a14 14 0 0 1 14-14 h322 a14 14 0 0 1 14 14 v30 h-350 z" fill="#c07a42"/>
+      <circle cx="458" cy="374" r="13" fill="#ffffff"/>
+      <text x="458" y="379" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#c07a42">2</text>
+      <text x="480" y="379" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">BUKIT JABAL AN-NUR</text>
+      <text x="448" y="414" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">Tempat berlakunya peristiwa</text>
+      <text x="448" y="434" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">penerimaan wahyu pertama.</text>
+      <g font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">
+        <text x="448" y="468">&#8226; Terletak <tspan font-weight="700">3.2 kilometer</tspan> dari Makkah</text>
+        <text x="448" y="494">&#8226; Keadaan bukit berbatu, berpasir</text>
+        <text x="464" y="514" font-size="12">dan curam</text>
+        <text x="448" y="540">&#8226; Ketinggian bukit <tspan font-weight="700">640 meter</tspan></text>
+        <text x="448" y="566">&#8226; Di puncaknya ada <tspan font-weight="700">Gua Hira&rsquo;</tspan></text>
+        <text x="448" y="592">&#8226; Kira-kira <tspan font-weight="700">600 anak tangga</tspan></text>
+        <text x="464" y="612" font-size="12">disediakan untuk pendakian</text>
+      </g>
+      <rect x="448" y="632" width="314" height="42" rx="10" fill="#fdf3dc" stroke="#d9a02c" stroke-width="1.3"/>
+      <text x="605" y="658" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#8a6420">Gua Hira&rsquo; &mdash; tempat Nabi SAW beribadah</text>
+
+      <!-- ===== KAD 3: PERISTIWA WAHYU PERTAMA ===== -->
+      <rect x="40" y="702" width="350" height="340" rx="14" fill="#fffcf6" stroke="#eedfca" stroke-width="1.6"/>
+      <path d="M40 716 a14 14 0 0 1 14-14 h322 a14 14 0 0 1 14 14 v30 h-350 z" fill="#b9713c"/>
+      <circle cx="68" cy="734" r="13" fill="#ffffff"/>
+      <text x="68" y="739" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#b9713c">3</text>
+      <text x="90" y="739" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">PERISTIWA WAHYU PERTAMA</text>
+      <text x="58" y="774" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728"><tspan font-weight="700">17 Ramadan</tspan> &bull; Usia <tspan font-weight="700">40 tahun</tspan> &bull; Jibril</text>
+      <g font-family="Trebuchet MS" font-size="11.8" fill="#4a3728">
+        <text x="58" y="802">&#8226; Nabi SAW sering beribadah di Gua Hira&rsquo;.</text>
+        <text x="58" y="824">&#8226; Jibril datang meminta Nabi SAW membaca.</text>
+        <text x="58" y="846">&#8226; Nabi SAW tidak tahu membaca.</text>
+        <text x="58" y="868">&#8226; Jibril memeluk dan meminta 3 kali.</text>
+        <text x="58" y="890">&#8226; Jibril mengajar ayat <tspan font-weight="700">1&ndash;5 Surah al-&rsquo;Alaq</tspan>.</text>
+        <text x="58" y="912">&#8226; Nabi SAW pulang kepada Khadijah dalam</text>
+        <text x="74" y="930">keadaan takut.</text>
+        <text x="58" y="952">&#8226; Khadijah menenangkan dan membawa</text>
+        <text x="74" y="970">Baginda berjumpa Waraqah bin Naufal.</text>
+        <text x="58" y="992">&#8226; Waraqah mengakui Baginda sebagai rasul.</text>
+      </g>
+      <rect x="58" y="1004" width="314" height="30" rx="9" fill="#fbeee0" stroke="#b9713c" stroke-width="1.2"/>
+      <text x="215" y="1024" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#7e4620">Wahyu pertama: &#8220;اِقْرَأْ&#8221; (Bacalah)</text>
+
+      <!-- ===== KAD 4: KEPENTINGAN WAHYU ===== -->
+      <rect x="430" y="702" width="350" height="340" rx="14" fill="#fffcf6" stroke="#eedfca" stroke-width="1.6"/>
+      <path d="M430 716 a14 14 0 0 1 14-14 h322 a14 14 0 0 1 14 14 v30 h-350 z" fill="#c07a42"/>
+      <circle cx="458" cy="734" r="13" fill="#ffffff"/>
+      <text x="458" y="739" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#c07a42">4</text>
+      <text x="480" y="739" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">KEPENTINGAN WAHYU</text>
+      <text x="448" y="774" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">Mengapa wahyu penting kepada kita?</text>
+      <g font-family="Trebuchet MS" font-size="12" fill="#4a3728">
+        <text x="448" y="806">&#8226; Medium untuk mengetahui perintah</text>
+        <text x="464" y="824">dan larangan Allah</text>
+        <text x="448" y="850">&#8226; Mematahkan hujah orang kafir</text>
+        <text x="448" y="876">&#8226; Memberi penyelesaian kepada</text>
+        <text x="464" y="894">permasalahan manusia sepanjang zaman</text>
+        <text x="448" y="920">&#8226; Menjelaskan perkara <tspan font-weight="700">sam&rsquo;iyyat</tspan></text>
+        <text x="448" y="946">&#8226; Mengandungi iktibar tentang</text>
+        <text x="464" y="964">peristiwa terdahulu</text>
+      </g>
+      <rect x="448" y="982" width="314" height="52" rx="10" fill="#fbeee0" stroke="#b9713c" stroke-width="1.2"/>
+      <text x="605" y="1004" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#7e4620">Sam&rsquo;iyyat: tidak dapat digambarkan</text>
+      <text x="605" y="1022" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#7e4620">dengan akal &mdash; hanya melalui al-Quran &amp; hadis</text>
+
+      <!-- ===== NILAI MURNI ===== -->
+      <rect x="40" y="1058" width="740" height="178" rx="14" fill="#fbeee0" stroke="#b9713c" stroke-width="1.6"/>
+      <text x="410" y="1094" text-anchor="middle" font-family="Trebuchet MS" font-size="16" font-weight="700" fill="#7e4620" letter-spacing="2">NILAI MURNI</text>
+      <g font-family="Trebuchet MS" font-size="13.5" font-weight="700" fill="#7e4620">
+        <rect x="132" y="1110" width="130" height="40" rx="20" fill="#fffcf6" stroke="#b9713c" stroke-width="1.5"/><text x="197" y="1135" text-anchor="middle">Sabar</text>
+        <rect x="274" y="1110" width="130" height="40" rx="20" fill="#fffcf6" stroke="#b9713c" stroke-width="1.5"/><text x="339" y="1135" text-anchor="middle">Tekun</text>
+        <rect x="416" y="1110" width="130" height="40" rx="20" fill="#fffcf6" stroke="#b9713c" stroke-width="1.5"/><text x="481" y="1135" text-anchor="middle">Istiqamah</text>
+        <rect x="558" y="1110" width="130" height="40" rx="20" fill="#fffcf6" stroke="#b9713c" stroke-width="1.5"/><text x="623" y="1135" text-anchor="middle">Cinta Ilmu</text>
+        <rect x="155" y="1162" width="250" height="40" rx="20" fill="#fffcf6" stroke="#b9713c" stroke-width="1.5"/><text x="280" y="1187" text-anchor="middle">Kasih kepada Nabi SAW</text>
+        <rect x="415" y="1162" width="250" height="40" rx="20" fill="#fffcf6" stroke="#b9713c" stroke-width="1.5"/><text x="540" y="1187" text-anchor="middle">Berpandirian Teguh</text>
+      </g>
+      <text x="410" y="1226" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#7e4620">Al-Quran sebagai panduan hidup &rarr; kejayaan dunia dan akhirat</text>
+    </svg>
+  </section>
+
+  <!-- ===== 2. PETA MINDA ===== -->
+  <section>
+    <h2><span class="num">2</span> Peta Minda</h2>
+    <p class="hint">Teks pusat di tengah &rarr; Maksud, Dalil, Contoh/Amalan, Nilai Murni, Iktibar.</p>
+
+    <svg class="art" viewBox="0 0 820 740" role="img" aria-label="Peta minda peristiwa penerimaan wahyu pertama">
+      <g fill="#ffffff" opacity=".55"><circle cx="70" cy="60" r="30"/><circle cx="96" cy="44" r="22"/></g>
+
+      <path d="M302 254 C244 206 196 176 156 166" fill="none" stroke="#d9a02c" stroke-width="3"/>
+      <path d="M518 254 C576 206 624 176 664 166" fill="none" stroke="#b9713c" stroke-width="3"/>
+      <path d="M518 384 C576 434 624 464 664 474" fill="none" stroke="#b9713c" stroke-width="3"/>
+      <path d="M302 384 C244 434 196 464 156 474" fill="none" stroke="#d9a02c" stroke-width="3"/>
+      <path d="M410 404 L410 524" fill="none" stroke="#d9a02c" stroke-width="3"/>
+
+      <ellipse cx="410" cy="320" rx="172" ry="94" fill="#b9713c"/>
+      <ellipse cx="410" cy="320" rx="161" ry="83" fill="none" stroke="#ffffff" stroke-width="1.3" opacity=".45"/>
+      <text x="410" y="298" text-anchor="middle" font-family="Trebuchet MS" font-size="18" font-weight="700" fill="#ffffff">WAHYU TERAGUNG</text>
+      <text x="410" y="324" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#ffffff">PERISTIWA WAHYU PERTAMA</text>
+      <text x="410" y="352" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#f7e6d0" letter-spacing="1.2">SIRAH &bull; SK 5.1</text>
+      <text x="410" y="376" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" fill="#efd9bd">Gua Hira&rsquo; &bull; 17 Ramadan &bull; Usia 40 tahun</text>
+
+      <!-- 1 MAKSUD -->
+      <rect x="26" y="88" width="254" height="170" rx="14" fill="#fdf3dc" stroke="#d9a02c" stroke-width="1.6"/>
+      <rect x="26" y="88" width="254" height="30" rx="14" fill="#d9a02c"/>
+      <rect x="26" y="110" width="254" height="8" fill="#d9a02c"/>
+      <text x="153" y="109" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">1 &nbsp;MAKSUD</text>
+      <text x="42" y="142" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728"><tspan font-weight="700">Wahyu</tspan> ialah kalam Allah</text>
+      <text x="42" y="162" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">yang disampaikan kepada</text>
+      <text x="42" y="182" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">nabi dan rasul.</text>
+      <text x="42" y="206" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">Wahyu pertama ialah</text>
+      <text x="42" y="226" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728"><tspan font-weight="700">&#8220;اِقْرَأْ&#8221;</tspan> &mdash; bermaksud</text>
+      <text x="42" y="246" font-family="Trebuchet MS" font-size="12.5" font-weight="700" fill="#8a6420">&#8220;Bacalah&#8221;.</text>
+
+      <!-- 2 DALIL -->
+      <rect x="540" y="88" width="254" height="170" rx="14" fill="#fbeee0" stroke="#b9713c" stroke-width="1.6"/>
+      <rect x="540" y="88" width="254" height="30" rx="14" fill="#b9713c"/>
+      <rect x="540" y="110" width="254" height="8" fill="#b9713c"/>
+      <text x="667" y="109" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">2 &nbsp;DALIL</text>
+      <text x="667" y="144" text-anchor="middle" font-family="Traditional Arabic, Amiri, serif" font-size="18" fill="#7e4620">اِقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</text>
+      <text x="556" y="168" font-family="Trebuchet MS" font-size="11.5" font-style="italic" fill="#8a7159">Surah al-&rsquo;Alaq 96:1&ndash;5</text>
+      <text x="556" y="190" font-family="Trebuchet MS" font-size="11.5" fill="#4a3728">&ldquo;Bacalah dengan nama Tuhanmu</text>
+      <text x="556" y="207" font-family="Trebuchet MS" font-size="11.5" fill="#4a3728">yang menciptakan.&rdquo;</text>
+      <text x="556" y="230" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#7e4620">Ayat 1&ndash;5 inilah yang diajar</text>
+      <text x="556" y="247" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#7e4620">Jibril di Gua Hira&rsquo;.</text>
+
+      <!-- 3 CONTOH / AMALAN -->
+      <rect x="540" y="428" width="254" height="180" rx="14" fill="#fbeee0" stroke="#b9713c" stroke-width="1.6"/>
+      <rect x="540" y="428" width="254" height="30" rx="14" fill="#b9713c"/>
+      <rect x="540" y="450" width="254" height="8" fill="#b9713c"/>
+      <text x="667" y="449" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">3 &nbsp;CONTOH / AMALAN</text>
+      <text x="556" y="480" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#8a6420">Peristiwa:</text>
+      <text x="556" y="500" font-family="Trebuchet MS" font-size="12" fill="#4a3728">&#8226; Beribadah di Gua Hira&rsquo;</text>
+      <text x="556" y="519" font-family="Trebuchet MS" font-size="12" fill="#4a3728">&#8226; Jibril memeluk 3 kali</text>
+      <text x="556" y="538" font-family="Trebuchet MS" font-size="12" fill="#4a3728">&#8226; Ayat 1&ndash;5 Surah al-&rsquo;Alaq</text>
+      <text x="556" y="562" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#8a6420">Amalan kita:</text>
+      <text x="556" y="582" font-family="Trebuchet MS" font-size="12" fill="#4a3728">&#8226; Rajin membaca al-Quran</text>
+      <text x="556" y="601" font-family="Trebuchet MS" font-size="12" fill="#4a3728">&#8226; Jadikan membaca tabiat</text>
+
+      <!-- 4 NILAI MURNI -->
+      <rect x="26" y="428" width="254" height="180" rx="14" fill="#fdf3dc" stroke="#d9a02c" stroke-width="1.6"/>
+      <rect x="26" y="428" width="254" height="30" rx="14" fill="#d9a02c"/>
+      <rect x="26" y="450" width="254" height="8" fill="#d9a02c"/>
+      <text x="153" y="449" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">4 &nbsp;NILAI MURNI</text>
+      <text x="42" y="482" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">&#8226; Sabar &amp; tenang</text>
+      <text x="42" y="504" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">&#8226; Tekun &amp; istiqamah</text>
+      <text x="42" y="526" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">&#8226; Cintakan ilmu</text>
+      <text x="42" y="548" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">&#8226; Kasih kepada Nabi SAW</text>
+      <text x="42" y="570" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">&#8226; Berpandirian teguh</text>
+      <text x="42" y="594" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#8a6420">Kesungguhan Nabi SAW jadi contoh.</text>
+
+      <!-- 5 IKTIBAR -->
+      <rect x="270" y="530" width="280" height="164" rx="14" fill="#7e4620"/>
+      <text x="410" y="560" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">5 &nbsp;IKTIBAR</text>
+      <text x="410" y="588" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#f7e6d0">Jadikan al-Quran panduan hidup untuk</text>
+      <text x="410" y="606" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#f7e6d0">kejayaan dunia dan akhirat. Berpandirian</text>
+      <text x="410" y="624" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#f7e6d0">teguh dan tidak terpengaruh dengan unsur</text>
+      <text x="410" y="642" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#f7e6d0">tidak baik di sekeliling kita.</text>
+      <line x1="298" y1="654" x2="522" y2="654" stroke="#ffffff" stroke-width="1" opacity=".4"/>
+      <text x="410" y="676" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" font-weight="700" fill="#ffe9a8">Tekun menuntut ilmu &amp; rajin membaca</text>
+
+      <g transform="translate(700,620) scale(.5)"><use href="#adamSolat"/></g>
+    </svg>
+  </section>
+
+  <!-- ===== 3. NOTA RINGKAS ===== -->
+  <section>
+    <h2><span class="num">3</span> Nota Ringkas</h2>
+    <p class="hint">Ringkasan isi untuk rujukan pantas murid.</p>
+    <div class="nota">
+      <ol>
+        <li><b>Pengertian wahyu (SP 5.1.1).</b> Wahyu ialah <b>kalam Allah</b> yang disampaikan kepada <b>nabi dan rasul</b>. <b>Al-Quran</b> ialah wahyu yang diturunkan kepada Nabi Muhammad SAW. Wahyu menjadi <b>petunjuk jalan</b> kepada seluruh manusia.</li>
+        <li><b>Bukit Jabal an-Nur.</b> Terletak <b>3.2 kilometer</b> dari Makkah. Keadaan bukit <b>berbatu, berpasir dan curam</b> dengan ketinggian <b>640 meter</b>. Di puncaknya terdapat <b>Gua Hira&rsquo;</b>. Kini pendakian lebih mudah kerana disediakan laluan bertangga yang mempunyai kira-kira <b>600 anak tangga</b>.</li>
+        <li><b>Sebelum menerima wahyu.</b> Sebelum diisytiharkan menjadi nabi, Nabi Muhammad SAW sering ke <b>Gua Hira&rsquo;</b> untuk beribadah kepada Allah &mdash; walaupun masyarakatnya menyembah berhala.</li>
+        <li><b>Kedatangan Malaikat Jibril (SP 5.1.2).</b> Malaikat Jibril telah bertemu Nabi Muhammad SAW ketika Baginda beribadah. Jibril meminta Baginda membaca, tetapi Baginda <b>tidak tahu membaca</b>.</li>
+        <li><b>Tiga kali permintaan.</b> Selepas <b>tiga kali</b> meminta Baginda membaca dan memeluknya, Jibril mengajar Nabi Muhammad SAW membaca <b>ayat 1&ndash;5 daripada Surah al-&rsquo;Alaq</b>.</li>
+        <li><b>Fakta penting.</b> Tarikh: <b>17 Ramadan</b>. Usia Nabi Muhammad SAW: <b>40 tahun</b>. Malaikat pembawa wahyu: <b>Jibril</b>. Wahyu yang pertama ialah <b>&laquo;اِقْرَأْ&raquo;</b> iaitu <b>&ldquo;Bacalah&rdquo;</b>.</li>
+        <li><b>Peristiwa selepas penurunan wahyu.</b> Baginda pulang menemui isterinya <b>Khadijah</b> dalam keadaan ketakutan. Khadijah menyelimutkan dan menenangkan Baginda. Kemudian Khadijah membawa Baginda bertemu sepupunya <b>Waraqah bin Naufal</b>, seorang pendeta Nasrani. Menurut Waraqah, Baginda telah <b>dilantik menjadi rasul</b> sebagaimana yang disebut dalam kitab terdahulu.</li>
+        <li><b>Kepentingan wahyu (SP 5.1.3).</b> Wahyu ialah medium untuk mengetahui <b>perintah dan larangan Allah</b>; mematahkan hujah orang kafir; memberi <b>penyelesaian</b> kepada permasalahan manusia sepanjang zaman; menjelaskan perkara <b>sam&rsquo;iyyat</b>; dan mengandungi <b>iktibar</b> tentang peristiwa terdahulu. <i>Sam&rsquo;iyyat</i> ialah sesuatu yang tidak dapat digambarkan dengan akal dan penginderaan manusia &mdash; hanya dapat diketahui melalui al-Quran dan hadis.</li>
+        <li><b>Iktibar (SP 5.1.4).</b> Kita mestilah menjadikan al-Quran sebagai <b>panduan hidup</b> bagi mencapai kejayaan di dunia dan akhirat; <b>berpandirian teguh</b> dan tidak terpengaruh dengan unsur tidak baik di sekeliling kita; mencontohi <b>kesungguhan</b> Nabi Muhammad SAW terutamanya dalam beribadah; serta <b>tekun menuntut ilmu</b> dan menjadikan amalan membaca sebagai tabiat.</li>
+        <li><b>Rumusan (SP 5.1.5).</b> Al-Quran ialah <b>kitab panduan umat Islam</b>. Beriman kepadanya menjadi <b>asas dalam setiap tindakan kita</b>.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== 4. DIAGRAM ALIR ===== -->
+  <section>
+    <h2><span class="num">4</span> Diagram Alir &mdash; Fasa Penerimaan Wahyu Pertama</h2>
+    <p class="hint">Jenis: <b>Alir</b>. Baca dari atas ke bawah: Sebelum &rarr; Semasa &rarr; Selepas &rarr; Hasil.</p>
+
+    <svg class="art" viewBox="0 0 820 590" role="img" aria-label="Diagram alir fasa penerimaan wahyu pertama">
+      <rect width="820" height="590" rx="14" fill="#faf3e8"/>
+      <text x="410" y="28" text-anchor="middle" font-family="Trebuchet MS" font-size="16" font-weight="700" fill="#7e4620" letter-spacing="1.4">FASA PENERIMAAN WAHYU PERTAMA</text>
+
+      <!-- ===== PILAR FASA ===== -->
+      <g font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#ffffff">
+        <rect x="24" y="82"  width="100" height="34" rx="17" fill="#c07a42"/><text x="74" y="104" text-anchor="middle">SEBELUM</text>
+        <rect x="24" y="219" width="100" height="34" rx="17" fill="#b9713c"/><text x="74" y="241" text-anchor="middle">SEMASA</text>
+        <rect x="24" y="379" width="100" height="34" rx="17" fill="#b9713c"/><text x="74" y="401" text-anchor="middle">SELEPAS</text>
+        <rect x="24" y="513" width="100" height="34" rx="17" fill="#7e4620"/><text x="74" y="535" text-anchor="middle">HASIL</text>
+      </g>
+
+      <!-- ===== BARIS 1: SEBELUM ===== -->
+      <rect x="140" y="64" width="650" height="70" rx="14" fill="#fdf3dc" stroke="#d9a02c" stroke-width="1.8"/>
+      <text x="465" y="94" text-anchor="middle" font-family="Trebuchet MS" font-size="13.5" font-weight="700" fill="#7e4620">Nabi Muhammad SAW sering beribadah di Gua Hira&rsquo;</text>
+      <text x="465" y="116" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#4a3728">walaupun masyarakatnya menyembah berhala</text>
+
+      <!-- ===== BARIS 2: SEMASA ===== -->
+      <rect x="140" y="184" width="216" height="104" rx="14" fill="#fbeee0" stroke="#b9713c" stroke-width="1.8"/>
+      <text x="248" y="216" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#7e4620">Malaikat Jibril</text>
+      <text x="248" y="238" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">bertemu Nabi SAW</text>
+      <text x="248" y="258" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">ketika Baginda</text>
+      <text x="248" y="276" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">beribadah</text>
+
+      <rect x="372" y="184" width="216" height="104" rx="14" fill="#fbeee0" stroke="#b9713c" stroke-width="1.8"/>
+      <text x="480" y="216" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#7e4620">Jibril meminta</text>
+      <text x="480" y="238" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">Nabi SAW membaca,</text>
+      <text x="480" y="258" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">tetapi Baginda</text>
+      <text x="480" y="276" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">tidak tahu membaca</text>
+
+      <rect x="604" y="184" width="216" height="104" rx="14" fill="#fbe8d4" stroke="#b9713c" stroke-width="1.8"/>
+      <text x="712" y="216" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#7e4620">Jibril memeluk 3 kali</text>
+      <text x="712" y="238" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">dan mengajar ayat</text>
+      <text x="712" y="258" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728"><tspan font-weight="700">1&ndash;5 Surah al-&rsquo;Alaq</tspan></text>
+      <text x="712" y="276" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">&#8220;اِقْرَأْ&#8221; (Bacalah)</text>
+
+      <!-- ===== BARIS 3: SELEPAS ===== -->
+      <rect x="140" y="344" width="216" height="104" rx="14" fill="#fbeee0" stroke="#b9713c" stroke-width="1.8"/>
+      <text x="248" y="376" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#7e4620">Nabi SAW pulang</text>
+      <text x="248" y="398" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">kepada isterinya</text>
+      <text x="248" y="418" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">Khadijah dalam</text>
+      <text x="248" y="436" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">keadaan takut</text>
+
+      <rect x="372" y="344" width="216" height="104" rx="14" fill="#fbeee0" stroke="#b9713c" stroke-width="1.8"/>
+      <text x="480" y="376" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#7e4620">Khadijah</text>
+      <text x="480" y="398" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">menyelimutkan dan</text>
+      <text x="480" y="418" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">menenangkan</text>
+      <text x="480" y="436" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">Baginda</text>
+
+      <rect x="604" y="344" width="216" height="104" rx="14" fill="#fbeee0" stroke="#b9713c" stroke-width="1.8"/>
+      <text x="712" y="376" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#7e4620">Waraqah bin Naufal</text>
+      <text x="712" y="398" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">mengakui Baginda</text>
+      <text x="712" y="418" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">telah dilantik</text>
+      <text x="712" y="436" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#4a3728">menjadi rasul</text>
+
+      <!-- ===== BARIS 4: HASIL ===== -->
+      <rect x="140" y="494" width="650" height="72" rx="14" fill="#7e4620"/>
+      <text x="465" y="524" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#ffffff">AL-QURAN MENJADI PANDUAN HIDUP UMAT ISLAM</text>
+      <text x="465" y="548" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#f7e6d0">beriman kepadanya asas setiap tindakan &bull; kejayaan dunia dan akhirat</text>
+
+      <!-- ===== ANAK PANAH ===== -->
+      <g fill="none" stroke="#b9713c" stroke-width="3" stroke-linecap="round">
+        <path d="M465 138 L465 170"/>
+        <path d="M356 236 L366 236"/>
+        <path d="M588 236 L598 236"/>
+        <path d="M465 292 L465 330"/>
+        <path d="M356 396 L366 396"/>
+        <path d="M588 396 L598 396"/>
+        <path d="M465 452 L465 480"/>
+      </g>
+      <g fill="#b9713c">
+        <path d="M465 178 l-8 -12 h16 z"/>
+        <path d="M374 236 l-12 -8 v16 z"/>
+        <path d="M606 236 l-12 -8 v16 z"/>
+        <path d="M465 338 l-8 -12 h16 z"/>
+        <path d="M374 396 l-12 -8 v16 z"/>
+        <path d="M606 396 l-12 -8 v16 z"/>
+        <path d="M465 488 l-8 -12 h16 z"/>
+      </g>
+    </svg>
+  </section>
+
+  <!-- ===== 5. KUIZ INTERAKTIF ===== -->
+  <section>
+    <h2><span class="num">5</span> Kuiz Interaktif &mdash; 10 Soalan</h2>
+    <p class="hint">Klik pilihan jawapan. Maklum balas dan skor diberikan serta-merta.</p>
+
+    <div class="scorebar">
+      <span class="sc">Skor: <span id="sc">0</span> / 10</span>
+      <span class="bar"><i id="bar"></i></span>
+      <span class="hint2">Dijawab: <span id="done">0</span>/10</span>
+      <button class="act" onclick="resetQuiz()">Ulang Semula</button>
+    </div>
+
+    <div id="quiz">
+
+      <div class="qcard" data-ans="0" data-exp="Wahyu ialah kalam Allah yang disampaikan kepada nabi dan rasul.">
+        <div class="qhead"><span class="qn">1</span><span class="qtext">Wahyu ialah &hellip;</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Kalam Allah yang disampaikan kepada nabi dan rasul</span></button>
+          <button class="opt"><span class="k">B</span><span>Kata-kata malaikat kepada manusia biasa</span></button>
+          <button class="opt"><span class="k">C</span><span>Kitab yang ditulis oleh para nabi</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Peristiwa penerimaan wahyu pertama berlaku di Bukit Jabal an-Nur, di dalam Gua Hira&rsquo;.">
+        <div class="qhead"><span class="qn">2</span><span class="qtext">Bukit tempat berlakunya peristiwa penerimaan wahyu pertama ialah &hellip;</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Bukit Uhud</span></button>
+          <button class="opt"><span class="k">B</span><span>Bukit Jabal an-Nur</span></button>
+          <button class="opt"><span class="k">C</span><span>Bukit Safa</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Gua Hira&rsquo; terletak di puncak Bukit Jabal an-Nur, kira-kira 3.2 kilometer dari Makkah.">
+        <div class="qhead"><span class="qn">3</span><span class="qtext">Gua yang terletak di puncak Jabal an-Nur ialah &hellip;</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Gua Thaif</span></button>
+          <button class="opt"><span class="k">B</span><span>Gua Uhud</span></button>
+          <button class="opt"><span class="k">C</span><span>Gua Hira&rsquo;</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Malaikat Jibril ialah malaikat yang menyampaikan wahyu kepada para nabi dan rasul.">
+        <div class="qhead"><span class="qn">4</span><span class="qtext">Malaikat yang menyampaikan wahyu pertama kepada Nabi Muhammad SAW ialah &hellip;</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Jibril</span></button>
+          <button class="opt"><span class="k">B</span><span>Mikail</span></button>
+          <button class="opt"><span class="k">C</span><span>Israfil</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Wahyu yang pertama diterima Nabi Muhammad SAW ialah &laquo;اِقْرَأْ&raquo; yang bermaksud &ldquo;Bacalah&rdquo;.">
+        <div class="qhead"><span class="qn">5</span><span class="qtext">Wahyu yang pertama diterima Nabi Muhammad SAW ialah &hellip;</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span class="arab">صَلِّ</span> &mdash; Solatlah</button>
+          <button class="opt"><span class="k">B</span><span class="arab">اِقْرَأْ</span> &mdash; Bacalah</button>
+          <button class="opt"><span class="k">C</span><span class="arab">صُمْ</span> &mdash; Berpuasalah</button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Ayat 1&ndash;5 yang diajar oleh Malaikat Jibril ialah daripada Surah al-&rsquo;Alaq.">
+        <div class="qhead"><span class="qn">6</span><span class="qtext">Ayat 1&ndash;5 yang diajar oleh Malaikat Jibril ialah daripada surah &hellip;</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>al-&rsquo;Alaq</span></button>
+          <button class="opt"><span class="k">B</span><span>al-Fatihah</span></button>
+          <button class="opt"><span class="k">C</span><span>al-Kafirun</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Nabi Muhammad SAW menerima wahyu pertama pada usia 40 tahun, iaitu pada 17 Ramadan.">
+        <div class="qhead"><span class="qn">7</span><span class="qtext">Nabi Muhammad SAW menerima wahyu pertama pada usia &hellip;</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>30 tahun</span></button>
+          <button class="opt"><span class="k">B</span><span>35 tahun</span></button>
+          <button class="opt"><span class="k">C</span><span>40 tahun</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Baginda pulang menemui isterinya Khadijah dalam keadaan ketakutan, lalu Khadijah menenangkan Baginda.">
+        <div class="qhead"><span class="qn">8</span><span class="qtext">Selepas menerima wahyu pertama, Nabi Muhammad SAW pulang menemui &hellip;</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Waraqah bin Naufal</span></button>
+          <button class="opt"><span class="k">B</span><span>Isterinya Khadijah</span></button>
+          <button class="opt"><span class="k">C</span><span>Abu Bakar as-Siddiq</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Waraqah bin Naufal, sepupu Khadijah, mengakui bahawa Nabi Muhammad SAW telah dilantik menjadi rasul.">
+        <div class="qhead"><span class="qn">9</span><span class="qtext">Siapakah yang mengakui bahawa Nabi Muhammad SAW telah dilantik menjadi rasul?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Waraqah bin Naufal</span></button>
+          <button class="opt"><span class="k">B</span><span>Abu Talib</span></button>
+          <button class="opt"><span class="k">C</span><span>Abu Lahab</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Antara kepentingan wahyu ialah menjadi medium untuk mengetahui perintah dan larangan Allah. Menambah harta dan memecahkan perpaduan bukanlah kepentingannya.">
+        <div class="qhead"><span class="qn">10</span><span class="qtext">Antara berikut, yang manakah <b>kepentingan penurunan wahyu</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Medium untuk mengetahui perintah dan larangan Allah</span></button>
+          <button class="opt"><span class="k">B</span><span>Menambah harta kekayaan</span></button>
+          <button class="opt"><span class="k">C</span><span>Memecahkan perpaduan umat</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+    </div>
+
+    <div class="result" id="result">
+      <svg viewBox="0 0 220 170" style="width:200px;height:auto;margin:0 auto 4px;display:block">
+        <g transform="translate(24,4) scale(.95)"><use href="#adam"/></g>
+        <g transform="translate(116,4) scale(.95)"><use href="#nur"/></g>
+      </svg>
+      <div class="stars" id="stars"></div>
+      <div class="big" id="rscore"></div>
+      <div class="msg" id="rmsg"></div>
+      <button class="act solid" onclick="resetQuiz()">Cuba Lagi</button>
+      <button class="act" onclick="window.print()">Cetak / Simpan PDF</button>
+    </div>
+  </section>
+
+  <!-- ===== LAMPIRAN ===== -->
+  <section>
+    <h2><span class="num">&#9733;</span> Lampiran &mdash; Senarai SK Pendidikan Islam Tahun 3</h2>
+    <p class="hint">Tajuk yang telah siap ditanda kuning. Sebut nombor untuk menjana set seterusnya.</p>
+    <table>
+      <thead><tr><th style="width:38px">#</th><th>Bidang</th><th>Standard Kandungan (SK)</th></tr></thead>
+      <tbody>
+        <tr><td class="c">1</td><td>al-Quran (Tilawah)</td><td>Membaca dan mengamalkan <b>Surah al-Kafirun</b> dengan betul dan bertajwid</td></tr>
+        <tr><td class="c">2</td><td>al-Quran (Tilawah)</td><td>Membaca dan mengamalkan <b>Surah al-&lsquo;Asr</b> dengan betul dan bertajwid</td></tr>
+        <tr><td class="c">3</td><td>al-Quran (Hafazan)</td><td>Menghafaz dan mengamalkan <b>Surah al-Kafirun</b> dalam solat dan kehidupan harian</td></tr>
+        <tr><td class="c">4</td><td>al-Quran (Hafazan)</td><td>Menghafaz dan mengamalkan <b>Surah al-&lsquo;Asr</b> dalam solat dan kehidupan harian</td></tr>
+        <tr><td class="c">5</td><td>al-Quran (Kefahaman)</td><td>Menganalisis, mengamal dan menghayati <b>Surah al-Fatihah</b></td></tr>
+        <tr><td class="c">6</td><td>al-Quran (Tajwid)</td><td>Hukum <b>nun sakinah dan tanwin</b>: izhar halqi, idgham, iqlab, ikhfa&rsquo; haqiqi</td></tr>
+        <tr><td class="c">7</td><td>Hadis</td><td><b>Yang Muda Dikasihi, Yang Tua Dihormati</b> &nbsp;<span style="color:#b9713c;font-weight:700">(set 1 &check;)</span></td></tr>
+        <tr><td class="c">8</td><td>Akidah</td><td><b>Nama Allah al-&lsquo;Alim dan al-Hakim</b> &nbsp;<span style="color:#b9713c;font-weight:700">(set 2 &check;)</span></td></tr>
+        <tr><td class="c">9</td><td>Akidah</td><td><b>Beriman kepada kitab</b> &nbsp;<span style="color:#b9713c;font-weight:700">(set 3 &check;)</span></td></tr>
+        <tr><td class="c">10</td><td>Ibadah</td><td><b>Bersuci daripada hadas besar</b> (mandi wajib) &nbsp;<span style="color:#b9713c;font-weight:700">(set 4 &check;)</span></td></tr>
+        <tr><td class="c">11</td><td>Ibadah</td><td><b>Perkara yang membatalkan solat</b> &amp; solat yang sempurna &nbsp;<span style="color:#b9713c;font-weight:700">(set 5 &check;)</span></td></tr>
+        <tr><td class="c">12</td><td>Ibadah</td><td><b>Sunat ab&lsquo;adh</b> dan <b>sunat hai&rsquo;at</b> dalam solat &nbsp;<span style="color:#b9713c;font-weight:700">(set 6 &check;)</span></td></tr>
+        <tr class="on"><td class="c">13</td><td>Sirah</td><td>Iktibar peristiwa <b>penerimaan wahyu pertama</b> &nbsp;<span style="color:#a97c14;font-weight:700">(set 7 &check;)</span></td></tr>
+        <tr><td class="c">14</td><td>Sirah</td><td>Keunggulan sifat Nabi Muhammad SAW (tabligh)</td></tr>
+        <tr><td class="c">15</td><td>Sirah</td><td>Meneladani keperibadian Nabi SAW dalam <b>kehidupan bermasyarakat</b></td></tr>
+        <tr><td class="c">16</td><td>Adab</td><td><b>Adab tidur</b> mengikut sunnah (termasuk qailulah)</td></tr>
+        <tr><td class="c">17</td><td>Adab</td><td><b>Adab menuntut ilmu</b> (ilmu fardu ain &amp; fardu kifayah)</td></tr>
+        <tr><td class="c">18</td><td>Adab</td><td>Adab terhadap Allah melalui <b>syukur</b></td></tr>
+        <tr><td class="c">19</td><td>Adab</td><td>Mengikut <b>sunnah Rasulullah</b>: perkataan &amp; perbuatan</td></tr>
+        <tr><td class="c">20</td><td>Jawi</td><td>Membaca &amp; menulis teks &mdash; perkataan ber<b>imbuhan awalan</b></td></tr>
+        <tr><td class="c">21</td><td>Jawi</td><td>Membaca &amp; menulis teks &mdash; perkataan ber<b>imbuhan akhiran</b></td></tr>
+        <tr><td class="c">22</td><td>Jawi</td><td>Membaca &amp; menulis teks &mdash; perkataan ber<b>imbuhan apitan</b></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 3 &amp; Buku Teks Pendidikan Islam Tahun 3 SK (DBP, 2018).
+  </footer>
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+  var scEl = document.getElementById('sc');
+  var doneEl = document.getElementById('done');
+  var barEl = document.getElementById('bar');
+  var resultEl = document.getElementById('result');
+  var total = cards.length;
+
+  function refresh(){
+    var score = 0, answered = 0;
+    cards.forEach(function(c){
+      if(c.dataset.state === 'correct'){ score++; answered++; }
+      else if(c.dataset.state === 'wrong'){ answered++; }
+    });
+    scEl.textContent = score;
+    doneEl.textContent = answered;
+    barEl.style.width = (answered/total*100) + '%';
+    if(answered === total) showResult(score);
+  }
+
+  function showResult(score){
+    resultEl.classList.add('show');
+    document.getElementById('rscore').textContent = score + ' / ' + total;
+    document.getElementById('stars').textContent =
+      score >= 9 ? '★★★★★' : score >= 7 ? '★★★★☆' : score >= 5 ? '★★★☆☆' : '★★☆☆☆';
+    document.getElementById('rmsg').textContent =
+      score === 10 ? 'Syabas! Kamu benar-benar menguasai tajuk ini.'
+      : score >= 8 ? 'Bagus sekali! Teruskan usaha kamu.'
+      : score >= 6 ? 'Bagus! Ulangi nota sekali lagi untuk lebih mantap.'
+      : score >= 4 ? 'Jangan putus asa — baca semula nota ringkas di atas.'
+      : 'Mari ulang bersama-sama. Baca nota ringkas, kemudian cuba lagi.';
+    resultEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  cards.forEach(function(card){
+    var opts = Array.prototype.slice.call(card.querySelectorAll('.opt'));
+    var fb = card.querySelector('.fb');
+    var face = fb.querySelector('use');
+    var txt = fb.querySelector('.txt');
+    var ans = parseInt(card.dataset.ans, 10);
+    var exp = card.dataset.exp;
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(card.dataset.state) return;
+        var ok = (i === ans);
+        card.dataset.state = ok ? 'correct' : 'wrong';
+        card.classList.add('done');
+
+        opts.forEach(function(b, j){
+          b.disabled = true;
+          if(j === ans){ b.classList.add('ok'); }
+          else if(j === i){ b.classList.add('bad'); }
+          else { b.classList.add('dim'); }
+        });
+
+        face.setAttribute('href', ok ? '#faceYay' : '#faceOops');
+        txt.innerHTML = (ok ? '<b>Betul!</b> ' : '<b>Belum tepat.</b> Jawapan yang betul ialah <b>' +
+                        String.fromCharCode(65+ans) + '</b>. ') + exp;
+        fb.classList.add('show');
+        if(!ok) fb.classList.add('wrong');
+
+        refresh();
+      });
+    });
+  });
+
+  window.resetQuiz = function(){
+    cards.forEach(function(c){
+      delete c.dataset.state;
+      c.classList.remove('done');
+      var fb = c.querySelector('.fb');
+      fb.classList.remove('show','wrong');
+      c.querySelectorAll('.opt').forEach(function(b){
+        b.disabled = false;
+        b.classList.remove('ok','bad','dim');
+      });
+    });
+    resultEl.classList.remove('show');
+    refresh();
+    window.scrollTo({top: document.getElementById('quiz').offsetTop - 20, behavior:'smooth'});
+  };
+
+  window.addEventListener('beforeprint', function(){
+    cards.forEach(function(c){
+      var ans = parseInt(c.dataset.ans,10);
+      c.querySelectorAll('.opt').forEach(function(b,j){
+        if(j === ans) b.classList.add('ok');
+      });
+      if(!c.querySelector('.fb').classList.contains('show')){
+        var fb = c.querySelector('.fb');
+        fb.querySelector('.txt').innerHTML = '<b>Jawapan: ' + String.fromCharCode(65+ans) + '</b>. ' + c.dataset.exp;
+        fb.classList.add('show');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

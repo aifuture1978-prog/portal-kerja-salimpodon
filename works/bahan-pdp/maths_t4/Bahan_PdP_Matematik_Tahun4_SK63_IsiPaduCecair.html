@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isi Padu Cecair &mdash; Matematik Tahun 4</title>
+<style>
+:root{--sky4:#ffffff;--sky1:#c6f0f2;--sky2:#e9fbfb;--sky3:#fff6e0;--sun:#fff4c9;--sunGlow:#7fe0d8;--hillFar:#a8e5de;--hillNear:#72c9c0;--grass:#46a89e;--acc:#1f9d8f;--acc2:#ffab33;--acc3:#2f7fd6;--acc4:#d6455c;--acc5:#7a5cd6;--paper:#ffffff;--soft:#f0fdfc;--line:#c9ecea;--ink:#123f3b;--muted:#4e7f7a}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);
+       font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .skybg{position:fixed;inset:0;z-index:-3;
+         background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 34%,var(--sky3) 66%,var(--sky4) 100%)}
+  .bg-dots{position:fixed;inset:0;pointer-events:none;z-index:-2;opacity:.05;
+           background-image:radial-gradient(circle,var(--acc) 1.6px,transparent 1.6px);
+           background-size:30px 30px}
+  .blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.45;z-index:-3}
+  .b1{width:440px;height:440px;background:var(--sunGlow);top:-110px;left:-120px}
+  .b2{width:380px;height:380px;background:var(--hillFar);top:32%;right:-130px}
+  .b3{width:480px;height:480px;background:var(--sky3);bottom:-160px;left:16%}
+  .wrap{max-width:960px;margin:0 auto;padding:20px 18px 70px;position:relative;z-index:1}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;border-radius:24px;overflow:hidden;margin-bottom:20px;
+        box-shadow:0 14px 38px rgba(0,0,0,.16)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:14px 0 60px;text-align:center;pointer-events:none;
+            background:radial-gradient(ellipse 58% 82% at 50% 26%,rgba(255,255,255,.94),
+                       rgba(255,255,255,.62) 52%,rgba(255,255,255,0) 78%)}
+  .hero-txt .kick{font-size:11.5px;letter-spacing:3.4px;text-transform:uppercase;color:var(--acc);font-weight:800}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(22px,4.1vw,34px);color:var(--ink);letter-spacing:.4px;
+               text-shadow:0 2px 0 #fff,0 4px 14px rgba(255,255,255,.95)}
+  .hero-txt .sub{font-size:13px;color:var(--muted);font-weight:600;max-width:560px;margin:0 auto}
+
+  /* ---------- STRIP ---------- */
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-bottom:18px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:15px;padding:11px 15px;
+        box-shadow:0 4px 14px rgba(0,0,0,.07);transition:.2s;position:relative;overflow:hidden}
+  .chip::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--acc)}
+  .chip:nth-child(2)::before{background:var(--acc2)}
+  .chip:nth-child(3)::before{background:var(--acc3)}
+  .chip:nth-child(4)::before{background:var(--acc4)}
+  .chip:hover{transform:translateY(-3px);box-shadow:0 9px 22px rgba(0,0,0,.12)}
+  .chip .lbl{font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:800;margin-top:2px;color:var(--ink)}
+
+  /* ---------- TOC ---------- */
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:16px 18px 18px;
+       margin-bottom:22px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+  .toc .ttl{font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:var(--acc);font-weight:800;
+            display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;
+                   background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:var(--soft);
+           border:1.4px solid var(--line);border-radius:14px;padding:10px 12px;transition:.16s}
+  .toc .it:hover{transform:translateX(5px);border-color:var(--acc);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .toc .it .n{flex:0 0 27px;height:27px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;
+              display:flex;align-items:center;justify-content:center;background:var(--acc);
+              box-shadow:0 2px 0 rgba(0,0,0,.18)}
+  .toc .it:nth-child(2) .n{background:var(--acc2)}
+  .toc .it:nth-child(3) .n{background:var(--acc3)}
+  .toc .it:nth-child(4) .n{background:var(--acc4)}
+  .toc .it:nth-child(5) .n{background:var(--acc5)}
+  .toc .it:nth-child(6) .n{background:var(--acc)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--ink);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:var(--soft);border:1.4px dashed var(--acc);
+             border-radius:13px;padding:10px 13px;font-size:12.5px;color:var(--ink);line-height:1.55}
+
+  /* ---------- SECTION ---------- */
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:22px;padding:20px;
+          margin-bottom:22px;box-shadow:0 6px 20px rgba(0,0,0,.08);
+          break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--ink);text-transform:uppercase;margin:0 0 4px;
+     display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--acc);color:#fff;width:28px;height:28px;border-radius:9px;
+          display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;
+          box-shadow:0 2px 0 rgba(0,0,0,.18)}
+  h2 .mascot{flex:none;margin-left:auto;display:block}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:37px}
+
+  /* ---------- INFO CARD GRID ---------- */
+  .ig{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:11px}
+  .igc{display:flex;gap:11px;align-items:flex-start;background:var(--soft);border:1.5px solid var(--line);
+       border-radius:15px;padding:12px 13px;transition:.18s;position:relative;overflow:hidden}
+  .igc::after{content:"";position:absolute;right:-18px;top:-18px;width:56px;height:56px;border-radius:50%;
+              opacity:.13;background:var(--c)}
+  .igc:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.11);border-color:var(--c)}
+  .igc .ic{flex:0 0 38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+           font-size:19px;background:var(--c);box-shadow:0 3px 0 rgba(0,0,0,.16)}
+  .igc .tt{font-size:12.5px;font-weight:800;color:var(--c);letter-spacing:.2px}
+  .igc .vv{font-size:12.5px;color:var(--ink);margin-top:2px;line-height:1.45;font-weight:600}
+
+  /* ---------- NOTA CALLOUT ---------- */
+  .nt{display:grid;gap:10px}
+  .ntc{display:flex;gap:12px;align-items:flex-start;background:var(--soft);border:1.5px solid var(--line);
+       border-left:6px solid var(--c);border-radius:14px;padding:12px 14px}
+  .ntc .nb{flex:0 0 28px;height:28px;border-radius:9px;background:var(--c);color:#fff;font-weight:800;
+           font-size:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 0 rgba(0,0,0,.18)}
+  .ntc .ntx{font-size:12.8px;color:var(--ink);line-height:1.6}
+  .ntc .ntx b{color:var(--c)}
+
+  /* ---------- QUIZ ---------- */
+  .qcard{background:var(--soft);border:1.5px solid var(--line);border-radius:17px;padding:14px;margin-bottom:12px;
+         break-inside:avoid;page-break-inside:avoid}
+  .qtop{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+  .qn{flex:none;width:29px;height:29px;border-radius:10px;background:var(--acc);color:#fff;display:flex;
+      align-items:center;justify-content:center;font-size:14px;font-weight:800;box-shadow:0 2px 0 rgba(0,0,0,.18)}
+  .qt{font-size:13.5px;font-weight:800;color:var(--ink);line-height:1.45;padding-top:3px}
+  .opts{display:flex;flex-wrap:wrap;gap:8px}
+  .opt{flex:1 1 calc(50% - 8px);min-width:140px;padding:10px 12px;border-radius:12px;
+       border:1.5px solid var(--line);background:var(--paper);color:var(--ink);font-size:13px;
+       font-weight:700;cursor:pointer;transition:.15s;text-align:left;font-family:inherit}
+  .opt:hover{background:var(--soft);border-color:var(--acc);transform:translateY(-1px)}
+  .opt.ok{background:#d6f5e0;border-color:#4caf50;color:#1b5e20}
+  .opt.no{background:#ffd9d6;border-color:#e57373;color:#b71c1c}
+  .fb{display:none;margin-top:10px;padding:11px 14px;border-radius:12px;background:var(--paper);
+      border:1.5px dashed var(--acc);font-size:12.5px;color:var(--ink);line-height:1.55}
+  .fb.show{display:flex;gap:9px;align-items:flex-start}
+  .ff{flex:0 0 42px;width:42px;height:42px}
+  .acts{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;align-items:center}
+  .btn{padding:10px 18px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);
+       color:var(--acc);font-size:13px;font-weight:800;cursor:pointer;transition:.15s;font-family:inherit}
+  .btn:hover{background:var(--acc);color:#fff;border-color:var(--acc)}
+  .btn.prim{background:var(--acc);color:#fff;border:none;box-shadow:0 3px 0 rgba(0,0,0,.2)}
+  .btn.prim:hover{filter:brightness(1.08)}
+  .pbar{flex:1 1 180px;min-width:140px;height:12px;border-radius:999px;background:var(--line);overflow:hidden}
+  .pbar > i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--acc),var(--acc2));
+            transition:width .45s ease}
+  .score{font-size:13px;font-weight:800;color:var(--ink);white-space:nowrap}
+  #result{display:none;margin-top:14px;padding:14px 16px;border-radius:14px;background:var(--soft);
+          border:1.5px solid var(--acc);font-size:14px;font-weight:800;color:var(--ink)}
+  #result.show{display:flex;gap:12px;align-items:center}
+  #result .big{font-size:32px}
+
+  /* ---------- TABLE ---------- */
+  .skl{width:100%;border-collapse:separate;border-spacing:0;border:1.5px solid var(--line);
+       border-radius:15px;overflow:hidden;font-size:12px}
+  .skl th{background:var(--acc);color:#fff;padding:10px;text-align:left;font-weight:800;font-size:11.5px;
+          letter-spacing:.5px}
+  .skl td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink)}
+  .skl tbody tr:nth-child(even) td{background:var(--soft)}
+  .skl tr.on td{background:#fff5d6;font-weight:700}
+  .skl .c{text-align:center}
+  .badge{display:inline-block;padding:4px 11px;border-radius:999px;font-size:11px;font-weight:800;
+         background:var(--acc);color:#fff}
+
+  /* ---------- FOOTER ---------- */
+  .footer-char{text-align:center;padding:26px 10px 10px}
+  .footer-char .big-emoji{font-size:50px;display:inline-block;
+                          animation:footerBounce 2.6s ease-in-out infinite;
+                          filter:drop-shadow(0 5px 10px rgba(0,0,0,.15))}
+  .footer-char .msg{font-size:13px;color:var(--muted);margin-top:8px;font-weight:700}
+  .shimmer-bar{height:4px;background:linear-gradient(90deg,transparent,var(--acc),var(--acc2),var(--acc3),
+               var(--acc),transparent);background-size:220% 100%;animation:shimmerMove 3.4s linear infinite;
+               border-radius:2px}
+
+  /* ---------- ANIMASI (halus, Ghibli) ---------- */
+  /* transform-box:fill-box supaya asalan putaran/ skala ikut kotak unsur sendiri,
+     dan kelas animasi tidak menimpa atribut transform SVG pada <g> luar. */
+  .anim-drift{animation:drift 14s ease-in-out infinite;transform-box:fill-box}
+  .anim-sway{animation:sway 5.2s ease-in-out infinite;transform-origin:center bottom;transform-box:fill-box}
+  .anim-twinkle{animation:twinkle 3.2s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+  .anim-bob{animation:bob 3.6s ease-in-out infinite;transform-origin:center bottom;transform-box:fill-box}
+  .anim-glow{animation:glow 5.5s ease-in-out infinite;transform-box:fill-box}
+  .anim-blink{animation:blink 5s steps(1,end) infinite;transform-origin:center;transform-box:fill-box}
+  @keyframes drift{0%,100%{transform:translateX(0)}50%{transform:translateX(30px)}}
+  @keyframes sway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+  @keyframes twinkle{0%,100%{opacity:.32;transform:scale(.86)}50%{opacity:1;transform:scale(1.12)}}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  @keyframes glow{0%,100%{opacity:.55}50%{opacity:1}}
+  @keyframes blink{0%,96%,100%{transform:scaleY(1)}98%{transform:scaleY(.08)}}
+  @keyframes shimmerMove{from{background-position:220% 0}to{background-position:-220% 0}}
+  @keyframes footerBounce{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-9px) rotate(6deg)}}
+  @keyframes emojiPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+  .emoji-pulse{display:inline-block;animation:emojiPulse 2.4s ease-in-out infinite}
+
+  @media (prefers-reduced-motion: reduce){
+    .anim-drift,.anim-sway,.anim-twinkle,.anim-bob,.anim-glow,.anim-blink,
+    .footer-char .big-emoji,.shimmer-bar,.emoji-pulse{animation:none !important}
+  }
+  @media print{
+    body{background:#fff}
+    .blob,.bg-dots,.shimmer-bar{display:none !important}
+    .anim-drift,.anim-sway,.anim-twinkle,.anim-bob,.anim-glow,.anim-blink,
+    .footer-char .big-emoji,.emoji-pulse{animation:none !important}
+    section{box-shadow:none;border-color:#ccc}
+  }
+
+</style>
+</head>
+<body>
+<div class="skybg"></div>
+<div class="bg-dots"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="wrap">
+
+  <div class="hero">
+    <svg viewBox="0 0 940 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Adegan Isi Padu Cecair">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c6f0f2"/>
+      <stop offset="52%" stop-color="#e9fbfb"/>
+      <stop offset="100%" stop-color="#fff6e0"/>
+    </linearGradient>
+    <radialGradient id="sunG" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff4c9" stop-opacity=".95"/>
+      <stop offset="55%" stop-color="#7fe0d8" stop-opacity=".45"/>
+      <stop offset="100%" stop-color="#7fe0d8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hillF" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a8e5de"/>
+      <stop offset="100%" stop-color="#72c9c0"/>
+    </linearGradient>
+    <linearGradient id="hillN" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#72c9c0"/>
+      <stop offset="100%" stop-color="#46a89e"/>
+    </linearGradient>
+    <linearGradient id="grd" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#46a89e"/>
+      <stop offset="100%" stop-color="#72c9c0"/>
+    </linearGradient>
+    
+<g id="aim">
+  <rect x="38" y="116" width="14" height="34" rx="7" fill="#2f4a6b"/>
+  <rect x="58" y="116" width="14" height="34" rx="7" fill="#2f4a6b"/>
+  <ellipse cx="45" cy="153" rx="12" ry="6" fill="#33405a"/>
+  <ellipse cx="65" cy="153" rx="12" ry="6" fill="#33405a"/>
+  <path d="M32 72 Q55 62 78 72 L82 120 Q55 129 28 120 Z" fill="#5b7fa8"/>
+  <path d="M32 72 Q55 62 78 72 L79 82 Q55 72 31 82 Z" fill="#7fc4b8"/>
+  <path d="M34 80 Q20 96 23 112" stroke="#5b7fa8" stroke-width="13" fill="none" stroke-linecap="round"/>
+  <path d="M76 80 Q90 96 87 112" stroke="#5b7fa8" stroke-width="13" fill="none" stroke-linecap="round"/>
+  <circle cx="23" cy="114" r="7.5" fill="#f7d5b5"/>
+  <circle cx="87" cy="114" r="7.5" fill="#f7d5b5"/>
+  <rect x="48" y="58" width="14" height="14" rx="5" fill="#e8c3a0"/>
+  <circle cx="55" cy="40" r="30" fill="#f7d5b5"/>
+  <path d="M25 38 Q28 6 55 4 Q82 6 85 38 Q80 18 55 15 Q30 18 25 38" fill="#3a2b22"/>
+  <circle cx="26" cy="42" r="6" fill="#e8c3a0"/>
+  <circle cx="84" cy="42" r="6" fill="#e8c3a0"/>
+  <ellipse cx="45" cy="40" rx="7" ry="8.5" fill="#ffffff"/>
+  <ellipse cx="65" cy="40" rx="7" ry="8.5" fill="#ffffff"/>
+  <circle cx="46" cy="41" r="4.6" fill="#3a2b22"/>
+  <circle cx="66" cy="41" r="4.6" fill="#3a2b22"/>
+  <circle cx="47.6" cy="39" r="1.8" fill="#ffffff"/>
+  <circle cx="67.6" cy="39" r="1.8" fill="#ffffff"/>
+  <path d="M38 30 Q45 27 52 30" stroke="#3a2b22" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M58 30 Q65 27 72 30" stroke="#3a2b22" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="35" cy="50" rx="6" ry="3.6" fill="#f2a2a2" opacity=".5"/>
+  <ellipse cx="75" cy="50" rx="6" ry="3.6" fill="#f2a2a2" opacity=".5"/>
+  <path d="M55 44 q2 3 0 4" stroke="#e0b9a8" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <path d="M48 53 Q55 59 62 53" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+</g>
+<g id="nur">
+  <path d="M33 112 L77 112 L87 152 Q55 161 23 152 Z" fill="#1f9d8f"/>
+  <path d="M33 112 L77 112 L79 124 Q55 131 31 124 Z" fill="#ffab33" opacity=".55"/>
+  <path d="M34 78 Q20 94 23 110" stroke="#1f9d8f" stroke-width="13" fill="none" stroke-linecap="round"/>
+  <path d="M76 78 Q90 94 87 110" stroke="#1f9d8f" stroke-width="13" fill="none" stroke-linecap="round"/>
+  <circle cx="23" cy="112" r="7.5" fill="#f7d5b5"/>
+  <circle cx="87" cy="112" r="7.5" fill="#f7d5b5"/>
+  <path d="M33 70 Q55 60 77 70 L79 116 Q55 124 31 116 Z" fill="#1f9d8f"/>
+  <path d="M33 70 Q55 60 77 70 L78 80 Q55 70 32 80 Z" fill="#ffab33" opacity=".6"/>
+  <circle cx="55" cy="42" r="30" fill="#f7d5b5"/>
+  <path d="M25 44 Q22 4 55 3 Q88 4 85 44 L85 70 Q80 74 76 70 L76 40 Q70 16 55 15 Q40 16 34 40 L34 70 Q30 74 25 70 Z" fill="#e88ba0"/>
+  <path d="M25 44 Q22 4 55 3 Q88 4 85 44 Q80 20 55 18 Q30 20 25 44" fill="#f2b8c6"/>
+  <ellipse cx="45" cy="42" rx="6.6" ry="8" fill="#ffffff"/>
+  <ellipse cx="65" cy="42" rx="6.6" ry="8" fill="#ffffff"/>
+  <circle cx="46" cy="43" r="4.4" fill="#3a2b22"/>
+  <circle cx="66" cy="43" r="4.4" fill="#3a2b22"/>
+  <circle cx="47.5" cy="41" r="1.7" fill="#ffffff"/>
+  <circle cx="67.5" cy="41" r="1.7" fill="#ffffff"/>
+  <path d="M39 33 Q45 30 51 33" stroke="#3a2b22" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+  <path d="M59 33 Q65 30 71 33" stroke="#3a2b22" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+  <ellipse cx="36" cy="52" rx="5.6" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+  <ellipse cx="74" cy="52" rx="5.6" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+  <path d="M55 46 q2 3 0 4" stroke="#e0b9a8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M49 55 Q55 60 61 55" stroke="#b5714f" stroke-width="2.1" fill="none" stroke-linecap="round"/>
+</g>
+<g id="cikgu">
+  <rect x="38" y="118" width="14" height="32" rx="7" fill="#3a4a63"/>
+  <rect x="58" y="118" width="14" height="32" rx="7" fill="#3a4a63"/>
+  <ellipse cx="45" cy="153" rx="12" ry="6" fill="#2c3850"/>
+  <ellipse cx="65" cy="153" rx="12" ry="6" fill="#2c3850"/>
+  <path d="M30 74 Q55 63 80 74 L85 124 Q55 133 25 124 Z" fill="#eef3fb"/>
+  <path d="M30 74 Q55 63 80 74 L81 84 Q55 73 29 84 Z" fill="#b8c6de"/>
+  <path d="M55 74 L55 128" stroke="#cfd9ea" stroke-width="1.6"/>
+  <path d="M33 82 Q19 98 22 114" stroke="#eef3fb" stroke-width="13" fill="none" stroke-linecap="round"/>
+  <path d="M77 82 Q91 98 88 114" stroke="#eef3fb" stroke-width="13" fill="none" stroke-linecap="round"/>
+  <circle cx="22" cy="116" r="7.5" fill="#f7d5b5"/>
+  <circle cx="88" cy="116" r="7.5" fill="#f7d5b5"/>
+  <rect x="48" y="58" width="14" height="14" rx="5" fill="#e8c3a0"/>
+  <circle cx="55" cy="40" r="30" fill="#f7d5b5"/>
+  <path d="M25 38 Q28 6 55 4 Q82 6 85 38 Q80 18 55 15 Q30 18 25 38" fill="#8a5a4a"/>
+  <circle cx="26" cy="42" r="6" fill="#e8c3a0"/>
+  <circle cx="84" cy="42" r="6" fill="#e8c3a0"/>
+  <ellipse cx="45" cy="40" rx="7.5" ry="9" fill="#ffffff"/>
+  <ellipse cx="65" cy="40" rx="7.5" ry="9" fill="#ffffff"/>
+  <circle cx="46" cy="41" r="4.8" fill="#2c3a52"/>
+  <circle cx="66" cy="41" r="4.8" fill="#2c3a52"/>
+  <circle cx="47.7" cy="39" r="1.8" fill="#ffffff"/>
+  <circle cx="67.7" cy="39" r="1.8" fill="#ffffff"/>
+  <rect x="37" y="36" width="17" height="2.2" rx="1.1" fill="#2c3a52"/>
+  <rect x="56" y="36" width="17" height="2.2" rx="1.1" fill="#2c3a52"/>
+  <path d="M38 30 Q45 27 52 30" stroke="#6a4436" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M58 30 Q65 27 72 30" stroke="#6a4436" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="35" cy="50" rx="6" ry="3.6" fill="#f2a2a2" opacity=".4"/>
+  <ellipse cx="75" cy="50" rx="6" ry="3.6" fill="#f2a2a2" opacity=".4"/>
+  <path d="M55 44 q2 3 0 4" stroke="#e0b9a8" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <path d="M47 54 Q55 61 63 54" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+</g>
+
+  </defs>
+
+  <rect width="940" height="300" fill="url(#sky)"/>
+
+  <!-- matahari -->
+  <circle cx="118" cy="64" r="96" fill="url(#sunG)" class="anim-glow"/>
+  <circle cx="118" cy="64" r="30" fill="#fff4c9"/>
+  <circle cx="118" cy="64" r="30" fill="#7fe0d8" opacity=".28"/>
+
+  <!-- awan hanyut -->
+  <g class="anim-drift" opacity=".9">
+    <ellipse cx="250" cy="58" rx="46" ry="17" fill="#ffffff"/>
+    <ellipse cx="286" cy="52" rx="30" ry="15" fill="#ffffff"/>
+    <ellipse cx="216" cy="54" rx="26" ry="12" fill="#ffffff"/>
+  </g>
+  <g class="anim-drift" opacity=".72" style="animation-delay:-4s;animation-duration:18s">
+    <ellipse cx="640" cy="44" rx="40" ry="14" fill="#ffffff"/>
+    <ellipse cx="672" cy="39" rx="26" ry="12" fill="#ffffff"/>
+  </g>
+  <g class="anim-drift" opacity=".6" style="animation-delay:-8s;animation-duration:22s">
+    <ellipse cx="860" cy="72" rx="34" ry="12" fill="#ffffff"/>
+    <ellipse cx="884" cy="67" rx="22" ry="10" fill="#ffffff"/>
+  </g>
+
+  <!-- burung hanyut -->
+  <g class="anim-drift" style="animation-delay:-6s;animation-duration:16s" opacity=".75">
+    <path d="M470 62 q7 -7 14 0" fill="none" stroke="#123f3b" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M492 54 q6 -6 12 0" fill="none" stroke="#123f3b" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M452 74 q5 -5 10 0" fill="none" stroke="#123f3b" stroke-width="1.4" stroke-linecap="round"/>
+  </g>
+
+  <!-- bukit jauh -->
+  <path d="M0 214 Q140 158 300 196 Q440 228 560 190 Q720 142 940 200 L940 300 L0 300 Z" fill="url(#hillF)" opacity=".85"/>
+  <!-- bukit dekat -->
+  <path d="M0 240 Q170 200 340 232 Q520 266 680 226 Q810 194 940 236 L940 300 L0 300 Z" fill="url(#hillN)"/>
+
+  <!-- sekolah (kiri) -->
+  <g>
+    <rect x="52" y="176" width="118" height="62" rx="7" fill="#ffffff" stroke="#1f9d8f" stroke-width="2.4"/>
+    <path d="M44 178 L111 142 L178 178 Z" fill="#2f7fd6" stroke="#1f9d8f" stroke-width="2.2" stroke-linejoin="round"/>
+    <rect x="96" y="204" width="30" height="34" rx="4" fill="#ffab33"/>
+    <rect x="62" y="192" width="22" height="20" rx="3" fill="#c6f0f2" stroke="#1f9d8f" stroke-width="1.6"/>
+    <rect x="138" y="192" width="22" height="20" rx="3" fill="#c6f0f2" stroke="#1f9d8f" stroke-width="1.6"/>
+    <line x1="111" y1="142" x2="111" y2="126" stroke="#1f9d8f" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M111 126 L138 134 L111 142 Z" fill="#d6455c"/>
+  </g>
+
+  <!-- pokok bergoyang -->
+  <g class="anim-sway" style="animation-delay:-1.4s">
+    <rect x="206" y="206" width="9" height="34" rx="4" fill="#8a5a3c"/>
+    <circle cx="210" cy="196" r="25" fill="#72c9c0"/>
+    <circle cx="196" cy="206" r="18" fill="#46a89e"/>
+    <circle cx="225" cy="204" r="17" fill="#46a89e"/>
+  </g>
+  <g class="anim-sway" style="animation-delay:-3.1s">
+    <rect x="900" y="212" width="8" height="30" rx="4" fill="#8a5a3c"/>
+    <circle cx="904" cy="204" r="21" fill="#72c9c0"/>
+    <circle cx="892" cy="212" r="15" fill="#46a89e"/>
+  </g>
+
+  <!-- rumput depan -->
+  <g class="anim-sway" style="animation-delay:-2.2s" opacity=".85">
+    <path d="M330 254 q5 -16 11 0" fill="none" stroke="#46a89e" stroke-width="3" stroke-linecap="round"/>
+    <path d="M348 256 q4 -13 9 0" fill="none" stroke="#72c9c0" stroke-width="3" stroke-linecap="round"/>
+    <path d="M596 252 q5 -16 11 0" fill="none" stroke="#46a89e" stroke-width="3" stroke-linecap="round"/>
+    <path d="M618 256 q4 -13 9 0" fill="none" stroke="#72c9c0" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- prop bertema terapung: gelembung dengan simbol matematik -->
+  <g class="anim-bob" style="animation-delay:-.6s">
+    <circle cx="616" cy="188" r="20" fill="#ffffff" stroke="#1f9d8f" stroke-width="2.2"/>
+    <path d="M609 188 h14 M616 181 v14" stroke="#1f9d8f" stroke-width="2.6" stroke-linecap="round"/>
+  </g>
+  <g class="anim-bob" style="animation-delay:-2.4s">
+    <circle cx="560" cy="212" r="16" fill="#ffffff" stroke="#ffab33" stroke-width="2.2"/>
+    <path d="M553 212 h14" stroke="#ffab33" stroke-width="2.6" stroke-linecap="round"/>
+  </g>
+  <g class="anim-bob" style="animation-delay:-1.2s">
+    <circle cx="856" cy="106" r="17" fill="#ffffff" stroke="#2f7fd6" stroke-width="2.2"/>
+    <path d="M850 106 l5 6 l11 -12" stroke="#2f7fd6" stroke-width="2.6" fill="none"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- watak: Cikgu (kiri) -->
+  <g transform="translate(230,142) scale(.70)"><g class="anim-bob" style="animation-delay:-1s"><use href="#cikgu"/></g></g>
+  <!-- watak: Aiman + Nurul (kanan) -->
+  <g transform="translate(678,120) scale(.85)"><g class="anim-bob"><use href="#aim"/></g></g>
+  <g transform="translate(778,126) scale(.83)"><g class="anim-bob" style="animation-delay:-1.8s"><use href="#nur"/></g></g>
+
+  <!-- kelipan (di luar zon teks) -->
+  <g class="anim-twinkle"><path d="M388 146 L391 153 L398 156 L391 159 L388 166 L385 159 L378 156 L385 153 Z" fill="#ffab33"/></g>
+  <g class="anim-twinkle" style="animation-delay:-1.2s"><path d="M498 170 L500 176 L506 178 L500 180 L498 186 L496 180 L490 178 L496 176 Z" fill="#2f7fd6"/></g>
+  <g class="anim-twinkle" style="animation-delay:-2.3s"><path d="M652 232 L655 239 L662 242 L655 245 L652 252 L649 245 L642 242 L649 239 Z" fill="#d6455c"/></g>
+  <g class="anim-twinkle" style="animation-delay:-.8s"><circle cx="296" cy="152" r="4" fill="#7a5cd6"/></g>
+  <g class="anim-twinkle" style="animation-delay:-1.9s"><circle cx="470" cy="178" r="3.4" fill="#ffab33"/></g>
+  <g class="anim-twinkle" style="animation-delay:-2.9s"><circle cx="266" cy="110" r="3.6" fill="#1f9d8f"/></g>
+</svg>
+    <div class="hero-txt">
+      <div class="kick">Matematik Tahun 4 &mdash; SK 6.3</div>
+      <h1>Isi Padu Cecair</h1>
+      <div class="sub">Ukuran isi padu cecair: ml, l</div>
+    </div>
+  </div>
+
+  <div class="strip"><div class="chip"><div class="lbl">Standard Kandungan</div><div class="val">6.3</div></div><div class="chip"><div class="lbl">Standard Pembelajaran</div><div class="val">6.3</div></div><div class="chip"><div class="lbl">Tema</div><div class="val">Ukuran &amp; Sukatan</div></div><div class="chip"><div class="lbl">Tahun</div><div class="val">Tahun 4</div></div></div>
+
+  <div class="toc">
+    <div class="ttl">Isi Kandungan</div>
+    <div class="grid"><div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">Kad visual topik</div></div></div><div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">Rangka topik</div></div></div><div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">Nota penting</div></div></div><div class="it"><div class="n">4</div><div><div class="t">Diagram</div><div class="d">Rajah penjelasan</div></div></div><div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan + jawapan</div></div></div><div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Semua SK Tahun 4</div></div></div></div>
+    <div class="note">Nota: Semua rajah boleh dicetak pada kertas A4. Animasi dimatikan secara automatik semasa cetak.</div>
+  </div>
+
+  <section id="sec1">
+    <h2><span class="num">1</span> <span class="emoji-pulse">&#128202;</span> Infografik
+      <span class="mascot">&#127891;</span></h2>
+    <div class="hint">Ringkasan visual topik utama</div>
+    <div class="ig"><div class="igc" style="--c:#1f9d8f"><div class="ic">&#128207;</div><div><div class="tt">ml</div><div class="vv">1 l = 1 000 ml</div></div></div><div class="igc" style="--c:#ffab33"><div class="ic">&#9878;</div><div><div class="tt">l</div><div class="vv">1 l = 1 000 ml</div></div></div><div class="igc" style="--c:#2f7fd6"><div class="ic">&#129003;</div><div><div class="tt">Tukar</div><div class="vv">Guna operasi darab/bahagi</div></div></div><div class="igc" style="--c:#d6455c"><div class="ic">&#127860;</div><div><div class="tt">Tambah/Tolak</div><div class="vv">Susun mengikut unit</div></div></div><div class="igc" style="--c:#7a5cd6"><div class="ic">&#9201;</div><div><div class="tt">Darab/Bahagi</div><div class="vv">Operasi bergabung</div></div></div><div class="igc" style="--c:#3aa76d"><div class="ic">&#127777;</div><div><div class="tt">Masalah</div><div class="vv">Penyelesaian masalah</div></div></div></div>
+  </section>
+
+  <section id="sec2">
+    <h2><span class="num">2</span> <span class="emoji-pulse">&#127919;</span> Peta Minda
+      <span class="mascot">&#127891;</span></h2>
+    <div class="hint">Rangka minda untuk memahami topik</div>
+    <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peta minda Isi Padu Cecair"><rect width="900" height="420" rx="18" fill="#f0fdfc" stroke="#c9ecea" stroke-width="1.5"/><ellipse cx="150" cy="60" rx="60" ry="18" fill="#ffffff" opacity=".55"/><ellipse cx="760" cy="368" rx="66" ry="18" fill="#ffffff" opacity=".5"/><path d="M450 210 Q450.0 139.0 450.0 68.0" fill="none" stroke="#1f9d8f" stroke-width="2.6" stroke-linecap="round" opacity=".55"/><rect x="366.0" y="48.0" width="168" height="40" rx="12" fill="#ffffff" stroke="#1f9d8f" stroke-width="2.2"/><circle cx="383.0" cy="68.0" r="9" fill="#1f9d8f"/><text x="383.0" y="72.0" text-anchor="middle" font-size="10.5" fill="#ffffff" font-weight="800" font-family="Trebuchet MS,Segoe UI,sans-serif">1</text><text x="459.0" y="72.0" text-anchor="middle" font-size="11.5" fill="#123f3b" font-weight="700" font-family="Trebuchet MS,Segoe UI,sans-serif">Mililiter (ml)</text><path d="M450 210 Q578.171759760097 174.5 706.3435195201939 139.0" fill="none" stroke="#ffab33" stroke-width="2.6" stroke-linecap="round" opacity=".55"/><rect x="622.3" y="119.0" width="168" height="40" rx="12" fill="#ffffff" stroke="#ffab33" stroke-width="2.2"/><circle cx="639.3" cy="139.0" r="9" fill="#ffab33"/><text x="639.3" y="143.0" text-anchor="middle" font-size="10.5" fill="#ffffff" font-weight="800" font-family="Trebuchet MS,Segoe UI,sans-serif">2</text><text x="715.3" y="143.0" text-anchor="middle" font-size="11.5" fill="#123f3b" font-weight="700" font-family="Trebuchet MS,Segoe UI,sans-serif">Liter (l)</text><path d="M450 210 Q578.171759760097 245.5 706.3435195201939 281.0" fill="none" stroke="#2f7fd6" stroke-width="2.6" stroke-linecap="round" opacity=".55"/><rect x="622.3" y="261.0" width="168" height="40" rx="12" fill="#ffffff" stroke="#2f7fd6" stroke-width="2.2"/><circle cx="639.3" cy="281.0" r="9" fill="#2f7fd6"/><text x="639.3" y="285.0" text-anchor="middle" font-size="10.5" fill="#ffffff" font-weight="800" font-family="Trebuchet MS,Segoe UI,sans-serif">3</text><text x="715.3" y="285.0" text-anchor="middle" font-size="11.5" fill="#123f3b" font-weight="700" font-family="Trebuchet MS,Segoe UI,sans-serif">Tukar Unit</text><path d="M450 210 Q450.0 281.0 450.0 352.0" fill="none" stroke="#d6455c" stroke-width="2.6" stroke-linecap="round" opacity=".55"/><rect x="366.0" y="332.0" width="168" height="40" rx="12" fill="#ffffff" stroke="#d6455c" stroke-width="2.2"/><circle cx="383.0" cy="352.0" r="9" fill="#d6455c"/><text x="383.0" y="356.0" text-anchor="middle" font-size="10.5" fill="#ffffff" font-weight="800" font-family="Trebuchet MS,Segoe UI,sans-serif">4</text><text x="459.0" y="356.0" text-anchor="middle" font-size="11.5" fill="#123f3b" font-weight="700" font-family="Trebuchet MS,Segoe UI,sans-serif">Tambah/Tolak</text><path d="M450 210 Q321.82824023990304 245.5 193.65648047980613 281.0" fill="none" stroke="#7a5cd6" stroke-width="2.6" stroke-linecap="round" opacity=".55"/><rect x="109.7" y="261.0" width="168" height="40" rx="12" fill="#ffffff" stroke="#7a5cd6" stroke-width="2.2"/><circle cx="126.7" cy="281.0" r="9" fill="#7a5cd6"/><text x="126.7" y="285.0" text-anchor="middle" font-size="10.5" fill="#ffffff" font-weight="800" font-family="Trebuchet MS,Segoe UI,sans-serif">5</text><text x="202.7" y="285.0" text-anchor="middle" font-size="11.5" fill="#123f3b" font-weight="700" font-family="Trebuchet MS,Segoe UI,sans-serif">Darab/Bahagi</text><path d="M450 210 Q321.8282402399031 174.5 193.6564804798062 139.0" fill="none" stroke="#3aa76d" stroke-width="2.6" stroke-linecap="round" opacity=".55"/><rect x="109.7" y="119.0" width="168" height="40" rx="12" fill="#ffffff" stroke="#3aa76d" stroke-width="2.2"/><circle cx="126.7" cy="139.0" r="9" fill="#3aa76d"/><text x="126.7" y="143.0" text-anchor="middle" font-size="10.5" fill="#ffffff" font-weight="800" font-family="Trebuchet MS,Segoe UI,sans-serif">6</text><text x="202.7" y="143.0" text-anchor="middle" font-size="11.5" fill="#123f3b" font-weight="700" font-family="Trebuchet MS,Segoe UI,sans-serif">Masalah</text><circle cx="450" cy="210" r="60" fill="#ffffff" stroke="#1f9d8f" stroke-width="3.2"/><circle cx="450" cy="210" r="60" fill="#1f9d8f" opacity=".10"/><text x="450" y="214.0" text-anchor="middle" font-size="13" fill="#123f3b" font-weight="800" font-family="Trebuchet MS,Segoe UI,sans-serif">Isi Padu</text></svg>
+  </section>
+
+  <section id="sec3">
+    <h2><span class="num">3</span> <span class="emoji-pulse">&#128221;</span> Nota Ringkas
+      <span class="mascot">&#127891;</span></h2>
+    <div class="hint">Nota penting untuk rujukan</div>
+    <div class="nt"><div class="ntc" style="--c:#1f9d8f"><div class="nb">1</div><div class="ntx"><b>Isi padu cecair:</b> 1 l = 1 000 ml. 500 ml = 1/2 l.</div></div><div class="ntc" style="--c:#ffab33"><div class="nb">2</div><div class="ntx"><b>Tukar:</b> L → ml (darab 1 000). Ml → l (bahagi 1 000).</div></div><div class="ntc" style="--c:#2f7fd6"><div class="nb">3</div><div class="ntx"><b>Tambah:</b> 2 l 500 ml + 1 l 800 ml = 4 l 300 ml.</div></div></div>
+  </section>
+
+  <section id="sec4">
+    <h2><span class="num">4</span> <span class="emoji-pulse">&#128200;</span> Diagram
+      <span class="mascot">&#127891;</span></h2>
+    <div class="hint">Rajah penjelasan topik</div>
+    <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alat ukur"><rect width="900" height="300" rx="18" fill="#f0fdfc" stroke="#c9ecea" stroke-width="1.5"/><rect x="0" y="0" width="900" height="40" rx="18" fill="#1f9d8f"/><rect x="0" y="22" width="900" height="18" fill="#1f9d8f"/><text x="20" y="26" font-size="13" fill="#ffffff" font-weight="800" font-family="Trebuchet MS,Segoe UI,sans-serif">ALAT UKUR & SUKATAN</text><rect x="50" y="80" width="380" height="52" rx="8" fill="#fff3c4" stroke="#1f9d8f" stroke-width="2.2"/><line x1="50" y1="80" x2="50" y2="100" stroke="#1f9d8f" stroke-width="2"/><text x="50" y="126" text-anchor="middle" font-size="10" fill="#123f3b" font-family="Trebuchet MS,Segoe UI,sans-serif">0</text><line x1="88" y1="80" x2="88" y2="91" stroke="#1f9d8f" stroke-width="2"/><line x1="126" y1="80" x2="126" y2="91" stroke="#1f9d8f" stroke-width="2"/><line x1="164" y1="80" x2="164" y2="91" stroke="#1f9d8f" stroke-width="2"/><line x1="202" y1="80" x2="202" y2="91" stroke="#1f9d8f" stroke-width="2"/><line x1="240" y1="80" x2="240" y2="100" stroke="#1f9d8f" stroke-width="2"/><text x="240" y="126" text-anchor="middle" font-size="10" fill="#123f3b" font-family="Trebuchet MS,Segoe UI,sans-serif">5</text><line x1="278" y1="80" x2="278" y2="91" stroke="#1f9d8f" stroke-width="2"/><line x1="316" y1="80" x2="316" y2="91" stroke="#1f9d8f" stroke-width="2"/><line x1="354" y1="80" x2="354" y2="91" stroke="#1f9d8f" stroke-width="2"/><line x1="392" y1="80" x2="392" y2="91" stroke="#1f9d8f" stroke-width="2"/><line x1="430" y1="80" x2="430" y2="100" stroke="#1f9d8f" stroke-width="2"/><text x="430" y="126" text-anchor="middle" font-size="10" fill="#123f3b" font-family="Trebuchet MS,Segoe UI,sans-serif">10</text><text x="240" y="64" text-anchor="middle" font-size="12" fill="#1f9d8f" font-weight="800" font-family="Trebuchet MS,Segoe UI,sans-serif">PANJANG &#8212; cm / mm</text><path d="M120 172 L120 250 Q120 268 140 268 L230 268 Q250 268 250 250 L250 172 Z" fill="#ffffff" stroke="#ffab33" stroke-width="2.4"/><path d="M120 216 L250 216 L250 250 Q250 268 230 268 L140 268 Q120 268 120 250 Z" fill="#ffab33" opacity=".35"/><path d="M250 196 q26 12 0 34" fill="none" stroke="#ffab33" stroke-width="3"/><text x="185" y="292" text-anchor="middle" font-size="12" fill="#ffab33" font-weight="800" font-family="Trebuchet MS,Segoe UI,sans-serif">ISIPADU &#8212; l / ml</text><line x1="560" y1="200" x2="820" y2="200" stroke="#2f7fd6" stroke-width="3.4" stroke-linecap="round"/><circle cx="690" cy="204" r="9" fill="#2f7fd6"/><path d="M690 204 L690 258" stroke="#2f7fd6" stroke-width="3.4" stroke-linecap="round"/><ellipse cx="690" cy="264" rx="46" ry="10" fill="#2f7fd6" opacity=".3"/><rect x="576" y="182" width="46" height="18" rx="6" fill="#7a5cd6"/><rect x="758" y="182" width="46" height="18" rx="6" fill="#d6455c"/><text x="690" y="160" text-anchor="middle" font-size="12" fill="#2f7fd6" font-weight="800" font-family="Trebuchet MS,Segoe UI,sans-serif">JISIM &#8212; kg / g</text><text x="690" y="292" text-anchor="middle" font-size="11.5" fill="#123f3b" font-weight="700" font-family="Trebuchet MS,Segoe UI,sans-serif">1 kg = 1 000 g &#8226; 1 l = 1 000 ml</text></svg>
+  </section>
+
+  <section id="sec5">
+    <h2><span class="num">5</span> <span class="emoji-pulse">&#127942;</span> Kuiz Interaktif
+      <span class="mascot">&#127891;</span></h2>
+    <div class="hint">Jawab 10 soalan dan semak jawapan segera</div>
+    <div id="quiz"><div class="qcard" data-ans="0" data-exp="3.5 x 1 000 = 3 500 ml."><div class="qtop"><div class="qn">1</div><div class="qt">3.5 l = ____ ml</div></div><div class="opts"><button class="opt" type="button">A. 3 500</button><button class="opt" type="button">B. 350</button><button class="opt" type="button">C. 35 000</button><button class="opt" type="button">D. 0.35</button></div><div class="fb"><svg class="ff" viewBox="0 0 44 44" aria-hidden="true"><use href="#faceOops"/></svg><div class="txt"></div></div></div><div class="qcard" data-ans="0" data-exp="750 ÷ 1 000 = 0.75 l."><div class="qtop"><div class="qn">2</div><div class="qt">750 ml = ____ l</div></div><div class="opts"><button class="opt" type="button">A. 0.75</button><button class="opt" type="button">B. 7.5</button><button class="opt" type="button">C. 0.075</button><button class="opt" type="button">D. 75</button></div><div class="fb"><svg class="ff" viewBox="0 0 44 44" aria-hidden="true"><use href="#faceOops"/></svg><div class="txt"></div></div></div><div class="qcard" data-ans="0" data-exp="3 l + 1 300 ml = 4 l 300 ml."><div class="qtop"><div class="qn">3</div><div class="qt">2 l 500 ml + 1 l 800 ml =</div></div><div class="opts"><button class="opt" type="button">A. 4 l 300 ml</button><button class="opt" type="button">B. 3 l 1 300 ml</button><button class="opt" type="button">C. 3 l 300 ml</button><button class="opt" type="button">D. 4 l 1 300 ml</button></div><div class="fb"><svg class="ff" viewBox="0 0 44 44" aria-hidden="true"><use href="#faceOops"/></svg><div class="txt"></div></div></div><div class="qcard" data-ans="0" data-exp="Pinjam: 4 l 1 200 ml - 2 l 450 ml = 2 l 750 ml."><div class="qtop"><div class="qn">4</div><div class="qt">5 l 200 ml - 2 l 450 ml =</div></div><div class="opts"><button class="opt" type="button">A. 2 l 750 ml</button><button class="opt" type="button">B. 3 l 750 ml</button><button class="opt" type="button">C. 2 l 250 ml</button><button class="opt" type="button">D. 3 l 250 ml</button></div><div class="fb"><svg class="ff" viewBox="0 0 44 44" aria-hidden="true"><use href="#faceOops"/></svg><div class="txt"></div></div></div><div class="qcard" data-ans="0" data-exp="2.5 l = 2 500 ml. 2 500 x 4 = 10 000 ml."><div class="qtop"><div class="qn">5</div><div class="qt">Bekas 2.5 l air. Berapakah 4 buah bekas dalam ml?</div></div><div class="opts"><button class="opt" type="button">A. 10 000 ml</button><button class="opt" type="button">B. 10 ml</button><button class="opt" type="button">C. 1 000 ml</button><button class="opt" type="button">D. 100 ml</button></div><div class="fb"><svg class="ff" viewBox="0 0 44 44" aria-hidden="true"><use href="#faceOops"/></svg><div class="txt"></div></div></div><div class="qcard" data-ans="0" data-exp="5 l - 2 l 750 ml = 2 l 250 ml."><div class="qtop"><div class="qn">6</div><div class="qt">Puan Aminah beli 5 l minyak. Gunakan 2 l 750 ml. Berapakah baki?</div></div><div class="opts"><button class="opt" type="button">A. 2 l 250 ml</button><button class="opt" type="button">B. 3 l 250 ml</button><button class="opt" type="button">C. 2 l 750 ml</button><button class="opt" type="button">D. 3 l 750 ml</button></div><div class="fb"><svg class="ff" viewBox="0 0 44 44" aria-hidden="true"><use href="#faceOops"/></svg><div class="txt"></div></div></div><div class="qcard" data-ans="0" data-exp="250 ÷ 1 000 = 0.25 l."><div class="qtop"><div class="qn">7</div><div class="qt">250 ml = ____ l</div></div><div class="opts"><button class="opt" type="button">A. 0.25</button><button class="opt" type="button">B. 2.5</button><button class="opt" type="button">C. 0.025</button><button class="opt" type="button">D. 25</button></div><div class="fb"><svg class="ff" viewBox="0 0 44 44" aria-hidden="true"><use href="#faceOops"/></svg><div class="txt"></div></div></div><div class="qcard" data-ans="0" data-exp="1.25 x 1 000 = 1 250 ml."><div class="qtop"><div class="qn">8</div><div class="qt">1.25 l = ____ ml</div></div><div class="opts"><button class="opt" type="button">A. 1 250</button><button class="opt" type="button">B. 125</button><button class="opt" type="button">C. 12 500</button><button class="opt" type="button">D. 0.125</button></div><div class="fb"><svg class="ff" viewBox="0 0 44 44" aria-hidden="true"><use href="#faceOops"/></svg><div class="txt"></div></div></div><div class="qcard" data-ans="0" data-exp="3 l = 3 000 ml. 3 000 ÷ 4 = 750 ml."><div class="qtop"><div class="qn">9</div><div class="qt">3 l ÷ 4 =</div></div><div class="opts"><button class="opt" type="button">A. 750 ml</button><button class="opt" type="button">B. 700 ml</button><button class="opt" type="button">C. 800 ml</button><button class="opt" type="button">D. 650 ml</button></div><div class="fb"><svg class="ff" viewBox="0 0 44 44" aria-hidden="true"><use href="#faceOops"/></svg><div class="txt"></div></div></div><div class="qcard" data-ans="0" data-exp="50 l ÷ 10 = 5 l."><div class="qtop"><div class="qn">10</div><div class="qt">Tangki berisi 50 l air. Dibahagikan kepada 10 baldi. Berapakah setiap baldi?</div></div><div class="opts"><button class="opt" type="button">A. 5 l</button><button class="opt" type="button">B. 10 l</button><button class="opt" type="button">C. 4 l</button><button class="opt" type="button">D. 6 l</button></div><div class="fb"><svg class="ff" viewBox="0 0 44 44" aria-hidden="true"><use href="#faceOops"/></svg><div class="txt"></div></div></div></div><div class="acts"><button class="btn" id="resetBtn" type="button">Ulang Kuiz</button><button class="btn prim" id="checkBtn" type="button">Semak Jawapan</button><div class="pbar"><i id="pfill"></i></div><div class="score" id="sc">0 / 10</div></div><div id="result"><span class="big" id="rbig">&#127881;</span><span id="rmsg"></span></div>
+  </section>
+
+  <section id="sec6">
+    <h2><span class="num">6</span> <span class="emoji-pulse">&#128203;</span> Lampiran
+      <span class="mascot">&#127891;</span></h2>
+    <div class="hint">Senarai Standard Kandungan dan Standard Pembelajaran</div>
+    <table class="skl"><thead><tr><th class="c">Bil</th><th>Bidang</th><th class="c">SK</th><th>Tajuk</th><th class="c">Status</th></tr></thead><tbody><tr class=""><td class="c">1</td><td>Nombor</td><td class="c">1.1-1.7</td><td>Nombor Bulat Hingga 100 000</td><td class="c">&#9675;</td></tr><tr class=""><td class="c">2</td><td>Operasi</td><td class="c">2.1-2.2</td><td>Tambah Hingga 100 000</td><td class="c">&#9675;</td></tr><tr class=""><td class="c">3</td><td>Operasi</td><td class="c">2.1-2.2</td><td>Tolak Hingga 100 000</td><td class="c">&#9675;</td></tr><tr class=""><td class="c">4</td><td>Operasi</td><td class="c">2.3-2.4</td><td>Darab dan Bahagi Hingga 100 000</td><td class="c">&#9675;</td></tr><tr class=""><td class="c">5</td><td>Operasi</td><td class="c">2.5</td><td>Operasi Bergabung Hingga 100 000</td><td class="c">&#9675;</td></tr><tr class=""><td class="c">6</td><td>Pecahan &amp; Peratus</td><td class="c">3.1</td><td>Pecahan</td><td class="c">&#9675;</td></tr><tr class=""><td class="c">7</td><td>Pecahan &amp; Peratus</td><td class="c">3.2-3.3</td><td>Perpuluhan dan Peratus</td><td class="c">&#9675;</td></tr><tr class=""><td class="c">8</td><td>Wang</td><td class="c">4.1</td><td>Wang Hingga RM100 000</td><td class="c">&#9675;</td></tr><tr class=""><td class="c">9</td><td>Masa &amp; Waktu</td><td class="c">5.1-5.3</td><td>Masa dan Waktu</td><td class="c">&#9675;</td></tr><tr class=""><td class="c">10</td><td>Ukuran &amp; Sukatan</td><td class="c">6.1</td><td>Panjang</td><td class="c">&#9675;</td></tr><tr class=""><td class="c">11</td><td>Ukuran &amp; Sukatan</td><td class="c">6.2</td><td>Jisim</td><td class="c">&#9675;</td></tr><tr class=" on"><td class="c">12</td><td>Ukuran &amp; Sukatan</td><td class="c">6.3</td><td>Isi Padu Cecair</td><td class="c">&#9679;</td></tr><tr class=""><td class="c">13</td><td>Ruang</td><td class="c">7.1-7.2</td><td>Ruang - Perimeter dan Luas</td><td class="c">&#9675;</td></tr><tr class=""><td class="c">14</td><td>Ruang</td><td class="c">7.3</td><td>Ruang - Isi Padu</td><td class="c">&#9675;</td></tr><tr class=""><td class="c">15</td><td>Data &amp; Kebolehjadian</td><td class="c">8.1-9.2</td><td>Koordinat, Nisbah, Data dan Kebolehjadian</td><td class="c">&#9675;</td></tr></tbody></table><p style="font-size:12px;color:var(--muted);margin-top:10px">Sumber: DSKP KSSR Matematik Tahun 4 (Semakan 2017) &nbsp;&#8226;&nbsp; <span class="badge">15 topik</span></p>
+  </section>
+
+</div>
+
+<div class="footer-char">
+  <span class="big-emoji">&#128207;</span>
+  <div class="msg">&#127775; Teruskan usaha! Matematik itu menyeronokkan! &#127775;</div>
+</div>
+
+<svg style="display:none" aria-hidden="true"><defs>
+
+<g id="faceYay">
+  <circle cx="22" cy="22" r="20" fill="#8ce0a8"/>
+  <circle cx="15" cy="18" r="2.6" fill="#1d4a30"/>
+  <circle cx="29" cy="18" r="2.6" fill="#1d4a30"/>
+  <path d="M13 26 Q22 36 31 26" fill="none" stroke="#1d4a30" stroke-width="2.4" stroke-linecap="round"/>
+  <ellipse cx="9" cy="25" rx="3.4" ry="2.2" fill="#e2574c" opacity=".4"/>
+  <ellipse cx="35" cy="25" rx="3.4" ry="2.2" fill="#e2574c" opacity=".4"/>
+</g>
+<g id="faceOops">
+  <circle cx="22" cy="22" r="20" fill="#ffd166"/>
+  <circle cx="15" cy="18" r="2.6" fill="#5a3b10"/>
+  <circle cx="29" cy="18" r="2.6" fill="#5a3b10"/>
+  <path d="M14 29 Q22 24 30 29" fill="none" stroke="#5a3b10" stroke-width="2.4" stroke-linecap="round"/>
+  <ellipse cx="9" cy="25" rx="3.4" ry="2.2" fill="#e2574c" opacity=".4"/>
+  <ellipse cx="35" cy="25" rx="3.4" ry="2.2" fill="#e2574c" opacity=".4"/>
+</g>
+
+</defs></svg>
+
+<script>
+
+(function(){
+var cards=Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+var checkBtn=document.getElementById('checkBtn');
+var resetBtn=document.getElementById('resetBtn');
+var result=document.getElementById('result');
+var pfill=document.getElementById('pfill');
+var sc=document.getElementById('sc');
+var rmsg=document.getElementById('rmsg');
+var rbig=document.getElementById('rbig');
+var score=0,answered=0;
+function upd(){
+  pfill.style.width=(answered? Math.round(score/cards.length*100):0)+'%';
+  sc.textContent=score+' / '+cards.length;
+}
+function reset(){
+  score=0;answered=0;
+  result.classList.remove('show');
+  cards.forEach(function(c){
+    c.querySelectorAll('.opt').forEach(function(b){b.classList.remove('ok','no');b.disabled=false;});
+    var fb=c.querySelector('.fb');fb.classList.remove('show');
+    fb.querySelector('use').setAttribute('href','#faceOops');
+  });
+  upd();
+}
+cards.forEach(function(c){
+  var opts=c.querySelectorAll('.opt');
+  var ans=parseInt(c.dataset.ans,10);
+  opts.forEach(function(b,j){
+    b.addEventListener('click',function(){
+      if(b.disabled) return;
+      opts.forEach(function(o){o.disabled=true;});
+      var fb=c.querySelector('.fb');
+      if(j===ans){ b.classList.add('ok'); score++; fb.querySelector('use').setAttribute('href','#faceYay'); }
+      else{ b.classList.add('no'); opts[ans].classList.add('ok'); fb.querySelector('use').setAttribute('href','#faceOops'); }
+      fb.querySelector('.txt').innerHTML='<b>Jawapan: '+String.fromCharCode(65+ans)+'</b>. '+c.dataset.exp;
+      fb.classList.add('show');
+      answered++;upd();
+    });
+  });
+});
+checkBtn.addEventListener('click',function(){
+  var t=cards.length,p=score/t;
+  rbig.innerHTML = p>=0.8?'&#127942;':(p>=0.5?'&#128522;':'&#128170;');
+  rmsg.innerHTML='Skor: <b>'+score+'/'+t+'</b> &mdash; '+
+    (p>=0.8?'Cemerlang! Kamu menguasai topik ini.':(p>=0.5?'Bagus! Cuba sekali lagi untuk skor penuh.':'Jangan putus asa &#8212; ulang nota dan cuba lagi!'));
+  result.classList.add('show');
+  window.scrollTo({top:document.getElementById('quiz').offsetTop-20,behavior:'smooth'});
+});
+resetBtn.addEventListener('click',reset);
+window.addEventListener('beforeprint',function(){
+  cards.forEach(function(c){
+    var ans=parseInt(c.dataset.ans,10);
+    c.querySelectorAll('.opt').forEach(function(b,j){ if(j===ans) b.classList.add('ok'); });
+    var fb=c.querySelector('.fb');
+    fb.querySelector('use').setAttribute('href','#faceYay');
+    fb.querySelector('.txt').innerHTML='<b>Jawapan: '+String.fromCharCode(65+ans)+'</b>. '+c.dataset.exp;
+    fb.classList.add('show');
+  });
+  result.classList.add('show');
+  rbig.innerHTML='&#127942;';
+  rmsg.innerHTML='Kunci jawapan penuh (mod cetak).';
+});
+upd();
+})();
+
+</script>
+</body>
+</html>

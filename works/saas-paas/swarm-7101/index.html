@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EDUSYNC TPNS · SWARM COMMAND — Prototaip Konsep</title>
+<meta name="description" content="Prototaip konsep EDUSYNC TPNS — pusat arahan swarm untuk orkestrasi dana pendidikan dan pemulihan pinjaman Sabah.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050b0a; --bg2:#081310; --panel:#0a1714; --panel2:#0e201b; --panel3:#122a23;
+  --line:#1a3830; --line2:#245046;
+  --ink:#e9f5f1; --ink2:#9dc0b6; --ink3:#7f9d92;
+  --acc:#2fbf8f; --acc2:#7fe0c0; --gold:#e2b64c; --gold2:#f0d089; --blue:#3f95e0; --red:#f0805f; --violet:#8b7ce8;
+  --ok:#2fbf8f; --warn:#e2b64c; --bad:#f0805f;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --rl:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+.topbar{position:sticky;top:0;z-index:60;background:rgba(5,11,10,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.tb-in{display:flex;align-items:center;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.brand-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--acc),#1a7a5a);display:grid;place-items:center;font-weight:800;color:#03150f;font-size:15px}
+.brand-tx b{display:block;font-size:13.5px;font-weight:800;letter-spacing:.04em;line-height:1.2}
+.brand-tx span{display:block;font-size:10.5px;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase}
+.tb-nav{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+.tb-nav a{padding:7px 11px;border-radius:8px;font-size:12.5px;font-weight:500;color:var(--ink2)}
+.tb-nav a:hover{background:var(--panel2);color:var(--ink)}
+.tb-back{padding:7px 12px;border:1px solid var(--line2);border-radius:8px;font-size:12px;font-weight:600;color:var(--ink2);flex-shrink:0}
+.tb-back:hover{border-color:var(--acc);color:var(--acc)}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.badge.sim{background:rgba(47,191,143,.12);color:var(--acc);border:1px solid rgba(47,191,143,.35)}
+.badge.live{background:rgba(226,182,76,.12);color:var(--gold);border:1px solid rgba(226,182,76,.35)}
+.badge.warnb{background:rgba(63,149,224,.12);color:#7fc0f0;border:1px solid rgba(63,149,224,.35)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.dot.pulse{animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+main{padding-bottom:40px}
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+.sec-h{margin-bottom:26px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:9px}
+h1{font-size:clamp(28px,4.4vw,46px);line-height:1.12;font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(21px,2.7vw,30px);line-height:1.2;font-weight:800;letter-spacing:-.015em;margin-bottom:10px}
+h3{font-size:16.5px;font-weight:700}
+h4{font-size:14px;font-weight:700}
+.lede{font-size:16px;color:var(--ink2);max-width:76ch}
+.lede b{color:var(--ink)}
+.sub{font-size:13px;color:var(--ink3)}
+.note{font-size:12.5px;color:var(--ink3);font-style:italic;margin-top:12px}
+.src{font-family:var(--mono);font-size:10.5px;color:var(--ink3);letter-spacing:.02em}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}.tb-nav{display:none}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--rl);padding:18px}
+.card.hi{border-color:rgba(47,191,143,.4);background:linear-gradient(160deg,rgba(47,191,143,.08),var(--panel))}
+.kpi-b{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.kpi-b.acc{color:var(--acc)}
+.kpi-l{font-size:12px;color:var(--ink2);margin-top:5px}
+.kpi-m{font-size:11px;color:var(--ink3);margin-top:2px;font-family:var(--mono)}
+.chip{display:inline-block;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:600;background:var(--panel2);border:1px solid var(--line);color:var(--ink2)}
+.chip.acc{background:rgba(47,191,143,.1);border-color:rgba(47,191,143,.3);color:var(--acc)}
+.chip.gold{background:rgba(226,182,76,.1);border-color:rgba(226,182,76,.3);color:var(--gold)}
+
+.hero{padding:64px 0 52px;background:
+  radial-gradient(900px 380px at 10% -10%,rgba(47,191,143,.15),transparent 62%),
+  radial-gradient(760px 360px at 94% 6%,rgba(226,182,76,.11),transparent 60%),var(--bg)}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.hero .lede{margin-top:16px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.mark{display:inline-flex;align-items:center;gap:10px;margin:0 0 16px}
+.mark-s{width:52px;height:52px;border-radius:13px;background:linear-gradient(135deg,var(--acc),#17785a);display:grid;place-items:center;font-weight:800;font-size:23px;color:#03150f}
+.mark-tx b{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.mark-tx > span{display:block;font-size:12.5px;color:var(--ink3)}
+.motto{margin-top:18px;font-size:15px;color:var(--gold);font-style:italic}
+
+.cmd{background:radial-gradient(760px 300px at 50% 0,rgba(47,191,143,.1),transparent 65%),var(--bg2)}
+.cmd-panel{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:20px;overflow:hidden;box-shadow:0 26px 70px -30px rgba(0,0,0,.9)}
+.cmd-head{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line);background:rgba(5,11,10,.5);flex-wrap:wrap}
+.cmd-head h3{font-size:15px}
+.cmd-head .sp{margin-left:auto;display:flex;gap:8px;align-items:center}
+.cmd-body{padding:18px}
+.sit-wrap{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}
+.sit{background:var(--panel3);border:1px solid var(--line2);border-radius:10px;padding:10px 13px;cursor:pointer;text-align:left;color:var(--ink);font-family:var(--sans);transition:.16s;min-width:0}
+.sit:hover{border-color:var(--acc);transform:translateY(-1px)}
+.sit.on{border-color:var(--acc);background:rgba(47,191,143,.14);box-shadow:0 0 0 1px rgba(47,191,143,.4)}
+.sit b{display:block;font-size:12.5px;font-weight:700;margin-bottom:2px}
+.sit span{display:block;font-size:10.5px;color:var(--ink3);font-family:var(--mono)}
+.sit:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.counters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+@media(max-width:620px){.counters{grid-template-columns:repeat(2,1fr)}}
+.ctr{background:var(--panel3);border:1px solid var(--line);border-radius:11px;padding:12px 13px}
+.ctr b{display:block;font-family:var(--mono);font-size:25px;font-weight:700;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums}
+.ctr.act b{color:var(--acc)}.ctr.inv b{color:var(--gold)}.ctr.tim b{color:var(--blue)}.ctr.run b{color:var(--violet)}
+.ctr span{display:block;font-size:11px;color:var(--ink2);margin-top:3px}
+.layers{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+@media(max-width:820px){.layers{grid-template-columns:repeat(2,1fr)}}
+.ly{background:var(--panel3);border:1px solid var(--line);border-radius:11px;padding:12px 13px;transition:.2s}
+.ly.on{border-color:var(--acc);background:rgba(47,191,143,.1)}
+.ly.done{border-color:rgba(226,182,76,.5);background:rgba(226,182,76,.07)}
+.ly b{display:block;font-size:12.5px;font-weight:700}
+.ly span{display:block;font-size:10.5px;color:var(--ink3);margin-top:2px}
+.ly-bar{height:4px;border-radius:99px;background:var(--line);margin-top:9px;overflow:hidden}
+.ly-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s}
+.ly.done .ly-bar i{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.sk{background:var(--panel3);border:1px solid var(--line);border-radius:11px;padding:12px;margin-bottom:16px}
+.sk-h{display:flex;align-items:center;gap:10px;margin-bottom:9px;flex-wrap:wrap}
+.sk-h h4{font-size:12.5px}
+.sk-h .sp{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.sk-row{display:grid;grid-template-columns:196px 1fr;gap:10px;align-items:center;padding:2.5px 0}
+@media(max-width:700px){.sk-row{grid-template-columns:1fr;gap:3px}}
+.sk-nm{font-size:11.5px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sk-pips{display:flex;gap:3px;flex-wrap:wrap}
+.pip{width:14px;height:14px;border-radius:3.5px;background:var(--line);border:1px solid var(--line2);transition:.22s}
+.pip.on{background:var(--acc);border-color:var(--acc2);box-shadow:0 0 8px rgba(47,191,143,.55)}
+.pip.done{background:var(--gold);border-color:var(--gold2)}
+.audit{background:#030a08;border:1px solid var(--line);border-radius:11px;overflow:hidden}
+.audit-h{display:flex;align-items:center;gap:8px;padding:9px 13px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02);flex-wrap:wrap}
+.audit-h b{font-size:12px;font-weight:700}
+.audit-h .sp{margin-left:auto;font-size:10.5px;color:var(--ink3);font-family:var(--mono)}
+.log{height:268px;overflow-y:auto;padding:10px 13px;font-family:var(--mono);font-size:11.5px;line-height:1.75}
+.log::-webkit-scrollbar{width:9px}
+.log::-webkit-scrollbar-thumb{background:var(--line2);border-radius:9px}
+.ln{display:flex;gap:10px;animation:fin .28s ease-out}
+@keyframes fin{from{opacity:0;transform:translateX(-5px)}to{opacity:1;transform:none}}
+.ln .t{color:var(--ink3);flex-shrink:0}
+.ln .m{color:var(--ink2);min-width:0}
+.ln.l0 .m{color:#cfe6df}.ln.l1 .m{color:var(--acc)}.ln.l2 .m{color:var(--violet)}.ln.l3 .m{color:var(--gold)}
+.ln.sys .m{color:var(--blue)}
+.ln.idle .m{color:var(--ink3);font-style:italic}
+.brief{margin-top:16px;border:1px solid rgba(226,182,76,.45);background:linear-gradient(160deg,rgba(226,182,76,.09),var(--panel3));border-radius:12px;padding:16px;display:none}
+.brief.show{display:block;animation:fin .35s}
+.brief h4{color:var(--gold);margin-bottom:9px;font-size:13.5px}
+.brief ul{list-style:none;display:grid;gap:7px;margin-bottom:12px}
+.brief li{font-size:13px;color:var(--ink2);padding-left:19px;position:relative}
+.brief li:before{content:'';position:absolute;left:5px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.brief li b{color:var(--ink)}
+.gate{display:flex;gap:9px;flex-wrap:wrap;align-items:center;border-top:1px solid rgba(226,182,76,.25);padding-top:12px}
+.gate p{font-size:12px;color:var(--ink3);margin-right:auto}
+.btn{border:1px solid var(--line2);background:var(--panel3);color:var(--ink);padding:8px 15px;border-radius:9px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:.15s}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.go{background:linear-gradient(135deg,var(--acc),#1a7a5a);border-color:transparent;color:#03150f;font-weight:700}
+.btn.go:hover{filter:brightness(1.1);color:#03150f}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.tbl th{text-align:left;padding:10px 12px;background:var(--panel2);color:var(--ink2);font-weight:600;font-size:11.5px;letter-spacing:.03em;border-bottom:1px solid var(--line2)}
+.tbl td{padding:11px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td b{color:var(--ink)}
+.scroll{overflow-x:auto}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin:7px 0 0}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2))}
+.jr{display:grid;gap:11px}
+.j{border:1px solid var(--line);border-radius:13px;padding:15px;background:var(--panel);display:grid;grid-template-columns:40px 1fr;gap:13px}
+@media(max-width:620px){.j{grid-template-columns:1fr;gap:7px}}
+.j em{font-style:normal;font-family:var(--mono);font-size:19px;font-weight:700;color:var(--acc);line-height:1}
+.j h4{font-size:13.5px;margin-bottom:5px}
+.j p{font-size:12.5px;color:var(--ink2)}
+.j .rf{display:block;margin-top:7px;font-family:var(--mono);font-size:10.5px;color:var(--ink3)}
+.lay5{display:grid;gap:9px}
+.l5{display:grid;grid-template-columns:186px 1fr;gap:13px;padding:12px 15px;border:1px solid var(--line);border-radius:11px;background:var(--panel);align-items:start}
+@media(max-width:700px){.l5{grid-template-columns:1fr;gap:6px}}
+.l5 b{font-size:12.5px;color:var(--acc)}
+.l5 .em{font-size:12px;color:var(--ink3);font-family:var(--mono);margin-top:4px;display:block}
+.l5 p{font-size:12.5px;color:var(--ink2)}
+.mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:11px}
+.mo{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--panel)}
+.mo em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--gold);display:block;margin-bottom:5px}
+.mo h4{font-size:13px;margin-bottom:5px}
+.mo p{font-size:12.5px;color:var(--ink2)}
+.fasa{display:grid;gap:11px}
+.fa{border:1px solid var(--line);border-radius:13px;background:var(--panel);overflow:hidden}
+.fa-h{display:flex;align-items:center;gap:11px;padding:12px 15px;background:var(--panel2);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.fa-h b{font-size:13.5px}
+.fa-h .when{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--gold)}
+.fa-b{padding:13px 15px}
+.fa-b ul{list-style:none;display:grid;gap:6px}
+.fa-b li{font-size:12.5px;color:var(--ink2);padding-left:16px;position:relative}
+.fa-b li:before{content:'·';position:absolute;left:4px;color:var(--acc);font-weight:700}
+.fa-b .out{margin-top:10px;font-size:12px;color:var(--ink3)}
+.fa-b .out b{color:var(--acc)}
+.ris{display:grid;gap:9px}
+.ri{border:1px solid var(--line);border-radius:11px;padding:13px 15px;background:var(--panel);border-left:3px solid var(--line2)}
+.ri.hi{border-left-color:var(--bad)}.ri.md{border-left-color:var(--warn)}
+.ri-h{display:flex;align-items:center;gap:9px;margin-bottom:6px;flex-wrap:wrap}
+.ri-h b{font-size:13.5px}
+.ri p{font-size:12.5px;color:var(--ink2)}
+.lv{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:99px;letter-spacing:.06em;text-transform:uppercase}
+.lv.hi{background:rgba(224,96,63,.15);color:var(--bad)}
+.lv.md{background:rgba(226,182,76,.15);color:var(--warn)}
+.lv.lo{background:rgba(47,191,143,.15);color:var(--ok)}
+footer{padding:34px 0 46px;background:var(--bg2);border-top:1px solid var(--line)}
+footer p{font-size:12px;color:var(--ink3);max-width:92ch}
+footer p+p{margin-top:8px}
+footer b{color:var(--ink2)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap tb-in">
+    <a href="#arahan" class="brand">
+      <span class="brand-mark">E</span>
+      <span class="brand-tx"><b>EDUSYNC · TPNS</b><span>Swarm Command · Prototaip Konsep</span></span>
+    </a>
+    <nav class="tb-nav">
+      <a href="#arahan">Pusat Arahan</a>
+      <a href="#monitor">Dashboard TPNS</a>
+      <a href="#jurang">Lima Jurang</a>
+      <a href="#senibina">Senibina</a>
+      <a href="#pelan">Peta Jalan</a>
+      <a href="#sumber">Sumber</a>
+    </nav>
+    <a class="tb-back" href="../../../saas-paas.html">← Platform Induk</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="pills">
+      <span class="badge sim">Prototaip Konsep</span>
+      <span class="badge live"><span class="dot"></span>U5 · TSKN — Dana Pendidikan</span>
+      <span class="badge warnb">SaaS · MaaS · PaaS</span>
+    </div>
+
+    <div class="mark">
+      <span class="mark-s">E</span>
+      <span class="mark-tx"><b>EDUSYNC.</b><span>Orkestrasi dana pendidikan &amp; pemulihan pinjaman Sabah</span></span>
+    </div>
+
+    <h1>Dari <em>peruntukan</em> kepada <em>pelajar cemerlang</em>.</h1>
+    <p class="lede"><b>EDUSYNC TPNS</b> menyatukan <b>RM25.10 juta</b> TPNS, <b>4 skim utama</b> dan <b>15,629 pelajar</b> di bawah satu rekod kebenaran — satu papan pemuka berpusat untuk mengesan status setiap pelajar dari semakan hingga pulangan. Dipetakan daripada amalan terbaik <em>Jepun, Korea Selatan, Singapura dan China</em>.</p>
+    <p class="motto">“Satu rekod. Setiap pelajar. Setiap ringgit. Setiap keputusan.”</p>
+
+    <div class="grid g4" style="margin-top:24px">
+      <div class="card hi"><div class="kpi-b acc">RM25.10j</div><div class="kpi-l">dana TPNS disalur</div><div class="kpi-m">15,629 pelajar</div></div>
+      <div class="card"><div class="kpi-b">4</div><div class="kpi-l">skim utama</div><div class="kpi-m">TPNS · BAGUS · SUKSES · BALKIS · Ihsan</div></div>
+      <div class="card"><div class="kpi-b" style="color:var(--bad)">214</div><div class="kpi-l">kes pertindihan dikesan</div><div class="kpi-m">manual — tiada enjin automatik</div></div>
+      <div class="card"><div class="kpi-b" style="color:var(--gold)">68%</div><div class="kpi-l">akaun TPNS mengikut jadual</div><div class="kpi-m">2,314 akaun lewat</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PUSAT ARAHAN ======================= -->
+<section id="arahan" class="cmd">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Pusat Arahan · Swarm Command</div>
+      <h2>Lima jurang. Satu enjin orkestrasi.</h2>
+      <p class="lede">Setiap situasi di bawah sepadan dengan satu jurang yang direkodkan dalam laporan TSKN. Enjin merancang, mewakilkan kepada peranan EDUSYNC yang berkaitan, menyemak secara bebas, kemudian menyintesis taklimat untuk kelulusan manusia.</p>
+    </div>
+
+    <div class="cmd-panel">
+      <div class="cmd-head">
+        <span class="badge sim"><span class="dot pulse"></span>Enjin orkestrasi</span>
+        <h3>EDUSYNC TPNS · SWARM COMMAND</h3>
+        <div class="sp"><span class="src">10 peranan × 5 contoh · 4 lapisan kawalan</span></div>
+      </div>
+      <div class="cmd-body">
+
+        <div class="sit-wrap" id="sitWrap"></div>
+
+        <div class="counters">
+          <div class="ctr act"><b id="cAktif">0</b><span>Ejen aktif</span></div>
+          <div class="ctr inv"><b id="cTerlibat">0</b><span>Ejen terlibat</span></div>
+          <div class="ctr tim"><b id="cMasa">0.0s</b><span>Masa</span></div>
+          <div class="ctr run"><b id="cSim">0</b><span>Simulasi dijalankan</span></div>
+        </div>
+
+        <div class="layers" id="layers"></div>
+
+        <div class="sk">
+          <div class="sk-h">
+            <h4>Skuad · Swarm Command</h4>
+            <span class="src">10 peranan orkestrasi dana pendidikan</span>
+            <span class="sp" id="skStat">0 / 50 aktif</span>
+          </div>
+          <div id="skRows"></div>
+          <p class="note" style="margin-top:10px">Saiz skuad (50) ialah <b>parameter reka bentuk prototaip</b> — rekod bookmark asal tidak menyatakan bilangan ejen. Semua angka domain (RM25.10j, 15,629 pelajar, 214 kes, 68%, 2,314 akaun, RM8.03j) adalah daripada laporan TSKN dan prototaip PORTF·RAIMY.</p>
+        </div>
+
+        <div class="audit">
+          <div class="audit-h">
+            <b>Jejak audit langsung</b>
+            <span class="sp">jejak penuh · data pelajar sensitif · PDPA 2010</span>
+          </div>
+          <div class="log" id="log">
+            <div class="ln idle"><span class="t">--:--:--</span><span class="m">Menunggu arahan. Pilih satu situasi di atas.</span></div>
+          </div>
+        </div>
+
+        <div class="brief" id="brief">
+          <h4>Taklimat sintesis · untuk kelulusan manusia</h4>
+          <ul id="briefList"></ul>
+          <div class="gate">
+            <p>Data pelajar sensitif — tiada keputusan automatik pada kes individu.</p>
+            <button class="btn go" id="btnLulus" disabled>Luluskan</button>
+            <button class="btn" id="btnTahan" disabled>Tahan untuk semakan</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= DASHBOARD TPNS ======================= -->
+<section id="monitor">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Dashboard TPNS</div>
+      <h2>Satu papan pemuka berpusat</h2>
+      <p class="lede">TPNS, BAGUS, SUKSES &amp; BALKIS masing-masing ada jadual sendiri; tiada papan pemuka berpusat untuk mengesan status setiap pelajar dari semakan hingga pulangan. Angka di bawah dipetik daripada laporan TSKN; titik data yang ditandakan adalah ilustratif.</p>
+    </div>
+
+    <div class="grid g4">
+      <div class="card hi"><div class="kpi-b acc">RM25.10j</div><div class="kpi-l">Dana TPNS disalur</div><div class="kpi-m">15,629 pelajar dibantu</div></div>
+      <div class="card"><div class="kpi-b" style="color:var(--ok)">RM8.03j</div><div class="kpi-l">Pemulihan pinjaman</div><div class="kpi-m">+22.4% — rekod tertinggi</div></div>
+      <div class="card"><div class="kpi-b">RM4.4j</div><div class="kpi-l">Disalur setakat ini</div><div class="kpi-m">3,050 pelajar</div></div>
+      <div class="card"><div class="kpi-b" style="color:var(--bad)">2,314</div><div class="kpi-l">Akaun TPNS lewat</div><div class="kpi-m">tanpa automasi susulan</div></div>
+    </div>
+
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card">
+        <h4>Peruntukan mengikut skim</h4>
+        <p class="sub">RM juta · portfolio RM25.10 juta</p>
+        <div id="skim" style="margin-top:14px"></div>
+        <p class="src" style="margin-top:10px">Pembahagian per skim adalah ilustratif; jumlah portfolio RM25.10j daripada laporan TSKN.</p>
+      </div>
+      <div class="card">
+        <h4>Kadar pemulihan &amp; pematuhan</h4>
+        <p class="sub">Garis dasar sebelum automasi</p>
+        <div id="recover" style="margin-top:14px"></div>
+        <p class="note">RM8.03j dipulihkan adalah rekod tertinggi, tetapi 2,314 akaun lewat masih tanpa automasi susulan. Sasaran Fasa 4: kadar pulih <b>80%</b>.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 6px">Portfolio dipantau</h3>
+    <p class="sub">RM25.10j · 4 skim · 15,629 pelajar · 8 agensi</p>
+    <div class="grid g4" style="margin-top:13px">
+      <div class="card"><div class="kpi-b" style="font-size:24px">RM25.10j</div><div class="kpi-l">Dana</div></div>
+      <div class="card"><div class="kpi-b" style="font-size:24px">4</div><div class="kpi-l">Skim utama</div></div>
+      <div class="card"><div class="kpi-b" style="font-size:24px">15,629</div><div class="kpi-l">Pelajar</div></div>
+      <div class="card"><div class="kpi-b" style="font-size:24px">8</div><div class="kpi-l">Agensi</div></div>
+    </div>
+    <p class="note">Kekangan direkodkan: penyelarasan merentas agensi (KPM, JPN, agensi negeri) dan pencegahan penyelewengan. Data pelajar sensitif — tadbir urus PDPA diperlukan sebelum penggunaan langsung.</p>
+  </div>
+</section>
+
+<!-- ======================= LIMA JURANG ======================= -->
+<section id="jurang">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Masalah yang disahkan</div>
+      <h2>Lima jurang yang mesti ditutup</h2>
+      <p class="lede">Setiap jurang telah menemui penyelesaiannya di keempat-empat negara rujukan. EDUSYNC direka tepat untuk menutup kelima-limanya.</p>
+    </div>
+    <div class="jr">
+      <div class="j"><em>01</em><div><h4>Penyaluran manual tanpa penjejak</h4><p>TPNS, BAGUS, SUKSES &amp; BALKIS masing-masing ada jadual sendiri; tiada papan pemuka berpusat untuk mengesan status setiap pelajar dari semakan hingga pulangan.</p><span class="rf">Rujukan: Jepun (JASSO portal), Korea (KOSAF satu pintu)</span></div></div>
+      <div class="j"><em>02</em><div><h4>Janji biasiswa tanpa alat ukur</h4><p>Sasaran “5 hari keputusan” tiada penjejak pematuhan berpusat untuk membuktikan pencapaian minggu demi minggu.</p><span class="rf">Rujukan: Singapura (MySkills SLA), China (pinjaman “310”)</span></div></div>
+      <div class="j"><em>03</em><div><h4>Pertindihan tidak terkesan</h4><p>214 kes penerima mendapat lebih satu skim dikesan secara manual sahaja — tiada enjin semakan berganda automatik merentas 4 skim.</p><span class="rf">Rujukan: Korea (semakan berganda 2009), China (助学贷款 黑名单)</span></div></div>
+      <div class="j"><em>04</em><div><h4>Kadar pemulihan rendah</h4><p>Hanya 68% akaun TPNS mengikut jadual — RM8.03j dipulihkan adalah rekod, tetapi 2,314 akaun lewat tanpa automasi susulan.</p><span class="rf">Rujukan: Jepun (代理返還 income-linked), Korea (징수 전담)</span></div></div>
+      <div class="j"><em>05</em><div><h4>Definisi kelayakan berbeza</h4><p>TPNS, BAGUS, SUKSES, BALKIS, Ihsan masing-masing pakai takrif pendapatan / akademik sendiri — pelajar yang layak di satu skim ditolak di skim lain.</p><span class="rf">Rujukan: Jepun (takrif statutori), China (klasifikasi nasional)</span></div></div>
+    </div>
+
+    <h3 style="margin:32px 0 6px">Cadangan vendor &amp; cetak biru</h3>
+    <p class="sub">Setiap jurang dipetakan kepada satu mekanisme yang telah terbukti — bukan janji.</p>
+    <div class="card scroll" style="padding:0;margin-top:13px">
+      <table class="tbl">
+        <thead><tr><th style="width:22%">Jurang</th><th style="width:30%">Cadangan</th><th style="width:22%">Vendor / cetak biru</th><th>Peranan</th></tr></thead>
+        <tbody>
+          <tr><td><b>G1</b> Tiada sistem geran sistematik</td><td>Sistem biasiswa/geran awan</td><td><b>Gaxi ガクシーAgent</b> (Jepun)</td><td>permohonan → pemilihan → penyaluran → pemulihan</td></tr>
+          <tr><td><b>G2</b> Tiada automasi pemulihan pinjaman</td><td>Pemulihan hutang / pinjaman</td><td><b>Beveron</b> Smart Debt Collection (Singapura)</td><td>khusus pemulihan hutang &amp; pinjaman</td></tr>
+          <tr><td><b>G3</b> Pertindihan &amp; definisi berpecah</td><td>Kawalan pertindihan + takrif tunggal</td><td><b>Ryobi</b> 給付金システム (Jepun) · <b>KOSAF</b> (Korea) · <b>JASSO</b> 代理返還 (Jepun)</td><td>semakan double-payment · pemulihan berkait pendapatan</td></tr>
+          <tr><td><b>G4</b> Data pelajar sensitif</td><td>Tadbir urus data</td><td>PDPA 2010 · MoU perkongsian data</td><td>Risiko direkodkan: integrasi KPM/JPN/negeri</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Langkah seterusnya yang direkodkan: <b>POC sistem geran untuk 1 skim (BAGUS) + automasi pemulihan</b>.</p>
+  </div>
+</section>
+
+<!-- ======================= SENIBINA ======================= -->
+<section id="senibina">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Senibina platform</div>
+      <h2>Lima lapisan, tujuh modul teras</h2>
+      <p class="lede">Lapisan dibina supaya setiap skim boleh melanggan modul tanpa membangunkan sistem sendiri — bina atas sistem sedia ada, jangan ganti.</p>
+    </div>
+
+    <div class="lay5">
+      <div class="l5"><div><b>L1 Lapisan Data Asas</b><span class="em">Registri Emas Pelajar · Taksonomi Skim Tunggal · Katalog 4 skim</span></div><p>Fondasi: satu definisi, satu rekod kebenaran.</p></div>
+      <div class="l5"><div><b>L2 Lapisan Integrasi</b><span class="em">TPNS &amp; Yayasan Sabah (sedia ada) · Padanan MyKad 360° · API merentas agensi</span></div><p>Bina atas sistem sedia ada — jangan ganti, satukan.</p></div>
+      <div class="l5"><div><b>L3 Lapisan Analitik</b><span class="em">Enjin Anti-Pertindihan · Analitik ROI Digital · Skor Kad Skim &amp; amaran awal</span></div><p>Model &amp; skor berpusat — kesamaan ukuran untuk semua skim.</p></div>
+      <div class="l5"><div><b>L4 Lapisan Aplikasi</b><span class="em">Dashboard eksekutif · Penjejak Janji &amp; Pematuhan · Laporan automatik ke Kabinet</span></div><p>SaaS per skim: langganan modul tanpa bangunkan sistem sendiri.</p></div>
+      <div class="l5"><div><b>L5 Lapisan Penyampaian</b><span class="em">Kokpit YB / TSKN · Portal agensi &amp; universiti · API awam &amp; mobiliti</span></div><p>Peranan PaaS: agensi membina aplikasi sendiri di atas API tunggal.</p></div>
+    </div>
+
+    <h3 style="margin:32px 0 6px">Tujuh modul teras</h3>
+    <div class="mods" style="margin-top:13px">
+      <div class="mo"><em>M1</em><h4>Registri Emas Pelajar &amp; Taksonomi Tunggal</h4><p>Rekod 360° setiap pelajar &amp; graduan; satu takrif kelayakan wajib semua skim.</p></div>
+      <div class="mo"><em>M2</em><h4>Katalog &amp; Gerbang Satu Penghantaran</h4><p>Katalog 4 skim → sijil serentak → e-permohonan bersepadu (3 peringkat corak Korea).</p></div>
+      <div class="mo"><em>M3</em><h4>Enjin Anti-Pertindihan</h4><p>Pengesanan penerima berganda merentas 4 skim sebelum bayaran, dengan ambang keyakinan.</p></div>
+      <div class="mo"><em>M4</em><h4>Penjejak Janji &amp; Pematuhan</h4><p>Pematuhan keputusan ≤5 hari per skim, diterbitkan mingguan kepada YB.</p></div>
+      <div class="mo"><em>M5</em><h4>Analitik ROI Digital</h4><p>Adopsi digital dijejak daripada data transaksi (e-borang), bukan tinjauan sukarela.</p></div>
+      <div class="mo"><em>M6</em><h4>Skor Kad Skim</h4><p>Keserasian takrif, kualiti data &amp; kelajuan kelulusan setiap skim — dinilai berkala.</p></div>
+      <div class="mo"><em>M7</em><h4>Modul Pemulihan Automatik</h4><p>Pemotongan gaji (代理返還) + pusat pemungutan khas — sasaran kadar pulih 80%.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PETA JALAN ======================= -->
+<section id="pelan">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Peta jalan &amp; KPI</div>
+      <h2>Fasa 0 → 3: Suku 4 2026 hingga 2028</h2>
+      <p class="lede">Diselaraskan dengan kajian kebolehlaksanaan yang sedang berjalan sepanjang 2026 dan kitaran Belanjawan 2027 — supaya setiap keputusan dasar jatuh pada tetingkap keputusan yang betul. Setiap fasa mempunyai output terukur.</p>
+    </div>
+
+    <div class="fasa">
+      <div class="fa"><div class="fa-h"><b>Fasa 0 · Taklimat &amp; Prototaip Konsep</b><span class="when">Suku 4 2026</span></div>
+        <div class="fa-b"><ul>
+          <li>Taklimat demo 30 minit kepada YB &amp; KSU</li>
+          <li>Lantik 2 skim perintis (TPNS, BAGUS)</li>
+          <li>MoU perkongsian data selaras PDPA</li>
+        </ul><p class="out"><b>Output:</b> MoU 2 skim ditandatangani; peta data selesai</p></div></div>
+      <div class="fa"><div class="fa-h"><b>Fasa 1 · Katalog &amp; Definisi</b><span class="when">Suku 1–2 2027</span></div>
+        <div class="fa-b"><ul>
+          <li>Lulus takrif kelayakan nasional melalui notis pentadbiran</li>
+          <li>Siar katalog 4 skim + portfolio 15,629 pelajar</li>
+          <li>Registri Emas padanan MyKad 2 skim perintis</li>
+        </ul><p class="out"><b>Output:</b> 100% skim dalam katalog; rekod dipadankan &gt;95%</p></div></div>
+      <div class="fa"><div class="fa-h"><b>Fasa 2 · Enjin &amp; Akta</b><span class="when">Suku 3–4 2027</span></div>
+        <div class="fa-b"><ul>
+          <li>Bawa rang undang-undang Akta Pendidikan Sabah ke DUN</li>
+          <li>Aktifkan Enjin Anti-Pertindihan TPNS–BAGUS</li>
+          <li>Laluan cepat kelulusan data bagi pinjaman &lt; RM5,000</li>
+        </ul><p class="out"><b>Output:</b> % pematuhan 5 hari diterbitkan mingguan; kes tindihan dikenal pasti sebelum bayaran</p></div></div>
+      <div class="fa"><div class="fa-h"><b>Fasa 3 · Skala Penuh &amp; Pascapendaftaran</b><span class="when">2028</span></div>
+        <div class="fa-b"><ul>
+          <li>Akta berkuat kuasa (transisi 2 tahun)</li>
+          <li>Gerbang e-permohonan skim demi skim</li>
+          <li>Roster pakar + penjenamaan “Cemerlang Sabah”</li>
+        </ul><p class="out"><b>Output:</b> ≥4 skim dalam gerbang; 500 pelajar “Cemerlang Sabah”; kadar pulih 80%</p></div></div>
+    </div>
+
+    <h3 style="margin:32px 0 6px">KPI per cadangan dasar</h3>
+    <p class="sub">Mengikut corak “janji berangka” Korea &amp; Jepun: setiap cadangan disertai angka sasaran dan tarikh.</p>
+    <div class="card scroll" style="padding:0;margin-top:13px">
+      <table class="tbl">
+        <thead><tr><th style="width:22%">Cadangan</th><th style="width:28%">KPI utama</th><th style="width:17%">Garis dasar</th><th style="width:17%">Sasaran 12 bln</th><th>Sasaran 24 bln</th></tr></thead>
+        <tbody>
+          <tr><td><b>P1 Registri Emas</b></td><td>% skim melapor dengan takrif seragam</td><td>Rendah (takrif berpecah)</td><td>80%</td><td>100%</td></tr>
+          <tr><td><b>P2 Gerbang</b></td><td>Bil. borang berulang per permohonan</td><td>≈3–5 borang</td><td>≤2</td><td>1 (isi sekali)</td></tr>
+          <tr><td><b>P3 Anti-Pertindihan</b></td><td>Nilai dana berisiko dikesan sebelum bayaran</td><td>RM2.51j (manual)</td><td>≥60% automatik</td><td>≥90%</td></tr>
+          <tr><td><b>P4 Kelulusan Data</b></td><td>% permohonan ≤5 hari; mikro ≤24 jam</td><td>Tiada penjejak berpusat</td><td>75% / 70%</td><td>90% / 85%</td></tr>
+          <tr><td><b>P5 Akta Pendidikan</b></td><td>RUU tabled; % skim aktif selepas 1 tahun</td><td>Belum tabled</td><td>Tabled di DUN</td><td>Berkuat kuasa; +5 pt</td></tr>
+          <tr><td><b>P6 Roster + Cemerlang</b></td><td>Bil. pakar bertauliah; bil. pelajar Cemerlang</td><td>0</td><td>200 pakar; 200 pelajar</td><td>400 pakar; 500 pelajar</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin:32px 0 6px">Risiko utama &amp; mitigasi</h3>
+    <div class="ris" style="margin-top:13px">
+      <div class="ri hi"><div class="ri-h"><b>Agensi enggan berkongsi data</b><span class="lv hi">Impak tinggi</span><span class="lv md">Keb. sederhana</span></div><p>Mitigasi: PDPA sebagai asas perundangan; templat perjanjian kerahsiaan; fasa sukarela dahulu; sokongan JPM. Risiko direkodkan: penyelarasan merentas KPM, JPN dan agensi negeri.</p></div>
+      <div class="ri hi"><div class="ri-h"><b>Data pelajar sensitif</b><span class="lv hi">Impak tinggi</span><span class="lv md">Keb. sederhana</span></div><p>Mitigasi: tadbir urus data pelajar (PDPA) sebagai kebergantungan Fasa 1; tiada keputusan automatik pada kes individu; kelulusan manusia pada setiap keputusan berimpak.</p></div>
+      <div class="ri md"><div class="ri-h"><b>Sokongan vendor kecil antarabangsa</b><span class="lv md">Impak sederhana</span><span class="lv md">Keb. sederhana</span></div><p>Mitigasi: klausa pemindahan ilmu; integrasi melalui API terbuka supaya setiap modul boleh diganti; cetak biru dasar (KOSAF / JASSO) digunakan sebagai panduan tanpa mengunci kepada satu vendor.</p></div>
+      <div class="ri md"><div class="ri-h"><b>Definisi kelayakan berbeza merentas skim</b><span class="lv md">Impak sederhana</span><span class="lv md">Keb. sederhana</span></div><p>Mitigasi: Taksonomi Skim Tunggal (M1) + notis pentadbiran; pelajar yang layak di satu skim tidak lagi ditolak di skim lain kerana perbezaan takrif.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SUMBER ======================= -->
+<section id="sumber">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Provenans</div>
+      <h2>Sumber dan status setiap angka</h2>
+      <p class="lede">Prototaip ini dibina semula daripada laporan TSKN (use case U5) dan prototaip PORTF·RAIMY yang sedia ada. Tiada angka ditambah di luar sumber itu.</p>
+    </div>
+    <div class="card scroll" style="padding:0">
+      <table class="tbl">
+        <thead><tr><th style="width:34%">Bahagian</th><th style="width:33%">Sumber</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>RM25.10 juta · 15,629 pelajar · RM4.4 juta · 3,050 pelajar</td><td>Laporan TSKN — data lapangan Awangku Raimy Pangiran Abd Rahman (U5)</td><td>Data lapangan berlabel</td></tr>
+          <tr><td>RM8.03 juta pemulihan (+22.4%, rekod tertinggi)</td><td>Laporan TSKN — pemulihan pinjaman Sabah Foundation Group</td><td>Data lapangan berlabel</td></tr>
+          <tr><td>214 kes pertindihan · 68% akaun mengikut jadual · 2,314 akaun lewat</td><td>Prototaip PORTF·RAIMY (fail dalam hub)</td><td>Petikan terus</td></tr>
+          <tr><td>Skim: TPNS · BAGUS · SUKSES · BALKIS · Ihsan</td><td>Laporan TSKN + PORTF·RAIMY</td><td>Petikan terus</td></tr>
+          <tr><td>Vendor &amp; cetak biru: Gaxi (JP) · Beveron (SG) · Ryobi (JP) · KOSAF (KR) · JASSO (JP)</td><td>Laporan TSKN — cadangan penyelesaian U5</td><td>Petikan terus</td></tr>
+          <tr><td>Lima lapisan + tujuh modul teras + peta jalan + KPI</td><td>Prototaip PORTF·RAIMY (fail dalam hub)</td><td>Petikan terus</td></tr>
+          <tr><td>Pembahagian peruntukan per skim · saiz skuad 50 ejen · situasi simulasi</td><td>Reka bentuk prototaip — <b>ilustratif</b></td><td>Ilustratif (bukan angka dokumen)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Fail sumber: <span class="src">doc_extract.txt</span> (Laporan Induk — Analisis Keperluan SaaS/MaaS/PaaS, use case U5) dan <span class="src">portfolio-raimy/assets/js/main.js</span> · rekod bookmark: <span class="src">localhost:7101/#roadmap</span> · nama prototaip: <span class="src">EDUSYNC TPNS · SWARM COMMAND — Prototaip Konsep</span>.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Prototaip konsep. Bukan laman rasmi kerajaan.</b> Angka portfolio (RM25.10j, 15,629 pelajar, 214 kes, 68%, 2,314 akaun, RM8.03j) dipetik daripada laporan TSKN dan prototaip PORTF·RAIMY; titik data yang ditandakan ilustratif adalah reka bentuk prototaip. Sahkan semula fakta sebelum sebarang keputusan rasmi.</p>
+    <p>Dibina semula sebagai sebahagian Platform Induk · Kategori 02 SaaS/PaaS · Prototaip Swarm Command. Semua kandungan dijejak kepada dokumen sumber yang disenaraikan di bahagian <b>Sumber</b>.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+/* ==========================================================================
+   EDUSYNC TPNS · SWARM COMMAND — enjin orkestrasi simulasi
+   Data domain daripada laporan TSKN (U5) dan prototaip PORTF·RAIMY.
+   Saiz skuad ialah parameter reka bentuk prototaip (lihat nota dalam UI).
+   ========================================================================== */
+(function () {
+
+  var $ = function (s) { return document.querySelector(s); };
+  var esc = function (s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  };
+
+  /* ---------- skuad: 10 peranan orkestrasi dana pendidikan ---------- */
+  var ROSTER = [
+    { k: 'semakan',    n: 'Semakan Kelayakan',        d: 'Takrif kelayakan seragam merentas skim' },
+    { k: 'tindihan',   n: 'Enjin Anti-Pertindihan',   d: 'Pengesanan penerima berganda sebelum bayaran' },
+    { k: 'penyaluran', n: 'Penyaluran Dana',          d: 'BAGUS · SUKSES · BALKIS · Ihsan' },
+    { k: 'pemulihan',  n: 'Pemulihan Pinjaman',       d: 'Pemotongan gaji & pusat pemungutan' },
+    { k: 'integrasi',  n: 'Integrasi KPM / JPN',      d: 'Penyepaduan data pendidikan merentas agensi' },
+    { k: 'pemantauan', n: 'Pemantauan Dana & PPD',    d: 'Status setiap pelajar dari semakan hingga pulangan' },
+    { k: 'audit',      n: 'Audit &amp; Integriti',    d: 'Pencegahan penyelewengan' },
+    { k: 'borang',     n: 'e-Permohonan &amp; Borang', d: 'Satu penghantaran, sijil serentak' },
+    { k: 'taklimat',   n: 'Taklimat &amp; Pelaporan', d: 'Laporan mingguan kepada YB' },
+    { k: 'pdpa',       n: 'Tadbir Urus Data Pelajar', d: 'PDPA 2010 · data sensitif' }
+  ];
+  var PER_ROLE = 5;                     // 10 peranan × 5 contoh = 50 ejen
+  var TOTAL = ROSTER.length * PER_ROLE;
+
+  var LAYERS = [
+    { n: 'Analisis',  d: 'Baca arahan, kumpul bukti portfolio, bina hipotesis' },
+    { n: 'Delegasi',  d: 'Agih tugas kepada peranan EDUSYNC berkaitan' },
+    { n: 'Semakan',   d: 'Semakan bebas silang — bukan pengesahan diri' },
+    { n: 'Sintesis',  d: 'Satukan taklimat + cadangan untuk kelulusan manusia' }
+  ];
+
+  /* ---------- situasi: satu per jurang ---------- */
+  var SITUASI = [
+    {
+      id: 'tindihan', t: '214 kes pertindihan penerima', dom: 'Enjin Anti-Pertindihan · 4 skim',
+      roles: ['tindihan', 'semakan', 'penyaluran', 'audit', 'pdpa'],
+      steps: [
+        { l: 0, a: 'tindihan',  x: 'Arahan: 214 kes penerima lebih satu skim dikesan secara manual.' },
+        { l: 0, a: 'semakan',   x: 'Rekod pelajar 4 skim dipadankan melalui MyKad 360°.' },
+        { l: 0, a: 'pdpa',      x: 'Skop akses disahkan — hanya rekod berkaitan, bukan profil penuh.' },
+        { l: 1, a: 'tindihan',  x: 'Delegasi: semakan berganda merentas TPNS–BAGUS dijalankan.' },
+        { l: 1, a: 'penyaluran',x: 'Bayaran berkaitan ditahan sementara untuk pengesahan.' },
+        { l: 2, a: 'audit',     x: 'Semakan silang: 31 kes ialah penerima sah dua skim berbeza.' },
+        { l: 2, a: 'tindihan',  x: 'Semakan bebas mengesahkan 183 kes perlu semakan lanjut.' },
+        { l: 3, a: 'tindihan',  x: 'Sintesis: taklimat anti-pertindihan + nilai dana berisiko disediakan.' }
+      ],
+      brief: [
+        '<b>214</b> kes disemak: <b>183</b> perlu semakan lanjut, <b>31</b> disahkan sah.',
+        'Nilai dana berisiko dikenal pasti <b>sebelum bayaran</b> — bukan selepas.',
+        'Garis dasar semasa: RM2.51j dikesan secara manual. Sasaran Fasa 2: <b>≥60% automatik</b>.',
+        'Sumber: PORTF·RAIMY (jurang 03) · laporan TSKN (U5) · cetak biru Korea 2009 &amp; Ryobi.'
+      ]
+    },
+    {
+      id: 'pemulihan', t: '2,314 akaun TPNS lewat', dom: 'Pemulihan pinjaman · automasi susulan',
+      roles: ['pemulihan', 'pemantauan', 'pdpa', 'taklimat', 'penyaluran'],
+      steps: [
+        { l: 0, a: 'pemulihan', x: 'Arahan: 2,314 akaun TPNS lewat tanpa automasi susulan.' },
+        { l: 0, a: 'pemantauan',x: 'Garis dasar disemak: hanya 68% akaun mengikut jadual.' },
+        { l: 0, a: 'pdpa',      x: 'Data kewangan pelajar diklasifikasikan sensitif — akses terhad.' },
+        { l: 1, a: 'pemulihan', x: 'Delegasi: pemotongan gaji (代理返還) dicadangkan untuk kes berkelayakan.' },
+        { l: 1, a: 'penyaluran',x: 'Rekod pulangan RM8.03j (+22.4%) dijadikan rujukan rekod.' },
+        { l: 2, a: 'pemantauan',x: 'Semakan silang: 412 akaun sebenarnya sudah menjelaskan bayaran.' },
+        { l: 2, a: 'pemulihan', x: 'Semakan bebas mengesahkan 1,902 akaun untuk susulan berperingkat.' },
+        { l: 3, a: 'pemulihan', x: 'Sintesis: taklimat pemulihan + laluan susulan disediakan.' }
+      ],
+      brief: [
+        '<b>1,902</b> akaun untuk susulan berperingkat; <b>412</b> sudah menjelaskan bayaran.',
+        'Garis dasar: <b>68%</b> akaun mengikut jadual. Sasaran Fasa 3: kadar pulih <b>80%</b>.',
+        'Rekod semasa: <b>RM8.03j</b> dipulihkan (+22.4%) — tetapi tanpa automasi susulan.',
+        'Sumber: PORTF·RAIMY (jurang 04) · cetak biru Jepun 代理返還 &amp; Korea 징수 전담 · Beveron (SG).'
+      ]
+    },
+    {
+      id: 'kelayakan', t: 'Takrif kelayakan berbeza merentas 5 skim', dom: 'Taksonomi Skim Tunggal',
+      roles: ['semakan', 'integrasi', 'borang', 'audit', 'taklimat'],
+      steps: [
+        { l: 0, a: 'semakan',   x: 'Arahan: takrif pendapatan / akademik berbeza antara 5 skim.' },
+        { l: 0, a: 'integrasi', x: 'Sumber data KPM, JPN dan agensi negeri dipetakan.' },
+        { l: 0, a: 'borang',    x: 'Borang berulang dikenal pasti — 3–5 borang per permohonan.' },
+        { l: 1, a: 'semakan',   x: 'Delegasi: Taksonomi Skim Tunggal dicadangkan.' },
+        { l: 1, a: 'integrasi', x: 'Padanan MyKad 360° disediakan untuk 2 skim perintis.' },
+        { l: 2, a: 'audit',     x: 'Semakan silang: 58 kes pelajar layak ditolak kerana takrif berbeza.' },
+        { l: 2, a: 'semakan',   x: 'Semakan bebas mengesahkan 5 takrif yang perlu diselaraskan.' },
+        { l: 3, a: 'semakan',   x: 'Sintesis: taklimat taksonomi + notis pentadbiran disediakan.' }
+      ],
+      brief: [
+        '<b>58</b> kes pelajar layak ditolak semata-mata kerana takrif berbeza antara skim.',
+        '<b>5</b> takrif perlu diselaraskan; borang berulang 3–5 → sasaran <b>1 (isi sekali)</b>.',
+        'Cadangan: Taksonomi Skim Tunggal (M1) + notis pentadbiran sebelum Fasa 2.',
+        'Sumber: PORTF·RAIMY (jurang 05 &amp; 01) · cetak biru China (klasifikasi nasional) &amp; Jepun (takrif statutori).'
+      ]
+    },
+    {
+      id: 'janji', t: 'Sasaran keputusan 5 hari tanpa penjejak', dom: 'Penjejak Janji &amp; Pematuhan',
+      roles: ['taklimat', 'borang', 'pemantauan', 'audit'],
+      steps: [
+        { l: 0, a: 'taklimat',  x: 'Arahan: sasaran “5 hari keputusan” tiada penjejak pematuhan berpusat.' },
+        { l: 0, a: 'borang',    x: 'Masa kitaran permohonan disukat dari data e-borang.' },
+        { l: 0, a: 'pemantauan',x: 'Status setiap permohonan dijejak dari semakan hingga keputusan.' },
+        { l: 1, a: 'taklimat',  x: 'Delegasi: penjejak pematuhan per skim disediakan mingguan.' },
+        { l: 1, a: 'audit',     x: 'Pengecualian dan kes melebihi SLA ditandakan.' },
+        { l: 2, a: 'borang',    x: 'Semakan silang: 3 peringkat kelulusan menyumbang kelewatan terbesar.' },
+        { l: 2, a: 'pemantauan',x: 'Semakan bebas mengesahkan garis dasar pematuhan semasa.' },
+        { l: 3, a: 'taklimat',  x: 'Sintesis: taklimat pematuhan + cadangan laluan cepat disediakan.' }
+      ],
+      brief: [
+        'Garis dasar: <b>tiada penjejak berpusat</b> untuk sasaran “5 hari keputusan”.',
+        'Cadangan: laluan cepat bagi pinjaman &lt; RM5,000 dan penjejak mingguan per skim.',
+        'Sasaran Fasa 2: <b>75% / 70%</b> (≤5 hari / mikro ≤24 jam) → Fasa 3: <b>90% / 85%</b>.',
+        'Sumber: PORTF·RAIMY (jurang 02, modul M4) · cetak biru Singapura (MySkills SLA) &amp; China (“310”).'
+      ]
+    },
+    {
+      id: 'integrasi', t: 'Integrasi data KPM / JPN / negeri lemah', dom: 'Lapisan integrasi',
+      roles: ['integrasi', 'pdpa', 'semakan', 'pemantauan', 'audit'],
+      steps: [
+        { l: 0, a: 'integrasi', x: 'Arahan: tiada penyepaduan KPM / JPN / agensi negeri.' },
+        { l: 0, a: 'pdpa',      x: 'Tadbir urus data pelajar disemak — PDPA sebagai asas perundangan.' },
+        { l: 0, a: 'semakan',   x: 'Sumber data sedia ada: TPNS &amp; Yayasan Sabah.' },
+        { l: 1, a: 'integrasi', x: 'Delegasi: API merentas agensi + padanan MyKad 360° disediakan.' },
+        { l: 1, a: 'pdpa',      x: 'Templat perjanjian kerahsiaan disediakan untuk 2 skim perintis.' },
+        { l: 2, a: 'audit',     x: 'Semakan silang: 2 agensi perlukan kelulusan tambahan sebelum berkongsi.' },
+        { l: 2, a: 'integrasi', x: 'Semakan bebas mengesahkan laluan fasa sukarela sebagai permulaan.' },
+        { l: 3, a: 'integrasi', x: 'Sintesis: taklimat integrasi + MoU disediakan untuk kelulusan.' }
+      ],
+      brief: [
+        'Data disatukan melalui <b>API merentas agensi</b> + padanan MyKad 360° — bukan sistem baharu.',
+        '<b>2</b> agensi memerlukan kelulusan tambahan; fasa sukarela dimulakan dahulu.',
+        'Asas perundangan: <b>PDPA 2010</b> + MoU perkongsian data untuk 2 skim perintis (TPNS, BAGUS).',
+        'Sumber: laporan TSKN (U5 — kekangan penyelarasan) · PORTF·RAIMY (L2 Lapisan Integrasi).'
+      ]
+    }
+  ];
+
+  var st = { run: false, aktif: 0, terlibat: 0, sims: 0, t0: 0, tick: null };
+
+  function nowStr() {
+    var d = new Date(), p = function (n) { return String(n).padStart(2, '0'); };
+    return p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+  }
+  function fmtTime(ms) { return (ms / 1000).toFixed(1) + 's'; }
+
+  function buildSituations() {
+    $('#sitWrap').innerHTML = SITUASI.map(function (s, i) {
+      return '<button class="sit" data-i="' + i + '"><b>' + esc(s.t) + '</b><span>' + esc(s.dom) + '</span></button>';
+    }).join('');
+    $('#sitWrap').addEventListener('click', function (e) {
+      var b = e.target.closest('.sit'); if (!b) return;
+      run(parseInt(b.dataset.i, 10));
+    });
+  }
+
+  function buildLayers() {
+    $('#layers').innerHTML = LAYERS.map(function (l, i) {
+      return '<div class="ly" data-i="' + i + '"><b>' + esc(l.n) + '</b><span>' + esc(l.d) +
+             '</span><div class="ly-bar"><i></i></div></div>';
+    }).join('');
+  }
+
+  function buildSquad() {
+    $('#skRows').innerHTML = ROSTER.map(function (r) {
+      var pips = '';
+      for (var i = 0; i < PER_ROLE; i++) pips += '<span class="pip" data-r="' + r.k + '"></span>';
+      return '<div class="sk-row"><span class="sk-nm" title="' + esc(r.d) + '">' + r.n +
+             '</span><div class="sk-pips">' + pips + '</div></div>';
+    }).join('');
+  }
+
+  function logLine(cls, t, m) {
+    var el = document.createElement('div');
+    el.className = 'ln ' + cls;
+    el.innerHTML = '<span class="t">' + esc(t) + '</span><span class="m">' + m + '</span>';
+    var box = $('#log');
+    box.appendChild(el);
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function pipState(role, state) {
+    var list = document.querySelectorAll('.pip[data-r="' + role + '"]');
+    for (var i = 0; i < list.length; i++) {
+      list[i].classList.remove('on');
+      if (state === 'on') list[i].classList.add('on');
+      if (state === 'done') list[i].classList.add('done');
+    }
+  }
+  function allPips(state) {
+    var list = document.querySelectorAll('.pip');
+    for (var i = 0; i < list.length; i++) {
+      list[i].classList.remove('on', 'done');
+      if (state === 'done') list[i].classList.add('done');
+    }
+  }
+  function activeCount() { return document.querySelectorAll('.pip.on').length; }
+  function doneCount() { return document.querySelectorAll('.pip.done').length; }
+
+  function setCounters() {
+    $('#cAktif').textContent = st.aktif;
+    $('#cTerlibat').textContent = st.terlibat;
+    $('#cSim').textContent = st.sims;
+    $('#skStat').textContent = (activeCount() + doneCount()) + ' / ' + TOTAL + ' aktif';
+  }
+  function startClock() {
+    st.t0 = Date.now();
+    st.tick = setInterval(function () { $('#cMasa').textContent = fmtTime(Date.now() - st.t0); }, 100);
+  }
+  function stopClock() {
+    if (st.tick) clearInterval(st.tick);
+    st.tick = null;
+    $('#cMasa').textContent = fmtTime(Date.now() - st.t0);
+  }
+
+  function run(i) {
+    if (st.run) return;
+    var s = SITUASI[i];
+    st.run = true; st.sims++;
+
+    document.querySelectorAll('.sit').forEach(function (b) { b.classList.remove('on'); b.disabled = true; });
+    document.querySelector('.sit[data-i="' + i + '"]').classList.add('on');
+    $('#brief').classList.remove('show');
+    $('#btnLulus').disabled = true; $('#btnTahan').disabled = true;
+    $('#log').innerHTML = '';
+    allPips(null);
+    document.querySelectorAll('.ly').forEach(function (l) { l.classList.remove('on', 'done'); l.querySelector('.ly-bar i').style.width = '0'; });
+
+    st.aktif = 0; st.terlibat = 0;
+    setCounters(); startClock();
+
+    logLine('sys', nowStr(), 'Arahan diterima · <b>' + esc(s.t) + '</b>');
+    logLine('sys', nowStr(), 'Planner memetakan arahan kepada peranan EDUSYNC…');
+
+    s.roles.forEach(function (r) {
+      var list = document.querySelectorAll('.pip[data-r="' + r + '"]');
+      var i2 = 0;
+      var t = setInterval(function () {
+        list[i2].classList.add('on');
+        st.aktif = activeCount(); st.terlibat += 1;
+        setCounters();
+        if (++i2 >= list.length) clearInterval(t);
+      }, 30);
+    });
+
+    var delay = 620;
+    s.steps.forEach(function (step, k) { setTimeout(function () { playStep(step, k, s); }, delay * (k + 1)); });
+    setTimeout(function () { finish(s); }, delay * (s.steps.length + 1));
+  }
+
+  function playStep(step, k, s) {
+    var ly = document.querySelector('.ly[data-i="' + step.l + '"]');
+    document.querySelectorAll('.ly').forEach(function (x) { x.classList.remove('on'); });
+    ly.classList.add('on');
+    var total = s.steps.filter(function (x) { return x.l === step.l; }).length;
+    var seen = s.steps.slice(0, k + 1).filter(function (x) { return x.l === step.l; }).length;
+    ly.querySelector('.ly-bar i').style.width = Math.round(seen / total * 100) + '%';
+    for (var j = 0; j < step.l; j++) {
+      var p = document.querySelector('.ly[data-i="' + j + '"]');
+      p.classList.remove('on'); p.classList.add('done');
+      p.querySelector('.ly-bar i').style.width = '100%';
+    }
+    var role = ROSTER.filter(function (r) { return r.k === step.a; })[0];
+    logLine('l' + step.l, nowStr(), '[' + esc(LAYERS[step.l].n) + ' · ' + role.n + '] ' + step.x);
+    var prof = [0.55, 1.0, 0.72, 0.34][step.l];
+    st.aktif = Math.max(1, Math.round(st.terlibat * prof));
+    setCounters();
+    if (step.l === 3) pipState(step.a, 'done');
+  }
+
+  function finish(s) {
+    document.querySelectorAll('.ly').forEach(function (l) {
+      l.classList.remove('on'); l.classList.add('done');
+      l.querySelector('.ly-bar i').style.width = '100%';
+    });
+    st.aktif = 0;
+    document.querySelectorAll('.pip.on').forEach(function (p) { p.classList.remove('on'); p.classList.add('done'); });
+    setCounters();
+    logLine('sys', nowStr(), 'Semakan bebas selesai · taklimat sintesis dijana');
+    logLine('sys', nowStr(), 'Menunggu kelulusan manusia — tiada keputusan automatik pada kes individu.');
+    $('#briefList').innerHTML = s.brief.map(function (b) { return '<li>' + b + '</li>'; }).join('');
+    $('#brief').classList.add('show');
+    $('#btnLulus').disabled = false; $('#btnTahan').disabled = false;
+    stopClock();
+    st.run = false;
+    document.querySelectorAll('.sit').forEach(function (b) { b.disabled = false; });
+  }
+
+  function decide(kind) {
+    if (!$('#brief').classList.contains('show')) return;
+    logLine('sys', nowStr(), kind === 'lulus'
+      ? 'Keputusan manusia: <b>DILULUSKAN</b> — taklimat dihantar kepada pegawai berkenaan.'
+      : 'Keputusan manusia: <b>DITAHAN</b> — dikembalikan untuk semakan lanjut.');
+    $('#btnLulus').disabled = true; $('#btnTahan').disabled = true;
+  }
+
+  /* ---------- peruntukan mengikut skim (ilustratif) ---------- */
+  var SKIM = [
+    { l: 'TPNS',   v: 25.10, c: '#2fbf8f' },
+    { l: 'BAGUS',  v: 8.40,  c: '#e2b64c' },
+    { l: 'SUKSES', v: 5.20,  c: '#3f95e0' },
+    { l: 'BALKIS', v: 3.10,  c: '#8b7ce8' },
+    { l: 'Ihsan',  v: 2.30,  c: '#6d8f86' }
+  ];
+  function buildSkim() {
+    var tot = SKIM.reduce(function (a, b) { return a + b.v; }, 0);
+    $('#skim').innerHTML = SKIM.map(function (s) {
+      var pct = (s.v / tot * 100).toFixed(1);
+      return '<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)">' +
+             '<span>' + esc(s.l) + '</span><span class="src">RM ' + s.v.toFixed(2) + 'j · ' + pct + '%</span></div>' +
+             '<div class="bar"><i style="width:' + pct + '%;background:' + s.c + '"></i></div></div>';
+    }).join('');
+  }
+  function buildRecover() {
+    var rows = [
+      { l: 'Akaun TPNS mengikut jadual', v: 68, tone: 'var(--gold)' },
+      { l: 'Sasaran Fasa 3 — kadar pulih', v: 80, tone: 'var(--acc)' },
+      { l: 'Pemulihan semasa (rekod)', v: 22.4, tone: 'var(--blue)', txt: '+22.4%' }
+    ];
+    $('#recover').innerHTML = rows.map(function (r) {
+      return '<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)">' +
+             '<span>' + esc(r.l) + '</span><span class="src">' + (r.txt || r.v + '%') + '</span></div>' +
+             '<div class="bar"><i style="width:' + Math.min(100, r.v) + '%;background:' + r.tone + '"></i></div></div>';
+    }).join('') +
+      '<div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">' +
+      '<span class="chip acc">RM8.03j dipulihkan</span><span class="chip gold">2,314 akaun lewat</span>' +
+      '<span class="chip">68% mengikut jadual</span></div>';
+  }
+
+  buildSituations(); buildLayers(); buildSquad(); buildSkim(); buildRecover(); setCounters();
+  $('#btnLulus').addEventListener('click', function () { decide('lulus'); });
+  $('#btnTahan').addEventListener('click', function () { decide('tahan'); });
+
+})();
+</script>
+</body>
+</html>

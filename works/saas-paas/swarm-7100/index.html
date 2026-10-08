@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKN SWARM COMMAND · SDGP — Pusat Arahan Swarm 100 Ejen</title>
+<meta name="description" content="Prototaip konsep pusat arahan swarm 100 ejen untuk Sabah Digital Government Platform (SDGP), Pemboleh Daya #5 SMJ 2.0.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050a13; --bg2:#08101c; --panel:#0b1421; --panel2:#0f1c2e; --panel3:#132338;
+  --line:#1a2c47; --line2:#24405f;
+  --ink:#e9f0fb; --ink2:#9db1cf; --ink3:#7e93ae;
+  --gold:#e2b64c; --gold2:#f0d089; --blue:#3f95e0; --teal:#2fbf9f; --red:#f0805f; --violet:#8b7ce8;
+  --ok:#2fbf9f; --warn:#e2b64c; --bad:#f0805f;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --r:12px; --rl:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img,svg{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+/* ---------- topbar ---------- */
+.topbar{position:sticky;top:0;z-index:60;background:rgba(5,10,19,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.tb-in{display:flex;align-items:center;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.brand-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--gold),#a97c1c);display:grid;place-items:center;font-weight:800;color:#20160a;font-size:15px}
+.brand-tx b{display:block;font-size:13.5px;font-weight:800;letter-spacing:.04em;line-height:1.2}
+.brand-tx span{display:block;font-size:10.5px;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase}
+.tb-nav{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+.tb-nav a{padding:7px 11px;border-radius:8px;font-size:12.5px;font-weight:500;color:var(--ink2)}
+.tb-nav a:hover{background:var(--panel2);color:var(--ink)}
+.tb-back{padding:7px 12px;border:1px solid var(--line2);border-radius:8px;font-size:12px;font-weight:600;color:var(--ink2);flex-shrink:0}
+.tb-back:hover{border-color:var(--gold);color:var(--gold)}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.badge.sim{background:rgba(226,182,76,.12);color:var(--gold);border:1px solid rgba(226,182,76,.35)}
+.badge.live{background:rgba(47,191,159,.12);color:var(--ok);border:1px solid rgba(47,191,159,.35)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.dot.pulse{animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ---------- layout ---------- */
+main{padding-bottom:40px}
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+.sec-h{margin-bottom:26px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
+h1{font-size:clamp(28px,4.4vw,46px);line-height:1.12;font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(21px,2.7vw,30px);line-height:1.2;font-weight:800;letter-spacing:-.015em;margin-bottom:10px}
+h3{font-size:16.5px;font-weight:700;letter-spacing:-.005em}
+h4{font-size:14px;font-weight:700}
+.lede{font-size:16px;color:var(--ink2);max-width:76ch}
+.lede b{color:var(--ink)}
+.sub{font-size:13px;color:var(--ink3)}
+.note{font-size:12.5px;color:var(--ink3);font-style:italic;margin-top:12px}
+.src{font-family:var(--mono);font-size:10.5px;color:var(--ink3);letter-spacing:.02em}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}.tb-nav{display:none}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--rl);padding:18px}
+.card.hi{border-color:rgba(226,182,76,.4);background:linear-gradient(160deg,rgba(226,182,76,.07),var(--panel))}
+.kpi-b{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.kpi-b.gold{color:var(--gold)}
+.kpi-l{font-size:12px;color:var(--ink2);margin-top:5px}
+.kpi-m{font-size:11px;color:var(--ink3);margin-top:2px;font-family:var(--mono)}
+.chip{display:inline-block;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:600;background:var(--panel2);border:1px solid var(--line);color:var(--ink2)}
+.chip.gold{background:rgba(226,182,76,.1);border-color:rgba(226,182,76,.3);color:var(--gold)}
+
+/* ---------- hero ---------- */
+.hero{padding:64px 0 52px;background:
+  radial-gradient(900px 380px at 12% -10%,rgba(226,182,76,.13),transparent 62%),
+  radial-gradient(760px 360px at 92% 8%,rgba(63,149,224,.13),transparent 60%),var(--bg)}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .lede{margin-top:16px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.quote{margin-top:16px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(226,182,76,.05);border-radius:0 10px 10px 0}
+.quote p{font-size:14px;color:var(--ink);font-style:italic}
+.quote span{display:block;margin-top:6px;font-size:11.5px;color:var(--ink3)}
+.tl{display:flex;gap:0;margin-top:26px;overflow-x:auto;padding-bottom:6px}
+.tl-i{flex:1 0 auto;min-width:132px;padding:0 12px;border-left:2px solid var(--line2);position:relative}
+.tl-i:first-child{border-left-color:var(--gold)}
+.tl-i b{display:block;font-family:var(--mono);font-size:11.5px;color:var(--gold);margin-bottom:3px}
+.tl-i span{font-size:12px;color:var(--ink2);line-height:1.4}
+
+/* ---------- swarm command ---------- */
+.cmd{background:
+  radial-gradient(760px 300px at 50% 0,rgba(63,149,224,.1),transparent 65%),var(--bg2)}
+.cmd-panel{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:20px;overflow:hidden;box-shadow:0 26px 70px -30px rgba(0,0,0,.9)}
+.cmd-head{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line);background:rgba(5,10,19,.5);flex-wrap:wrap}
+.cmd-head h3{font-size:15px}
+.cmd-head .sp{margin-left:auto;display:flex;gap:8px;align-items:center}
+.cmd-body{padding:18px}
+.sit-wrap{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}
+.sit{background:var(--panel3);border:1px solid var(--line2);border-radius:10px;padding:10px 13px;cursor:pointer;text-align:left;color:var(--ink);font-family:var(--sans);transition:.16s;min-width:0}
+.sit:hover{border-color:var(--gold);transform:translateY(-1px)}
+.sit.on{border-color:var(--gold);background:rgba(226,182,76,.14);box-shadow:0 0 0 1px rgba(226,182,76,.4)}
+.sit b{display:block;font-size:12.5px;font-weight:700;margin-bottom:2px}
+.sit span{display:block;font-size:10.5px;color:var(--ink3);font-family:var(--mono)}
+.sit:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.counters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+@media(max-width:620px){.counters{grid-template-columns:repeat(2,1fr)}}
+.ctr{background:var(--panel3);border:1px solid var(--line);border-radius:11px;padding:12px 13px}
+.ctr b{display:block;font-family:var(--mono);font-size:25px;font-weight:700;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums}
+.ctr.act b{color:var(--gold)}
+.ctr.inv b{color:var(--blue)}
+.ctr.tim b{color:var(--teal)}
+.ctr.run b{color:var(--violet)}
+.ctr span{display:block;font-size:11px;color:var(--ink2);margin-top:3px}
+.layers{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+@media(max-width:820px){.layers{grid-template-columns:repeat(2,1fr)}}
+.ly{background:var(--panel3);border:1px solid var(--line);border-radius:11px;padding:12px 13px;transition:.2s}
+.ly.on{border-color:var(--gold);background:rgba(226,182,76,.09)}
+.ly.done{border-color:rgba(47,191,159,.5);background:rgba(47,191,159,.07)}
+.ly b{display:block;font-size:12.5px;font-weight:700}
+.ly span{display:block;font-size:10.5px;color:var(--ink3);margin-top:2px}
+.ly-bar{height:4px;border-radius:99px;background:var(--line);margin-top:9px;overflow:hidden}
+.ly-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .4s}
+.ly.done .ly-bar i{background:linear-gradient(90deg,var(--teal),#7fe0c8)}
+.sk{background:var(--panel3);border:1px solid var(--line);border-radius:11px;padding:12px;margin-bottom:16px}
+.sk-h{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.sk-h h4{font-size:12.5px}
+.sk-h .sp{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.sk-row{display:grid;grid-template-columns:172px 1fr;gap:10px;align-items:center;padding:3px 0}
+@media(max-width:700px){.sk-row{grid-template-columns:1fr;gap:3px}}
+.sk-nm{font-size:11.5px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sk-pips{display:flex;gap:3px;flex-wrap:wrap}
+.pip{width:14px;height:14px;border-radius:3.5px;background:var(--line);border:1px solid var(--line2);transition:.22s}
+.pip.on{background:var(--gold);border-color:var(--gold2);box-shadow:0 0 8px rgba(226,182,76,.55)}
+.pip.done{background:var(--teal);border-color:#7fe0c8}
+.audit{background:#03070e;border:1px solid var(--line);border-radius:11px;overflow:hidden}
+.audit-h{display:flex;align-items:center;gap:8px;padding:9px 13px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+.audit-h b{font-size:12px;font-weight:700}
+.audit-h .sp{margin-left:auto;font-size:10.5px;color:var(--ink3);font-family:var(--mono)}
+.log{height:268px;overflow-y:auto;padding:10px 13px;font-family:var(--mono);font-size:11.5px;line-height:1.75}
+.log::-webkit-scrollbar{width:9px}
+.log::-webkit-scrollbar-thumb{background:var(--line2);border-radius:9px}
+.ln{display:flex;gap:10px;animation:fin .28s ease-out}
+@keyframes fin{from{opacity:0;transform:translateX(-5px)}to{opacity:1;transform:none}}
+.ln .t{color:var(--ink3);flex-shrink:0}
+.ln .m{color:var(--ink2);min-width:0}
+.ln.l0 .m{color:#cfd8e7}
+.ln.l1 .m{color:var(--blue)}
+.ln.l2 .m{color:var(--violet)}
+.ln.l3 .m{color:var(--teal)}
+.ln.sys .m{color:var(--gold)}
+.ln.idle .m{color:var(--ink3);font-style:italic}
+.brief{margin-top:16px;border:1px solid rgba(47,191,159,.45);background:linear-gradient(160deg,rgba(47,191,159,.09),var(--panel3));border-radius:12px;padding:16px;display:none}
+.brief.show{display:block;animation:fin .35s}
+.brief h4{color:var(--teal);margin-bottom:9px;font-size:13.5px;letter-spacing:.02em}
+.brief ul{list-style:none;display:grid;gap:7px;margin-bottom:12px}
+.brief li{font-size:13px;color:var(--ink2);padding-left:19px;position:relative}
+.brief li:before{content:'';position:absolute;left:5px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--teal)}
+.brief li b{color:var(--ink)}
+.gate{display:flex;gap:9px;flex-wrap:wrap;align-items:center;border-top:1px solid rgba(47,191,159,.25);padding-top:12px}
+.gate p{font-size:12px;color:var(--ink3);margin-right:auto}
+.btn{border:1px solid var(--line2);background:var(--panel3);color:var(--ink);padding:8px 15px;border-radius:9px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:.15s}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+.btn.go{background:linear-gradient(135deg,var(--teal),#1e8f76);border-color:transparent;color:#04140f;font-weight:700}
+.btn.go:hover{filter:brightness(1.1);color:#04140f}
+.btn.hold{background:transparent}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* ---------- SMJ monitor ---------- */
+.drv{background:var(--panel);border:1px solid var(--line);border-radius:var(--rl);padding:17px;position:relative;overflow:hidden}
+.drv:before{content:'';position:absolute;inset:0 auto 0 0;width:3px;background:var(--gold)}
+.drv.m:before{background:var(--blue)}
+.drv.j:before{background:var(--teal)}
+.drv-h{display:flex;align-items:baseline;gap:9px;margin-bottom:7px}
+.drv-h b{font-family:var(--mono);font-size:11px;color:var(--ink3);letter-spacing:.08em}
+.drv-v{font-size:36px;font-weight:800;letter-spacing:-.035em;line-height:1;font-variant-numeric:tabular-nums}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin:11px 0 9px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.drv.m .bar i{background:linear-gradient(90deg,var(--blue),#8ec8f5)}
+.drv.j .bar i{background:linear-gradient(90deg,var(--teal),#7fe0c8)}
+.drv h4{font-size:13.5px;margin-bottom:4px}
+.drv p{font-size:12.5px;color:var(--ink2)}
+.kab{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:9px}
+.kab-i{border:1px solid var(--line);border-radius:10px;padding:10px 11px;background:var(--panel2);transition:.2s}
+.kab-i.on{border-color:var(--gold);box-shadow:0 0 0 1px rgba(226,182,76,.35)}
+.kab-i b{display:block;font-size:12px;font-weight:700;line-height:1.25}
+.kab-i span{display:block;font-family:var(--mono);font-size:11px;margin-top:3px}
+.kab-i em{display:block;font-size:10px;color:var(--ink3);font-style:normal;margin-top:2px}
+.tone-ok{color:var(--ok)}.tone-warn{color:var(--warn)}.tone-bad{color:var(--bad)}
+.tanya{display:grid;gap:9px}
+.tq{background:var(--panel3);border:1px solid var(--line);border-radius:10px;padding:11px 13px;cursor:pointer;font-size:13px;color:var(--ink2);transition:.15s;text-align:left;font-family:var(--sans);width:100%}
+.tq:hover{border-color:var(--blue);color:var(--ink)}
+.tq.on{border-color:var(--blue);background:rgba(63,149,224,.1)}
+.ta{margin-top:11px;padding:13px 15px;border-radius:10px;background:var(--panel3);border:1px solid var(--line2);border-left:3px solid var(--blue);display:none}
+.ta.show{display:block;animation:fin .3s}
+.ta p{font-size:13.5px;color:var(--ink)}
+.ta .src{display:block;margin-top:8px}
+
+/* ---------- misc ---------- */
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.tbl th{text-align:left;padding:10px 12px;background:var(--panel2);color:var(--ink2);font-weight:600;font-size:11.5px;letter-spacing:.03em;border-bottom:1px solid var(--line2)}
+.tbl td{padding:11px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td b{color:var(--ink)}
+.arch{display:grid;gap:8px}
+.al{display:grid;grid-template-columns:172px 1fr;gap:13px;padding:12px 14px;border:1px solid var(--line);border-radius:11px;background:var(--panel);align-items:start}
+@media(max-width:700px){.al{grid-template-columns:1fr;gap:6px}}
+.al b{font-size:12.5px;color:var(--gold)}
+.al span{font-size:12.5px;color:var(--ink2)}
+.ris{display:grid;gap:9px}
+.ri{border:1px solid var(--line);border-radius:11px;padding:13px 15px;background:var(--panel);border-left:3px solid var(--line2)}
+.ri.hi{border-left-color:var(--bad)}.ri.md{border-left-color:var(--warn)}
+.ri-h{display:flex;align-items:center;gap:9px;margin-bottom:6px;flex-wrap:wrap}
+.ri-h b{font-size:13.5px}
+.ri p{font-size:12.5px;color:var(--ink2)}
+.lv{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:99px;letter-spacing:.06em;text-transform:uppercase}
+.lv.hi{background:rgba(224,96,63,.15);color:var(--bad)}
+.lv.md{background:rgba(226,182,76,.15);color:var(--warn)}
+.pilot{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:9px}
+.pl{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:var(--panel2);cursor:pointer;transition:.18s;text-align:left;font-family:var(--sans);color:var(--ink);width:100%}
+.pl:hover{border-color:var(--gold)}
+.pl.on{border-color:var(--teal);background:rgba(47,191,159,.1)}
+.pl b{display:block;font-size:12px;font-weight:700;margin-bottom:3px}
+.pl span{display:block;font-size:10.5px;color:var(--ink3);font-family:var(--mono)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11.5px;color:var(--ink3);margin-top:12px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:middle}
+footer{padding:34px 0 46px;background:var(--bg2);border-top:1px solid var(--line)}
+footer p{font-size:12px;color:var(--ink3);max-width:92ch}
+footer p+p{margin-top:8px}
+footer b{color:var(--ink2)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap tb-in">
+    <a href="#arahan" class="brand">
+      <span class="brand-mark">S</span>
+      <span class="brand-tx"><b>SDGP</b><span>Swarm Command · 100 Ejen</span></span>
+    </a>
+    <nav class="tb-nav">
+      <a href="#arahan">Pusat Arahan</a>
+      <a href="#monitor">Monitor SMJ 2.0</a>
+      <a href="#aplikasi">336 Aplikasi</a>
+      <a href="#senibina">Seni Bina</a>
+      <a href="#pelan">Pelan 90 Hari</a>
+      <a href="#sumber">Sumber</a>
+    </nav>
+    <a class="tb-back" href="../../../saas-paas.html">← Platform Induk</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="pills">
+      <span class="badge sim">Konsep · Data Simulasi</span>
+      <span class="badge live"><span class="dot"></span>Pemboleh Daya #5 · SMJ 2.0</span>
+      <span class="badge sim">Pejabat SUK Negeri Sabah</span>
+    </div>
+    <h1>Satu platform untuk <em>seluruh jentera</em> Kerajaan Negeri.</h1>
+    <p class="lede">SDGI 2020–2024 dan SMJ 2.0 menyuarakan aspirasi yang sama: satu platform digital terintegrasi untuk perkongsian data, pelaksanaan, pemantauan dan pelaporan. <b>SDGP</b> ialah cara menunaikannya dengan <b>336 aplikasi yang sudah ada</b>, tanpa menggantikan satu pun.</p>
+
+    <div class="quote">
+      <p>“Dalam tempoh lima tahun ini, satu platform akan diwujudkan bagi memudahkan perkongsian data antara Kerajaan kepada Kerajaan; Kerajaan kepada Perniagaan; dan Kerajaan kepada Rakyat.”</p>
+      <span>SDGI 2024 · Pelan Tindakan Kerajaan Digital Negeri Sabah 2020–2024</span>
+    </div>
+    <div class="quote">
+      <p>“Kerajaan Digital — platform digital terintegrasi untuk memudahkan pelaksanaan, pemantauan, dan pelaporan semua inisiatif pembangunan SMJ 2.0.”</p>
+      <span>Kerangka Hala Tuju SMJ 2.0 · Pemboleh Daya #5</span>
+    </div>
+
+    <div class="tl">
+      <div class="tl-i"><b>2020–2024</b><span>SDGI: automasi, transformasi, inovasi digital</span></div>
+      <div class="tl-i"><b>30 Jan 2026</b><span>SMJ 2.0 (2026–2030) dilancarkan</span></div>
+      <div class="tl-i"><b>9 Apr 2026</b><span>JPKN dijenamakan semula sebagai JTDI</span></div>
+      <div class="tl-i"><b>29 Jun 2026</b><span>SKN Ke-11 memulakan tugas</span></div>
+      <div class="tl-i"><b>6–7 Okt 2026</b><span>KITA 2026, SICC</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= INVENTORI ======================= -->
+<section id="inventori">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Keadaan hari ini</div>
+      <h2>Daripada inventori rasmi</h2>
+      <p class="lede">Angka peratus dikira daripada 331 rekod aplikasi yang dianalisis, sumber portal <b>skn.sabah.gov.my</b> (28 Sep 2026).</p>
+    </div>
+    <div class="grid g4">
+      <div class="card hi">
+        <div class="kpi-b gold">336</div>
+        <div class="kpi-l">aplikasi kerajaan negeri</div>
+        <div class="kpi-m">G2G 138 · G2C 62 · G2E 38 · G2B 13</div>
+      </div>
+      <div class="card">
+        <div class="kpi-b">53%</div>
+        <div class="kpi-l">tiada pautan awam</div>
+        <div class="kpi-m">sukar dicapai “Anytime”</div>
+      </div>
+      <div class="card">
+        <div class="kpi-b">3%</div>
+        <div class="kpi-l">sokongan Android</div>
+        <div class="kpi-m">“Any Device” masih terhad</div>
+      </div>
+      <div class="card">
+        <div class="kpi-b">1,173</div>
+        <div class="kpi-l">program &amp; projek Belanjawan 2026</div>
+        <div class="kpi-m">RM12.02 bilion untuk dipantau</div>
+      </div>
+    </div>
+
+    <div class="grid g3" style="margin-top:22px">
+      <div class="card">
+        <h3 style="color:var(--gold)">1 · API &amp; Data Fabric</h3>
+        <p class="sub" style="margin-top:6px">Menyambung sistem sedia ada melalui API gateway, identiti tunggal dan katalog data. Mula dengan 10 sistem bernilai tinggi.</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--blue)">2 · Command Centre SMJ 2.0</h3>
+        <p class="sub" style="margin-top:6px">Satu papan pemuka untuk memantau 1,173 program, 11 kementerian dan penjajaran SDG, dalam masa nyata.</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--teal)">3 · Lapisan Ejen “Bayu”</h3>
+        <p class="sub" style="margin-top:6px">Naik taraf Bayu AI kepada swarm ejen berasaskan dasar dan data sebenar, dengan pengawasan manusia di setiap keputusan penting.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="eyebrow">Motto 5A sebagai spesifikasi produk</div>
+      <div class="grid g4" style="margin-top:12px">
+        <div class="card"><h4>Anyone</h4><p class="sub">Satu identiti, akses mengikut peranan, MFA berperingkat.</p></div>
+        <div class="card"><h4>Anytime</h4><p class="sub">Pautan awam untuk perkhidmatan rakyat, SLA dan status page.</p></div>
+        <div class="card"><h4>Anywhere</h4><p class="sub">Reka bentuk jalur lebar rendah dan mod luar talian untuk luar bandar.</p></div>
+        <div class="card"><h4>Any Device</h4><p class="sub">Responsif dan WCAG 2.2 AA; Super App untuk mudah alih.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PUSAT ARAHAN ======================= -->
+<section id="arahan" class="cmd">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Pusat Arahan · Swarm 100 Ejen</div>
+      <h2>Pilih satu situasi. Enjin orkestrasi mengambil alih.</h2>
+      <p class="lede">Enjin orkestrasi merancang, mewakilkan kepada skuad, menyemak secara bebas, kemudian menyintesis taklimat untuk kelulusan manusia. Semua angka ialah simulasi kecuali yang ditandakan daripada inventori rasmi.</p>
+    </div>
+
+    <div class="cmd-panel">
+      <div class="cmd-head">
+        <span class="badge live"><span class="dot pulse"></span>Enjin orkestrasi</span>
+        <h3>SKN SWARM COMMAND</h3>
+        <div class="sp"><span class="src">skała: 100 ejen · 4 lapisan kawalan</span></div>
+      </div>
+      <div class="cmd-body">
+
+        <div class="sit-wrap" id="sitWrap"></div>
+
+        <div class="counters">
+          <div class="ctr act"><b id="cAktif">0</b><span>Ejen aktif</span></div>
+          <div class="ctr inv"><b id="cTerlibat">0</b><span>Ejen terlibat</span></div>
+          <div class="ctr tim"><b id="cMasa">0.0s</b><span>Masa</span></div>
+          <div class="ctr run"><b id="cSim">0</b><span>Simulasi dijalankan</span></div>
+        </div>
+
+        <div class="layers" id="layers"></div>
+
+        <div class="sk">
+          <div class="sk-h">
+            <h4>Skuad · 100 ejen</h4>
+            <span class="src">10 peranan × 10 contoh · roster L3</span>
+            <span class="sp" id="skStat">0 / 100 aktif</span>
+          </div>
+          <div id="skRows"></div>
+        </div>
+
+        <div class="audit">
+          <div class="audit-h">
+            <b>Jejak audit langsung</b>
+            <span class="sp">jejak penuh · human-in-the-loop · PDPA 2010</span>
+          </div>
+          <div class="log" id="log">
+            <div class="ln idle"><span class="t">--:--:--</span><span class="m">Menunggu arahan. Pilih satu situasi di atas.</span></div>
+          </div>
+        </div>
+
+        <div class="brief" id="brief">
+          <h4>Taklimat sintesis · untuk kelulusan manusia</h4>
+          <ul id="briefList"></ul>
+          <div class="gate">
+            <p>Guardrail AI · keputusan berimpak tinggi memerlukan pengesahan pegawai.</p>
+            <button class="btn go" id="btnLulus" disabled>Luluskan</button>
+            <button class="btn hold" id="btnTahan" disabled>Tahan untuk semakan</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= MONITOR SMJ ======================= -->
+<section id="monitor">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Monitor SMJ 2.0 · Pemboleh Daya #5 dalam satu skrin</div>
+      <h2>Reka bentuk papan pemuka Kabinet</h2>
+      <p class="lede">Peratusan ialah data simulasi; ia akan mengalir daripada sistem sebenar apabila sambungan API diaktifkan.</p>
+    </div>
+
+    <div class="grid g3">
+      <div class="drv">
+        <div class="drv-h"><b>PEMACU S</b><span class="chip gold">86%</span></div>
+        <div class="drv-v">86<span style="font-size:19px">%</span></div>
+        <div class="bar"><i style="width:86%"></i></div>
+        <h4>Sektor Pertumbuhan Ekonomi</h4>
+        <p>Pertanian moden, perindustrian bernilai tinggi, pelancongan lestari.</p>
+        <p class="src" style="margin-top:9px">Tumpuan: Ekonomi Biru · Pendigitalan &amp; AI</p>
+      </div>
+      <div class="drv m">
+        <div class="drv-h"><b>PEMACU M</b><span class="chip">82%</span></div>
+        <div class="drv-v">82<span style="font-size:19px">%</span></div>
+        <div class="bar"><i style="width:82%"></i></div>
+        <h4>Modal Insan &amp; Kesejahteraan Rakyat</h4>
+        <p>Pendidikan, TVET, STEM, SME-UP, perlindungan keluarga.</p>
+        <p class="src" style="margin-top:9px">Tumpuan: Inklusiviti Pembangunan</p>
+      </div>
+      <div class="drv j">
+        <div class="drv-h"><b>PEMACU J</b><span class="chip">78%</span></div>
+        <div class="drv-v">78<span style="font-size:19px">%</span></div>
+        <div class="bar"><i style="width:78%"></i></div>
+        <h4>Jaringan Infrastruktur &amp; Kelestarian Hijau</h4>
+        <p>Jalan, utiliti, tenaga lestari, alam sekitar.</p>
+        <p class="src" style="margin-top:9px">Pemboleh daya: Kemampanan Fiskal · Kemudahan Kewangan · Kecekapan Penyampaian · Tadbir Urus Berintegriti · Kerajaan Digital</p>
+      </div>
+    </div>
+
+    <h3 style="margin:30px 0 6px">11 kementerian</h3>
+    <p class="sub">Ditandakan jika terlibat dalam simulasi terakhir. Hijau 80% ke atas, kuning 70–79%, merah di bawah 70%.</p>
+    <div class="kab" id="kab" style="margin-top:13px"></div>
+    <p class="note">Nama kementerian dipetik daripada set data portfolio orkestrasi negeri yang sedia ada dalam hub; peratusan ialah <b>simulasi</b>. Sumber rasmi: portal skn.sabah.gov.my.</p>
+
+    <div class="grid g2" style="margin-top:30px">
+      <div class="card">
+        <h3>Status 1,173 program</h3>
+        <p class="sub">Simulasi taburan status.</p>
+        <div id="prog" style="margin-top:14px"></div>
+        <p class="src" style="margin-top:12px">Pelaporan SDG automatik: SDG 1–17 dipetakan kepada pemacu S, M dan J.</p>
+      </div>
+      <div class="card">
+        <h3>Tanya Bayu</h3>
+        <p class="sub">Setiap jawapan menyebut sumbernya. Cuba salah satu soalan.</p>
+        <div class="tanya" id="tanya" style="margin-top:14px"></div>
+        <div class="ta" id="ta"><p id="taP"></p><span class="src" id="taS"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 336 APLIKASI ======================= -->
+<section id="aplikasi">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">336 aplikasi: sambung, jangan ganti</div>
+      <h2>Analisis metadata 331 rekod aplikasi</h2>
+      <p class="lede">Analisis ialah daripada metadata 331 rekod aplikasi di portal SKN. Pengkategorian bidang ialah anggaran kata kunci, bukan taksonomi rasmi.</p>
+    </div>
+    <div class="grid g4">
+      <div class="card"><div class="kpi-b">15</div><div class="kpi-l">kementerian / jabatan pemilik</div></div>
+      <div class="card"><div class="kpi-b">60</div><div class="kpi-l">agensi berbeza</div><div class="kpi-m">purata 5.5 aplikasi seagensi</div></div>
+      <div class="card"><div class="kpi-b">44%</div><div class="kpi-l">dipegang 5 agensi teratas</div><div class="kpi-m">146 aplikasi</div></div>
+      <div class="card"><div class="kpi-b">71%</div><div class="kpi-l">dibangunkan dalaman</div><div class="kpi-m">237 aplikasi — mudah diselaraskan melalui API</div></div>
+    </div>
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card">
+        <h4>Mengikut jenis pengguna (331 rekod)</h4>
+        <div id="byType" style="margin-top:14px"></div>
+        <p class="note">G2B sahaja 13 aplikasi (4%), sedangkan SMJ 2.0 menjadikan perindustrian, IKS dan pelaburan pemacu utama.</p>
+      </div>
+      <div class="card">
+        <h4>Capaian pautan awam mengikut jenis (5A · Anytime)</h4>
+        <div id="byLink" style="margin-top:14px"></div>
+        <p class="note">Keseluruhan: 155 ada pautan, 176 tiada (47% capaian).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SENI BINA ======================= -->
+<section id="senibina">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Seni bina orkestrasi agentic</div>
+      <h2>Enam lapisan, satu jejak audit</h2>
+      <p class="lede">Selaras dengan tema Amanat SKN 2026, <b>“Beyond Digitalisation: Building an AI-Enabled Public Service”</b>.</p>
+    </div>
+    <div class="arch">
+      <div class="al"><b>L1 Pengalaman</b><span>Portal · Super App · WhatsApp · Bayu AI · Suara/telefon · Kiosk · My App Store · Smart Office</span></div>
+      <div class="al"><b>L2 Orkestrator</b><span>Planner · Router · Policy Engine · Memory · Tool Registry · Evaluator (jejak audit penuh)</span></div>
+      <div class="al"><b>L3 Roster ejen</b><span>Bayu Concierge · Aduan Triage · Dasar RAG · SMJ Monitor · Integriti · Janji Temu/Protokol · Dokumen · Penterjemah · Ops/SRE · Perolehan</span></div>
+      <div class="al"><b>L4 Penyambung</b><span>REST/GraphQL · RPA untuk sistem lama · E-mel/SMS/WhatsApp · ArcGIS · SabahPay · e-tandatangan</span></div>
+      <div class="al"><b>L5 Perkhidmatan platform</b><span>IdP/SSO · API Gateway · Event Bus · Lakehouse · Vector Store · Vault/KMS · Observability</span></div>
+      <div class="al"><b>L6 Tadbir urus</b><span>Guardrail AI · PDPA 2010 · Klasifikasi data · Jejak audit kekal · Human-in-the-loop · koordinasi dengan sgCSIRT</span></div>
+    </div>
+
+    <h3 style="margin:32px 0 12px">Dipetakan kepada lima strategi rasmi portal SKN</h3>
+    <div class="card" style="padding:0;overflow:hidden">
+      <table class="tbl">
+        <thead><tr><th style="width:32%">Strategi</th><th>Apa yang SDGP sediakan</th></tr></thead>
+        <tbody>
+          <tr><td><b>1 · Super App</b></td><td>Satu pintu rakyat merentas 6 domain iKnow, dengan penjejakan aduan hujung ke hujung.</td></tr>
+          <tr><td><b>2 · Audit &amp; pemantauan keberkesanan</b></td><td>App Registry dengan telemetri penggunaan, kos dan risiko bagi setiap aplikasi.</td></tr>
+          <tr><td><b>3 · Keselamatan siber &amp; perlindungan data</b></td><td>IdP tunggal, klasifikasi data, SIEM dan pelan migrasi platform lama bersama JTDI dan sgCSIRT.</td></tr>
+          <tr><td><b>4 · Latihan kemahiran digital</b></td><td>Latihan ejen dan data untuk pegawai bersama JPANS dan INTAN Sabah.</td></tr>
+          <tr><td><b>5 · Analitik data &amp; tadbir urus aplikasi</b></td><td>Lakehouse, katalog data dan papan pemuka milik negeri sendiri.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PELAN 90 HARI ======================= -->
+<section id="pelan">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Bina projek perintis 90 hari</div>
+      <h2>Pilih 10 sistem untuk disambungkan dahulu</h2>
+      <p class="lede">Lihat panel papan pemuka Kabinet menyala apabila domain mereka tersambung. Metrik 90 hari: <b>10 sistem disambung</b>, <b>1 papan pemuka Kabinet hidup</b>, <b>1 ejen AI menjawab daripada data sebenar</b>.</p>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+        <h4>Sistem disambungkan</h4>
+        <span class="kpi-b gold" id="pilotCount" style="font-size:22px">0 / 10</span>
+        <button class="btn" id="btnReset" style="margin-left:auto">Set semula</button>
+      </div>
+      <div class="pilot" id="pilot"></div>
+    </div>
+
+    <h3 style="margin:32px 0 12px">Pelan penglibatan 90 hari</h3>
+    <div class="grid g4">
+      <div class="card"><div class="eyebrow">Minggu 1–2</div><h4>Sediakan</h4><ul style="list-style:none;margin-top:8px;display:grid;gap:6px" class="sub">
+        <li>· Profil 336 aplikasi sebagai peta silo</li><li>· Satu muka surat SDGP</li><li>· Sahkan fakta rujukan dengan PSKN</li></ul></div>
+      <div class="card"><div class="eyebrow">Minggu 3–4</div><h4>Sesi kerja</h4><ul style="list-style:none;margin-top:8px;display:grid;gap:6px" class="sub">
+        <li>· Sesi 90 minit dengan Pegawai Pendigitalan</li><li>· Sepakati bukti nilai 30 hari: 3 sistem, 1 papan pemuka</li></ul></div>
+      <div class="card"><div class="eyebrow">Minggu 5–8</div><h4>Buktikan</h4><ul style="list-style:none;margin-top:8px;display:grid;gap:6px" class="sub">
+        <li>· Papan pemuka pemantauan + 1 ejen Bayu daripada data sebenar</li><li>· Libatkan sgCSIRT dari awal</li><li>· Demo domain integriti sebelum KITA 2026</li></ul></div>
+      <div class="card"><div class="eyebrow">Minggu 9–12</div><h4>Institusikan</h4><ul style="list-style:none;margin-top:8px;display:grid;gap:6px" class="sub">
+        <li>· Fasa 1 bertulis: skop, SLA, harga</li><li>· Majlis Tadbir Urus Data &amp; AI bersama JTDI</li><li>· Selaras dengan 100 Hari Kepimpinan</li></ul></div>
+    </div>
+
+    <h3 style="margin:32px 0 12px">Hala tuju fasa 0 hingga 4</h3>
+    <div class="card" style="padding:0;overflow:hidden">
+      <table class="tbl">
+        <thead><tr><th style="width:18%">Fasa</th><th style="width:16%">Tempoh</th><th>Hasil</th></tr></thead>
+        <tbody>
+          <tr><td><b>0 · Asas</b></td><td>0–3 bulan</td><td>Audit 336 aplikasi, tadbir urus data &amp; AI, pelan migrasi platform lama, status page.</td></tr>
+          <tr><td><b>1 · Platform asas</b></td><td>3–9 bulan</td><td>Satu identiti, satu pintu API (10 API pertama), SIEM dan ITSM.</td></tr>
+          <tr><td><b>2 · Data &amp; pengalaman</b></td><td>9–18 bulan</td><td>Lakehouse, App Registry, Command Centre SMJ 2.0, Super App beta.</td></tr>
+          <tr><td><b>3 · AI &amp; agentic</b></td><td>18–30 bulan</td><td>Bayu 2.0 dengan RAG dasar, 3 ejen perintis dengan pengawasan penuh.</td></tr>
+          <tr><td><b>4 · Skala &amp; ekosistem</b></td><td>30–48 bulan</td><td>10+ ejen, marketplace MaaS untuk agensi, pemerkasaan G2B.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin:32px 0 12px">Risiko utama dan cara mengurusnya</h3>
+    <div class="ris">
+      <div class="ri hi"><div class="ri-h"><b>Platform portal lama tamat sokongan</b><span class="lv hi">Tinggi</span></div><p>Migrasi berperingkat (strangler-fig) dengan WAF dan penampalan maya sementara, dirancang bersama JTDI dan sgCSIRT.</p></div>
+      <div class="ri hi"><div class="ri-h"><b>Privasi dan pematuhan PDPA</b><span class="lv hi">Tinggi</span></div><p>Klasifikasi data empat peringkat, DPIA bagi setiap sistem, model dihoskan dalam negara.</p></div>
+      <div class="ri hi"><div class="ri-h"><b>Halusinasi dan berat sebelah AI</b><span class="lv hi">Tinggi</span></div><p>RAG wajib dengan petikan sumber, guardrail dan kelulusan manusia untuk keputusan berimpak tinggi.</p></div>
+      <div class="ri md"><div class="ri-h"><b>Rintangan perubahan merentas kementerian</b><span class="lv md">Sederhana</span></div><p>Champion digital bagi setiap agensi dan latihan berterusan.</p></div>
+    </div>
+    <p class="note">Pertukaran data dengan sistem negeri dibuat melalui perjanjian pertukaran data rasmi bersama PSKN dan JTDI. Tiada pengikisan data.</p>
+  </div>
+</section>
+
+<!-- ======================= SUMBER ======================= -->
+<section id="sumber">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Provenans</div>
+      <h2>Sumber dan status setiap angka</h2>
+      <p class="lede">Prototaip ini dibina semula daripada dokumen konsep SDGP yang sedia ada. Tiada angka ditambah di luar dokumen itu.</p>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden">
+      <table class="tbl">
+        <thead><tr><th style="width:34%">Bahagian</th><th style="width:33%">Sumber</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>336 aplikasi (G2G 138 · G2C 62 · G2E 38 · G2B 13), 53%, 3%, 1,173 program</td><td><b>Inventori rasmi</b> — portal skn.sabah.gov.my (28 Sep 2026)</td><td>Disahkan sumber awam</td></tr>
+          <tr><td>Pemacu S 86% · M 82% · J 78%</td><td>Dokumen konsep SDGP</td><td>Simulasi (akan mengalir daripada API sebenar)</td></tr>
+          <tr><td>11 kementerian, status 1,173 program, ejen aktif/terlibat/masa</td><td>Dokumen konsep SDGP + set data orkestrasi negeri dalam hub</td><td>Simulasi</td></tr>
+          <tr><td>Roster ejen L3 (10 peranan), seni bina L1–L6, 5 strategi, fasa 0–4, risiko</td><td>Dokumen konsep SDGP</td><td>Petikan terus</td></tr>
+          <tr><td>Pelan penglibatan 90 hari, 10 sistem perintis</td><td>Dokumen konsep SDGP</td><td>Petikan terus</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Fail sumber: <span class="src">SDGP · Sabah Digital Government Platform (Konsep).md</span> · rekod bookmark: <span class="src">localhost:7100/#swarm</span> · nama prototaip: <span class="src">SKN SWARM COMMAND · SDGP — Pusat Arahan Swarm 100 Ejen</span>.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Prototaip konsep untuk simulasi pembentangan. Bukan laman rasmi kerajaan.</b> Data prestasi, aduan, anomali dan KPI ialah simulasi. Statistik inventori aplikasi daripada portal skn.sabah.gov.my (28 September 2026); sahkan semula fakta sebelum sebarang keputusan rasmi.</p>
+    <p>Dibina semula sebagai sebahagian Platform Induk · Kategori 02 SaaS/PaaS · Prototaip Swarm Command. Semua kandungan dijejak kepada dokumen sumber yang disenaraikan di bahagian <b>Sumber</b>.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+/* ==========================================================================
+   SKN SWARM COMMAND · SDGP — enjin orkestrasi simulasi
+   Semua data domain diambil daripada dokumen konsep SDGP.
+   ========================================================================== */
+(function () {
+
+  var $ = function (s) { return document.querySelector(s); };
+  var esc = function (s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  };
+
+  /* ---------- roster L3 (10 peranan) ---------- */
+  var ROSTER = [
+    { k: 'concierge', n: 'Bayu Concierge',        l: 'L1', d: 'Pintu masuk perbualan & penghalaan' },
+    { k: 'aduan',     n: 'Aduan Triage',          l: 'L1', d: 'Klasifikasi & keutamaan aduan' },
+    { k: 'dasar',     n: 'Dasar RAG',             l: 'L2', d: 'Rujukan dasar dengan petikan sumber' },
+    { k: 'smj',       n: 'SMJ Monitor',           l: 'L2', d: 'Pemantauan 1,173 program' },
+    { k: 'integriti', n: 'Integriti',             l: 'L3', d: 'Isyarat penyelewengan & konflik kepentingan' },
+    { k: 'protokol',  n: 'Janji Temu / Protokol', l: 'L1', d: 'Penjadualan & protokol' },
+    { k: 'dokumen',   n: 'Dokumen',               l: 'L2', d: 'Ringkasan & pengurusan dokumen' },
+    { k: 'terjemah',  n: 'Penterjemah',           l: 'L1', d: 'BM · EN · bahasa etnik' },
+    { k: 'ops',       n: 'Ops / SRE',             l: 'L3', d: 'Kesihatan platform & insiden' },
+    { k: 'perolehan', n: 'Perolehan',             l: 'L2', d: 'Pematuhan perolehan & kelulusan' }
+  ];
+  var PER_ROLE = 10;              // 10 peranan × 10 contoh = 100 ejen
+  var TOTAL = ROSTER.length * PER_ROLE;
+
+  var LAYERS = [
+    { n: 'Analisis',  d: 'Baca arahan, kumpul bukti, bina hipotesis' },
+    { n: 'Delegasi',  d: 'Agih tugas kepada skuad mengikut peranan' },
+    { n: 'Semakan',   d: 'Semakan bebas silang — bukan pengesahan diri' },
+    { n: 'Sintesis',  d: 'Satukan taklimat + cadangan untuk kelulusan manusia' }
+  ];
+
+  /* ---------- situasi (dijejak kepada dokumen SDGP) ---------- */
+  var SITUASI = [
+    {
+      id: 'aduan', t: 'Aduan rakyat melebihi SLA', dom: 'Super App · penjejakan hujung ke hujung',
+      roles: ['concierge', 'aduan', 'dokumen', 'terjemah', 'ops'],
+      steps: [
+        { l: 0, a: 'concierge', x: 'Arahan diterima: 412 aduan melebihi SLA daripada Super App.' },
+        { l: 0, a: 'aduan',     x: 'Klasifikasi 6 domain iKnow — 3 kategori menumpu 61% kes.' },
+        { l: 0, a: 'dokumen',   x: 'Konteks dikumpul: SLA perkhidmatan + status page portal.' },
+        { l: 1, a: 'aduan',     x: 'Delegasi: 4 agensi pemilik dikenal pasti untuk penugasan.' },
+        { l: 1, a: 'terjemah',  x: 'Aduan berbahasa etnik dinormalkan untuk triaj sepunya.' },
+        { l: 1, a: 'ops',       x: '2 aduan sebenarnya insiden platform, bukan proses agensi.' },
+        { l: 2, a: 'aduan',     x: 'Semakan silang: 37 aduan pendua, 12 salah saluran.' },
+        { l: 2, a: 'dokumen',   x: 'Semakan bebas mengesahkan 361 kes sah untuk tindakan.' },
+        { l: 3, a: 'concierge', x: 'Sintesis: taklimat triaj + cadangan SLA baharu disediakan.' }
+      ],
+      brief: [
+        '<b>361</b> aduan sah (daripada 412) — 37 pendua, 12 salah saluran, 2 insiden platform.',
+        'Penumpuan: 3 kategori merangkumi <b>61%</b> kes; 4 agensi pemilik dikenal pasti.',
+        'Cadangan: naikkan aduan platform ke <b>Ops/SRE</b> secara automatik, bukan melalui triaj agensi.',
+        'Sumber: dokumen konsep SDGP — strategi 1 (Super App, penjejakan aduan hujung ke hujung).'
+      ]
+    },
+    {
+      id: 'smj', t: 'Program SMJ 2.0 di bawah sasaran', dom: 'Command Centre · 1,173 program',
+      roles: ['smj', 'dokumen', 'dasar', 'ops'],
+      steps: [
+        { l: 0, a: 'smj',     x: 'Pemantauan 1,173 program Belanjawan 2026 (RM12.02 bilion) dimulakan.' },
+        { l: 0, a: 'dokumen', x: 'Penjajaran SDG 1–17 dipetakan kepada pemacu S, M dan J.' },
+        { l: 0, a: 'dasar',   x: 'Rujukan: Kerangka Hala Tuju SMJ 2.0, Pemboleh Daya #5.' },
+        { l: 1, a: 'smj',     x: 'Delegasi: 11 kementerian ditandakan mengikut penglibatan program.' },
+        { l: 1, a: 'ops',     x: 'Kelengkapan data diperiksa — 3 domain masih bersilo.' },
+        { l: 2, a: 'smj',     x: 'Semakan silang: 18 program tiada penunjuk hasil yang boleh diukur.' },
+        { l: 2, a: 'dokumen', x: 'Semakan bebas mengesahkan 44 program berisiko kelewatan.' },
+        { l: 3, a: 'smj',     x: 'Sintesis: taklimat Kabinet — pemacu M paling terjejas.' }
+      ],
+      brief: [
+        'Pemacu <b>M (82%)</b> paling terjejas; <b>J (78%)</b> paling rendah antara tiga pemacu.',
+        '<b>18</b> program tiada penunjuk hasil yang boleh diukur; <b>44</b> program berisiko kelewatan.',
+        '<b>3</b> domain masih bersilo — sambungan API diperlukan sebelum angka boleh dipercayai.',
+        'Sumber: dokumen konsep SDGP — Monitor SMJ 2.0 dan pelaporan SDG automatik.'
+      ]
+    },
+    {
+      id: 'integriti', t: 'Isyarat integriti dikesan', dom: 'Tadbir urus berintegriti',
+      roles: ['integriti', 'dokumen', 'dasar', 'ops'],
+      steps: [
+        { l: 0, a: 'integriti', x: 'Isyarat dikesan: pola keputusan luar biasa pada satu agensi.' },
+        { l: 0, a: 'dokumen',   x: 'Jejak dokumen dikumpul — 100% rujukan boleh dikesan semula.' },
+        { l: 0, a: 'dasar',     x: 'Rujukan PDPA 2010 + klasifikasi data empat peringkat.' },
+        { l: 1, a: 'integriti', x: 'Delegasi: semakan konflik kepentingan & pengisytiharan aset.' },
+        { l: 1, a: 'ops',       x: 'Log akses sistem ditarik untuk pengesahan masa.' },
+        { l: 2, a: 'integriti', x: 'Semakan bebas: 1 daripada 6 isyarat disahkan sebagai positif palsu.' },
+        { l: 2, a: 'dokumen',   x: 'Semakan silang mengekalkan 5 isyarat untuk siasatan lanjut.' },
+        { l: 3, a: 'integriti', x: 'Sintesis: taklimat integriti disediakan — tanpa tuduhan, hanya bukti.' }
+      ],
+      brief: [
+        '<b>5</b> isyarat dikekalkan untuk siasatan lanjut; <b>1</b> disahkan positif palsu.',
+        'Setiap baris bukti boleh dikesan semula — tiada angka tanpa asal usul.',
+        'Guardrail: tiada tuduhan automatik. Keputusan berimpak tinggi memerlukan pegawai.',
+        'Sumber: dokumen konsep SDGP — L6 Tadbir urus, L3 roster ejen (Integriti).'
+      ]
+    },
+    {
+      id: 'siber', t: 'Anomali keselamatan siber', dom: 'sgCSIRT · klasifikasi data',
+      roles: ['ops', 'integriti', 'dokumen', 'dasar'],
+      steps: [
+        { l: 0, a: 'ops',       x: 'Anomali trafik dikesan pada satu titik integrasi API.' },
+        { l: 0, a: 'dokumen',   x: 'Pemilik sistem dan klasifikasi data dikenal pasti.' },
+        { l: 0, a: 'dasar',     x: 'Rujukan: pelan migrasi platform lama bersama JTDI dan sgCSIRT.' },
+        { l: 1, a: 'ops',       x: 'Delegasi: 3 domain disekat sementara, siasatan bermula.' },
+        { l: 1, a: 'integriti', x: 'Semakan sama ada akses melanggar skop minimum kunci.' },
+        { l: 2, a: 'ops',       x: 'Semakan bebas: anomali bukan kemasukan — konfigurasi silap.' },
+        { l: 2, a: 'dasar',     x: 'Semakan pematuhan: DPIA dan putaran kunci disemak.' },
+        { l: 3, a: 'ops',       x: 'Sintesis: taklimat insiden + langkah pembetulan disediakan.' }
+      ],
+      brief: [
+        'Punca dikenal pasti: <b>konfigurasi silap</b>, bukan kemasukan tanpa kebenaran.',
+        '<b>3</b> domain disekat sementara; tiada pengikisan data dikesan.',
+        'Cadangan: putaran kunci dipercepatkan + amaran automatik pada skop minimum.',
+        'Sumber: dokumen konsep SDGP — risiko keselamatan siber &amp; perlindungan data, L5 Vault/KMS.'
+      ]
+    },
+    {
+      id: 'perolehan', t: 'Perolehan bernilai tinggi menunggu kelulusan', dom: 'Guardrail AI · human-in-the-loop',
+      roles: ['perolehan', 'dasar', 'dokumen', 'integriti'],
+      steps: [
+        { l: 0, a: 'perolehan', x: 'Arahan: 6 perolehan bernilai tinggi menunggu kelulusan.' },
+        { l: 0, a: 'dasar',     x: 'Rujukan pematuhan perolehan dan had kuasa kelulusan.' },
+        { l: 0, a: 'dokumen',   x: 'Dokumen sokongan disemak untuk kelengkapan.' },
+        { l: 1, a: 'perolehan', x: 'Delegasi: 4 permohonan lengkap, 2 perlu penjelasan.' },
+        { l: 1, a: 'integriti', x: 'Semakan konflik kepentingan pada panel penilai.' },
+        { l: 2, a: 'dokumen',   x: 'Semakan silang: tiada pertindihan perolehan antara agensi.' },
+        { l: 2, a: 'perolehan', x: 'Semakan bebas mengesahkan 4 permohonan untuk pertimbangan.' },
+        { l: 3, a: 'perolehan', x: 'Sintesis: taklimat kelulusan disediakan — keputusan kekal pada manusia.' }
+      ],
+      brief: [
+        '<b>4</b> permohonan lengkap; <b>2</b> perlu penjelasan lanjut sebelum pertimbangan.',
+        'Tiada pertindihan perolehan antara agensi dikesan dalam set ini.',
+        'Enjin <b>tidak</b> meluluskan apa-apa — ia menyediakan taklimat, kuasa kekal pada pegawai.',
+        'Sumber: dokumen konsep SDGP — L2 Orkestrator, L6 human-in-the-loop.'
+      ]
+    }
+  ];
+
+  /* ---------- keadaan ---------- */
+  var st = { run: false, aktif: 0, terlibat: 0, sims: 0, t0: 0, timer: null, tick: null, cur: null, step: 0 };
+
+  function nowStr() {
+    var d = new Date(), p = function (n) { return String(n).padStart(2, '0'); };
+    return p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+  }
+  function fmtTime(ms) { return (ms / 1000).toFixed(1) + 's'; }
+
+  /* ---------- bina UI statik ---------- */
+  function buildSituations() {
+    $('#sitWrap').innerHTML = SITUASI.map(function (s, i) {
+      return '<button class="sit" data-i="' + i + '"><b>' + esc(s.t) + '</b><span>' + esc(s.dom) + '</span></button>';
+    }).join('');
+    $('#sitWrap').addEventListener('click', function (e) {
+      var b = e.target.closest('.sit'); if (!b) return;
+      run(parseInt(b.dataset.i, 10));
+    });
+  }
+
+  function buildLayers() {
+    $('#layers').innerHTML = LAYERS.map(function (l, i) {
+      return '<div class="ly" data-i="' + i + '"><b>' + esc(l.n) + '</b><span>' + esc(l.d) +
+             '</span><div class="ly-bar"><i></i></div></div>';
+    }).join('');
+  }
+
+  function buildSquad() {
+    $('#skRows').innerHTML = ROSTER.map(function (r) {
+      var pips = '';
+      for (var i = 0; i < PER_ROLE; i++) pips += '<span class="pip" data-r="' + r.k + '"></span>';
+      return '<div class="sk-row"><span class="sk-nm" title="' + esc(r.d) + '">' + esc(r.n) +
+             '</span><div class="sk-pips">' + pips + '</div></div>';
+    }).join('');
+  }
+
+  /* ---------- log ---------- */
+  function logLine(cls, t, m) {
+    var el = document.createElement('div');
+    el.className = 'ln ' + cls;
+    el.innerHTML = '<span class="t">' + esc(t) + '</span><span class="m">' + m + '</span>';
+    var box = $('#log');
+    box.appendChild(el);
+    box.scrollTop = box.scrollHeight;
+  }
+
+  /* ---------- pips ---------- */
+  function pipState(role, state) {
+    var list = document.querySelectorAll('.pip[data-r="' + role + '"]');
+    for (var i = 0; i < list.length; i++) {
+      list[i].classList.remove('on');
+      if (state === 'on') list[i].classList.add('on');
+      if (state === 'done') list[i].classList.add('done');
+    }
+  }
+  function allPips(state) {
+    var list = document.querySelectorAll('.pip');
+    for (var i = 0; i < list.length; i++) {
+      list[i].classList.remove('on', 'done');
+      if (state === 'done') list[i].classList.add('done');
+    }
+  }
+  function activeCount() { return document.querySelectorAll('.pip.on').length; }
+  function doneCount() { return document.querySelectorAll('.pip.done').length; }
+
+  /* ---------- counters ---------- */
+  function setCounters() {
+    $('#cAktif').textContent = st.aktif;
+    $('#cTerlibat').textContent = st.terlibat;
+    $('#cSim').textContent = st.sims;
+    $('#skStat').textContent = (activeCount() + doneCount()) + ' / ' + TOTAL + ' aktif';
+  }
+  function startClock() {
+    st.t0 = Date.now();
+    st.tick = setInterval(function () {
+      $('#cMasa').textContent = fmtTime(Date.now() - st.t0);
+    }, 100);
+  }
+  function stopClock() {
+    if (st.tick) clearInterval(st.tick);
+    st.tick = null;
+    $('#cMasa').textContent = fmtTime(Date.now() - st.t0);
+  }
+
+  /* ---------- jalankan simulasi ---------- */
+  function run(i) {
+    if (st.run) return;
+    var s = SITUASI[i];
+    st.run = true; st.cur = s; st.step = 0;
+    st.sims++;
+
+    // UI reset
+    document.querySelectorAll('.sit').forEach(function (b) { b.classList.remove('on'); b.disabled = true; });
+    document.querySelector('.sit[data-i="' + i + '"]').classList.add('on');
+    $('#brief').classList.remove('show');
+    $('#btnLulus').disabled = true; $('#btnTahan').disabled = true;
+    $('#log').innerHTML = '';
+    allPips(null);
+    document.querySelectorAll('.ly').forEach(function (l) { l.classList.remove('on', 'done'); l.querySelector('.ly-bar i').style.width = '0'; });
+
+    st.aktif = 0; st.terlibat = 0;
+    setCounters(); startClock();
+
+    logLine('sys', nowStr(), 'Arahan diterima · <b>' + esc(s.t) + '</b>');
+    logLine('sys', nowStr(), 'Planner mengaktifkan Policy Engine dan Tool Registry…');
+
+    // aktifkan peranan yang terlibat
+    s.roles.forEach(function (r) {
+      var n = PER_ROLE, i2 = 0;
+      var t = setInterval(function () {
+        document.querySelectorAll('.pip[data-r="' + r + '"]')[i2].classList.add('on');
+        st.aktif = activeCount(); st.terlibat += 1;
+        setCounters();
+        if (++i2 >= n) clearInterval(t);
+      }, 26);
+    });
+
+    // jalankan langkah
+    var delay = 620;
+    s.steps.forEach(function (step, k) {
+      setTimeout(function () { playStep(step, k, s); }, delay * (k + 1));
+    });
+    setTimeout(function () { finish(s); }, delay * (s.steps.length + 1));
+  }
+
+  function playStep(step, k, s) {
+    st.step = k;
+    var ly = document.querySelector('.ly[data-i="' + step.l + '"]');
+    document.querySelectorAll('.ly').forEach(function (x) { x.classList.remove('on'); });
+    ly.classList.add('on');
+    // isi bar lapisan secara berkadar
+    var total = s.steps.filter(function (x) { return x.l === step.l; }).length;
+    var seen = s.steps.slice(0, k + 1).filter(function (x) { return x.l === step.l; }).length;
+    ly.querySelector('.ly-bar i').style.width = Math.round(seen / total * 100) + '%';
+    // tandakan lapisan sebelumnya selesai
+    for (var j = 0; j < step.l; j++) {
+      var p = document.querySelector('.ly[data-i="' + j + '"]');
+      p.classList.remove('on'); p.classList.add('done');
+      p.querySelector('.ly-bar i').style.width = '100%';
+    }
+    var role = ROSTER.filter(function (r) { return r.k === step.a; })[0];
+    logLine('l' + step.l, nowStr(), '[' + esc(LAYERS[step.l].n) + ' · ' + esc(role.n) + '] ' + step.x);
+    // naikkan/turunkan ejen aktif mengikut lapisan
+    var prof = [0.55, 1.0, 0.72, 0.34][step.l];
+    st.aktif = Math.max(1, Math.round(st.terlibat * prof));
+    setCounters();
+    if (step.l === 3) pipState(step.a, 'done');
+  }
+
+  function finish(s) {
+    document.querySelectorAll('.ly').forEach(function (l) {
+      l.classList.remove('on'); l.classList.add('done');
+      l.querySelector('.ly-bar i').style.width = '100%';
+    });
+    st.aktif = 0;
+    document.querySelectorAll('.pip.on').forEach(function (p) { p.classList.remove('on'); p.classList.add('done'); });
+    setCounters();
+    logLine('sys', nowStr(), 'Semakan bebas selesai · taklimat sintesis dijana');
+    logLine('sys', nowStr(), 'Menunggu kelulusan manusia — enjin tidak membuat keputusan akhir.');
+    $('#briefList').innerHTML = s.brief.map(function (b) { return '<li>' + b + '</li>'; }).join('');
+    $('#brief').classList.add('show');
+    $('#btnLulus').disabled = false; $('#btnTahan').disabled = false;
+    stopClock();
+    st.run = false;
+    document.querySelectorAll('.sit').forEach(function (b) { b.disabled = false; });
+  }
+
+  /* ---------- gerbang kelulusan ---------- */
+  function decide(kind) {
+    if (!$('#brief').classList.contains('show')) return;
+    if (kind === 'lulus') {
+      logLine('sys', nowStr(), 'Keputusan manusia: <b>DILULUSKAN</b> — taklimat dihantar kepada pegawai berkenaan.');
+    } else {
+      logLine('sys', nowStr(), 'Keputusan manusia: <b>DITAHAN</b> — dikembalikan untuk semakan lanjut.');
+    }
+    $('#btnLulus').disabled = true; $('#btnTahan').disabled = true;
+  }
+
+  /* ---------- 11 kementerian ---------- */
+  var KAB = [
+    { s: 'KW',   n: 'Kementerian Kewangan Negeri',              p: 88 },
+    { s: 'KKT',  n: 'Kerajaan Tempatan & Perumahan',            p: 84 },
+    { s: 'SUK',  n: 'Pejabat Setiausaha Kerajaan Negeri',       p: 83 },
+    { s: 'KKR',  n: 'Kerja Raya & Utiliti',                     p: 79 },
+    { s: 'KSTI', n: 'Sains, Teknologi & Inovasi',               p: 76 },
+    { s: 'PEND', n: 'Pendidikan & Inovasi',                     p: 74 },
+    { s: 'KES',  n: 'Kesihatan & Kesejahteraan Rakyat',         p: 72 },
+    { s: 'PERT', n: 'Pertanian, Perikanan & Industri Makanan',  p: 68 },
+    { s: 'PERI', n: 'Pembangunan Perindustrian',                p: 66 },
+    { s: 'PLB',  n: 'Pembangunan Luar Bandar',                  p: 62 },
+    { s: 'PKAS', n: 'Pelancongan, Kebudayaan & Alam Sekitar',   p: 58 }
+  ];
+  function buildKab() {
+    $('#kab').innerHTML = KAB.map(function (k) {
+      var tone = k.p >= 80 ? 'tone-ok' : (k.p >= 70 ? 'tone-warn' : 'tone-bad');
+      return '<div class="kab-i" data-p="' + k.p + '"><b>' + esc(k.n) + '</b>' +
+             '<span class="' + tone + '">' + k.p + '%</span><em>' + esc(k.s) + '</em></div>';
+    }).join('');
+  }
+
+  /* ---------- status program ---------- */
+  var PROG = [
+    { l: 'Selesai',        v: 318, c: '#2fbf9f' },
+    { l: 'Dalam pelaksanaan', v: 526, c: '#3f95e0' },
+    { l: 'Lewat',          v: 214, c: '#e2b64c' },
+    { l: 'Belum bermula',  v: 115, c: '#6d84a6' }
+  ];
+  function buildProg() {
+    var tot = PROG.reduce(function (a, b) { return a + b.v; }, 0);
+    $('#prog').innerHTML = PROG.map(function (p) {
+      var pct = (p.v / tot * 100).toFixed(1);
+      return '<div style="margin-bottom:11px"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)">' +
+             '<span>' + esc(p.l) + '</span><span class="src">' + p.v.toLocaleString() + ' · ' + pct + '%</span></div>' +
+             '<div class="bar" style="margin:6px 0 0"><i style="width:' + pct + '%;background:' + p.c + '"></i></div></div>';
+    }).join('') + '<p class="src" style="margin-top:6px">Jumlah ' + tot.toLocaleString() + ' program · simulasi taburan</p>';
+  }
+
+  /* ---------- 336 aplikasi ---------- */
+  function buildByType() {
+    var rows = [
+      { l: 'G2G — Kerajaan ke Kerajaan', v: 138, c: '#3f95e0' },
+      { l: 'G2C — Kerajaan ke Rakyat',   v: 62,  c: '#2fbf9f' },
+      { l: 'G2E — Kerajaan ke Pekerja',  v: 38,  c: '#e2b64c' },
+      { l: 'G2B — Kerajaan ke Perniagaan', v: 13, c: '#e0603f' }
+    ];
+    var tot = rows.reduce(function (a, b) { return a + b.v; }, 0);
+    $('#byType').innerHTML = rows.map(function (r) {
+      var pct = (r.v / tot * 100).toFixed(0);
+      return '<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)">' +
+             '<span>' + esc(r.l) + '</span><span class="src">' + r.v + ' · ' + pct + '%</span></div>' +
+             '<div class="bar" style="margin:6px 0 0"><i style="width:' + pct + '%;background:' + r.c + '"></i></div></div>';
+    }).join('');
+  }
+  function buildByLink() {
+    $('#byLink').innerHTML =
+      '<div class="grid g2" style="gap:10px">' +
+      '<div class="card" style="padding:14px;background:var(--panel3)"><div class="kpi-b" style="font-size:26px;color:var(--ok)">155</div><div class="kpi-l">ada pautan awam</div><div class="kpi-m">47% capaian</div></div>' +
+      '<div class="card" style="padding:14px;background:var(--panel3)"><div class="kpi-b" style="font-size:26px;color:var(--bad)">176</div><div class="kpi-l">tiada pautan awam</div><div class="kpi-m">53% tidak dapat dicapai “Anytime”</div></div>' +
+      '</div>';
+  }
+
+  /* ---------- Tanya Bayu ---------- */
+  var TANYA = [
+    { q: 'Berapa aplikasi kerajaan negeri yang sudah ada?',
+      a: 'Sebanyak <b>336</b> aplikasi: G2G 138 · G2C 62 · G2E 38 · G2B 13.',
+      s: 'Inventori rasmi — portal skn.sabah.gov.my (28 Sep 2026)' },
+    { q: 'Berapa peratus aplikasi yang ada pautan awam?',
+      a: 'Daripada 331 rekod yang dianalisis, <b>155 ada pautan</b> dan <b>176 tiada</b> — kadar capaian <b>47%</b>.',
+      s: 'Analisis metadata 331 rekod aplikasi di portal SKN' },
+    { q: 'Berapa program perlu dipantau di bawah Belanjawan 2026?',
+      a: '<b>1,173</b> program dan projek, bernilai <b>RM12.02 bilion</b>.',
+      s: 'Belanjawan 2026 · dokumen konsep SDGP' },
+    { q: 'Apakah kaitan SDGP dengan SMJ 2.0?',
+      a: 'SDGP ialah pelaksanaan <b>Pemboleh Daya #5 (Kerajaan Digital)</b> — platform digital terintegrasi untuk pelaksanaan, pemantauan dan pelaporan semua inisiatif SMJ 2.0.',
+      s: 'Kerangka Hala Tuju SMJ 2.0 · Pemboleh Daya #5' },
+    { q: 'Bagaimana SDGP mengelakkan halusinasi AI?',
+      a: 'RAG wajib dengan <b>petikan sumber</b>, guardrail AI dan <b>kelulusan manusia</b> untuk keputusan berimpak tinggi. Setiap baris jejak audit boleh dikesan semula.',
+      s: 'Dokumen konsep SDGP — risiko halusinasi &amp; berat sebelah AI' }
+  ];
+  function buildTanya() {
+    $('#tanya').innerHTML = TANYA.map(function (t, i) {
+      return '<button class="tq" data-i="' + i + '">' + esc(t.q) + '</button>';
+    }).join('');
+    $('#tanya').addEventListener('click', function (e) {
+      var b = e.target.closest('.tq'); if (!b) return;
+      var i = parseInt(b.dataset.i, 10);
+      document.querySelectorAll('.tq').forEach(function (x) { x.classList.remove('on'); });
+      b.classList.add('on');
+      $('#taP').innerHTML = TANYA[i].a;
+      $('#taS').innerHTML = 'Sumber: ' + TANYA[i].s;
+      $('#ta').classList.add('show');
+    });
+  }
+
+  /* ---------- perintis 90 hari ---------- */
+  var PILOT = [
+    { n: 'Aduan & Super App', d: 'penjejakan hujung ke hujung' },
+    { n: 'Bayu AI (RAG dasar)', d: 'jawapan dengan petikan' },
+    { n: 'App Registry', d: 'telemetri kos & risiko' },
+    { n: 'Hab data kementerian', d: 'katalog data negeri' },
+    { n: 'SMJ 2.0 Monitor', d: '1,173 program masa nyata' },
+    { n: 'Kewangan & peruntukan', d: 'penyerapan belanjawan' },
+    { n: 'Perumahan rakyat', d: 'automasi kelulusan' },
+    { n: 'Utiliti & air', d: 'status pemindahan' },
+    { n: 'Pendidikan', d: 'enrolmen & bantuan' },
+    { n: 'Pengurusan bencana', d: 'PKOB masa nyata' }
+  ];
+  function buildPilot() {
+    $('#pilot').innerHTML = PILOT.map(function (p, i) {
+      return '<button class="pl" data-i="' + i + '"><b>' + esc(p.n) + '</b><span>' + esc(p.d) + '</span></button>';
+    }).join('');
+    $('#pilot').addEventListener('click', function (e) {
+      var b = e.target.closest('.pl'); if (!b) return;
+      b.classList.toggle('on');
+      var n = document.querySelectorAll('.pl.on').length;
+      $('#pilotCount').textContent = n + ' / 10';
+    });
+    $('#btnReset').addEventListener('click', function () {
+      document.querySelectorAll('.pl').forEach(function (b) { b.classList.remove('on'); });
+      $('#pilotCount').textContent = '0 / 10';
+    });
+  }
+
+  /* ---------- gerbang papan pemuka: kementerian menyala ---------- */
+  function bindKab() {
+    $('#kab').addEventListener('click', function (e) {
+      var i = e.target.closest('.kab-i'); if (!i) return;
+      i.classList.toggle('on');
+    });
+  }
+
+  /* ---------- init ---------- */
+  buildSituations(); buildLayers(); buildSquad();
+  buildKab(); buildProg(); buildByType(); buildByLink(); buildTanya(); buildPilot(); bindKab();
+  setCounters();
+  $('#btnLulus').addEventListener('click', function () { decide('lulus'); });
+  $('#btnTahan').addEventListener('click', function () { decide('tahan'); });
+
+})();
+</script>
+</body>
+</html>

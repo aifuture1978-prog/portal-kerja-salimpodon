@@ -1,0 +1,2420 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kefahaman Surah al-&lsquo;Asr &mdash; al-Quran | Pendidikan Islam Tahun 5</title>
+<style>
+  :root{
+    --sky1:#eff5fa; --sky2:#f9fbfe; --sky3:#f3f8fc;
+    --grass1:#b8d4e8; --grass2:#2f6ea8; --grass3:#1e4d78;
+    --paper:#fcfeff; --ink:#1f2830; --muted:#6d7a86;
+    --gold:#9c5f1e; --teal:#7a4614; --aqua:#e4eef8;
+    --line:#e8f1f9;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--sky2);color:var(--ink);
+    font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.65;overflow-x:hidden}
+  .arab{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:rtl}
+  .jf{font-family:"Scheherazade New","Traditional Arabic","Amiri",Tahoma,"Segoe UI",Arial,serif;direction:ltr;unicode-bidi:isolate}
+
+  .skybg{position:fixed;inset:0;z-index:-1;
+    background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 32%,var(--sky3) 62%,#f1f6fb 100%)}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1}
+  .b1{width:420px;height:420px;background:#eaf3fa;top:-80px;left:-90px}
+  .b2{width:360px;height:360px;background:#f4e4cd;top:34%;right:-110px}
+  .b3{width:460px;height:460px;background:#f3f8fc;bottom:-140px;left:18%}
+
+  .wrap{max-width:940px;margin:0 auto;padding:20px 18px 70px}
+
+  .hero{position:relative;border-radius:22px;overflow:hidden;margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(74,50,56,.16)}
+  .hero svg{display:block;width:100%;height:auto}
+  .hero-txt{position:absolute;left:0;right:0;top:0;padding:16px 0 54px;text-align:center;pointer-events:none;
+    background:radial-gradient(ellipse 62% 78% at 50% 24%, rgba(255,255,255,.9), rgba(255,255,255,.55) 52%, rgba(255,255,255,0) 76%)}
+  .hero-txt .kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#2f6ea8;font-weight:700}
+  .hero-txt h1{margin:4px 0 2px;font-size:clamp(21px,3.9vw,32px);color:#1e4d78;letter-spacing:.4px;
+    text-shadow:0 2px 0 #fff,0 3px 10px rgba(255,255,255,.9)}
+  .hero-txt .sub{font-size:13px;color:#6d7a86;font-weight:600}
+
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}
+  .chip{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;
+    box-shadow:0 3px 10px rgba(74,50,56,.07)}
+  .chip .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .chip .val{font-size:13.5px;font-weight:600;margin-top:2px}
+
+  .toc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px 18px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(74,50,56,.07)}
+  .toc .ttl{font-size:12px;letter-spacing:2.2px;text-transform:uppercase;color:var(--grass2);font-weight:800;
+    display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .toc .ttl::after{content:"";flex:1;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--line),transparent)}
+  .toc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc .it{display:flex;gap:10px;align-items:flex-start;background:#f9fbfe;border:1.4px solid var(--line);
+    border-radius:13px;padding:10px 12px}
+  .toc .it .n{flex:0 0 26px;height:26px;border-radius:9px;color:#fff;font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(140deg,var(--grass1),var(--grass2));box-shadow:0 2px 0 var(--grass3)}
+  .toc .it .t{font-size:12.5px;font-weight:800;color:var(--grass3);line-height:1.3}
+  .toc .it .d{font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .toc .note{margin-top:13px;background:#fdf6ec;border:1.4px dashed var(--gold);border-radius:13px;
+    padding:10px 13px;font-size:12.5px;color:#40230a;line-height:1.55}
+  .toc .note b{color:#40230a}
+
+  section{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px;
+    margin-bottom:22px;box-shadow:0 4px 16px rgba(74,50,56,.07);break-inside:avoid;page-break-inside:avoid}
+  h2{font-size:15px;letter-spacing:1.4px;color:var(--grass3);text-transform:uppercase;margin:0 0 4px;
+    display:flex;align-items:center;gap:9px}
+  h2 .num{background:var(--grass2);color:#fff;width:27px;height:27px;border-radius:9px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;
+    box-shadow:0 2px 0 var(--grass3)}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px;padding-left:36px}
+  svg.art{display:block;width:100%;height:auto;margin:4px 0 2px}
+  h2 .mascot{flex:none;margin-left:auto;display:block}
+  .deko{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:14px 0 0}
+  .deko svg{display:block}
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes g14bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+    @keyframes g14drift{0%{transform:translateX(-9px)}100%{transform:translateX(9px)}}
+    @keyframes g14twinkle{0%,100%{opacity:.4}50%{opacity:1}}
+    h2 .mascot,.deko svg{animation:g14bob 2.6s ease-in-out infinite}
+    .deko svg:nth-child(2){animation-delay:.45s}
+    .deko svg:nth-child(3){animation-delay:.9s}
+    .anim-drift{animation:g14drift 8s ease-in-out infinite alternate}
+    .anim-twinkle{animation:g14twinkle 2.2s ease-in-out infinite}
+  }
+  @media print{
+    h2 .mascot,.deko svg,.anim-drift,.anim-twinkle{animation:none !important}
+  }
+
+
+  .nota{border-left:5px solid var(--gold);background:#fdf6ec;border-radius:0 14px 14px 0;padding:16px 18px}
+  .nota ol{margin:0;padding-left:20px}
+  .nota li{margin-bottom:9px;font-size:14.5px}
+  .nota li b{color:#40230a}
+  .nota li:last-child{margin-bottom:0}
+
+  .scorebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:linear-gradient(135deg,#f7fafd,#fdf6ec);border:1.5px solid var(--line);
+    border-radius:16px;padding:12px 16px;margin-bottom:16px}
+  .scorebar .sc{font-size:15px;font-weight:800;color:var(--grass3)}
+  .bar{flex:1;min-width:180px;height:12px;background:#e8f1f9;border-radius:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:8px;
+    background:linear-gradient(90deg,var(--grass1),var(--grass2));transition:width .45s ease}
+  .scorebar .hint2{font-size:12px;color:var(--muted);font-weight:600}
+
+  .qcard{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:13px;
+    background:#fcfdfe;transition:box-shadow .25s}
+  .qcard.done{box-shadow:0 3px 12px rgba(191,95,87,.18)}
+  .qhead{display:flex;gap:9px;align-items:flex-start;margin-bottom:11px}
+  .qn{background:var(--teal);color:#fff;min-width:26px;height:26px;border-radius:8px;display:inline-flex;
+    align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+  .qtext{font-weight:700;font-size:14.5px}
+  .opts{display:grid;grid-template-columns:1fr;gap:7px}
+  @media(min-width:640px){.opts{grid-template-columns:1fr 1fr 1fr}}
+  .opt{font-family:inherit;text-align:left;font-size:13.5px;font-weight:600;cursor:pointer;
+    background:#eef5fa;border:2px solid #e8f1f9;border-radius:11px;padding:9px 12px;color:var(--ink);
+    transition:transform .12s,background .2s,border-color .2s;display:flex;gap:7px;align-items:flex-start}
+  .opt:hover:not(:disabled){transform:translateY(-2px);background:#fff;border-color:var(--teal)}
+  .opt:disabled{cursor:default}
+  .opt .k{font-weight:800;color:var(--teal);flex:none}
+  .opt.ok{background:#eaf3fa;border-color:var(--grass2);color:#1e4d78}
+  .opt.ok .k{color:var(--grass3)}
+  .opt.bad{background:#e9f2fa;border-color:#5e9ccb;color:#2f6ea8}
+  .opt.bad .k{color:#123a5c}
+  .opt.dim{opacity:.45}
+
+  .fb{display:none;margin-top:11px;border-radius:12px;padding:10px 13px;font-size:13.5px;
+    background:#f7fafd;border:1.5px dashed var(--grass2);align-items:flex-start;gap:11px}
+  .fb.show{display:flex}
+  .fb.wrong{background:#f2f7fb;border-color:#5e9ccb}
+  .fb .face{flex:none;width:52px;height:52px}
+  .fb .txt b{color:var(--grass3)}
+  .fb.wrong .txt b{color:#123a5c}
+
+  .result{display:none;text-align:center;padding:20px;border-radius:18px;margin-top:6px;
+    background:linear-gradient(135deg,#f7fafd,#fdf6ec);border:2px solid var(--grass1)}
+  .result.show{display:block}
+  .result .big{font-size:30px;font-weight:800;color:var(--grass3);margin:6px 0}
+  .result .msg{font-size:14.5px;font-weight:600;margin-bottom:12px}
+  .stars{font-size:22px;letter-spacing:3px;margin-bottom:6px}
+  button.act{font-family:inherit;font-size:13.5px;font-weight:700;border-radius:11px;padding:10px 18px;
+    border:2px solid var(--grass2);background:#fff;color:var(--grass3);cursor:pointer;transition:background .2s}
+  button.act:hover{background:var(--grass1);color:#fff}
+  button.act.solid{background:var(--grass2);color:#fff}
+  button.act.solid:hover{background:var(--grass3)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f7fafd;color:var(--grass3);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase}
+  td.c{text-align:center;white-space:nowrap;font-weight:700;color:var(--grass2)}
+  tr:nth-child(even) td{background:#f8fbfd}
+  tr.on td{background:#fdf6ec;font-weight:700}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);padding-top:4px}
+
+  @media print{
+    body{background:#fff}
+    .skybg,.blob{display:none}
+    .wrap{max-width:100%;padding:0}
+    .scorebar{display:none}
+    section{box-shadow:none;page-break-inside:avoid;padding:14px 16px}
+    .toc{box-shadow:none;page-break-inside:avoid;break-inside:avoid}
+    h2,.hint{page-break-after:avoid;break-after:avoid}
+    #art-info{width:auto;height:923px;display:block;margin:0 auto}
+    table{font-size:11.6px}
+    th,td{padding:3.5px 8px}
+    .qcard{page-break-inside:avoid;padding:10px 13px;margin-bottom:8px}
+    .qhead .qtext{font-size:13px}
+    .opt{padding:6px 9px;font-size:11.5px;transform:none !important}
+    .fb{margin-top:7px;padding:7px 10px;font-size:11.5px}
+    .fb .face{width:40px;height:40px}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @page{size:A4;margin:12mm}
+
+</style>
+</head>
+<body>
+
+<div class="skybg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<!-- ===== Watak kartun (statik) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <g id="adam">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <rect x="57" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <ellipse cx="46" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l7 44 h-56 z" fill="#7fc4b8" stroke="#7a4614" stroke-width="2"/>
+    <path d="M36 82 q-13 13 -9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 82 q13 13 9 32" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M39 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 38 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="49" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="46.5" r="1.9" fill="#fff"/><circle cx="68" cy="46.5" r="1.9" fill="#fff"/>
+    <path d="M55 56 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M49 63 q6 6.5 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="58" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="nur">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="43" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <rect x="58" y="120" width="11" height="30" rx="5" fill="#f7d5b5"/>
+    <ellipse cx="48" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="63" cy="152" rx="9" ry="5" fill="#8a5a4a"/>
+    <path d="M33 78 q22-11 44 0 l12 46 h-68 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <path d="M36 84 q-13 12 -10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 84 q13 12 10 30" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="54" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="51.5" r="1.9" fill="#fff"/><circle cx="67" cy="51.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="62" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Adam berdiri solat (bersedekap, berkopiah) -->
+  <g id="adamSolat">
+    <ellipse cx="55" cy="157" rx="32" ry="6" fill="#000" opacity=".08"/>
+    <path d="M30 74 q25-12 50 0 l13 84 h-76 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <ellipse cx="46" cy="156" rx="11" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="156" rx="11" ry="5.5" fill="#6b4f3a"/>
+    <path d="M35 80 q-10 12 -6 26 q10 4 14 -6 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <path d="M75 80 q10 12 6 26 q-10 4 -14 -6 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <path d="M40 84 q10 8 12 20" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M70 84 q-10 8 -12 20" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="42" y="104" width="26" height="12" rx="6" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M29 40 q26-24 52 0 q1 5 -3 5 h-46 q-4 0 -3 -5 z" fill="#3f7a45" stroke="#2f5c33" stroke-width="1.8"/>
+    <path d="M39 40 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 40 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="51" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="51" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="48.5" r="1.9" fill="#fff"/><circle cx="68" cy="48.5" r="1.9" fill="#fff"/>
+    <path d="M55 58 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 65 q5.5 5 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="60" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="60" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Adam duduk (tahiyyat) -->
+  <g id="adamDuduk">
+    <ellipse cx="55" cy="154" rx="35" ry="6" fill="#000" opacity=".08"/>
+    <path d="M20 152 q0-32 35-32 q35 0 35 32 z" fill="#e8e3d2" stroke="#cfc7b0" stroke-width="2"/>
+    <ellipse cx="42" cy="152" rx="12" ry="5" fill="#6b4f3a"/>
+    <ellipse cx="68" cy="152" rx="12" ry="5" fill="#6b4f3a"/>
+    <path d="M32 78 q23-11 46 0 l10 46 h-66 z" fill="#f4f1e6" stroke="#cfc7b0" stroke-width="2"/>
+    <path d="M38 88 q-6 26 4 42" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M72 88 q6 26 -4 42" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="32" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="61" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="50" y="68" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="52" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="52" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="48" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 48 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M29 42 q26-24 52 0 q1 5 -3 5 h-46 q-4 0 -3 -5 z" fill="#3f7a45" stroke="#2f5c33" stroke-width="1.8"/>
+    <path d="M39 42 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 42 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="53" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="66" cy="53" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="46" cy="50.5" r="1.9" fill="#fff"/><circle cx="68" cy="50.5" r="1.9" fill="#fff"/>
+    <path d="M55 60 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 67 q5.5 5 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="35" cy="62" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="75" cy="62" rx="6.5" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <g id="faceYay">
+    <circle cx="30" cy="30" r="26" fill="#eaf3fa" stroke="#2f6ea8" stroke-width="2.5"/>
+    <ellipse cx="22" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="27" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="25.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="25.4" r="1.3" fill="#fff"/>
+    <path d="M20 38 q10 9 20 0" stroke="#1e4d78" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="14" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <ellipse cx="46" cy="34" rx="4.5" ry="3" fill="#f2a2a2" opacity=".6"/>
+    <path d="M30 2 l3 5 5 1 -4 4 1 5 -5-3 -5 3 1-5 -4-4 5-1 z" fill="#9c5f1e"/>
+  </g>
+
+  <g id="faceOops">
+    <circle cx="30" cy="30" r="26" fill="#f2f7fb" stroke="#5e9ccb" stroke-width="2.5"/>
+    <ellipse cx="22" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <ellipse cx="38" cy="28" rx="3.4" ry="4.6" fill="#3a2b22"/>
+    <circle cx="23.4" cy="26.4" r="1.3" fill="#fff"/><circle cx="39.4" cy="26.4" r="1.3" fill="#fff"/>
+    <path d="M15 21 q7-5 13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M45 21 q-7-5 -13 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M21 41 q9-7 18 0" stroke="#123a5c" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+    <ellipse cx="47" cy="35" rx="4.5" ry="3" fill="#f2a2a2" opacity=".5"/>
+  </g>
+
+  <!-- Kambing (gembalaan Nabi SAW) -->
+  <g id="kambing">
+    <ellipse cx="42" cy="56" rx="28" ry="4" fill="#000" opacity=".08"/>
+    <path d="M20 30 q22-16 44 0 q4 14 -3 22 h-38 q-7-8 -3-22 z" fill="#f4eee0" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M22 44 q20 5 40 0" stroke="#cbb99a" stroke-width="1.2" fill="none" opacity=".6"/>
+    <path d="M64 26 q10-4 8-12" stroke="#cbb99a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <circle cx="64" cy="26" r="10.5" fill="#f8f3e6" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M58 15 q-7-8 0-13" stroke="#cbb99a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M70 15 q7-8 0-13" stroke="#cbb99a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="67" cy="25" rx="1.9" ry="2.4" fill="#3a2b22"/>
+    <ellipse cx="73" cy="30" rx="2.6" ry="1.8" fill="#e0b9a8"/>
+    <rect x="24" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <rect x="34" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <rect x="50" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <rect x="58" y="50" width="5" height="10" rx="2.2" fill="#cbb99a"/>
+    <path d="M16 30 q-7-6 -3-13" stroke="#cbb99a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  </g>
+  <!-- ===== PUSTAKA WATAK TAMBAHAN (set 14b) — gaya Ghibli, statik ===== -->
+
+  <!-- Kucing duduk -->
+  <g id="kucing">
+    <ellipse cx="40" cy="66" rx="28" ry="4" fill="#000" opacity=".08"/>
+    <path d="M24 64 q-7-26 16-26 q23 0 16 26 z" fill="#f4d8a8" stroke="#c9a86b" stroke-width="1.6"/>
+    <path d="M56 62 q15-6 13-22" stroke="#c9a86b" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M24 20 l-4-14 13 8 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M56 20 l4-14 -13 8 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="40" cy="30" r="20" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.6"/>
+    <ellipse cx="33" cy="30" rx="3.1" ry="4.1" fill="#3a2b22"/>
+    <ellipse cx="47" cy="30" rx="3.1" ry="4.1" fill="#3a2b22"/>
+    <circle cx="34" cy="28.6" r="1.2" fill="#fff"/><circle cx="48" cy="28.6" r="1.2" fill="#fff"/>
+    <path d="M40 35 q-3 3.4 0 4.4" stroke="#c98f63" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M35 41 q5 4 10 0" stroke="#a8794f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <g stroke="#c9a86b" stroke-width="1" opacity=".75" stroke-linecap="round">
+      <path d="M22 32 h-9"/><path d="M22 36 h-9"/><path d="M58 32 h9"/><path d="M58 36 h9"/>
+    </g>
+    <ellipse cx="31" cy="25" rx="4" ry="2.5" fill="#e88ba0" opacity=".38"/>
+    <ellipse cx="49" cy="25" rx="4" ry="2.5" fill="#e88ba0" opacity=".38"/>
+  </g>
+
+  <!-- Burung kecil -->
+  <g id="burung">
+    <path d="M6 16 q-8-7 -5-13 q6 4 8 9 z" fill="#7ab6d8" stroke="#4a8cb0" stroke-width="1.2" stroke-linejoin="round"/>
+    <ellipse cx="20" cy="19" rx="13" ry="10" fill="#8ec6e6" stroke="#4a8cb0" stroke-width="1.4"/>
+    <circle cx="31" cy="12" r="8" fill="#9fd2ec" stroke="#4a8cb0" stroke-width="1.4"/>
+    <path d="M38 11 l7 3 -7 3 z" fill="#e8a94a"/>
+    <circle cx="32" cy="10.5" r="1.8" fill="#2f3b45"/>
+    <path d="M15 26 q5 3 10 0" stroke="#4a8cb0" stroke-width="1.2" fill="none" opacity=".6"/>
+  </g>
+
+  <!-- Awan -->
+  <g id="awan">
+    <g fill="#ffffff">
+      <circle cx="20" cy="27" r="13"/><circle cx="39" cy="19" r="17"/>
+      <circle cx="59" cy="26" r="14"/><rect x="20" y="25" width="39" height="14" rx="7"/>
+    </g>
+    <path d="M8 33 q11 8 31 8 q20 0 31-8" stroke="#dfe8f4" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Pokok besar -->
+  <g id="pokokBesar">
+    <ellipse cx="60" cy="148" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M54 148 v-54 h12 v54 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <path d="M60 106 q-16-6 -22-20" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M60 114 q16-8 22-22" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.4">
+      <ellipse cx="60" cy="50" rx="40" ry="30"/>
+      <ellipse cx="30" cy="70" rx="26" ry="21"/>
+      <ellipse cx="90" cy="70" rx="26" ry="21"/>
+      <ellipse cx="60" cy="86" rx="34" ry="20"/>
+    </g>
+    <g fill="#a9d383" opacity=".7">
+      <ellipse cx="46" cy="42" rx="18" ry="12"/><ellipse cx="82" cy="58" rx="13" ry="9"/>
+    </g>
+  </g>
+
+  <!-- Sekuntum bunga -->
+  <g id="bungaSatu">
+    <path d="M0 24 v-13" stroke="#6d9c4a" stroke-width="1.6" stroke-linecap="round"/>
+    <g fill="#f2b8c6" stroke="#d98da0" stroke-width="1">
+      <circle cx="0" cy="4" r="3.6"/><circle cx="-4" cy="8" r="3.6"/>
+      <circle cx="4" cy="8" r="3.6"/><circle cx="0" cy="12" r="3.6"/>
+    </g>
+    <circle cx="0" cy="8" r="2.4" fill="#e8a94a"/>
+  </g>
+
+  <!-- Rumpun bunga -->
+  <g id="bunga">
+    <use href="#bungaSatu" x="0" y="0"/>
+    <use href="#bungaSatu" x="16" y="-5"/>
+    <use href="#bungaSatu" x="31" y="2"/>
+  </g>
+
+  <!-- Kilauan bintang -->
+  <g id="bintang">
+    <path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="#e8b44a"/>
+  </g>
+
+  <!-- Kepala Adam (mascot kecil) -->
+  <g id="kepalaAdam">
+    <ellipse cx="35" cy="37" rx="26" ry="28" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M9 37 a26 28 0 0 1 52 0 q-8-18 -26-18 q-18 0 -26 18 z" fill="#5a3b28"/>
+    <path d="M21 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M39 30 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="26" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <ellipse cx="44" cy="40" rx="4.6" ry="6" fill="#3a2b22"/>
+    <circle cx="27.8" cy="37.6" r="1.7" fill="#fff"/><circle cx="45.8" cy="37.6" r="1.7" fill="#fff"/>
+    <path d="M35 47 q-3 4 1 5" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M29 54 q6 6 12 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="17" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="53" cy="49" rx="6" ry="3.8" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Kepala Nur (mascot kecil) -->
+  <g id="kepalaNur">
+    <path d="M4 40 q0-32 32-32 q32 0 32 32 q0 30 -11 32 q-6-24 -21-24 q-15 0 -21 24 q-11-2 -11-32 z"
+          fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="36" cy="41" rx="22" ry="24" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M22 34 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M40 34 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="27" cy="43" rx="4.6" ry="6" fill="#3a2b22"/>
+    <ellipse cx="45" cy="43" rx="4.6" ry="6" fill="#3a2b22"/>
+    <circle cx="28.8" cy="40.6" r="1.7" fill="#fff"/><circle cx="46.8" cy="40.6" r="1.7" fill="#fff"/>
+    <path d="M36 50 q-3 4 1 5" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M31 57 q5 5.5 10 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="19" cy="52" rx="5.6" ry="3.6" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="53" cy="52" rx="5.6" ry="3.6" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Nur duduk (tahiyyat) -->
+  <g id="nurDuduk">
+    <ellipse cx="55" cy="154" rx="35" ry="6" fill="#000" opacity=".08"/>
+    <path d="M20 152 q0-32 35-32 q35 0 35 32 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <ellipse cx="42" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="68" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <path d="M32 80 q23-11 46 0 l10 44 h-66 z" fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <path d="M38 90 q-6 24 4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M72 90 q6 24 -4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="32" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="61" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <path d="M22 50 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <ellipse cx="55" cy="54" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M40 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="53.5" r="1.9" fill="#fff"/><circle cx="67" cy="53.5" r="1.9" fill="#fff"/>
+    <path d="M55 62 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 69 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Ustaz (guru) — ketayap, jubah, berjanggut, memegang kitab -->
+  <g id="ustaz">
+    <ellipse cx="55" cy="156" rx="32" ry="6" fill="#000" opacity=".08"/>
+    <path d="M28 78 q27-13 54 0 l14 78 h-82 z" fill="#eef3fb" stroke="#b8c6de" stroke-width="2"/>
+    <path d="M55 80 v76" stroke="#b8c6de" stroke-width="1.3" opacity=".65"/>
+    <ellipse cx="45" cy="156" rx="11" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="65" cy="156" rx="11" ry="5.5" fill="#6b4f3a"/>
+    <path d="M30 86 q-9 14 -4 30 q9 3 13 -8 z" fill="#eef3fb" stroke="#b8c6de" stroke-width="2"/>
+    <path d="M80 86 q9 14 4 30 q-9 3 -13 -8 z" fill="#eef3fb" stroke="#b8c6de" stroke-width="2"/>
+    <path d="M37 94 q12 8 14 24" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M73 94 q-12 8 -14 24" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="38" y="116" width="34" height="24" rx="3" fill="#2f6ea8" stroke="#1e4d78" stroke-width="1.6"/>
+    <rect x="41" y="119" width="28" height="18" rx="2" fill="#fdf6ec"/>
+    <rect x="50" y="70" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="54" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="54" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="50" rx="27" ry="29" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M28 50 a27 29 0 0 1 54 0 q-8-18 -27-18 q-19 0 -27 18 z" fill="#4a3526"/>
+    <path d="M33 64 q22 22 44 0 q-3 24 -22 24 q-19 0 -22-24 z" fill="#5a3b28"/>
+    <path d="M29 44 q26-24 52 0 q1 5 -3 5 h-46 q-4 0 -3 -5 z" fill="#3f7a45" stroke="#2f5c33" stroke-width="1.8"/>
+    <path d="M40 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 44 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="55" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="55" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="52.5" r="1.9" fill="#fff"/><circle cx="67" cy="52.5" r="1.9" fill="#fff"/>
+    <path d="M55 62 q-3 3.6 1 4.6" stroke="#c98f63" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+  </g>
+  <!-- ===== PUSTAKA WATAK TAMBAHAN (set 15) — tema al-Quran / masjid, gaya Ghibli ===== -->
+
+  <!-- Masjid: kubah bawang, 2 menara, pintu gerbang, tingkap -->
+  <g id="masjid">
+    <ellipse cx="110" cy="188" rx="98" ry="7" fill="#000" opacity=".07"/>
+    <!-- menara kiri -->
+    <rect x="18" y="78" width="21" height="110" fill="#fdf6ec" stroke="#b8d4e8" stroke-width="2"/>
+    <path d="M18 78 q10.5-18 21 0 z" fill="#5e9ccb" stroke="#1e4d78" stroke-width="1.6"/>
+    <rect x="22" y="98" width="13" height="7" rx="2.5" fill="#7a4614"/>
+    <circle cx="28.5" cy="71" r="3.2" fill="#9c5f1e"/>
+    <!-- menara kanan -->
+    <rect x="181" y="78" width="21" height="110" fill="#fdf6ec" stroke="#b8d4e8" stroke-width="2"/>
+    <path d="M181 78 q10.5-18 21 0 z" fill="#5e9ccb" stroke="#1e4d78" stroke-width="1.6"/>
+    <rect x="185" y="98" width="13" height="7" rx="2.5" fill="#7a4614"/>
+    <circle cx="191.5" cy="71" r="3.2" fill="#9c5f1e"/>
+    <!-- badan masjid -->
+    <rect x="46" y="100" width="128" height="88" fill="#fdf6ec" stroke="#b8d4e8" stroke-width="2"/>
+    <!-- kubah bawang -->
+    <path d="M44 102 C44 62 76 44 110 28 C144 44 176 62 176 102 Z"
+          fill="#5e9ccb" stroke="#1e4d78" stroke-width="2"/>
+    <path d="M110 28 C144 44 176 62 176 102 L150 102 C150 74 132 54 110 42 Z"
+          fill="#2f6ea8" opacity=".5"/>
+    <!-- bulan & bintang di puncak -->
+    <path d="M110 28 v-13" stroke="#9c5f1e" stroke-width="2.4"/>
+    <path d="M103 9 a7.4 7.4 0 1 0 9 8.4 a5.9 5.9 0 1 1 -9-8.4 z" fill="#9c5f1e"/>
+    <!-- pintu gerbang -->
+    <path d="M88 188 v-40 q22-27 44 0 v40 z" fill="#7a4614" stroke="#5e3510" stroke-width="1.8"/>
+    <path d="M110 148 v40" stroke="#5e3510" stroke-width="1.2" opacity=".55"/>
+    <!-- tingkap melengkung -->
+    <path d="M58 158 v-20 q10-13 20 0 v20 z" fill="#b8d4e8" stroke="#5e9ccb" stroke-width="1.4"/>
+    <path d="M142 158 v-20 q10-13 20 0 v20 z" fill="#b8d4e8" stroke="#5e9ccb" stroke-width="1.4"/>
+    <!-- jalur hiasan -->
+    <path d="M46 116 h128" stroke="#9c5f1e" stroke-width="2" opacity=".55"/>
+  </g>
+
+  <!-- Rehal (penyandar kitab) dengan al-Quran terbuka -->
+  <g id="rehal">
+    <ellipse cx="40" cy="56" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M10 54 L34 24" stroke="#a87f5c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M70 54 L46 24" stroke="#a87f5c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M15 44 L65 44" stroke="#8a6544" stroke-width="4.5" stroke-linecap="round"/>
+    <!-- kitab terbuka -->
+    <path d="M6 24 L40 12 L74 24 L74 29 L40 17 L6 29 Z" fill="#fdf6ec" stroke="#cbb99a" stroke-width="1.5"/>
+    <path d="M40 12 v5" stroke="#cbb99a" stroke-width="1.5"/>
+    <g stroke="#cbb99a" stroke-width="1" opacity=".8">
+      <path d="M13 24 h19"/><path d="M13 28 h19"/><path d="M48 24 h19"/><path d="M48 28 h19"/>
+    </g>
+    <path d="M6 24 q-4 6 2 8" stroke="#9c5f1e" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Sajadah (sejadah) — pale body + gold mihrab arch, so it reads as a mat
+       instead of a heavy saturated slab behind the sitting figure -->
+  <g id="sajadah">
+    <rect x="2" y="4" width="106" height="48" rx="6" fill="#e6eff7" stroke="#2f6ea8" stroke-width="1.8"/>
+    <rect x="9" y="11" width="92" height="34" rx="3" fill="none" stroke="#b8d4e8" stroke-width="1.2"/>
+    <g stroke="#b8d4e8" stroke-width="1" opacity=".85">
+      <path d="M20 11 v34"/><path d="M92 11 v34"/>
+    </g>
+    <path d="M42 45 v-19 q13-16 26 0 v19" fill="none" stroke="#9c5f1e" stroke-width="2"/>
+    <g fill="#9c5f1e" opacity=".7">
+      <circle cx="18" cy="18" r="1.7"/><circle cx="92" cy="18" r="1.7"/>
+      <circle cx="18" cy="38" r="1.7"/><circle cx="92" cy="38" r="1.7"/>
+    </g>
+    <path d="M2 20 h-4 M108 20 h4 M2 36 h-4 M108 36 h4" stroke="#1e4d78" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Pokok kelapa sawit -->
+  <g id="palm">
+    <ellipse cx="40" cy="150" rx="24" ry="5" fill="#000" opacity=".07"/>
+    <path d="M36 150 q-5-58 3-98 l9 0 q-6 42 -3 98 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.3" stroke-linejoin="round">
+      <path d="M43 54 q-34-8 -43 11 q23-9 43-4 z"/>
+      <path d="M43 54 q34-8 43 11 q-23-9 -43-4 z"/>
+      <path d="M43 52 q-24-26 -42-25 q17 15 40 33 z"/>
+      <path d="M43 52 q24-26 42-25 q-17 15 -40 33 z"/>
+      <path d="M43 48 q-5-31 4-47 q9 16 4 47 z"/>
+    </g>
+    <circle cx="33" cy="62" r="4" fill="#9c5f1e"/>
+    <circle cx="51" cy="62" r="4" fill="#9c5f1e"/>
+  </g>
+
+  <!-- Semak kecil -->
+  <g id="semak">
+    <ellipse cx="34" cy="44" rx="30" ry="4" fill="#000" opacity=".06"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.3">
+      <circle cx="18" cy="32" r="15"/><circle cx="38" cy="24" r="18"/><circle cx="56" cy="33" r="14"/>
+    </g>
+    <g fill="#a9d383" opacity=".65">
+      <circle cx="30" cy="20" r="7"/><circle cx="52" cy="28" r="5"/>
+    </g>
+  </g>
+
+  <!-- Lampu gantung masjid -->
+  <g id="lampuMasjid">
+    <path d="M18 0 v13" stroke="#9c5f1e" stroke-width="1.6"/>
+    <path d="M6 25 q0-12 12-12 q12 0 12 12 z" fill="#9c5f1e" stroke="#40230a" stroke-width="1.4"/>
+    <path d="M4 25 h28 l-4 23 q-10 7 -20 0 z" fill="#ffe9a8" stroke="#9c5f1e" stroke-width="1.6"/>
+    <ellipse cx="18" cy="35" rx="7" ry="10" fill="#fff6cf"/>
+    <path d="M14 48 h8 v6 h-8 z" fill="none" stroke="#9c5f1e" stroke-width="1.4"/>
+    <circle cx="18" cy="57" r="3" fill="#9c5f1e"/>
+  </g>
+
+  <!-- Bulan sabit & bintang -->
+  <g id="bintangBulan">
+    <path d="M24 4 a17 17 0 1 0 15 21 a13.2 13.2 0 1 1 -15-21 z" fill="#e8b44a"/>
+    <path d="M37 5 L39.8 13.6 L48 16.4 L39.8 19.2 L37 28 L34.2 19.2 L26 16.4 L34.2 13.6 Z" fill="#e8b44a"/>
+  </g>
+
+  <!-- Jam (masa) -->
+  <g id="jamMasa">
+    <circle cx="26" cy="26" r="24" fill="#fffcf9" stroke="#2f6ea8" stroke-width="3"/>
+    <circle cx="26" cy="26" r="19" fill="#f9fbfe" stroke="#e8f1f9" stroke-width="1.2"/>
+    <path d="M26 26 V13" stroke="#1e4d78" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M26 26 L35 31" stroke="#9c5f1e" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="26" cy="26" r="2.4" fill="#1e4d78"/>
+    <g fill="#b8d4e8"><circle cx="26" cy="9" r="1.6"/><circle cx="43" cy="26" r="1.6"/>
+      <circle cx="26" cy="43" r="1.6"/><circle cx="9" cy="26" r="1.6"/></g>
+  </g>
+
+  <!-- Adam duduk membaca al-Quran (baju biru-kelabu + trim hijau) -->
+  <g id="adamBaca">
+    <ellipse cx="55" cy="154" rx="35" ry="6" fill="#000" opacity=".08"/>
+    <path d="M20 152 q0-32 35-32 q35 0 35 32 z" fill="#5b7fa8" stroke="#3f5f85" stroke-width="2"/>
+    <ellipse cx="42" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <ellipse cx="68" cy="152" rx="12" ry="5" fill="#8a5a4a"/>
+    <path d="M32 80 q23-11 46 0 l10 44 h-66 z" fill="#5b7fa8" stroke="#3f5f85" stroke-width="2"/>
+    <path d="M34 118 q21 9 42 0 l4 12 h-50 z" fill="#7fc4b8" stroke="#3f5f85" stroke-width="1.4"/>
+    <path d="M38 90 q-6 24 4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M72 90 q6 24 -4 40" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <rect x="32" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <rect x="61" y="126" width="17" height="10" rx="5" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <!-- al-Quran terbuka di pangkuan -->
+    <path d="M24 124 L55 114 L86 124 L86 132 L55 122 L24 132 Z" fill="#fdf6ec" stroke="#cbb99a" stroke-width="1.5"/>
+    <path d="M55 114 v8" stroke="#cbb99a" stroke-width="1.5"/>
+    <g stroke="#cbb99a" stroke-width="1" opacity=".85">
+      <path d="M31 124 h18"/><path d="M31 128 h18"/><path d="M61 124 h18"/><path d="M61 128 h18"/>
+    </g>
+    <!-- kepala -->
+    <ellipse cx="55" cy="54" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M31 54 a24 26 0 0 1 48 0 q-7-17 -24-17 q-17 0 -24 17 z" fill="#5a3b28"/>
+    <path d="M40 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M60 46 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <ellipse cx="65" cy="56" rx="5" ry="6.5" fill="#3a2b22"/>
+    <circle cx="47" cy="53.5" r="1.9" fill="#fff"/><circle cx="67" cy="53.5" r="1.9" fill="#fff"/>
+    <path d="M55 62 q-3 4 1 5" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M50 69 q5.5 6 11 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="64" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+  </g>
+
+  <!-- Kucing tidur -->
+  <g id="kucingTidur">
+    <ellipse cx="33" cy="36" rx="30" ry="4" fill="#000" opacity=".07"/>
+    <path d="M6 34 q-2-22 27-22 q29 0 27 22 z" fill="#f4d8a8" stroke="#c9a86b" stroke-width="1.6"/>
+    <path d="M52 32 q14-4 12-16" stroke="#c9a86b" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M12 14 l-3-11 11 6 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M32 14 l3-11 -11 6 z" fill="#f7e0b8" stroke="#c9a86b" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M13 24 q6-5 12 0" stroke="#4a3b2f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M31 24 q6-5 12 0" stroke="#4a3b2f" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M22 31 q5 4 10 0" stroke="#a8794f" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="13" cy="30" rx="4" ry="2.4" fill="#e88ba0" opacity=".4"/>
+    <ellipse cx="43" cy="30" rx="4" ry="2.4" fill="#e88ba0" opacity=".4"/>
+  </g>
+  <!-- ===== PUSTAKA WATAK TAMBAHAN (set 16) — tema kelas / sudut bacaan, gaya Ghibli ===== -->
+
+  <!-- Almari buku: 2 rak, buku berwarna-warni -->
+  <g id="almari">
+    <rect x="0" y="0" width="104" height="150" rx="7" fill="#b98a5a" stroke="#8a6544" stroke-width="2"/>
+    <rect x="7" y="7" width="90" height="60" rx="3" fill="#f2ece0" stroke="#8a6544" stroke-width="1.4"/>
+    <rect x="7" y="75" width="90" height="60" rx="3" fill="#f2ece0" stroke="#8a6544" stroke-width="1.4"/>
+    <!-- rak atas -->
+    <rect x="13" y="22" width="10" height="45" rx="2" fill="#c9707f"/>
+    <rect x="25" y="28" width="9" height="39" rx="2" fill="#5b7fa8"/>
+    <rect x="36" y="18" width="11" height="49" rx="2" fill="#9c5f1e"/>
+    <rect x="49" y="30" width="9" height="37" rx="2" fill="#4e9a7e"/>
+    <rect x="60" y="24" width="10" height="43" rx="2" fill="#7fc4b8"/>
+    <rect x="72" y="32" width="8" height="35" rx="2" fill="#b5722c"/>
+    <rect x="82" y="20" width="11" height="47" rx="2" fill="#8a5fc0"/>
+    <!-- rak bawah -->
+    <rect x="13" y="90" width="11" height="45" rx="2" fill="#4e9a7e"/>
+    <rect x="26" y="96" width="9" height="39" rx="2" fill="#9c5f1e"/>
+    <rect x="37" y="86" width="10" height="49" rx="2" fill="#5b7fa8"/>
+    <rect x="49" y="98" width="9" height="37" rx="2" fill="#c9707f"/>
+    <rect x="60" y="92" width="11" height="43" rx="2" fill="#b5722c"/>
+    <rect x="73" y="100" width="8" height="35" rx="2" fill="#7fc4b8"/>
+    <rect x="83" y="88" width="10" height="47" rx="2" fill="#8a5fc0"/>
+    <!-- (buku bertindih di sisi dibuang: ia terkeluar dari bingkai almari dan
+         nampak seperti serpihan terapung pada saiz kecil) -->
+  </g>
+
+  <!-- Meja baca rendah (kayu) -->
+  <g id="mejaBaca">
+    <rect x="0" y="0" width="160" height="12" rx="5" fill="#c49a63" stroke="#8a6544" stroke-width="1.6"/>
+    <rect x="0" y="12" width="160" height="5" rx="2" fill="#a8825c"/>
+    <rect x="14" y="17" width="9" height="30" rx="3" fill="#a8825c" stroke="#8a6544" stroke-width="1.2"/>
+    <rect x="137" y="17" width="9" height="30" rx="3" fill="#a8825c" stroke="#8a6544" stroke-width="1.2"/>
+    <rect x="24" y="30" width="112" height="5" rx="2" fill="#b98a5a"/>
+  </g>
+
+  <!-- Papan notis dinding: bingkai kayu + kertas dipin -->
+  <g id="papanNotis">
+    <rect x="0" y="0" width="150" height="104" rx="6" fill="#b98a5a" stroke="#8a6544" stroke-width="2.4"/>
+    <rect x="6" y="6" width="138" height="92" rx="4" fill="#e6dcc8" stroke="#a8825c" stroke-width="1.2"/>
+    <!-- kertas -->
+    <rect x="14" y="14" width="42" height="34" rx="2" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.1" transform="rotate(-4 35 31)"/>
+    <rect x="60" y="16" width="40" height="32" rx="2" fill="#fdf6ec" stroke="#cbb99a" stroke-width="1.1" transform="rotate(3 80 32)"/>
+    <rect x="104" y="14" width="34" height="36" rx="2" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.1"/>
+    <rect x="20" y="56" width="52" height="34" rx="2" fill="#e8f3ec" stroke="#cbb99a" stroke-width="1.1" transform="rotate(2 46 73)"/>
+    <rect x="80" y="58" width="56" height="32" rx="2" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.1"/>
+    <!-- garisan tulisan -->
+    <g stroke="#b9b09a" stroke-width="1.1" opacity=".85">
+      <path d="M18 22 h34"/><path d="M18 28 h34"/><path d="M18 34 h22"/>
+      <path d="M64 24 h32"/><path d="M64 30 h32"/><path d="M64 36 h20"/>
+      <path d="M108 22 h26"/><path d="M108 28 h26"/><path d="M108 34 h26"/><path d="M108 40 h16"/>
+      <path d="M24 64 h44"/><path d="M24 70 h44"/><path d="M24 76 h30"/>
+      <path d="M84 66 h48"/><path d="M84 72 h48"/><path d="M84 78 h32"/>
+    </g>
+    <!-- pin -->
+    <g fill="#c9707f"><circle cx="35" cy="13" r="3"/><circle cx="80" cy="15" r="3"/><circle cx="121" cy="13" r="3"/>
+      <circle cx="46" cy="55" r="3"/><circle cx="108" cy="57" r="3"/></g>
+  </g>
+
+  <!-- Hamparan / permaidani bulat untuk bulatan bacaan -->
+  <g id="hamparan">
+    <ellipse cx="100" cy="42" rx="98" ry="40" fill="#e6eff7" stroke="#b8d4e8" stroke-width="2.2"/>
+    <ellipse cx="100" cy="42" rx="82" ry="32" fill="none" stroke="#b8d4e8" stroke-width="1.4"/>
+    <ellipse cx="100" cy="42" rx="58" ry="22" fill="none" stroke="#b8d4e8" stroke-width="1.2" opacity=".8"/>
+    <g fill="#2f6ea8" opacity=".35">
+      <circle cx="100" cy="42" r="5"/>
+    </g>
+    <g stroke="#b5722c" stroke-width="1.8" opacity=".75" fill="none">
+      <path d="M18 42 h22"/><path d="M160 42 h22"/>
+    </g>
+  </g>
+
+  <!-- Timbunan buku -->
+  <g id="bukuTimbun">
+    <rect x="2" y="34" width="66" height="12" rx="3" fill="#c9707f" stroke="#a05a66" stroke-width="1.3"/>
+    <rect x="6" y="23" width="58" height="12" rx="3" fill="#5b7fa8" stroke="#3f5f85" stroke-width="1.3"/>
+    <rect x="4" y="12" width="62" height="12" rx="3" fill="#9c5f1e" stroke="#9a6a14" stroke-width="1.3"/>
+    <rect x="10" y="4" width="50" height="9" rx="3" fill="#4e9a7e" stroke="#2f6b56" stroke-width="1.2"/>
+    <g stroke="#fffcf9" stroke-width="1" opacity=".6">
+      <path d="M8 17 h54"/><path d="M10 28 h50"/><path d="M6 39 h58"/>
+    </g>
+  </g>
+
+  <!-- Glob dunia -->
+  <g id="glob">
+    <ellipse cx="30" cy="70" rx="20" ry="4" fill="#000" opacity=".08"/>
+    <path d="M26 68 h8 v-6 h-8 z" fill="#a8825c" stroke="#8a6544" stroke-width="1.3"/>
+    <ellipse cx="30" cy="66" rx="14" ry="3" fill="#c49a63" stroke="#8a6544" stroke-width="1.3"/>
+    <circle cx="30" cy="32" r="26" fill="#cfe4ee" stroke="#8a6544" stroke-width="1.8"/>
+    <path d="M30 6 a26 26 0 0 0 0 52 a13 26 0 0 1 0 -52 z" fill="#b8d4e8" opacity=".55"/>
+    <path d="M14 22 q10-5 20 2 q8 6 18 1" stroke="#6d9c4a" stroke-width="1.6" fill="none" opacity=".7"/>
+    <path d="M18 44 q9 4 18-1" stroke="#6d9c4a" stroke-width="1.6" fill="none" opacity=".7"/>
+    <path d="M30 6 v52" stroke="#8a6544" stroke-width="1" opacity=".35"/>
+    <path d="M4 32 h52" stroke="#8a6544" stroke-width="1" opacity=".35"/>
+  </g>
+  <!-- ===== PUSTAKA WATAK TAMBAHAN (set 17) — tema hafazan / halaqah, gaya Ghibli ===== -->
+
+  <!-- Mushaf tertutup dengan hiasan emas -->
+  <g id="mushaf">
+    <ellipse cx="42" cy="68" rx="34" ry="5" fill="#000" opacity=".08"/>
+    <!-- blok halaman (tebal buku) terkeluar di kanan & bawah -->
+    <rect x="12" y="18" width="70" height="48" rx="4" fill="#f6f1e4" stroke="#cbb99a" stroke-width="1.4"/>
+    <g stroke="#ddd0b6" stroke-width="1.1">
+      <path d="M14 28 h66"/><path d="M14 38 h66"/><path d="M14 48 h66"/><path d="M14 58 h66"/>
+    </g>
+    <!-- kulit depan (di atas blok halaman) -->
+    <rect x="4" y="10" width="72" height="48" rx="4" fill="#2f6ea8" stroke="#1e4d78" stroke-width="2"/>
+    <rect x="9" y="15" width="62" height="38" rx="3" fill="#5e9ccb" stroke="#1e4d78" stroke-width="1"/>
+    <!-- tulang buku -->
+    <path d="M5 15 q-3.5 19 0 38" fill="none" stroke="#1e4d78" stroke-width="3.4" stroke-linecap="round"/>
+    <!-- bingkai & hiasan emas -->
+    <rect x="15" y="20" width="50" height="28" rx="2.5" fill="none" stroke="#e0b04a" stroke-width="1.2"/>
+    <g fill="#e0b04a">
+      <path d="M40 25 l3.2 6.4 -3.2 6.4 -3.2-6.4 z"/>
+      <circle cx="40" cy="23.4" r="1.9"/>
+      <g stroke="#e0b04a" stroke-width="1.2" stroke-linecap="round">
+        <path d="M22 30 h7 M51 30 h7 M22 38 h7 M51 38 h7"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Timbunan kad ayat (untuk permainan susunan) -->
+  <g id="kadAyat">
+    <rect x="10" y="4" width="64" height="44" rx="4" fill="#f4e4cd" stroke="#7a4614" stroke-width="1.4" transform="rotate(-8 42 26)"/>
+    <rect x="6" y="8" width="64" height="44" rx="4" fill="#fffcf9" stroke="#7a4614" stroke-width="1.4" transform="rotate(3 38 30)"/>
+    <rect x="2" y="12" width="64" height="44" rx="4" fill="#fdf6ec" stroke="#5e3510" stroke-width="1.6"/>
+    <g stroke="#c0a98c" stroke-width="1.3" stroke-linecap="round">
+      <path d="M12 24 h44"/><path d="M12 32 h44"/><path d="M12 40 h28"/>
+    </g>
+    <circle cx="58" cy="46" r="5" fill="#2f6ea8"/>
+    <text x="58" y="49" text-anchor="middle" font-family="Trebuchet MS" font-size="7" font-weight="700" fill="#ffffff">1</text>
+  </g>
+
+  <!-- Papan semak hafazan (tasmik) dengan 6 kotak tanda -->
+  <g id="papanSkor">
+    <rect x="0" y="0" width="130" height="104" rx="7" fill="#8a6544" stroke="#6b4d34" stroke-width="2.2"/>
+    <rect x="6" y="6" width="118" height="92" rx="4" fill="#f4eee0" stroke="#c9b596" stroke-width="1.2"/>
+    <rect x="14" y="13" width="102" height="18" rx="4" fill="#2f6ea8"/>
+    <text x="65" y="26" text-anchor="middle" font-family="Trebuchet MS" font-size="10" font-weight="700" fill="#ffffff">TASMIK</text>
+    <g stroke="#5e3510" stroke-width="1.4">
+      <rect x="16" y="38" width="12" height="12" rx="2" fill="#ffffff"/>
+      <rect x="16" y="56" width="12" height="12" rx="2" fill="#ffffff"/>
+      <rect x="16" y="74" width="12" height="12" rx="2" fill="#ffffff"/>
+      <rect x="70" y="38" width="12" height="12" rx="2" fill="#ffffff"/>
+      <rect x="70" y="56" width="12" height="12" rx="2" fill="#ffffff"/>
+      <rect x="70" y="74" width="12" height="12" rx="2" fill="#ffffff"/>
+    </g>
+    <g stroke="#2f6ea8" stroke-width="2" stroke-linecap="round">
+      <path d="M17.5 44 l3 3.4 l6-7"/><path d="M17.5 62 l3 3.4 l6-7"/>
+      <path d="M71.5 44 l3 3.4 l6-7"/>
+    </g>
+    <g fill="#8a7d6a" opacity=".7">
+      <rect x="33" y="41" width="30" height="5" rx="2.5"/><rect x="33" y="59" width="30" height="5" rx="2.5"/>
+      <rect x="33" y="77" width="30" height="5" rx="2.5"/>
+      <rect x="87" y="41" width="30" height="5" rx="2.5"/><rect x="87" y="59" width="30" height="5" rx="2.5"/>
+      <rect x="87" y="77" width="30" height="5" rx="2.5"/>
+    </g>
+  </g>
+
+  <!-- Bintang prestasi (pingat) -->
+  <g id="bintangPrestasi">
+    <path d="M30 4 l6 15 16 1 -12 11 4 16 -14-8 -14 8 4-16 -12-11 16-1 z"
+          fill="#e0b04a" stroke="#a87a1c" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M30 12 l3.6 9 9.6 .6 -7.2 6.6 2.4 9.6 -8.4-4.8 -8.4 4.8 2.4-9.6 -7.2-6.6 9.6-.6 z"
+          fill="#f6dfa0" opacity=".75"/>
+    <path d="M22 48 l-7 20 15-9 15 9 -7-20 z" fill="#7a4614" stroke="#5e3510" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M30 4 v-4" stroke="#a87a1c" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Jam pasir (ulang setiap hari) -->
+  <g id="jamPasir">
+    <ellipse cx="26" cy="74" rx="20" ry="4" fill="#000" opacity=".08"/>
+    <rect x="6" y="2" width="40" height="6" rx="3" fill="#b98a5a" stroke="#8a6544" stroke-width="1.4"/>
+    <rect x="6" y="66" width="40" height="6" rx="3" fill="#b98a5a" stroke="#8a6544" stroke-width="1.4"/>
+    <path d="M10 8 h32 l-14 26 h-4 z" fill="#f4f1e6" stroke="#8a6544" stroke-width="1.6"/>
+    <path d="M10 66 h32 l-14-26 h-4 z" fill="#f4f1e6" stroke="#8a6544" stroke-width="1.6"/>
+    <path d="M14 10 h24 l-11 20 h-2 z" fill="#e0b04a" opacity=".8"/>
+    <path d="M14 64 h24 l-11-20 h-2 z" fill="#e0b04a" opacity=".55"/>
+    <path d="M26 34 v16" stroke="#7a4614" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M8 8 v58 M44 8 v58" stroke="#8a6544" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Pokok ilmu: dahan dengan buah bintang -->
+  <g id="pokokIlmu">
+    <ellipse cx="65" cy="152" rx="34" ry="5" fill="#000" opacity=".07"/>
+    <path d="M58 152 v-56 h14 v56 z" fill="#a87f5c" stroke="#8a6544" stroke-width="1.6"/>
+    <path d="M65 110 q-18-8 -24-24" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M65 118 q18-10 24-26" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <g fill="#8fbf6a" stroke="#6d9c4a" stroke-width="1.4">
+      <ellipse cx="65" cy="52" rx="42" ry="32"/>
+      <ellipse cx="32" cy="72" rx="26" ry="21"/>
+      <ellipse cx="98" cy="72" rx="26" ry="21"/>
+      <ellipse cx="65" cy="88" rx="36" ry="21"/>
+    </g>
+    <g fill="#a9d383" opacity=".7">
+      <ellipse cx="50" cy="44" rx="19" ry="13"/><ellipse cx="88" cy="60" rx="14" ry="9"/>
+    </g>
+    <g fill="#e0b04a" stroke="#a87a1c" stroke-width="1.2">
+      <path d="M40 30 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+      <path d="M86 40 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+      <path d="M64 68 l2.6 6.4 6.9 .4 -5.2 4.7 1.7 6.8 -6-3.5 -6 3.5 1.7-6.8 -5.2-4.7 6.9-.4 z"/>
+    </g>
+  </g>
+
+  <!-- Wisel (untuk permainan susunan) -->
+  <g id="wisel">
+    <path d="M4 16 q0-9 9-9 h14 q6 0 6 6 v6 q0 6 -6 6 h-14 q-9 0 -9-9 z" fill="#e0b04a" stroke="#a87a1c" stroke-width="1.6"/>
+    <circle cx="14" cy="15" r="4" fill="#5e3510"/>
+    <rect x="31" y="11" width="16" height="8" rx="3" fill="#7a4614" stroke="#5e3510" stroke-width="1.3"/>
+    <path d="M47 15 q10-1 12-6" stroke="#8a6544" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <path d="M12 24 v5" stroke="#7a4614" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Nur duduk membaca mushaf (pasangan #adamBaca) -->
+  <g id="nurBaca">
+    <ellipse cx="55" cy="152" rx="32" ry="6" fill="#000" opacity=".08"/>
+    <path d="M22 96 q33-14 66 0 q6 30 0 56 h-66 q-6-26 0-56 z" fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <path d="M34 104 q-13 12 -11 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M76 104 q13 12 11 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.8"/>
+    <path d="M31 44 q24-9 48 0 q-4-24 -24-24 q-20 0 -24 24 z" fill="#f2b8c6"/>
+    <path d="M43 46 q6-4 11 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M56 46 q6-4 11 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M47 60 q8 6 16 0" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="56" rx="5" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="56" rx="5" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+    <path d="M28 118 q27-9 54 0 v18 q-27-8 -54 0 z" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M55 121 v15" stroke="#cbb99a" stroke-width="1.3"/>
+    <g stroke="#cfc7b0" stroke-width="1.1"><path d="M34 124 h16"/><path d="M34 130 h16"/><path d="M60 124 h16"/><path d="M60 130 h16"/></g>
+    <path d="M28 128 q-11 2 -13 12 q9 3 13-6 z" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <path d="M82 128 q11 2 13 12 q-9 3 -13-6 z" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+  </g>
+
+  <!-- Adam berdiri menghafaz: mushaf dipegang rapat ke dada, mata tertutup -->
+  <g id="adamHafaz">
+    <ellipse cx="55" cy="152" rx="30" ry="6" fill="#000" opacity=".08"/>
+    <rect x="40" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <rect x="57" y="116" width="13" height="34" rx="6" fill="#5b7fa8"/>
+    <ellipse cx="46" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <ellipse cx="64" cy="152" rx="10" ry="5.5" fill="#6b4f3a"/>
+    <path d="M34 76 q21-11 42 0 l7 44 h-56 z" fill="#7fc4b8" stroke="#9c5f1e" stroke-width="2"/>
+    <path d="M36 82 q-14 10 -12 26" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 82 q14 10 12 26" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <rect x="50" y="66" width="10" height="13" fill="#eec6a6"/>
+    <ellipse cx="27" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="50" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="46" rx="28" ry="30" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M27 46 a28 30 0 0 1 56 0 q-9-19 -28-19 q-19 0 -28 19 z" fill="#5a3b28"/>
+    <path d="M39 40 q5 3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 40 q5 3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M45 58 q10 7 20 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="38" cy="53" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="72" cy="53" rx="6" ry="4" fill="#f2a2a2" opacity=".55"/>
+    <rect x="34" y="88" width="42" height="32" rx="4" fill="#2f6ea8" stroke="#1e4d78" stroke-width="1.8"/>
+    <rect x="38" y="92" width="34" height="24" rx="2" fill="#5e9ccb" stroke="#1e4d78" stroke-width="1.1"/>
+    <path d="M55 92 v24" stroke="#1e4d78" stroke-width="1.3" opacity=".55"/>
+    <g fill="#e0b04a"><path d="M55 98 l2.6 5 -2.6 5 -2.6-5 z"/></g>
+    <path d="M36 92 q-8-6 -4-14 q7 2 8 12 z" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <path d="M74 92 q8-6 4-14 q-7 2 -8 12 z" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+  </g>
+
+  <!-- Ustaz duduk bersila mendengar tasmik -->
+  <g id="ustazDuduk">
+    <ellipse cx="60" cy="150" rx="36" ry="6" fill="#000" opacity=".08"/>
+    <path d="M26 104 q34-12 68 0 q8 26 0 46 h-68 q-8-20 0-46 z" fill="#eef3fb" stroke="#b8c6de" stroke-width="2"/>
+    <path d="M60 106 v44" stroke="#b8c6de" stroke-width="1.3" opacity=".6"/>
+    <path d="M30 110 q-12 12 -9 26 q9 3 12-8 z" fill="#eef3fb" stroke="#b8c6de" stroke-width="2"/>
+    <path d="M90 110 q12 12 9 26 q-9 3 -12-8 z" fill="#eef3fb" stroke="#b8c6de" stroke-width="2"/>
+    <path d="M40 118 q12 8 14 22" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M80 118 q-12 8 -14 22" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <ellipse cx="60" cy="46" rx="27" ry="29" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M33 46 a27 29 0 0 1 54 0 q-9-18 -27-18 q-18 0 -27 18 z" fill="#f4f1e6" stroke="#d9d0ba" stroke-width="1.4"/>
+    <path d="M36 62 q24 22 48 0 q-4 24 -24 24 q-20 0 -24-24 z" fill="#e8e3d2" stroke="#c9b596" stroke-width="1.4"/>
+    <path d="M44 40 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M66 40 q5-3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="48" cy="48" rx="4.4" ry="5.6" fill="#3a2b22"/>
+    <ellipse cx="72" cy="48" rx="4.4" ry="5.6" fill="#3a2b22"/>
+    <path d="M52 68 q8 6 16 0" stroke="#8a5a4a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M22 130 q38-10 76 0 v18 q-38-8 -76 0 z" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M60 133 v15" stroke="#cbb99a" stroke-width="1.3"/>
+    <g stroke="#cfc7b0" stroke-width="1.1"><path d="M30 136 h22"/><path d="M30 142 h22"/><path d="M68 136 h22"/><path d="M68 142 h22"/></g>
+  </g>
+  <!-- ===== PUSTAKA WATAK TAMBAHAN (set 18) — tema kefahaman / tafsir al-Fatihah, gaya Ghibli ===== -->
+  <!-- Semua warna chrome ditulis dgn token SET 17 (plum/apricot) supaya di-remap oleh build18.py -->
+
+  <!-- Mushaf terbuka di atas rehal -->
+  <g id="mushafTerbuka">
+    <ellipse cx="60" cy="104" rx="46" ry="6" fill="#000" opacity=".08"/>
+    <!-- rehal: kaki X + palang -->
+    <path d="M24 102 L58 60" stroke="#8a6544" stroke-width="5" stroke-linecap="round"/>
+    <path d="M96 102 L62 60" stroke="#8a6544" stroke-width="5" stroke-linecap="round"/>
+    <path d="M30 92 h60" stroke="#a87f5c" stroke-width="4.4" stroke-linecap="round"/>
+    <!-- halaman kiri -->
+    <path d="M60 32 Q36 24 12 32 L12 88 Q36 80 60 88 Z" fill="#f6f1e4" stroke="#cbb99a" stroke-width="1.6"/>
+    <!-- halaman kanan -->
+    <path d="M60 32 Q84 24 108 32 L108 88 Q84 80 60 88 Z" fill="#fbf7ea" stroke="#cbb99a" stroke-width="1.6"/>
+    <!-- tulang buku -->
+    <path d="M60 32 V88" stroke="#cbb99a" stroke-width="1.6"/>
+    <!-- baris ayat -->
+    <g stroke="#ddd0b6" stroke-width="1.2">
+      <path d="M20 42 Q38 37 54 41"/><path d="M20 52 Q38 47 54 51"/>
+      <path d="M20 62 Q38 57 54 61"/><path d="M20 72 Q38 67 54 71"/>
+      <path d="M66 41 Q82 37 100 42"/><path d="M66 51 Q82 47 100 52"/>
+      <path d="M66 61 Q82 57 100 62"/><path d="M66 71 Q82 67 100 72"/>
+    </g>
+    <!-- bingkai emas -->
+    <path d="M16 32 Q36 25 58 32 M16 88 Q36 81 58 88" fill="none" stroke="#e0b04a" stroke-width="1.2"/>
+    <path d="M104 32 Q84 25 62 32 M104 88 Q84 81 62 88" fill="none" stroke="#e0b04a" stroke-width="1.2"/>
+    <!-- rosette nombor ayat -->
+    <g fill="#2f6ea8"><circle cx="50" cy="82" r="4.2"/><circle cx="70" cy="82" r="4.2"/></g>
+    <g fill="#e0b04a"><circle cx="50" cy="82" r="1.7"/><circle cx="70" cy="82" r="1.7"/></g>
+  </g>
+
+  <!-- Rosette bintang lapan nombor ayat -->
+  <g id="nomborAyat">
+    <path d="M22 2 L28 12 L39 7 L36 19 L48 22 L36 25 L39 37 L28 32 L22 42 L16 32 L5 37 L8 25 L-4 22 L8 19 L5 7 L16 12 Z"
+          fill="#2f6ea8" stroke="#1e4d78" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M22 8 L26.4 15.4 L34.6 11.8 L32.4 20.6 L41 22 L32.4 23.4 L34.6 32.2 L26.4 28.6 L22 36 L17.6 28.6 L9.4 32.2 L11.6 23.4 L3 22 L11.6 20.6 L9.4 11.8 L17.6 15.4 Z"
+          fill="#5e9ccb" stroke="none"/>
+    <circle cx="22" cy="22" r="8.4" fill="#fffcf9" stroke="#1e4d78" stroke-width="1.2"/>
+    <text x="22" y="26.4" text-anchor="middle" font-family="Trebuchet MS" font-size="10" font-weight="700" fill="#1e4d78">1</text>
+  </g>
+
+  <!-- Papan tafsir: dua lajur AYAT | MAKSUD -->
+  <g id="papanTafsir">
+    <rect x="0" y="0" width="156" height="116" rx="8" fill="#8a6544" stroke="#6b4d34" stroke-width="2.4"/>
+    <rect x="7" y="7" width="142" height="102" rx="5" fill="#f4eee0" stroke="#c9b596" stroke-width="1.2"/>
+    <rect x="7" y="7" width="142" height="19" rx="5" fill="#2f6ea8"/>
+    <rect x="7" y="19" width="142" height="7" fill="#2f6ea8"/>
+    <text x="78" y="21" text-anchor="middle" font-family="Trebuchet MS" font-size="10.5" font-weight="700" fill="#ffffff" letter-spacing="1">TAFSIR AYAT</text>
+    <rect x="14" y="33" width="60" height="68" rx="4" fill="#ffffff" stroke="#9c5f1e" stroke-width="1.2"/>
+    <text x="44" y="45" text-anchor="middle" font-family="Trebuchet MS" font-size="8.6" font-weight="700" fill="#5e3510">AYAT</text>
+    <g stroke="#ddd0b6" stroke-width="1.2">
+      <path d="M22 58 h44"/><path d="M22 68 h44"/><path d="M22 78 h44"/><path d="M22 88 h30"/>
+    </g>
+    <rect x="82" y="33" width="60" height="68" rx="4" fill="#ffffff" stroke="#2f6ea8" stroke-width="1.2"/>
+    <text x="112" y="45" text-anchor="middle" font-family="Trebuchet MS" font-size="8.6" font-weight="700" fill="#1e4d78">MAKSUD</text>
+    <g stroke="#cfc7b0" stroke-width="1.2">
+      <path d="M90 58 h44"/><path d="M90 68 h44"/><path d="M90 78 h44"/><path d="M90 88 h30"/>
+    </g>
+    <path d="M74 67 h8" stroke="#7a4614" stroke-width="2" stroke-linecap="round"/>
+    <path d="M74 67 l4-3.4 M74 67 l4 3.4" stroke="#7a4614" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M30 100 v14 M126 100 v14" stroke="#8a6544" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Mentol: faham / idea -->
+  <g id="mentol">
+    <path d="M22 4 q15 0 15 16 q0 9 -6 14 q-3 3 -3 7 h-12 q0-4 -3-7 q-6-5 -6-14 q0-16 15-16 z"
+          fill="#fff6cf" stroke="#a87a1c" stroke-width="1.8"/>
+    <path d="M14 14 q8-6 16 0" stroke="#e0b04a" stroke-width="1.4" fill="none"/>
+    <path d="M16 24 q6-5 12 0" stroke="#e0b04a" stroke-width="1.4" fill="none"/>
+    <path d="M14 42 h16 M15 47 h14 M17 52 h10" stroke="#a87a1c" stroke-width="2.2" stroke-linecap="round"/>
+    <g stroke="#e0b04a" stroke-width="1.8" stroke-linecap="round">
+      <path d="M22 0 v-4"/><path d="M4 8 l-4-3"/><path d="M40 8 l4-3"/><path d="M0 24 h-4"/><path d="M44 24 h4"/>
+    </g>
+  </g>
+
+  <!-- Jalan yang lurus (doa hidayah): jalan sesat di kiri, jalan lurus berperspektif di kanan -->
+  <g id="jalanLurus">
+    <path d="M2 60 Q18 44 26 24" fill="none" stroke="#b8d4e8" stroke-width="7" stroke-linecap="round" opacity=".6"/>
+    <path d="M30 64 L44 26 L62 26 L76 64 Z" fill="#2f6ea8" stroke="#1e4d78" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M53 62 L53 30" stroke="#fffcf9" stroke-width="2.8" stroke-dasharray="6 7" stroke-linecap="round"/>
+    <path d="M53 22 l-8 10 M53 22 l8 10" stroke="#9c5f1e" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+    <path d="M6 64 h74" stroke="#b8d4e8" stroke-width="2.6" stroke-linecap="round" opacity=".8"/>
+    <circle cx="53" cy="62" r="4.6" fill="#9c5f1e" stroke="#5e3510" stroke-width="1.4"/>
+  </g>
+
+  <!-- Papan tanda arah (pilihan jalan) -->
+  <g id="tandaJalan">
+    <rect x="20" y="30" width="6" height="52" rx="3" fill="#8a6544"/>
+    <rect x="0" y="6" width="46" height="20" rx="4" fill="#2f6ea8" stroke="#1e4d78" stroke-width="1.6"/>
+    <path d="M38 16 l8-6 -8-6" fill="none" stroke="#fffcf9" stroke-width="2" stroke-linecap="round"/>
+    <text x="16" y="20" text-anchor="middle" font-family="Trebuchet MS" font-size="8.4" font-weight="700" fill="#ffffff">LURUS</text>
+    <rect x="4" y="34" width="42" height="18" rx="4" fill="#fffcf9" stroke="#7a4614" stroke-width="1.4"/>
+    <text x="25" y="47" text-anchor="middle" font-family="Trebuchet MS" font-size="8" font-weight="700" fill="#5e3510">SESAT</text>
+  </g>
+
+  <!-- Adam bersila bertadabbur: mushaf terbuka di riba, tangan menyokong dagu -->
+  <g id="adamTadabbur">
+    <ellipse cx="55" cy="152" rx="32" ry="6" fill="#000" opacity=".08"/>
+    <path d="M22 96 q33-14 66 0 q6 30 0 56 h-66 q-6-26 0-56 z" fill="#7fc4b8" stroke="#5b7fa8" stroke-width="2"/>
+    <path d="M38 122 q17 7 34 0" stroke="#5b7fa8" stroke-width="1.3" fill="none" opacity=".55"/>
+    <rect x="50" y="72" width="11" height="15" fill="#eec6a6"/>
+    <path d="M80 106 q13 12 10 27" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M90 131 q-6 9 -16 10" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M30 106 q-13 12 -10 27" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="27" cy="52" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="83" cy="52" rx="5" ry="7" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.5"/>
+    <ellipse cx="55" cy="48" rx="27" ry="29" fill="#f7d5b5" stroke="#c98f63" stroke-width="2"/>
+    <path d="M28 48 a27 29 0 0 1 54 0 q-9-18 -27-18 q-18 0 -27 18 z" fill="#5a3b28"/>
+    <path d="M39 42 q5 3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M61 42 q5 3 10 0" stroke="#4a3b2f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M45 60 q10 7 20 0" stroke="#b5714f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <ellipse cx="38" cy="55" rx="5.6" ry="3.8" fill="#f2a2a2" opacity=".5"/>
+    <ellipse cx="72" cy="55" rx="5.6" ry="3.8" fill="#f2a2a2" opacity=".5"/>
+    <path d="M30 124 q25-9 50 0 v16 q-25-8 -50 0 z" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M55 127 v14" stroke="#cbb99a" stroke-width="1.3"/>
+    <g stroke="#cfc7b0" stroke-width="1.1"><path d="M35 130 h14"/><path d="M35 136 h14"/><path d="M61 130 h14"/><path d="M61 136 h14"/></g>
+    <circle cx="45" cy="147" r="3.4" fill="#2f6ea8"/><circle cx="65" cy="147" r="3.4" fill="#2f6ea8"/>
+  </g>
+
+  <!-- Nur bersila bertadabbur: mushaf terbuka, tangan kanan menunjuk ayat -->
+  <g id="nurTadabbur">
+    <ellipse cx="55" cy="152" rx="32" ry="6" fill="#000" opacity=".08"/>
+    <path d="M22 96 q33-14 66 0 q6 30 0 56 h-66 q-6-26 0-56 z" fill="#e88ba0" stroke="#c9707f" stroke-width="2"/>
+    <path d="M30 106 q-13 12 -11 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M80 106 q13 12 11 28" stroke="#f7d5b5" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M84 130 q-8 6 -18 6" stroke="#f7d5b5" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M22 48 q0-33 33-33 q33 0 33 33 q0 44 -13 62 q-8-28 -20-28 q-12 0 -20 28 q-13-18 -13-62 z"
+          fill="#f2b8c6" stroke="#d98da0" stroke-width="2"/>
+    <ellipse cx="55" cy="52" rx="24" ry="26" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.8"/>
+    <path d="M31 44 q24-9 48 0 q-4-24 -24-24 q-20 0 -24 24 z" fill="#f2b8c6"/>
+    <path d="M43 46 q6-4 11 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M56 46 q6-4 11 0" stroke="#4a3b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M47 60 q8 6 16 0" stroke="#c98f63" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="37" cy="56" rx="5" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+    <ellipse cx="73" cy="56" rx="5" ry="3.4" fill="#f2a2a2" opacity=".55"/>
+    <path d="M30 124 q25-9 50 0 v16 q-25-8 -50 0 z" fill="#fffcf9" stroke="#cbb99a" stroke-width="1.6"/>
+    <path d="M55 127 v14" stroke="#cbb99a" stroke-width="1.3"/>
+    <g stroke="#cfc7b0" stroke-width="1.1"><path d="M35 130 h14"/><path d="M35 136 h14"/><path d="M61 130 h14"/><path d="M61 136 h14"/></g>
+    <path d="M78 132 q10 3 12 12 q-9 3 -13-6 z" fill="#f7d5b5" stroke="#c98f63" stroke-width="1.4"/>
+    <circle cx="45" cy="147" r="3.4" fill="#2f6ea8"/><circle cx="65" cy="147" r="3.4" fill="#2f6ea8"/>
+  </g>
+  <!-- ===== PUSTAKA WATAK TAMBAHAN (set 19) — tema hafazan al-'Asr / masa, gaya Ghibli ===== -->
+  <!-- Semua warna chrome ditulis dgn token SET 18 (navy/saffron) supaya di-remap oleh build19.py -->
+
+  <!-- Papan putih hafazan (menggantikan papan tafsir, petak 156x116) -->
+  <g id="papanPutihHafazan">
+    <rect x="6" y="4" width="144" height="90" rx="6" fill="#f9fbfe" stroke="#b8d4e8" stroke-width="3"/>
+    <rect x="6" y="4" width="144" height="16" rx="6" fill="#2f6ea8"/>
+    <rect x="6" y="14" width="144" height="6" fill="#2f6ea8"/>
+    <rect x="20" y="9" width="116" height="6" rx="3" fill="#9c5f1e" opacity=".9"/>
+    <g stroke="#b8c6de" stroke-width="2.4" stroke-linecap="round">
+      <path d="M22 34 h104"/><path d="M22 48 h104"/><path d="M22 62 h78"/>
+    </g>
+    <path d="M22 40 h58" stroke="#c0564e" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M22 68 h40" stroke="#c0564e" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="132" cy="70" r="12" fill="#f4e4cd" stroke="#7a4614" stroke-width="1.8"/>
+    <path d="M132 70 V62" stroke="#5e3510" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M132 70 l7 4" stroke="#7a4614" stroke-width="1.8" stroke-linecap="round"/>
+    <rect x="6" y="94" width="144" height="8" rx="4" fill="#e4eef8" stroke="#b8d4e8" stroke-width="1.6"/>
+    <rect x="24" y="90" width="34" height="6" rx="3" fill="#2f6ea8"/>
+    <rect x="64" y="90" width="26" height="6" rx="3" fill="#7a4614"/>
+    <path d="M40 102 v12 M116 102 v12" stroke="#8a6544" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Loceng majlis (penanda akhir sesuatu majlis) -->
+  <g id="locengMajlis">
+    <path d="M18 5 q10 0 10 10 v9 q0 6 4 9 h-28 q4-3 4-9 v-9 q0-10 10-10 z"
+          fill="#9c5f1e" stroke="#5e3510" stroke-width="1.6"/>
+    <path d="M13 8 q5-4 10 0" fill="none" stroke="#f4e4cd" stroke-width="1.6"/>
+    <circle cx="18" cy="36" r="3.6" fill="#7a4614" stroke="#5e3510" stroke-width="1.2"/>
+    <path d="M18 2 v3" stroke="#5e3510" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M5 33 q13 5 26 0" stroke="#5e3510" stroke-width="1.4" fill="none"/>
+  </g>
+
+  <!-- Jalur kad huruf fokus (ح خ ر ص) — tile 32 lebar + font 20: pada 28/22, ص hampir melimpah keluar kotak -->
+  <g id="kadHurufFokus">
+    <rect x="0" y="0" width="32" height="40" rx="5" fill="#f9fbfe" stroke="#2f6ea8" stroke-width="1.6"/>
+    <text x="16" y="29" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="20" font-weight="700" fill="#1e4d78">ح</text>
+    <rect x="35" y="0" width="32" height="40" rx="5" fill="#f9fbfe" stroke="#2f6ea8" stroke-width="1.6"/>
+    <text x="51" y="29" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="20" font-weight="700" fill="#1e4d78">خ</text>
+    <rect x="70" y="0" width="32" height="40" rx="5" fill="#f9fbfe" stroke="#2f6ea8" stroke-width="1.6"/>
+    <text x="86" y="29" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="20" font-weight="700" fill="#1e4d78">ر</text>
+    <rect x="105" y="0" width="32" height="40" rx="5" fill="#f9fbfe" stroke="#2f6ea8" stroke-width="1.6"/>
+    <text x="121" y="29" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="20" font-weight="700" fill="#1e4d78">ص</text>
+    <rect x="0" y="44" width="137" height="4" rx="2" fill="#e4eef8"/>
+  </g>
+  <!-- ===== PUSTAKA WATAK TAMBAHAN (set 20) — tema tajwid: hukum nun sakinah & tanwin, gaya Ghibli ===== -->
+  <!-- Semua warna chrome ditulis dgn token SET 19 (slate/emas tanglung) supaya di-remap oleh build20.py -->
+
+  <!-- Papan carta tajwid (menggantikan papan putih hafazan, petak 156x116) -->
+  <g id="papanTajwid">
+    <rect x="6" y="4" width="144" height="90" rx="6" fill="#f9fbfe" stroke="#b8d4e8" stroke-width="3"/>
+    <rect x="6" y="4" width="144" height="16" rx="6" fill="#2f6ea8"/>
+    <rect x="6" y="14" width="144" height="6" fill="#2f6ea8"/>
+    <rect x="20" y="9" width="116" height="6" rx="3" fill="#9c5f1e" opacity=".9"/>
+    <!-- 5 baris hukum -->
+    <rect x="16" y="26" width="124" height="11" rx="3" fill="#eff5fa" stroke="#b8d4e8" stroke-width="1"/>
+    <rect x="20" y="29" width="26" height="5" rx="2" fill="#2f6ea8"/>
+    <rect x="50" y="29" width="86" height="5" rx="2" fill="#5e9ccb" opacity=".55"/>
+    <rect x="16" y="40" width="124" height="11" rx="3" fill="#f4e4cd" stroke="#9c5f1e" stroke-width="1"/>
+    <rect x="20" y="43" width="26" height="5" rx="2" fill="#7a4614"/>
+    <rect x="50" y="43" width="86" height="5" rx="2" fill="#9c5f1e" opacity=".55"/>
+    <rect x="16" y="54" width="124" height="11" rx="3" fill="#eff5fa" stroke="#b8d4e8" stroke-width="1"/>
+    <rect x="20" y="57" width="26" height="5" rx="2" fill="#2f6ea8"/>
+    <rect x="50" y="57" width="86" height="5" rx="2" fill="#5e9ccb" opacity=".55"/>
+    <rect x="16" y="68" width="124" height="11" rx="3" fill="#f4e4cd" stroke="#9c5f1e" stroke-width="1"/>
+    <rect x="20" y="71" width="26" height="5" rx="2" fill="#7a4614"/>
+    <rect x="50" y="71" width="86" height="5" rx="2" fill="#9c5f1e" opacity=".55"/>
+    <rect x="16" y="82" width="124" height="8" rx="3" fill="#eff5fa" stroke="#b8d4e8" stroke-width="1"/>
+    <rect x="20" y="84" width="26" height="4" rx="2" fill="#2f6ea8"/>
+    <rect x="50" y="84" width="86" height="4" rx="2" fill="#5e9ccb" opacity=".55"/>
+    <!-- pemegang bawah -->
+    <rect x="6" y="94" width="144" height="8" rx="4" fill="#e4eef8" stroke="#b8d4e8" stroke-width="1.6"/>
+    <rect x="24" y="90" width="34" height="6" rx="3" fill="#2f6ea8"/>
+    <rect x="64" y="90" width="26" height="6" rx="3" fill="#9c5f1e"/>
+    <path d="M40 102 v12 M116 102 v12" stroke="#8a6544" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Jalur kad nun sakinah (نْ) + tiga tanda tanwin (ً ٍ ٌ) -->
+  <g id="kadHurufNun">
+    <rect x="0" y="0" width="40" height="42" rx="6" fill="#f9fbfe" stroke="#2f6ea8" stroke-width="1.8"/>
+    <text x="20" y="31" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="24" font-weight="700" fill="#1e4d78">نْ</text>
+    <text x="53" y="29" text-anchor="middle" font-family="Trebuchet MS" font-size="17" font-weight="700" fill="#7a4614">+</text>
+    <rect x="66" y="0" width="40" height="42" rx="6" fill="#f4e4cd" stroke="#9c5f1e" stroke-width="1.8"/>
+    <text x="86" y="31" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="22" font-weight="700" fill="#5e3510">&#x25CC;ً</text>
+    <rect x="110" y="0" width="40" height="42" rx="6" fill="#f4e4cd" stroke="#9c5f1e" stroke-width="1.8"/>
+    <text x="130" y="31" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="22" font-weight="700" fill="#5e3510">&#x25CC;ٍ</text>
+    <rect x="154" y="0" width="40" height="42" rx="6" fill="#f4e4cd" stroke="#9c5f1e" stroke-width="1.8"/>
+    <text x="174" y="31" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="22" font-weight="700" fill="#5e3510">&#x25CC;ٌ</text>
+    <rect x="0" y="46" width="194" height="4" rx="2" fill="#e4eef8"/>
+  </g>
+
+  <!-- Penunjuk kelas (kayu penunjuk guru) -->
+  <g id="penunjukKelas">
+    <rect x="2" y="24" width="14" height="11" rx="3.5" fill="#5e9ccb" stroke="#2f6ea8" stroke-width="1.4"
+          transform="rotate(-22 9 30)"/>
+    <path d="M8 28 L62 8" stroke="#9c5f1e" stroke-width="5.4" stroke-linecap="round"/>
+    <path d="M9 26.6 L62 6.6" stroke="#e0b04a" stroke-width="1.8" stroke-linecap="round" opacity=".75"/>
+    <circle cx="65" cy="6.5" r="5.6" fill="#7a4614" stroke="#5e3510" stroke-width="1.2"/>
+    <circle cx="65" cy="6.5" r="2.2" fill="#f4e4cd"/>
+  </g>
+  <!-- ===== PUSTAKA WATAK TAMBAHAN (Tahun 5 Unit 1) — tema perkhemahan malam al-Qadr, gaya Ghibli ===== -->
+  <!-- Semua warna chrome ditulis dgn token SET 20 (hutan-hijau/magenta) supaya di-remap oleh build_t5u01.py -->
+
+  <!-- Khemah (tent) — 3 panel, pintu gelap, tali & pasak -->
+  <g id="khemah">
+    <path d="M6 112 L80 14 L154 112 Z" fill="#f4e4cd"/>
+    <path d="M6 112 L80 14 L80 112 Z" fill="#e6eff7"/>
+    <path d="M80 14 L154 112 L80 112 Z" fill="#f7fafd"/>
+    <path d="M80 14 L106 112 L54 112 Z" fill="#1e4d78" opacity=".20"/>
+    <path d="M80 14 L94 112 L66 112 Z" fill="#9c5f1e" opacity=".30"/>
+    <path d="M80 16 L80 4" stroke="#1e4d78" stroke-width="2.4" stroke-linecap="round"/>
+    <rect x="70" y="0" width="20" height="9" rx="4" fill="#2f6ea8"/>
+    <path d="M20 112 L66 26" stroke="#b8d4e8" stroke-width="2" opacity=".65" stroke-linecap="round"/>
+    <path d="M42 112 L72 56" stroke="#b8d4e8" stroke-width="2" opacity=".65" stroke-linecap="round"/>
+    <rect x="0" y="109" width="14" height="5" rx="2.5" fill="#5e9ccb"/>
+    <rect x="146" y="109" width="14" height="5" rx="2.5" fill="#5e9ccb"/>
+  </g>
+
+  <!-- Lentera gantung — cahaya hangat malam -->
+  <g id="lenteraMalam">
+    <path d="M22 0 V9" stroke="#5e9ccb" stroke-width="2.2" stroke-linecap="round"/>
+    <rect x="12" y="8" width="20" height="6" rx="3" fill="#2f6ea8"/>
+    <path d="M9 14 H35 L41 54 H3 Z" fill="#f4e4cd" stroke="#9c5f1e" stroke-width="2"/>
+    <rect x="13" y="22" width="18" height="26" rx="5" fill="#fff6cf" opacity=".92"/>
+    <rect x="7" y="53" width="30" height="7" rx="3" fill="#2f6ea8"/>
+    <circle cx="22" cy="57" r="3.4" fill="#9c5f1e"/>
+  </g>
+
+  <!-- Papan carta AL-QADR — 5 baris (5 ayat), pemegang, 2 kaki -->
+  <g id="papanQadr">
+    <rect x="0" y="0" width="156" height="116" rx="9" fill="#f7fafd" stroke="#2f6ea8" stroke-width="2.4"/>
+    <rect x="0" y="0" width="156" height="26" rx="9" fill="#2f6ea8"/>
+    <rect x="0" y="17" width="156" height="9" fill="#2f6ea8"/>
+    <text x="78" y="18" text-anchor="middle" font-family="Trebuchet MS, Segoe UI, sans-serif" font-size="11.5" font-weight="800" fill="#ffffff" letter-spacing="1.8">AL-QADR</text>
+    <rect x="10" y="32" width="136" height="12" rx="4" fill="#f4e4cd"/>
+    <rect x="14" y="35" width="24" height="6" rx="3" fill="#9c5f1e"/>
+    <rect x="42" y="35.5" width="100" height="5" rx="2.5" fill="#2f6ea8" opacity=".28"/>
+    <rect x="10" y="47" width="136" height="12" rx="4" fill="#e6eff7"/>
+    <rect x="14" y="50" width="24" height="6" rx="3" fill="#5e9ccb"/>
+    <rect x="42" y="50.5" width="100" height="5" rx="2.5" fill="#2f6ea8" opacity=".28"/>
+    <rect x="10" y="62" width="136" height="12" rx="4" fill="#f4e4cd"/>
+    <rect x="14" y="65" width="24" height="6" rx="3" fill="#9c5f1e"/>
+    <rect x="42" y="65.5" width="100" height="5" rx="2.5" fill="#2f6ea8" opacity=".28"/>
+    <rect x="10" y="77" width="136" height="12" rx="4" fill="#e6eff7"/>
+    <rect x="14" y="80" width="24" height="6" rx="3" fill="#5e9ccb"/>
+    <rect x="42" y="80.5" width="100" height="5" rx="2.5" fill="#2f6ea8" opacity=".28"/>
+    <rect x="10" y="92" width="136" height="12" rx="4" fill="#f4e4cd"/>
+    <rect x="14" y="95" width="24" height="6" rx="3" fill="#9c5f1e"/>
+    <rect x="42" y="95.5" width="100" height="5" rx="2.5" fill="#2f6ea8" opacity=".28"/>
+    <rect x="70" y="116" width="16" height="9" rx="3" fill="#2f6ea8"/>
+    <path d="M40 124 l-13 25" stroke="#5e9ccb" stroke-width="5.5" stroke-linecap="round"/>
+    <path d="M116 124 l13 25" stroke="#5e9ccb" stroke-width="5.5" stroke-linecap="round"/>
+  </g>
+  <!-- ===== PUSTAKA WATAK TAMBAHAN (Tahun 5 Unit 2) — tema kebun buah tin &amp; zaitun di kaki Bukit Tur, gaya Ghibli ===== -->
+  <!-- Semua warna chrome ditulis dgn token T5 UNIT 1 (indigo malam / emas) supaya di-remap oleh build_t5u02.py -->
+
+  <!-- Pokok tin (fig tree) — batang berliku, kanopi hijau berlapis, buah tin ungu-coklat -->
+  <g id="pohonTin">
+    <path d="M72 158 C70 126 64 104 74 80" stroke="#8a6544" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M74 88 C60 72 46 64 30 60" stroke="#8a6544" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+    <path d="M74 88 C88 72 102 64 118 60" stroke="#8a6544" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+    <path d="M74 102 C62 94 52 90 42 88" stroke="#8a6544" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M74 102 C86 94 96 90 106 88" stroke="#8a6544" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="74" cy="54" rx="54" ry="36" fill="#6d9c4a"/>
+    <ellipse cx="42" cy="62" rx="31" ry="24" fill="#8fbf6a"/>
+    <ellipse cx="106" cy="60" rx="29" ry="22" fill="#8fbf6a"/>
+    <ellipse cx="74" cy="36" rx="36" ry="24" fill="#a9d383"/>
+    <ellipse cx="74" cy="50" rx="30" ry="18" fill="#6d9c4a" opacity=".30"/>
+    <g fill="#8a4a5a">
+      <circle cx="46" cy="64" r="7"/><circle cx="98" cy="68" r="6.4"/><circle cx="68" cy="80" r="6.8"/>
+      <circle cx="112" cy="50" r="5.6"/><circle cx="32" cy="52" r="5.6"/><circle cx="86" cy="44" r="5.2"/>
+    </g>
+    <g fill="#a8626e">
+      <circle cx="46" cy="62" r="4"/><circle cx="98" cy="66" r="3.6"/><circle cx="68" cy="78" r="3.9"/>
+      <circle cx="112" cy="48.5" r="3.2"/><circle cx="32" cy="50.5" r="3.2"/>
+    </g>
+    <g stroke="#3f7a45" stroke-width="1.4" fill="none" opacity=".5">
+      <path d="M46 57 C46 50 50 46 56 44"/><path d="M98 61 C98 55 102 51 108 49"/>
+    </g>
+  </g>
+
+  <!-- Pokok zaitun (olive tree) — kanopi kelabu-hijau, buah zaitun hijau gelap -->
+  <g id="pohonZaitun">
+    <path d="M66 158 C64 128 58 106 66 86" stroke="#8a7d6a" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M66 94 C52 82 40 76 26 74" stroke="#8a7d6a" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+    <path d="M66 94 C80 82 92 76 106 74" stroke="#8a7d6a" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="66" cy="58" rx="48" ry="34" fill="#6f8a4e"/>
+    <ellipse cx="36" cy="66" rx="28" ry="22" fill="#8fa46a"/>
+    <ellipse cx="96" cy="64" rx="26" ry="20" fill="#8fa46a"/>
+    <ellipse cx="66" cy="42" rx="32" ry="22" fill="#a8b878"/>
+    <ellipse cx="66" cy="54" rx="26" ry="16" fill="#6f8a4e" opacity=".30"/>
+    <g fill="#3f5c2a">
+      <ellipse cx="42" cy="66" rx="6" ry="7.4"/><ellipse cx="92" cy="70" rx="5.6" ry="7"/>
+      <ellipse cx="64" cy="80" rx="6" ry="7.4"/><ellipse cx="104" cy="54" rx="5" ry="6.4"/>
+      <ellipse cx="30" cy="54" rx="5" ry="6.4"/>
+    </g>
+    <g fill="#5a7a3e">
+      <ellipse cx="42" cy="64.5" rx="3.4" ry="4.4"/><ellipse cx="92" cy="68.5" rx="3.2" ry="4.2"/>
+      <ellipse cx="64" cy="78.5" rx="3.4" ry="4.4"/>
+    </g>
+  </g>
+
+  <!-- Buah tin — sebutir buah tin di atas daun -->
+  <g id="buahTin">
+    <path d="M30 62 C18 50 16 32 26 22 C34 14 46 14 54 22 C64 32 62 50 50 62 C44 68 36 68 30 62 Z" fill="#8a4a5a"/>
+    <path d="M30 60 C22 50 21 36 28 28 C34 22 42 22 48 28 C55 36 54 50 46 60 C40 66 36 66 30 60 Z" fill="#a8626e"/>
+    <path d="M40 22 C40 14 40 10 40 6" stroke="#3f7a45" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="52" cy="12" rx="13" ry="8" fill="#6d9c4a" transform="rotate(-22 52 12)"/>
+    <path d="M52 12 L66 12" stroke="#3f7a45" stroke-width="1.6"/>
+  </g>
+
+  <!-- Buah zaitun — sebiji zaitun dgn daun -->
+  <g id="buahZaitun">
+    <ellipse cx="30" cy="40" rx="18" ry="24" fill="#3f5c2a"/>
+    <ellipse cx="27" cy="36" rx="12" ry="17" fill="#5a7a3e"/>
+    <ellipse cx="24" cy="31" rx="5" ry="7" fill="#8fa46a" opacity=".7"/>
+    <path d="M42 24 C48 14 56 10 66 8" stroke="#3f7a45" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="60" cy="16" rx="16" ry="9" fill="#6d9c4a" transform="rotate(-20 60 16)"/>
+  </g>
+
+  <!-- Bukit Tur — dua puncak bergigi (tempat Nabi Musa a.s. menerima wahyu) -->
+  <g id="gunungTur">
+    <path d="M0 96 L52 24 L78 58 L104 18 L156 96 Z" fill="#5e9ccb"/>
+    <path d="M104 18 L156 96 L104 96 Z" fill="#2f6ea8"/>
+    <path d="M52 24 L78 58 L64 58 Z" fill="#b8d4e8" opacity=".55"/>
+    <path d="M104 18 L120 40 L96 40 Z" fill="#fcfeff" opacity=".85"/>
+    <path d="M52 24 L62 38 L44 38 Z" fill="#fcfeff" opacity=".6"/>
+    <path d="M0 96 L156 96" stroke="#1e4d78" stroke-width="2.4"/>
+    <g fill="#1e4d78" opacity=".35">
+      <path d="M20 96 L34 78 L48 96 Z"/><path d="M112 96 L128 74 L144 96 Z"/>
+    </g>
+  </g>
+
+  <!-- Papan carta AT-TIN — 8 baris (8 ayat), pemegang & 2 kaki -->
+  <g id="papanAtTin">
+    <rect x="0" y="0" width="156" height="136" rx="9" fill="#f7fafd" stroke="#2f6ea8" stroke-width="2.4"/>
+    <rect x="0" y="0" width="156" height="26" rx="9" fill="#2f6ea8"/>
+    <rect x="0" y="17" width="156" height="9" fill="#2f6ea8"/>
+    <text x="78" y="18" text-anchor="middle" font-family="Trebuchet MS, Segoe UI, sans-serif" font-size="11.5" font-weight="800" fill="#ffffff" letter-spacing="1.8">AT-TIN</text>
+    <rect x="10" y="32" width="136" height="10" rx="4" fill="#f4e4cd"/>
+    <rect x="14" y="34.4" width="22" height="5" rx="2.5" fill="#9c5f1e"/>
+    <rect x="42" y="35" width="100" height="4" rx="2" fill="#2f6ea8" opacity=".28"/>
+    <rect x="10" y="45" width="136" height="10" rx="4" fill="#e4eef8"/>
+    <rect x="14" y="47.4" width="22" height="5" rx="2.5" fill="#5e9ccb"/>
+    <rect x="42" y="48" width="100" height="4" rx="2" fill="#2f6ea8" opacity=".28"/>
+    <rect x="10" y="58" width="136" height="10" rx="4" fill="#f4e4cd"/>
+    <rect x="14" y="60.4" width="22" height="5" rx="2.5" fill="#9c5f1e"/>
+    <rect x="42" y="61" width="100" height="4" rx="2" fill="#2f6ea8" opacity=".28"/>
+    <rect x="10" y="71" width="136" height="10" rx="4" fill="#e4eef8"/>
+    <rect x="14" y="73.4" width="22" height="5" rx="2.5" fill="#5e9ccb"/>
+    <rect x="42" y="74" width="100" height="4" rx="2" fill="#2f6ea8" opacity=".28"/>
+    <rect x="10" y="84" width="136" height="10" rx="4" fill="#f4e4cd"/>
+    <rect x="14" y="86.4" width="22" height="5" rx="2.5" fill="#9c5f1e"/>
+    <rect x="42" y="87" width="100" height="4" rx="2" fill="#2f6ea8" opacity=".28"/>
+    <rect x="10" y="97" width="136" height="10" rx="4" fill="#e4eef8"/>
+    <rect x="14" y="99.4" width="22" height="5" rx="2.5" fill="#5e9ccb"/>
+    <rect x="42" y="100" width="100" height="4" rx="2" fill="#2f6ea8" opacity=".28"/>
+    <rect x="10" y="110" width="136" height="10" rx="4" fill="#f4e4cd"/>
+    <rect x="14" y="112.4" width="22" height="5" rx="2.5" fill="#9c5f1e"/>
+    <rect x="42" y="113" width="100" height="4" rx="2" fill="#2f6ea8" opacity=".28"/>
+    <rect x="10" y="123" width="136" height="10" rx="4" fill="#e4eef8"/>
+    <rect x="14" y="125.4" width="22" height="5" rx="2.5" fill="#5e9ccb"/>
+    <rect x="42" y="126" width="100" height="4" rx="2" fill="#2f6ea8" opacity=".28"/>
+    <rect x="70" y="136" width="16" height="9" rx="3" fill="#2f6ea8"/>
+    <path d="M40 144 l-13 25" stroke="#5e9ccb" stroke-width="5.5" stroke-linecap="round"/>
+    <path d="M116 144 l13 25" stroke="#5e9ccb" stroke-width="5.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Dahan zaitun — hiasan sudut -->
+  <g id="dahanZaitun">
+    <path d="M0 40 C26 34 52 24 78 8" stroke="#8a6544" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <ellipse cx="22" cy="30" rx="14" ry="7.4" fill="#8fa46a" transform="rotate(-26 22 30)"/>
+    <ellipse cx="46" cy="20" rx="14" ry="7.4" fill="#6f8a4e" transform="rotate(-30 46 20)"/>
+    <ellipse cx="30" cy="44" rx="12" ry="6.4" fill="#6d9c4a" transform="rotate(14 30 44)"/>
+    <ellipse cx="62" cy="12" rx="13" ry="7" fill="#8fa46a" transform="rotate(-34 62 12)"/>
+    <ellipse cx="74" cy="28" rx="11" ry="6" fill="#a8b878" transform="rotate(18 74 28)"/>
+    <ellipse cx="54" cy="40" rx="10" ry="5.6" fill="#6d9c4a" transform="rotate(20 54 40)"/>
+  </g>
+  <!-- ===== PUSTAKA WATAK TAMBAHAN (Tahun 5 Unit 3) — tema halaqah hafazan di taman rimbun, gaya Ghibli ===== -->
+  <!-- Semua warna chrome ditulis dgn token T5 UNIT 2 (tanah liat / petrol) supaya di-remap oleh build_t5u03.py -->
+
+  <!-- Rehal — penyandar al-Quran berkaki X dgn mushaf terbuka di atasnya -->
+  <g id="rehalHafaz">
+    <path d="M28 118 C44 94 60 68 76 44" stroke="#5e9ccb" stroke-width="9.5" fill="none" stroke-linecap="round"/>
+    <path d="M122 118 C106 94 90 68 74 44" stroke="#5e9ccb" stroke-width="9.5" fill="none" stroke-linecap="round"/>
+    <path d="M42 98 C62 90 88 90 108 98" stroke="#2f6ea8" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+    <path d="M8 46 C40 52 110 52 142 46 L142 49 C110 55 40 55 8 49 Z" fill="#b8d4e8" opacity=".55"/>
+    <rect x="10" y="18" width="130" height="28" rx="4" fill="#fcfeff" stroke="#2f6ea8" stroke-width="2.2"/>
+    <path d="M75 18 V46" stroke="#2f6ea8" stroke-width="2.2"/>
+    <g stroke="#5e9ccb" stroke-width="1.4" opacity=".7">
+      <path d="M18 28 H64"/><path d="M18 35 H56"/>
+      <path d="M86 28 H132"/><path d="M94 35 H132"/>
+    </g>
+    <circle cx="75" cy="44" r="5" fill="#1e4d78"/>
+  </g>
+
+  <!-- Pokok rimbun — kanopi lebar berlapis, tempat berlindung halaqah -->
+  <g id="pokokRimbun">
+    <path d="M85 158 C82 124 78 100 86 76" stroke="#2f6ea8" stroke-width="11" fill="none" stroke-linecap="round"/>
+    <path d="M86 96 C70 82 52 74 34 72" stroke="#2f6ea8" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M86 96 C102 82 120 74 138 72" stroke="#2f6ea8" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="85" cy="52" rx="76" ry="42" fill="#6d9c4a"/>
+    <ellipse cx="40" cy="62" rx="40" ry="28" fill="#8fbf6a"/>
+    <ellipse cx="130" cy="60" rx="38" ry="26" fill="#8fbf6a"/>
+    <ellipse cx="85" cy="30" rx="52" ry="28" fill="#a9d383"/>
+    <ellipse cx="85" cy="48" rx="44" ry="20" fill="#6d9c4a" opacity=".28"/>
+    <g fill="#3f7a45" opacity=".40">
+      <ellipse cx="52" cy="78" rx="16" ry="7"/><ellipse cx="118" cy="76" rx="14" ry="6.4"/>
+    </g>
+  </g>
+
+  <!-- Buku rekod hafazan — kulit tanah liat, riben penanda petrol -->
+  <g id="bukuHafaz">
+    <rect x="14" y="16" width="92" height="112" rx="7" fill="#2f6ea8"/>
+    <rect x="22" y="22" width="78" height="100" rx="5" fill="#fcfeff"/>
+    <rect x="22" y="22" width="13" height="100" rx="4" fill="#1e4d78"/>
+    <g stroke="#5e9ccb" stroke-width="2" opacity=".75">
+      <path d="M44 40 H92"/><path d="M44 52 H84"/><path d="M44 64 H92"/>
+      <path d="M44 76 H78"/><path d="M44 88 H88"/><path d="M44 100 H74"/>
+    </g>
+    <path d="M98 16 V94 L90 85 L82 94 V16 Z" fill="#9c5f1e"/>
+    <circle cx="90" cy="44" r="7" fill="#f4e4cd" opacity=".85"/>
+  </g>
+
+  <!-- Jam pasir — masa muraja'ah / mengulang hafazan -->
+  <g id="jamPasirHafaz">
+    <rect x="16" y="8" width="48" height="9" rx="4" fill="#2f6ea8"/>
+    <rect x="16" y="103" width="48" height="9" rx="4" fill="#2f6ea8"/>
+    <path d="M22 17 H58 C58 44 46 54 40 60 C46 66 58 76 58 103 H22 C22 76 34 66 40 60 C34 54 22 44 22 17 Z"
+          fill="#f7fafd" stroke="#5e9ccb" stroke-width="2.4"/>
+    <path d="M26 21 H54 C54 40 46 50 40 55 C34 50 26 40 26 21 Z" fill="#9c5f1e" opacity=".45"/>
+    <path d="M40 62 C46 67 58 78 58 103 H22 C22 78 34 67 40 62 Z" fill="#9c5f1e" opacity=".50"/>
+    <path d="M40 62 V100" stroke="#2f6ea8" stroke-width="1.5" opacity=".45"/>
+    <circle cx="40" cy="60" r="3.2" fill="#2f6ea8"/>
+  </g>
+
+  <!-- Papan carta hafazan — 5 baris ayat Surah al-Qadr dgn tanda siap -->
+  <g id="papanHafaz">
+    <path d="M30 176 V138 M126 176 V138" stroke="#2f6ea8" stroke-width="7" stroke-linecap="round"/>
+    <rect x="8" y="4" width="140" height="136" rx="8" fill="#fcfeff" stroke="#2f6ea8" stroke-width="3"/>
+    <rect x="11" y="7" width="134" height="26" rx="6" fill="#2f6ea8"/>
+    <rect x="11" y="24" width="134" height="9" fill="#2f6ea8"/>
+    <text x="78" y="26" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#fcfeff">AL-QADR</text>
+    <g>
+      <rect x="18" y="40" width="120" height="16" rx="4" fill="#eff5fa"/>
+      <rect x="18" y="60" width="120" height="16" rx="4" fill="#e8f1f9"/>
+      <rect x="18" y="80" width="120" height="16" rx="4" fill="#eff5fa"/>
+      <rect x="18" y="100" width="120" height="16" rx="4" fill="#e8f1f9"/>
+      <rect x="18" y="120" width="120" height="16" rx="4" fill="#eff5fa"/>
+    </g>
+    <g fill="#5e9ccb" opacity=".55">
+      <rect x="24" y="45" width="66" height="6" rx="3"/>
+      <rect x="24" y="65" width="80" height="6" rx="3"/>
+      <rect x="24" y="85" width="58" height="6" rx="3"/>
+      <rect x="24" y="105" width="74" height="6" rx="3"/>
+      <rect x="24" y="125" width="62" height="6" rx="3"/>
+    </g>
+    <g fill="#9c5f1e" opacity=".72">
+      <circle cx="128" cy="48" r="3.4"/><circle cx="128" cy="68" r="3.4"/><circle cx="128" cy="88" r="3.4"/>
+      <circle cx="128" cy="108" r="3.4"/><circle cx="128" cy="128" r="3.4"/>
+    </g>
+  </g>
+
+  <!-- Bintang hafazan — roset bintang berriben, lambang hafazan sempurna -->
+  <g id="bintangHafaz">
+    <path d="M45 2 L55 24 L79 26 L61 42 L66 66 L45 54 L24 66 L29 42 L11 26 L35 24 Z" fill="#9c5f1e"/>
+    <path d="M45 16 L52 32 L69 33 L56 44 L60 61 L45 52 L30 61 L34 44 L21 33 L38 32 Z" fill="#f4e4cd" opacity=".50"/>
+    <path d="M35 64 L45 55 L55 64 L55 96 L45 88 L35 96 Z" fill="#7a4614"/>
+    <circle cx="45" cy="38" r="7.5" fill="#fcfeff" opacity=".85"/>
+  </g>
+  <!-- ===== PUSTAKA WATAK TAMBAHAN (Tahun 5 Unit 4) — tema kelas hafazan & ulangan, gaya Ghibli ===== -->
+  <!-- Semua warna chrome ditulis dgn token T5 UNIT 3 (hijau zamrud / kelabu keluli) supaya di-remap oleh build_t5u04.py -->
+  <!-- Warna identiti (kayu #8a6544 #a87f5c #c49a63, daun #6d9c4a #8fbf6a #a9d383 #3f7a45) SENGAJA tidak di-remap -->
+
+  <!-- Jadual hafazan — papan tanda kemajuan hafazan dgn baris ayat bertanda -->
+  <g id="jadualHafaz">
+    <rect x="6" y="6" width="138" height="108" rx="9" fill="#fbfdfe" stroke="#2f6ea8" stroke-width="2.6"/>
+    <path d="M6 15 a9 9 0 0 1 9-9 h120 a9 9 0 0 1 9 9 v13 H6 Z" fill="#2f6ea8"/>
+    <text x="75" y="22" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#fcfeff" letter-spacing="1.1">HAFAZAN</text>
+    <rect x="16" y="36" width="118" height="14" rx="4" fill="#e8f1f9"/>
+    <rect x="16" y="54" width="118" height="14" rx="4" fill="#eff5fa"/>
+    <rect x="16" y="72" width="118" height="14" rx="4" fill="#e8f1f9"/>
+    <rect x="16" y="90" width="118" height="14" rx="4" fill="#eff5fa"/>
+    <g fill="#9c5f1e">
+      <circle cx="24" cy="43" r="3.6"/><circle cx="24" cy="61" r="3.6"/>
+      <circle cx="24" cy="79" r="3.6"/><circle cx="24" cy="97" r="3.6"/>
+    </g>
+    <g stroke="#5e9ccb" stroke-width="2.2" stroke-linecap="round">
+      <path d="M38 43 H120"/><path d="M38 61 H104"/>
+      <path d="M38 79 H126"/><path d="M38 97 H98"/>
+    </g>
+  </g>
+
+  <!-- Loceng tangan — isyarat mula / berhenti ulangan hafazan -->
+  <g id="locengHafaz">
+    <path d="M40 8 C26 8 20 20 20 34 C20 52 14 60 10 68 H70 C66 60 60 52 60 34 C60 20 54 8 40 8 Z"
+          fill="#9c5f1e" stroke="#5e3510" stroke-width="2.4"/>
+    <path d="M25 34 C25 22 31 14 40 14" stroke="#b8d4e8" stroke-width="2.6" fill="none" opacity=".75" stroke-linecap="round"/>
+    <rect x="5" y="66" width="70" height="9" rx="4.5" fill="#5e3510"/>
+    <path d="M33 80 a7 7 0 0 0 14 0 Z" fill="#5e3510"/>
+    <rect x="34" y="0" width="12" height="11" rx="5.5" fill="#5e3510"/>
+  </g>
+
+  <!-- Mikrofon — tasmik / memperdengarkan hafazan -->
+  <g id="mikrofonHafaz">
+    <rect x="24" y="6" width="22" height="54" rx="11" fill="#9c5f1e" stroke="#5e3510" stroke-width="2"/>
+    <g stroke="#b8d4e8" stroke-width="1.7" opacity=".75">
+      <path d="M27 18 H43"/><path d="M27 28 H43"/><path d="M27 38 H43"/><path d="M27 48 H43"/>
+    </g>
+    <path d="M11 46 C11 68 23 78 35 78 C47 78 59 68 59 46" stroke="#5e3510" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M35 78 V110" stroke="#5e3510" stroke-width="4.4" stroke-linecap="round"/>
+    <path d="M13 120 H57 L50 109 H20 Z" fill="#5e3510"/>
+    <ellipse cx="35" cy="120" rx="22" ry="4" fill="#5e3510" opacity=".3"/>
+  </g>
+
+  <!-- Kad ayat — susunan kad potongan ayat untuk latihan sambung hafazan -->
+  <g id="kadAyatHafaz">
+    <rect x="22" y="4" width="88" height="58" rx="7" fill="#e6eff7" stroke="#b8d4e8" stroke-width="2"
+          transform="rotate(-9 66 33)"/>
+    <rect x="14" y="22" width="88" height="58" rx="7" fill="#e8f1f9" stroke="#b8d4e8" stroke-width="2"
+          transform="rotate(-4 58 51)"/>
+    <rect x="8" y="42" width="90" height="62" rx="7" fill="#fcfeff" stroke="#2f6ea8" stroke-width="2.6"/>
+    <circle cx="25" cy="59" r="7.5" fill="#2f6ea8"/>
+    <text x="25" y="63" text-anchor="middle" font-family="Trebuchet MS" font-size="9.5" font-weight="700" fill="#fcfeff">1</text>
+    <g stroke="#5e9ccb" stroke-width="2.2" stroke-linecap="round">
+      <path d="M40 56 H86"/><path d="M40 70 H78"/><path d="M40 84 H86"/>
+    </g>
+  </g>
+
+  <!-- Pokok tin — batang kayu (identiti) + daun hijau (identiti), berbuah tin -->
+  <g id="pokokTinHafaz">
+    <path d="M75 158 C72 124 70 102 78 80" stroke="#8a6544" stroke-width="11" fill="none" stroke-linecap="round"/>
+    <path d="M78 100 C62 86 44 78 26 76" stroke="#8a6544" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M78 100 C94 86 112 78 130 76" stroke="#8a6544" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="75" cy="54" rx="72" ry="42" fill="#6d9c4a"/>
+    <ellipse cx="34" cy="64" rx="38" ry="27" fill="#8fbf6a"/>
+    <ellipse cx="118" cy="62" rx="36" ry="25" fill="#8fbf6a"/>
+    <ellipse cx="75" cy="32" rx="50" ry="27" fill="#a9d383"/>
+    <ellipse cx="75" cy="50" rx="42" ry="19" fill="#6d9c4a" opacity=".28"/>
+    <g fill="#3f7a45" opacity=".40">
+      <ellipse cx="46" cy="80" rx="15" ry="6.6"/><ellipse cx="106" cy="78" rx="13" ry="6"/>
+    </g>
+    <g>
+      <circle cx="52" cy="58" r="8" fill="#a87f5c"/>
+      <circle cx="52" cy="58" r="3.4" fill="#c49a63"/>
+      <circle cx="100" cy="52" r="7.4" fill="#a87f5c"/>
+      <circle cx="100" cy="52" r="3.2" fill="#c49a63"/>
+      <circle cx="74" cy="40" r="6.6" fill="#a87f5c"/>
+      <circle cx="74" cy="40" r="2.8" fill="#c49a63"/>
+    </g>
+  </g>
+
+  <!-- Pembesar suara — mendengar bacaan qari (audio / laman sesawang) -->
+  <g id="pembesarSuara">
+    <rect x="8" y="30" width="34" height="48" rx="7" fill="#9c5f1e" stroke="#5e3510" stroke-width="2.2"/>
+    <path d="M42 40 L78 16 V92 L42 68 Z" fill="#9c5f1e" stroke="#5e3510" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M42 40 L78 16" stroke="#b8d4e8" stroke-width="2.2" opacity=".7"/>
+    <g stroke="#5e9ccb" stroke-width="3" fill="none" stroke-linecap="round">
+      <path d="M88 40 C96 48 96 60 88 68"/>
+      <path d="M99 30 C112 44 112 64 99 78"/>
+    </g>
+    <circle cx="25" cy="54" r="6" fill="#5e3510"/>
+  </g>
+  <!-- ===== PUSTAKA WATAK TAMBAHAN (Tahun 5 Unit 5) — tema masa: jam, jam pasir, jam matahari, papan tuntutan, gaya Ghibli ===== -->
+  <!-- Semua warna chrome ditulis dgn token T5 UNIT 4 (merah delima / kelabu arang) supaya di-remap oleh build_t5u05.py -->
+  <!-- Warna identiti (kayu #8a6544 #a87f5c #c49a63, daun #6d9c4a #8fbf6a #a9d383 #3f7a45) SENGAJA tidak di-remap -->
+
+  <!-- Jam loceng — masa yang sentiasa berdetik, isyarat menghargai masa -->
+  <g id="jamLocengMasa">
+    <path d="M18 26 C14 14 22 6 32 10" stroke="#9c5f1e" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M82 26 C86 14 78 6 68 10" stroke="#9c5f1e" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <circle cx="32" cy="12" r="8" fill="#9c5f1e"/>
+    <circle cx="68" cy="12" r="8" fill="#9c5f1e"/>
+    <circle cx="50" cy="62" r="42" fill="#2f6ea8" stroke="#1e4d78" stroke-width="3"/>
+    <circle cx="50" cy="62" r="34" fill="#fcfeff"/>
+    <circle cx="50" cy="62" r="34" fill="none" stroke="#b8d4e8" stroke-width="2"/>
+    <g stroke="#9c5f1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M50 62 V40"/><path d="M50 62 L66 70"/>
+    </g>
+    <circle cx="50" cy="62" r="3.4" fill="#2f6ea8"/>
+    <g fill="#1e4d78">
+      <circle cx="50" cy="34" r="2"/><circle cx="50" cy="90" r="2"/>
+      <circle cx="22" cy="62" r="2"/><circle cx="78" cy="62" r="2"/>
+    </g>
+  </g>
+
+  <!-- Jam pasir — masa yang berlalu tidak kembali -->
+  <g id="jamPasirMasa">
+    <rect x="4" y="2" width="72" height="12" rx="4" fill="#9c5f1e"/>
+    <rect x="4" y="116" width="72" height="12" rx="4" fill="#9c5f1e"/>
+    <path d="M14 14 H66 L44 62 V68 L66 116 H14 L36 68 V62 Z" fill="#fcfeff" stroke="#9c5f1e" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M20 20 H60 L42 58 H38 Z" fill="#5e9ccb"/>
+    <path d="M42 68 H38 L20 110 H60 Z" fill="#e6eff7"/>
+    <path d="M40 66 H44 L46 96 H38 Z" fill="#5e9ccb"/>
+    <ellipse cx="42" cy="104" rx="17" ry="5" fill="#5e9ccb"/>
+    <path d="M14 14 H66" stroke="#2f6ea8" stroke-width="2.4"/>
+    <path d="M14 116 H66" stroke="#2f6ea8" stroke-width="2.4"/>
+  </g>
+
+  <!-- Jam matahari — mengukur masa dgn bayang -->
+  <g id="jamMatahari">
+    <ellipse cx="60" cy="96" rx="54" ry="20" fill="#9c5f1e"/>
+    <ellipse cx="60" cy="90" rx="54" ry="20" fill="#fcfeff" stroke="#9c5f1e" stroke-width="2.4"/>
+    <path d="M60 90 L60 34 L74 34 Z" fill="#2f6ea8" stroke="#1e4d78" stroke-width="2"/>
+    <path d="M60 90 L96 66" stroke="#1e4d78" stroke-width="3.4" stroke-linecap="round"/>
+    <g stroke="#5e9ccb" stroke-width="2" stroke-linecap="round">
+      <path d="M60 74 H72"/><path d="M86 82 H96"/><path d="M30 76 H42"/><path d="M22 84 H32"/>
+    </g>
+    <circle cx="60" cy="90" r="3.6" fill="#1e4d78"/>
+  </g>
+
+  <!-- Papan tuntutan — tiga baris ayat → kandungan → tuntutan -->
+  <g id="papanTuntutan">
+    <rect x="4" y="4" width="142" height="112" rx="9" fill="#fcfeff" stroke="#2f6ea8" stroke-width="2.6"/>
+    <path d="M4 13 a9 9 0 0 1 9-9 h124 a9 9 0 0 1 9 9 v15 H4 Z" fill="#2f6ea8"/>
+    <text x="75" y="24" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#fcfeff" letter-spacing="1">TUNTUTAN</text>
+    <rect x="14" y="36" width="122" height="18" rx="4" fill="#e6eff7"/>
+    <rect x="14" y="58" width="122" height="18" rx="4" fill="#e8f1f9"/>
+    <rect x="14" y="80" width="122" height="18" rx="4" fill="#e6eff7"/>
+    <g fill="#9c5f1e">
+      <circle cx="23" cy="45" r="4"/><circle cx="23" cy="67" r="4"/><circle cx="23" cy="89" r="4"/>
+    </g>
+    <g stroke="#5e9ccb" stroke-width="2.2" stroke-linecap="round">
+      <path d="M34 45 H124"/><path d="M34 67 H108"/><path d="M34 89 H118"/>
+    </g>
+  </g>
+
+  <!-- Kad masa — slot masa harian yg perlu diisi dgn kebaikan -->
+  <g id="kadMasa">
+    <rect x="6" y="6" width="92" height="104" rx="8" fill="#fcfeff" stroke="#2f6ea8" stroke-width="2.6"/>
+    <rect x="6" y="6" width="92" height="24" rx="8" fill="#2f6ea8"/>
+    <rect x="6" y="22" width="92" height="8" fill="#2f6ea8"/>
+    <circle cx="24" cy="18" r="7" fill="#fcfeff" stroke="#1e4d78" stroke-width="1.6"/>
+    <path d="M24 13 V18 L28 21" stroke="#1e4d78" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <text x="40" y="22" font-family="Trebuchet MS" font-size="9.5" font-weight="700" fill="#fcfeff">MASA</text>
+    <g stroke="#5e9ccb" stroke-width="2.2" stroke-linecap="round">
+      <path d="M18 46 H86"/><path d="M18 62 H74"/><path d="M18 78 H86"/><path d="M18 94 H66"/>
+    </g>
+    <g fill="#b8d4e8">
+      <circle cx="86" cy="46" r="3.4"/><circle cx="74" cy="62" r="3.4"/>
+      <circle cx="86" cy="78" r="3.4"/><circle cx="66" cy="94" r="3.4"/>
+    </g>
+  </g>
+
+  <!-- Kalendar / perancang masa — merancang masa dgn tersusun -->
+  <g id="kalendarMasa">
+    <rect x="6" y="10" width="100" height="108" rx="9" fill="#fcfeff" stroke="#2f6ea8" stroke-width="2.6"/>
+    <path d="M6 19 a9 9 0 0 1 9-9 h82 a9 9 0 0 1 9 9 v17 H6 Z" fill="#2f6ea8"/>
+    <rect x="28" y="2" width="8" height="16" rx="4" fill="#9c5f1e"/>
+    <rect x="76" y="2" width="8" height="16" rx="4" fill="#9c5f1e"/>
+    <g fill="#e6eff7">
+      <rect x="16" y="44" width="18" height="16" rx="3"/><rect x="40" y="44" width="18" height="16" rx="3"/>
+      <rect x="64" y="44" width="18" height="16" rx="3"/><rect x="88" y="44" width="10" height="16" rx="3"/>
+      <rect x="16" y="66" width="18" height="16" rx="3"/><rect x="40" y="66" width="18" height="16" rx="3"/>
+      <rect x="64" y="66" width="18" height="16" rx="3"/><rect x="88" y="66" width="10" height="16" rx="3"/>
+      <rect x="16" y="88" width="18" height="16" rx="3"/><rect x="40" y="88" width="18" height="16" rx="3"/>
+    </g>
+    <rect x="64" y="88" width="18" height="16" rx="3" fill="#2f6ea8"/>
+    <rect x="88" y="88" width="10" height="16" rx="3" fill="#e8f1f9"/>
+  </g>
+</defs>
+</svg>
+
+<div class="wrap">
+
+  <!-- ===== HERO (Tahun 5 Unit 5) — pagi cerah di laman kelas: jam matahari di tengah laman, murid merancang masa dgn kalendar dan jam loceng, jam pasir dan papan tuntutan di sisi ===== -->
+  <!-- Warna chrome ditulis TERUS dgn warna AKHIR tema Unit 5 (biru langit / oren tembaga) supaya tidak di-remap. -->
+  <!-- Hijau daun & kayu sengaja guna warna identiti (#6d9c4a #8fbf6a #3f7a45 #8a6544) yg tidak pernah di-remap. -->
+  <div class="hero">
+    <svg viewBox="0 0 940 300" role="img" aria-label="Pagi cerah di laman kelas: langit biru muda, matahari bersinar, jam matahari di tengah laman, dua murid duduk berpasangan merancang masa, seorang murid berdiri memegang kalendar, jam loceng besar, jam pasir dan papan tuntutan di atas rumput, gaya Ghibli">
+      <defs>
+        <linearGradient id="h9sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2f6ea8"/>
+          <stop offset=".26" stop-color="#5e9ccb"/>
+          <stop offset=".52" stop-color="#b8d4e8"/>
+          <stop offset=".78" stop-color="#e3eef7"/>
+          <stop offset="1" stop-color="#f8fbfe"/>
+        </linearGradient>
+        <linearGradient id="h9gnd" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#8fa86a"/>
+          <stop offset="1" stop-color="#4e6b3d"/>
+        </linearGradient>
+        <radialGradient id="h9beam" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#fdf6dd" stop-opacity=".9"/>
+          <stop offset="1" stop-color="#fdf6dd" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="h9glow" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#fbf5e4" stop-opacity=".5"/>
+          <stop offset="1" stop-color="#fbf5e4" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- langit pagi biru -->
+      <rect x="0" y="0" width="940" height="200" fill="url(#h9sky)"/>
+      <circle cx="470" cy="188" r="132" fill="url(#h9beam)"/>
+      <ellipse cx="470" cy="198" rx="376" ry="46" fill="url(#h9glow)"/>
+
+      <!-- matahari + awan -->
+      <circle cx="118" cy="70" r="30" fill="#fdf6dd" opacity=".95"/>
+      <circle cx="118" cy="70" r="42" fill="#fdf6dd" opacity=".28"/>
+      <g fill="#fdfeff" opacity=".62">
+        <ellipse cx="742" cy="62" rx="52" ry="17"/>
+        <ellipse cx="784" cy="54" rx="34" ry="13"/>
+        <ellipse cx="706" cy="56" rx="28" ry="11"/>
+      </g>
+
+      <!-- cahaya matahari — hanya di sudut, jauh drpd jalur teks hero -->
+      <g fill="#fdf9ee" opacity=".55">
+        <ellipse cx="62" cy="122" rx="34" ry="10" transform="rotate(-18 62 122)"/>
+        <ellipse cx="884" cy="128" rx="30" ry="9" transform="rotate(18 884 128)"/>
+      </g>
+      <!-- three twinkling motes. They must stay clear of the hero text bands, which are
+           WIDEST in the print case (703px): kick x193-747 y24-43, h1 x282-658 y61-104,
+           sub x335-605 y120-140. Hence: hard left (x<190) or hard right (x>750). -->
+      <g class="anim-twinkle">
+        <g transform="translate(26,12) scale(.38)"><use href="#bintang"/></g>
+        <g transform="translate(904,20) scale(.36)"><use href="#bintang"/></g>
+        <g transform="translate(848,120) scale(.30)"><use href="#bintang"/></g>
+      </g>
+
+      <!-- burung pagi -->
+      <g transform="translate(146,110) scale(.60)"><use href="#burung"/></g>
+      <g transform="translate(770,96) scale(.54)"><use href="#burung"/></g>
+
+      <!-- bukit jauh -->
+      <path d="M0 188 L74 168 L138 182 L216 162 L296 184 L386 166 L470 186 L558 164 L650 182 L738 160 L828 180 L940 164 L940 200 L0 200 Z" fill="#7fa08c" opacity=".85"/>
+
+      <!-- tanah laman -->
+      <path d="M0 194 Q235 182 470 194 Q705 206 940 190 L940 300 L0 300 Z" fill="url(#h9gnd)"/>
+      <path d="M0 194 Q235 182 470 194 Q705 206 940 190" fill="none" stroke="#c3d6a8" stroke-width="2" opacity=".55"/>
+
+      <!-- jam matahari besar di tengah laman -->
+      <g transform="translate(408,150) scale(.86)"><use href="#jamMatahari"/></g>
+
+      <!-- hamparan & dua murid berpasangan merancang masa -->
+      <g transform="translate(258,196) scale(1)"><use href="#hamparan"/></g>
+      <g transform="translate(288,168) scale(.48)"><use href="#nurTadabbur"/></g>
+      <g transform="translate(350,148) scale(.52)"><use href="#ustazDuduk"/></g>
+      <g transform="translate(414,168) scale(.48)"><use href="#adamBaca"/></g>
+
+      <!-- jam loceng besar di tepi pentas -->
+      <g transform="translate(540,142) scale(.70)"><use href="#jamLocengMasa"/></g>
+
+      <!-- prop di atas rumput -->
+      <g transform="translate(150,232) scale(.62)"><use href="#kalendarMasa"/></g>
+      <g transform="translate(236,240) scale(.60)"><use href="#jamPasirMasa"/></g>
+      <g transform="translate(664,236) scale(.60)"><use href="#kadMasa"/></g>
+      <g transform="translate(742,238) scale(.56)"><use href="#papanTuntutan"/></g>
+      <g transform="translate(216,262) scale(.62)"><use href="#semak"/></g>
+      <g transform="translate(700,266) scale(.62)"><use href="#semak"/></g>
+      <g transform="translate(58,258) scale(.68)"><use href="#bunga"/></g>
+      <g transform="translate(888,258) scale(.70)"><use href="#bunga"/></g>
+    </svg>
+    <div class="hero-txt">
+      <div class="kick">Pendidikan Islam &bull; Tahun 5 &bull; Bidang al-Quran</div>
+      <h1>Kefahaman Surah al-&lsquo;Asr</h1>
+      <div class="sub">Kefahaman &bull; 3 Ayat &bull; Makkiyyah</div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="chip"><div class="lbl">Bidang</div><div class="val">al-Quran</div></div>
+    <div class="chip"><div class="lbl">Standard Kandungan (SK)</div><div class="val">Merumus, mengamal dan menghayati <b>Surah al-&lsquo;Asr</b> secara beradab dan istiqamah</div></div>
+    <div class="chip"><div class="lbl">Standard Pembelajaran (SP)</div><div class="val">1.5.1 &ndash; 1.5.4</div></div>
+    <div class="chip"><div class="lbl">Sumber</div><div class="val">DSKP PI T5 (ms. 23) &bull; Buku Teks PI T5 SK (ms. 22&ndash;27)</div></div>
+  </div>
+
+  <div class="toc">
+    <div class="ttl">Kandungan &amp; Panduan Penggunaan</div>
+    <div class="grid">
+      <div class="it"><div class="n">1</div><div><div class="t">Infografik</div><div class="d">Pengenalan surah, 3 ayat, 3 tuntutan &amp; 4 cara menghargai masa</div></div></div>
+      <div class="it"><div class="n">2</div><div><div class="t">Peta Minda</div><div class="d">Maksud, dalil, tuntutan &amp; amalan, nilai murni, iktibar</div></div></div>
+      <div class="it"><div class="n">3</div><div><div class="t">Nota Ringkas</div><div class="d">10 poin ringkasan untuk rujukan pantas</div></div></div>
+      <div class="it"><div class="n">4</div><div><div class="t">Diagram Peta Tuntutan</div><div class="d">Tiga tuntutan Surah al-&lsquo;Asr mengikut ayat</div></div></div>
+      <div class="it"><div class="n">5</div><div><div class="t">Kuiz Interaktif</div><div class="d">10 soalan dengan maklum balas segera</div></div></div>
+      <div class="it"><div class="n">6</div><div><div class="t">Lampiran</div><div class="d">Senarai 24 Standard Kandungan PI Tahun 5</div></div></div>
+    </div>
+    <div class="note"><b>Cara guna:</b> Buka fail ini dalam pelayar web. Pada kuiz, klik pilihan jawapan untuk maklum balas segera dan skor automatik. Tekan butang <b>Cetak / Simpan PDF</b> untuk versi kertas &mdash; semua jawapan akan dipaparkan secara automatik supaya boleh dijadikan lembaran kerja.</div>
+  </div>
+
+  <!-- ===== 1. INFOGRAFIK ===== -->
+  <section>
+    <h2><span class="num">1</span> Infografik<svg class="mascot" width="26" height="27" viewBox="0 0 72 74" aria-hidden="true"><use href="#kepalaAdam"/></svg></h2>
+    <p class="hint">Surah al-&lsquo;Asr &rarr; kefahaman, 3 ayat &amp; 3 tuntutan utamanya.</p>
+
+    <svg class="art" id="art-info" viewBox="0 0 820 1214" role="img" aria-label="Infografik kefahaman Surah al-'Asr Tahun 5">
+      <defs>
+        <linearGradient id="gh7u5" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#2f6ea8"/><stop offset="1" stop-color="#1e4d78"/>
+        </linearGradient>
+        <linearGradient id="gd7u5" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#fdf6ec"/><stop offset="1" stop-color="#eff5fa"/>
+        </linearGradient>
+      </defs>
+
+      <!-- ===== KEPALA ===== -->
+      <rect x="0" y="0" width="820" height="150" rx="16" fill="url(#gh7u5)"/>
+      <g fill="#ffffff" opacity=".14"><circle cx="70" cy="30" r="26"/><circle cx="750" cy="118" r="30"/></g>
+      <g fill="#fff9e6" opacity=".85">
+        <path d="M150 30 L152.6 38 L160 40.6 L152.6 43.2 L150 51 L147.4 43.2 L140 40.6 L147.4 38 Z"/>
+        <path d="M672 34 L674.2 41 L681 43.2 L674.2 45.4 L672 52 L669.8 45.4 L663 43.2 L669.8 41 Z"/>
+        <circle cx="196" cy="98" r="2.6"/><circle cx="628" cy="112" r="2.2"/><circle cx="100" cy="112" r="2"/>
+      </g>
+      <g transform="translate(24,2) scale(.56)"><use href="#jamMatahari"/></g>
+      <g transform="translate(736,2) scale(.62)"><use href="#jamLocengMasa"/></g>
+      <text x="410" y="62" text-anchor="middle" font-family="Trebuchet MS" font-size="26" font-weight="700" fill="#ffffff">SURAH AL-&lsquo;ASR</text>
+      <text x="410" y="98" text-anchor="middle" font-family="Trebuchet MS" font-size="19" font-weight="700" fill="#ffffff">KEFAHAMAN &amp; TUNTUTAN SURAH AL-&lsquo;ASR</text>
+      <rect x="284" y="112" width="252" height="24" rx="12" fill="#ffffff" opacity=".24"/>
+      <text x="410" y="129" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.6">BIDANG AL-QURAN &bull; SK 1.5</text>
+
+      <!-- ===== APAKAH SURAH AL-'ASR? ===== -->
+      <rect x="40" y="166" width="740" height="146" rx="14" fill="url(#gd7u5)" stroke="#9c5f1e" stroke-width="1.6"/>
+      <rect x="40" y="166" width="740" height="30" rx="14" fill="#7a4614"/>
+      <rect x="40" y="188" width="740" height="8" fill="#7a4614"/>
+      <text x="410" y="187" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.4">APAKAH KEFAHAMAN SURAH AL-&lsquo;ASR?</text>
+
+      <rect x="66" y="206" width="340" height="94" rx="12" fill="#ffffff" stroke="#2f6ea8" stroke-width="1.6"/>
+      <rect x="82" y="218" width="52" height="42" rx="8" fill="#eff5fa" stroke="#2f6ea8" stroke-width="1.4"/>
+      <g transform="translate(90,219) scale(.30)"><use href="#kadMasa"/></g>
+      <text x="148" y="234" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#1e4d78">KEFAHAMAN</text>
+      <text x="148" y="252" font-family="Trebuchet MS" font-size="11" fill="#1f2830">Memahami <tspan font-weight="700">maksud</tspan> surah</text>
+      <text x="148" y="268" font-family="Trebuchet MS" font-size="11" fill="#1f2830">serta <tspan font-weight="700">tuntutan</tspan> yg perlu</text>
+      <text x="148" y="284" font-family="Trebuchet MS" font-size="11" fill="#1f2830">diamalkan setiap hari.</text>
+
+      <rect x="414" y="206" width="340" height="94" rx="12" fill="#ffffff" stroke="#9c5f1e" stroke-width="1.6"/>
+      <rect x="430" y="218" width="52" height="42" rx="8" fill="#e6eff7" stroke="#9c5f1e" stroke-width="1.4"/>
+      <text x="456" y="249" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="22" font-weight="700" fill="#7a4614">١٠٣</text>
+      <text x="496" y="234" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#7a4614">SURAH KE-103</text>
+      <text x="496" y="252" font-family="Trebuchet MS" font-size="11" fill="#1f2830">Surah <tspan font-weight="700">Makkiyyah</tspan>, mengandungi</text>
+      <text x="496" y="268" font-family="Trebuchet MS" font-size="11" fill="#1f2830"><tspan font-weight="700">3 ayat</tspan> dan terletak dalam</text>
+      <text x="496" y="284" font-family="Trebuchet MS" font-size="11" fill="#1f2830">juzuk ke-30 al-Quran.</text>
+
+      <!-- ===== 3 TUNTUTAN SURAH AL-'ASR ===== -->
+      <rect x="40" y="326" width="740" height="456" rx="14" fill="#eff5fa" stroke="#e8f1f9" stroke-width="1.6"/>
+      <path d="M40 340 a14 14 0 0 1 14-14 h712 a14 14 0 0 1 14 14 v30 h-740 z" fill="#2f6ea8"/>
+      <circle cx="68" cy="354" r="13" fill="#ffffff"/>
+      <text x="68" y="359" text-anchor="middle" font-family="Trebuchet MS" font-size="14" font-weight="700" fill="#2f6ea8">1</text>
+      <text x="90" y="359" font-family="Trebuchet MS" font-size="14.5" font-weight="700" fill="#ffffff">3 TUNTUTAN SURAH AL-&lsquo;ASR</text>
+      <text x="756" y="359" text-anchor="end" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#b8d4e8">AYAT &rarr; KANDUNGAN &rarr; TUNTUTAN</text>
+
+      <!-- tuntutan 1: ayat 1-2 -->
+      <rect x="56" y="382" width="708" height="124" rx="12" fill="#fcfeff" stroke="#2f6ea8" stroke-width="1.4"/>
+      <path d="M56 394 a12 12 0 0 1 12-12 h684 a12 12 0 0 1 12 12 v20 H56 Z" fill="#2f6ea8"/>
+      <text x="70" y="404" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#ffffff">AYAT 1&ndash;2</text>
+      <text x="410" y="405" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="14" font-weight="700" fill="#ffffff">وَٱلْعَصْرِ &#160;&#160;&#160; إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ</text>
+      <text x="70" y="440" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#1e4d78">KANDUNGAN:</text>
+      <text x="164" y="440" font-family="Trebuchet MS" font-size="11.5" fill="#1f2830">Masa itu <tspan font-weight="700">sangat berharga</tspan>; manusia yg tidak memanfaatkannya berada dalam kerugian.</text>
+      <text x="70" y="466" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#1e4d78">TUNTUTAN:</text>
+      <text x="164" y="466" font-family="Trebuchet MS" font-size="11.5" fill="#1f2830">&#8226; Sentiasa <tspan font-weight="700">menghargai masa</tspan> &nbsp; &#8226; <tspan font-weight="700">Tidak membazir</tspan> masa dgn perkara sia-sia</text>
+      <text x="164" y="488" font-family="Trebuchet MS" font-size="11.5" fill="#1f2830">&#8226; Mengisi masa lapang dgn amalan yg berfaedah</text>
+
+      <!-- tuntutan 2: ayat 3 (iman & amal soleh) -->
+      <rect x="56" y="514" width="708" height="124" rx="12" fill="#f7fafd" stroke="#5e9ccb" stroke-width="1.4"/>
+      <path d="M56 526 a12 12 0 0 1 12-12 h684 a12 12 0 0 1 12 12 v20 H56 Z" fill="#5e9ccb"/>
+      <text x="70" y="536" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#ffffff">AYAT 3 (A)</text>
+      <text x="410" y="537" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="14" font-weight="700" fill="#ffffff">إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ</text>
+      <text x="70" y="572" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#1e4d78">KANDUNGAN:</text>
+      <text x="164" y="572" font-family="Trebuchet MS" font-size="11.5" fill="#1f2830">Kepentingan <tspan font-weight="700">beriman</tspan> kepada Allah dan <tspan font-weight="700">berbuat kebaikan</tspan> sesama manusia.</text>
+      <text x="70" y="598" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#1e4d78">TUNTUTAN:</text>
+      <text x="164" y="598" font-family="Trebuchet MS" font-size="11.5" fill="#1f2830">&#8226; <tspan font-weight="700">Memelihara iman</tspan> kepada Allah &nbsp; &#8226; <tspan font-weight="700">Memperbaiki</tspan> amal ibadah</text>
+      <text x="164" y="620" font-family="Trebuchet MS" font-size="11.5" fill="#1f2830">&#8226; Sentiasa <tspan font-weight="700">berusaha membuat kebaikan</tspan> sesama manusia</text>
+
+      <!-- tuntutan 3: ayat 3 (pesan kebenaran & sabar) -->
+      <rect x="56" y="646" width="708" height="124" rx="12" fill="#fcfeff" stroke="#2f6ea8" stroke-width="1.4"/>
+      <path d="M56 658 a12 12 0 0 1 12-12 h684 a12 12 0 0 1 12 12 v20 H56 Z" fill="#2f6ea8"/>
+      <text x="70" y="668" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#ffffff">AYAT 3 (B)</text>
+      <text x="410" y="669" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="14" font-weight="700" fill="#ffffff">وَتَوَاصَوْا۟ بِٱلْحَقِّ وَتَوَاصَوْا۟ بِٱلصَّبْرِ</text>
+      <text x="70" y="704" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#1e4d78">KANDUNGAN:</text>
+      <text x="164" y="704" font-family="Trebuchet MS" font-size="11.5" fill="#1f2830"><tspan font-weight="700">Saling berpesan</tspan> kepada kebenaran dan kesabaran sesama manusia.</text>
+      <text x="70" y="730" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#1e4d78">TUNTUTAN:</text>
+      <text x="164" y="730" font-family="Trebuchet MS" font-size="11.5" fill="#1f2830">&#8226; <tspan font-weight="700">Mengajak</tspan> orang lain ke jalan kebenaran</text>
+      <text x="164" y="752" font-family="Trebuchet MS" font-size="11.5" fill="#1f2830">&#8226; <tspan font-weight="700">Mengingatkan</tspan> diri dan orang lain supaya <tspan font-weight="700">bersabar</tspan> dgn ujian hidup</text>
+
+      <!-- ===== 4 CARA MENGHARGAI MASA ===== -->
+      <rect x="40" y="796" width="740" height="244" rx="14" fill="url(#gd7u5)" stroke="#9c5f1e" stroke-width="1.6"/>
+      <rect x="40" y="796" width="740" height="30" rx="14" fill="#7a4614"/>
+      <rect x="40" y="818" width="740" height="8" fill="#7a4614"/>
+      <text x="410" y="817" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.4">4 CARA MENGHARGAI MASA</text>
+
+      <rect x="56" y="838" width="165" height="186" rx="12" fill="#ffffff" stroke="#2f6ea8" stroke-width="1.4"/>
+      <g transform="translate(116,850) scale(.42)"><use href="#kalendarMasa"/></g>
+      <text x="138" y="928" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" font-weight="700" fill="#1e4d78">1. RANCANG</text>
+      <text x="138" y="950" text-anchor="middle" font-family="Trebuchet MS" font-size="10.4" fill="#1f2830">Tulis jadual harian</text>
+      <text x="138" y="965" text-anchor="middle" font-family="Trebuchet MS" font-size="10.4" fill="#1f2830">supaya masa teratur</text>
+      <text x="138" y="985" text-anchor="middle" font-family="Trebuchet MS" font-size="10.4" fill="#1f2830">dan tidak terbuang.</text>
+
+      <rect x="235" y="838" width="165" height="186" rx="12" fill="#ffffff" stroke="#5e9ccb" stroke-width="1.4"/>
+      <g transform="translate(295,850) scale(.42)"><use href="#kadMasa"/></g>
+      <text x="317" y="928" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" font-weight="700" fill="#1e4d78">2. ISI</text>
+      <text x="317" y="950" text-anchor="middle" font-family="Trebuchet MS" font-size="10.4" fill="#1f2830">Isi masa dgn perkara</text>
+      <text x="317" y="965" text-anchor="middle" font-family="Trebuchet MS" font-size="10.4" fill="#1f2830">berfaedah seperti</text>
+      <text x="317" y="985" text-anchor="middle" font-family="Trebuchet MS" font-size="10.4" fill="#1f2830">membaca dan beramal.</text>
+
+      <rect x="414" y="838" width="165" height="186" rx="12" fill="#ffffff" stroke="#2f6ea8" stroke-width="1.4"/>
+      <g transform="translate(474,850) scale(.42)"><use href="#jamLocengMasa"/></g>
+      <text x="496" y="928" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" font-weight="700" fill="#1e4d78">3. JAGA</text>
+      <text x="496" y="950" text-anchor="middle" font-family="Trebuchet MS" font-size="10.4" fill="#1f2830">Jaga waktu solat,</text>
+      <text x="496" y="965" text-anchor="middle" font-family="Trebuchet MS" font-size="10.4" fill="#1f2830">belajar dan rehat</text>
+      <text x="496" y="985" text-anchor="middle" font-family="Trebuchet MS" font-size="10.4" fill="#1f2830">mengikut jadual.</text>
+
+      <rect x="593" y="838" width="165" height="186" rx="12" fill="#ffffff" stroke="#9c5f1e" stroke-width="1.4"/>
+      <g transform="translate(652,850) scale(.42)"><use href="#jamPasirMasa"/></g>
+      <text x="675" y="928" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" font-weight="700" fill="#7a4614">4. BERSYUKUR</text>
+      <text x="675" y="950" text-anchor="middle" font-family="Trebuchet MS" font-size="10.4" fill="#1f2830">Bersyukur dgn masa</text>
+      <text x="675" y="965" text-anchor="middle" font-family="Trebuchet MS" font-size="10.4" fill="#1f2830">yg dianugerahkan</text>
+      <text x="675" y="985" text-anchor="middle" font-family="Trebuchet MS" font-size="10.4" fill="#1f2830">dgn beramal soleh.</text>
+
+      <!-- ===== NILAI MURNI ===== -->
+      <rect x="40" y="1054" width="740" height="50" rx="12" fill="#eff5fa" stroke="#e8f1f9" stroke-width="1.6"/>
+      <text x="66" y="1084" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#1e4d78">NILAI MURNI:</text>
+      <g font-family="Trebuchet MS" font-size="11.5" font-weight="700">
+        <rect x="176" y="1066" width="94" height="26" rx="13" fill="#ffffff" stroke="#2f6ea8" stroke-width="1.2"/>
+        <text x="223" y="1084" text-anchor="middle" fill="#1e4d78">Bersyukur</text>
+        <rect x="280" y="1066" width="94" height="26" rx="13" fill="#ffffff" stroke="#5e9ccb" stroke-width="1.2"/>
+        <text x="327" y="1084" text-anchor="middle" fill="#1e4d78">Sabar</text>
+        <rect x="384" y="1066" width="94" height="26" rx="13" fill="#ffffff" stroke="#9c5f1e" stroke-width="1.2"/>
+        <text x="431" y="1084" text-anchor="middle" fill="#7a4614">Istiqamah</text>
+        <rect x="488" y="1066" width="122" height="26" rx="13" fill="#ffffff" stroke="#2f6ea8" stroke-width="1.2"/>
+        <text x="549" y="1084" text-anchor="middle" fill="#1e4d78">Berpesan-pesan</text>
+        <rect x="620" y="1066" width="134" height="26" rx="13" fill="#ffffff" stroke="#5e9ccb" stroke-width="1.2"/>
+        <text x="687" y="1084" text-anchor="middle" fill="#1e4d78">Bertanggungjawab</text>
+      </g>
+
+      <!-- ===== RUMUSAN ===== -->
+      <rect x="40" y="1118" width="740" height="72" rx="14" fill="url(#gh7u5)"/>
+      <g transform="translate(60,1132) scale(.30)"><use href="#papanTuntutan"/></g>
+      <text x="410" y="1152" text-anchor="middle" font-family="Trebuchet MS" font-size="16" font-weight="700" fill="#ffffff">RANCANG &rarr; ISI &rarr; JAGA &rarr; BERSYUKUR &rarr; BERAMAL SOLEH</text>
+      <text x="410" y="1176" text-anchor="middle" font-family="Trebuchet MS" font-size="11.4" fill="#b8d4e8">Masa itu anugerah Allah &mdash; orang yg beriman dan beramal soleh sahaja tidak rugi.</text>
+    </svg>
+  </section>
+
+  <!-- ===== 2. PETA MINDA ===== -->
+  <section>
+    <h2><span class="num">2</span> Peta Minda<svg class="mascot" width="26" height="27" viewBox="0 0 72 74" aria-hidden="true"><use href="#kepalaNur"/></svg></h2>
+    <p class="hint">Surah al-&lsquo;Asr di tengah &rarr; Maksud, Dalil, Tuntutan/Amalan, Nilai Murni, Iktibar.</p>
+
+    <svg class="art" viewBox="0 0 820 740" role="img" aria-label="Peta minda kefahaman Surah al-'Asr Tahun 5">
+      <g fill="#ffffff" opacity=".55"><circle cx="70" cy="60" r="30"/><circle cx="96" cy="44" r="22"/></g>
+
+      <path d="M302 254 C244 206 196 176 156 166" fill="none" stroke="#9c5f1e" stroke-width="3"/>
+      <path d="M518 254 C576 206 624 176 664 166" fill="none" stroke="#2f6ea8" stroke-width="3"/>
+      <path d="M518 384 C576 434 624 464 664 474" fill="none" stroke="#2f6ea8" stroke-width="3"/>
+      <path d="M302 384 C244 434 196 464 156 474" fill="none" stroke="#9c5f1e" stroke-width="3"/>
+      <path d="M410 404 L410 524" fill="none" stroke="#9c5f1e" stroke-width="3"/>
+
+      <ellipse cx="410" cy="320" rx="172" ry="94" fill="#2f6ea8"/>
+      <ellipse cx="410" cy="320" rx="161" ry="83" fill="none" stroke="#ffffff" stroke-width="1.3" opacity=".45"/>
+      <text x="410" y="306" text-anchor="middle" font-family="Trebuchet MS" font-size="18" font-weight="700" fill="#ffffff">SURAH AL-&lsquo;ASR</text>
+      <text x="410" y="344" text-anchor="middle" font-family="Trebuchet MS" font-size="12" fill="#eff5fa" letter-spacing="1.2">AL-QURAN &bull; SK 1.5</text>
+      <text x="410" y="370" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" fill="#e8f1f9">3 ayat &bull; surah ke-103 &bull; Makkiyyah</text>
+
+      <!-- 1 MAKSUD -->
+      <rect x="26" y="88" width="254" height="170" rx="14" fill="#eff5fa" stroke="#9c5f1e" stroke-width="1.6"/>
+      <rect x="26" y="88" width="254" height="30" rx="14" fill="#9c5f1e"/>
+      <rect x="26" y="110" width="254" height="8" fill="#9c5f1e"/>
+      <text x="153" y="109" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">1 &nbsp;MAKSUD</text>
+      <text x="42" y="140" font-family="Trebuchet MS" font-size="12" fill="#1f2830"><tspan font-weight="700">Surah al-&lsquo;Asr</tspan> ialah surah</text>
+      <text x="42" y="158" font-family="Trebuchet MS" font-size="12" fill="#1f2830">ke-103 dlm al-Quran. Ia <tspan font-weight="700">Makkiyyah</tspan></text>
+      <text x="42" y="176" font-family="Trebuchet MS" font-size="12" fill="#1f2830">dan mengandungi <tspan font-weight="700">3 ayat</tspan>.</text>
+      <text x="42" y="196" font-family="Trebuchet MS" font-size="12" fill="#1f2830">Allah bersumpah dgn <tspan font-weight="700">masa</tspan>;</text>
+      <text x="42" y="214" font-family="Trebuchet MS" font-size="12" fill="#1f2830">manusia yg tidak memanfaatkan</text>
+      <text x="42" y="232" font-family="Trebuchet MS" font-size="12" fill="#1f2830">masa berada dalam kerugian.</text>
+      <text x="42" y="250" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#7a4614">Hargai masa, jangan rugi.</text>
+
+      <!-- 2 DALIL -->
+      <rect x="540" y="88" width="254" height="170" rx="14" fill="#e6eff7" stroke="#2f6ea8" stroke-width="1.6"/>
+      <rect x="540" y="88" width="254" height="30" rx="14" fill="#2f6ea8"/>
+      <rect x="540" y="110" width="254" height="8" fill="#2f6ea8"/>
+      <text x="667" y="109" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">2 &nbsp;DALIL</text>
+      <text x="667" y="140" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="14" fill="#1e4d78">وَٱلْعَصْرِ</text>
+      <text x="667" y="162" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="14" fill="#1e4d78">إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ</text>
+      <text x="667" y="180" text-anchor="middle" font-family="Trebuchet MS" font-size="11" font-style="italic" fill="#6d7a86">Surah al-&lsquo;Asr, ayat 1&ndash;2</text>
+      <text x="556" y="198" font-family="Trebuchet MS" font-size="11" fill="#1f2830">&ldquo;Demi masa, sesungguhnya</text>
+      <text x="556" y="214" font-family="Trebuchet MS" font-size="11" fill="#1f2830">manusia itu dalam kerugian.&rdquo;</text>
+      <text x="556" y="230" font-family="Trebuchet MS" font-size="11" fill="#1f2830">Orang yg <tspan font-weight="700">beriman</tspan> dan <tspan font-weight="700">beramal</tspan></text>
+      <text x="556" y="246" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#7a4614">soleh sahaja tidak rugi.</text>
+
+      <!-- 3 TUNTUTAN / AMALAN -->
+      <rect x="540" y="428" width="254" height="180" rx="14" fill="#e6eff7" stroke="#2f6ea8" stroke-width="1.6"/>
+      <rect x="540" y="428" width="254" height="30" rx="14" fill="#2f6ea8"/>
+      <rect x="540" y="450" width="254" height="8" fill="#2f6ea8"/>
+      <text x="667" y="449" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">3 &nbsp;TUNTUTAN / AMALAN</text>
+      <text x="556" y="470" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#7a4614">Tiga tuntutan Surah al-&lsquo;Asr:</text>
+      <g font-family="Trebuchet MS" font-size="11" fill="#1f2830">
+        <text x="556" y="490">&#8226; <tspan font-weight="700">Hargai masa</tspan> &mdash; jangan bazir</text>
+        <text x="556" y="509">&#8226; <tspan font-weight="700">Pelihara iman</tspan>, perbaiki ibadah,</text>
+        <text x="556" y="528">&#8226; <tspan font-weight="700">Pesan kebenaran</tspan> &amp; <tspan font-weight="700">kesabaran</tspan></text>
+      </g>
+      <text x="556" y="556" font-family="Trebuchet MS" font-size="11" fill="#1f2830">Kepentingan: iman kukuh, elak</text>
+      <text x="556" y="572" font-family="Trebuchet MS" font-size="11" fill="#1f2830">perkara negatif, matlamat hidup</text>
+      <text x="556" y="588" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#7a4614">jelas, sifat sabar terpupuk.</text>
+
+      <!-- 4 NILAI MURNI -->
+      <rect x="26" y="428" width="254" height="180" rx="14" fill="#eff5fa" stroke="#9c5f1e" stroke-width="1.6"/>
+      <rect x="26" y="428" width="254" height="30" rx="14" fill="#9c5f1e"/>
+      <rect x="26" y="450" width="254" height="8" fill="#9c5f1e"/>
+      <text x="153" y="449" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">4 &nbsp;NILAI MURNI</text>
+      <text x="42" y="476" font-family="Trebuchet MS" font-size="12" fill="#1f2830">&#8226; <tspan font-weight="700">Bersyukur</tspan> dgn anugerah masa</text>
+      <text x="42" y="495" font-family="Trebuchet MS" font-size="12" fill="#1f2830">&#8226; <tspan font-weight="700">Sabar</tspan> menghadapi ujian hidup</text>
+      <text x="42" y="514" font-family="Trebuchet MS" font-size="12" fill="#1f2830">&#8226; <tspan font-weight="700">Istiqamah</tspan> beramal setiap hari</text>
+      <text x="42" y="533" font-family="Trebuchet MS" font-size="12" fill="#1f2830">&#8226; <tspan font-weight="700">Berpesan-pesan</tspan> kpd kebaikan</text>
+      <text x="42" y="552" font-family="Trebuchet MS" font-size="12" fill="#1f2830">&#8226; <tspan font-weight="700">Bertanggungjawab</tspan> guna masa</text>
+      <text x="42" y="571" font-family="Trebuchet MS" font-size="12" fill="#1f2830">&#8226; <tspan font-weight="700">Menghargai</tspan> masa &amp; kesihatan</text>
+      <text x="42" y="594" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#7a4614">Rancang, isi, jaga.</text>
+
+      <!-- 5 IKTIBAR -->
+      <rect x="282" y="530" width="256" height="164" rx="14" fill="#1e4d78"/>
+      <text x="410" y="558" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="1.2">5 &nbsp;IKTIBAR</text>
+      <text x="410" y="580" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#eff5fa">Masa yg berlalu tidak akan</text>
+      <text x="410" y="598" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#eff5fa">kembali. Setiap saat akan</text>
+      <text x="410" y="616" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#eff5fa">dipersoalkan di akhirat.</text>
+      <text x="410" y="634" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#eff5fa">Gunakan masa untuk <tspan font-weight="700">iman</tspan></text>
+      <text x="410" y="652" text-anchor="middle" font-family="Trebuchet MS" font-size="12.5" fill="#eff5fa">dan <tspan font-weight="700">amal soleh</tspan>.</text>
+      <line x1="310" y1="666" x2="510" y2="666" stroke="#ffffff" stroke-width="1" opacity=".4"/>
+      <text x="410" y="684" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#fff9e6">Bersyukur, sabar, istiqamah</text>
+
+      <g transform="translate(52,606) scale(.5)"><use href="#adamBaca"/></g>
+      <g transform="translate(700,606) scale(.5)"><use href="#nurBaca"/></g>
+
+      <!-- watak & alat hiasan tambahan — semua diletak dlm lompang kosong,
+           TIDAK di atas mana-mana teks kad (lihat decoaudit_t5.js) -->
+      <g transform="translate(300,14) scale(.42)"><use href="#ustaz"/></g>
+      <g transform="translate(372,18) scale(.55)"><use href="#bintangBulan"/></g>
+      <g class="anim-twinkle" style="animation-delay:.4s" transform="translate(500,16) scale(.46)"><use href="#bintang"/></g>
+      <g transform="translate(52,300) scale(.46)"><use href="#jamPasirMasa"/></g>
+      <g transform="translate(150,300) scale(.52)"><use href="#kalendarMasa"/></g>
+      <g transform="translate(438,428) scale(.58)"><use href="#jamMatahari"/></g>
+      <g transform="translate(742,300) scale(.48)"><use href="#bintangHafaz"/></g>
+      <g class="anim-twinkle" fill="#9c5f1e" opacity=".65" transform="translate(268,44)">
+        <path d="M0 0 L2.4 7 L9 9.4 L2.4 11.8 L0 19 L-2.4 11.8 L-9 9.4 L-2.4 7 Z"/>
+      </g>
+    </svg>
+  </section>
+
+  <!-- ===== 3. NOTA RINGKAS ===== -->
+  <section>
+    <h2><span class="num">3</span> Nota Ringkas<svg class="mascot" width="28" height="26" viewBox="0 0 76 70" aria-hidden="true"><use href="#kucing"/></svg></h2>
+    <p class="hint">Ringkasan kefahaman dan tuntutan Surah al-&lsquo;Asr untuk rujukan pantas murid.</p>
+    <div class="nota">
+      <ol>
+        <li><b>Surah al-&lsquo;Asr (SP 1.5.1).</b> Surah al-&lsquo;Asr ialah surah <b>ke-103</b> dalam al-Quran. Ia <b>Makkiyyah</b> (diturunkan di Makkah) dan mengandungi <b>3 ayat</b>, terletak dalam juzuk ke-30.</li>
+        <li><b>Maksud surah.</b> Allah bersumpah dengan <b>masa</b>. Manusia yang <b>tidak memanfaatkan masa</b> berada dalam <b>kerugian</b>, kecuali orang yang <b>beriman</b>, <b>beramal soleh</b>, serta <b>saling berpesan</b> dengan kebenaran dan kesabaran.</li>
+        <li><b>Ayat 1.</b> <span class="jf">وَٱلْعَصْرِ</span> &mdash; &ldquo;Demi masa!&rdquo;</li>
+        <li><b>Ayat 2.</b> <span class="jf">إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ</span> &mdash; &ldquo;Sesungguhnya manusia itu dalam kerugian.&rdquo;</li>
+        <li><b>Ayat 3.</b> <span class="jf">إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ وَتَوَاصَوْا۟ بِٱلْحَقِّ وَتَوَاصَوْا۟ بِٱلصَّبْرِ</span> &mdash; kecuali orang yang <b>beriman</b> dan <b>beramal soleh</b>, serta <b>saling berpesan</b> dengan <b>kebenaran</b> dan <b>kesabaran</b>.</li>
+        <li><b>Tuntutan 1 (SP 1.5.2).</b> Ayat 1&ndash;2 menuntut kita <b>sentiasa menghargai masa</b>, <b>tidak membazir</b> masa dengan perkara sia-sia, dan <b>mengisi masa lapang</b> dengan amalan yang berfaedah.</li>
+        <li><b>Tuntutan 2 (SP 1.5.2).</b> Ayat 3(a) menuntut kita <b>memelihara iman</b> kepada Allah, <b>memperbaiki amal ibadah</b>, dan <b>sentiasa berusaha membuat kebaikan</b> sesama manusia.</li>
+        <li><b>Tuntutan 3 (SP 1.5.2).</b> Ayat 3(b) menuntut kita <b>mengajak orang lain ke jalan kebenaran</b> dan <b>mengingatkan diri serta orang lain supaya bersabar</b> dengan ujian hidup.</li>
+        <li><b>Kepentingan (SP 1.5.3).</b> Surah al-&lsquo;Asr <b>menguatkan keimanan</b> kepada Allah, <b>mengelakkan diri daripada perkara negatif</b>, <b>memperkukuh matlamat hidup</b> yang jelas, serta <b>memupuk sifat sabar</b> dan saling mengajak kepada kebaikan. Sabda Nabi SAW: &ldquo;Dua nikmat yang sering dilupakan oleh kebanyakan manusia ialah <b>kesihatan</b> dan <b>waktu lapang</b>.&rdquo; (Riwayat al-Bukhari)</li>
+        <li><b>Amalan harian (SP 1.5.4).</b> <b>Rancang</b> jadual harian, <b>isi</b> masa dengan perkara berfaedah, <b>jaga</b> waktu solat dan belajar, <b>bersyukur</b> dengan anugerah masa, serta <b>berpesan-pesan</b> kepada kebenaran dan kesabaran secara <b>beradab dan istiqamah</b>.</li>
+      </ol>
+      <p style="margin:14px 0 0;padding:12px 14px;border-radius:12px;background:#eff5fa;border:1.5px dashed #9c5f1e;font-size:14px"><b>Rumusan:</b> Kita mestilah <b>memahami tuntutan Surah al-&lsquo;Asr</b>, <b>menghargai masa</b>, <b>memelihara iman</b> dan <b>beramal soleh</b>, serta <b>saling berpesan</b> dengan kebenaran dan kesabaran &mdash; kerana masa yang berlalu tidak akan kembali dan akan dipersoalkan di akhirat. Bersyukur dengan anugerah masa ialah kunci kejayaan dunia dan akhirat.</p>
+    </div>
+
+    <div class="deko" aria-hidden="true">
+      <svg width="37" height="26" viewBox="0 0 46 32"><use href="#burung"/></svg>
+      <svg width="40" height="25" viewBox="0 0 66 40"><use href="#kucingTidur"/></svg>
+      <svg width="39" height="56" viewBox="0 0 112 162"><use href="#ustaz"/></svg>
+      <svg width="48" height="42" viewBox="0 0 120 120"><use href="#jamMatahari"/></svg>
+      <svg width="44" height="44" viewBox="0 0 100 112"><use href="#kadMasa"/></svg>
+      <svg width="34" height="56" viewBox="0 0 80 130"><use href="#jamPasirMasa"/></svg>
+      <svg width="46" height="46" viewBox="0 0 100 112"><use href="#jamLocengMasa"/></svg>
+      <svg width="26" height="27" viewBox="0 0 72 74"><use href="#kepalaNur"/></svg>
+      <svg width="26" height="27" viewBox="0 0 70 72"><use href="#kepalaAdam"/></svg>
+    </div>
+  </section>
+
+  <!-- ===== 4. DIAGRAM PETA TUNTUTAN AL-'ASR — AYAT → KANDUNGAN → TUNTUTAN ===== -->
+  <section>
+    <h2><span class="num">4</span> Diagram Peta Tuntutan &mdash; Ayat &rarr; Kandungan &rarr; Tuntutan<svg class="mascot" width="37" height="26" viewBox="0 0 46 32" aria-hidden="true"><use href="#burung"/></svg></h2>
+    <p class="hint">Jenis: <b>Peta Tuntutan</b>. Tiga tuntutan Surah al-&lsquo;Asr dibahagikan mengikut ayat.</p>
+
+    <svg class="art" viewBox="0 0 820 790" role="img" aria-label="Diagram peta tuntutan Surah al-'Asr Tahun 5: ayat kepada kandungan kepada tuntutan">
+      <defs>
+        <marker id="ah8a" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 Z" fill="#2f6ea8"/>
+        </marker>
+      </defs>
+      <rect width="820" height="790" rx="14" fill="#eff5fa"/>
+
+      <!-- TAJUK -->
+      <rect x="40" y="6" width="740" height="32" rx="10" fill="#fcfeff" stroke="#2f6ea8" stroke-width="1.3"/>
+      <text x="410" y="27" text-anchor="middle" font-family="Trebuchet MS" font-size="13" font-weight="700" fill="#1e4d78" letter-spacing="1.4">PETA TUNTUTAN SURAH AL-&lsquo;ASR &mdash; 3 AYAT, 3 TUNTUTAN</text>
+
+      <!-- ================= TUNTUTAN 1 ================= -->
+      <rect x="40" y="60" width="740" height="200" rx="14" fill="#fcfeff" stroke="#2f6ea8" stroke-width="1.6"/>
+      <path d="M40 74 a14 14 0 0 1 14-14 h712 a14 14 0 0 1 14 14 v18 H40 Z" fill="#2f6ea8"/>
+      <text x="62" y="83" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#ffffff" letter-spacing="1">TUNTUTAN 1 &mdash; AYAT 1 &amp; 2</text>
+      <rect x="56" y="104" width="210" height="140" rx="12" fill="#eff5fa" stroke="#2f6ea8" stroke-width="1.4"/>
+      <text x="161" y="126" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#1e4d78" letter-spacing="1">AYAT</text>
+      <text x="161" y="160" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="13" fill="#1f2830">وَٱلْعَصْرِ</text>
+      <text x="161" y="188" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="13" fill="#1f2830">إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ</text>
+      <text x="161" y="222" text-anchor="middle" font-family="Trebuchet MS" font-size="10.6" fill="#6d7a86">&ldquo;Demi masa, manusia itu rugi.&rdquo;</text>
+      <rect x="306" y="104" width="210" height="140" rx="12" fill="#e6eff7" stroke="#5e9ccb" stroke-width="1.4"/>
+      <text x="411" y="126" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#1e4d78" letter-spacing="1">KANDUNGAN</text>
+      <text x="320" y="154" font-family="Trebuchet MS" font-size="11" fill="#1f2830">Masa itu <tspan font-weight="700">sangat berharga</tspan>.</text>
+      <text x="320" y="172" font-family="Trebuchet MS" font-size="11" fill="#1f2830">Manusia yg tidak memanfaatkan</text>
+      <text x="320" y="190" font-family="Trebuchet MS" font-size="11" fill="#1f2830">masa berada dalam</text>
+      <text x="320" y="208" font-family="Trebuchet MS" font-size="11" font-weight="700" fill="#7a4614">kerugian.</text>
+      <rect x="556" y="104" width="208" height="140" rx="12" fill="#e8f1f9" stroke="#9c5f1e" stroke-width="1.4"/>
+      <text x="660" y="126" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#7a4614" letter-spacing="1">TUNTUTAN</text>
+      <text x="570" y="154" font-family="Trebuchet MS" font-size="11" fill="#1f2830">&#8226; <tspan font-weight="700">Menghargai masa</tspan></text>
+      <text x="570" y="174" font-family="Trebuchet MS" font-size="11" fill="#1f2830">&#8226; <tspan font-weight="700">Tidak membazir</tspan> masa</text>
+      <text x="570" y="194" font-family="Trebuchet MS" font-size="11" fill="#1f2830">&#8226; Mengisi masa lapang</text>
+      <text x="570" y="214" font-family="Trebuchet MS" font-size="11" fill="#1f2830">&nbsp;&nbsp;&nbsp;dgn amalan berfaedah</text>
+      <g stroke="#2f6ea8" stroke-width="2.4" fill="none" marker-end="url(#ah8a)">
+        <path d="M270 174 H300"/><path d="M520 174 H550"/>
+      </g>
+
+      <!-- ================= TUNTUTAN 2 ================= -->
+      <rect x="40" y="280" width="740" height="200" rx="14" fill="#fcfeff" stroke="#2f6ea8" stroke-width="1.6"/>
+      <path d="M40 294 a14 14 0 0 1 14-14 h712 a14 14 0 0 1 14 14 v18 H40 Z" fill="#5e9ccb"/>
+      <text x="62" y="303" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#ffffff" letter-spacing="1">TUNTUTAN 2 &mdash; AYAT 3 (A)</text>
+      <rect x="56" y="324" width="210" height="140" rx="12" fill="#eff5fa" stroke="#5e9ccb" stroke-width="1.4"/>
+      <text x="161" y="346" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#1e4d78" letter-spacing="1">AYAT</text>
+      <text x="161" y="380" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="13" fill="#1f2830">إِلَّا ٱلَّذِينَ ءَامَنُوا۟</text>
+      <text x="161" y="408" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="13" fill="#1f2830">وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ</text>
+      <text x="161" y="442" text-anchor="middle" font-family="Trebuchet MS" font-size="10.6" fill="#6d7a86">&ldquo;Kecuali orang yg beriman&hellip;&rdquo;</text>
+      <rect x="306" y="324" width="210" height="140" rx="12" fill="#e6eff7" stroke="#5e9ccb" stroke-width="1.4"/>
+      <text x="411" y="346" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#1e4d78" letter-spacing="1">KANDUNGAN</text>
+      <text x="320" y="374" font-family="Trebuchet MS" font-size="11" fill="#1f2830">Kepentingan <tspan font-weight="700">beriman</tspan></text>
+      <text x="320" y="392" font-family="Trebuchet MS" font-size="11" fill="#1f2830">kepada Allah dan</text>
+      <text x="320" y="410" font-family="Trebuchet MS" font-size="11" fill="#1f2830"><tspan font-weight="700">berbuat kebaikan</tspan></text>
+      <text x="320" y="428" font-family="Trebuchet MS" font-size="11" fill="#1f2830">sesama manusia.</text>
+      <rect x="556" y="324" width="208" height="140" rx="12" fill="#e8f1f9" stroke="#9c5f1e" stroke-width="1.4"/>
+      <text x="660" y="346" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#7a4614" letter-spacing="1">TUNTUTAN</text>
+      <text x="570" y="374" font-family="Trebuchet MS" font-size="11" fill="#1f2830">&#8226; <tspan font-weight="700">Memelihara iman</tspan> kpd Allah</text>
+      <text x="570" y="394" font-family="Trebuchet MS" font-size="11" fill="#1f2830">&#8226; <tspan font-weight="700">Memperbaiki</tspan> amal ibadah</text>
+      <text x="570" y="414" font-family="Trebuchet MS" font-size="11" fill="#1f2830">&#8226; Sentiasa <tspan font-weight="700">membuat kebaikan</tspan></text>
+      <text x="570" y="434" font-family="Trebuchet MS" font-size="11" fill="#1f2830">&nbsp;&nbsp;&nbsp;sesama manusia</text>
+      <g stroke="#2f6ea8" stroke-width="2.4" fill="none" marker-end="url(#ah8a)">
+        <path d="M270 394 H300"/><path d="M520 394 H550"/>
+      </g>
+
+      <!-- ================= TUNTUTAN 3 ================= -->
+      <rect x="40" y="500" width="740" height="200" rx="14" fill="#fcfeff" stroke="#2f6ea8" stroke-width="1.6"/>
+      <path d="M40 514 a14 14 0 0 1 14-14 h712 a14 14 0 0 1 14 14 v18 H40 Z" fill="#2f6ea8"/>
+      <text x="62" y="523" font-family="Trebuchet MS" font-size="12" font-weight="700" fill="#ffffff" letter-spacing="1">TUNTUTAN 3 &mdash; AYAT 3 (B)</text>
+      <rect x="56" y="544" width="210" height="140" rx="12" fill="#eff5fa" stroke="#2f6ea8" stroke-width="1.4"/>
+      <text x="161" y="566" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#1e4d78" letter-spacing="1">AYAT</text>
+      <text x="161" y="600" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="13" fill="#1f2830">وَتَوَاصَوْا۟ بِٱلْحَقِّ</text>
+      <text x="161" y="628" text-anchor="middle" font-family="Scheherazade New, Traditional Arabic, Amiri, Tahoma, Segoe UI, Arial, serif" font-size="13" fill="#1f2830">وَتَوَاصَوْا۟ بِٱلصَّبْرِ</text>
+      <text x="161" y="662" text-anchor="middle" font-family="Trebuchet MS" font-size="10.6" fill="#6d7a86">&ldquo;Saling berpesan&hellip;&rdquo;</text>
+      <rect x="306" y="544" width="210" height="140" rx="12" fill="#e6eff7" stroke="#5e9ccb" stroke-width="1.4"/>
+      <text x="411" y="566" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#1e4d78" letter-spacing="1">KANDUNGAN</text>
+      <text x="320" y="594" font-family="Trebuchet MS" font-size="11" fill="#1f2830"><tspan font-weight="700">Saling berpesan</tspan> kepada</text>
+      <text x="320" y="612" font-family="Trebuchet MS" font-size="11" fill="#1f2830">kebenaran dan kesabaran</text>
+      <text x="320" y="630" font-family="Trebuchet MS" font-size="11" fill="#1f2830">sesama manusia supaya</text>
+      <text x="320" y="648" font-family="Trebuchet MS" font-size="11" fill="#1f2830">tidak tergolong yg rugi.</text>
+      <rect x="556" y="544" width="208" height="140" rx="12" fill="#e8f1f9" stroke="#9c5f1e" stroke-width="1.4"/>
+      <text x="660" y="566" text-anchor="middle" font-family="Trebuchet MS" font-size="11.5" font-weight="700" fill="#7a4614" letter-spacing="1">TUNTUTAN</text>
+      <text x="570" y="594" font-family="Trebuchet MS" font-size="11" fill="#1f2830">&#8226; <tspan font-weight="700">Mengajak</tspan> orang lain ke</text>
+      <text x="570" y="612" font-family="Trebuchet MS" font-size="11" fill="#1f2830">&nbsp;&nbsp;&nbsp;jalan kebenaran</text>
+      <text x="570" y="632" font-family="Trebuchet MS" font-size="11" fill="#1f2830">&#8226; <tspan font-weight="700">Mengingatkan</tspan> diri &amp; rakan</text>
+      <text x="570" y="652" font-family="Trebuchet MS" font-size="11" fill="#1f2830">&nbsp;&nbsp;&nbsp;supaya <tspan font-weight="700">bersabar</tspan></text>
+      <g stroke="#2f6ea8" stroke-width="2.4" fill="none" marker-end="url(#ah8a)">
+        <path d="M270 614 H300"/><path d="M520 614 H550"/>
+      </g>
+
+      <!-- BANNER HASIL -->
+      <rect x="40" y="716" width="740" height="72" rx="14" fill="#2f6ea8"/>
+      <g transform="translate(60,730) scale(.30)"><use href="#papanTuntutan"/></g>
+      <text x="410" y="748" text-anchor="middle" font-family="Trebuchet MS" font-size="15" font-weight="700" fill="#ffffff">HARGAI MASA &rarr; IMAN &amp; AMAL SOLEH &rarr; PESAN KEBENARAN &amp; KESABARAN</text>
+      <text x="410" y="772" text-anchor="middle" font-family="Trebuchet MS" font-size="11.4" fill="#b8d4e8">Ketiga-tiga tuntutan inilah yg menyelamatkan manusia daripada kerugian.</text>
+    </svg>
+  </section>
+
+  <!-- ===== 5. KUIZ INTERAKTIF ===== -->
+  <section>
+    <h2><span class="num">5</span> Kuiz Interaktif &mdash; 10 Soalan<svg class="mascot" width="40" height="25" viewBox="0 0 66 40" aria-hidden="true"><use href="#kucingTidur"/></svg></h2>
+    <p class="hint">Klik pilihan jawapan. Maklum balas dan skor diberikan serta-merta.</p>
+
+    <div class="scorebar">
+      <span class="sc">Skor: <span id="sc">0</span> / 10</span>
+      <span class="bar"><i id="bar"></i></span>
+      <span class="hint2">Dijawab: <span id="done">0</span>/10</span>
+      <button class="act" onclick="resetQuiz()">Ulang Semula</button>
+      <button class="act solid" onclick="window.print()">Cetak / Simpan PDF</button>
+    </div>
+
+    <div id="quiz">
+
+      <div class="qcard" data-ans="1" data-exp="Surah al-&lsquo;Asr ialah surah <b>ke-103</b> dalam al-Quran, selepas Surah al-Takathur dan sebelum Surah al-Humazah.">
+        <div class="qhead"><span class="qn">1</span><span class="qtext">Surah al-&lsquo;Asr ialah surah <b>ke berapa</b> dalam al-Quran?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Ke-100</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Ke-103</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Ke-110</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Surah al-&lsquo;Asr mengandungi <b>3 ayat</b> dan terletak dalam juzuk ke-30 al-Quran.">
+        <div class="qhead"><span class="qn">2</span><span class="qtext">Berapakah <b>bilangan ayat</b> Surah al-&lsquo;Asr?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>3 ayat</b></span></button>
+          <button class="opt"><span class="k">B</span><span>5 ayat</span></button>
+          <button class="opt"><span class="k">C</span><span>8 ayat</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Ayat 1 <span class=&quot;jf&quot;>وَٱلْعَصْرِ</span> bermaksud <b>&ldquo;Demi masa!&rdquo;</b> Allah bersumpah dengan masa sebagai tanda masa amat berharga.">
+        <div class="qhead"><span class="qn">3</span><span class="qtext">Apakah maksud <span class="jf">وَٱلْعَصْرِ</span>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Demi masa!</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Demi bulan!</span></button>
+          <button class="opt"><span class="k">C</span><span>Demi bintang!</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Ayat 2 <span class=&quot;jf&quot;>إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ</span> bermaksud <b>sesungguhnya manusia itu dalam kerugian</b>, iaitu manusia yg tidak memanfaatkan masa.">
+        <div class="qhead"><span class="qn">4</span><span class="qtext">Apakah maksud <span class="jf">إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ</span>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Sesungguhnya manusia itu dalam kejayaan</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Sesungguhnya manusia itu dalam kerugian</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Sesungguhnya manusia itu dalam kesabaran</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Ayat 3 menyatakan <b>kecuali orang yang beriman dan beramal soleh</b>, serta saling berpesan dengan kebenaran dan kesabaran &mdash; merekalah yg tidak rugi.">
+        <div class="qhead"><span class="qn">5</span><span class="qtext">Menurut Surah al-&lsquo;Asr, siapakah yang <b>tidak</b> tergolong dalam orang yang rugi?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Orang yang banyak hartanya</span></button>
+          <button class="opt"><span class="k">B</span><span>Orang yang berkuasa</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Orang yang beriman, beramal soleh serta berpesan kebenaran dan kesabaran</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Ayat 1&ndash;2 menuntut kita <b>menghargai masa</b>, <b>tidak membazir</b> masa dengan perkara sia-sia dan mengisi masa lapang dengan amalan berfaedah.">
+        <div class="qhead"><span class="qn">6</span><span class="qtext">Apakah <b>tuntutan</b> ayat 1&ndash;2 Surah al-&lsquo;Asr?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Menghargai masa dan tidak membazirnya</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Menghafaz surah di luar kepala</span></button>
+          <button class="opt"><span class="k">C</span><span>Menulis ayat di dalam buku</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="2" data-exp="Tuntutan <b>saling berpesan dengan kebenaran dan kesabaran</b> terdapat pada <b>ayat 3</b>, iaitu bahagian akhir surah.">
+        <div class="qhead"><span class="qn">7</span><span class="qtext">&ldquo;Saling berpesan dengan kebenaran dan kesabaran&rdquo; ialah tuntutan ayat&hellip;</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Ayat 1</span></button>
+          <button class="opt"><span class="k">B</span><span>Ayat 2</span></button>
+          <button class="opt"><span class="k">C</span><span><b>Ayat 3</b></span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Sabda Nabi SAW: dua nikmat yg sering dilupakan oleh kebanyakan manusia ialah <b>kesihatan dan waktu lapang</b>. (Riwayat al-Bukhari)">
+        <div class="qhead"><span class="qn">8</span><span class="qtext">Apakah <b>dua nikmat</b> yang sering dilupakan menurut hadis?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Harta dan pangkat</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Kesihatan dan waktu lapang</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Ilmu dan amal</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="0" data-exp="Masa yang berlalu <b>tidak akan kembali</b>. Setiap saat akan dipersoalkan di akhirat, jadi masa wajib digunakan untuk iman dan amal soleh.">
+        <div class="qhead"><span class="qn">9</span><span class="qtext">Mengapakah kita perlu <b>menghargai masa</b>?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span><b>Kerana masa yang berlalu tidak akan kembali</b></span></button>
+          <button class="opt"><span class="k">B</span><span>Kerana masa terlalu panjang</span></button>
+          <button class="opt"><span class="k">C</span><span>Kerana masa boleh dibeli</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+      <div class="qcard" data-ans="1" data-exp="Memahami Surah al-&lsquo;Asr <b>menguatkan keimanan</b> kepada Allah, <b>mengelakkan diri daripada perkara negatif</b> dan <b>memperkukuh matlamat hidup</b> yang jelas.">
+        <div class="qhead"><span class="qn">10</span><span class="qtext">Apakah <b>kepentingan</b> memahami Surah al-&lsquo;Asr?</span></div>
+        <div class="opts">
+          <button class="opt"><span class="k">A</span><span>Menambah harta dan pangkat</span></button>
+          <button class="opt"><span class="k">B</span><span><b>Menguatkan keimanan dan memperkukuh matlamat hidup</b></span></button>
+          <button class="opt"><span class="k">C</span><span>Mendapat pujian daripada rakan</span></button>
+        </div>
+        <div class="fb"><svg class="face" viewBox="0 0 60 60"><use href="#faceYay"/></svg><div class="txt"></div></div>
+      </div>
+
+    </div>
+
+    <div class="result" id="result">
+      <svg viewBox="0 0 220 170" style="width:200px;height:auto;margin:0 auto 4px;display:block">
+        <g transform="translate(24,4) scale(.95)"><use href="#adamBaca"/></g>
+        <g transform="translate(116,4) scale(.95)"><use href="#nurBaca"/></g>
+      </svg>
+      <div class="stars" id="stars"></div>
+      <div class="big" id="rscore"></div>
+      <div class="msg" id="rmsg"></div>
+      <button class="act solid" onclick="resetQuiz()">Cuba Lagi</button>
+      <button class="act" onclick="window.print()">Cetak / Simpan PDF</button>
+    </div>
+  </section>
+
+  <!-- ===== LAMPIRAN ===== -->
+  <section>
+    <h2><span class="num">&#9733;</span> Lampiran &mdash; Senarai SK Pendidikan Islam Tahun 5<svg class="mascot" width="26" height="27" viewBox="0 0 70 72" aria-hidden="true"><use href="#kepalaAdam"/></svg></h2>
+    <p class="hint">Unit yang telah siap ditanda. Sebut nombor unit untuk menjana bahan seterusnya.</p>
+    <table>
+      <thead><tr><th style="width:38px">#</th><th>Bidang</th><th>Standard Kandungan (SK)</th></tr></thead>
+      <tbody>
+        <tr class="on"><td class="c">1</td><td>al-Quran (Tilawah)</td><td>Membaca dan mengamalkan <b>Surah al-Qadr</b> dengan betul dan bertajwid &nbsp;<span style="color:#2f6ea8;font-weight:700">(unit 1 &check;)</span></td></tr>
+        <tr class="on"><td class="c">2</td><td>al-Quran (Tilawah)</td><td>Membaca dan mengamalkan <b>Surah at-Tin</b> dengan betul dan bertajwid &nbsp;<span style="color:#2f6ea8;font-weight:700">(unit 2 &check;)</span></td></tr>
+        <tr class="on"><td class="c">3</td><td>al-Quran (Hafazan)</td><td>Menghafaz dan mengamalkan <b>Surah al-Qadr</b> dengan betul dan bertajwid dalam solat dan kehidupan harian &nbsp;<span style="color:#2f6ea8;font-weight:700">(unit 3 &check;)</span></td></tr>
+        <tr class="on"><td class="c">4</td><td>al-Quran (Hafazan)</td><td>Menghafaz dan mengamalkan <b>Surah at-Tin</b> dengan betul dan bertajwid dalam solat dan kehidupan harian &nbsp;<span style="color:#2f6ea8;font-weight:700">(unit 4 &check;)</span></td></tr>
+        <tr class="on"><td class="c">5</td><td>al-Quran (Kefahaman)</td><td>Merumus, mengamal dan menghayati <b>Surah al-&lsquo;Asr</b> &nbsp;<span style="color:#2f6ea8;font-weight:700">(unit 5 &check;)</span></td></tr>
+        <tr><td class="c">6</td><td>al-Quran (Tajwid)</td><td>Hukum <b>mad</b>: mad silah qasirah, mad badal, mad &lsquo;iwad, mad tamkin dan mad tabi&rsquo;i</td></tr>
+        <tr><td class="c">7</td><td>Hadis</td><td>Merumus dan menghayati <b>hadis mentaati pemimpin</b> serta mengamalkan tuntutannya</td></tr>
+        <tr><td class="c">8</td><td>Akidah</td><td>Meyakini konsep nama Allah <b>al-Malik dan al-Hasib</b></td></tr>
+        <tr><td class="c">9</td><td>Akidah</td><td>Meyakini konsep <b>beriman kepada hari akhirat</b></td></tr>
+        <tr><td class="c">10</td><td>Akidah</td><td>Merumus kepentingan mempertahankan akidah daripada <b>syirik</b></td></tr>
+        <tr><td class="c">11</td><td>Akidah</td><td>Merumus kepentingan mempertahankan akidah daripada <b>sihir</b></td></tr>
+        <tr><td class="c">12</td><td>Ibadah</td><td>Merumus dan mengamalkan konsep <b>tayammum</b> dengan betul</td></tr>
+        <tr><td class="c">13</td><td>Ibadah</td><td>Merumus konsep <b>solat berjemaah</b> serta menghayatinya</td></tr>
+        <tr><td class="c">14</td><td>Ibadah</td><td>Merumus konsep <b>solat Jumaat</b> serta menghayatinya</td></tr>
+        <tr><td class="c">15</td><td>Ibadah</td><td>Merumus konsep <b>solat sunat dua hari raya</b> serta menghayatinya</td></tr>
+        <tr><td class="c">16</td><td>Sirah</td><td>Merumus i&lsquo;tibar peristiwa <b>hijrah Rasulullah ke Madinah</b></td></tr>
+        <tr><td class="c">17</td><td>Sirah</td><td>Merumus i&lsquo;tibar keunggulan <b>sifat itqan</b> Nabi Muhammad SAW</td></tr>
+        <tr><td class="c">18</td><td>Sirah</td><td>Meneladani keperibadian Nabi Muhammad SAW sebagai <b>pemimpin</b></td></tr>
+        <tr><td class="c">19</td><td>Adab</td><td>Merumus konsep <b>adab menaiki kenderaan</b></td></tr>
+        <tr><td class="c">20</td><td>Adab</td><td>Merumus konsep <b>adab jual beli</b> yang menepati syarak</td></tr>
+        <tr><td class="c">21</td><td>Adab</td><td>Merumus konsep <b>adab berkomunikasi</b> yang menepati syarak</td></tr>
+        <tr><td class="c">22</td><td>Adab</td><td>Merumus <b>adab terhadap alam sekitar</b> yang menepati syarak</td></tr>
+        <tr><td class="c">23</td><td>Jawi</td><td>Membaca, membina dan menulis pelbagai jenis <b>teks</b> berdasarkan tema</td></tr>
+        <tr><td class="c">24</td><td>Jawi</td><td>Mengenal dan menulis <b>khat naskh</b> dengan betul</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    Dijana daripada DSKP KSSR Semakan 2017 Pendidikan Islam Tahun 5 (BPK, 2019) &amp; Buku Teks Pendidikan Islam Tahun 5 SK (KPM).
+  </footer>
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#quiz .qcard'));
+  var scEl = document.getElementById('sc');
+  var doneEl = document.getElementById('done');
+  var barEl = document.getElementById('bar');
+  var resultEl = document.getElementById('result');
+  var total = cards.length;
+
+  function refresh(){
+    var score = 0, answered = 0;
+    cards.forEach(function(c){
+      if(c.dataset.state === 'correct'){ score++; answered++; }
+      else if(c.dataset.state === 'wrong'){ answered++; }
+    });
+    scEl.textContent = score;
+    doneEl.textContent = answered;
+    barEl.style.width = (answered/total*100) + '%';
+    if(answered === total) showResult(score);
+  }
+
+  function showResult(score){
+    resultEl.classList.add('show');
+    document.getElementById('rscore').textContent = score + ' / ' + total;
+    document.getElementById('stars').textContent =
+      score >= 9 ? '★★★★★' : score >= 7 ? '★★★★☆' : score >= 5 ? '★★★☆☆' : '★★☆☆☆';
+    document.getElementById('rmsg').textContent =
+      score === 10 ? 'Syabas! Kamu benar-benar menguasai tajuk ini.'
+      : score >= 8 ? 'Bagus sekali! Teruskan usaha kamu.'
+      : score >= 6 ? 'Bagus! Ulangi nota sekali lagi untuk lebih mantap.'
+      : score >= 4 ? 'Jangan putus asa — baca semula nota ringkas di atas.'
+      : 'Mari ulang bersama-sama. Baca nota ringkas, kemudian cuba lagi.';
+    resultEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  cards.forEach(function(card){
+    var opts = Array.prototype.slice.call(card.querySelectorAll('.opt'));
+    var fb = card.querySelector('.fb');
+    var face = fb.querySelector('use');
+    var txt = fb.querySelector('.txt');
+    var ans = parseInt(card.dataset.ans, 10);
+    var exp = card.dataset.exp;
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(card.dataset.state) return;
+        var ok = (i === ans);
+        card.dataset.state = ok ? 'correct' : 'wrong';
+        card.classList.add('done');
+
+        opts.forEach(function(b, j){
+          b.disabled = true;
+          if(j === ans){ b.classList.add('ok'); }
+          else if(j === i){ b.classList.add('bad'); }
+          else { b.classList.add('dim'); }
+        });
+
+        face.setAttribute('href', ok ? '#faceYay' : '#faceOops');
+        txt.innerHTML = (ok ? '<b>Betul!</b> ' : '<b>Belum tepat.</b> Jawapan yang betul ialah <b>' +
+                        String.fromCharCode(65+ans) + '</b>. ') + exp;
+        fb.classList.add('show');
+        if(!ok) fb.classList.add('wrong');
+
+        refresh();
+      });
+    });
+  });
+
+  window.resetQuiz = function(){
+    cards.forEach(function(c){
+      delete c.dataset.state;
+      c.classList.remove('done');
+      var fb = c.querySelector('.fb');
+      fb.classList.remove('show','wrong');
+      c.querySelectorAll('.opt').forEach(function(b){
+        b.disabled = false;
+        b.classList.remove('ok','bad','dim');
+      });
+    });
+    resultEl.classList.remove('show');
+    refresh();
+    window.scrollTo({top: document.getElementById('quiz').offsetTop - 20, behavior:'smooth'});
+  };
+
+  window.addEventListener('beforeprint', function(){
+    cards.forEach(function(c){
+      var ans = parseInt(c.dataset.ans,10);
+      c.querySelectorAll('.opt').forEach(function(b,j){
+        if(j === ans) b.classList.add('ok');
+      });
+      if(!c.querySelector('.fb').classList.contains('show')){
+        var fb = c.querySelector('.fb');
+        fb.querySelector('.txt').innerHTML = '<b>Jawapan: ' + String.fromCharCode(65+ans) + '</b>. ' + c.dataset.exp;
+        fb.classList.add('show');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

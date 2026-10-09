@@ -7,3 +7,6 @@ _*.js
 _*.json
 _*.html
 index-lama.html
+
+# Local Netlify folder
+.netlify

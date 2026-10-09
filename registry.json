@@ -1,0 +1,437 @@
+{
+  "meta": {
+    "title": "Platform Master",
+    "subtitle": "Enam Platform Induk",
+    "description": "Himpunan lengkap semua platform — bahan PdP, gamifikasi, portal sekolah, SMJ 2.0, KSSR, E-PPD dan orkestrasi ejen.",
+    "version": "1.0.0",
+    "updated": "2026-10-09"
+  },
+  "platforms": [
+    {
+      "id": "p1",
+      "num": "01",
+      "title": "Set Induksi · Bahan PdP · Gamifikasi",
+      "desc": "Himpunan bahan Pengajaran dan Pemudahcaraan (PdP) serta permainan interaktif pendidikan. Semua bahan ada versi cetakan A4.",
+      "accent": "#0F6E56",
+      "links": [
+        {
+          "id": "p1-l1",
+          "title": "Pusat Bahan PdP — 107 Bahan",
+          "desc": "Himpunan penuh bahan PdP mengikut bidang dan Standard Kandungan, lengkap dengan versi cetakan A4 (PDF).",
+          "url": "bahan-pdp.html",
+          "icon": "📚",
+          "badge": "Pusat",
+          "badgeType": "live",
+          "tags": ["PI T3–T5", "Mate T3–T4", "Sains T3", "Jawi"],
+          "visible": true,
+          "order": 1
+        },
+        {
+          "id": "p1-l2",
+          "title": "Set Induksi — Saluran YouTube",
+          "desc": "Koleksi video set induksi untuk memulakan pengajaran. Saluran rasmi @Sayyid1978.",
+          "url": "https://www.youtube.com/@Sayyid1978",
+          "icon": "▶️",
+          "badge": "Luaran",
+          "badgeType": "ext",
+          "tags": ["YouTube", "Set Induksi"],
+          "visible": true,
+          "order": 2
+        },
+        {
+          "id": "p1-l3",
+          "title": "IQRA' QUEST — Bacaan Iqra' T6",
+          "desc": "Gamifikasi bacaan Iqra' kanan ke kiri. Lima modul termasuk Mod 5 — 32 muka surat buku Iqra' 1 sebenar.",
+          "url": "works/games/iqra-quest/index.html",
+          "icon": "🕌",
+          "badge": "Terkini",
+          "badgeType": "new",
+          "tags": ["32 muka surat", "5 modul", "19 lencana"],
+          "visible": true,
+          "order": 3
+        },
+        {
+          "id": "p1-l4",
+          "title": "Islamic Quest — Tahun 3",
+          "desc": "Laman gamifikasi DSKP Pendidikan Islam Tahun 3. Tujuh pulau, 12 unit, 60 langkah interaktif, kedai ganjaran dan lencana.",
+          "url": "works/games/islamic-quest/index.html",
+          "icon": "🎮",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["7 pulau", "60 langkah", "LocalStorage"],
+          "visible": true,
+          "order": 4
+        },
+        {
+          "id": "p1-l5",
+          "title": "Islamic Legends — Tahun 4",
+          "desc": "Kembara ilmu DSKP Pendidikan Islam Tahun 4. Tujuh dunia, 26 unit dan 55 aktiviti interaktif.",
+          "url": "works/games/islamic-legends/index.html",
+          "icon": "🎮",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["7 dunia", "55 aktiviti", "Web Audio"],
+          "visible": true,
+          "order": 5
+        },
+        {
+          "id": "p1-l6",
+          "title": "AI Playground Kanak-Kanak",
+          "desc": "Platform interaktif edukasi untuk kanak-kanak 5–8 tahun. 12 modul permainan, AI adaptif, dashboard ibu bapa dan PWA luar talian.",
+          "url": "works/games/ai-playground/index.html",
+          "icon": "🎮",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["12 modul", "5 tahap", "PWA"],
+          "visible": true,
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "num": "02",
+      "title": "SK. Salimpodon Darat",
+      "desc": "Portal rasmi sekolah, Command Center pentadbiran, sistem pengurusan PCG dan Kajian Tindakan Iqra' Tahun 6.",
+      "accent": "#185FA5",
+      "links": [
+        {
+          "id": "p2-l1",
+          "title": "Portal Rasmi SK Salimpodon Darat",
+          "desc": "Laman rasmi sekolah dengan bahagian pentadbiran, galeri aktiviti, video dan maklumat sekolah.",
+          "url": "works/landing/sk-salimpodon/index.html",
+          "icon": "🏫",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["Portal sekolah", "#/pentadbiran"],
+          "visible": true,
+          "order": 1
+        },
+        {
+          "id": "p2-l2",
+          "title": "Command Center Pentadbiran",
+          "desc": "Pusat arahan pentadbiran dengan tiga peranan PK, dashboard Guru Besar dan swarm analitik lapan ejen.",
+          "url": "works/landing/sk-salimpodon/command-center.html",
+          "icon": "🧠",
+          "badge": "Hidup",
+          "badgeType": "live",
+          "tags": ["3 PK", "8 ejen swarm", "18 unit"],
+          "visible": true,
+          "order": 2
+        },
+        {
+          "id": "p2-l3",
+          "title": "Sistem PCG & Dokumen Guru",
+          "desc": "Platform pengurusan PCG sekolah dan dokumentasi guru — pusat dokumen, pemantauan dan rujukan pentadbiran.",
+          "url": "works/pcg-platform/index.html",
+          "icon": "🗂️",
+          "badge": "Baharu",
+          "badgeType": "new",
+          "tags": ["PCG", "Dokumen guru"],
+          "visible": true,
+          "order": 3
+        },
+        {
+          "id": "p2-l4",
+          "title": "Kajian Tindakan Iqra' T6",
+          "desc": "Kajian tindakan bacaan Iqra' Tahun 6 — panduan kajian, instrumen dan aliran kerja pelaksanaan.",
+          "url": "works/landing/sk-salimpodon/kajian-tindakan/index.html",
+          "icon": "📘",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["Kajian tindakan", "Tahun 6"],
+          "visible": true,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "num": "03",
+      "title": "SMJ 2.0 · Sabah",
+      "desc": "Platform SaaS/PaaS kerajaan negeri Sabah — enam dashboard tokoh, prototaip Swarm Command dan seni bina integrasi API empat lapis.",
+      "accent": "#854F0B",
+      "links": [
+        {
+          "id": "p3-l1",
+          "title": "Agentic OS Sabah — 6 Dashboard Tokoh",
+          "desc": "Portal utama dengan satu dashboard untuk setiap tokoh, bersama seni bina integrasi API empat lapis dan konsol kunci API.",
+          "url": "works/saas-paas/sabah-agentic-os/index.html",
+          "icon": "🧠",
+          "badge": "Teras",
+          "badgeType": "live",
+          "tags": ["6 dashboard", "51 penyambung API"],
+          "visible": true,
+          "order": 1
+        },
+        {
+          "id": "p3-l2",
+          "title": "Pusat SaaS/PaaS 6 Tokoh Korporat",
+          "desc": "Halaman induk kategori SaaS/PaaS — kad setiap tokoh, seni bina integrasi API dan aplikasi terbitan.",
+          "url": "saas-paas.html",
+          "icon": "🏛️",
+          "badge": "Pusat",
+          "badgeType": "live",
+          "tags": ["6 tokoh", "Hub kategori"],
+          "visible": true,
+          "order": 2
+        },
+        {
+          "id": "p3-l3",
+          "title": "SKN SWARM COMMAND · SDGP",
+          "desc": "Pusat arahan swarm 100 ejen untuk Sabah Digital Government Platform — enjin orkestrasi interaktif dengan jejak audit langsung.",
+          "url": "works/saas-paas/swarm-7100/index.html",
+          "icon": "🛰️",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["100 ejen", "4 lapisan kawalan"],
+          "visible": true,
+          "order": 3
+        },
+        {
+          "id": "p3-l4",
+          "title": "EDUSYNC TPNS · SWARM COMMAND",
+          "desc": "Orkestrasi dana pendidikan dan pemulihan pinjaman (use case U5, TSKN). Lima situasi, dashboard TPNS dan peta jalan Fasa 0→3.",
+          "url": "works/saas-paas/swarm-7101/index.html",
+          "icon": "🛰️",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["10 peranan", "5 contoh"],
+          "visible": true,
+          "order": 4
+        },
+        {
+          "id": "p3-l5",
+          "title": "SIAP · SWARM COMMAND — 50 Ejen K02",
+          "desc": "Pusat arahan swarm 50 ejen untuk SIAP — Sistem Infrastruktur Aset Pintar Sabah. Tiga lapisan SIAP Urus/Padu/Data dan pangkalan garis NRW.",
+          "url": "works/saas-paas/swarm-7102/index.html",
+          "icon": "🛰️",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["50 ejen", "14 modul SIAP"],
+          "visible": true,
+          "order": 5
+        },
+        {
+          "id": "p3-l6",
+          "title": "Portfolio · Datuk Zainudin Aman",
+          "desc": "Setiausaha Kerajaan Negeri Sabah (SKN) · Pengerusi JPBN. Platform AI negeri dengan integrasi 15+ kementerian dan dashboard KPI SMJ 2.0.",
+          "url": "works/saas-paas/portfolio-zainudin/index.html",
+          "icon": "👤",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["U6 · SKN Sabah"],
+          "visible": true,
+          "order": 6
+        },
+        {
+          "id": "p3-l7",
+          "title": "Portfolio · Datuk Dr. Mohd Arifin Mohd Arif",
+          "desc": "Menteri Kerajaan Tempatan & Perumahan Sabah · ADUN Membakut. Orkestrasi AI negeri untuk PBT dan dashboard KPI SMJ 2.0.",
+          "url": "works/saas-paas/portfolio-arifin/index.html",
+          "icon": "👤",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["U4 · KKT & Perumahan"],
+          "visible": true,
+          "order": 7
+        },
+        {
+          "id": "p3-l8",
+          "title": "Portfolio · Awangku Raimy Pangiran Abd Rahman",
+          "desc": "Ketua Penolong Setiausaha Kanan, Pejabat TSKN Sabah. Pengurusan kitaran hayat dana pendidikan dan kawalan pertindihan.",
+          "url": "works/saas-paas/portfolio-raimy/index.html",
+          "icon": "👤",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["U5 · TSKN Sabah"],
+          "visible": true,
+          "order": 8
+        },
+        {
+          "id": "p3-l9",
+          "title": "Hab Alat & Harness — Pusat Kawalan",
+          "desc": "Pusat kawalan alat dan harness untuk pembangunan, pengesahan dan ujian platform.",
+          "url": "works/saas-paas/hab-alat-harness/index.html",
+          "icon": "🛠️",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["Alat", "Harness"],
+          "visible": true,
+          "order": 9
+        },
+        {
+          "id": "p3-l10",
+          "title": "Pangkalan Ilmu SKN",
+          "desc": "Pangkalan ilmu dan rujukan penyelidikan SKN — himpunan dokumen dan sumber dalam hub.",
+          "url": "works/landing/skn-rnd/index.html",
+          "icon": "📚",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["#ringkasan", "Dalam hub"],
+          "visible": true,
+          "order": 10
+        },
+        {
+          "id": "p3-l11",
+          "title": "SUK Orchestration Command Center",
+          "desc": "Pusat arahan orkestrasi SUK bagi Setiausaha Kerajaan Negeri Sabah (use case U6) — SMJ 2.0, profil dan gambaran menyeluruh.",
+          "url": "https://fhmmi6jn.autoclawai.space/",
+          "icon": "⚡",
+          "badge": "Luaran",
+          "badgeType": "ext",
+          "tags": ["#sight", "Laman terbitan"],
+          "visible": true,
+          "order": 11
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "num": "04",
+      "title": "Platform KSSR",
+      "desc": "Platform ejen pendidikan KPM — enjin penghalaan model dipasang dengan agen pendidikan KSSR Semakan 2017, Tahun 1–6.",
+      "accent": "#534AB7",
+      "links": [
+        {
+          "id": "p4-l1",
+          "title": "AgenticOS KSSR — Gambaran",
+          "desc": "Platform ejen pendidikan KPM: 14 halaman, 17 agen dan 26 model. KSSR Semakan 2017, Tahun 1–6, 17 mata pelajaran.",
+          "url": "works/saas-paas/agenticos-kssr/index.html#/overview",
+          "icon": "🚀",
+          "badge": "Hidup",
+          "badgeType": "live",
+          "tags": ["17 agen KSSR", "8 elemen EMK"],
+          "visible": true,
+          "order": 1
+        },
+        {
+          "id": "p4-l2",
+          "title": "AgenticOS KSSR — Studio",
+          "desc": "Studio penghasilan bahan: Agen RPH, DSKP, Pentaksiran Bilik Darjah (TP1–TP6), BBM, Panitia, Bahasa dan Pentadbiran.",
+          "url": "works/saas-paas/agenticos-kssr/index.html#/studio",
+          "icon": "🧪",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["#/studio", "SPA tanpa build"],
+          "visible": true,
+          "order": 2
+        },
+        {
+          "id": "p4-l3",
+          "title": "AgenticOS Malaysia — All-in-One",
+          "desc": "Versi penuh platform ejen: Studio Vibe Coding, Studio Kreatif, 10 agen, 26 model dan Model Router yang boleh diperhatikan. Pengebilan MaaS dalam MYR.",
+          "url": "works/saas-paas/agenticos-malaysia/index.html",
+          "icon": "🚀",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["10 halaman", "Monaco · Zustand"],
+          "visible": true,
+          "order": 3
+        },
+        {
+          "id": "p4-l4",
+          "title": "Kajian Tindakan Iqra' T6",
+          "desc": "Kajian tindakan bacaan Iqra' Tahun 6 — panduan kajian, instrumen dan aliran kerja pelaksanaan.",
+          "url": "works/landing/sk-salimpodon/kajian-tindakan/index.html",
+          "icon": "📘",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["Kajian tindakan", "Tahun 6"],
+          "visible": true,
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "num": "05",
+      "title": "E-PPD · Pejabat Pendidikan Daerah",
+      "desc": "Sistem pengurusan Pejabat Pendidikan Daerah — command center PPD Pitas dan e-Panitia Pendidikan Islam bagi Pitas dan Kudat.",
+      "accent": "#A32D2D",
+      "links": [
+        {
+          "id": "p5-l1",
+          "title": "e-PPD Pitas · Command Center",
+          "desc": "Pusat arahan Pejabat Pendidikan Daerah Pitas, Sabah — pemantauan, analitik dan pengurusan daerah.",
+          "url": "works/ppd/e-ppd-pitas.html",
+          "icon": "🏛️",
+          "badge": "Kekal",
+          "badgeType": "mir",
+          "tags": ["PPD Pitas", "Command Center"],
+          "visible": true,
+          "order": 1
+        },
+        {
+          "id": "p5-l2",
+          "title": "e-Panitia PI · PPD Pitas",
+          "desc": "Unit Pendidikan Islam PPD Pitas — pengurusan panitia, data guru dan pemantauan mata pelajaran.",
+          "url": "works/ppd/e-panitia-pi-pitas.html",
+          "icon": "📖",
+          "badge": "Kekal",
+          "badgeType": "mir",
+          "tags": ["#/pengguna", "PPD Pitas"],
+          "visible": true,
+          "order": 2
+        },
+        {
+          "id": "p5-l3",
+          "title": "e-Panitia PI · PPD Kudat",
+          "desc": "Unit Pendidikan Islam PPD Kudat — dashboard panitia, data dan pemantauan mata pelajaran.",
+          "url": "works/ppd/e-panitia-pi-kudat.html",
+          "icon": "📖",
+          "badge": "Kekal",
+          "badgeType": "mir",
+          "tags": ["#/dashboard", "PPD Kudat"],
+          "visible": true,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "num": "06",
+      "title": "Orchestration Agentic",
+      "desc": "Sistem orkestrasi ejen — pengurusan dana kuantitatif serta suite studio dan office untuk pembinaan dan operasi ejen.",
+      "accent": "#3B6D11",
+      "links": [
+        {
+          "id": "p6-l1",
+          "title": "Quant Fund OS",
+          "desc": "Sistem operasi dana kuantitatif — orkestrasi ejen untuk analisis pasaran, pengurusan risiko dan pelaksanaan strategi.",
+          "url": "works/quant-fund-os/quant-fund-os.html",
+          "icon": "📈",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["Orkestrasi ejen", "Kendiri"],
+          "visible": true,
+          "order": 1
+        },
+        {
+          "id": "p6-l2",
+          "title": "Nexus Studio",
+          "desc": "Studio orkestrasi ejen — antara muka pembinaan, konfigurasi dan penyeliaan aliran kerja ejen.",
+          "url": "works/saas-paas/nexus-studio/index.html",
+          "icon": "🎛️",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["Studio", "Orkestrasi"],
+          "visible": true,
+          "order": 2
+        },
+        {
+          "id": "p6-l3",
+          "title": "Nexus Office",
+          "desc": "Suite pejabat berasaskan ejen — ruang kerja kolaboratif untuk operasi harian dan pengurusan tugasan.",
+          "url": "works/saas-paas/nexus-office/index.html",
+          "icon": "🏢",
+          "badge": "",
+          "badgeType": "",
+          "tags": ["Suite pejabat", "Kendiri"],
+          "visible": true,
+          "order": 3
+        }
+      ]
+    }
+  ]
+}

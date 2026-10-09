@@ -3,536 +3,409 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Platform Master — 6 Platform Induk</title>
-<meta name="description" content="Platform Master: himpunan enam platform induk — Bahan PdP &amp; Gamifikasi, SK Salimpodon Darat, SMJ 2.0 Sabah, Platform KSSR, E-PPD dan Orchestration Agentic.">
+<title>Platform Master — Enam Platform Induk</title>
+<meta name="description" content="Platform Master: hab rasmi enam platform induk — Bahan PdP & Gamifikasi, SK Salimpodon Darat, SMJ 2.0 Sabah, Platform KSSR, E-PPD dan Orchestration Agentic.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F4F4F1; --card:#FFFFFF; --line:#E4E3DD; --line2:#D3D1C7;
-  --ink:#1C1C1A; --ink2:#5F5E5A; --ink3:#8C8B84;
-  --r:14px; --rs:9px;
-  --a1:#0F6E56; --a2:#185FA5; --a3:#854F0B; --a4:#534AB7; --a5:#A32D2D; --a6:#3B6D11;
+  --bg:#070A12; --bg2:#0A0E19; --surface:#0F1420; --surface2:#141A28; --surface3:#1A2131;
+  --line:rgba(200,162,39,.16); --line2:rgba(200,162,39,.30); --line3:rgba(255,255,255,.07);
+  --gold:#C8A227; --gold2:#E8CE7A; --gold3:#F5E7B8;
+  --ink:#F3F0E7; --ink2:#A2AABE; --ink3:#6E7789;
+  --ok:#3FB27F; --ext:#E0A33C; --mir:#5B9BD5; --new:#9B8CFF;
+  --r:16px; --rs:10px;
+  --shadow:0 20px 50px rgba(0,0,0,.55);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  background:var(--bg); color:var(--ink);
-  font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
-  font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  background:var(--bg); color:var(--ink); overflow-x:hidden;
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased;
 }
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(900px 520px at 12% -8%, rgba(200,162,39,.11), transparent 62%),
+    radial-gradient(760px 460px at 92% 4%, rgba(91,155,213,.07), transparent 60%),
+    radial-gradient(700px 500px at 50% 108%, rgba(200,162,39,.06), transparent 62%);
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.35;
+  background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 78%);
+  -webkit-mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 78%);
+}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
 
-/* ---------- HEADER ---------- */
-header{border-bottom:1px solid var(--line);background:var(--card)}
-.hd{padding:46px 0 38px}
+/* ══════════ HERO ══════════ */
+.hero{padding:74px 0 46px;text-align:center;position:relative}
+.crest{
+  width:76px;height:76px;margin:0 auto 24px;border-radius:50%;
+  display:grid;place-items:center;position:relative;
+  border:1px solid var(--line2);
+  background:radial-gradient(circle at 50% 30%,rgba(200,162,39,.20),rgba(200,162,39,.03));
+  font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:600;
+  color:var(--gold2);letter-spacing:.06em;
+}
+.crest::after{
+  content:"";position:absolute;inset:-7px;border-radius:50%;
+  border:1px solid rgba(200,162,39,.10);
+}
 .eyebrow{
-  display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-  font-weight:600;color:var(--ink3);border:1px solid var(--line2);
-  padding:5px 11px;border-radius:100px;margin-bottom:18px;
+  font-size:10.5px;letter-spacing:.42em;text-transform:uppercase;font-weight:500;
+  color:var(--gold);margin-bottom:20px;
 }
-h1{font-size:clamp(30px,5vw,46px);line-height:1.1;font-weight:600;letter-spacing:-.02em}
-h1 em{font-style:normal;color:var(--ink3)}
-.sub{margin-top:14px;max-width:660px;color:var(--ink2);font-size:16px}
-.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.hero h1{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:clamp(40px,7.4vw,78px);line-height:1.02;font-weight:500;
+  letter-spacing:-.012em;
+  background:linear-gradient(180deg,#FFFFFF 12%,#E8CE7A 62%,#C8A227 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero .lede{
+  max-width:660px;margin:24px auto 0;color:var(--ink2);font-size:16.5px;font-weight:300;
+}
+.rule{
+  width:132px;height:1px;margin:32px auto 0;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:36px}
 .stat{
-  background:var(--bg);border:1px solid var(--line);border-radius:var(--rs);
-  padding:10px 15px;display:flex;align-items:baseline;gap:8px;
+  min-width:118px;padding:15px 22px;border-radius:var(--rs);
+  border:1px solid var(--line);background:rgba(15,20,32,.72);backdrop-filter:blur(12px);
 }
-.stat b{font-size:19px;font-weight:600;letter-spacing:-.01em}
-.stat span{font-size:12.5px;color:var(--ink2)}
-
-/* ---------- NAV ---------- */
-nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nv{display:flex;gap:4px;overflow-x:auto;padding:9px 0;scrollbar-width:none}
-.nv::-webkit-scrollbar{display:none}
-.nv a{
-  flex:0 0 auto;font-size:13px;font-weight:500;color:var(--ink2);text-decoration:none;
-  padding:7px 13px;border-radius:100px;border:1px solid transparent;white-space:nowrap;transition:.16s;
+.stat b{
+  display:block;font-family:"Cormorant Garamond",serif;
+  font-size:30px;font-weight:600;line-height:1;color:var(--gold2);
 }
-.nv a:hover{background:var(--bg);border-color:var(--line);color:var(--ink)}
+.stat span{display:block;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink3);margin-top:8px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:38px}
+.btn{
+  font-family:Inter,sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.02em;
+  padding:12px 26px;border-radius:100px;cursor:pointer;transition:.22s;
+  border:1px solid var(--line2);background:transparent;color:var(--gold2);
+}
+.btn:hover{background:rgba(200,162,39,.10);border-color:var(--gold);color:var(--gold3)}
+.btn-solid{
+  background:linear-gradient(135deg,#D9B43C,#B08A1C);color:#0A0E19;border-color:transparent;font-weight:600;
+}
+.btn-solid:hover{filter:brightness(1.12);color:#0A0E19}
+.btn-ghost{border-color:var(--line3);color:var(--ink2)}
+.btn-ghost:hover{color:var(--ink);border-color:var(--line2);background:rgba(255,255,255,.03)}
 
-/* ---------- PLATFORM SECTION ---------- */
-main{padding:40px 0 10px}
-.plat{margin-bottom:52px;scroll-margin-top:64px}
-.phead{display:flex;gap:16px;align-items:flex-start;padding-bottom:20px;border-bottom:2px solid var(--line);margin-bottom:22px}
+/* ══════════ DOCK NAV ══════════ */
+.dock{
+  position:sticky;top:0;z-index:50;
+  background:rgba(7,10,18,.86);backdrop-filter:blur(18px);
+  border-top:1px solid var(--line3);border-bottom:1px solid var(--line3);
+}
+.dock-in{display:flex;gap:6px;overflow-x:auto;padding:13px 0;scrollbar-width:none}
+.dock-in::-webkit-scrollbar{display:none}
+.dock a{
+  flex:0 0 auto;font-size:12.5px;font-weight:500;color:var(--ink3);text-decoration:none;
+  padding:8px 16px;border-radius:100px;border:1px solid transparent;white-space:nowrap;transition:.2s;
+}
+.dock a:hover{color:var(--gold2);border-color:var(--line);background:rgba(200,162,39,.06)}
+.dock a.on{color:var(--gold3);border-color:var(--line2);background:rgba(200,162,39,.10)}
+
+/* ══════════ PLATFORM SECTION ══════════ */
+main{padding:56px 0 20px;position:relative;z-index:1}
+.plat{margin-bottom:66px;scroll-margin-top:76px}
+.phead{display:flex;gap:20px;align-items:flex-start;margin-bottom:26px;position:relative;padding-bottom:22px}
+.phead::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,var(--acc),rgba(255,255,255,.04) 42%,transparent);
+  opacity:.5;
+}
 .num{
-  flex:0 0 auto;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
-  font-size:15px;font-weight:600;color:#fff;letter-spacing:-.02em;
+  flex:0 0 auto;width:52px;height:52px;border-radius:13px;display:grid;place-items:center;
+  font-family:"Cormorant Garamond",serif;font-size:21px;font-weight:600;letter-spacing:.02em;
+  color:var(--acc);border:1px solid var(--acc);
+  background:color-mix(in srgb,var(--acc) 12%,transparent);
 }
-.phead h2{font-size:22px;font-weight:600;letter-spacing:-.01em;line-height:1.25}
-.phead p{color:var(--ink2);font-size:14.5px;margin-top:5px;max-width:760px}
-.tag{
-  display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  padding:3px 9px;border-radius:100px;margin-left:9px;vertical-align:middle;
-  background:var(--bg);border:1px solid var(--line);color:var(--ink2);
+.phead h2{
+  font-family:"Cormorant Garamond",serif;font-size:clamp(24px,3.2vw,34px);
+  font-weight:500;line-height:1.16;letter-spacing:-.005em;
 }
+.phead p{color:var(--ink2);font-size:14.5px;margin-top:8px;max-width:820px;font-weight:300}
+.pcount{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);
+  margin-top:10px;display:block;
+}
+.pcount b{color:var(--acc);font-weight:600}
 
-/* ---------- CARDS ---------- */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:13px}
+/* ══════════ CARDS ══════════ */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(292px,1fr));gap:15px}
 .card{
-  display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);
-  border-radius:var(--r);padding:18px 18px 16px;text-decoration:none;color:inherit;
-  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;position:relative;overflow:hidden;
+  position:relative;display:flex;flex-direction:column;overflow:hidden;
+  background:linear-gradient(168deg,var(--surface2) 0%,var(--surface) 100%);
+  border:1px solid var(--line3);border-radius:var(--r);
+  padding:22px 22px 18px;text-decoration:none;color:inherit;
+  transition:transform .26s cubic-bezier(.2,.7,.3,1),border-color .26s,box-shadow .26s;
 }
-.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ac);opacity:0;transition:opacity .16s}
-.card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.07);border-color:var(--line2)}
-.card:hover::before{opacity:1}
-.card .ic{font-size:21px;line-height:1;margin-bottom:11px}
-.card h3{font-size:15px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
-.card .d{font-size:13px;color:var(--ink2);margin-top:6px;flex:1}
-.card .m{
-  display:flex;flex-wrap:wrap;gap:6px;margin-top:13px;padding-top:12px;border-top:1px solid var(--line);
+.card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:1.5px;
+  background:linear-gradient(90deg,transparent,var(--acc),transparent);
+  opacity:0;transition:opacity .26s;
 }
+.card::after{
+  content:"";position:absolute;inset:0;border-radius:var(--r);pointer-events:none;
+  background:radial-gradient(420px 200px at 50% -30%,color-mix(in srgb,var(--acc) 16%,transparent),transparent 70%);
+  opacity:0;transition:opacity .3s;
+}
+.card:hover{transform:translateY(-4px);border-color:var(--line2);box-shadow:var(--shadow)}
+.card:hover::before,.card:hover::after{opacity:1}
+.card .ic{
+  font-size:22px;line-height:1;margin-bottom:14px;
+  width:44px;height:44px;border-radius:11px;display:grid;place-items:center;
+  border:1px solid var(--line3);background:rgba(255,255,255,.025);
+}
+.card h3{
+  font-family:"Cormorant Garamond",serif;font-size:19.5px;font-weight:600;
+  line-height:1.24;letter-spacing:.002em;color:var(--ink);
+}
+.card .d{font-size:13px;color:var(--ink2);margin-top:9px;flex:1;font-weight:300;line-height:1.62}
+.card .m{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
 .card .m span{
-  font-size:11px;color:var(--ink3);background:var(--bg);border:1px solid var(--line);
-  padding:2px 8px;border-radius:100px;
+  font-size:10.5px;letter-spacing:.03em;color:var(--ink3);
+  border:1px solid var(--line3);padding:3px 10px;border-radius:100px;
+  background:rgba(255,255,255,.02);
 }
-.card .go{font-size:12.5px;font-weight:600;color:var(--ac);margin-top:12px;display:flex;align-items:center;gap:5px}
-.card .go i{font-style:normal;transition:transform .16s}
-.card:hover .go i{transform:translateX(3px)}
+.card .go{
+  display:flex;align-items:center;gap:7px;margin-top:16px;padding-top:14px;
+  border-top:1px solid var(--line3);
+  font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--acc);
+}
+.card .go i{font-style:normal;transition:transform .26s}
+.card:hover .go i{transform:translateX(4px)}
 .badge{
-  position:absolute;top:13px;right:13px;font-size:10px;font-weight:600;letter-spacing:.05em;
-  text-transform:uppercase;padding:3px 8px;border-radius:100px;
+  position:absolute;top:16px;right:16px;font-size:9.5px;font-weight:600;
+  letter-spacing:.11em;text-transform:uppercase;padding:4px 10px;border-radius:100px;
 }
-.b-new{background:#E1F5EE;color:#0F6E56;border:1px solid #9FE1CB}
-.b-live{background:#EAF3DE;color:#3B6D11;border:1px solid #C0DD97}
-.b-ext{background:#FAEEDA;color:#854F0B;border:1px solid #FAC775}
-.b-mir{background:#E6F1FB;color:#185FA5;border:1px solid #B5D4F4}
+.b-live{color:#7FDCAE;border:1px solid rgba(63,178,127,.4);background:rgba(63,178,127,.10)}
+.b-new{color:#C0B4FF;border:1px solid rgba(155,140,255,.4);background:rgba(155,140,255,.10)}
+.b-ext{color:#F0C978;border:1px solid rgba(224,163,60,.4);background:rgba(224,163,60,.10)}
+.b-mir{color:#9CCBF0;border:1px solid rgba(91,155,213,.4);background:rgba(91,155,213,.10)}
 
-/* platform accent vars */
-.p1{--ac:var(--a1)} .p2{--ac:var(--a2)} .p3{--ac:var(--a3)}
-.p4{--ac:var(--a4)} .p5{--ac:var(--a5)} .p6{--ac:var(--a6)}
-.n1{background:var(--a1)} .n2{background:var(--a2)} .n3{background:var(--a3)}
-.n4{background:var(--a4)} .n5{background:var(--a5)} .n6{background:var(--a6)}
-
-/* ---------- FOOTER ---------- */
-footer{border-top:1px solid var(--line);background:var(--card);margin-top:26px}
-.ft{padding:34px 0 46px}
-.ft h4{font-size:14px;font-weight:600;margin-bottom:11px}
-.ft p{font-size:13.5px;color:var(--ink2);max-width:820px}
-.flinks{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+/* ══════════ FOOTER ══════════ */
+footer{
+  margin-top:40px;padding:46px 0 60px;border-top:1px solid var(--line3);
+  position:relative;z-index:1;background:rgba(10,14,25,.6);
+}
+footer h4{
+  font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:500;margin-bottom:12px;
+}
+footer p{font-size:13.5px;color:var(--ink2);max-width:800px;font-weight:300}
+.flinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 .flinks a{
-  font-size:13px;color:var(--ink2);text-decoration:none;border:1px solid var(--line);
-  background:var(--bg);padding:7px 13px;border-radius:100px;transition:.16s;
+  font-size:12.5px;color:var(--ink2);text-decoration:none;
+  border:1px solid var(--line3);padding:8px 16px;border-radius:100px;transition:.2s;
 }
-.flinks a:hover{border-color:var(--line2);color:var(--ink)}
+.flinks a:hover{color:var(--gold2);border-color:var(--line2);background:rgba(200,162,39,.06)}
+.fnote{
+  margin-top:26px;padding:18px 22px;border-radius:var(--rs);
+  border:1px solid var(--line);background:rgba(200,162,39,.035);
+  font-size:12.5px;color:var(--ink2);font-weight:300;
+}
+.fnote b{color:var(--gold2);font-weight:600}
+
+/* ══════════ DRAWER (panel) ══════════ */
+.scrim{
+  position:fixed;inset:0;background:rgba(4,6,11,.72);backdrop-filter:blur(4px);
+  z-index:90;opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(520px,94vw);z-index:100;
+  background:linear-gradient(180deg,var(--surface2),var(--surface));
+  border-left:1px solid var(--line);box-shadow:-30px 0 70px rgba(0,0,0,.6);
+  transform:translateX(102%);transition:transform .34s cubic-bezier(.2,.7,.3,1);
+  display:flex;flex-direction:column;
+}
+.drawer.on{transform:translateX(0)}
+.dhead{
+  padding:22px 24px;border-bottom:1px solid var(--line3);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex:0 0 auto;
+}
+.dhead h3{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:600}
+.dhead small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px;font-weight:500}
+.xbtn{
+  width:34px;height:34px;border-radius:50%;border:1px solid var(--line3);background:transparent;
+  color:var(--ink2);font-size:17px;cursor:pointer;transition:.2s;flex:0 0 auto;
+}
+.xbtn:hover{border-color:var(--line2);color:var(--gold2);background:rgba(200,162,39,.08)}
+.dbody{flex:1;overflow-y:auto;padding:22px 24px 40px}
+.dbody::-webkit-scrollbar{width:8px}
+.dbody::-webkit-scrollbar-thumb{background:rgba(200,162,39,.22);border-radius:8px}
+
+.field{margin-bottom:15px}
+.field label{display:block;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink3);margin-bottom:7px;font-weight:500}
+.field input,.field textarea,.field select{
+  width:100%;font-family:Inter,sans-serif;font-size:13.5px;color:var(--ink);
+  background:rgba(0,0,0,.28);border:1px solid var(--line3);border-radius:9px;
+  padding:11px 14px;outline:none;transition:.2s;
+}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--line2);background:rgba(0,0,0,.4)}
+.field textarea{resize:vertical;min-height:74px;line-height:1.55}
+.field select option{background:#0F1420;color:var(--ink)}
+.hint{font-size:11.5px;color:var(--ink3);margin-top:6px;font-weight:300}
+
 .note{
-  margin-top:22px;padding:15px 17px;background:var(--bg);border:1px solid var(--line);
-  border-radius:var(--rs);font-size:13px;color:var(--ink2);
+  padding:14px 16px;border-radius:9px;font-size:12.5px;line-height:1.6;
+  border:1px solid var(--line);background:rgba(200,162,39,.05);color:var(--ink2);font-weight:300;
 }
-.note b{color:var(--ink);font-weight:600}
+.note.warn{border-color:rgba(224,163,60,.34);background:rgba(224,163,60,.07)}
+.note.err{border-color:rgba(214,90,90,.34);background:rgba(214,90,90,.07)}
+.note.ok{border-color:rgba(63,178,127,.34);background:rgba(63,178,127,.07)}
+.note b{color:var(--gold2);font-weight:600}
+
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1;min-width:0}
+
+/* agent console */
+.log{display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.msg{
+  padding:12px 15px;border-radius:11px;font-size:13px;line-height:1.6;max-width:94%;
+  border:1px solid var(--line3);background:rgba(255,255,255,.025);font-weight:300;
+}
+.msg.me{align-self:flex-end;border-color:var(--line2);background:rgba(200,162,39,.09);color:var(--gold3)}
+.msg.ag{align-self:flex-start}
+.msg.ag b{color:var(--gold2);font-weight:600}
+.msg pre{
+  font-family:ui-monospace,Consolas,monospace;font-size:11.5px;
+  background:rgba(0,0,0,.35);padding:10px 12px;border-radius:7px;margin-top:9px;
+  overflow-x:auto;color:var(--ink2);
+}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.chip{
+  font-size:11.5px;color:var(--ink2);border:1px solid var(--line3);
+  background:rgba(255,255,255,.02);padding:6px 12px;border-radius:100px;
+  cursor:pointer;transition:.2s;
+}
+.chip:hover{color:var(--gold2);border-color:var(--line2);background:rgba(200,162,39,.08)}
+.composer{display:flex;gap:9px;align-items:flex-end}
+.composer textarea{
+  flex:1;font-family:Inter,sans-serif;font-size:13.5px;color:var(--ink);
+  background:rgba(0,0,0,.3);border:1px solid var(--line3);border-radius:11px;
+  padding:12px 14px;outline:none;resize:none;min-height:48px;max-height:150px;line-height:1.5;
+}
+.composer textarea:focus{border-color:var(--line2)}
+.send{
+  width:48px;height:48px;border-radius:11px;flex:0 0 auto;cursor:pointer;
+  border:1px solid var(--line2);background:linear-gradient(135deg,#D9B43C,#B08A1C);
+  color:#0A0E19;font-size:17px;font-weight:700;transition:.2s;
+}
+.send:hover{filter:brightness(1.12)}
+.send:disabled{opacity:.4;cursor:not-allowed;filter:none}
+
+/* admin list */
+.alist{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.arow{
+  display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:10px;
+  border:1px solid var(--line3);background:rgba(255,255,255,.022);
+}
+.arow .ai{font-size:16px;flex:0 0 auto}
+.arow .at{flex:1;min-width:0}
+.arow .at b{display:block;font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.arow .at small{display:block;font-size:11px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.arow .ab{
+  width:28px;height:28px;border-radius:7px;border:1px solid var(--line3);background:transparent;
+  color:var(--ink3);cursor:pointer;font-size:12px;transition:.2s;flex:0 0 auto;
+}
+.arow .ab:hover{color:var(--gold2);border-color:var(--line2);background:rgba(200,162,39,.08)}
+.arow .ab.del:hover{color:#F09595;border-color:rgba(214,90,90,.4);background:rgba(214,90,90,.1)}
+
+.sep{height:1px;background:var(--line3);margin:24px 0}
+.sec-t{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+
+#toast{
+  position:fixed;bottom:26px;left:50%;transform:translate(-50%,140%);z-index:200;
+  padding:13px 24px;border-radius:100px;font-size:13px;font-weight:500;
+  border:1px solid var(--line2);background:rgba(15,20,32,.97);color:var(--gold2);
+  box-shadow:var(--shadow);transition:transform .34s cubic-bezier(.2,.7,.3,1);white-space:nowrap;
+}
+#toast.on{transform:translate(-50%,0)}
+
 @media(max-width:640px){
-  .hd{padding:32px 0 28px}
+  .wrap{padding:0 18px}
+  .hero{padding:52px 0 34px}
   .grid{grid-template-columns:1fr}
-  .phead{flex-direction:column;gap:11px}
+  .phead{flex-direction:column;gap:14px}
+  .stat{min-width:96px;padding:12px 16px}
+  .stat b{font-size:24px}
 }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap hd">
+<header class="hero">
+  <div class="wrap">
+    <div class="crest">PM</div>
     <div class="eyebrow">Platform Master</div>
-    <h1>Enam Platform Induk <em>— satu hab</em></h1>
-    <p class="sub">
-      Himpunan lengkap semua platform: bahan Pengajaran dan Pemudahcaraan, permainan interaktif,
+    <h1>Enam Platform Induk</h1>
+    <p class="lede">
+      Hab rasmi yang menghimpunkan bahan Pengajaran dan Pemudahcaraan, permainan interaktif,
       portal sekolah, SMJ 2.0 Sabah, Platform KSSR, E-PPD dan orkestrasi ejen.
-      Setiap pautan dibuka dalam tab baharu.
     </p>
-    <div class="stats">
-      <div class="stat"><b>6</b><span>Platform</span></div>
-      <div class="stat"><b>107</b><span>Bahan PdP</span></div>
-      <div class="stat"><b>4</b><span>Permainan</span></div>
-      <div class="stat"><b>26</b><span>Aplikasi &amp; Dashboard</span></div>
+    <div class="rule"></div>
+    <div class="stats" id="stats"></div>
+    <div class="hero-actions">
+      <button class="btn btn-solid" id="btnAgent">◈ Konsol Ejen</button>
+      <button class="btn btn-ghost" id="btnAdmin">⚙ Panel Urus</button>
     </div>
   </div>
 </header>
 
-<nav>
-  <div class="wrap nv">
-    <a href="#p1">01 · Bahan PdP &amp; Gamifikasi</a>
-    <a href="#p2">02 · SK Salimpodon Darat</a>
-    <a href="#p3">03 · SMJ 2.0 Sabah</a>
-    <a href="#p4">04 · Platform KSSR</a>
-    <a href="#p5">05 · E-PPD</a>
-    <a href="#p6">06 · Orchestration Agentic</a>
-  </div>
-</nav>
+<nav class="dock"><div class="wrap dock-in" id="dock"></div></nav>
 
-<main class="wrap">
-
-  <!-- ============ PLATFORM 1 ============ -->
-  <section class="plat p1" id="p1">
-    <div class="phead">
-      <div class="num n1">01</div>
-      <div>
-        <h2>Set Induksi · Bahan PdP · Gamifikasi</h2>
-        <p>Himpunan bahan Pengajaran dan Pemudahcaraan (PdP) serta permainan interaktif pendidikan.
-           Semua bahan ada versi cetakan A4. Permainan boleh dimainkan terus dalam pelayar.</p>
-      </div>
-    </div>
-    <div class="grid">
-
-      <a class="card" href="bahan-pdp.html">
-        <span class="badge b-live">Pusat</span>
-        <div class="ic">📚</div>
-        <h3>Pusat Bahan PdP — 107 Bahan</h3>
-        <p class="d">Himpunan penuh bahan PdP mengikut bidang dan Standard Kandungan, lengkap dengan versi cetakan A4 (PDF).</p>
-        <div class="m"><span>PI T3–T5</span><span>Mate T3–T4</span><span>Sains T3</span><span>Jawi</span></div>
-        <div class="go">Buka pusat bahan <i>→</i></div>
-      </a>
-
-      <a class="card" href="https://www.youtube.com/@Sayyid1978" target="_blank" rel="noopener">
-        <span class="badge b-ext">Luaran</span>
-        <div class="ic">▶️</div>
-        <h3>Set Induksi — Saluran YouTube</h3>
-        <p class="d">Koleksi video set induksi untuk memulakan pengajaran. Saluran rasmi @Sayyid1978.</p>
-        <div class="m"><span>YouTube</span><span>Set Induksi</span></div>
-        <div class="go">Buka saluran <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/games/iqra-quest/index.html" target="_blank" rel="noopener">
-        <span class="badge b-new">Terkini</span>
-        <div class="ic">🕌</div>
-        <h3>IQRA' QUEST — Bacaan Iqra' T6</h3>
-        <p class="d">Gamifikasi bacaan Iqra' kanan ke kiri. Lima modul termasuk Mod 5 — 32 muka surat buku Iqra' 1 sebenar.</p>
-        <div class="m"><span>32 muka surat</span><span>5 modul</span><span>19 lencana</span></div>
-        <div class="go">Main permainan <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/games/islamic-quest/index.html" target="_blank" rel="noopener">
-        <div class="ic">🎮</div>
-        <h3>Islamic Quest — Tahun 3</h3>
-        <p class="d">Laman gamifikasi DSKP Pendidikan Islam Tahun 3. Tujuh pulau, 12 unit, 60 langkah interaktif, kedai ganjaran dan lencana.</p>
-        <div class="m"><span>7 pulau</span><span>60 langkah</span><span>LocalStorage</span></div>
-        <div class="go">Main permainan <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/games/islamic-legends/index.html" target="_blank" rel="noopener">
-        <div class="ic">🎮</div>
-        <h3>Islamic Legends — Tahun 4</h3>
-        <p class="d">Kembara ilmu DSKP Pendidikan Islam Tahun 4. Tujuh dunia, 26 unit dan 55 aktiviti interaktif.</p>
-        <div class="m"><span>7 dunia</span><span>55 aktiviti</span><span>Web Audio</span></div>
-        <div class="go">Main permainan <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/games/ai-playground/index.html" target="_blank" rel="noopener">
-        <div class="ic">🎮</div>
-        <h3>AI Playground Kanak-Kanak</h3>
-        <p class="d">Platform interaktif edukasi untuk kanak-kanak 5–8 tahun. 12 modul permainan, AI adaptif, dashboard ibu bapa dan PWA luar talian.</p>
-        <div class="m"><span>12 modul</span><span>5 tahap</span><span>PWA</span></div>
-        <div class="go">Main permainan <i>→</i></div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ============ PLATFORM 2 ============ -->
-  <section class="plat p2" id="p2">
-    <div class="phead">
-      <div class="num n2">02</div>
-      <div>
-        <h2>SK. Salimpodon Darat</h2>
-        <p>Portal rasmi sekolah, Command Center pentadbiran, sistem pengurusan PCG dan
-           Kajian Tindakan Iqra' Tahun 6.</p>
-      </div>
-    </div>
-    <div class="grid">
-
-      <a class="card" href="works/landing/sk-salimpodon/index.html" target="_blank" rel="noopener">
-        <div class="ic">🏫</div>
-        <h3>Portal Rasmi SK Salimpodon Darat</h3>
-        <p class="d">Laman rasmi sekolah dengan bahagian pentadbiran, galeri aktiviti, video dan maklumat sekolah.</p>
-        <div class="m"><span>Portal sekolah</span><span>#/pentadbiran</span></div>
-        <div class="go">Buka portal <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/landing/sk-salimpodon/command-center.html" target="_blank" rel="noopener">
-        <span class="badge b-live">Hidup</span>
-        <div class="ic">🧠</div>
-        <h3>Command Center Pentadbiran</h3>
-        <p class="d">Pusat arahan pentadbiran dengan tiga peranan PK, dashboard Guru Besar dan swarm analitik lapan ejen.</p>
-        <div class="m"><span>3 PK</span><span>8 ejen swarm</span><span>18 unit</span></div>
-        <div class="go">Buka command center <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/pcg-platform/index.html" target="_blank" rel="noopener">
-        <span class="badge b-new">Baharu</span>
-        <div class="ic">🗂️</div>
-        <h3>Sistem PCG &amp; Dokumen Guru</h3>
-        <p class="d">Platform pengurusan PCG sekolah dan dokumentasi guru — pusat dokumen, pemantauan dan rujukan pentadbiran.</p>
-        <div class="m"><span>PCG</span><span>Dokumen guru</span></div>
-        <div class="go">Buka sistem <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/landing/sk-salimpodon/kajian-tindakan/index.html" target="_blank" rel="noopener">
-        <div class="ic">📘</div>
-        <h3>Kajian Tindakan Iqra' T6</h3>
-        <p class="d">Kajian tindakan bacaan Iqra' Tahun 6 — panduan kajian, instrumen dan aliran kerja pelaksanaan.</p>
-        <div class="m"><span>Kajian tindakan</span><span>Tahun 6</span></div>
-        <div class="go">Buka kajian <i>→</i></div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ============ PLATFORM 3 ============ -->
-  <section class="plat p3" id="p3">
-    <div class="phead">
-      <div class="num n3">03</div>
-      <div>
-        <h2>SMJ 2.0 · Sabah</h2>
-        <p>Platform SaaS/PaaS kerajaan negeri Sabah — enam dashboard tokoh, prototaip Swarm Command
-           dan seni bina integrasi API empat lapis.</p>
-      </div>
-    </div>
-    <div class="grid">
-
-      <a class="card" href="works/saas-paas/sabah-agentic-os/index.html" target="_blank" rel="noopener">
-        <span class="badge b-live">Teras</span>
-        <div class="ic">🧠</div>
-        <h3>Agentic OS Sabah — 6 Dashboard Tokoh</h3>
-        <p class="d">Portal utama dengan satu dashboard untuk setiap tokoh, bersama seni bina integrasi API empat lapis dan konsol kunci API.</p>
-        <div class="m"><span>6 dashboard</span><span>51 penyambung API</span></div>
-        <div class="go">Buka platform <i>→</i></div>
-      </a>
-
-      <a class="card" href="saas-paas.html">
-        <span class="badge b-live">Pusat</span>
-        <div class="ic">🏛️</div>
-        <h3>Pusat SaaS/PaaS 6 Tokoh Korporat</h3>
-        <p class="d">Halaman induk kategori SaaS/PaaS — kad setiap tokoh, seni bina integrasi API dan aplikasi terbitan.</p>
-        <div class="m"><span>6 tokoh</span><span>Hub kategori</span></div>
-        <div class="go">Buka pusat <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/saas-paas/swarm-7100/index.html" target="_blank" rel="noopener">
-        <div class="ic">🛰️</div>
-        <h3>SKN SWARM COMMAND · SDGP</h3>
-        <p class="d">Pusat arahan swarm 100 ejen untuk Sabah Digital Government Platform — enjin orkestrasi interaktif dengan jejak audit langsung.</p>
-        <div class="m"><span>100 ejen</span><span>4 lapisan kawalan</span></div>
-        <div class="go">Buka pusat arahan <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/saas-paas/swarm-7101/index.html" target="_blank" rel="noopener">
-        <div class="ic">🛰️</div>
-        <h3>EDUSYNC TPNS · SWARM COMMAND</h3>
-        <p class="d">Orkestrasi dana pendidikan dan pemulihan pinjaman (use case U5, TSKN). Lima situasi, dashboard TPNS dan peta jalan Fasa 0→3.</p>
-        <div class="m"><span>10 peranan</span><span>5 contoh</span></div>
-        <div class="go">Buka pusat arahan <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/saas-paas/swarm-7102/index.html" target="_blank" rel="noopener">
-        <div class="ic">🛰️</div>
-        <h3>SIAP · SWARM COMMAND — 50 Ejen K02</h3>
-        <p class="d">Pusat arahan swarm 50 ejen untuk SIAP — Sistem Infrastruktur Aset Pintar Sabah. Tiga lapisan SIAP Urus/Padu/Data dan pangkalan garis NRW.</p>
-        <div class="m"><span>50 ejen</span><span>14 modul SIAP</span></div>
-        <div class="go">Buka pusat arahan <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/saas-paas/portfolio-zainudin/index.html" target="_blank" rel="noopener">
-        <div class="ic">👤</div>
-        <h3>Portfolio · Datuk Zainudin Aman</h3>
-        <p class="d">Setiausaha Kerajaan Negeri Sabah (SKN) · Pengerusi JPBN. Platform AI negeri dengan integrasi 15+ kementerian dan dashboard KPI SMJ 2.0.</p>
-        <div class="m"><span>U6 · SKN Sabah</span></div>
-        <div class="go">Buka portfolio <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/saas-paas/portfolio-arifin/index.html" target="_blank" rel="noopener">
-        <div class="ic">👤</div>
-        <h3>Portfolio · Datuk Dr. Mohd Arifin Mohd Arif</h3>
-        <p class="d">Menteri Kerajaan Tempatan &amp; Perumahan Sabah · ADUN Membakut. Orkestrasi AI negeri untuk PBT dan dashboard KPI SMJ 2.0.</p>
-        <div class="m"><span>U4 · KKT &amp; Perumahan</span></div>
-        <div class="go">Buka portfolio <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/saas-paas/portfolio-raimy/index.html" target="_blank" rel="noopener">
-        <div class="ic">👤</div>
-        <h3>Portfolio · Awangku Raimy Pangiran Abd Rahman</h3>
-        <p class="d">Ketua Penolong Setiausaha Kanan, Pejabat TSKN Sabah. Pengurusan kitaran hayat dana pendidikan dan kawalan pertindihan.</p>
-        <div class="m"><span>U5 · TSKN Sabah</span></div>
-        <div class="go">Buka portfolio <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/saas-paas/hab-alat-harness/index.html" target="_blank" rel="noopener">
-        <div class="ic">🛠️</div>
-        <h3>Hab Alat &amp; Harness — Pusat Kawalan</h3>
-        <p class="d">Pusat kawalan alat dan harness untuk pembangunan, pengesahan dan ujian platform.</p>
-        <div class="m"><span>Alat</span><span>Harness</span></div>
-        <div class="go">Buka hab <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/landing/skn-rnd/index.html" target="_blank" rel="noopener">
-        <div class="ic">📚</div>
-        <h3>Pangkalan Ilmu SKN</h3>
-        <p class="d">Pangkalan ilmu dan rujukan penyelidikan SKN — himpunan dokumen dan sumber dalam hub.</p>
-        <div class="m"><span>#ringkasan</span><span>Dalam hub</span></div>
-        <div class="go">Buka pangkalan <i>→</i></div>
-      </a>
-
-      <a class="card" href="https://fhmmi6jn.autoclawai.space/" target="_blank" rel="noopener">
-        <span class="badge b-ext">Luaran</span>
-        <div class="ic">⚡</div>
-        <h3>SUK Orchestration Command Center</h3>
-        <p class="d">Pusat arahan orkestrasi SUK bagi Setiausaha Kerajaan Negeri Sabah (use case U6) — SMJ 2.0, profil dan gambaran menyeluruh.</p>
-        <div class="m"><span>#sight</span><span>Laman terbitan</span></div>
-        <div class="go">Buka command center <i>→</i></div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ============ PLATFORM 4 ============ -->
-  <section class="plat p4" id="p4">
-    <div class="phead">
-      <div class="num n4">04</div>
-      <div>
-        <h2>Platform KSSR</h2>
-        <p>Platform ejen pendidikan KPM — enjin penghalaan model dipasang dengan agen pendidikan
-           KSSR Semakan 2017, Tahun 1–6.</p>
-      </div>
-    </div>
-    <div class="grid">
-
-      <a class="card" href="works/saas-paas/agenticos-kssr/index.html#/overview" target="_blank" rel="noopener">
-        <span class="badge b-live">Hidup</span>
-        <div class="ic">🚀</div>
-        <h3>AgenticOS KSSR — Gambaran</h3>
-        <p class="d">Platform ejen pendidikan KPM: 14 halaman, 17 agen dan 26 model. KSSR Semakan 2017, Tahun 1–6, 17 mata pelajaran.</p>
-        <div class="m"><span>17 agen KSSR</span><span>8 elemen EMK</span></div>
-        <div class="go">Buka gambaran <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/saas-paas/agenticos-kssr/index.html#/studio" target="_blank" rel="noopener">
-        <div class="ic">🧪</div>
-        <h3>AgenticOS KSSR — Studio</h3>
-        <p class="d">Studio penghasilan bahan: Agen RPH, DSKP, Pentaksiran Bilik Darjah (TP1–TP6), BBM, Panitia, Bahasa dan Pentadbiran.</p>
-        <div class="m"><span>#/studio</span><span>SPA tanpa build</span></div>
-        <div class="go">Buka studio <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/saas-paas/agenticos-malaysia/index.html" target="_blank" rel="noopener">
-        <div class="ic">🚀</div>
-        <h3>AgenticOS Malaysia — All-in-One</h3>
-        <p class="d">Versi penuh platform ejen: Studio Vibe Coding, Studio Kreatif, 10 agen, 26 model dan Model Router yang boleh diperhatikan. Pengebilan MaaS dalam MYR.</p>
-        <div class="m"><span>10 halaman</span><span>Monaco · Zustand</span></div>
-        <div class="go">Buka aplikasi <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/landing/sk-salimpodon/kajian-tindakan/index.html" target="_blank" rel="noopener">
-        <div class="ic">📘</div>
-        <h3>Kajian Tindakan Iqra' T6</h3>
-        <p class="d">Kajian tindakan bacaan Iqra' Tahun 6 — panduan kajian, instrumen dan aliran kerja pelaksanaan.</p>
-        <div class="m"><span>Kajian tindakan</span><span>Tahun 6</span></div>
-        <div class="go">Buka kajian <i>→</i></div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ============ PLATFORM 5 ============ -->
-  <section class="plat p5" id="p5">
-    <div class="phead">
-      <div class="num n5">05</div>
-      <div>
-        <h2>E-PPD · Pejabat Pendidikan Daerah</h2>
-        <p>Sistem pengurusan Pejabat Pendidikan Daerah — command center PPD Pitas dan e-Panitia
-           Pendidikan Islam bagi Pitas dan Kudat.
-           <span class="tag">Disalin dari pelayan</span>
-        </p>
-      </div>
-    </div>
-    <div class="grid">
-
-      <a class="card" href="works/ppd/e-ppd-pitas.html" target="_blank" rel="noopener">
-        <span class="badge b-mir">Kekal</span>
-        <div class="ic">🏛️</div>
-        <h3>e-PPD Pitas · Command Center</h3>
-        <p class="d">Pusat arahan Pejabat Pendidikan Daerah Pitas, Sabah — pemantauan, analitik dan pengurusan daerah.</p>
-        <div class="m"><span>PPD Pitas</span><span>Command Center</span></div>
-        <div class="go">Buka command center <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/ppd/e-panitia-pi-pitas.html" target="_blank" rel="noopener">
-        <span class="badge b-mir">Kekal</span>
-        <div class="ic">📖</div>
-        <h3>e-Panitia PI · PPD Pitas</h3>
-        <p class="d">Unit Pendidikan Islam PPD Pitas — pengurusan panitia, data guru dan pemantauan mata pelajaran.</p>
-        <div class="m"><span>#/pengguna</span><span>PPD Pitas</span></div>
-        <div class="go">Buka sistem <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/ppd/e-panitia-pi-kudat.html" target="_blank" rel="noopener">
-        <span class="badge b-mir">Kekal</span>
-        <div class="ic">📖</div>
-        <h3>e-Panitia PI · PPD Kudat</h3>
-        <p class="d">Unit Pendidikan Islam PPD Kudat — dashboard panitia, data dan pemantauan mata pelajaran.</p>
-        <div class="m"><span>#/dashboard</span><span>PPD Kudat</span></div>
-        <div class="go">Buka sistem <i>→</i></div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ============ PLATFORM 6 ============ -->
-  <section class="plat p6" id="p6">
-    <div class="phead">
-      <div class="num n6">06</div>
-      <div>
-        <h2>Orchestration Agentic</h2>
-        <p>Sistem orkestrasi ejen — pengurusan dana kuantitatif serta suite studio dan office
-           untuk pembinaan dan operasi ejen.</p>
-      </div>
-    </div>
-    <div class="grid">
-
-      <a class="card" href="works/quant-fund-os/quant-fund-os.html" target="_blank" rel="noopener">
-        <div class="ic">📈</div>
-        <h3>Quant Fund OS</h3>
-        <p class="d">Sistem operasi dana kuantitatif — orkestrasi ejen untuk analisis pasaran, pengurusan risiko dan pelaksanaan strategi.</p>
-        <div class="m"><span>Orkestrasi ejen</span><span>Kendiri</span></div>
-        <div class="go">Buka sistem <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/saas-paas/nexus-studio/index.html" target="_blank" rel="noopener">
-        <div class="ic">🎛️</div>
-        <h3>Nexus Studio</h3>
-        <p class="d">Studio orkestrasi ejen — antara muka pembinaan, konfigurasi dan penyeliaan aliran kerja ejen.</p>
-        <div class="m"><span>Studio</span><span>Orkestrasi</span></div>
-        <div class="go">Buka studio <i>→</i></div>
-      </a>
-
-      <a class="card" href="works/saas-paas/nexus-office/index.html" target="_blank" rel="noopener">
-        <div class="ic">🏢</div>
-        <h3>Nexus Office</h3>
-        <p class="d">Suite pejabat berasaskan ejen — ruang kerja kolaboratif untuk operasi harian dan pengurusan tugasan.</p>
-        <div class="m"><span>Suite pejabat</span><span>Kendiri</span></div>
-        <div class="go">Buka suite <i>→</i></div>
-      </a>
-
-    </div>
-  </section>
-
-</main>
+<main class="wrap" id="app"></main>
 
 <footer>
-  <div class="wrap ft">
-    <h4>Pautan tambahan</h4>
-    <p>Halaman sokongan untuk rujukan, status dan arkib dalaman.</p>
+  <div class="wrap">
+    <h4>Pautan sokongan</h4>
+    <p>Halaman rujukan, status dan arkib dalaman platform.</p>
     <div class="flinks">
-      <a href="pautan.html">Pautan Rasmi</a>
-      <a href="Platform-Induk-SatuFail.html">Platform Induk (versi satu fail)</a>
+      <a href="Platform-Induk-SatuFail.html">Platform Induk (satu fail)</a>
       <a href="landing.html">Website Landing Page</a>
       <a href="status.html">Status &amp; Rujukan</a>
       <a href="arkib.html">Arkib Dalaman</a>
       <a href="bookmark.html">Bookmark</a>
     </div>
-    <div class="note">
-      <b>Nota:</b> Semua pautan dalam halaman ini adalah <b>pautan relatif</b> — ia berfungsi pada
-      mana-mana pelayan tanpa perlu diubah. Platform E-PPD telah <b>disalin sepenuhnya</b> ke dalam
-      hab ini supaya tidak lagi bergantung pada pelayan luar yang boleh luput.
+    <div class="fnote">
+      <b>Nota:</b> Semua pautan adalah <b>pautan relatif</b> — berfungsi pada mana-mana pelayan.
+      Platform E-PPD telah <b>disalin sepenuhnya</b> ke dalam hab ini supaya tidak lagi bergantung
+      pada pelayan luar yang boleh luput. Registry pautan boleh diurus melalui
+      <b>Panel Urus</b> atau <b>Konsol Ejen</b>.
     </div>
   </div>
 </footer>
 
+<div class="scrim" id="scrim"></div>
+
+<aside class="drawer" id="drawerAdmin">
+  <div class="dhead">
+    <div><small>Panel Urus</small><h3>Pengurusan Pautan</h3></div>
+    <button class="xbtn" data-close>✕</button>
+  </div>
+  <div class="dbody" id="adminBody"></div>
+</aside>
+
+<aside class="drawer" id="drawerAgent">
+  <div class="dhead">
+    <div><small>Konsol Ejen</small><h3>Ejen Susun Atur</h3></div>
+    <button class="xbtn" data-close>✕</button>
+  </div>
+  <div class="dbody" id="agentBody"></div>
+</aside>
+
+<div id="toast"></div>
+
+<script src="app.js"></script>
 </body>
 </html>

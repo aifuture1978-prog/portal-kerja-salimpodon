@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SK. SALIMPODON DARAT — Sistem PCG & Dokumen Guru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#b8860b; --gold-l:#d4a72c; --gold-d:#8a6508;
+  --ink:#0f1419; --ink-2:#1c2530; --ink-3:#2a3644;
+  --paper:#fbfaf7; --paper-2:#f4f1ea; --line:#e3ddd0;
+  --txt:#1a222c; --txt-2:#5a6472; --txt-3:#8b95a3;
+  --ok:#0f7a5a; --warn:#c9911c; --bad:#b3261e;
+  --navy:#0d1b2a; --navy-2:#132b45;
+  --shadow:0 1px 2px rgba(15,20,25,.04),0 8px 24px rgba(15,20,25,.06);
+  --shadow-lg:0 12px 40px rgba(15,20,25,.12);
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  background:var(--paper); color:var(--txt);
+  -webkit-font-smoothing:antialiased; font-size:14.5px; line-height:1.55;
+}
+h1,h2,h3,h4,.serif{font-family:'Cormorant Garamond',Georgia,serif}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font-family:inherit;font-size:inherit}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:#cfc7b6;border-radius:6px}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ============ GOLD RULES & ORNAMENTS ============ */
+.rule-gold{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:100px;
+  font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+  border:1px solid var(--line);background:#fff;
+}
+.chip.gold{border-color:rgba(184,134,11,.35);background:rgba(184,134,11,.08);color:var(--gold-d)}
+.chip.ok{border-color:rgba(15,122,90,.3);background:rgba(15,122,90,.08);color:var(--ok)}
+.chip.warn{border-color:rgba(201,145,28,.35);background:rgba(201,145,28,.1);color:#8a6300}
+.chip.bad{border-color:rgba(179,38,30,.3);background:rgba(179,38,30,.08);color:var(--bad)}
+
+/* ============ LOGIN ============ */
+#login{
+  position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(1200px 700px at 20% 10%,#16324f 0%,transparent 55%),
+    radial-gradient(900px 600px at 85% 90%,#3a2f12 0%,transparent 55%),
+    linear-gradient(160deg,#080e15 0%,#0d1b2a 45%,#0a1420 100%);
+  padding:24px;
+}
+#login::before{
+  content:"";position:absolute;inset:0;opacity:.11;
+  background-image:linear-gradient(rgba(184,134,11,.5) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(184,134,11,.5) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(circle at 50% 40%,#000 0%,transparent 78%);
+}
+.login-card{
+  position:relative;width:min(940px,100%);display:grid;grid-template-columns:1.05fr .95fr;
+  background:rgba(255,255,255,.97);border-radius:22px;overflow:hidden;
+  box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 0 1px rgba(184,134,11,.28);
+  backdrop-filter:blur(10px);
+}
+.login-left{
+  padding:52px 46px;background:linear-gradient(155deg,#0d1b2a,#132b45 60%,#1b2333);
+  color:#eef3f8;position:relative;overflow:hidden;
+}
+.login-left::after{
+  content:"";position:absolute;right:-90px;bottom:-90px;width:280px;height:280px;border-radius:50%;
+  border:1px solid rgba(184,134,11,.3);
+}
+.crest{
+  width:76px;height:76px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(140deg,#d4a72c,#b8860b 60%,#8a6508);
+  color:#1a1204;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:30px;
+  box-shadow:0 8px 26px rgba(184,134,11,.45),inset 0 0 0 2px rgba(255,255,255,.28);
+  margin-bottom:22px;
+}
+.login-left h1{font-size:34px;line-height:1.12;letter-spacing:.01em;font-weight:600;margin-bottom:8px}
+.login-left .sub{color:#9fb3c8;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:26px}
+.login-left p{color:#a8bacd;font-size:13.5px;line-height:1.7;max-width:36ch}
+.login-meta{position:relative;z-index:2;margin-top:34px;display:grid;gap:10px}
+.login-meta div{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#c3d3e2}
+.login-meta b{color:#d4a72c;font-weight:600}
+.login-right{padding:52px 46px;display:flex;flex-direction:column;justify-content:center}
+.login-right h2{font-size:26px;font-weight:600;margin-bottom:6px}
+.login-right .hint{color:var(--txt-2);font-size:13px;margin-bottom:26px}
+.tabs{display:flex;gap:6px;padding:4px;background:var(--paper-2);border-radius:11px;margin-bottom:22px}
+.tabs button{
+  flex:1;padding:9px;border-radius:8px;font-size:13px;font-weight:600;color:var(--txt-2);transition:.18s;
+}
+.tabs button.on{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(15,20,25,.1)}
+.field{margin-bottom:15px}
+.field label{display:block;font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt-2);margin-bottom:7px}
+.field input,.field select{
+  width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;
+  transition:.18s;color:var(--txt);
+}
+.field input:focus,.field select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,134,11,.13)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 20px;border-radius:10px;font-weight:600;font-size:13.5px;transition:.18s;
+  background:var(--paper-2);color:var(--ink-2);
+}
+.btn:hover{background:#eae5da}
+.btn-gold{background:linear-gradient(135deg,#d4a72c,#b8860b 70%,#96700a);color:#fff;box-shadow:0 6px 20px rgba(184,134,11,.4)}
+.btn-gold:hover{filter:brightness(1.06);box-shadow:0 8px 26px rgba(184,134,11,.5)}
+.btn-dark{background:var(--navy);color:#fff}
+.btn-dark:hover{background:var(--navy-2)}
+.btn-ghost{background:transparent;border:1.5px solid var(--line)}
+.btn-ghost:hover{background:var(--paper-2)}
+.btn.full{width:100%;padding:13px}
+.err{color:var(--bad);font-size:12.5px;margin-top:10px;min-height:16px}
+.demo-note{
+  margin-top:18px;padding:11px 13px;border-radius:10px;background:rgba(184,134,11,.07);
+  border:1px dashed rgba(184,134,11,.4);font-size:11.5px;color:#7a6314;line-height:1.6;
+}
+
+/* ---- owner portrait (login) ---- */
+.owner-card{
+  position:relative;margin-top:26px;padding:16px 18px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,134,11,.16),rgba(184,134,11,.05));
+  border:1px solid rgba(184,134,11,.34);z-index:2;
+  display:flex;align-items:center;gap:15px;
+}
+.owner-card .oav{
+  width:62px;height:62px;border-radius:50%;flex-shrink:0;overflow:hidden;
+  box-shadow:0 0 0 2px rgba(212,167,44,.85),0 0 0 5px rgba(212,167,44,.16),0 6px 20px rgba(0,0,0,.4);
+}
+.owner-card .oav img{width:100%;height:100%;object-fit:cover;display:block}
+.owner-card .otxt small{display:block;font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;color:#d4a72c;font-weight:700;margin-bottom:3px}
+.owner-card .otxt b{display:block;font-size:14px;font-weight:600;color:#f2f6fa;font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:.02em}
+.owner-card .otxt span{display:block;font-size:11px;color:#a2b6ca;margin-top:2px}
+
+/* ---- owner hero banner (dashboard) ---- */
+.owner-hero{
+  position:relative;margin-bottom:26px;border-radius:18px;overflow:hidden;
+  background:linear-gradient(120deg,#0a1420 0%,#12283f 48%,#1b3350 100%);
+  border:1px solid rgba(184,134,11,.35);
+  box-shadow:0 14px 44px rgba(10,20,32,.28);
+  display:flex;align-items:center;gap:26px;padding:26px 30px;
+}
+.owner-hero::before{
+  content:"";position:absolute;inset:0;opacity:.28;
+  background-image:linear-gradient(rgba(184,134,11,.35) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(184,134,11,.35) 1px,transparent 1px);
+  background-size:46px 46px;
+  mask-image:radial-gradient(circle at 88% 30%,#000 0%,transparent 72%);
+}
+.owner-hero .oh-av{
+  position:relative;z-index:2;width:104px;height:104px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  box-shadow:0 0 0 3px rgba(212,167,44,.9),0 0 0 8px rgba(212,167,44,.14),0 12px 32px rgba(0,0,0,.5);
+}
+.owner-hero .oh-av img{width:100%;height:100%;object-fit:cover;display:block}
+.owner-hero .oh-txt{position:relative;z-index:2;flex:1;min-width:0}
+.owner-hero .oh-txt .kick{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#d4a72c;font-weight:700;margin-bottom:7px}
+.owner-hero .oh-txt h3{font-size:30px;font-weight:600;color:#f4f8fb;line-height:1.16;letter-spacing:.01em;margin-bottom:5px}
+.owner-hero .oh-txt .pos{font-size:13px;color:#a9bed3;margin-bottom:14px}
+.owner-hero .oh-tags{display:flex;flex-wrap:wrap;gap:7px}
+.owner-hero .oh-tags span{
+  font-size:11px;padding:4px 11px;border-radius:100px;color:#dde8f2;
+  background:rgba(255,255,255,.08);border:1px solid rgba(184,134,11,.4);font-weight:500;
+}
+.owner-hero .oh-seal{
+  position:relative;z-index:2;text-align:center;padding-left:26px;border-left:1px solid rgba(184,134,11,.3);flex-shrink:0;
+}
+.owner-hero .oh-seal .big{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:#d4a72c;line-height:1}
+.owner-hero .oh-seal .sm{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#93a8bd;margin-top:6px}
+@media(max-width:760px){
+  .owner-hero{flex-direction:column;text-align:center;gap:18px;padding:24px 20px}
+  .owner-hero .oh-seal{border-left:none;border-top:1px solid rgba(184,134,11,.3);padding:16px 0 0;width:100%}
+  .owner-hero .oh-txt h3{font-size:23px}
+  .owner-hero .oh-tags{justify-content:center}
+}
+
+/* ============ APP SHELL ============ */
+#app{display:none;min-height:100vh;flex-direction:column}
+#app.on{display:flex}
+header.top{
+  position:sticky;top:0;z-index:90;
+  background:linear-gradient(100deg,#0a1420,#0d1b2a 40%,#122539);
+  color:#eef3f8;box-shadow:0 2px 20px rgba(0,0,0,.28);
+  border-bottom:1px solid rgba(184,134,11,.35);
+}
+.top-in{max-width:1440px;margin:0 auto;padding:0 24px;height:66px;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:13px;flex-shrink:0}
+.brand .crest{width:40px;height:40px;font-size:17px;margin:0;box-shadow:0 4px 14px rgba(184,134,11,.4)}
+.brand-txt b{display:block;font-size:14.5px;letter-spacing:.09em;font-weight:600;font-family:'Cormorant Garamond',serif}
+.brand-txt span{display:block;font-size:10px;letter-spacing:.16em;color:#8fa5bb;text-transform:uppercase}
+.top-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.pill-user{
+  display:flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:100px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(184,134,11,.3);
+}
+.pill-user .av{
+  width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;
+  background:linear-gradient(140deg,#d4a72c,#b8860b);color:#1a1204;overflow:hidden;
+}
+.pill-user .av img{width:100%;height:100%;object-fit:cover;display:block}
+.pill-user small{display:block;font-size:9.5px;color:#93a8bd;letter-spacing:.1em;text-transform:uppercase}
+.pill-user b{display:block;font-size:12px;font-weight:600;line-height:1.3}
+
+/* ============ NAV BARS ============ */
+nav.bars{background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(15,20,25,.04);position:sticky;top:66px;z-index:80}
+.bars-in{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;gap:8px;align-items:center}
+.tabbar{
+  display:flex;align-items:center;gap:7px;padding:12px 15px;font-size:13px;font-weight:600;
+  color:var(--txt-2);border-bottom:2.5px solid transparent;transition:.18s;white-space:nowrap;
+}
+.tabbar:hover{color:var(--ink)}
+.tabbar.on{color:var(--gold-d);border-bottom-color:var(--gold)}
+.tabbar .ico{font-size:15px}
+.sep-v{width:1px;height:22px;background:var(--line);margin:0 6px}
+
+/* ============ LAYOUT ============ */
+main{flex:1;max-width:1440px;width:100%;margin:0 auto;padding:30px 24px 70px}
+.page-head{margin-bottom:26px}
+.page-head h2{font-size:33px;font-weight:600;letter-spacing:.01em;margin-bottom:5px}
+.page-head .lead{color:var(--txt-2);font-size:13.5px}
+.page-head .kicker{
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-d);
+  font-weight:700;margin-bottom:8px;
+}
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.g3{grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+.g2{grid-template-columns:repeat(auto-fill,minmax(400px,1fr))}
+
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow);overflow:hidden;transition:.2s;
+}
+.card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-pad{padding:20px}
+
+/* stat tiles */
+.stat{
+  position:relative;padding:20px 22px;border-radius:var(--r);background:#fff;
+  border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;
+}
+.stat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold)}
+.stat .lbl{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--txt-3);font-weight:600;margin-bottom:8px}
+.stat .val{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;line-height:1;color:var(--ink)}
+.stat .foot{font-size:11.5px;color:var(--txt-2);margin-top:7px}
+
+/* teacher folder card */
+.tcard{cursor:pointer;position:relative;display:flex;flex-direction:column}
+.tcard .fold{
+  height:74px;position:relative;display:flex;align-items:center;padding:0 20px;
+  background:linear-gradient(135deg,#0d1b2a,#1b2f47);color:#fff;
+}
+.tcard .fold::after{
+  content:"";position:absolute;right:-30px;top:-30px;width:100px;height:100px;border-radius:50%;
+  background:rgba(184,134,11,.22);
+}
+.tcard .av{
+  width:44px;height:44px;border-radius:11px;display:grid;place-items:center;font-weight:700;font-size:15px;
+  background:linear-gradient(140deg,#d4a72c,#b8860b);color:#1a1204;flex-shrink:0;
+  box-shadow:0 4px 14px rgba(0,0,0,.3);
+}
+.tcard .fold .jd{position:relative;z-index:2;margin-left:13px;min-width:0}
+.tcard .fold .jd b{display:block;font-size:13px;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tcard .fold .jd span{font-size:10.5px;color:#a9bed3;letter-spacing:.05em}
+.tcard .body{padding:15px 18px 17px;flex:1;display:flex;flex-direction:column;gap:11px}
+.tcard .meta{display:flex;flex-wrap:wrap;gap:6px}
+.tag{
+  font-size:10.5px;padding:2.5px 8px;border-radius:6px;background:var(--paper-2);
+  color:var(--txt-2);border:1px solid var(--line);font-weight:500;
+}
+.tcard .prog{display:flex;align-items:center;gap:10px;margin-top:auto}
+.bar{flex:1;height:6px;border-radius:100px;background:var(--paper-2);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,#d4a72c,#0f7a5a);transition:width .5s}
+.tcard .prog small{font-size:11px;color:var(--txt-2);font-weight:600;white-space:nowrap}
+
+/* table */
+.tbl{width:100%;border-collapse:collapse;font-size:13px;background:#fff}
+.tbl thead th{
+  text-align:left;padding:12px 14px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--txt-3);font-weight:700;border-bottom:2px solid var(--line);background:var(--paper-2);
+}
+.tbl tbody td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl tbody tr:hover{background:rgba(184,134,11,.04)}
+.tbl tbody tr:last-child td{border-bottom:none}
+
+/* drawer */
+.overlay{
+  position:fixed;inset:0;background:rgba(10,20,32,.55);backdrop-filter:blur(3px);z-index:120;
+  opacity:0;pointer-events:none;transition:.25s;
+}
+.overlay.on{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(660px,94vw);background:var(--paper);z-index:130;
+  transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(0,0,0,.35);
+}
+.drawer.on{transform:none}
+.drawer-head{
+  padding:22px 26px;background:linear-gradient(120deg,#0a1420,#132b45);color:#fff;
+  border-bottom:1px solid rgba(184,134,11,.35);
+}
+.drawer-head .kicker{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#d4a72c;font-weight:700;margin-bottom:6px}
+.drawer-head h3{font-size:24px;font-weight:600;line-height:1.2}
+.drawer-head .jbtn{font-size:12.5px;color:#a9bed3;margin-top:5px}
+.drawer-head .x{
+  position:absolute;top:20px;right:22px;width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,.1);color:#fff;font-size:17px;display:grid;place-items:center;
+}
+.drawer-head .x:hover{background:rgba(255,255,255,.2)}
+.drawer-body{flex:1;overflow-y:auto;padding:22px 26px 40px}
+.sect{margin-bottom:26px}
+.sect-h{
+  font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-d);font-weight:700;
+  margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.sect-h::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(184,134,11,.4),transparent)}
+
+/* upload row */
+.urow{
+  display:flex;align-items:center;gap:13px;padding:13px 15px;background:#fff;
+  border:1px solid var(--line);border-radius:11px;margin-bottom:9px;
+}
+.urow .ic{width:36px;height:36px;border-radius:9px;display:grid;place-items:center;background:var(--paper-2);font-size:16px;flex-shrink:0}
+.urow .nm{flex:1;min-width:0}
+.urow .nm b{display:block;font-size:13px;font-weight:600}
+.urow .nm span{font-size:11px;color:var(--txt-3)}
+.urow .act{display:flex;gap:7px;align-items:center;flex-shrink:0}
+.mini{
+  padding:6px 11px;border-radius:8px;font-size:11.5px;font-weight:600;border:1px solid var(--line);
+  background:#fff;color:var(--txt-2);transition:.16s;
+}
+.mini:hover{background:var(--paper-2);color:var(--ink)}
+.mini.gold{background:var(--gold);border-color:var(--gold);color:#fff}
+.mini.gold:hover{filter:brightness(1.08);background:var(--gold)}
+.mini.bad{color:var(--bad);border-color:rgba(179,38,30,.3)}
+.mini.bad:hover{background:rgba(179,38,30,.06)}
+
+/* filelist */
+.fileitem{
+  display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;
+  background:#fff;border:1px solid var(--line);margin-bottom:8px;font-size:13px;
+}
+.fileitem .fi{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;font-size:14px;background:rgba(184,134,11,.1);flex-shrink:0}
+.fileitem b{font-weight:600;display:block;font-size:12.5px;word-break:break-all}
+.fileitem small{color:var(--txt-3);font-size:11px}
+
+/* pcg cards */
+.pcgcard{position:relative;padding:20px;border-radius:var(--r);background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;transition:.2s}
+.pcgcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.pcgcard .top{display:flex;align-items:center;gap:12px;margin-bottom:15px}
+.pcgcard .icon{
+  width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-weight:700;font-size:13px;
+  color:#fff;flex-shrink:0;letter-spacing:.02em;
+}
+.pcgcard .top b{display:block;font-size:14px;font-weight:600;font-family:'Cormorant Garamond',serif;font-size:17px}
+.pcgcard .top span{font-size:11px;color:var(--txt-3)}
+.pcgcard .amt{font-family:'Cormorant Garamond',serif;font-size:31px;font-weight:700;color:var(--ink);line-height:1;margin-bottom:4px}
+.pcgcard .amt-sub{font-size:11.5px;color:var(--txt-2);margin-bottom:14px}
+.pcgcard .guru-list{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.pcgcard .guru-list .tag{font-size:10.5px}
+
+/* misc */
+.empty{padding:46px 24px;text-align:center;color:var(--txt-3)}
+.empty .e{font-size:38px;margin-bottom:12px;opacity:.5}
+.empty b{display:block;font-size:15px;color:var(--txt-2);margin-bottom:5px;font-family:'Cormorant Garamond',serif;font-size:19px}
+.searchbar{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.searchbar input,.searchbar select{
+  padding:10px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;min-width:200px;flex:1;
+}
+.searchbar input:focus,.searchbar select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,134,11,.12)}
+.toast{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(90px);z-index:300;
+  padding:13px 22px;border-radius:12px;background:var(--ink);color:#fff;font-size:13px;font-weight:500;
+  box-shadow:0 12px 36px rgba(0,0,0,.35);transition:.3s;display:flex;gap:9px;align-items:center;
+}
+.toast.on{transform:translateX(-50%)}
+.toast.ok{background:linear-gradient(135deg,#0f7a5a,#0c6047)}
+.toast.bad{background:linear-gradient(135deg,#b3261e,#8d1b15)}
+footer{
+  border-top:1px solid var(--line);background:#fff;padding:20px 24px;text-align:center;
+  font-size:11.5px;color:var(--txt-3);letter-spacing:.04em;
+}
+footer b{color:var(--txt-2);font-weight:600}
+
+@media(max-width:860px){
+  .login-card{grid-template-columns:1fr}
+  .login-left{display:none}
+  .top-in,.bars-in{padding:0 16px}
+  main{padding:22px 16px 60px}
+  .top-right .pill-user div{display:none}
+  .page-head h2{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== LOGIN ==================== -->
+<div id="login">
+  <div class="login-card">
+    <div class="login-left">
+      <div class="crest">SK</div>
+      <h1>SK. SALIMPODON DARAT</h1>
+      <div class="sub">Sistem PCG &amp; Dokumen Guru</div>
+      <p>Platform rasmi pengurusan peruntukan PCG mata pelajaran dan pusat dokumen peribadi guru — slip gaji, penyata bank, tuntutan dan rekod rasmi.</p>
+      <div class="login-meta">
+        <div>◆ <span>Sesi Akademik <b>2026 · Janaan 3</b></span></div>
+        <div>◆ <span>Berkuatkuasa <b>30 September 2026</b></span></div>
+      </div>
+      <div class="owner-card">
+        <div class="oav"><img src="assets/tony_cutout.png" alt="En. Antonny bin Magingang"></div>
+        <div class="otxt">
+          <small>Pemilik Dashboard</small>
+          <b>EN. ANTONNY BIN MAGINGANG</b>
+          <span>Kerani Kewangan PT · SK. Salimpodon Darat</span>
+        </div>
+      </div>
+    </div>
+    <div class="login-right">
+      <h2>Akses Masuk</h2>
+      <div class="hint">Sila pilih jenis akaun dan masukkan kredensial anda.</div>
+      <div class="tabs">
+        <button class="on" data-role="guru">Akaun Guru</button>
+        <button data-role="kerani">Kerani Kewangan PT</button>
+      </div>
+      <div class="field" id="fNama" style="display:none">
+        <label>Nama Guru</label>
+        <select id="inNama"></select>
+      </div>
+      <div class="field">
+        <label id="lblUser">ID Pengguna</label>
+        <input id="inUser" type="text" placeholder="cth: isa" autocomplete="off">
+      </div>
+      <div class="field">
+        <label>Kata Laluan</label>
+        <input id="inPass" type="password" placeholder="••••••" autocomplete="off">
+      </div>
+      <button class="btn btn-gold full" onclick="doLogin()">Masuk ke Platform &nbsp;→</button>
+      <div class="err" id="loginErr"></div>
+      <div class="demo-note" id="demoNote"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== APP ==================== -->
+<div id="app">
+  <header class="top">
+    <div class="top-in">
+      <div class="brand">
+        <div class="crest">SK</div>
+        <div class="brand-txt">
+          <b>SK. SALIMPODON DARAT</b>
+          <span>Sistem PCG &amp; Dokumen Guru · 2026</span>
+        </div>
+      </div>
+      <div class="top-right">
+        <div class="pill-user">
+          <div class="av" id="uAv">—</div>
+          <div>
+            <small id="uRole">—</small>
+            <b id="uName">—</b>
+          </div>
+        </div>
+        <button class="btn btn-ghost" style="padding:9px 15px;color:#dbe6f0;border-color:rgba(255,255,255,.2)" onclick="logout()">Keluar</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="bars"><div class="bars-in" id="navBars"></div></nav>
+
+  <main id="view"></main>
+
+  <footer>
+    <b>SK. SALIMPODON DARAT, PITAS</b> · Sistem Pengurusan PCG &amp; Dokumen Guru —
+    Pegawai Pengurus: <b>En. Antonny bin Magingang (Kerani Kewangan PT)</b> · Sesi 2026
+  </footer>
+</div>
+
+<div class="overlay" id="ov" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head" style="position:relative">
+    <button class="x" onclick="closeDrawer()">✕</button>
+    <div class="kicker">Folder Peribadi Guru</div>
+    <h3 id="dName">—</h3>
+    <div class="jbtn" id="dJaw">—</div>
+  </div>
+  <div class="drawer-body" id="dBody"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/data.js"></script>
+<script>
+/* ================= STATE ================= */
+const LS = "sk_salimpodon_pcg_v1";
+let DB = load();
+let SESSION = null;
+let TAB = "guru";
+let CUR_GURU = null;
+
+function load(){
+  try{
+    const raw = localStorage.getItem(LS);
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+  return { dokumen:{}, pcg:{} };
+}
+function save(){ localStorage.setItem(LS, JSON.stringify(DB)); }
+function docsOf(id){ return DB.dokumen[id] || []; }
+function pcgOf(sub){ 
+  if(DB.pcg[sub]) return DB.pcg[sub];
+  const g = PCG[sub];
+  return { amaun: g ? g.amaun : 0, guna: 0, nota:"" };
+}
+function toast(msg, type){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.className = "toast on " + (type||"");
+  clearTimeout(t._t);
+  t._t = setTimeout(()=> t.className = "toast " + (type||""), 2600);
+}
+const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const rm = n => "RM " + Number(n||0).toLocaleString("ms-MY",{minimumFractionDigits:2,maximumFractionDigits:2});
+const initials = n => n.replace(/^(EN|PN|CIK)\.?\s+/i,"").split(/\s+/).slice(0,2).map(w=>w[0]).join("").toUpperCase();
+
+/* ================= LOGIN ================= */
+let loginRole = "guru";
+document.querySelectorAll(".tabs button").forEach(b=>{
+  b.onclick = ()=>{
+    document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");
+    loginRole = b.dataset.role;
+    const isKer = loginRole === "kerani";
+    document.getElementById("fNama").style.display = isKer ? "none" : "block";
+    document.getElementById("inUser").style.display = isKer ? "block" : "none";
+    document.getElementById("lblUser").style.display = isKer ? "block" : "none";
+    document.getElementById("demoNote").innerHTML = isKer
+      ? "Demo akses Kerani Kewangan PT:<br>ID <b>pt</b> · Kata laluan <b>pt2026</b>"
+      : "Demo akses guru: pilih nama anda, kata laluan <b>1234</b>";
+    document.getElementById("loginErr").textContent = "";
+  };
+});
+function fillNames(){
+  const sel = document.getElementById("inNama");
+  sel.innerHTML = '<option value="">— Pilih nama anda —</option>' +
+    GURU.map(g=>`<option value="${g.id}">${esc(g.nama)}</option>`).join("");
+}
+fillNames();
+// trigger default note
+document.querySelector('.tabs button[data-role="guru"]').click();
+
+function doLogin(){
+  const e = document.getElementById("loginErr");
+  e.textContent = "";
+  if(loginRole === "kerani"){
+    const u = document.getElementById("inUser").value.trim().toLowerCase();
+    const p = document.getElementById("inPass").value;
+    if(u === AKAUN.kerani.user && p === AKAUN.kerani.pass){
+      SESSION = { role:"kerani", nama:AKAUN.kerani.nama, jawatan:AKAUN.kerani.peranan, av:"PT" };
+      enterApp();
+    } else e.textContent = "ID pengguna atau kata laluan tidak sah.";
+  } else {
+    const id = document.getElementById("inNama").value;
+    const p = document.getElementById("inPass").value;
+    const g = GURU.find(x=>x.id === id);
+    if(!id){ e.textContent = "Sila pilih nama guru."; return; }
+    if(p !== "1234"){ e.textContent = "Kata laluan tidak sah. (demo: 1234)"; return; }
+    SESSION = { role:"guru", gid:g.id, nama:g.nama, jawatan:g.jawatan, av:initials(g.nama) };
+    enterApp();
+  }
+}
+document.getElementById("inPass").addEventListener("keydown", ev=>{ if(ev.key==="Enter") doLogin(); });
+
+function enterApp(){
+  document.getElementById("login").style.display = "none";
+  document.getElementById("app").classList.add("on");
+  document.getElementById("uName").textContent = SESSION.nama;
+  document.getElementById("uRole").textContent = SESSION.role === "kerani" ? "Kerani Kewangan PT" : SESSION.jawatan;
+  document.getElementById("uAv").innerHTML = SESSION.role === "kerani"
+    ? `<img src="assets/tony_cutout.png" alt="${esc(SESSION.nama)}">`
+    : SESSION.av;
+  TAB = SESSION.role === "kerani" ? "guru" : "mydocs";
+  renderNav();
+  render();
+}
+function logout(){ SESSION = null; location.reload(); }
+
+/* ================= NAV ================= */
+function renderNav(){
+  const n = document.getElementById("navBars");
+  const tabs = [];
+  if(SESSION.role === "kerani"){
+    tabs.push({k:"guru",    ico:"📁", t:"Folder Guru"});
+    tabs.push({k:"pcg",     ico:"🪙", t:"Peruntukan PCG"});
+    tabs.push({k:"ringkasan",ico:"📊", t:"Ringkasan"});
+  } else {
+    tabs.push({k:"mydocs",  ico:"📄", t:"Dokumen Saya"});
+    tabs.push({k:"mypcg",   ico:"🪙", t:"PCG Mata Pelajaran"});
+    tabs.push({k:"profil",  ico:"👤", t:"Profil & Jadual"});
+  }
+  n.innerHTML = tabs.map(t=>
+    `<button class="tabbar ${TAB===t.k?'on':''}" onclick="go('${t.k}')"><span class="ico">${t.ico}</span>${t.t}</button>`
+  ).join("");
+}
+function go(k){ TAB = k; renderNav(); render(); window.scrollTo({top:0,behavior:"smooth"}); }
+
+/* ================= RENDER ================= */
+function render(){
+  const v = document.getElementById("view");
+  if(TAB === "guru")       v.innerHTML = viewGuruFolders();
+  else if(TAB === "pcg")   v.innerHTML = viewPCG();
+  else if(TAB === "ringkasan") v.innerHTML = viewRingkasan();
+  else if(TAB === "mydocs")  v.innerHTML = viewMyDocs();
+  else if(TAB === "mypcg")   v.innerHTML = viewMyPCG();
+  else if(TAB === "profil")  v.innerHTML = viewProfil();
+}
+
+/* ---- KERANI: FOLDER GURU ---- */
+function ownerHero(){
+  const totalPCG = Object.keys(PCG).reduce((a,k)=>a+PCG[k].amaun,0);
+  return `
+  <div class="owner-hero">
+    <div class="oh-av"><img src="assets/tony_cutout.png" alt="${esc(AKAUN.kerani.nama)}"></div>
+    <div class="oh-txt">
+      <div class="kick">Pemilik Dashboard · Pegawai Pengurus</div>
+      <h3>${esc(AKAUN.kerani.nama)}</h3>
+      <div class="pos">${esc(AKAUN.kerani.peranan)} · SK. Salimpodon Darat, Pitas</div>
+      <div class="oh-tags">
+        <span>◆ ${GURU.length} Folder Guru</span>
+        <span>◆ ${Object.keys(PCG).length} Panitia PCG</span>
+        <span>◆ Sesi 2026 Janaan 3</span>
+      </div>
+    </div>
+    <div class="oh-seal">
+      <div class="big">${rm(totalPCG).replace("RM ","")}</div>
+      <div class="sm">Jumlah Peruntukan PCG (RM)</div>
+    </div>
+  </div>`;
+}
+
+function statsGuru(){
+  let total=0, uploaded=0;
+  GURU.forEach(g=>{
+    total += DOKUMEN_WAJIB.filter(d=>d.wajib).length;
+    uploaded += DOKUMEN_WAJIB.filter(d=>d.wajib && docsOf(g.id).some(f=>f.docId===d.id)).length;
+  });
+  return {total, uploaded, pct: total? Math.round(uploaded/total*100):0};
+}
+function viewGuruFolders(){
+  const st = statsGuru();
+  const totalPCG = Object.keys(PCG).reduce((a,k)=>a+PCG[k].amaun,0);
+  return `
+  <div class="page-head">
+    <div class="kicker">Pusat Pengurusan Dokumen</div>
+    <h2>Folder Guru</h2>
+    <div class="lead">${GURU.length} folder peribadi · ${Object.keys(PCG).length} panitia mata pelajaran · Sesi 2026 Janaan 3</div>
+  </div>
+
+  ${ownerHero()}
+
+  <div class="grid g4" style="margin-bottom:26px">
+    <div class="stat"><div class="lbl">Jumlah Guru</div><div class="val">${GURU.length}</div><div class="foot">Termasuk Guru Besar &amp; PK</div></div>    <div class="stat"><div class="lbl">Dokumen Wajib Dimuat Naik</div><div class="val">${st.uploaded}<span style="font-size:17px;color:var(--txt-3)">/${st.total}</span></div><div class="foot">${st.pct}% lengkap keseluruhan</div></div>
+    <div class="stat"><div class="lbl">Panitia Mata Pelajaran</div><div class="val">${Object.keys(PCG).length}</div><div class="foot">Peruntukan PCG diurus</div></div>
+    <div class="stat"><div class="lbl">Jumlah Peruntukan PCG</div><div class="val" style="font-size:29px">${rm(totalPCG)}</div><div class="foot">Sesi 2026 Janaan 3</div></div>
+  </div>
+
+  <div class="searchbar">
+    <input id="q" placeholder="🔍 Cari nama guru, jawatan atau mata pelajaran..." oninput="filterGuru()">
+    <select id="fs" onchange="filterGuru()">
+      <option value="">Semua Mata Pelajaran</option>
+      ${Object.keys(PCG).map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join("")}
+    </select>
+  </div>
+
+  <div class="grid g3" id="guruGrid">${guruCards(GURU)}</div>`;
+}
+function guruCards(list){
+  if(!list.length) return `<div class="empty" style="grid-column:1/-1"><div class="e">🔍</div><b>Tiada guru dijumpai</b>Cuba kata kunci lain.</div>`;
+  return list.map(g=>{
+    const wajib = DOKUMEN_WAJIB.filter(d=>d.wajib);
+    const up = wajib.filter(d=>docsOf(g.id).some(f=>f.docId===d.id)).length;
+    const pct = Math.round(up/wajib.length*100);
+    const subs = [...new Set(g.subjek.map(x=>x.s))];
+    const tot = g.subjek.reduce((a,x)=>a+x.w,0);
+    return `
+    <div class="card tcard" onclick="openGuru('${g.id}')">
+      <div class="fold">
+        <div class="av">${initials(g.nama)}</div>
+        <div class="jd">
+          <b>${esc(g.nama)}</b>
+          <span>${esc(g.jawatan)}</span>
+        </div>
+      </div>
+      <div class="body">
+        <div class="meta">
+          ${subs.slice(0,4).map(s=>`<span class="tag">${esc(s)}</span>`).join("")}
+          ${subs.length>4?`<span class="tag">+${subs.length-4}</span>`:""}
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--txt-2)">
+          <span><b>${g.subjek.length}</b> kelas</span>
+          <span><b>${tot}</b> waktu/minggu</span>
+        </div>
+        <div class="prog">
+          <div class="bar"><i style="width:${pct}%"></i></div>
+          <small>${up}/${wajib.length} dokumen</small>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+function filterGuru(){
+  const q = (document.getElementById("q").value||"").toLowerCase();
+  const s = document.getElementById("fs").value;
+  let list = GURU.filter(g=>{
+    const hay = (g.nama+" "+g.jawatan+" "+g.subjek.map(x=>x.s+" "+x.k).join(" ")).toLowerCase();
+    const okQ = !q || hay.includes(q);
+    const okS = !s || g.subjek.some(x=>x.s===s);
+    return okQ && okS;
+  });
+  document.getElementById("guruGrid").innerHTML = guruCards(list);
+}
+
+/* ---- DRAWER: FOLDER GURU ---- */
+function openGuru(id){
+  CUR_GURU = GURU.find(g=>g.id===id);
+  const g = CUR_GURU;
+  document.getElementById("dName").textContent = g.nama;
+  document.getElementById("dJaw").textContent = g.jawatan + " · " + g.subjek.reduce((a,x)=>a+x.w,0) + " waktu mengajar/minggu";
+  renderDrawer();
+  document.getElementById("ov").classList.add("on");
+  document.getElementById("drawer").classList.add("on");
+}
+function closeDrawer(){
+  document.getElementById("ov").classList.remove("on");
+  document.getElementById("drawer").classList.remove("on");
+  CUR_GURU = null;
+  if(SESSION && (TAB==="guru"||TAB==="pcg")) render();
+}
+function renderDrawer(){
+  const g = CUR_GURU; if(!g) return;
+  const files = docsOf(g.id);
+  const subs = [...new Set(g.subjek.map(x=>x.s))];
+  document.getElementById("dBody").innerHTML = `
+    <div class="sect">
+      <div class="sect-h">Mata Pelajaran Diajar (${subs.length})</div>
+      <div class="grid g2" style="gap:9px">
+        ${g.subjek.map(x=>`
+          <div class="urow" style="margin:0">
+            <div class="ic" style="background:${(PCG[x.s]||{}).warna?hexA((PCG[x.s]).warna):'#eee'};color:#fff;font-weight:700;font-size:10px">${(PCG[x.s]||{}).ikon||x.s.slice(0,3)}</div>
+            <div class="nm"><b>${esc(x.s)}</b><span>Kelas ${esc(x.k)}</span></div>
+            <div class="act"><span class="chip gold">${x.w} waktu</span></div>
+          </div>`).join("")}
+      </div>
+    </div>
+
+    <div class="sect">
+      <div class="sect-h">Dokumen Dimuat Naik (${files.length})</div>
+      ${files.length ? files.map(f=>`
+        <div class="fileitem">
+          <div class="fi">📄</div>
+          <div style="flex:1;min-width:0">
+            <b>${esc(f.nama)}</b>
+            <small>${esc(f.jenis||'Dokumen')} · ${f.saiz||''} · ${esc(f.tarikh)}</small>
+          </div>
+          ${f.data?`<button class="mini" onclick="lihat('${f.id}')">Lihat</button>`:''}
+          <button class="mini bad" onclick="hapus('${g.id}','${f.id}')">Hapus</button>
+        </div>`).join("")
+      : `<div class="empty" style="padding:22px"><div class="e">📂</div><b>Belum ada dokumen</b>Guru ini belum memuat naik sebarang dokumen.</div>`}
+    </div>
+
+    <div class="sect">
+      <div class="sect-h">Senarai Semak Dokumen Wajib</div>
+      ${DOKUMEN_WAJIB.map(d=>{
+        const ada = files.filter(f=>f.docId===d.id).length;
+        return `<div class="urow">
+          <div class="ic">${d.ikon}</div>
+          <div class="nm"><b>${esc(d.nama)}</b><span>${d.wajib?'Wajib':'Pilihan'}${ada?` · ${ada} fail dimuat naik`:''}</span></div>
+          <div class="act">${ada?`<span class="chip ok">✓ Ada</span>`:`<span class="chip bad">Belum</span>`}</div>
+        </div>`;
+      }).join("")}
+    </div>
+
+    ${SESSION.role==="kerani"?`
+    <div class="sect">
+      <div class="sect-h">Tindakan Kerani Kewangan PT</div>
+      <button class="btn btn-dark full" onclick="exportGuru('${g.id}')">⬇ &nbsp; Eksport Senarai Dokumen (CSV)</button>
+    </div>`:""}
+  `;
+}
+function hexA(h){ return h; }
+function lihat(fid){
+  GURU.forEach(g=>{
+    const f = docsOf(g.id).find(x=>x.id===fid);
+    if(f && f.data){
+      const w = window.open("", "_blank");
+      if(f.data.startsWith("data:image")) w.document.write(`<title>${esc(f.nama)}</title><body style="margin:0;background:#111;display:grid;place-items:center;min-height:100vh"><img src="${f.data}" style="max-width:100%"></body>`);
+      else if(f.data.startsWith("data:application/pdf") || f.data.startsWith("data:application/octet"))
+        w.location.href = f.data;
+      else w.close();
+    }
+  });
+}
+function hapus(gid, fid){
+  DB.dokumen[gid] = docsOf(gid).filter(x=>x.id!==fid);
+  save(); renderDrawer(); toast("Dokumen telah dihapus.","ok");
+}
+function exportGuru(gid){
+  const g = GURU.find(x=>x.id===gid);
+  const rows = [["Nama","Dokumen","Jenis","Tarikh","Saiz"]];
+  docsOf(gid).forEach(f=>rows.push([g.nama, f.nama, f.jenis||"", f.tarikh, f.saiz||""]));
+  const csv = rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(",")).join("\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv"}));
+  a.download = "Dokumen_"+g.nama.replace(/\s+/g,"_")+".csv";
+  a.click();
+  toast("Fail CSV dimuat turun.","ok");
+}
+
+/* ---- KERANI: PERUNTUKAN PCG ---- */
+function viewPCG(){
+  const subs = Object.keys(PCG);
+  const totalAlloc = subs.reduce((a,s)=>a+PCG[s].amaun,0);
+  const totalUse  = subs.reduce((a,s)=>a+pcgOf(s).guna,0);
+  return `
+  <div class="page-head">
+    <div class="kicker">Pengurusan Kewangan Panitia</div>
+    <h2>Peruntukan PCG Mata Pelajaran</h2>
+    <div class="lead">Peruntukan bantuan persekolahan bagi ${subs.length} panitia · diurus oleh Kerani Kewangan PT</div>
+  </div>
+
+  <div class="grid g4" style="margin-bottom:26px">
+    <div class="stat"><div class="lbl">Jumlah Peruntukan</div><div class="val" style="font-size:26px">${rm(totalAlloc)}</div><div class="foot">${subs.length} panitia mata pelajaran</div></div>
+    <div class="stat"><div class="lbl">Telah Digunakan</div><div class="val" style="font-size:26px;color:var(--warn)">${rm(totalUse)}</div><div class="foot">${totalAlloc?Math.round(totalUse/totalAlloc*100):0}% daripada peruntukan</div></div>
+    <div class="stat"><div class="lbl">Baki Peruntukan</div><div class="val" style="font-size:26px;color:var(--ok)">${rm(totalAlloc-totalUse)}</div><div class="foot">Belum dibelanjakan</div></div>
+    <div class="stat"><div class="lbl">Dokumen Resit PCG</div><div class="val">${GURU.reduce((a,g)=>a+docsOf(g.id).filter(f=>f.docId==='pcg').length,0)}</div><div class="foot">Resit dimuat naik oleh guru</div></div>
+  </div>
+
+  <div class="grid g3">
+    ${subs.map(s=>{
+      const p = pcgOf(s);
+      const baki = p.amaun - p.guna;
+      const pct = p.amaun? Math.min(100, Math.round(p.guna/p.amaun*100)) : 0;
+      const guruSub = GURU.filter(g=>g.subjek.some(x=>x.s===s));
+      const nama = guruSub.map(g=>g.nama.replace(/^(EN|PN|CIK)\.?\s+/i,"").split(" ").slice(0,2).join(" "));
+      return `
+      <div class="pcgcard">
+        <div class="top">
+          <div class="icon" style="background:linear-gradient(135deg,${PCG[s].warna},${PCG[s].warna}cc)">${PCG[s].ikon}</div>
+          <div><b>${esc(s)}</b><span>${esc(PCG[s].panitia)}</span></div>
+        </div>
+        <div class="amt">${rm(p.amaun)}</div>
+        <div class="amt-sub">Baki: <b style="color:${baki>=0?'var(--ok)':'var(--bad)'}">${rm(baki)}</b> · Digunakan: ${rm(p.guna)}</div>
+        <div class="bar" style="margin-bottom:12px"><i style="width:${pct}%;background:linear-gradient(90deg,${PCG[s].warna},${PCG[s].warna}99)"></i></div>
+        <div class="guru-list">${nama.slice(0,3).map(n=>`<span class="tag">${esc(n)}</span>`).join("")}${nama.length>3?`<span class="tag">+${nama.length-3} guru</span>`:""}</div>
+        ${SESSION.role==="kerani"?`
+        <div style="display:flex;gap:7px">
+          <button class="mini gold" onclick="editPCG('${esc(s)}')">✎ Kemaskini Belanja</button>
+          <button class="mini" onclick="detailPCG('${esc(s)}')">Butiran</button>
+        </div>`:`<button class="mini" onclick="detailPCG('${esc(s)}')">Lihat Butiran Panitia</button>`}
+      </div>`;
+    }).join("")}
+  </div>`;
+}
+function detailPCG(s){
+  const p = pcgOf(s);
+  const guruSub = GURU.filter(g=>g.subjek.some(x=>x.s===s));
+  const sem = guruSub.map(g=>docsOf(g.id).filter(f=>f.docId==='pcg').length).reduce((a,b)=>a+b,0);
+  alert(
+`${s} — ${PCG[s].panitia}
+
+Peruntukan : ${rm(p.amaun)}
+Digunakan  : ${rm(p.guna)}
+Baki       : ${rm(p.amaun-p.guna)}
+
+Guru yang mengajar (${guruSub.length}):
+${guruSub.map(g=>"  · "+g.nama+" ("+g.subjek.filter(x=>x.s===s).map(x=>x.k).join(", ")+")").join("\n")}
+
+Resit PCG dimuat naik: ${sem} fail`);
+}
+function editPCG(s){
+  const p = pcgOf(s);
+  const a = prompt("Kemaskini jumlah peruntukan PCG untuk "+s+" (RM):", p.amaun);
+  if(a===null) return;
+  const b = prompt("Kemaskini jumlah telah digunakan (RM):", p.guna);
+  if(b===null) return;
+  DB.pcg[s] = { amaun: Number(a)||0, guna: Number(b)||0, nota:"" };
+  save(); render(); toast("Peruntukan PCG "+s+" dikemaskini.","ok");
+}
+
+/* ---- KERANI: RINGKASAN ---- */
+function viewRingkasan(){
+  const totalWaktu = GURU.reduce((a,g)=>a+g.subjek.reduce((x,y)=>x+y.w,0),0);
+  const rows = GURU.map(g=>{
+    const wajib = DOKUMEN_WAJIB.filter(d=>d.wajib);
+    const up = wajib.filter(d=>docsOf(g.id).some(f=>f.docId===d.id)).length;
+    return {...g, up, wajib:wajib.length, all:docsOf(g.id).length, tw:g.subjek.reduce((a,x)=>a+x.w,0)};
+  }).sort((a,b)=>a.up-b.up);
+  return `
+  <div class="page-head">
+    <div class="kicker">Laporan Pengurusan</div>
+    <h2>Ringkasan Keseluruhan</h2>
+    <div class="lead">Status pematuhan muat naik dokumen &amp; beban waktu mengajar · Sesi 2026 Janaan 3</div>
+  </div>
+
+  <div class="grid g4" style="margin-bottom:26px">
+    <div class="stat"><div class="lbl">Bilangan Guru</div><div class="val">${GURU.length}</div><div class="foot">5 pegawai · ${GURU.length-5} guru</div></div>
+    <div class="stat"><div class="lbl">Jumlah Waktu Mengajar</div><div class="val">${totalWaktu}</div><div class="foot">Semua guru · setiap minggu</div></div>
+    <div class="stat"><div class="lbl">Kelas</div><div class="val">12</div><div class="foot">1A–6A, 6B, Prasekolah, PML</div></div>
+    <div class="stat"><div class="lbl">Panitia PCG</div><div class="val">${Object.keys(PCG).length}</div><div class="foot">Diurus Kerani Kewangan PT</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-pad" style="border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <div><b style="font-family:'Cormorant Garamond',serif;font-size:19px">Status Dokumen Per Guru</b>
+      <div style="font-size:12px;color:var(--txt-2)">Disusun daripada yang paling kurang lengkap</div></div>
+      <button class="btn btn-dark" onclick="exportAll()">⬇ &nbsp; Eksport Laporan Penuh (CSV)</button>
+    </div>
+    <div style="overflow-x:auto">
+    <table class="tbl">
+      <thead><tr>
+        <th>Guru</th><th>Jawatan</th><th>Mata Pelajaran</th><th>Waktu</th>
+        <th>Dokumen</th><th>Status</th>
+      </tr></thead>
+      <tbody>
+      ${rows.map(r=>{
+        const pct = Math.round(r.up/r.wajib*100);
+        const cls = pct===100?"ok":pct>=50?"warn":"bad";
+        const lbl = pct===100?"Lengkap":pct>=50?"Sebahagian":"Belum Lengkap";
+        return `<tr onclick="openGuru('${r.id}')" style="cursor:pointer">
+          <td><b>${esc(r.nama)}</b></td>
+          <td style="color:var(--txt-2);font-size:12px">${esc(r.jawatan)}</td>
+          <td style="font-size:11.5px">${[...new Set(r.subjek.map(x=>x.s))].slice(0,3).map(s=>`<span class="tag">${esc(s)}</span>`).join(" ")}</td>
+          <td><b>${r.tw}</b></td>
+          <td>${r.up}/${r.wajib} wajib · ${r.all} jumlah</td>
+          <td><span class="chip ${cls}">${lbl} ${pct}%</span></td>
+        </tr>`;
+      }).join("")}
+      </tbody>
+    </table>
+    </div>
+  </div>`;
+}
+function exportAll(){
+  const rows = [["Bil","Nama Guru","Jawatan","Mata Pelajaran","Kelas","Waktu","Dokumen Dimuat Naik"]];
+  GURU.forEach((g,i)=>{
+    rows.push([i+1, g.nama, g.jawatan,
+      [...new Set(g.subjek.map(x=>x.s))].join(" / "),
+      [...new Set(g.subjek.map(x=>x.k))].join(", "),
+      g.subjek.reduce((a,x)=>a+x.w,0),
+      docsOf(g.id).map(f=>f.nama).join(" | ")]);
+  });
+  const csv = rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(",")).join("\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv"}));
+  a.download = "Laporan_PCG_SK_Salimpodon_Darat_2026.csv";
+  a.click();
+  toast("Laporan penuh dimuat turun.","ok");
+}
+
+/* ---- GURU: DOKUMEN SAYA ---- */
+function viewMyDocs(){
+  const g = GURU.find(x=>x.id===SESSION.gid);
+  const files = docsOf(g.id);
+  return `
+  <div class="page-head">
+    <div class="kicker">Folder Peribadi</div>
+    <h2>Dokumen Saya</h2>
+    <div class="lead">Muat naik slip gaji, penyata bank dan dokumen lain untuk rekod Kerani Kewangan PT.</div>
+  </div>
+  <div class="grid g4" style="margin-bottom:24px">
+    <div class="stat"><div class="lbl">Jumlah Dokumen</div><div class="val">${files.length}</div><div class="foot">Dalam folder anda</div></div>
+    <div class="stat"><div class="lbl">Dokumen Wajib</div><div class="val">${files.filter(f=>DOKUMEN_WAJIB.find(d=>d.id===f.docId&&d.wajib)).length}<span style="font-size:17px;color:var(--txt-3)">/3</span></div><div class="foot">Slip gaji, bank, KWSP</div></div>
+    <div class="stat"><div class="lbl">Mata Pelajaran</div><div class="val">${[...new Set(g.subjek.map(x=>x.s))].length}</div><div class="foot">Panitia PCG berkaitan</div></div>
+    <div class="stat"><div class="lbl">Waktu Mengajar</div><div class="val">${g.subjek.reduce((a,x)=>a+x.w,0)}</div><div class="foot">Setiap minggu</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-pad" style="border-bottom:1px solid var(--line)">
+      <b style="font-family:'Cormorant Garamond',serif;font-size:19px">Muat Naik Dokumen Baharu</b>
+      <div style="font-size:12px;color:var(--txt-2);margin-top:3px">Pilih jenis dokumen, kemudian lampirkan fail (PDF / JPG / PNG · max 8MB).</div>
+    </div>
+    <div class="card-pad">
+      <div class="grid g2" style="gap:12px;align-items:end">
+        <div class="field" style="margin:0">
+          <label>Jenis Dokumen</label>
+          <select id="docType">${DOKUMEN_WAJIB.map(d=>`<option value="${d.id}">${d.ikon} ${esc(d.nama)}${d.wajib?" (wajib)":""}</option>`).join("")}</select>
+        </div>
+        <div class="field" style="margin:0">
+          <label>Fail Dokumen</label>
+          <input type="file" id="docFile" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx" style="padding:9px">
+        </div>
+      </div>
+      <button class="btn btn-gold" style="margin-top:14px" onclick="uploadDoc()">⬆ &nbsp; Muat Naik Dokumen</button>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <div class="card-pad" style="border-bottom:1px solid var(--line)">
+      <b style="font-family:'Cormorant Garamond',serif;font-size:19px">Dokumen Dimuat Naik (${files.length})</b>
+    </div>
+    <div class="card-pad">
+      ${files.length ? files.map(f=>`
+        <div class="fileitem">
+          <div class="fi">📄</div>
+          <div style="flex:1;min-width:0"><b>${esc(f.nama)}</b><small>${esc(f.jenis)} · ${f.saiz||''} · ${esc(f.tarikh)}</small></div>
+          ${f.data?`<button class="mini" onclick="lihat('${f.id}')">Lihat</button>`:''}
+          <button class="mini bad" onclick="myDelete('${f.id}')">Hapus</button>
+        </div>`).join("")
+      : `<div class="empty" style="padding:28px"><div class="e">📂</div><b>Belum ada dokumen</b>Muat naik dokumen pertama anda di atas.</div>`}
+    </div>
+  </div>`;
+}
+function uploadDoc(){
+  const f = document.getElementById("docFile").files[0];
+  const t = document.getElementById("docType").value;
+  if(!f){ toast("Sila pilih fail terlebih dahulu.","bad"); return; }
+  if(f.size > 8*1024*1024){ toast("Saiz fail melebihi 8MB.","bad"); return; }
+  const jenis = (DOKUMEN_WAJIB.find(d=>d.id===t)||{}).nama || "Dokumen";
+  const rd = new FileReader();
+  rd.onload = e=>{
+    const gid = SESSION.gid;
+    if(!DB.dokumen[gid]) DB.dokumen[gid] = [];
+    DB.dokumen[gid].unshift({
+      id:"d"+Date.now(),
+      docId:t, nama:f.name, jenis,
+      saiz:(f.size/1024).toFixed(0)+" KB",
+      tarikh:new Date().toLocaleDateString("ms-MY",{day:"2-digit",month:"short",year:"numeric"}),
+      data: f.size < 3*1024*1024 ? e.target.result : ""
+    });
+    save(); render(); toast("Dokumen berjaya dimuat naik.","ok");
+  };
+  rd.readAsDataURL(f);
+}
+function myDelete(fid){
+  const gid = SESSION.gid;
+  DB.dokumen[gid] = docsOf(gid).filter(x=>x.id!==fid);
+  save(); render(); toast("Dokumen dihapus.","ok");
+}
+
+/* ---- GURU: PCG ---- */
+function viewMyPCG(){
+  const g = GURU.find(x=>x.id===SESSION.gid);
+  const subs = [...new Set(g.subjek.map(x=>x.s))];
+  return `
+  <div class="page-head">
+    <div class="kicker">Panitia Mata Pelajaran</div>
+    <h2>Peruntukan PCG Saya</h2>
+    <div class="lead">Peruntukan PCG bagi panitia mata pelajaran yang anda ajar · Sesi 2026 Janaan 3</div>
+  </div>
+  <div class="grid g3">
+    ${subs.map(s=>{
+      const p = pcgOf(s);
+      const info = PCG[s] || {panitia:s, warna:"#666", ikon:s.slice(0,3)};
+      const kelas = g.subjek.filter(x=>x.s===s).map(x=>x.k);
+      const waktu = g.subjek.filter(x=>x.s===s).reduce((a,x)=>a+x.w,0);
+      return `
+      <div class="pcgcard">
+        <div class="top">
+          <div class="icon" style="background:linear-gradient(135deg,${info.warna},${info.warna}cc)">${info.ikon}</div>
+          <div><b>${esc(s)}</b><span>${esc(info.panitia)}</span></div>
+        </div>
+        <div class="amt">${rm(p.amaun)}</div>
+        <div class="amt-sub">Peruntukan panitia · Baki ${rm(p.amaun-p.guna)}</div>
+        <div style="font-size:12px;color:var(--txt-2);margin-bottom:10px">
+          Anda mengajar <b>${kelas.length}</b> kelas · <b>${waktu}</b> waktu/minggu
+        </div>
+        <div class="guru-list">${kelas.map(k=>`<span class="tag">${esc(k)}</span>`).join("")}</div>
+      </div>`;
+    }).join("")}
+  </div>`;
+}
+
+/* ---- GURU: PROFIL & JADUAL ---- */
+function viewProfil(){
+  const g = GURU.find(x=>x.id===SESSION.gid);
+  const tot = g.subjek.reduce((a,x)=>a+x.w,0);
+  return `
+  <div class="page-head">
+    <div class="kicker">Maklumat Peribadi</div>
+    <h2>Profil &amp; Jadual Waktu</h2>
+    <div class="lead">Butiran jawatan dan agihan mata pelajaran anda · Janaan 3 (Sept 2026)</div>
+  </div>
+
+  <div class="grid g2" style="margin-bottom:22px">
+    <div class="card">
+      <div class="drawer-head" style="padding:24px 26px">
+        <div class="kicker">Guru</div>
+        <h3>${esc(g.nama)}</h3>
+        <div class="jbtn">${esc(g.jawatan)}</div>
+      </div>
+      <div class="card-pad">
+        <div class="grid g2" style="gap:14px">
+          <div><div class="lbl" style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-3);font-weight:600">Opsyen</div><b>${esc(g.opsyen)}</b></div>
+          <div><div class="lbl" style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-3);font-weight:600">Jumlah Waktu</div><b>${tot} waktu/minggu</b></div>
+          <div><div class="lbl" style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-3);font-weight:600">Mata Pelajaran</div><b>${[...new Set(g.subjek.map(x=>x.s))].length}</b></div>
+          <div><div class="lbl" style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-3);font-weight:600">Bilangan Kelas</div><b>${g.subjek.length}</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-pad" style="border-bottom:1px solid var(--line)">
+        <b style="font-family:'Cormorant Garamond',serif;font-size:19px">Bilangan Waktu Mengajar</b>
+      </div>
+      <div style="overflow-x:auto">
+      <table class="tbl">
+        <thead><tr><th>Subjek</th><th>Kelas</th><th style="text-align:right">Waktu</th></tr></thead>
+        <tbody>
+          ${g.subjek.map(x=>`<tr><td><b>${esc(x.s)}</b></td><td>${esc(x.k)}</td><td style="text-align:right"><b>${x.w}</b></td></tr>`).join("")}
+          <tr style="background:var(--paper-2)"><td colspan="2"><b>JUMLAH</b></td><td style="text-align:right"><b style="color:var(--gold-d)">${tot}</b></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* init */
+window.addEventListener("keydown", e=>{ if(e.key==="Escape") closeDrawer(); });
+</script>
+</body>
+</html>

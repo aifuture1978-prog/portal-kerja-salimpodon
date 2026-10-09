@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QUANT FUND OS — Agentic AI Trading System Simulator</title>
+<style>
+/* ============================ THEME TOKENS ============================ */
+:root{
+  --bg:#f6f7fb; --bg2:#ffffff; --bg3:#eef1f7; --panel:#ffffff;
+  --ink:#111827; --ink2:#4b5563; --ink3:#8b93a5;
+  --line:#e3e7ef; --line2:#d3d9e6;
+  --accent:#4f46e5; --accent2:#6366f1; --accent-soft:#eef0ff;
+  --ok:#059669; --ok-soft:#e7f7f1;
+  --bad:#dc2626; --bad-soft:#fdeceb;
+  --warn:#d97706; --warn-soft:#fdf4e5;
+  --human:#7c3aed; --human-soft:#f3ecff;
+  --data:#0ea5e9; --data-soft:#e6f6fe;
+  --shadow:0 1px 2px rgba(16,24,40,.05), 0 8px 24px -12px rgba(16,24,40,.18);
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,"Helvetica Neue",Arial,sans-serif;
+}
+html[data-theme="dark"]{
+  --bg:#0b0e14; --bg2:#11151d; --bg3:#161b26; --panel:#11151d;
+  --ink:#e8ecf4; --ink2:#a6b0c2; --ink3:#6b7689;
+  --line:#222a38; --line2:#2c3648;
+  --accent:#818cf8; --accent2:#a5b4fc; --accent-soft:#1a2033;
+  --ok:#34d399; --ok-soft:#0e2a22;
+  --bad:#f87171; --bad-soft:#2c1416;
+  --warn:#fbbf24; --warn-soft:#2b2110;
+  --human:#c4b5fd; --human-soft:#211a35;
+  --data:#38bdf8; --data-soft:#0d2433;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:var(--sans); background:var(--bg); color:var(--ink);
+  font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased;
+  transition:background .25s ease,color .25s ease;
+}
+button{font-family:inherit;font-size:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:var(--line2);border-radius:9px}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ============================ APP SHELL ============================ */
+.app{max-width:1560px;margin:0 auto;padding:0 20px 60px}
+
+/* ---------- Header ---------- */
+header.top{
+  position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line);margin:0 -20px 22px;padding:14px 20px;
+}
+.top-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.brand .mark{
+  width:34px;height:34px;border-radius:9px;flex:none;
+  background:linear-gradient(135deg,var(--accent),#8b5cf6);
+  display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px;letter-spacing:-.5px;
+}
+.brand h1{font-size:15.5px;font-weight:750;letter-spacing:-.2px;white-space:nowrap}
+.brand .sub{font-size:11px;color:var(--ink3);letter-spacing:.04em;text-transform:uppercase}
+.top-actions{margin-left:auto;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--bg2);color:var(--ink2);
+  font-weight:600;font-size:12.5px;transition:.15s;white-space:nowrap;
+}
+.btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:var(--accent2);border-color:var(--accent2);color:#fff}
+.btn.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+.btn.danger:hover{filter:brightness(1.08);color:#fff}
+.btn:disabled{opacity:.42;cursor:not-allowed}
+.btn.sm{padding:6px 10px;font-size:11.5px;border-radius:7px}
+.btn.ghost{background:transparent;border-color:transparent}
+.btn.ghost:hover{background:var(--bg3)}
+
+/* ---------- Tabs ---------- */
+nav.tabs{display:flex;gap:3px;overflow-x:auto;padding-bottom:2px;margin-bottom:20px;border-bottom:1px solid var(--line)}
+nav.tabs button{
+  padding:10px 15px;font-size:13px;font-weight:600;color:var(--ink3);
+  border-bottom:2px solid transparent;white-space:nowrap;transition:.15s;
+}
+nav.tabs button:hover{color:var(--ink)}
+nav.tabs button.on{color:var(--accent);border-bottom-color:var(--accent)}
+
+.view{display:none;animation:fade .3s ease}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---------- Generic cards ---------- */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.card.pad{padding:18px 20px}
+.sec-title{font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.sec-h{font-size:20px;font-weight:750;letter-spacing:-.3px;margin-bottom:4px}
+.sec-sub{font-size:12.5px;color:var(--ink3);margin-bottom:18px}
+.grid{display:grid;gap:14px}
+
+/* ---------- KPI strip ---------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-bottom:22px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+.kpi .k{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.kpi .v{font-size:24px;font-weight:800;letter-spacing:-.8px;margin-top:3px;font-variant-numeric:tabular-nums}
+.kpi .n{font-size:11px;color:var(--ink3);margin-top:1px}
+.kpi.ok .v{color:var(--ok)} .kpi.ac .v{color:var(--accent)} .kpi.wa .v{color:var(--warn)}
+
+/* ============================ LOOP VIEW ============================ */
+.loop-wrap{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:20px;align-items:start}
+@media(max-width:1080px){.loop-wrap{grid-template-columns:1fr}}
+.loop-stage{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow);display:flex;justify-content:center}
+svg.loop{width:100%;max-width:640px;height:auto;display:block}
+.node-c{transition:.2s}
+.node-c:hover .node-bg{stroke:var(--accent);stroke-width:2}
+.node-c.sel .node-bg{stroke:var(--accent);stroke-width:3}
+.node-c.sel .node-lbl{fill:var(--accent);font-weight:800}
+.node-c.act .node-bg{stroke:var(--accent);stroke-width:3;fill:var(--accent-soft)}
+.node-c.done .node-bg{stroke:var(--ok);stroke-width:2}
+.node-c.blk .node-bg{stroke:var(--bad);stroke-width:3;fill:var(--bad-soft)}
+.node-bg{fill:var(--bg2);stroke:var(--line2);stroke-width:1.4}
+.node-lbl{font-family:var(--sans);font-size:11.5px;font-weight:700;fill:var(--ink);text-anchor:middle;pointer-events:none}
+.node-num{font-family:var(--mono);font-size:9.5px;font-weight:700;fill:var(--ink3);text-anchor:middle;pointer-events:none}
+.node-ico{font-size:17px;text-anchor:middle;pointer-events:none}
+.arc-bg{fill:none;stroke:var(--line);stroke-width:2.5;stroke-dasharray:5 7}
+.arc-fill{fill:none;stroke:var(--accent);stroke-width:3.5;stroke-linecap:round;transition:stroke-dashoffset .5s linear}
+.cp{fill:var(--bg2);stroke:var(--accent);stroke-width:2}
+.cp.on{fill:var(--ok);stroke:var(--ok)}
+.cp.blk{fill:var(--bad);stroke:var(--bad)}
+.cp-lbl{font-family:var(--sans);font-size:9px;font-weight:700;fill:var(--ink3);text-anchor:middle}
+.centre{text-align:center}
+.centre .big{font-size:30px;font-weight:800;letter-spacing:-1.2px;fill:var(--ink);font-variant-numeric:tabular-nums}
+.centre .lbl{font-size:10px;font-weight:700;letter-spacing:.12em;fill:var(--ink3);text-transform:uppercase}
+
+/* stage detail */
+.detail h3{font-size:16px;font-weight:750;margin-bottom:2px}
+.detail .tag{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;background:var(--accent-soft);color:var(--accent);margin-bottom:10px}
+.detail p{font-size:12.5px;color:var(--ink2);margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.chip{font-size:11px;font-weight:600;padding:4px 9px;border-radius:20px;background:var(--bg3);color:var(--ink2);border:1px solid var(--line)}
+.chip.mcp{background:var(--data-soft);color:var(--data);border-color:transparent}
+.chip.h{background:var(--human-soft);color:var(--human);border-color:transparent}
+.chip.g{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.chip.b{background:var(--bad-soft);color:var(--bad);border-color:transparent}
+
+/* ============================ NODE EXPLORER ============================ */
+.zone-h{display:flex;align-items:center;gap:10px;margin:26px 0 12px}
+.zone-h .bar{width:4px;height:20px;border-radius:3px;background:var(--accent)}
+.zone-h h3{font-size:14px;font-weight:800;letter-spacing:.02em}
+.zone-h span{font-size:11.5px;color:var(--ink3)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:15px 16px;box-shadow:var(--shadow)}
+.panel .ph{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:2px}
+.panel .pt{font-size:12.5px;font-weight:800;letter-spacing:.03em}
+.panel .pc{font-size:10.5px;color:var(--ink3);margin-bottom:11px;font-style:italic}
+.sub{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:12px 0 7px;padding-top:10px;border-top:1px dashed var(--line)}
+.sub:first-of-type{border-top:none;padding-top:0;margin-top:0}
+.nodes{display:flex;flex-wrap:wrap;gap:5px}
+.nd{font-size:11px;font-weight:600;padding:4px 9px;border-radius:7px;background:var(--bg3);color:var(--ink2);border:1px solid var(--line)}
+.nd.core{background:var(--accent-soft);color:var(--accent);border-color:transparent;font-weight:700}
+.nd.h{background:var(--human-soft);color:var(--human);border-color:transparent}
+.nd.g{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.nd.b{background:var(--bad-soft);color:var(--bad);border-color:transparent}
+.nd.d{background:var(--data-soft);color:var(--data);border-color:transparent}
+.cap{font-size:11px;color:var(--ink3);font-style:italic;margin-top:9px;padding-left:10px;border-left:2px solid var(--line2)}
+
+/* ============================ SIMULATION ============================ */
+.sim-top{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;align-items:start}
+@media(max-width:1080px){.sim-top{grid-template-columns:1fr}}
+.ctrl .lbl{font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:7px}
+.scn{width:100%;padding:9px 11px;border-radius:9px;border:1px solid var(--line2);background:var(--bg2);color:var(--ink);font-size:12.5px;font-weight:600;margin-bottom:14px}
+.scn:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
+.row{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.toggle{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:600;color:var(--ink2);padding:8px 0;cursor:pointer}
+.sw{width:38px;height:21px;border-radius:20px;background:var(--line2);position:relative;transition:.2s;flex:none}
+.sw::after{content:'';position:absolute;top:2.5px;left:2.5px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.toggle.on .sw{background:var(--accent)}
+.toggle.on .sw::after{transform:translateX(17px)}
+.speed{display:flex;gap:4px;margin-bottom:14px}
+.speed button{flex:1;padding:6px;font-size:11px;font-weight:700;border-radius:7px;background:var(--bg3);color:var(--ink3);border:1px solid transparent}
+.speed button.on{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:10px;margin-bottom:14px}
+.m{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:10px 12px}
+.m .k{font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3)}
+.m .v{font-size:19px;font-weight:800;letter-spacing:-.6px;font-variant-numeric:tabular-nums;margin-top:2px}
+.m .v.pos{color:var(--bad)} .m .v.neg{color:var(--ok)}  /* China convention: up=red */
+.m .v.ac{color:var(--accent)}
+
+.console{background:var(--bg2);border:1px solid var(--line);border-radius:13px;overflow:hidden;box-shadow:var(--shadow)}
+.console-h{display:flex;align-items:center;gap:9px;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--bg3)}
+.dot{width:9px;height:9px;border-radius:50%}
+.console-h .t{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ink2);letter-spacing:.03em}
+.console-h .st{margin-left:auto;font-family:var(--mono);font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:var(--bg2);color:var(--ink3);border:1px solid var(--line)}
+.console-h .st.run{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+.console-h .st.ok{color:var(--ok);border-color:var(--ok);background:var(--ok-soft)}
+.console-h .st.bad{color:var(--bad);border-color:var(--bad);background:var(--bad-soft)}
+.log{height:430px;overflow-y:auto;padding:12px 14px;font-family:var(--mono);font-size:11.7px;line-height:1.75}
+.log .ln{display:flex;gap:9px;padding:1.5px 0;animation:slide .22s ease}
+@keyframes slide{from{opacity:0;transform:translateX(-7px)}to{opacity:1;transform:none}}
+.log .ts{color:var(--ink3);flex:none;width:56px}
+.log .ag{flex:none;width:126px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.log .ms{color:var(--ink2);flex:1;min-width:0}
+.log .ln.sys .ms{color:var(--ink3);font-style:italic}
+.log .ln.ok .ms{color:var(--ok)}
+.log .ln.bad .ms{color:var(--bad);font-weight:600}
+.log .ln.warn .ms{color:var(--warn)}
+.log .ln.human .ms{color:var(--human);font-weight:600}
+.log .ln.hi .ms{color:var(--accent);font-weight:600}
+.log .sep{border-top:1px dashed var(--line);margin:9px 0 7px}
+
+/* approval overlay */
+.approve{position:fixed;inset:0;z-index:200;background:rgba(10,14,22,.55);backdrop-filter:blur(3px);display:none;place-items:center;padding:20px}
+.approve.on{display:grid}
+.approve .box{background:var(--bg2);border:1px solid var(--line2);border-radius:16px;max-width:520px;width:100%;padding:24px;box-shadow:0 30px 70px -20px rgba(0,0,0,.5);animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
+.approve .kind{font-size:10.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--human);margin-bottom:6px}
+.approve h3{font-size:18px;font-weight:750;margin-bottom:8px}
+.approve p{font-size:13px;color:var(--ink2);margin-bottom:14px}
+.approve .facts{background:var(--bg3);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-family:var(--mono);font-size:11.5px;line-height:1.85;color:var(--ink2)}
+.approve .acts{display:flex;gap:9px;justify-content:flex-end}
+
+/* ============================ FUND-OS FS ============================ */
+.fs-wrap{display:grid;grid-template-columns:290px minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:900px){.fs-wrap{grid-template-columns:1fr}}
+.fs-tree{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:12px;box-shadow:var(--shadow);max-height:640px;overflow-y:auto}
+.fs-dir{font-family:var(--mono);font-size:12px;font-weight:800;color:var(--ink);padding:7px 8px;margin-top:4px;display:flex;align-items:center;gap:7px}
+.fs-dir .sw-c{width:8px;height:8px;border-radius:2px}
+.fs-file{font-family:var(--mono);font-size:11.5px;color:var(--ink2);padding:6px 8px 6px 26px;border-radius:7px;cursor:pointer;display:block;width:100%;text-align:left;transition:.13s}
+.fs-file:hover{background:var(--bg3);color:var(--ink)}
+.fs-file.on{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.fs-view{background:var(--panel);border:1px solid var(--line);border-radius:13px;overflow:hidden;box-shadow:var(--shadow)}
+.fs-view-h{padding:12px 16px;border-bottom:1px solid var(--line);background:var(--bg3);display:flex;align-items:center;gap:9px}
+.fs-view-h .p{font-family:var(--mono);font-size:12px;font-weight:700}
+.fs-view pre{padding:18px;font-family:var(--mono);font-size:12px;line-height:1.85;color:var(--ink2);overflow-x:auto;white-space:pre-wrap;min-height:420px;max-height:600px;overflow-y:auto}
+
+/* ============================ ECONOMICS / INCIDENTS / CONTROL ============================ */
+.econ{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.ec{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:18px;box-shadow:var(--shadow)}
+.ec .k{font-size:11.5px;font-weight:700;color:var(--ink3);margin-bottom:5px}
+.ec .v{font-size:33px;font-weight:800;letter-spacing:-1.4px;font-variant-numeric:tabular-nums}
+.ec .n{font-size:11.5px;color:var(--ink3);margin-top:6px;line-height:1.55}
+.ec.hi{background:var(--accent-soft);border-color:transparent}
+.ec.hi .v{color:var(--accent)}
+.ec.ok{background:var(--ok-soft);border-color:transparent} .ec.ok .v{color:var(--ok)}
+
+.inc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.inc{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px;box-shadow:var(--shadow);cursor:pointer;transition:.18s}
+.inc:hover{border-color:var(--accent);transform:translateY(-2px)}
+.inc .ih{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.inc .num{font-family:var(--mono);font-size:11px;font-weight:800;color:var(--accent);background:var(--accent-soft);padding:3px 7px;border-radius:6px}
+.inc h4{font-size:13.5px;font-weight:750}
+.inc .nodes{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px}
+.inc .play{margin-top:12px;padding-top:11px;border-top:1px dashed var(--line);font-size:12px;color:var(--ink2);display:none}
+.inc.open .play{display:block}
+.inc .play b{color:var(--accent);font-weight:700}
+
+.cp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.cpc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px;box-shadow:var(--shadow)}
+.cpc .ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-size:16px;margin-bottom:9px}
+.cpc h4{font-size:13px;font-weight:750;margin-bottom:4px}
+.cpc p{font-size:11.5px;color:var(--ink3);line-height:1.55}
+.killbar{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:13px;background:var(--bad-soft);border:1px solid color-mix(in srgb,var(--bad) 30%,transparent);margin-bottom:20px}
+.killbar .kt{flex:1}
+.killbar h4{font-size:13.5px;font-weight:800;color:var(--bad)}
+.killbar p{font-size:12px;color:var(--ink2);margin-top:2px}
+
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink3);display:flex;gap:14px;flex-wrap:wrap;justify-content:space-between}
+.pill{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;background:var(--bg3);color:var(--ink3);font-family:var(--mono)}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ==================== HEADER ==================== -->
+<header class="top">
+  <div class="top-row">
+    <div class="brand">
+      <div class="mark">Q</div>
+      <div>
+        <h1>QUANT FUND OS</h1>
+        <div class="sub">Agentic AI Trading System · Simulator</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="pill" id="clock">—</span>
+      <button class="btn sm" id="themeBtn">◐ Tema</button>
+      <button class="btn sm" onclick="go('sim');run()">▶ Run Simulation</button>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== TABS ==================== -->
+<nav class="tabs" id="tabs">
+  <button data-v="loop" class="on">◎ The Loop</button>
+  <button data-v="nodes">⬡ Node Explorer</button>
+  <button data-v="sim">▶ Live Simulation</button>
+  <button data-v="fs">🗂 Fund-OS FS</button>
+  <button data-v="econ">＄ Economics</button>
+  <button data-v="inc">⚠ Interrupts</button>
+  <button data-v="ctrl">⛨ Control Plane</button>
+</nav>
+
+<!-- ==================== KPI STRIP ==================== -->
+<div class="kpis" id="kpis"></div>
+
+<!-- ==================== VIEW: LOOP ==================== -->
+<section class="view on" id="v-loop">
+  <div class="loop-wrap">
+    <div class="loop-stage">
+      <svg class="loop" viewBox="0 0 720 720" id="loopSvg"></svg>
+    </div>
+    <div class="card pad detail" id="stageDetail"></div>
+  </div>
+</section>
+
+<!-- ==================== VIEW: NODES ==================== -->
+<section class="view" id="v-nodes">
+  <div class="sec-title">Struktur by struktur · node by node</div>
+  <h2 class="sec-h">Node Explorer</h2>
+  <p class="sec-sub">Setiap panel dan setiap nod dalam ekosistem — diekstrak terus daripada poster video.</p>
+  <div id="nodeExplorer"></div>
+</section>
+
+<!-- ==================== VIEW: SIMULATION ==================== -->
+<section class="view" id="v-sim">
+  <div class="sec-title">Agentic run · node by node</div>
+  <h2 class="sec-h">Live Simulation</h2>
+  <p class="sec-sub">Jalankan satu trade melalui 10 peringkat & 7 checkpoint. Setiap ejen berjalan melalui MCP; manusia mengekalkan sign-off.</p>
+
+  <div class="sim-top">
+    <!-- control panel -->
+    <div class="card pad ctrl">
+      <div class="lbl">Senario</div>
+      <select class="scn" id="scnSel"></select>
+
+      <div class="lbl">Kelajuan</div>
+      <div class="speed" id="speed">
+        <button data-s="1400">Perlahan</button>
+        <button data-s="700" class="on">Normal</button>
+        <button data-s="220">Pantas</button>
+        <button data-s="40">Turbo</button>
+      </div>
+
+      <div class="lbl">Kawalan</div>
+      <div class="row">
+        <button class="btn primary" id="runBtn" onclick="run()">▶ RUN</button>
+        <button class="btn" id="pauseBtn" onclick="togglePause()" disabled>⏸ Pause</button>
+        <button class="btn" onclick="reset()">↺ Reset</button>
+      </div>
+
+      <div class="toggle on" id="autoTog" onclick="this.classList.toggle('on')">
+        <span class="sw"></span> Auto-approve (PM + CIO)
+      </div>
+      <div class="toggle" id="strictTog" onclick="this.classList.toggle('on')">
+        <span class="sw"></span> Mod ketat (tunjuk penolakan)
+      </div>
+
+      <div class="lbl" style="margin-top:14px">Injek insiden</div>
+      <div class="row">
+        <button class="btn sm" onclick="inject('borrow')">Borrow recall</button>
+        <button class="btn sm" onclick="inject('dd')">Drawdown breach</button>
+        <button class="btn sm" onclick="inject('outage')">Vendor outage</button>
+      </div>
+      <button class="btn danger sm" style="width:100%;justify-content:center;margin-top:6px" onclick="killSwitch()">⛔ KILL SWITCH</button>
+    </div>
+
+    <!-- right: metrics + console -->
+    <div>
+      <div class="metrics" id="metrics"></div>
+      <div class="console">
+        <div class="console-h">
+          <span class="dot" style="background:#ef4444"></span>
+          <span class="dot" style="background:#f59e0b"></span>
+          <span class="dot" style="background:#22c55e"></span>
+          <span class="t">quant-fund-os · orchestrator · MCP event stream</span>
+          <span class="st" id="simState">IDLE</span>
+        </div>
+        <div class="log" id="log"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== VIEW: FUND-OS FS ==================== -->
+<section class="view" id="v-fs">
+  <div class="sec-title">Knowledge layer + access</div>
+  <h2 class="sec-h">FUND-OS File System</h2>
+  <p class="sec-sub">Ruang kerja penyelidikan yang dikongsi. Klik mana-mana fail untuk membaca kandungannya.</p>
+  <div class="fs-wrap">
+    <div class="fs-tree" id="fsTree"></div>
+    <div class="fs-view">
+      <div class="fs-view-h"><span class="dot" style="background:#ef4444"></span><span class="dot" style="background:#f59e0b"></span><span class="dot" style="background:#22c55e"></span><span class="p" id="fsPath">/data/universe.md</span></div>
+      <pre id="fsBody"></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== VIEW: ECONOMICS ==================== -->
+<section class="view" id="v-econ">
+  <div class="sec-title">The economics</div>
+  <h2 class="sec-h">Kos: apa yang duduk sebelahnya, dan apa lapisan ini kos</h2>
+  <p class="sec-sub">Angka terus daripada poster. Bandingkan kos pod 12 kerusi dengan kos lapisan orkestrasi.</p>
+  <div class="econ" id="econGrid"></div>
+</section>
+
+<!-- ==================== VIEW: INCIDENTS ==================== -->
+<section class="view" id="v-inc">
+  <div class="sec-title">What interrupts the loop</div>
+  <h2 class="sec-h">8 peristiwa yang $1B book mesti jawab dalam minit, bukan hari Isnin</h2>
+  <p class="sec-sub">Klik setiap kad untuk membuka playbook respons.</p>
+  <div class="inc-grid" id="incGrid"></div>
+</section>
+
+<!-- ==================== VIEW: CONTROL PLANE ==================== -->
+<section class="view" id="v-ctrl">
+  <div class="sec-title">Access · control plane</div>
+  <h2 class="sec-h">Kawalan & Keselamatan</h2>
+  <p class="sec-sub">Lapisan kawalan yang membolehkan manusia mematikan gelung pada bila-bila masa.</p>
+
+  <div class="killbar">
+    <span style="font-size:26px">⛔</span>
+    <div class="kt">
+      <h4>KILL SWITCH</h4>
+      <p>Mematikan gelung serta-merta. Semua ejen berhenti, order yang belum dihantar dibatalkan, OMS kekal sumber kebenaran.</p>
+    </div>
+    <button class="btn danger" onclick="killSwitch()">Aktifkan</button>
+  </div>
+
+  <div class="cp-grid" id="cpGrid"></div>
+
+  <div style="margin-top:22px" class="card">
+    <div class="console-h" style="border-radius:14px 14px 0 0"><span class="t">audit-log · immutable append-only</span><span class="st" id="auditCount">0 entri</span></div>
+    <div class="log" id="auditLog" style="height:260px"></div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="foot">
+  <span>Dibina daripada analisis video <b>"Agentic AI Trading System for a Quant Hedge Fund"</b> · Structure Webworks</span>
+  <span>10 stages · 7 checkpoints · 1 loop · <b>0 bypasses</b></span>
+</div>
+</div>
+
+<!-- ==================== APPROVAL OVERLAY ==================== -->
+<div class="approve" id="approve">
+  <div class="box">
+    <div class="kind" id="apKind">Human approval required</div>
+    <h3 id="apTitle">PM sign-off</h3>
+    <p id="apDesc">Ejen telah menyediakan cadangan. Seorang manusia mesti memiliki trade ini, on the record.</p>
+    <div class="facts" id="apFacts"></div>
+    <div class="acts">
+      <button class="btn danger" onclick="decide(false)">✗ Reject</button>
+      <button class="btn primary" onclick="decide(true)">✓ Approve</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   DATA MODEL — everything extracted from the video infographic
+   ===================================================================== */
+const META = {
+  title:"AGENTIC AI TRADING SYSTEM FOR A QUANT HEDGE FUND",
+  by:"STRUCTURE WEBWORKS", duration:"119s", res:"1080×1920"
+};
+
+const KPIS = [
+  {k:"Peringkat", v:"10", n:"one continuous loop", c:"ac"},
+  {k:"Checkpoint", v:"7", n:"setiap trade lulus semua", c:"ac"},
+  {k:"Bypasses", v:"0", n:"never around the OMS", c:"ok"},
+  {k:"Orkestrasi", v:"$14k", n:"/bulan — models, compute, MCP", c:"ac"},
+  {k:"Pod 12 kerusi", v:"$4.2M", n:"/tahun fully loaded"},
+  {k:"Vendor stack", v:"$1.1M", n:"/tahun — data, OMS, surveillance"},
+  {k:"Tidak diganti", v:"3", n:"peranan manusia"}
+];
+
+/* ---- 10 STAGES ---- */
+const STAGES = [
+  {n:1, key:"data",   name:"DATA INGEST",        ico:"⛁", agent:"DataAgent",
+   desc:"Tarik data pasaran & rujukan dari vendor, normalise ke skema tunggal, selaraskan dengan buku sedia ada.",
+   tools:["MCP:datastore","Bloomberg B-PIPE","Databento","LSEG","FactSet"],
+   cp:true, cap:"Ingest & reconcile — data mesti masuk sebelum apa-apa keputusan.",
+   action:"Pull 8 market vendors + 8 alt-data vendors → normalise → reconcile ke buku."},
+
+  {n:2, key:"validate", name:"VALIDATION & PIT STORE", ico:"⧉", agent:"PITStoreAgent",
+   desc:"Quality gates (Great Expectations, Monte Carlo) dan simpan point-in-time. Backtest hanya boleh lihat apa yang diketahui hari itu.",
+   tools:["Great Expectations","Monte Carlo","Snowflake","ClickHouse","Parquet"],
+   cp:false, cap:"Point-in-time rules — tanpa ini, alpha adalah look-ahead bias.",
+   action:"Jalankan quality gates → tulis ke point-in-time store berversi."},
+
+  {n:3, key:"research", name:"RESEARCH / HYPOTHESIS", ico:"✳", agent:"Claude (ResearchAgent)",
+   desc:"Claude membaca filing, alt data dan literatur, kemudian menulis spec hipotesis yang boleh diuji.",
+   tools:["MCP:research","S&P Capital IQ","Bigdata.com","YipitData","signal-library.md"],
+   cp:true, cap:"Claude reads the filings, the alt data and the literature, then writes the spec.",
+   action:"Baca filing + alt data → tulis spec hipotesis → daftar ke signal-library.md."},
+
+  {n:4, key:"feature", name:"FEATURE BUILD", ico:"▤", agent:"FeatureAgent",
+   desc:"Bina ciri point-in-time, berversi, dari store yang sama. Tiada ciri boleh bocor dari masa depan.",
+   tools:["Polars","pandas","NumPy","Qlib","MCP:featurestore"],
+   cp:false, cap:"Point-in-time features, versioned, from the same store.",
+   action:"Bina matriks ciri PIT → versikan → kunci hash."},
+
+  {n:5, key:"test", name:"BACKTEST / TEST", ico:"◍", agent:"BacktestAgent (Nautilus)",
+   desc:"Uji dalam Nautilus dengan kos pinjaman (borrow) dan kesan pasaran (market impact) dikira dalam.",
+   tools:["Nautilus","VectorBT","Zipline","MLflow","MCP:riskmodel"],
+   cp:true, cap:"Tested in Nautilus — borrow cost priced in, market impact priced in.",
+   action:"Backtest dengan borrow + impact → Sharpe 1.8, MaxDD −6%."},
+
+  {n:6, key:"vet", name:"VET & REGISTER", ico:"✓", agent:"VetAgent",
+   desc:"Deflated Sharpe + walk-forward. Multiple-testing haircut. Kemudian manusia menghidupkannya.",
+   tools:["Deflated Sharpe","Walk-forward","Model registry","PM sign-off"],
+   cp:false, cap:"Multiple-testing haircut, then a human turns it on.",
+   action:"Haircut multiple-testing → walk-forward → daftar model → tunggu PM."},
+
+  {n:7, key:"portfolio", name:"PORTFOLIO CONSTRUCTION & RISK", ico:"◈", agent:"PortfolioAgent",
+   desc:"Signal bukan trade, ia forecast. Factor model (Axioma, MSCI Barra) pecahkan kepada exposures; hanya net-new exposure diberi saiz.",
+   tools:["Axioma","MSCI Barra","Bloomberg VaR","CVXPY","MOSEK","Gurobi","Riskfolio"],
+   cp:true, cap:"Most new alpha turns out to be momentum you already own.",
+   action:"Factor split → buang pertindihan → optimiser solve alpha − cost dalam had CIO."},
+
+  {n:8, key:"gate", name:"PRE-TRADE GATE", ico:"⎅", agent:"GateAgent",
+   desc:"Semak restricted list, limits, borrow. Order yang disekat tidak pernah sampai ke venue.",
+   tools:["restricted-list.md","risk-limits.md","borrow-and-financing.md","PM sign-off","CIO"],
+   cp:true, cap:"Nothing leaves without clearing this. A person owns the trade, on the record.",
+   action:"Semak 4 gate → kelulusan manusia → lepas atau sekat."},
+
+  {n:9, key:"execution", name:"EXECUTION", ico:"⚡", agent:"ExecutionAgent",
+   desc:"Route melalui OMS/EMS — tidak pernah memintasnya. Algo wheel, dark/block, FIX gateway.",
+   tools:["Bloomberg EMSX","Charles River","FlexTrade","Virtu Triton","FIX","Algo wheel","IBKR"],
+   cp:true, cap:"One gateway, every venue. Cleared orders route through the OMS — never around it.",
+   action:"Hantar melalui OMS → algo wheel → venue (NYSE/NASDAQ/dark pools)."},
+
+  {n:10, key:"ops", name:"POST-TRADE, OPS & PERFORMANCE", ico:"⇄", agent:"OpsAgent",
+   desc:"Match & affirm, buku, admin & NAV. Kemudian TCA mengukur fill terhadap arrival price dan memberat router esok.",
+   tools:["DTCC CTM","SS&C Geneva","Citco","Northern Trust","TCA","Virtu","big xyt"],
+   cp:true, cap:"Yesterday's slippage re-weights today's router.",
+   action:"Match & affirm → buku → TCA → suap balik ke peringkat 1."}
+];
+
+/* ---- NODE EXPLORER DATA ---- */
+const ZONES = [
+  { zone:"Zon Input — apa yang masuk ke sistem", panels:[
+    { t:"MARKET & REFERENCE DATA", c:"(the price side)", nodes:["Databento","Massive","Bloomberg B-PIPE","LSEG","ICE Data","Nasdaq TotalView","CME DataMine","FactSet"] },
+    { t:"FUNDAMENTAL & ALTERNATIVE DATA", c:"(the edge side)", nodes:["S&P Capital IQ","Capiq","Bigdata.com","YipitData","Sentiment","Earnest","M Science","Preqin"] },
+    { t:"HUMAN & MANDATE INPUT", c:"(what humans still set)", nodes:[["CIO risk mandate","h"],["PM strategy calls","h"],["Investment committee","h"],["Limits & KPI","h"],["Capacity & liquidity","h"],["LP terms","h"]] },
+    { t:"AI MODELS", c:"", nodes:[["Claude","core"],["Claude Code","core"],["ChatGPT","core"],["Gemini","core"],["On-prem OSS","core"]] }
+  ]},
+  { zone:"Zon Aliran Operasi — gelung teras", panels:[
+    { t:"SYSTEM INTEGRATION & ORCHESTRATOR", c:"Claude Code over MCP, sitting on top of the stack — not replacing it",
+      subs:[
+        {s:"Aliran kerja", n:[["Ingest & reconcile","d"],["Sync the book","d"],["Resolve the order","d"],["Escalates to a human","h"]]},
+        {s:"Timbunan (12 nod)", n:["LangGraph","Temporal","Airflow","PostgreSQL","ClickHouse","Kafka","Anthropic","MLflow","Ray","Kubernetes","MCP servers","FIX gateway"]}
+      ]},
+    { t:"DATA ENGINEERING & VALIDATION", c:"",
+      subs:[
+        {s:"Ingest & normalise", n:["Airflow","dbt","Prefect","Kafka"]},
+        {s:"Point-in-time store", n:["Amazon RDS","Aurora","Snowflake","ClickHouse","Databricks","Parquet"]},
+        {s:"Quality gates", n:["Great Expectations","Monte Carlo","Grafana","Prometheus"]}
+      ]},
+    { t:"SIGNAL RESEARCH & ALPHA DISCOVERY", c:"",
+      subs:[
+        {s:"Hypothesis", n:["Claude","Bigdata.com","YipitData","S&P Capital IQ"], cap:"Reads the filings, the alt data and the literature, then writes the spec."},
+        {s:"Feature build", n:["Polars","pandas","NumPy","Qlib"], cap:"Point-in-time features, versioned, from the same store."},
+        {s:"Test", n:["Nautilus","VectorBT","Zipline","Alphasense","MLflow"], cap:"Borrow cost priced in · market impact priced in."},
+        {s:"Vet & register", n:[["Deflated Sharpe","g"],["Walk-forward","g"],["Model registry","g"],["PM sign-off","h"]], cap:"Multiple-testing haircut, then a human turns it on."}
+      ]},
+    { t:"PORTFOLIO CONSTRUCTION & RISK", c:"A forecast, not a trade",
+      subs:[
+        {s:"Factor & risk models", n:["Axioma","MSCI Barra","Bloomberg VaR"], cap:"Exposures, constraints, gross-to-net risk."},
+        {s:"Optimiser", n:["CVXPY","MOSEK","Gurobi","Riskfolio"], cap:"Alpha × max of 3 constraints — solve, not argue."},
+        {s:"Constraints", n:["Prime broker","Borrow / locate","VaR & scenarios","Liquidity"], cap:"Can we hold it, fund it, and get out of it?"}
+      ]},
+    { t:"KNOWLEDGE LAYER + ACCESS", c:"shared research workspace → FUND-OS FILE SYSTEM",
+      subs:[
+        {s:"/data", n:["universe.md","vendor-map.md","point-in-time-rules.md","corp-actions.md"]},
+        {s:"/research", n:["signal-library.md","factor-definitions.md","backtest-protocol.md","decay-log.md"]},
+        {s:"/portfolio", n:["risk-limits.md","capacity-model.md","borrow-and-financing.md","hedge-policy.md"]},
+        {s:"/execution", n:["venue-map.md","algo-playbook.md","tca-history.md"]},
+        {s:"/compliance", n:["restricted-list.md","trade-approvals.md","model-inventory.md"]},
+        {s:"/investors", n:["mandates.md","ddq-library.md","reporting-calendar.md"]}
+      ]}
+  ]},
+  { zone:"Zon Kawalan — apa yang menjaga gelung", panels:[
+    { t:"PRE-TRADE GATE", c:"nothing leaves without clearing this",
+      subs:[
+        {s:"Checks", n:["Restricted list","Limits","Borrow check","Market impact"], cap:"Blocked orders never reach a venue."},
+        {s:"Human approval", n:[["PM sign-off","h"],["CIO","h"]], cap:"A person owns the trade, on the record."}
+      ]},
+    { t:"EXECUTION", c:"machines route · humans watch",
+      subs:[
+        {s:"OMS / EMS", n:["Bloomberg EMSX","Charles River","Enfusion","FlexTrade","Virtu Triton"]},
+        {s:"Route & algo", n:["FIX","Algo wheel","Dark / block","IBKR"]},
+        {s:"Cost feedback", n:["TCA","Virtu","big xyt"], cap:"Yesterday's slippage re-weights today's router."}
+      ]},
+    { t:"POST-TRADE & OPS", c:"the books close themselves",
+      subs:[
+        {s:"Match & affirm", n:["DTCC CTM","DTCC"]},
+        {s:"Books & records", n:["Advent","SS&C Geneva","Enfusion"]},
+        {s:"Admin & NAV", n:["Citco","Northern Trust","State Street"], cap:"Books get investigated by an agent, corrected by a human."}
+      ]},
+    { t:"INVESTORS & CAPITAL", c:"the loop closes",
+      subs:[
+        {s:"Reporting", n:["Juniper Sq","Backstop","Dynamo"]},
+        {s:"Allocator pipeline", n:["Nasdaq eVestment","Preqin","Pando","InvestLink"]},
+        {s:"DDQ & diligence", n:["Claude","Box","DDQ library"], cap:"New capital is more capacity, a new model."}
+      ]},
+    { t:"SURVEILLANCE", c:"runs across every panel on this page",
+      subs:[
+        {s:"Comms & market surveillance", n:["Behavox","Smarsh","Global Relay","Nasdaq SMARTS"], cap:"Label sub-kotak pada poster ialah 'Allocator pipeline' — kemungkinan silap label."}
+      ]},
+    { t:"ACCESS (CONTROL PLANE)", c:"",
+      subs:[{s:"Kawalan", n:[["Entitlements","h"],["Audit log","h"],["Alerts","h"],["Model registry","h"],["Permissions","h"],["Kill switch","b"]]}]
+    },
+    { t:"THE ECONOMICS", c:"what sits next to it, and what the layer costs",
+      subs:[
+        {s:"Kos", n:[["$4.2M — 12-seat quant pod","core"],["$1.1M — data & vendor stack","core"],["$14k — orchestration layer","core"],["3 roles — not replaced","h"]]}
+      ]},
+    { t:"WHAT INTERRUPTS THE LOOP", c:"eight events a $1B book has to answer in minutes, not Monday",
+      subs:[
+        {s:"Peristiwa", n:["Earnings & corp actions","Macro prints (CPI, FOMC)","Halts & limit moves","Borrow recall","Margin & financing call","Drawdown limit breach","Vendor data outage","Redemption notice"]}
+      ]}
+  ]}
+];
+
+/* ---- FUND-OS FILE SYSTEM CONTENT ---- */
+const FUNDOS = {
+"/data":[
+ {f:"universe.md",b:`# /data/universe.md
+# Definisi alam semesta pelaburan — sumber kebenaran tunggal
+
+## Peringkat kecairan
+- TIER 1 : ADV > $50M   · spread < 3bps  · masuk penuh
+- TIER 2 : ADV $10–50M  · spread 3–8bps · saiz separuh
+- TIER 3 : ADV < $10M   · hanya atas kelulusan PM
+
+## Peraturan kemasukan
+- Harga > $5
+- Tidak dalam restricted-list.md
+- Ada sekuriti boleh pinjam (locate) tersedia
+- Sejarah 24 bulan minimum untuk pengiraan faktor
+
+## Pengecualian
+- ADR / dual-listed: guna harga tempatan untuk isyarat, ADR untuk laksana
+- Halted > 2 hari: keluarkan automatik, daftar di decay-log.md`},
+ {f:"vendor-map.md",b:`# /data/vendor-map.md
+# Peta vendor → medan → SLA → kos
+
+## Market & reference (the price side)
+| Vendor            | Medan            | Latensi | SLA    |
+|-------------------|------------------|---------|--------|
+| Bloomberg B-PIPE  | quote, trade     | <5ms    | 99.99% |
+| Databento         | MBO, MBP-10      | <1ms    | 99.9%  |
+| LSEG              | macro, ref       | 15min   | 99.9%  |
+| ICE Data          | reference        | EOD     | 99.9%  |
+| Nasdaq TotalView  | depth            | <1ms    | 99.9%  |
+| CME DataMine      | futures          | EOD     | 99.9%  |
+| FactSet           | fundamentals     | EOD     | 99.9%  |
+| Massive           | alt tape         | 1min    | 99.5%  |
+
+## Fundamental & alternative (the edge side)
+S&P Capital IQ · Capiq · Bigdata.com · YipitData · Sentiment · Earnest · M Science · Preqin
+
+## Peraturan
+- Setiap medan mesti ada pemilik vendor.
+- Vendor tanpa SLA bertulis = TIDAK BOLEH masuk pengeluaran.`},
+ {f:"point-in-time-rules.md",b:`# /data/point-in-time-rules.md
+# Peraturan PIT — undang-undang paling penting dalam sistem ini
+
+1. SETIAP medan mesti ada as-of timestamp.
+2. Backtest HANYA boleh membaca rekod dengan as-of <= tarikh backtest.
+3. Restatement: simpan kedua-dua nilai asal & disemak. Guna nilai yang
+   DIKETAHUI pada masa itu, bukan nilai disemak kemudian.
+4. Corp actions: selaras semula dengan faktor pelarasan yang betul.
+5. Survivorship: masukkan saham delisted dalam universe sejarah.
+6. Kaveat: jika medan tiada timestamp, TOLAK. Jangan teka.
+
+> "The backtest only sees what was knowable that day."`},
+ {f:"corp-actions.md",b:`# /data/corp-actions.md
+# Tindakan korporat & peristiwa
+
+- Split / reverse split      → laras harga & volum, kekalkan PIT
+- Dividen                    → jumlah pulangan (total return) sahaja
+- Penggabungan / pengambilalihan → hentikan perdagangan, selesaikan posisi
+- Halts                       → keluarkan dari universe, daftar insiden
+- Perubahan indeks            → laras berat penanda aras
+
+Setiap tindakan → audit-log + notifikasi ke ResearchAgent.`}
+],
+"/research":[
+ {f:"signal-library.md",b:`# /research/signal-library.md
+# Pustaka isyarat — setiap hipotesis yang pernah diuji
+
+## Aktif
+### SIG-014 · Post-earnings drift (kecairan-dilaraskan)
+- Hipotesis: drift selepas earnings berkadar dengan kejutan + kekangan kecairan
+- Spec: Claude, 2026-03-11
+- Sharpe (Nautilus, borrow+impact): 1.8 | MaxDD: -6%
+- Status: DIDAFTAR · versi v3.2
+
+### SIG-009 · Alt-data revenue nowcast
+- Sharpe: 1.1 | MaxDD: -9% | Status: DIDAFTAR
+
+## Ditolak
+### SIG-011 · Momentum intraday
+- Gagal deflated Sharpe selepas haircut multiple-testing
+- Nota: kebanyakannya = momentum yang sudah dimiliki. Net-new exposure ≈ 0.
+
+## Setiap entri mesti ada: spec, spec-hash, backtest-protocol ref, PM sign-off`},
+ {f:"factor-definitions.md",b:`# /research/factor-definitions.md
+# Definisi faktor (Axioma / MSCI Barra)
+
+- MOMENTUM     · 12-1 bulan, kecairan-dilaraskan
+- VALUE        · B/P, E/P, S/P, FCF/P
+- SIZE         · log market cap
+- QUALITY      · ROE, leverage, accruals
+- LOW-VOL      · realized vol 60h
+- LIQUIDITY    · Amihud illiquidity
+
+## Peraturan
+- Exposure bersih diukur terhadap portfolio sedia ada.
+- HANYA net-new exposure yang diberi saiz.
+- Gross-to-net risk mesti dilaporkan setiap kali optimiser dijalankan.`},
+ {f:"backtest-protocol.md",b:`# /research/backtest-protocol.md
+# Protokol backtest — tiada pengecualian
+
+1. Data point-in-time SAHAJA.
+2. Kos: spread + komisen + BORROW + market impact.
+3. Walk-forward: 24 bulan latih, 6 bulan uji, rolling.
+4. Deflated Sharpe: laras untuk bilangan percubaan.
+5. Ujian tekanan: 2008, 2020, 2022 (atau tempoh analog).
+6. Jika Sharpe < 1.0 atau MaxDD < -15% → TOLAK.
+
+Enjin: Nautilus. Setiap run disimpan ke MLflow dengan git-hash.`},
+ {f:"decay-log.md",b:`# /research/decay-log.md
+# Log reputasi isyarat (signal decay)
+
+| Isyarat  | Sharpe langsung | 3m  | 6m  | Tindakan     |
+|----------|-----------------|-----|-----|--------------|
+| SIG-014  | 1.8             | 1.6 | 1.4 | pantau       |
+| SIG-009  | 1.1             | 0.8 | 0.5 | turun berat  |
+| SIG-002  | 1.4             | 0.6 | 0.2 | NYAHDAFTAR   |
+
+Peraturan: decay > 50% dalam 6 bulan → nyahdaftar & siasat.
+Ejen menulis log ini setiap EOD; manusia menyemak mingguan.`}
+],
+"/portfolio":[
+ {f:"risk-limits.md",b:`# /portfolio/risk-limits.md
+# Had risiko (mandat CIO)
+
+- VaR 95% 1 hari   : 1.2% NAV
+- Drawdown maks    : -10% NAV  → brek keras + notifikasi CIO
+- Gross exposure   : 250% NAV
+- Net exposure     : -20% .. +40% NAV
+- Sektor maks      : 25% NAV
+- Nama tunggal maks: 4% NAV
+- Kecairan         : boleh cair 80% posisi dalam 3 hari ADV
+
+Pelanggaran → kill switch automatik pada nama tersebut, bukan seluruh buku.`},
+ {f:"capacity-model.md",b:`# /portfolio/capacity-model.md
+# Kapasiti strategi
+
+Kapasiti ≈ (ADV saham) × (bilangan hari yang boleh kita ambil) × (toleransi impact)
+
+- Toleransi impact: 15bps
+- Had penyertaan: 10% ADV per hari
+- Kapasiti semasa (SIG-014): ~$340M sebelum impact memakan alpha
+
+> "New capital is more capacity, a new model." — bukan lebih leverage.`},
+ {f:"borrow-and-financing.md",b:`# /portfolio/borrow-and-financing.md
+# Pinjaman & pembiayaan
+
+- Kadar pinjam (borrow rate) mesti dimasukkan dalam backtest.
+- Hard-to-borrow: sekat dahulu, dapatkan locate, baru laksana.
+- Recall risk: rekod vendor, masa notis, dan playbook.
+- Pembiayaan: spread pembroker + kadar asas.
+
+Kos borrow masuk ke kos optimiser sebagai kekangan, bukan selepas fakta.`},
+ {f:"hedge-policy.md",b:`# /portfolio/hedge-policy.md
+# Dasar lindung nilai
+
+- Hedge beta pasaran dengan futures indeks apabila |beta| > 0.35
+- Hedge sektor apabila exposure sektor > 15%
+- Hedge FX apabila exposure bukan-USD > 20%
+- Lindung nilai TIDAK boleh mencipta leverage baharu.
+
+Setiap lindung nilai mesti melalui pre-trade gate yang sama.`}
+],
+"/execution":[
+ {f:"venue-map.md",b:`# /execution/venue-map.md
+# Peta venue & OMS
+
+## OMS / EMS (satu gateway)
+Bloomberg EMSX · Charles River · Enfusion · FlexTrade · Virtu Triton
+
+## Venue
+NYSE · NASDAQ · DARK POOLS (via OMS sahaja)
+
+## Peraturan suci
+> "One gateway, every venue."
+> Order yang dibenarkan HANYA melalui OMS.
+> TIDAK PERNAH memintas OMS. 0 bypass.
+
+## Route & algo
+FIX · Algo wheel · Dark / block · IBKR (fallback)`},
+ {f:"algo-playbook.md",b:`# /execution/algo-playbook.md
+# Playbook algo
+
+| Keadaan              | Algo                          |
+|----------------------|-------------------------------|
+| Saiz < 5% ADV        | VWAP                          |
+| 5–15% ADV            | TWAP + adaptive               |
+| > 15% ADV            | Algo wheel + dark/block       |
+| Urgent (insiden)     | IS (implementation shortfall) |
+| Nama kurang cair     | POV 10% + dark                |
+
+TCA semalam memberat pilihan algo hari ini.`},
+ {f:"tca-history.md",b:`# /execution/tca-history.md
+# Sejarah TCA (transaction cost analysis)
+
+| Tarikh     | Algo     | Slippage (bps) | vs Arrival |
+|------------|----------|----------------|------------|
+| 2026-10-06 | VWAP     | +2.1           | +1.4       |
+| 2026-10-07 | TWAP     | +4.8           | +3.2       |
+| 2026-10-08 | POV 10%  | +1.9           | +0.8       |
+
+> "Yesterday's slippage re-weights today's router."
+
+Feedback: slippage > 5bps → turun berat algo tersebut untuk profil kecairan itu.`}
+],
+"/compliance":[
+ {f:"restricted-list.md",b:`# /compliance/restricted-list.md
+# Senarai sekatan (dikawal oleh pematuhan)
+
+## Sekatan kekal
+- Senarai sekatan entiti (OFAC/EU/UN)
+- Nama dengan maklumat material bukan awam (MNPI)
+- Sekatan pihak dalaman (insider windows)
+
+## Sekatan sementara
+- Nama dalam tempoh blackout penyelidikan
+- Nama dengan isu pematuhan belum selesai
+
+Setiap order disemak terhadap senarai ini di PRE-TRADE GATE.
+Pesanan yang disekat TIDAK PERNAH sampai ke venue.`},
+ {f:"trade-approvals.md",b:`# /compliance/trade-approvals.md
+# Rekod kelulusan trade
+
+Setiap trade mesti ada:
+- PM sign-off  (pemilik trade, on the record)
+- CIO approval (untuk trade melebihi had atau nama baharu)
+- Cap masa & identiti
+
+> "A person owns the trade, on the record."
+
+Log ini append-only dan tidak boleh diubah.`},
+ {f:"model-inventory.md",b:`# /compliance/model-inventory.md
+# Inventori model (model registry)
+
+| ID      | Model              | Versi | Pemilik | Status  |
+|---------|--------------------|-------|---------|---------|
+| SIG-014 | Post-earnings drift| v3.2  | PM-A    | aktif   |
+| SIG-009 | Revenue nowcast    | v1.4  | PM-B    | aktif   |
+| SIG-002 | Mean reversion     | v2.0  | PM-A    | nyahdaftar |
+
+Setiap model mesti boleh dijelaskan (explainable) dan ada pemilik manusia.`}
+],
+"/investors":[
+ {f:"mandates.md",b:`# /investors/mandates.md
+# Mandat pelabur
+
+- Sasaran pulangan : 12–15% bersih
+- Volatiliti sasaran: 8–10%
+- Had drawdown     : -10%
+- Kecairan         : bulanan
+- Had strategi     : ekuiti L/S kuantitatif, ≥80% cair harian
+
+Setiap perubahan mandat → kemas kini risk-limits.md + notifikasi ejen.`},
+ {f:"ddq-library.md",b:`# /investors/ddq-library.md
+# Pustaka DDQ (due diligence questionnaire)
+
+- Templat DDQ standard
+- Sejarah respons (dijana oleh Claude, disemak manusia)
+- Dokumentasi proses & kawalan
+- Laporan pematuhan
+
+> Ejen mendraf; manusia menandatangani.`},
+ {f:"reporting-calendar.md",b:`# /investors/reporting-calendar.md
+# Kalendar pelaporan
+
+| Kekerapan | Tarikh   | Pelaporan              |
+|-----------|----------|------------------------|
+| Harian    | T+1      | PnL, exposure, VaR     |
+| Mingguan  | Jumaat   | Prestasi, atribusi     |
+| Bulanan   | T+5      | NAV, huruf (letter)    |
+| Suku tahunan | T+15  | Laporan penuh + DDQ    |
+
+NAV disahkan oleh pentadbir (Citco / Northern Trust / State Street).`}
+]};
+
+/* ---- ECONOMICS ---- */
+const ECON = [
+ {k:"A 12-seat quant pod", v:"$4.2M", n:"setahun · fully loaded — 3 researchers, 2 data eng, 2 PMs, 2 traders, ops, risk, IR", c:"hi"},
+ {k:"Data & vendor stack", v:"$1.1M", n:"setahun · market data, alt data, risk models, OMS/EMS, software, surveillance", c:""},
+ {k:"The orchestration layer", v:"$14k", n:"sebulan · models, compute, MCP servers — the thing this poster is about", c:"hi"},
+ {k:"What it does not replace", v:"3 roles", n:"CIO risk mandate · head trader · CIO sign-off", c:"ok"}
+];
+
+/* ---- INCIDENTS ---- */
+const INCIDENTS = [
+ {t:"Earnings & corp actions", n:["S&P CIQ","Bloomberg","Claude"],
+  p:"<b>Kesan:</b> Universe bergerak, posisi perlu diselaras. <b>Playbook:</b> DataAgent tarik peristiwa → Claude ringkas filing → PIT store selaras → PortfolioAgent kira semula exposure → gate semula. Manusia menyemak nama yang terjejas."},
+ {t:"Macro prints (CPI, FOMC)", n:["LSEG","Bloomberg","Bigdata.com"],
+  p:"<b>Kesan:</b> Volatiliti & korelasi melonjak. <b>Playbook:</b> Tahan order baharu, kira semula VaR & scenario, laraskan lindung nilai beta, keluarkan notifikasi CIO jika VaR > 1.2%."},
+ {t:"Halts & limit moves", n:["Databento","Nasdaq","Bloomberg EMSX"],
+  p:"<b>Kesan:</b> Nama tidak boleh didagangkan. <b>Playbook:</b> Keluarkan dari universe, batalkan order belum hantar melalui OMS, rekod ke audit-log, siasat kesan pada lindung nilai."},
+ {t:"Borrow recall", n:["Prime broker","Enfusion","Locate desk"],
+  p:"<b>Kesan:</b> Posisi short mesti ditutup. <b>Playbook:</b> Gate sekat short baharu pada nama itu, ExecutionAgent tutup posisi melalui OMS (bukan memintas), kira kos, kemas kini borrow-and-financing.md."},
+ {t:"Margin & financing call", n:["Prime broker","Advent","Treasury"],
+  p:"<b>Kesan:</b> Keperluan tunai serta-merta. <b>Playbook:</b> Optimiser jalankan dengan kekangan tunai baharu, cair aset paling kurang alpha dulu, lapor kepada CIO, rekod setiap langkah."},
+ {t:"Drawdown limit breach", n:["Axioma","Kill switch","CIO"],
+  p:"<b>Kesan:</b> Had mandat dilanggar. <b>Playbook:</b> <b>Kill switch automatik</b> pada nama terjejas, hentikan gelung, notifikasi CIO, jalankan scenario VaR penuh sebelum dimulakan semula."},
+ {t:"Vendor data outage", n:["Great Expectations","Monte Carlo","Grafana"],
+  p:"<b>Kesan:</b> Data hilang/rosak. <b>Playbook:</b> Quality gate gagal → gelung berhenti, jangan buat keputusan atas data rosak. Grafana alert, fallback vendor jika ada, rekod insiden."},
+ {t:"Redemption notice", n:["Juniper Sq","Citco","Reporting model"],
+  p:"<b>Kesan:</b> Keperluan tunai & kapasiti berubah. <b>Playbook:</b> PortfolioAgent kira pelupusan teratur, Reporting model kemas kini NAV, juri manusia meluluskan pelan kecairan."}
+];
+
+/* ---- CONTROL PLANE ---- */
+const CP = [
+ {i:"🎫",t:"Entitlements",d:"Siapa/apa yang boleh akses medan data & sistem. Setiap akses ejen direkod.",c:"--human-soft"},
+ {i:"📜",t:"Audit log",d:"Log append-only bagi setiap tindakan ejen & manusia. Boleh diaudit sepenuhnya.",c:"--accent-soft"},
+ {i:"🔔",t:"Alerts",d:"Notifikasi masa nyata untuk pelanggaran had, kegagalan data, dan kelulusan tertunggak.",c:"--warn-soft"},
+ {i:"📦",t:"Model registry",d:"Setiap model berversi dengan pemilik manusia, git-hash, dan status.",c:"--ok-soft"},
+ {i:"👤",t:"Permissions",d:"Akses berasaskan peranan — ejen tidak boleh laksana tanpa kebenaran.",c:"--human-soft"},
+ {i:"⛔",t:"Kill switch",d:"Mematikan gelung serta-merta. Seni bina, bukan ciri tambahan.",c:"--bad-soft"}
+];
+
+/* =====================================================================
+   SCENARIOS
+   ===================================================================== */
+const SCENARIOS = [
+ {id:"signal", name:"SIG-014 · Post-earnings drift (AAPL)",
+  sym:"AAPL", side:"LONG", qty:185000, px:228.40, note:"Isyarat aktif, dalam had — laluan bersih."},
+ {id:"short", name:"SIG-009 · Revenue nowcast (SHORT TSLA)",
+  sym:"TSLA", side:"SHORT", qty:62000, px:241.10, note:"Short memerlukan semakan borrow."},
+ {id:"blocked", name:"Order baharu pada nama restricted (XYZ)",
+  sym:"XYZ", side:"LONG", qty:90000, px:54.20, note:"Dijangka disekat oleh restricted-list."},
+ {id:"recall", name:"Borrow recall semasa pelaksanaan (GME)",
+  sym:"GME", side:"SHORT", qty:48000, px:23.80, note:"Insiden berlaku di tengah gelung."}
+];
+
+/* =====================================================================
+   UI BOOTSTRAP
+   ===================================================================== */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+function go(v){
+  $$('#tabs button').forEach(b=>b.classList.toggle('on', b.dataset.v===v));
+  $$('.view').forEach(s=>s.classList.toggle('on', s.id==='v-'+v));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+$$('#tabs button').forEach(b=>b.onclick=()=>go(b.dataset.v));
+
+$('#themeBtn').onclick=()=>{
+  const h=document.documentElement;
+  h.dataset.theme = h.dataset.theme==='dark' ? 'light' : 'dark';
+  drawLoop();
+};
+setInterval(()=>{ $('#clock').textContent = new Date().toLocaleTimeString('en-GB'); },1000);
+
+/* ---- KPIs ---- */
+$('#kpis').innerHTML = KPIS.map(k=>
+  `<div class="kpi ${k.c||''}"><div class="k">${k.k}</div><div class="v">${k.v}</div><div class="n">${k.n}</div></div>`
+).join('');
+
+/* =====================================================================
+   LOOP SVG
+   ===================================================================== */
+const CX=360, CY=352, R=236;
+function polar(i,n){ const a = -Math.PI/2 + i*(2*Math.PI/n); return [CX+R*Math.cos(a), CY+R*Math.sin(a)]; }
+
+let selStage = 0;
+function drawLoop(state){
+  state = state || window.__sim || {done:[],active:-1,blocked:[]};
+  const n = STAGES.length;
+  let s = `<circle cx="${CX}" cy="${CY}" r="${R}" class="arc-bg"/>`;
+  // progress arc
+  const doneN = state.done.length;
+  if(doneN>0){
+    const circ = 2*Math.PI*R;
+    const frac = Math.min(doneN/n, 1);
+    s += `<circle cx="${CX}" cy="${CY}" r="${R}" class="arc-fill"
+      stroke-dasharray="${circ*frac} ${circ}" transform="rotate(-90 ${CX} ${CY})"/>`;
+  }
+  // connectors + nodes
+  STAGES.forEach((st,i)=>{
+    const [x,y]=polar(i,n);
+    const cls = state.blocked.includes(i) ? 'blk' : (i===state.active ? 'act' : (state.done.includes(i)?'done':'')) + (i===selStage?' sel':'');
+    s += `<g class="node-c ${cls}" onclick="selStage=${i};drawLoop()" style="cursor:pointer">
+      <circle class="node-bg" cx="${x}" cy="${y}" r="47"/>
+      <text class="node-ico" x="${x}" y="${y-6}">${st.ico}</text>
+      <text class="node-num" x="${x}" y="${y+9}">${String(st.n).padStart(2,'0')}</text>
+      <text class="node-lbl" x="${x}" y="${y+27}" style="font-size:9.5px">${shortName(st.name)}</text>
+    </g>`;
+  });
+  // checkpoints on the arc between nodes
+  STAGES.forEach((st,i)=>{
+    if(!st.cp) return;
+    const a = -Math.PI/2 + (i+0.5)*(2*Math.PI/n);
+    const x = CX+(R)*Math.cos(a), y = CY+(R)*Math.sin(a);
+    const on = state.done.includes(i);
+    const blk = state.blocked.includes(i);
+    s += `<circle class="cp ${on?'on':''} ${blk?'blk':''}" cx="${x}" cy="${y}" r="7"/>`;
+  });
+  // centre
+  const pct = Math.round(doneN/n*100);
+  s += `<text class="big" x="${CX}" y="${CY-6}" text-anchor="middle">${pct}%</text>
+        <text class="lbl" x="${CX}" y="${CY+20}" text-anchor="middle">loop progress</text>
+        <text class="lbl" x="${CX}" y="${CY+40}" text-anchor="middle" style="fill:var(--accent)">${doneN}/10 stages</text>
+        <text class="lbl" x="${CX}" y="${CY+58}" text-anchor="middle">7 checkpoints · 0 bypasses</text>`;
+  $('#loopSvg').innerHTML = s;
+  renderDetail();
+}
+function shortName(n){
+  const m={ "DATA INGEST":"Data","VALIDATION & PIT STORE":"PIT Store","RESEARCH / HYPOTHESIS":"Research",
+    "FEATURE BUILD":"Features","BACKTEST / TEST":"Backtest","VET & REGISTER":"Vet",
+    "PORTFOLIO CONSTRUCTION & RISK":"Portfolio","PRE-TRADE GATE":"Gate","EXECUTION":"Execution",
+    "POST-TRADE, OPS & PERFORMANCE":"Ops" };
+  return m[n]||n;
+}
+function renderDetail(){
+  const st = STAGES[selStage];
+  $('#stageDetail').innerHTML = `
+    <div class="tag">STAGE ${String(st.n).padStart(2,'0')} · ${st.agent}</div>
+    <h3>${st.ico} ${st.name}</h3>
+    <p>${st.desc}</p>
+    <div class="chips">${st.tools.map(t=>`<span class="chip ${t.startsWith('MCP:')?'mcp':''}">${t}</span>`).join('')}</div>
+    ${st.cp?'<span class="chip g">✓ checkpoint</span>':'<span class="chip">tiada checkpoint</span>'}
+    <div class="cap" style="margin-top:14px">${st.cap}</div>`;
+}
+
+/* =====================================================================
+   NODE EXPLORER
+   ===================================================================== */
+$('#nodeExplorer').innerHTML = ZONES.map(z=>{
+  const panels = z.panels.map(p=>{
+    let body='';
+    if(p.subs){
+      body = p.subs.map(sb=>{
+        const ns = (sb.n||[]).map(x=>{
+          const [label,kind] = Array.isArray(x)? x : [x,''];
+          return `<span class="nd ${kind}">${label}</span>`;
+        }).join('');
+        return `<div class="sub">${sb.s}</div><div class="nodes">${ns}</div>${sb.cap?`<div class="cap">${sb.cap}</div>`:''}`;
+      }).join('');
+    } else {
+      body = `<div class="nodes">${(p.nodes||[]).map(x=>{
+        const [label,kind] = Array.isArray(x)? x : [x,''];
+        return `<span class="nd ${kind}">${label}</span>`;
+      }).join('')}</div>`;
+    }
+    return `<div class="panel"><div class="ph"><span class="pt">${p.t}</span></div>
+      ${p.c?`<div class="pc">${p.c}</div>`:'<div style="height:6px"></div>'}
+      ${body}</div>`;
+  }).join('');
+  return `<div class="zone-h"><span class="bar"></span><h3>${z.zone}</h3></div><div class="pgrid">${panels}</div>`;
+}).join('');
+
+/* =====================================================================
+   FUND-OS FS
+   ===================================================================== */
+let curFile=null;
+function renderTree(){
+  $('#fsTree').innerHTML = Object.entries(FUNDOS).map(([dir,files])=>{
+    const hue = {'/data':'#f59e0b','/research':'#3b82f6','/portfolio':'#22c55e','/execution':'#ef4444','/compliance':'#8b5cf6','/investors':'#eab308'}[dir];
+    return `<div class="fs-dir"><span class="sw-c" style="background:${hue}"></span>${dir}</div>`
+      + files.map(f=>`<button class="fs-file" data-p="${dir}/${f.f}">${f.f}</button>`).join('');
+  }).join('');
+  $$('.fs-file').forEach(b=>b.onclick=()=>openFile(b.dataset.p));
+}
+function openFile(path){
+  const [dir,file]=[path.slice(0,path.lastIndexOf('/')), path.slice(path.lastIndexOf('/')+1)];
+  const rec = FUNDOS[dir].find(f=>f.f===file);
+  if(!rec) return;
+  curFile=path;
+  $$('.fs-file').forEach(b=>b.classList.toggle('on', b.dataset.p===path));
+  $('#fsPath').textContent = path;
+  $('#fsBody').textContent = rec.b;
+}
+renderTree(); openFile('/data/universe.md');
+
+/* =====================================================================
+   ECONOMICS / INCIDENTS / CONTROL
+   ===================================================================== */
+$('#econGrid').innerHTML = ECON.map(e=>
+  `<div class="ec ${e.c}"><div class="k">${e.k}</div><div class="v">${e.v}</div><div class="n">${e.n}</div></div>`
+).join('');
+
+$('#incGrid').innerHTML = INCIDENTS.map((x,i)=>
+  `<div class="inc" onclick="this.classList.toggle('open')">
+    <div class="ih"><span class="num">${String(i+1).padStart(2,'0')}</span><h4>${x.t}</h4></div>
+    <div class="nodes">${x.n.map(n=>`<span class="nd">${n}</span>`).join('')}</div>
+    <div class="play">${x.p}</div>
+  </div>`
+).join('');
+
+$('#cpGrid').innerHTML = CP.map(c=>
+  `<div class="cpc"><div class="ic" style="background:var(${c.c})">${c.i}</div><h4>${c.t}</h4><p>${c.d}</p></div>`
+).join('');
+
+/* =====================================================================
+   SIMULATION ENGINE
+   ===================================================================== */
+const LOG = $('#log'), AUDIT = $('#auditLog');
+let sim = { running:false, paused:false, speed:700, t:0, killed:false, done:[], active:-1, blocked:[], audit:0,
+            nav:100.0, pnl:0, sharpe:1.8, dd:-6.0, cash:12.4, gross:184, tca:2.1, blockedN:0, cleared:0, orders:0 };
+
+$('#scnSel').innerHTML = SCENARIOS.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
+$$('#speed button').forEach(b=>b.onclick=()=>{
+  $$('#speed button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); sim.speed=+b.dataset.s;
+});
+
+function ts(){ const d=new Date(); return d.toTimeString().slice(0,8); }
+function log(agent,msg,cls){
+  // after a kill switch, suppress any further agent chatter
+  if(sim.killed && agent!=='CONTROL' && agent!=='SYSTEM') return;
+  const sep = msg.startsWith('──') ? 'sep' : '';
+  const line = document.createElement('div');
+  line.className = 'ln '+(cls||'')+' '+(sep?'':''); 
+  if(sep){ line.innerHTML = `<div class="sep" style="flex:1"></div>`; }
+  else { line.innerHTML = `<span class="ts">${ts()}</span><span class="ag" style="color:${agentColor(agent)}">${agent}</span><span class="ms">${msg}</span>`; }
+  LOG.appendChild(line); LOG.scrollTop = LOG.scrollHeight;
+}
+function audit(msg){
+  sim.audit++;
+  const line = document.createElement('div');
+  line.className='ln';
+  line.innerHTML = `<span class="ts">${ts()}</span><span class="ms">${msg}</span>`;
+  AUDIT.appendChild(line); AUDIT.scrollTop=AUDIT.scrollHeight;
+  $('#auditCount').textContent = sim.audit + ' entri';
+}
+function agentColor(a){
+  const m = {'ORCHESTRATOR':'var(--accent)','DataAgent':'var(--data)','PITStoreAgent':'var(--data)',
+    'Claude (ResearchAgent)':'var(--human)','FeatureAgent':'var(--data)','BacktestAgent (Nautilus)':'var(--data)',
+    'VetAgent':'var(--ok)','PortfolioAgent':'var(--accent)','GateAgent':'var(--bad)',
+    'ExecutionAgent':'var(--warn)','OpsAgent':'var(--ok)','HUMAN':'var(--human)','CONTROL':'var(--bad)','SYSTEM':'var(--ink3)'};
+  return m[a]||'var(--ink2)';
+}
+function setState(t,cls){ const e=$('#simState'); e.textContent=t; e.className='st '+(cls||''); }
+/* sleep that actually waits `ms` of *unpaused* time, and bails out on kill */
+function sleep(ms){
+  return new Promise(resolve=>{
+    let remaining = ms, last = Date.now();
+    const tick = ()=>{
+      if(sim.killed) return resolve();
+      const now = Date.now();
+      if(!sim.paused) remaining -= (now - last);
+      last = now;
+      if(remaining <= 0) return resolve();
+      setTimeout(tick, Math.min(45, Math.max(6, remaining)));
+    };
+    setTimeout(tick, Math.min(45, ms));
+  });
+}
+const wait = ms => sleep(ms);
+
+function renderMetrics(){
+  const up = sim.pnl>=0;
+  const M=[
+    {k:"NAV (idx)", v:sim.nav.toFixed(2), c:''},
+    {k:"PnL (bps)", v:(up?'+':'')+sim.pnl.toFixed(0), c:up?'pos':'neg'},
+    {k:"Sharpe", v:sim.sharpe.toFixed(2), c:'ac'},
+    {k:"MaxDD %", v:sim.dd.toFixed(1), c:'neg'},
+    {k:"Cash %", v:sim.cash.toFixed(1), c:''},
+    {k:"Gross %", v:sim.gross.toFixed(0), c:''},
+    {k:"TCA bps", v:sim.tca.toFixed(1), c:'ac'},
+    {k:"Blocked", v:sim.blockedN, c:sim.blockedN?'neg':''},
+    {k:"Cleared", v:sim.cleared, c:'pos'}
+  ];
+  $('#metrics').innerHTML = M.map(m=>`<div class="m"><div class="k">${m.k}</div><div class="v ${m.c}">${m.v}</div></div>`).join('');
+}
+renderMetrics();
+
+function scenario(){ return SCENARIOS.find(s=>s.id===$('#scnSel').value); }
+const autoApprove = ()=>$('#autoTog').classList.contains('on');
+const strictMode  = ()=>$('#strictTog').classList.contains('on');
+
+function reset(){
+  sim.running=false; sim.paused=false; sim.killed=false; sim.done=[]; sim.active=-1; sim.blocked=[];
+  sim.nav=100; sim.pnl=0; sim.sharpe=1.8; sim.dd=-6; sim.cash=12.4; sim.gross=184; sim.tca=2.1;
+  sim.blockedN=0; sim.cleared=0; sim.orders=0;
+  LOG.innerHTML=''; AUDIT.innerHTML=''; $('#auditCount').textContent='0 entri';
+  setState('IDLE',''); renderMetrics(); drawLoop();
+  $('#runBtn').disabled=false; $('#pauseBtn').disabled=true; $('#pauseBtn').textContent='⏸ Pause';
+  $('#approve').classList.remove('on');
+}
+function togglePause(){
+  sim.paused=!sim.paused;
+  $('#pauseBtn').textContent = sim.paused?'▶ Resume':'⏸ Pause';
+  setState(sim.paused?'PAUSED':'RUNNING', sim.paused?'':'run');
+  log('SYSTEM', sim.paused?'Gelung dijeda oleh pengguna.':'Gelung disambung.', 'sys');
+}
+
+let resolveApproval=null;
+function askApproval(kind,title,desc,facts){
+  return new Promise(res=>{
+    if(autoApprove()){ log('HUMAN',`[auto] ${title} — DILULUSKAN`, 'human'); audit(`AUTO-APPROVE · ${title}`); return res(true); }
+    $('#apKind').textContent=kind; $('#apTitle').textContent=title; $('#apDesc').textContent=desc;
+    $('#apFacts').innerHTML=facts.map(f=>`<div>${f}</div>`).join('');
+    $('#approve').classList.add('on');
+    log('HUMAN',`⏸ Menunggu kelulusan manusia: ${title}`, 'human');
+    resolveApproval = ok=>{ $('#approve').classList.remove('on'); res(ok); };
+  });
+}
+function decide(ok){ if(resolveApproval) resolveApproval(ok); }
+
+/* ---- main run loop ---- */
+async function run(){
+  if(sim.running) return;
+  reset();
+  const sc = scenario();
+  sim.running=true; $('#runBtn').disabled=true; $('#pauseBtn').disabled=false;
+  setState('RUNNING','run');
+
+  log('ORCHESTRATOR','quant-fund-os v1.0 — Claude Code over MCP', 'hi');
+  log('ORCHESTRATOR',`Senario: ${sc.name}`, 'hi');
+  log('ORCHESTRATOR',`Order: ${sc.side} ${sc.qty.toLocaleString()} ${sc.sym} @ ~$${sc.px}  ·  notional $${(sc.qty*sc.px/1e6).toFixed(1)}M`, '');
+  log('ORCHESTRATOR','Memulakan gelung. 10 peringkat · 7 checkpoint · 0 bypasses.', 'sys');
+  audit(`LOOP START · ${sc.id} · ${sc.side} ${sc.sym}`);
+  await wait(500);
+
+  for(let i=0;i<STAGES.length;i++){
+    if(sim.killed) return;
+    const st = STAGES[i];
+    sim.active=i; drawLoop();
+    log('SYSTEM','──────', 'sep');
+    log(st.agent, `▶ STAGE ${String(st.n).padStart(2,'0')} — ${st.name}`, 'hi');
+    log(st.agent, st.action, '');
+    await sleep(sim.speed*0.6);
+    if(sim.killed) return;
+
+    // per-stage nuance
+    let blockedHere=false;
+    if(st.key==='data'){
+      log('DataAgent','  ├ 8 market vendors + 8 alt vendors diselaraskan', '');
+      await sleep(sim.speed*0.4);
+      log('DataAgent','  └ reconcile vs buku: 0 percanggahan', 'ok');
+    }
+    if(st.key==='validate'){
+      log('PITStoreAgent','  ├ Great Expectations: 412 ujian lulus', 'ok');
+      await sleep(sim.speed*0.4);
+      if(sc.id==='outage'){ log('PITStoreAgent','  └ ⚠ vendor outage dikesan — medan NULL 12%', 'bad'); }
+      else log('PITStoreAgent','  └ ditulis ke point-in-time store v2026.10.08', 'ok');
+    }
+    if(st.key==='research'){
+      log('Claude (ResearchAgent)','  ├ membaca 34 filing, 6 set alt data, 2 kertas', '');
+      await sleep(sim.speed*0.5);
+      log('Claude (ResearchAgent)',`  └ spec ditulis: SIG-014 / ${sc.sym} · daftar ke signal-library.md`, 'ok');
+    }
+    if(st.key==='feature'){
+      log('FeatureAgent','  ├ 118 ciri PIT dibina (Polars) · hash dikunci', 'ok');
+      await sleep(sim.speed*0.35);
+      log('FeatureAgent','  └ tiada kebocoran masa depan dikesan', 'ok');
+    }
+    if(st.key==='test'){
+      log('BacktestAgent (Nautilus)','  ├ backtest 2015–2026 · borrow + market impact dikira', '');
+      await sleep(sim.speed*0.5);
+      log('BacktestAgent (Nautilus)','  └ Sharpe 1.8 · MaxDD -6% · lulus ambang', 'ok');
+    }
+    if(st.key==='vet'){
+      log('VetAgent','  ├ deflated Sharpe selepas haircut multiple-testing: 1.42', 'ok');
+      await sleep(sim.speed*0.4);
+      log('VetAgent','  └ didaftar ke model registry · menunggu PM', '');
+    }
+    if(st.key==='portfolio'){
+      log('PortfolioAgent','  ├ factor split (Axioma / MSCI Barra)', '');
+      await sleep(sim.speed*0.35);
+      log('PortfolioAgent','  ├ momentum sedia ada dikesan: 71% pertindihan → dibuang', 'warn');
+      await sleep(sim.speed*0.35);
+      log('PortfolioAgent','  ├ optimiser (CVXPY) solve alpha − cost dalam had CIO', '');
+      await sleep(sim.speed*0.35);
+      log('PortfolioAgent',`  └ saiz posisi: ${sc.qty.toLocaleString()} ${sc.sym} · net-new exposure sahaja`, 'ok');
+    }
+    if(st.key==='gate'){
+      log('GateAgent','  ├ restricted-list.md ....... ', '');
+      await sleep(sim.speed*0.3);
+      if(sc.id==='blocked'){
+        log('GateAgent',`  ├ ⛔ ${sc.sym} ADA DALAM RESTRICTED LIST`, 'bad');
+        blockedHere=true;
+      } else log('GateAgent','  ├ ✓ lulus', 'ok');
+      await sleep(sim.speed*0.3);
+      log('GateAgent',`  ├ limits (4% nama tunggal) .. ${(sc.qty*sc.px/1e6>4? 'PELANGGARAN':'✓ lulus')}`, (sc.qty*sc.px/1e6>4?'bad':'ok'));
+      await sleep(sim.speed*0.3);
+      log('GateAgent','  ├ borrow check ............. ', '');
+      await sleep(sim.speed*0.3);
+      if(sc.side==='SHORT' && (sc.id==='recall'||sc.id==='short')){
+        log('GateAgent','  ├ ⚠ hard-to-borrow: locate terhad (2,000 saham)', 'warn');
+      } else log('GateAgent','  ├ ✓ locate tersedia', 'ok');
+      await sleep(sim.speed*0.3);
+      log('GateAgent','  └ market impact check ...... ✓ lulus', 'ok');
+    }
+    if(st.key==='execution'){
+      log('ExecutionAgent','  ├ OMS: Bloomberg EMSX — order dihantar melalui OMS', 'ok');
+      await sleep(sim.speed*0.4);
+      log('ExecutionAgent','  ├ algo wheel → TWAP (profil kecairan)', '');
+      await sleep(sim.speed*0.4);
+      log('ExecutionAgent','  └ venue: NYSE / NASDAQ / dark pools — via OMS sahaja', 'ok');
+      log('ExecutionAgent','  ✋ NEVER AROUND THE OMS', 'hi');
+    }
+    if(st.key==='ops'){
+      log('OpsAgent','  ├ match & affirm (DTCC CTM) ✓', 'ok');
+      await sleep(sim.speed*0.35);
+      log('OpsAgent','  ├ buku: SS&C Geneva ✓ · NAV disahkan Citco', 'ok');
+      await sleep(sim.speed*0.35);
+      log('OpsAgent',`  └ TCA: slippage +${(Math.random()*3+1).toFixed(1)}bps vs arrival → memberat router esok`, 'ok');
+    }
+
+    // ---- checkpoint handling ----
+    if(st.cp){
+      if(blockedHere){
+        sim.blocked.push(i); sim.blockedN++; sim.done.push(i); drawLoop();
+        log('GateAgent', `⛔ CHECKPOINT ${st.n} GAGAL — order disekat. Tidak pernah sampai ke venue.`, 'bad');
+        audit(`BLOCKED · stage ${st.n} · ${sc.sym} · restricted-list`);
+        await wait(600);
+        if(strictMode()){
+          log('ORCHESTRATOR','Order dibatalkan. Gelung kekal utuh, 0 bypass.', 'bad');
+          finish('BLOCKED');
+          return;
+        }
+      } else {
+        // human approval at gate / execution
+        if(st.key==='gate'){
+          const ok = await askApproval('Human approval · PM sign-off',
+            `PM sign-off — ${sc.side} ${sc.qty.toLocaleString()} ${sc.sym}`,
+            'A person owns the trade, on the record.',
+            [`Order  : ${sc.side} ${sc.qty.toLocaleString()} ${sc.sym}`,
+             `Notional: $${(sc.qty*sc.px/1e6).toFixed(2)}M`,
+             `Gate   : 4/4 checks passed`,
+             `Owner  : PM-A (on the record)`]);
+          if(!ok){
+            log('HUMAN','✗ PM MENOLAK trade. Order dibatalkan sebelum venue.', 'bad');
+            audit(`PM REJECT · ${sc.sym}`); finish('REJECTED'); return;
+          }
+          log('HUMAN','✓ PM sign-off diterima', 'ok'); audit(`PM SIGN-OFF · ${sc.sym}`);
+          await sleep(sim.speed*0.4);
+        }
+        if(st.key==='execution'){
+          const ok = await askApproval('Human approval · CIO oversight',
+            `CIO oversight — pelepasan ke venue`,
+            'CIO mengekalkan kuasa pelepasan akhir untuk nama/notional yang melebihi ambang.',
+            [`Notional: $${(sc.qty*sc.px/1e6).toFixed(2)}M`,
+             `Ambang CIO: $20M`,
+             `Status  : ${sc.qty*sc.px/1e6>20?'MELEBIHI — kelulusan CIO diperlukan':'bawah ambang'}`]);
+          if(!ok){ log('HUMAN','✗ CIO menahan pelepasan.', 'bad'); finish('HELD'); return; }
+          log('HUMAN','✓ CIO meluluskan pelepasan', 'ok');
+        }
+        sim.cleared++;
+        log('ORCHESTRATOR', `✓ CHECKPOINT ${st.n} LULUS (${st.name})`, 'ok');
+        audit(`CHECKPOINT ${st.n} PASS · ${st.name}`);
+      }
+    }
+
+    if(sim.killed) return;
+    sim.done.push(i);
+    // update metrics progressively
+    if(st.key==='test'){ sim.sharpe=1.8; }
+    if(st.key==='portfolio'){ sim.pnl=+18; sim.gross=191; }
+    if(st.key==='execution'){ sim.orders++; sim.cash=9.8; }
+    if(st.key==='ops'){ sim.pnl=+31; sim.tca=2.1; sim.nav=100.31; }
+    drawLoop(); renderMetrics();
+    await sleep(sim.speed*0.35);
+  }
+
+  log('ORCHESTRATOR','Gelung selesai. Suap balik TCA → router esok → peringkat 1.', 'hi');
+  audit('LOOP COMPLETE · 10/10 stages · 7/7 checkpoints');
+  finish('DONE');
+}
+
+function finish(state){
+  sim.running=false; sim.active=-1;
+  $('#runBtn').disabled=false; $('#pauseBtn').disabled=true;
+  const map={DONE:['COMPLETE','ok'],BLOCKED:['BLOCKED','bad'],REJECTED:['REJECTED','bad'],HELD:['HELD','bad'],KILLED:['KILLED','bad']};
+  setState(map[state][0], map[state][1]);
+  drawLoop();
+}
+
+function inject(kind){
+  log('SYSTEM','──────', 'sep');
+  log('ORCHESTRATOR','⚠ INSIDEN DIINJEK', 'bad');
+  const P={
+    borrow:{t:'Borrow recall',d:'Prime broker menarik balik pinjaman pada nama short.',
+      s:[['Prime broker','Recall notice diterima — 48 jam untuk tutup'],['GateAgent','Sekat short baharu pada nama ini'],['ExecutionAgent','Tutup posisi melalui OMS (bukan memintas)'],['OpsAgent','Kira kos recall → borrow-and-financing.md']]},
+    dd:{t:'Drawdown limit breach',d:'Had -10% mandat dilanggar.',
+      s:[['Axioma','VaR & drawdown dikira semula'],['CONTROL','⛔ KILL SWITCH automatik pada nama terjejas'],['ORCHESTRATOR','Gelung dihentikan — menunggu CIO'],['HUMAN','CIO menyemak scenario penuh sebelum restart']]},
+    outage:{t:'Vendor data outage',d:'Vendor data pasaran gagal.',
+      s:[['Great Expectations','Quality gate GAGAL — medan NULL'],['CONTROL','Gelung dihentikan — jangan buat keputusan atas data rosak'],['Grafana','Alert dihantar'],['DataAgent','Cuba vendor fallback']]}
+  }[kind];
+  log('ORCHESTRATOR', `Insiden: ${P.t} — ${P.d}`, 'bad');
+  audit(`INCIDENT · ${P.t}`);
+  let i=0;
+  const step=()=>{
+    if(i>=P.s.length) { log('ORCHESTRATOR','Playbook insiden selesai. Manusia menyemak.', 'sys'); return; }
+    const [a,m]=P.s[i++];
+    log(a,m,'warn'); setTimeout(step, 620);
+  };
+  setTimeout(step, 300);
+}
+
+function killSwitch(){
+  sim.killed=true; sim.running=false; sim.paused=false;
+  log('SYSTEM','──────','sep');
+  log('CONTROL','⛔ KILL SWITCH DIAKTIFKAN', 'bad');
+  log('CONTROL','Semua ejen berhenti. Order belum hantar dibatalkan. OMS kekal sumber kebenaran.', 'bad');
+  audit('KILL SWITCH ENGAGED · all agents halted');
+  $('#runBtn').disabled=false; $('#pauseBtn').disabled=true;
+  setState('KILLED','bad');
+  drawLoop();
+}
+
+/* boot */
+drawLoop();
+log('SYSTEM','quant-fund-os dimuatkan. Tekan RUN untuk memulakan simulasi.', 'sys');
+log('SYSTEM','10 peringkat · 7 checkpoint · 1 gelung · 0 bypasses.', 'sys');
+</script>
+</body>
+</html>
